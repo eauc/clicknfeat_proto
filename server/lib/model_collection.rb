@@ -65,7 +65,7 @@ class ModelCollection
   def signalConnections i
     data = @models[i].to_json
     connections.each do |out|
-      out << "retry:0\ndata:#{data}\n\n"
+      out << "retry:100\ndata:#{data}\n\n"
       # out.close
     end
   end

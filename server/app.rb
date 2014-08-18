@@ -132,8 +132,8 @@ class VassalApp < Sinatra::Base
 
   get "/api/models/subscribe", :provides => 'text/event-stream' do
     stream(:keep_open) do |out| 
-      out.callback { @models.removeConnection out }
-      out << "retry:0\n\n"
+      # out.callback { @models.removeConnection out }
+      out << "retry:100\n\n"
       @models.addConnection out
     end
   end

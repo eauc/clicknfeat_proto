@@ -241,5 +241,9 @@ angular.module('vassalApp.controllers')
         $scope.models[state.id].state = state;
         $scope.$apply();
       }
+      evt_source.onerror = function(e) {
+        console.log('evtSource error');
+        console.log(e);
+      }
     }
   ]);
