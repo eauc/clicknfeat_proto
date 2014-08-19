@@ -6,8 +6,28 @@
 angular.module('vassalApp.controllers', []);
 // angular.module('vassalApp.directives', []);
 angular.module('vassalApp', [
+  'ui.router',
   'vassalApp.controllers',
   // 'vassalApp.filters',
   // 'vassalApp.services',
   // 'vassalApp.directives'
+]).config([
+  '$stateProvider',
+  '$urlRouterProvider',
+  function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
+      .state('start', {
+        url: '/',
+        templateUrl: 'partials/start.html',
+        controller: 'startCtrl',
+        data: {}
+      })
+      .state('game', {
+        url: '/game/:id',
+        templateUrl: 'partials/game.html',
+        controller: 'gameCtrl',
+        data: {}
+      });
+  }
 ]);

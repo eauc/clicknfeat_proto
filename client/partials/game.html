@@ -1,0 +1,90 @@
+<div ng-keydown="onKey($event)"
+     tabindex="0">
+  <strong>Game Id : {{game.id}}</strong><br />
+  <div style="float:right">
+    Mouse Actions :
+    <ul>
+      <li>click on a model to select it</li>
+    </ul>
+    Keyboard shortcuts :
+    <ul>
+      <li>PageUp/PageDown - Zoom in/out</li>
+      <li>Shift + Directionnal Arrows - move view</li>
+      <li>Directionnal Arrows - move selected model</li>
+      <li>Ctrl + Right/Left Arrows - rotate selected model</li>
+    </ul>
+  </div>
+  <svg width="800px" height="800px"
+       viewBox="{{board.view.x}} {{board.view.y}} {{board.view.width}} {{board.view.height}}"
+       preserveAspectRatio="xMinYMin meet"
+       style="border:1px solid black">
+    <image x="0" y="0" width="{{board.width}}" height="{{board.height}}"
+           xlink:href="data/Board.png"
+           style="display:inline"
+           />
+    <svg x="0" y="0" width="{{board.width}}" height="{{board.height}}"
+         style="display:inline"
+         >
+      <rect x="120" y="136" width="60" height="43"
+            style="
+            fill:#00F;
+            fill-opacity:0.2;
+            "
+            transform="rotate(40, 150, 155)"
+            />
+      <rect x="295" y="308" width="85" height="64"
+            style="
+            fill:#00F;
+            fill-opacity:0.2;
+            "
+            transform="rotate(40, 338, 340)"
+            />
+      <rect x="205" y="242" width="70" height="7"
+            style="
+            fill:#F00;
+            fill-opacity:0.2;
+            "
+            transform="rotate(84, 240, 245)"
+            />
+      <circle cx="90" cy="242" r="29"
+              style="
+              fill:#0F0;
+              fill-opacity:0.2;
+              "
+              />
+      <circle cx="390" cy="242" r="29"
+              style="
+              fill:#0F0;
+              fill-opacity:0.2;
+              "
+              />
+    </svg>
+    <svg id="canvas"
+         x="0" y="0" width="{{board.width}}" height="{{board.height}}"
+         style="display:inline"
+         >
+      <svg ng-repeat="model in models"
+           x="{{model.state.x}}" y="{{model.state.y}}">
+        <g transform="rotate({{model.state.rot}}, 30, 30)">
+          <image x="{{model.img.x}}" y="{{model.img.y}}"
+                 width="{{model.img.width}}" height="{{model.img.height}}"
+                 xlink:href="{{model.img.link}}"
+                 style="pointer-events: none"
+                 />
+          <circle ng-click="onModelClick($event, model)"
+                  cx="{{model.img.width/2}}" cy="{{model.img.height/2}}" r="{{model.img.r}}"
+                  style="
+                  fill:#F00;
+                  fill-opacity:0.5;
+                  stroke-fill:2px;
+                  "
+                  ng-style="{
+                  'stroke': model.state.active ? '#0F0' : none
+                  }"
+                  
+                  /> 
+        </g>
+      </svg>
+    </svg>
+  </svg>
+</div>
