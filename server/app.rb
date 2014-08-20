@@ -14,6 +14,10 @@ class VassalApp < Sinatra::Base
   set :public_folder, File.join(File.dirname(__FILE__), '..', 'client')
   set :views, File.join(File.dirname(__FILE__), '..', 'client')
 
+  get '/' do
+    redirect '/index.html'
+  end
+
   get "/api/games" do
     content_type 'text/json'
     @games.list.to_json
