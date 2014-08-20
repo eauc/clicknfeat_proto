@@ -38,46 +38,18 @@ angular.module('vassalApp.controllers')
         $scope.onKey = function(event) {
           // console.log(event);
           switch(event.keyCode) {
-          case 33: // pageUp
+          case 61: // pageUp
             {
               $scope.game.board.zoomIn();
               event.preventDefault();
               event.preventDefault();
               return;
             }
-          case 34: // pageDown
+          case 173: // pageDown
             {
               $scope.game.board.zoomOut();
               event.preventDefault();
               return;
-            }
-          }
-          if(event.shiftKey) {
-            switch(event.keyCode) {
-            case 37: // leftArrow
-              {
-                $scope.game.board.moveLeft();
-                event.preventDefault();
-                return;
-              }
-            case 38: // upArrow
-              {
-                $scope.game.board.moveUp();
-                event.preventDefault();
-                return;
-              }
-            case 39: // rightArrow
-              {
-                $scope.game.board.moveRight();
-                event.preventDefault();
-                return;
-              }
-            case 40: // downArrow
-              {
-                $scope.game.board.moveDown();
-                event.preventDefault();
-                return;
-              }
             }
           }
           if(37 > event.keyCode ||
@@ -87,41 +59,53 @@ angular.module('vassalApp.controllers')
           case 37: // leftArrow
             {
               // $scope.game.onSelection('moveLeft', event.ctrlKey);
-              if(event.ctrlKey) {
-                $scope.game.newCommand(command('onSelection', 'moveLeft'));
+              if(event.altKey) {
+                $scope.game.board.moveLeft();
+              }
+              else if(event.ctrlKey) {
+                $scope.game.newCommand(command('onSelection', 'moveLeft', event.shiftKey));
               }
               else {
-                $scope.game.newCommand(command('onSelection', 'rotateLeft'));
+                $scope.game.newCommand(command('onSelection', 'rotateLeft', event.shiftKey));
               }
               break;
             }
           case 38: // upArrow
             {
-              if(event.ctrlKey) {
-                $scope.game.newCommand(command('onSelection', 'moveUp'));
+              if(event.altKey) {
+                $scope.game.board.moveUp();
+              }
+              else if(event.ctrlKey) {
+                $scope.game.newCommand(command('onSelection', 'moveUp', event.shiftKey));
               }
               else {
-                $scope.game.newCommand(command('onSelection', 'moveFront'));
+                $scope.game.newCommand(command('onSelection', 'moveFront', event.shiftKey));
               }
               break;
             }
           case 39: // rightArrow
             {
-              if(event.ctrlKey) {
-                $scope.game.newCommand(command('onSelection', 'moveRight'));
+              if(event.altKey) {
+                $scope.game.board.moveRight();
+              }
+              else if(event.ctrlKey) {
+                $scope.game.newCommand(command('onSelection', 'moveRight', event.shiftKey));
               }
               else {
-                $scope.game.newCommand(command('onSelection', 'rotateRight'));
+                $scope.game.newCommand(command('onSelection', 'rotateRight', event.shiftKey));
               }
               break;
             }
           case 40: // downArrow
             {
-              if(event.ctrlKey) {
-                $scope.game.newCommand(command('onSelection', 'moveDown'));
+              if(event.altKey) {
+                $scope.game.board.moveDown();
+              }
+              else if(event.ctrlKey) {
+                $scope.game.newCommand(command('onSelection', 'moveDown', event.shiftKey));
               }
               else {
-                $scope.game.newCommand(command('onSelection', 'moveBack'));
+                $scope.game.newCommand(command('onSelection', 'moveBack', event.shiftKey));
               }
               break;
             }

@@ -18,42 +18,50 @@ angular.module('vassalApp.services')
                                   -this.img.r,
                                   this.state.y);
         },
-        moveFront: function(game) {
-          var dx = 10 * Math.sin(this.state.rot * Math.PI / 180);
-          var dy = -10 * Math.cos(this.state.rot * Math.PI / 180);
+        moveFront: function(game, small) {
+          var dl = small ? 1 : 10;
+          var dx = dl * Math.sin(this.state.rot * Math.PI / 180);
+          var dy = -dl * Math.cos(this.state.rot * Math.PI / 180);
           // console.log(dx + ' ' + dy);
           this.state.x += dx;
           this.state.y += dy;
           this.refresh(game);
         },
-        moveBack: function(game) {
-          var dx = -10 * Math.sin(this.state.rot * Math.PI / 180);
-          var dy = 10 * Math.cos(this.state.rot * Math.PI / 180);
+        moveBack: function(game, small) {
+          var dl = small ? 1 : 10;
+          var dx = -dl * Math.sin(this.state.rot * Math.PI / 180);
+          var dy = dl * Math.cos(this.state.rot * Math.PI / 180);
           // console.log(dx + ' ' + dy);
           this.state.x += dx;
           this.state.y += dy;
           this.refresh(game);
         },
-        rotateLeft: function(game) {
-          this.state.rot = this.state.rot - 30;
+        rotateLeft: function(game, small) {
+          var dr = small ? 5 : 30;
+          this.state.rot = this.state.rot - dr;
         },
-        moveLeft: function(game) {
-          this.state.x -= 10;
+        moveLeft: function(game, small) {
+          var dl = small ? 1 : 10;
+          this.state.x -= dl;
           this.refresh(game);
         },
-        moveUp: function(game) {
-          this.state.y -= 10;
+        moveUp: function(game, small) {
+          var dl = small ? 1 : 10;
+          this.state.y -= dl;
           this.refresh(game);
         },
-        rotateRight: function(game) {
-          this.state.rot = this.state.rot + 30;
+        rotateRight: function(game, small) {
+          var dr = small ? 5 : 30;
+          this.state.rot = this.state.rot + dr;
         },
-        moveRight: function(game) {
-          this.state.x += 10;
+        moveRight: function(game, small) {
+          var dl = small ? 1 : 10;
+          this.state.x += dl;
           this.refresh(game);
         },
-        moveDown: function(game) {
-          this.state.y += 10;
+        moveDown: function(game, small) {
+          var dl = small ? 1 : 10;
+          this.state.y += dl;
           this.refresh(game);
         }
       };
