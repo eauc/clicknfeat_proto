@@ -60,6 +60,34 @@
       <svg ng-repeat="model in game.models"
            x="{{model.state.x}}" y="{{model.state.y}}">
         <g transform="rotate({{model.state.rot}}, 30, 30)">
+          <path d="
+                M{{10-model.img.r}},30
+                L{{50+model.img.r}},30
+                A{{20+model.img.r}},{{20+model.img.r}} 0 0,0 {{10-model.img.r}},30
+                "
+                style="
+                stroke:#000;
+                stroke-width:0.5px;
+                pointer-events: none;
+                fill: #000;
+                fill-opacity: 0.5;
+                "
+                ng-show="model.state.show.reach"
+                />
+          <path d="
+                M{{25-model.img.r}},30
+                L{{35+model.img.r}},30
+                A{{5+model.img.r}},{{5+model.img.r}} 0 0,0 {{25-model.img.r}},30
+                "
+                style="
+                stroke:#000;
+                stroke-width:0.5px;
+                pointer-events: none;
+                fill: #000;
+                fill-opacity: 0.5;
+                "
+                ng-show="model.state.show.melee"
+                />
           <image x="{{model.img.x}}" y="{{model.img.y}}"
                  width="{{model.img.width}}" height="{{model.img.height}}"
                  xlink:href="{{model.img.link}}"
@@ -70,7 +98,7 @@
                   style="
                   fill:#F00;
                   fill-opacity:0.5;
-                  stroke-fill:2px;
+                  stroke-width:1px;
                   "
                   ng-style="{
                   'stroke': model.state.active ? '#0F0' : none
@@ -85,7 +113,7 @@
           style="
           fill: none;
           stroke:#00F;
-          stroke-fill:1px;
+          stroke-width:0.5px;
           " />
   </svg>
   <div style="display:inline-block;vertical-align:top;">
@@ -145,6 +173,8 @@
       <li>(Shift + )Up/Down Arrows : (small) advance selected model</li>
       <li>(Shift + )Right/Left Arrows : (small) rotate selected model</li>
       <li>(Shift + )Ctrl + Directionnal Arrows : (small) move selected model</li>
+      <li>m : toggle melee range of selected model</li>
+      <li>r : toggle reach range of selected model</li>
     </ul>
   </div>
 </div>

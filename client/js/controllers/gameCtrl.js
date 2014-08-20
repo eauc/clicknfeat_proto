@@ -36,7 +36,7 @@ angular.module('vassalApp.controllers')
         console.log(canvas);
 
         $scope.onKey = function(event) {
-          // console.log(event);
+          console.log(event);
           switch(event.keyCode) {
           case 61: // pageUp
             {
@@ -51,6 +51,14 @@ angular.module('vassalApp.controllers')
               event.preventDefault();
               return;
             }
+          }
+          if(event.keyCode === 77) { // m
+            $scope.game.newCommand(command('onSelection', 'toggleMelee'));
+            return;
+          }
+          if(event.keyCode === 82) { // r
+            $scope.game.newCommand(command('onSelection', 'toggleReach'));
+            return;
           }
           if(37 > event.keyCode ||
              40 < event.keyCode) return;

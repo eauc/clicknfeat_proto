@@ -63,6 +63,12 @@ angular.module('vassalApp.services')
           var dl = small ? 1 : 10;
           this.state.y += dl;
           this.refresh(game);
+        },
+        toggleMelee: function() {
+          this.state.show.melee = !this.state.show.melee;
+        },
+        toggleReach: function() {
+          this.state.show.reach = !this.state.show.reach;
         }
       };
 
