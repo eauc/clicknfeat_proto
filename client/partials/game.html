@@ -4,7 +4,9 @@
   <div style="float:right">
     Mouse Actions :
     <ul>
-      <li>click on a model to select it</li>
+      <li>click on a model - select the model</li> 
+      <li>Ctrl+click on models - select multiple models</li>
+      <li>Drag-Box on models - select multiple models</li>
     </ul>
     Keyboard shortcuts :
     <ul>
@@ -14,10 +16,14 @@
       <li>Ctrl + Right/Left Arrows - rotate selected model</li>
     </ul>
   </div>
-  <svg width="800px" height="800px"
+  <svg id="canvas"
+       width="800px" height="800px"
        viewBox="{{board.view.x}} {{board.view.y}} {{board.view.width}} {{board.view.height}}"
        preserveAspectRatio="xMinYMin meet"
-       style="border:1px solid black">
+       style="border:1px solid black"
+       ng-mousedown="doSelectStart($event)"
+       ng-mousemove="doSelectMove($event)"
+       ng-mouseup="doSelectStop($event)">
     <image x="0" y="0" width="{{board.width}}" height="{{board.height}}"
            xlink:href="data/Board.png"
            style="display:inline"
@@ -59,7 +65,7 @@
               "
               />
     </svg>
-    <svg id="canvas"
+    <svg id="model-canvas"
          x="0" y="0" width="{{board.width}}" height="{{board.height}}"
          style="display:inline"
          >
@@ -86,5 +92,12 @@
         </g>
       </svg>
     </svg>
+    <rect x="{{selection.x}}" y="{{selection.y}}"
+          width="{{selection.width}}" height="{{selection.height}}"
+          style="
+          fill: none;
+          stroke:#00F;
+          stroke-fill:1px;
+          " />
   </svg>
 </div>

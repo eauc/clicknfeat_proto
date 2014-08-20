@@ -15,12 +15,52 @@ angular.module('vassalApp.controllers')
       console.log('init gameCtrl');
       if(!$stateParams.id || $stateParams.id.length <= 0) $state.go('start');
 
+      var model_base = {
+        moveLeft: function(rotate) {
+          if(rotate) {
+            this.state.rot = this.state.rot - 30;
+          }
+          else {
+            this.state.x = Math.max(-(this.img.height/2)+this.img.r,
+                                    this.state.x - 10);
+          }
+        },
+        moveUp: function(rotate) {
+          this.state.y = Math.max(-(this.img.height/2)+this.img.r,
+                                  this.state.y - 10);
+        },
+        moveRight: function(rotate) {
+          if(rotate) {
+            this.state.rot = this.state.rot + 30;
+          }
+          else {
+            this.state.x = Math.min($scope.board.width
+                                    -(this.img.height/2)
+                                    -this.img.r,
+                                    this.state.x + 10);
+          }
+        },
+        moveDown: function(rotate) {
+          this.state.y = Math.min($scope.board.height
+                                  -(this.img.width/2)
+                                  -this.img.r,
+                                  this.state.y + 10);
+        }
+      };
+
+      var selected_model = [];
       $http.get('/api/games/'+$stateParams.id).then(function(response) {
         console.log('search game success');
         $scope.game = response.data;
         $scope.models= $scope.game.models;
         console.log($scope.game);
         
+        _.each($scope.models, function(model) {
+          _.extend(model, model_base);
+          if(model.state.active) {
+            selected_model.push(model);
+          }
+        });
       }, function(response) {
         console.log('search game error');
         console.log(response);
@@ -59,9 +99,9 @@ angular.module('vassalApp.controllers')
 
         var canvas = document.getElementById('canvas');
         console.log(canvas);
-        var selected_model;
+
         $scope.onKey = function(event) {
-          console.log(event);
+          // console.log(event);
           switch(event.keyCode) {
           case 33: // pageUp
             {
@@ -132,78 +172,202 @@ angular.module('vassalApp.controllers')
             switch(event.keyCode) {
             case 37: // leftArrow
               {
-                if(event.ctrlKey) {
-                  selected_model.state.rot = selected_model.state.rot - 30;
-                }
-                else {
-                  selected_model.state.x = Math.max(-(selected_model.img.height/2)+selected_model.img.r,
-                                                    selected_model.state.x - 10);
-                }
+                _.each(selected_model, function(model) {
+                  model.moveLeft(event.ctrlKey);
+                });
                 break;
               }
             case 38: // upArrow
               {
-                selected_model.state.y = Math.max(-(selected_model.img.height/2)+selected_model.img.r,
-                                                  selected_model.state.y - 10);
+                _.each(selected_model, function(model) {
+                  model.moveUp(event.ctrlKey);
+                });
                 break;
               }
             case 39: // rightArrow
               {
-                if(event.ctrlKey) {
-                  selected_model.state.rot = selected_model.state.rot + 30;
-                }
-                else {
-                  selected_model.state.x = Math.min($scope.board.width
-                                                    -(selected_model.img.height/2)
-                                                    -selected_model.img.r,
-                                                    selected_model.state.x + 10);
-                }
+                _.each(selected_model, function(model) {
+                  model.moveRight(event.ctrlKey);
+                });
                 break;
               }
             case 40: // downArrow
               {
-                selected_model.state.y = Math.min($scope.board.height
-                                                  -(selected_model.img.width/2)
-                                                  -selected_model.img.r,
-                                                  selected_model.state.y + 10);
+                _.each(selected_model, function(model) {
+                  model.moveDown(event.ctrlKey);
+                });
                 break;
               }
             }
-            console.log(selected_model.state);
-            $http.put('/api/games/'+$scope.game.id+
-                      '/models/'+selected_model.state.id,
-                      selected_model.state)
-              .then(function(response) {
-                console.log('put model '+selected_model.state.id+' success')
-              }, function(response) {
-                console.log('put model '+selected_model.state.id+' error '+response.status)
-              });
+            _.each(selected_model, function(model) {
+              console.log(model.state);
+              $http.put('/api/games/'+$scope.game.id+
+                        '/models/'+model.state.id,
+                        model.state)
+                .then(function(response) {
+                  console.log('put model '+model.state.id+' success')
+                }, function(response) {
+                  console.log('put model '+model.state.id+' error '+response.status)
+                });
+            });
           }
         };
         $scope.onModelClick = function(event, model) {
           console.log(event);
           console.log(model);
-          if(selected_model) {
-            selected_model.state.active = false;
-            $http.put('/api/games/'+$scope.game.id+
-                      '/models/'+selected_model.state.id,
-                      selected_model.state)
-              .then(function(response) {
-                console.log('put model '+selected_model.state.id+' success')
-              }, function(response) {
-                console.log('get model '+selected_model.state.id+' error '+response.status)
-              });
-          }
-          selected_model = model;
-          selected_model.state.active = true;
-          $http.put('/api/games/'+$scope.game.id+
-                    '/models/'+selected_model.state.id,
-                    selected_model.state)
-            .then(function(response) {
-              console.log('put model '+selected_model.state.id+' success')
-            }, function(response) {
-              console.log('get model '+selected_model.state.id+' error '+response.status)
+          if(!event.ctrlKey) {
+            _.each(selected_model, function(model) {
+              model.state.active = false;
+              $http.put('/api/games/'+$scope.game.id+
+                        '/models/'+model.state.id,
+                        model.state)
+                .then(function(response) {
+                  console.log('put model '+model.state.id+' success')
+                }, function(response) {
+                  console.log('get model '+model.state.id+' error '+response.status)
+                });
             });
+            selected_model.length = 0;
+          }
+          selected_model.push(model);
+          model.state.active = true;
+          $http.put('/api/games/'+$scope.game.id+
+                    '/models/'+model.state.id,
+                    model.state)
+            .then(function(response) {
+              console.log('put model '+model.state.id+' success')
+            }, function(response) {
+              console.log('get model '+model.state.id+' error '+response.status)
+            });
+        };
+
+        $scope.selection = {
+          active: false,
+          x: 10, y: 10,
+          start_x: 10, start_y: 10,
+          width: 0, height: 0,
+        };
+        $scope.doSelectStart = function(event) {
+          console.log(event);
+          $scope.selection.active = true;
+          var elem_rect = canvas.getBoundingClientRect();
+          console.log(elem_rect);
+          var dom_x = event.clientX - elem_rect.x;
+          var dom_y = event.clientY - elem_rect.y;
+          console.log('dom ' + dom_x + ' ' + dom_y);
+          var user_x = dom_x * $scope.board.width / elem_rect.width;
+          var user_y = dom_y * $scope.board.height / elem_rect.height;
+          console.log('user ' + user_x + ' ' + user_y);
+          $scope.selection.start_x = user_x;
+          $scope.selection.start_y = user_y;
+          $scope.selection.width = 0;
+          $scope.selection.height = 0;
+        };
+        $scope.doSelectMove = function(event) {
+          if($scope.selection.active) {
+            console.log(event);
+            var elem_rect = canvas.getBoundingClientRect();
+            console.log(elem_rect);
+            var dom_x = event.clientX - elem_rect.x;
+            var dom_y = event.clientY - elem_rect.y;
+            console.log('dom ' + dom_x + ' ' + dom_y);
+            var user_x = dom_x * $scope.board.width / elem_rect.width;
+            var user_y = dom_y * $scope.board.height / elem_rect.height;
+            console.log('user ' + user_x + ' ' + user_y);
+            $scope.selection.x = $scope.selection.start_x;
+            $scope.selection.width = user_x - $scope.selection.start_x;
+            if($scope.selection.width < 0) {
+              $scope.selection.width = -$scope.selection.width;
+              $scope.selection.x = $scope.selection.x - $scope.selection.width;
+            }
+            if($scope.selection.width < 1) {
+              $scope.selection.width = 0;
+            }
+            $scope.selection.y = $scope.selection.start_y;
+            $scope.selection.height = user_y - $scope.selection.start_y;
+            if($scope.selection.height < 0) {
+              $scope.selection.height = -$scope.selection.height;
+              $scope.selection.y = $scope.selection.y - $scope.selection.height;
+            }
+            if($scope.selection.height < 1) {
+              $scope.selection.height = 0;
+            }
+            // console.log($scope.selection.x + ' ' +
+            //             $scope.selection.y + ' ' +
+            //             $scope.selection.width + ' ' +
+            //             $scope.selection.height);
+          }
+        };
+        $scope.doSelectStop = function(event) {
+          console.log(event);
+          if($scope.selection.active) {
+            $scope.selection.active = false;
+            var elem_rect = canvas.getBoundingClientRect();
+            console.log(elem_rect);
+            var dom_x = event.clientX - elem_rect.x;
+            var dom_y = event.clientY - elem_rect.y;
+            console.log('dom ' + dom_x + ' ' + dom_y);
+            var user_x = dom_x * $scope.board.width / elem_rect.width;
+            var user_y = dom_y * $scope.board.height / elem_rect.height;
+            console.log('user ' + user_x + ' ' + user_y);
+            $scope.selection.x = $scope.selection.start_x;
+            $scope.selection.width = user_x - $scope.selection.start_x;
+            if($scope.selection.width < 0) {
+              $scope.selection.width = -$scope.selection.width;
+              $scope.selection.x = $scope.selection.x - $scope.selection.width;
+            }
+            if($scope.selection.width < 1) {
+              $scope.selection.width = 0;
+            }
+            $scope.selection.y = $scope.selection.start_y;
+            $scope.selection.height = user_y - $scope.selection.start_y;
+            if($scope.selection.height < 0) {
+              $scope.selection.height = -$scope.selection.height;
+              $scope.selection.y = $scope.selection.y - $scope.selection.height;
+            }
+            if($scope.selection.height < 1) {
+              $scope.selection.height = 0;
+            }
+            console.log($scope.selection.x + ' ' +
+                        $scope.selection.y + ' ' +
+                        $scope.selection.width + ' ' +
+                        $scope.selection.height);
+            if($scope.selection.width > 0 &&
+               $scope.selection.height > 0) {
+              _.each(selected_model, function(model) {
+                model.state.active = false;
+                $http.put('/api/games/'+$scope.game.id+
+                          '/models/'+model.state.id,
+                          model.state)
+                  .then(function(response) {
+                    console.log('put model '+model.state.id+' success')
+                  }, function(response) {
+                    console.log('get model '+model.state.id+' error '+response.status)
+                  });
+              });
+              selected_model.length = 0;
+
+              _.each($scope.models, function(model) {
+                var cx = model.state.x + model.img.width/2;
+                var cy = model.state.y + model.img.height/2;
+                if( $scope.selection.x <= cx && cx <= ($scope.selection.x+$scope.selection.width ) &&
+                    $scope.selection.y <= cy && cy <= ($scope.selection.y+$scope.selection.height) ) {
+                  selected_model.push(model);
+                  model.state.active = true;
+                  $http.put('/api/games/'+$scope.game.id+
+                            '/models/'+model.state.id,
+                            model.state)
+                    .then(function(response) {
+                      console.log('put model '+model.state.id+' success')
+                    }, function(response) {
+                      console.log('get model '+model.state.id+' error '+response.status)
+                    });
+                }
+              });
+              $scope.selection.width = 0;
+              $scope.selection.height = 0;
+            }
+          }
         };
 
       });
