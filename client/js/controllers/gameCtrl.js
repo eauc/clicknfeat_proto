@@ -8,12 +8,14 @@ angular.module('vassalApp.controllers')
     '$http',
     '$q',
     'game',
+    'command',
     function($scope,
              $state,
              $stateParams,
              $http,
              $q,
-             game) {
+             game,
+             command) {
       console.log('init gameCtrl');
       if(!$stateParams.id || $stateParams.id.length <= 0) $state.go('start');
 
@@ -37,11 +39,14 @@ angular.module('vassalApp.controllers')
           case 33: // pageUp
             {
               $scope.game.board.zoomIn();
+              event.preventDefault();
+              event.preventDefault();
               return;
             }
           case 34: // pageDown
             {
               $scope.game.board.zoomOut();
+              event.preventDefault();
               return;
             }
           }
@@ -50,46 +55,52 @@ angular.module('vassalApp.controllers')
             case 37: // leftArrow
               {
                 $scope.game.board.moveLeft();
+                event.preventDefault();
                 return;
               }
             case 38: // upArrow
               {
                 $scope.game.board.moveUp();
+                event.preventDefault();
                 return;
               }
             case 39: // rightArrow
               {
                 $scope.game.board.moveRight();
+                event.preventDefault();
                 return;
               }
             case 40: // downArrow
               {
                 $scope.game.board.moveDown();
+                event.preventDefault();
                 return;
               }
             }
           }
           if(37 > event.keyCode ||
              40 < event.keyCode) return;
+          event.preventDefault();
           switch(event.keyCode) {
           case 37: // leftArrow
             {
-              $scope.game.onSelection('moveLeft', event.ctrlKey);
+              // $scope.game.onSelection('moveLeft', event.ctrlKey);
+              $scope.game.newCommand(command('onSelection', 'moveLeft', event.ctrlKey));
               break;
             }
           case 38: // upArrow
             {
-              $scope.game.onSelection('moveUp', event.ctrlKey);
+              $scope.game.newCommand(command('onSelection', 'moveUp'));
               break;
             }
           case 39: // rightArrow
             {
-              $scope.game.onSelection('moveRight', event.ctrlKey);
+              $scope.game.newCommand(command('onSelection', 'moveRight', event.ctrlKey));
               break;
             }
           case 40: // downArrow
             {
-              $scope.game.onSelection('moveDown', event.ctrlKey);
+              $scope.game.newCommand(command('onSelection', 'moveDown'));
               break;
             }
           }
@@ -97,10 +108,12 @@ angular.module('vassalApp.controllers')
         $scope.onModelClick = function(event, model) {
           console.log(event);
           console.log(model);
-          if(!event.ctrlKey) {
-            $scope.game.clearSelection();
+          if(event.ctrlKey) {
+            $scope.game.newCommand(command('addToSelection', [model.state.id]));
           }
-          $scope.game.addToSelection([model]);
+          else {
+            $scope.game.newCommand(command('setSelection', [model.state.id]));
+          }
         };
 
         $scope.selection = {
@@ -196,18 +209,16 @@ angular.module('vassalApp.controllers')
                         $scope.selection.height);
             if($scope.selection.width > 0 &&
                $scope.selection.height > 0) {
-              $scope.game.clearSelection();
-
               var models_selected = [];
               _.each($scope.game.models, function(model) {
                 var cx = model.state.x + model.img.width/2;
                 var cy = model.state.y + model.img.height/2;
                 if( $scope.selection.x <= cx && cx <= ($scope.selection.x+$scope.selection.width ) &&
                     $scope.selection.y <= cy && cy <= ($scope.selection.y+$scope.selection.height) ) {
-                  models_selected.push(model);
+                  models_selected.push(model.state.id);
                 }
               });
-              $scope.game.addToSelection(models_selected);
+              $scope.game.newCommand(command('setSelection', models_selected));
 
               $scope.selection.width = 0;
               $scope.selection.height = 0;

@@ -36,7 +36,7 @@ class VassalApp < Sinatra::Base
     @games[game_id].to_json
   end
 
-  get "/api/games/:game_id/models/subscribe", :provides => 'text/event-stream' do
+  get "/api/games/:game_id/commands/subscribe", :provides => 'text/event-stream' do
     game_id = params[:game_id].to_i
     return status 404 unless @games.exist? game_id
     game = @games[game_id]
@@ -44,20 +44,30 @@ class VassalApp < Sinatra::Base
     stream(:keep_open) do |out| 
       # out.callback { @models.removeConnection out }
       out << "retry:100\n\n"
-      game.models.addConnection out
+      game.commands.addConnection out
     end
   end
 
-  put "/api/games/:game_id/models/:model_id" do
+  put "/api/games/:game_id/commands/undo" do
     game_id = params[:game_id].to_i
     return status 404 unless @games.exist? game_id
     game = @games[game_id]
 
-    model_id = params[:model_id].to_i
-    return status 404 unless game.models.exist? model_id
+    data = JSON.parse request.body.read
+    if game.commands.undo data['stamp']
+      status 200
+    else
+      status 400
+    end
+  end
+
+  post "/api/games/:game_id/commands" do
+    game_id = params[:game_id].to_i
+    return status 404 unless @games.exist? game_id
+    game = @games[game_id]
 
     data = JSON.parse request.body.read
-    game.models[model_id] = data
+    game.commands.add data
     status 200
   end
 end

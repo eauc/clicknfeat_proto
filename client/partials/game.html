@@ -1,23 +1,9 @@
 <div ng-keydown="onKey($event)"
-     tabindex="0">
+     tabindex="0"
+     style="vertical-align:top">
   <strong>Game Id : {{game.id}}</strong><br />
-  <div style="float:right">
-    Mouse Actions :
-    <ul>
-      <li>click on a model - select the model</li> 
-      <li>Ctrl+click on models - select multiple models</li>
-      <li>Drag-Box on models - select multiple models</li>
-    </ul>
-    Keyboard shortcuts :
-    <ul>
-      <li>PageUp/PageDown - Zoom in/out</li>
-      <li>Shift + Directionnal Arrows - move view</li>
-      <li>Directionnal Arrows - move selected model</li>
-      <li>Ctrl + Right/Left Arrows - rotate selected model</li>
-    </ul>
-  </div>
   <svg id="canvas"
-       style="border:1px solid black;display: inline-box;"
+       style="border:1px solid black;display: inline-block;"
        width="800px" height="800px"
        viewBox="
        {{game.board.view.x}} {{game.board.view.y}}
@@ -102,4 +88,35 @@
           stroke-fill:1px;
           " />
   </svg>
+  <div style="display:inline-block;vertical-align:top;max-height:600px;overflow-y:scroll;">
+    <div>
+      <strong>New Commands :</strong>
+      <button ng-click="game.undoLastCommand()">Undo</button>
+    </div>
+    <div ng-repeat="cmd in game.new_commands.slice().reverse()">
+      {{cmd.desc()}} - {{cmd.stamp}}
+    </div>
+    <div>
+      <strong>Commands :</strong>
+      <button ng-click="game.undoLastCommand()">Undo</button>
+    </div>
+    <div ng-repeat="cmd in game.commands.slice().reverse()">
+      {{cmd.desc()}} - {{cmd.stamp}}
+    </div>
+  </div>
+  <div>
+    Mouse Actions :
+    <ul>
+      <li>click on a model - select the model</li> 
+      <li>Ctrl+click on models - select multiple models</li>
+      <li>Drag-Box on models - select multiple models</li>
+    </ul>
+    Keyboard shortcuts :
+    <ul>
+      <li>PageUp/PageDown - Zoom in/out</li>
+      <li>Shift + Directionnal Arrows - move view</li>
+      <li>Directionnal Arrows - move selected model</li>
+      <li>Ctrl + Right/Left Arrows - rotate selected model</li>
+    </ul>
+  </div>
 </div>

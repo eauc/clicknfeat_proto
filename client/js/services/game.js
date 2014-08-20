@@ -4,8 +4,10 @@ angular.module('vassalApp.services')
   .factory('game', [
     '$rootScope',
     '$http',
-    function($scope,
-             $http) {
+    'command',
+    function($rootScope,
+             $http,
+             command) {
       var model_base = {
         moveLeft: function(game, rotate) {
           if(rotate) {
@@ -46,39 +48,68 @@ angular.module('vassalApp.services')
           onSelection: function(method_name) {
             if(_.isFunction(model_base[method_name])) {
               var forward_args = Array.prototype.slice.call(arguments, 1);
-              _.each(this.selection, function(model) {
-                model[method_name].apply(model,
-                                         [instance].concat(forward_args));
+              _.each(this.selection, function(id) {
+                instance.models[id][method_name].apply(instance.models[id],
+                                                       [instance].concat(forward_args));
               });
             }
           },
-          addToSelection: function(models) {
-            _.each(models, function(model) {
-              instance.selection.push(model);
-              model.state.active = true;
-              // $http.put('/api/games/'+this.id+
-              //           '/models/'+model.state.id,
-              //           model.state)
-              //   .then(function(response) {
-              //     console.log('put model '+model.state.id+' success')
-              //   }, function(response) {
-              //     console.log('get model '+model.state.id+' error '+response.status)
-              //   });
+          addToSelection: function(model_ids) {
+            this.selection = _.uniq(this.selection.concat(model_ids));
+            _.each(this.selection, function(id) {
+              instance.models[id].state.active = true;
             });
           },
+          setSelection: function(model_ids) {
+            this.clearSelection();
+            this.addToSelection(model_ids);
+          },
           clearSelection: function() {
-            _.each(this.selection, function(model) {
-              model.state.active = false;
-              // $http.put('/api/games/'+this.id+
-              //           '/models/'+model.state.id,
-              //           model.state)
-              //   .then(function(response) {
-              //     console.log('put model '+model.state.id+' success')
-              //   }, function(response) {
-              //     console.log('get model '+model.state.id+' error '+response.status)
-              //   });
+            _.each(this.selection, function(id) {
+              instance.models[id].state.active = false;
             });
             this.selection.length = 0;
+          },
+          new_commands: [],
+          commands: [],
+          newCommand: function(new_cmd) {
+            new_cmd.execute(this);
+            this.new_commands.push(new_cmd);
+            $http.post('/api/games/'+instance.id+'/commands', new_cmd)
+              .then(function(response) {
+                console.log('send cmd success');
+              }, function(response) {
+                console.log('send cmd error');
+                console.log(response);
+              });
+          },
+          undoLastCommand: function() {
+            if(this.commands.length <= 0) return;
+            $http.put('/api/games/'+this.id+'/commands/undo',
+                      { stamp: _.last(this.commands).stamp })
+              .then(function(response) {
+                console.log('send undo cmd success');
+              }, function(response) {
+                console.log('send undo cmd error');
+                console.log(response);
+              });
+          },
+          updateCommand: function(new_cmd) {
+            if( _.find(this.commands, function(cmd) { return cmd.stamp === new_cmd.stamp; })) {
+              console.log('cmd udpate : already in commands queue');
+              return;
+            }
+            var find_cmd = _.findWhere(this.new_commands, { stamp: new_cmd.stamp });
+            if(find_cmd) {
+              var index = _.indexOf(this.new_commands, find_cmd);
+              this.commands.push(find_cmd);
+              this.new_commands.splice(index, 1);
+              console.log('cmd udpate : validate new command');
+              return;
+            }
+            console.log('cmd udpate : execute new command');
+            new_cmd.redo(this);
+            this.commands.push(new_cmd);
           },
           board: {
             width: 480,
@@ -136,22 +167,42 @@ angular.module('vassalApp.services')
         _.each(instance.models, function(model) {
           _.extend(model, model_base);
           if(model.state.active) {
-            instance.selection.push(model);
+            instance.selection.push(model.state.id);
           }
         });
+        var cmds = instance.commands;
+        instance.commands = [];
+        _.each(cmds, function(cmd) {
+          instance.updateCommand(command(cmd));
+        });
 
-        // instance.evt_source = new EventSource('/api/games/'+instance.id+
-        //                                       '/models/subscribe');
-        // instance.evt_source.onmessage = function(e) {
-        //   var state = JSON.parse(e.data);
-        //   console.log(state);
-        //   instance.models[state.id].state = state;
-        //   $rootScope.$apply();
-        // }
-        // instance.evt_source.onerror = function(e) {
-        //   console.log('evtSource error');
-        //   console.log(e);
-        // }
+        instance.evt_source = new EventSource('/api/games/'+instance.id+
+                                              '/commands/subscribe');
+        instance.evt_source.onmessage = function(e) {
+          console.log(e);
+          var data = JSON.parse(e.data);
+          // console.log(data);
+          var cmd = command(data);
+          console.log(cmd);
+          if(cmd) instance.updateCommand(cmd);
+          $rootScope.$apply();
+        };
+        instance.evt_source.addEventListener('undo', function(e) {
+          console.log('undo event');
+          console.log(e);
+          var data = JSON.parse(e.data);
+          console.log(data);
+          // var cmd = command(data);
+          // console.log(cmd);
+          if(data.stamp === _.last(instance.commands).stamp) {
+            instance.commands.pop().undo(instance);
+          }
+          $rootScope.$apply();
+        });
+        instance.evt_source.onerror = function(e) {
+          console.log('evtSource error');
+          console.log(e);
+        };
         // _.each(selected_model, function(model) {
         //   console.log(model.state);
         //   $http.put('/api/games/'+$scope.game.id+
