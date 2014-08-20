@@ -35,8 +35,23 @@ angular.module('vassalApp.controllers')
         var canvas = document.getElementById('canvas');
         console.log(canvas);
 
-        $scope.onKey = function(event) {
+        $scope.drag_mode = 'selection';
+        $scope.onDragModeChange = function() {
+          if($scope.drag_mode === 'selection') {
+            $scope.game.ruler.setActive(false);
+          }
+        };
+
+        $scope.onKeyDown = function(event) {
           console.log(event);
+          if(event.keyCode == 68 &&
+             $scope.game.ruler.state.active !== 'draging') { // d
+            $scope.drag_mode = ($scope.drag_mode === 'ruler') ? 'selection' : 'ruler';
+            if($scope.drag_mode === 'selection') {
+              $scope.game.ruler.setActive(false);
+            }
+            return;
+          }
           switch(event.keyCode) {
           case 61: // pageUp
             {
@@ -138,7 +153,7 @@ angular.module('vassalApp.controllers')
         };
         $scope.doSelectStart = function(event) {
           console.log(event);
-          $scope.selection.active = true;
+          console.log($scope.drag_mode);
           var elem_rect = canvas.getBoundingClientRect();
           console.log(elem_rect);
           var dom_x = event.clientX - elem_rect.left;
@@ -147,13 +162,23 @@ angular.module('vassalApp.controllers')
           var user_x = dom_x * $scope.game.board.width / elem_rect.width;
           var user_y = dom_y * $scope.game.board.height / elem_rect.height;
           console.log('user ' + user_x + ' ' + user_y);
-          $scope.selection.start_x = user_x;
-          $scope.selection.start_y = user_y;
-          $scope.selection.width = 0;
-          $scope.selection.height = 0;
+          if('selection' === $scope.drag_mode) {
+            $scope.selection.active = true;
+            $scope.selection.start_x = user_x;
+            $scope.selection.start_y = user_y;
+            $scope.selection.width = 0;
+            $scope.selection.height = 0;
+          }
+          if('ruler' === $scope.drag_mode) {
+            $scope.game.ruler.startDraging(user_x, user_y);
+          }
         };
         $scope.doSelectMove = function(event) {
-          if($scope.selection.active) {
+          // if() {
+          if( ('selection' === $scope.drag_mode &&
+               $scope.selection.active) ||
+              ('ruler' === $scope.drag_mode &&
+               $scope.game.ruler.state.active === 'draging') ) {
             console.log(event);
             var elem_rect = canvas.getBoundingClientRect();
             console.log(elem_rect);
@@ -163,34 +188,41 @@ angular.module('vassalApp.controllers')
             var user_x = dom_x * $scope.game.board.width / elem_rect.width;
             var user_y = dom_y * $scope.game.board.height / elem_rect.height;
             console.log('user ' + user_x + ' ' + user_y);
-            $scope.selection.x = $scope.selection.start_x;
-            $scope.selection.width = user_x - $scope.selection.start_x;
-            if($scope.selection.width < 0) {
-              $scope.selection.width = -$scope.selection.width;
-              $scope.selection.x = $scope.selection.x - $scope.selection.width;
+            if('selection' === $scope.drag_mode) {
+              $scope.selection.x = $scope.selection.start_x;
+              $scope.selection.width = user_x - $scope.selection.start_x;
+              if($scope.selection.width < 0) {
+                $scope.selection.width = -$scope.selection.width;
+                $scope.selection.x = $scope.selection.x - $scope.selection.width;
+              }
+              if($scope.selection.width < 1) {
+                $scope.selection.width = 0;
+              }
+              $scope.selection.y = $scope.selection.start_y;
+              $scope.selection.height = user_y - $scope.selection.start_y;
+              if($scope.selection.height < 0) {
+                $scope.selection.height = -$scope.selection.height;
+                $scope.selection.y = $scope.selection.y - $scope.selection.height;
+              }
+              if($scope.selection.height < 1) {
+                $scope.selection.height = 0;
+              }
+              console.log($scope.selection.x + ' ' +
+                          $scope.selection.y + ' ' +
+                          $scope.selection.width + ' ' +
+                          $scope.selection.height);
             }
-            if($scope.selection.width < 1) {
-              $scope.selection.width = 0;
+            if('ruler' === $scope.drag_mode) {
+              $scope.game.ruler.setEnd(user_x, user_y);
             }
-            $scope.selection.y = $scope.selection.start_y;
-            $scope.selection.height = user_y - $scope.selection.start_y;
-            if($scope.selection.height < 0) {
-              $scope.selection.height = -$scope.selection.height;
-              $scope.selection.y = $scope.selection.y - $scope.selection.height;
-            }
-            if($scope.selection.height < 1) {
-              $scope.selection.height = 0;
-            }
-            // console.log($scope.selection.x + ' ' +
-            //             $scope.selection.y + ' ' +
-            //             $scope.selection.width + ' ' +
-            //             $scope.selection.height);
           }
         };
         $scope.doSelectStop = function(event) {
           console.log(event);
-          if($scope.selection.active) {
-            $scope.selection.active = false;
+          if( ('selection' === $scope.drag_mode &&
+               $scope.selection.active) ||
+              ('ruler' === $scope.drag_mode &&
+               $scope.game.ruler.state.active) ) {
             var elem_rect = canvas.getBoundingClientRect();
             console.log(elem_rect);
             var dom_x = event.clientX - elem_rect.left;
@@ -199,43 +231,49 @@ angular.module('vassalApp.controllers')
             var user_x = dom_x * $scope.game.board.width / elem_rect.width;
             var user_y = dom_y * $scope.game.board.height / elem_rect.height;
             console.log('user ' + user_x + ' ' + user_y);
-            $scope.selection.x = $scope.selection.start_x;
-            $scope.selection.width = user_x - $scope.selection.start_x;
-            if($scope.selection.width < 0) {
-              $scope.selection.width = -$scope.selection.width;
-              $scope.selection.x = $scope.selection.x - $scope.selection.width;
-            }
-            if($scope.selection.width < 1) {
-              $scope.selection.width = 0;
-            }
-            $scope.selection.y = $scope.selection.start_y;
-            $scope.selection.height = user_y - $scope.selection.start_y;
-            if($scope.selection.height < 0) {
-              $scope.selection.height = -$scope.selection.height;
-              $scope.selection.y = $scope.selection.y - $scope.selection.height;
-            }
-            if($scope.selection.height < 1) {
-              $scope.selection.height = 0;
-            }
-            console.log($scope.selection.x + ' ' +
-                        $scope.selection.y + ' ' +
-                        $scope.selection.width + ' ' +
-                        $scope.selection.height);
-            if($scope.selection.width > 0 &&
-               $scope.selection.height > 0) {
-              var models_selected = [];
-              _.each($scope.game.models, function(model) {
-                var cx = model.state.x + model.img.width/2;
-                var cy = model.state.y + model.img.height/2;
-                if( $scope.selection.x <= cx && cx <= ($scope.selection.x+$scope.selection.width ) &&
-                    $scope.selection.y <= cy && cy <= ($scope.selection.y+$scope.selection.height) ) {
-                  models_selected.push(model.state.id);
-                }
-              });
-              $scope.game.newCommand(command('setSelection', models_selected));
+            if('selection' === $scope.drag_mode) {
+              $scope.selection.active = false;
+              $scope.selection.x = $scope.selection.start_x;
+              $scope.selection.width = user_x - $scope.selection.start_x;
+              if($scope.selection.width < 0) {
+                $scope.selection.width = -$scope.selection.width;
+                $scope.selection.x = $scope.selection.x - $scope.selection.width;
+              }
+              if($scope.selection.width < 1) {
+                $scope.selection.width = 0;
+              }
+              $scope.selection.y = $scope.selection.start_y;
+              $scope.selection.height = user_y - $scope.selection.start_y;
+              if($scope.selection.height < 0) {
+                $scope.selection.height = -$scope.selection.height;
+                $scope.selection.y = $scope.selection.y - $scope.selection.height;
+              }
+              if($scope.selection.height < 1) {
+                $scope.selection.height = 0;
+              }
+              console.log($scope.selection.x + ' ' +
+                          $scope.selection.y + ' ' +
+                          $scope.selection.width + ' ' +
+                          $scope.selection.height);
+              if($scope.selection.width > 0 &&
+                 $scope.selection.height > 0) {
+                var models_selected = [];
+                _.each($scope.game.models, function(model) {
+                  var cx = model.state.x + model.img.width/2;
+                  var cy = model.state.y + model.img.height/2;
+                  if( $scope.selection.x <= cx && cx <= ($scope.selection.x+$scope.selection.width ) &&
+                      $scope.selection.y <= cy && cy <= ($scope.selection.y+$scope.selection.height) ) {
+                    models_selected.push(model.state.id);
+                  }
+                });
+                $scope.game.newCommand(command('setSelection', models_selected));
 
-              $scope.selection.width = 0;
-              $scope.selection.height = 0;
+                $scope.selection.width = 0;
+                $scope.selection.height = 0;
+              }
+            }
+            if('ruler' === $scope.drag_mode) {
+              $scope.game.ruler.endDraging(user_x, user_y);
             }
           }
         };

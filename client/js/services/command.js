@@ -1,6 +1,40 @@
 'use strict';
 
 angular.module('vassalApp.services')
+  .factory('command_setRuler', [
+    function() {
+      var factory = function(data) {
+        var instance = {
+          type: 'setRuler',
+          stamp: Date.now(),
+          before: null,
+          after: null,
+          execute: function(game) {
+            this.after = _.extend({}, game.ruler.state);
+            // console.log(this.before);
+            // console.log(this.after);
+          },
+          redo: function(game) {
+            _.extend(game.ruler.state, this.after);
+          },
+          undo: function(game) {
+            _.extend(game.ruler.state, this.before);
+          },
+          desc: function(game) {
+            return this.type+'('+this.after.active+')';
+          }
+        };
+        if(_.isNumber(data.stamp)) {
+          _.extend(instance, data);
+        }
+        else {
+          instance.before = _.extend({}, data);
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
   .factory('command_onSelection', [
     function() {
       var factory = function() {
@@ -123,13 +157,16 @@ angular.module('vassalApp.services')
     }
   ])
   .factory('command', [
+    'command_setRuler',
     'command_onSelection',
     'command_setSelection',
     'command_addToSelection',
-    function(command_onSelection,
+    function(command_setRuler,
+             command_onSelection,
              command_setSelection,
              command_addToSelection) {
       var factories = {
+        setRuler: command_setRuler,
         onSelection: command_onSelection,
         setSelection: command_setSelection,
         addToSelection: command_addToSelection,

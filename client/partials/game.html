@@ -1,4 +1,5 @@
-<div ng-keydown="onKey($event)"
+<div ng-keydown="onKeyDown($event)"
+     ng-keypress="onKeyPress($event)"
      tabindex="0"
      style="vertical-align:top">
   <strong>Game Id : {{game.id}}</strong><br />
@@ -12,6 +13,40 @@
        ng-mousedown="doSelectStart($event)"
        ng-mousemove="doSelectMove($event)"
        ng-mouseup="doSelectStop($event)">
+    <defs>
+      <marker id="ruler-start"
+              markerWidth="6" markerHeight="8"
+              refx="0" refy="4"
+              orient="auto">
+        <polygon points="6,8 0,4 6,0"
+                 style="
+                 fill:#0CC;
+                 "
+                 />
+        <line x1="0" y1="1" x2="0" y2="7"
+                 style="
+                 stroke:#0CC;
+                 stroke-width:2px;
+                 "
+                 />
+      </marker>
+      <marker id="ruler-end"
+              markerWidth="6" markerHeight="8"
+              refx="6" refy="4"
+              orient="auto">
+        <polygon points="0,8 6,4 0,0"
+                 style="
+                 fill:#0CC;
+                 "
+                 />
+        <line x1="6" y1="1" x2="6" y2="7"
+                 style="
+                 stroke:#0CC;
+                 stroke-width:2px;
+                 "
+                 />
+      </marker>
+    </defs>
     <image x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
            xlink:href="data/Board.png"
            style="display: {{game.board.layers.board ? 'inline' : 'none'}}"
@@ -166,8 +201,48 @@
           stroke:#00F;
           stroke-width:0.5px;
           " />
+    <g ng-show="game.ruler.state.active"
+       style="pointer-events: none"
+       >
+      <line x1="{{game.ruler.state.x1}}" y1="{{game.ruler.state.y1}}"
+            x2="{{game.ruler.state.x2}}" y2="{{game.ruler.state.y2}}"
+            style="
+            stroke:#0FF;
+            stroke-width:1px;
+            marker-start:url(#ruler-start);
+            marker-end:url(#ruler-end);
+            "
+            />
+      <rect x="{{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1-2.5}}"
+            y="{{(game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1-4}}"
+            width="30" height="10"
+            style="
+            fill:#FFC;
+            stroke:#000;
+            stroke-width:0.5px;
+            "
+            />
+      <text x="{{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1}}"
+            y="{{(game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1+4}}"
+            style="
+            font-size:8px;
+            ">
+        {{game.ruler.state.length}}"
+      </text>
+    </g>
   </svg>
   <div style="display:inline-block;vertical-align:top;">
+    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
+      <div><strong>Tools :</strong></div>
+      <input id="tools-ruler-check"
+             type="checkbox"
+             ng-model="drag_mode"
+             ng-true-value="'ruler'"
+             ng-false-value="'selection'"
+             ng-change="onDragModeChange()"
+             />
+      <label for="tools-ruler-check">Ruler</label>
+    </div>
     <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
       <div><strong>Layers :</strong></div>
       <input id="layer-board-check"
@@ -232,9 +307,10 @@
   <div style="">
     Mouse Actions :
     <ul>
-      <li>click on a model : select the model</li> 
+      <li>click on model : select the model</li> 
       <li>Ctrl + click on models : select multiple models</li>
-      <li>Drag-Box on models : select multiple models</li>
+      <li>Drag-Box (Ruler mode off) : select multiple models</li>
+      <li>Drag (Ruler mode on) : mesure distance</li>
     </ul>
     Keyboard shortcuts :
     <ul>
@@ -245,6 +321,7 @@
       <li>(Shift + )Ctrl + Directionnal Arrows : (small) move selected model</li>
       <li>m : toggle melee range of selected model</li>
       <li>r : toggle reach range of selected model</li>
+      <li>d : toggle Ruler mode</li>
     </ul>
   </div>
 </div>

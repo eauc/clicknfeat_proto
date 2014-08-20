@@ -185,6 +185,52 @@ angular.module('vassalApp.services')
               this.refreshView();
             },
           },
+          ruler: {
+            state: {
+              x1: 0, y1: 0,
+              x2: 100, y2: 100,
+              length: 90,
+              active: false
+            },
+            cmd: undefined,
+            setActive: function(active) {
+              if(this.state.active != active) {
+                if(!this.cmd) {
+                  this.cmd = command('setRuler', this.state);
+                }
+                this.state.active = active;
+                instance.newCommand(this.cmd);
+              }
+              this.cmd = undefined;
+            },
+            startDraging: function(x, y) {
+              this.cmd = command('setRuler', this.state);
+              this.setStart(x, y);
+              this.state.active = 'draging';
+            },
+            endDraging: function(x, y) {
+              this.setEnd(x, y);
+              this.refresh();
+              this.setActive((this.state.length > 0.05));
+            },
+            setStart: function(x, y) {
+              this.state.length = '';
+              this.state.x1 = x;
+              this.state.y1 = y;
+              this.state.x2 = x;
+              this.state.y2 = y;
+            },
+            setEnd: function(x, y) {
+              this.state.x2 = x;
+              this.state.y2 = y;
+            },
+            refresh: function() {
+              var dx = this.state.x2-this.state.x1;
+              var dy = this.state.y2-this.state.y1;
+              this.state.length = Math.sqrt( dx*dx + dy*dy );
+              this.state.length = ((this.state.length * 10 + 0.5) >> 0) / 100;
+            }
+          },
         };
 
         _.extend(instance, data);
