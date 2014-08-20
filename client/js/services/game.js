@@ -144,6 +144,12 @@ angular.module('vassalApp.services')
               width: 480,
               height: 480
             },
+            layers: {
+              board: true,
+              terrain: true,
+              scenario: true,
+              models: true
+            },
             refreshView: function() {
               this.view.width = this.width / this.zoom.factor;
               this.view.height = this.height / this.zoom.factor;
