@@ -17,18 +17,20 @@
     </ul>
   </div>
   <svg id="canvas"
+       style="border:1px solid black;display: inline-box;"
        width="800px" height="800px"
-       viewBox="{{board.view.x}} {{board.view.y}} {{board.view.width}} {{board.view.height}}"
+       viewBox="
+       {{game.board.view.x}} {{game.board.view.y}}
+       {{game.board.view.width}} {{game.board.view.height}}"
        preserveAspectRatio="xMinYMin meet"
-       style="border:1px solid black"
        ng-mousedown="doSelectStart($event)"
        ng-mousemove="doSelectMove($event)"
        ng-mouseup="doSelectStop($event)">
-    <image x="0" y="0" width="{{board.width}}" height="{{board.height}}"
+    <image x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
            xlink:href="data/Board.png"
            style="display:inline"
            />
-    <svg x="0" y="0" width="{{board.width}}" height="{{board.height}}"
+    <svg x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
          style="display:inline"
          >
       <rect x="120" y="136" width="60" height="43"
@@ -66,10 +68,10 @@
               />
     </svg>
     <svg id="model-canvas"
-         x="0" y="0" width="{{board.width}}" height="{{board.height}}"
+         x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
          style="display:inline"
          >
-      <svg ng-repeat="model in models"
+      <svg ng-repeat="model in game.models"
            x="{{model.state.x}}" y="{{model.state.y}}">
         <g transform="rotate({{model.state.rot}}, 30, 30)">
           <image x="{{model.img.x}}" y="{{model.img.y}}"

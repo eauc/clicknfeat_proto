@@ -1,6 +1,6 @@
 'use strict';
 
-// angular.module('vassalApp.services', [])
+angular.module('vassalApp.services', []);
 //   .value('version', '0.1');
 // angular.module('vassalApp.filters', []);
 angular.module('vassalApp.controllers', []);
@@ -9,7 +9,7 @@ angular.module('vassalApp', [
   'ui.router',
   'vassalApp.controllers',
   // 'vassalApp.filters',
-  // 'vassalApp.services',
+  'vassalApp.services',
   // 'vassalApp.directives'
 ]).config([
   '$stateProvider',
