@@ -5,9 +5,11 @@ angular.module('vassalApp.services')
     '$rootScope',
     '$http',
     'command',
+    'message',
     function($rootScope,
              $http,
-             command) {
+             command,
+             message) {
       var model_base = {
         moveLeft: function(game, rotate) {
           if(rotate) {
@@ -111,6 +113,51 @@ angular.module('vassalApp.services')
             new_cmd.redo(this);
             this.commands.push(new_cmd);
           },
+          new_messages: [],
+          messages: [],
+          newMessage: function(new_msg) {
+            this.new_messages.push(new_msg);
+            $http.post('/api/games/'+instance.id+'/messages', new_msg)
+              .then(function(response) {
+                console.log('send msg success');
+              }, function(response) {
+                console.log('send msg error');
+                console.log(response);
+              });
+          },
+          updateMessage: function(new_msg) {
+            if( _.find(this.messages, function(msg) { return msg.stamp === new_msg.stamp; })) {
+              console.log('msg udpate : already in messages queue');
+              return;
+            }
+            var find_msg = _.findWhere(this.new_messages, { stamp: new_msg.stamp });
+            if(find_msg) {
+              var index = _.indexOf(this.new_messages, find_msg);
+              this.messages.push(find_msg);
+              this.new_messages.splice(index, 1);
+              console.log('msg udpate : validate new message');
+              return;
+            }
+            console.log('msg udpate : add new message');
+            this.messages.push(new_msg);
+          },
+          rollDie: function() {
+            var rand = Math.random();
+            var die_float = rand * 6 + 1;
+            return die_float >> 0;
+          },
+          rollDice: function(nb_dice) {
+            var text = '';
+            var total = 0;
+            _.times(nb_dice, function() {
+              var die = instance.rollDie();
+              total += die;
+              text += die + ' ';
+            });
+            text += '('+total+')';
+            var msg = message('dice', text);
+            this.newMessage(msg);
+          },
           board: {
             width: 480,
             height: 480,
@@ -201,6 +248,52 @@ angular.module('vassalApp.services')
         });
         instance.evt_source.onerror = function(e) {
           console.log('evtSource error');
+          console.log(e);
+        };
+
+        instance.cmd_source = new EventSource('/api/games/'+instance.id+
+                                              '/commands/subscribe');
+        instance.cmd_source.onmessage = function(e) {
+          console.log('cmd event');
+          console.log(e);
+          var data = JSON.parse(e.data);
+          // console.log(data);
+          var cmd = command(data);
+          console.log(cmd);
+          if(cmd) instance.updateCommand(cmd);
+          $rootScope.$apply();
+        };
+        instance.cmd_source.addEventListener('undo', function(e) {
+          console.log('cmd undo event');
+          console.log(e);
+          var data = JSON.parse(e.data);
+          console.log(data);
+          // var cmd = command(data);
+          // console.log(cmd);
+          if(data.stamp === _.last(instance.commands).stamp) {
+            instance.commands.pop().undo(instance);
+          }
+          $rootScope.$apply();
+        });
+        instance.cmd_source.onerror = function(e) {
+          console.log('cmd source error');
+          console.log(e);
+        };
+
+        instance.msg_source = new EventSource('/api/games/'+instance.id+
+                                              '/messages/subscribe');
+        instance.msg_source.onmessage = function(e) {
+          console.log('msg event');
+          console.log(e);
+          var data = JSON.parse(e.data);
+          // console.log(data);
+          var msg = message(data);
+          console.log(msg);
+          if(msg) instance.updateMessage(msg);
+          $rootScope.$apply();
+        };
+        instance.msg_source.onerror = function(e) {
+          console.log('msg source error');
           console.log(e);
         };
         // _.each(selected_model, function(model) {

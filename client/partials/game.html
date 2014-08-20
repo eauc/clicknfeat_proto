@@ -88,23 +88,50 @@
           stroke-fill:1px;
           " />
   </svg>
-  <div style="display:inline-block;vertical-align:top;max-height:600px;overflow-y:scroll;">
-    <div>
-      <strong>New Commands :</strong>
-      <button ng-click="game.undoLastCommand()">Undo</button>
+  <div style="display:inline-block;vertical-align:top;">
+    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
+      <button ng-click="game.rollDice(1)">1d6</button>
+      <button ng-click="game.rollDice(2)">2d6</button>
+      <button ng-click="game.rollDice(3)">3d6</button>
+      <button ng-click="game.rollDice(4)">4d6</button>
+      <button ng-click="game.rollDice(5)">5d6</button>
+      <form style="margin:0;"
+            ng-submit="doSendMessage()">
+        <input style="width:100%;"
+               ng-model="chat_msg"
+               placeholder="Chat msg..." />
+      </form>
+      <div>
+        <strong>New Messages :</strong>
+      </div>
+      <div ng-repeat="msg in game.new_messages.slice().reverse()">
+        {{msg.type}} - {{msg.text}}
+      </div>
+      <div>
+        <strong>Messages :</strong>
+      </div>
+      <div ng-repeat="msg in game.messages.slice().reverse()">
+        {{msg.type}} - {{msg.text}}
+      </div>
     </div>
-    <div ng-repeat="cmd in game.new_commands.slice().reverse()">
-      {{cmd.desc()}} - {{cmd.stamp}}
-    </div>
-    <div>
-      <strong>Commands :</strong>
-      <button ng-click="game.undoLastCommand()">Undo</button>
-    </div>
-    <div ng-repeat="cmd in game.commands.slice().reverse()">
-      {{cmd.desc()}} - {{cmd.stamp}}
+    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
+      <div>
+        <strong>New Commands :</strong>
+        <button ng-click="game.undoLastCommand()">Undo</button>
+      </div>
+      <div ng-repeat="cmd in game.new_commands.slice().reverse()">
+        {{cmd.desc()}} - {{cmd.stamp}}
+      </div>
+      <div>
+        <strong>Commands :</strong>
+        <button ng-click="game.undoLastCommand()">Undo</button>
+      </div>
+      <div ng-repeat="cmd in game.commands.slice().reverse()">
+        {{cmd.desc()}} - {{cmd.stamp}}
+      </div>
     </div>
   </div>
-  <div>
+  <div style="float:right;max-width:400px;">
     Mouse Actions :
     <ul>
       <li>click on a model - select the model</li> 

@@ -9,13 +9,15 @@ angular.module('vassalApp.controllers')
     '$q',
     'game',
     'command',
+    'message',
     function($scope,
              $state,
              $stateParams,
              $http,
              $q,
              game,
-             command) {
+             command,
+             message) {
       console.log('init gameCtrl');
       if(!$stateParams.id || $stateParams.id.length <= 0) $state.go('start');
 
@@ -224,6 +226,15 @@ angular.module('vassalApp.controllers')
               $scope.selection.height = 0;
             }
           }
+        };
+
+        $scope.chat_msg = '';
+        $scope.doSendMessage = function() {
+          if(0 >= $scope.chat_msg.length) return;
+          console.log('do send msg '+$scope.chat_msg);
+          var msg = message('chat', $scope.chat_msg);
+          $scope.game.newMessage(msg);
+          $scope.chat_msg = '';
         };
 
       });
