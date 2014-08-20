@@ -129,8 +129,8 @@ angular.module('vassalApp.controllers')
           $scope.selection.active = true;
           var elem_rect = canvas.getBoundingClientRect();
           console.log(elem_rect);
-          var dom_x = event.clientX - elem_rect.x;
-          var dom_y = event.clientY - elem_rect.y;
+          var dom_x = event.clientX - elem_rect.left;
+          var dom_y = event.clientY - elem_rect.top;
           console.log('dom ' + dom_x + ' ' + dom_y);
           var user_x = dom_x * $scope.game.board.width / elem_rect.width;
           var user_y = dom_y * $scope.game.board.height / elem_rect.height;
@@ -145,8 +145,8 @@ angular.module('vassalApp.controllers')
             console.log(event);
             var elem_rect = canvas.getBoundingClientRect();
             console.log(elem_rect);
-            var dom_x = event.clientX - elem_rect.x;
-            var dom_y = event.clientY - elem_rect.y;
+            var dom_x = event.clientX - elem_rect.left;
+            var dom_y = event.clientY - elem_rect.top;
             console.log('dom ' + dom_x + ' ' + dom_y);
             var user_x = dom_x * $scope.game.board.width / elem_rect.width;
             var user_y = dom_y * $scope.game.board.height / elem_rect.height;
@@ -181,8 +181,8 @@ angular.module('vassalApp.controllers')
             $scope.selection.active = false;
             var elem_rect = canvas.getBoundingClientRect();
             console.log(elem_rect);
-            var dom_x = event.clientX - elem_rect.x;
-            var dom_y = event.clientY - elem_rect.y;
+            var dom_x = event.clientX - elem_rect.left;
+            var dom_y = event.clientY - elem_rect.top;
             console.log('dom ' + dom_x + ' ' + dom_y);
             var user_x = dom_x * $scope.game.board.width / elem_rect.width;
             var user_y = dom_y * $scope.game.board.height / elem_rect.height;
