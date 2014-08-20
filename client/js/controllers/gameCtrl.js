@@ -87,22 +87,42 @@ angular.module('vassalApp.controllers')
           case 37: // leftArrow
             {
               // $scope.game.onSelection('moveLeft', event.ctrlKey);
-              $scope.game.newCommand(command('onSelection', 'moveLeft', event.ctrlKey));
+              if(event.ctrlKey) {
+                $scope.game.newCommand(command('onSelection', 'moveLeft'));
+              }
+              else {
+                $scope.game.newCommand(command('onSelection', 'rotateLeft'));
+              }
               break;
             }
           case 38: // upArrow
             {
-              $scope.game.newCommand(command('onSelection', 'moveUp'));
+              if(event.ctrlKey) {
+                $scope.game.newCommand(command('onSelection', 'moveUp'));
+              }
+              else {
+                $scope.game.newCommand(command('onSelection', 'moveFront'));
+              }
               break;
             }
           case 39: // rightArrow
             {
-              $scope.game.newCommand(command('onSelection', 'moveRight', event.ctrlKey));
+              if(event.ctrlKey) {
+                $scope.game.newCommand(command('onSelection', 'moveRight'));
+              }
+              else {
+                $scope.game.newCommand(command('onSelection', 'rotateRight'));
+              }
               break;
             }
           case 40: // downArrow
             {
-              $scope.game.newCommand(command('onSelection', 'moveDown'));
+              if(event.ctrlKey) {
+                $scope.game.newCommand(command('onSelection', 'moveDown'));
+              }
+              else {
+                $scope.game.newCommand(command('onSelection', 'moveBack'));
+              }
               break;
             }
           }

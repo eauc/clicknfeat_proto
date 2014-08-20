@@ -4,44 +4,16 @@ angular.module('vassalApp.services')
   .factory('game', [
     '$rootScope',
     '$http',
+    'model',
     'command',
     'message',
     function($rootScope,
              $http,
+             model,
              command,
              message) {
-      var model_base = {
-        moveLeft: function(game, rotate) {
-          if(rotate) {
-            this.state.rot = this.state.rot - 30;
-          }
-          else {
-            this.state.x = Math.max(-(this.img.height/2)+this.img.r,
-                                    this.state.x - 10);
-          }
-        },
-        moveUp: function(game, rotate) {
-          this.state.y = Math.max(-(this.img.height/2)+this.img.r,
-                                  this.state.y - 10);
-        },
-        moveRight: function(game, rotate) {
-          if(rotate) {
-            this.state.rot = this.state.rot + 30;
-          }
-          else {
-            this.state.x = Math.min(game.board.width
-                                    -(this.img.height/2)
-                                    -this.img.r,
-                                    this.state.x + 10);
-          }
-        },
-        moveDown: function(game, rotate) {
-          this.state.y = Math.min(game.board.height
-                                  -(this.img.width/2)
-                                  -this.img.r,
-                                  this.state.y + 10);
-        }
-      };
+
+      var model_base = model({});
 
       var factory = function(data) {
         
@@ -211,10 +183,10 @@ angular.module('vassalApp.services')
 
         _.extend(instance, data);
 
-        _.each(instance.models, function(model) {
-          _.extend(model, model_base);
-          if(model.state.active) {
-            instance.selection.push(model.state.id);
+        _.each(instance.models, function(mod) {
+          model(mod);
+          if(mod.state.active) {
+            instance.selection.push(mod.state.id);
           }
         });
         var cmds = instance.commands;
