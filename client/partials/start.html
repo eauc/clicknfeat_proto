@@ -1,5 +1,7 @@
 <div>
   <button ng-click="doCreateGame()">Create Game</button><br />
-  <input ng-model="search_id" placeholder="Id..." />
-  <button ng-click="doSearchGame()">Search Game</button>
+  <form ng-submit="doSearchGame()">
+    <input ng-model="search_id" placeholder="Id..." />
+    <button ng-click="doSearchGame()">Search Game</button>
+  </form>
 </div>
