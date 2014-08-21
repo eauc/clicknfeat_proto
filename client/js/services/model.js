@@ -65,10 +65,10 @@ angular.module('vassalApp.services')
           this.refresh(game);
         },
         toggleMelee: function() {
-          this.state.show.melee = !this.state.show.melee;
+          this.state.show_melee = !this.state.show_melee;
         },
         toggleReach: function() {
-          this.state.show.reach = !this.state.show.reach;
+          this.state.show_reach = !this.state.show_reach;
         },
         startDraging: function(game) {
           this.state_before_drag = _.extend({}, this.state);

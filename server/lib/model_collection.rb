@@ -22,10 +22,8 @@ class ModelCollection
             x: 200,
             y: 20+20*i,
             rot: 0,
-            show: {
-              melee: false,
-              reach: false
-            },
+            show_melee: false,
+            show_reach: false,
             active: false
           }
         }
@@ -43,10 +41,8 @@ class ModelCollection
             x: 240,
             y: 20+20*i,
             rot: 0,
-            show: {
-              melee: true,
-              reach: false
-            },
+            show_melee: true,
+            show_reach: false,
             active: false
           }
         }
@@ -64,10 +60,8 @@ class ModelCollection
             x: 280,
             y: 20+20*i,
             rot: 0,
-            show: {
-              melee: false,
-              reach: true
-            },
+            show_melee: false,
+            show_reach: true,
             active: false
           }
         }

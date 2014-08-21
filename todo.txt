@@ -1,5 +1,3 @@
-- sauvegarde/restoration parties
-
 - AoE sur models
 - distance de drag
 
