@@ -1,0 +1,50 @@
+- layer deployment
+- synchro layers
+- sauvegarde/restoration parties
+- distance de drag
+- mode charge
+- add/remove models
+- import liste FK
+
+==================================================================================================================================
+- verifier si la selection est vide avant de faire une commande onSelection :P
+- ctrl+click Mac
+
+==================================================================================================================================
+Gruxxki
+- la réglette est vraiment pourrie, c'est vraiment un gros frein pour moi
+- le tchat intégré est na
+- quitte à faire un truc pur warmachine, avoir les stats de base intégrée au fig ce serait énorme (DEF/ARM surtout).
+
+Gamin
+- Intégrer ta clock dedans!
+
+Portal/Joss
+- compatible tablettes
+
+SunHunter
+- trouve un moyen de rendre la chose facilement améliorable (au sens large) par la communauté.
+
+Hao
+- ne pas oublier le côté chargement/sauvegarde de partie. Une déconnexion, c'est si vite arrivé... Même si déconnecter 2 joueurs, c'est plus difficile.
+- au niveau interface, pouvoir avoir une vue plein écran ou en tout cas une vue qui permet d'embrasser toute la table.
+- un chat intégré me semble nécessaire (ne serait-ce que pour les jets de dés)
+
+OuiOui
+- Un double tap de la touche dans un intervale très faible permettrait de passer d'un mode à l'autre sans multiplier les raccourcis.
+
+Supertimor
+- Faudrait implémenter un "unselect"
+- Ton ruler est pas si mal je trouve, néanmoins dès qu'on prend la mesure depuis un modèle sélectionner faut s'arranger pour pas débuter sa mesure sur le modèle car ça le bouge et faut bien débuter au bord du socle pour la même raison.
+- Pour le (Shift + )Ctrl + Directionnal Arrows : (small) move selected model je trouve ça un peu lourdingue et je pense qu'un simple Ctrl + Directionnal Arrows serait plus intuitif et ergonomique.
+
+Nazbeurk
+- Vu que le rand est fait côté client et envoyé dans la pile de message serveur je suppose que ça se propage chez tout le monde ? Imho, le jet de dés est une données sensibles et par principe faut jamais faire confiance à un client sur ce genre de chose.
+
+Gruxxki
+- Bon pour améliorer, en mode ruler tu devrais pouvoir cliquer sur le contour de la figurine pour attacher le ruler à cet endroit, comme ça bim bam boum tu auras des mesures précises.
+
+Boogy
+- Du coup, je me dis qu'afficher quelque part la distance parcourue serait peut-être utile... ?
+- EDIT : pouvoir afficher les zones de contestation des objos/drapeaux seraient pratiques, aussi... non ?
+
