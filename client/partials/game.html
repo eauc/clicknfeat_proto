@@ -374,6 +374,14 @@
                 "
                 ng-show="model.state.show_melee"
                 />
+          <circle cx="30" cy="30" r="{{model.state.show_aoe}}"
+                  style="
+                  fill:#F90;
+                  fill-opacity:0.5;
+                  stroke:#C60;
+                  stroke-width:0.5px;
+                  "
+                  />
           <image x="{{model.img.x}}" y="{{model.img.y}}"
                  width="{{model.img.width}}" height="{{model.img.height}}"
                  xlink:href="{{model.img.link}}"
@@ -545,6 +553,7 @@
       <li>m : toggle melee range of selected model</li>
       <li>r : toggle reach range of selected model</li>
       <li>d : toggle Ruler mode</li>
+      <li>3/4/5 : toggle AOE 3/4/5" centered on selected model</li>
     </ul>
   </div>
 </div>

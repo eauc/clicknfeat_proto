@@ -64,11 +64,30 @@ angular.module('vassalApp.services')
           this.state.y += dl;
           this.refresh(game);
         },
-        toggleMelee: function() {
+        toggleMelee: function(game) {
           this.state.show_melee = !this.state.show_melee;
         },
-        toggleReach: function() {
+        toggleReach: function(game) {
           this.state.show_reach = !this.state.show_reach;
+        },
+        toggleAoe: function(game, size) {
+          switch(size) {
+          case 3:
+            {
+              this.state.show_aoe = (this.state.show_aoe === 15) ? 0 : 15;
+              break;
+            }
+          case 4:
+            {
+              this.state.show_aoe = (this.state.show_aoe === 20) ? 0 : 20;
+              break;
+            }
+          case 5:
+            {
+              this.state.show_aoe = (this.state.show_aoe === 25) ? 0 : 25;
+              break;
+            }
+          }
         },
         startDraging: function(game) {
           this.state_before_drag = _.extend({}, this.state);

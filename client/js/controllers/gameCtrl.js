@@ -75,6 +75,21 @@ angular.module('vassalApp.controllers')
             $scope.game.newCommand(command('onSelection', 'toggleReach'));
             return;
           }
+          if(event.keyCode === 99 ||
+             event.keyCode == 51) { // 3
+            $scope.game.newCommand(command('onSelection', 'toggleAoe', 3));
+            return;
+          }
+          if(event.keyCode === 100 ||
+             event.keyCode == 52) { // 4
+            $scope.game.newCommand(command('onSelection', 'toggleAoe', 4));
+            return;
+          }
+          if(event.keyCode === 101 ||
+             event.keyCode == 53) { // 5
+            $scope.game.newCommand(command('onSelection', 'toggleAoe', 5));
+            return;
+          }
           if(37 > event.keyCode ||
              40 < event.keyCode) return;
           event.preventDefault();
@@ -285,7 +300,7 @@ angular.module('vassalApp.controllers')
           }
         };
         $scope.doSelectStop = function(event) {
-          console.log(event);
+          // console.log(event);
           if(model_drag.active) {
             var dx = event.screenX - model_drag.start_x;
             var dy = event.screenY - model_drag.start_y;

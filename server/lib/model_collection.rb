@@ -24,6 +24,7 @@ class ModelCollection
             rot: 0,
             show_melee: false,
             show_reach: false,
+            show_aoe: 0,
             active: false
           }
         }
@@ -43,6 +44,7 @@ class ModelCollection
             rot: 0,
             show_melee: true,
             show_reach: false,
+            show_aoe: 0,
             active: false
           }
         }
@@ -62,6 +64,7 @@ class ModelCollection
             rot: 0,
             show_melee: false,
             show_reach: true,
+            show_aoe: 0,
             active: false
           }
         }
