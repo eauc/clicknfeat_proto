@@ -137,6 +137,32 @@ angular.module('vassalApp.controllers')
         $scope.onModelClick = function(event, model) {
           console.log(event);
           console.log(model);
+          if($scope.drag_mode === 'ruler' &&
+             $scope.game.selection.length > 0) {
+            var model_start = $scope.game.models[$scope.game.selection[0]];
+            var model_end = model;
+            var center_start = {
+              x: model_start.state.x + model_start.img.width /2,
+              y: model_start.state.y + model_start.img.height /2,
+            };
+            console.log('center start '+JSON.stringify(center_start));
+            var center_end = {
+              x: model_end.state.x + model_end.img.width /2,
+              y: model_end.state.y + model_end.img.height /2,
+            };
+            var angle = Math.atan2(center_end.y-center_start.y, center_end.x-center_start.x);
+            var start = {
+              x: center_start.x + model_start.img.r * Math.cos(angle),
+              y: center_start.y + model_start.img.r * Math.sin(angle),
+            };
+            var end = {
+              x: center_end.x - model_end.img.r * Math.cos(angle),
+              y: center_end.y - model_end.img.r * Math.sin(angle),
+            };
+            $scope.game.ruler.startDraging(start.x, start.y);
+            $scope.game.ruler.endDraging(end.x, end.y);
+            return;
+          }
           if(event.ctrlKey) {
             $scope.game.newCommand(command('addToSelection', [model.state.id]));
           }

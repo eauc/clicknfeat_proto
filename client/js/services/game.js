@@ -195,11 +195,17 @@ angular.module('vassalApp.services')
             cmd: undefined,
             setActive: function(active) {
               if(this.state.active != active) {
+                var previous = this.state.active;
                 if(!this.cmd) {
                   this.cmd = command('setRuler', this.state);
                 }
                 this.state.active = active;
-                instance.newCommand(this.cmd);
+                if(!(previous === 'draging' && !active)) {
+                  instance.newCommand(this.cmd);
+                }
+                else {
+                  this.cmd.undo(instance);
+                }
               }
               this.cmd = undefined;
             },
