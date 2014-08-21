@@ -53,14 +53,14 @@ angular.module('vassalApp.controllers')
             return;
           }
           switch(event.keyCode) {
-          case 61: // pageUp
+          case 107: // +
             {
               $scope.game.board.zoomIn();
               event.preventDefault();
               event.preventDefault();
               return;
             }
-          case 173: // pageDown
+          case 109: // -
             {
               $scope.game.board.zoomOut();
               event.preventDefault();
