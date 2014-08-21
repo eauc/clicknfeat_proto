@@ -1,6 +1,43 @@
 'use strict';
 
 angular.module('vassalApp.services')
+  .factory('command_setLayer', [
+    function() {
+      var factory = function(data) {
+        var instance = {
+          type: 'setLayer',
+          stamp: Date.now(),
+          arg: null,
+          before: null,
+          after: null,
+          execute: function(game) {
+            this.before = _.extend({}, game.board.layers);
+            this.before[this.arg] = !this.before[this.arg];
+            this.after = _.extend({}, game.board.layers);
+            // console.log(this.before);
+            // console.log(this.after);
+          },
+          redo: function(game) {
+            _.extend(game.board.layers, this.after);
+          },
+          undo: function(game) {
+            _.extend(game.board.layers, this.before);
+          },
+          desc: function(game) {
+            return this.type+'('+this.arg+')';
+          }
+        };
+        if(!_.isString(data)) {
+          _.extend(instance, data);
+        }
+        else {
+          instance.arg = data;
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
   .factory('command_setRuler', [
     function() {
       var factory = function(data) {
@@ -205,17 +242,20 @@ angular.module('vassalApp.services')
     }
   ])
   .factory('command', [
+    'command_setLayer',
     'command_setRuler',
     'command_onSelection',
     'command_endDragingSelection',
     'command_setSelection',
     'command_addToSelection',
-    function(command_setRuler,
+    function(command_setLayer,
+             command_setRuler,
              command_onSelection,
              command_endDragingSelection,
              command_setSelection,
              command_addToSelection) {
       var factories = {
+        setLayer: command_setLayer,
         setRuler: command_setRuler,
         onSelection: command_onSelection,
         endDragingSelection: command_endDragingSelection,

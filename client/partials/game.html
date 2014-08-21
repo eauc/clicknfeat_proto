@@ -448,23 +448,28 @@
       <div><strong>Layers :</strong></div>
       <input id="layer-board-check"
              type="checkbox"
-             ng-model="game.board.layers.board" />
+             ng-model="game.board.layers.board"
+             ng-change="onLayerChange('board')" />
       <label for="layer-board-check">Board</label>
       <input id="layer-terrain-check"
              type="checkbox"
-             ng-model="game.board.layers.terrain" />
+             ng-model="game.board.layers.terrain"
+             ng-change="onLayerChange('terrain')" />
       <label for="layer-terrain-check">Terrain</label>
       <input id="layer-deployment-check"
              type="checkbox"
-             ng-model="game.board.layers.deployment" />
+             ng-model="game.board.layers.deployment"
+             ng-change="onLayerChange('deployment')" />
       <label for="layer-deployment-check">Deployment</label>
       <input id="layer-scenario-check"
              type="checkbox"
-             ng-model="game.board.layers.scenario" />
+             ng-model="game.board.layers.scenario"
+             ng-change="onLayerChange('scenario')" />
       <label for="layer-scenario-check">Scenario</label>
       <input id="layer-models-check"
              type="checkbox"
-             ng-model="game.board.layers.models" />
+             ng-model="game.board.layers.models"
+             ng-change="onLayerChange('models')" />
       <label for="layer-models-check">Models</label>
     </div>
     <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">

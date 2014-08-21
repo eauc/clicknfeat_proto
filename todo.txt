@@ -1,10 +1,13 @@
-- layer deployment
 - synchro layers
 - sauvegarde/restoration parties
+
+- AoE sur models
 - distance de drag
-- mode charge
+
 - add/remove models
 - import liste FK
+
+- mode charge
 
 ==================================================================================================================================
 - verifier si la selection est vide avant de faire une commande onSelection :P
@@ -37,6 +40,12 @@ Supertimor
 - Faudrait implémenter un "unselect"
 - Ton ruler est pas si mal je trouve, néanmoins dès qu'on prend la mesure depuis un modèle sélectionner faut s'arranger pour pas débuter sa mesure sur le modèle car ça le bouge et faut bien débuter au bord du socle pour la même raison.
 - Pour le (Shift + )Ctrl + Directionnal Arrows : (small) move selected model je trouve ça un peu lourdingue et je pense qu'un simple Ctrl + Directionnal Arrows serait plus intuitif et ergonomique.
+- Le seul cas qui me vient comme ça c'est qu'on à le droit de mesurer n'importe quoi depuis notre caster et à tout moment ...
+- Si tu implémentes un "unselect" en cliquant dans une zone vide ou d'une autre manière, je trouve que le "flèche" est suffisant pour naviguer sur la map ... pas besoin de faire un Alt + Flèche.
+- Sinon, étant donné qu'on ne peut pas pour le moment faire sortir une figurine de la zone de combat, est-ce vraiment nécessaire de pouvoir dé-zoomer plus que la largeur de cette même zone de combat ?
+- je trouverais cela intéressant de pouvoir stocker nos models dans une zone à part. Je trouve ça bien naze sur Vassal de n'avoir autorisé les joueurs qu'à stocker les grids et de ne pas pouvoir y placer les models.
+- Un truc qui pourrait être sympa et qui sur Vassal fonctionne moyennement je trouve, c'est la gestion des AOE ... j'ai toujours l'impression que l'AOE est pas centré au milieu de la figurine. La possibilité d'afficher la zone de l'AOE directement sur notre cible pourrait être un plus non ?
+- Et en bonus une gestion automatique de la déviation de l'AOE à partir d'un point donné
 
 Nazbeurk
 - Vu que le rand est fait côté client et envoyé dans la pile de message serveur je suppose que ça se propage chez tout le monde ? Imho, le jet de dés est une données sensibles et par principe faut jamais faire confiance à un client sur ce genre de chose.

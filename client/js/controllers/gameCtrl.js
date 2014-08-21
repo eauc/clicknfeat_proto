@@ -366,6 +366,10 @@ angular.module('vassalApp.controllers')
           $scope.chat_msg = '';
         };
 
+        $scope.onLayerChange = function(layer) {
+          $scope.game.newCommand(command('setLayer', layer));
+        };
+
       });
     }
   ]);
