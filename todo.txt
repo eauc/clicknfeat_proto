@@ -1,4 +1,3 @@
-- synchro layers
 - sauvegarde/restoration parties
 
 - AoE sur models
@@ -35,6 +34,10 @@ Hao
 
 OuiOui
 - Un double tap de la touche dans un intervale très faible permettrait de passer d'un mode à l'autre sans multiplier les raccourcis.
+- Pouvoir associer une couleur à un modèle (pour différencier notamment les unités).
+- Avoir la possibilité d'avoir un marqueur quelconque pour indiquer que la figurine à fait son action ou non.
+- Dans la même veine, faire en sorte que l'adversaire puisse voir quelle unité tu sélectionnes. Ca serait plus simple pour désigner les cibles. Tu sélectionnes ton modèle puis celui de l'adversaire. Pas besoin de faire de manip, si ton adversaire est attentif, il sait qui attaque quoi.
+- la possibilité de vérifier si une ligne de vue existe entre deux modèles sans avoir recours au mètre. 
 
 Supertimor
 - Faudrait implémenter un "unselect"

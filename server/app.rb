@@ -25,7 +25,8 @@ class VassalApp < Sinatra::Base
 
   post "/api/games" do
     content_type 'text/json'
-    @games.create.to_json
+    data = JSON.parse request.body.read
+    @games.create(data).to_json
   end
 
   get "/api/games/:game_id" do

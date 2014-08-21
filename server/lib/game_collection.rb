@@ -18,9 +18,9 @@ class GameCollection
     id
   end
 
-  def create
+  def create data
     i = generate_id
-    @games[i] = Game.new i
+    @games[i] = Game.new i, data
   end
 
   def exist? i

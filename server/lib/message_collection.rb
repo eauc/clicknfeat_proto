@@ -1,7 +1,7 @@
 class MessageCollection
   
-  def initialize
-    @messages = []
+  def initialize data
+    @messages = data || []
     @connections = []
   end
 

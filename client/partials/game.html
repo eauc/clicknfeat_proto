@@ -49,10 +49,10 @@
     </defs>
     <image x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
            xlink:href="data/Board.png"
-           style="display: {{game.board.layers.board ? 'inline' : 'none'}}"
+           style="display: {{game.layers.board ? 'inline' : 'none'}}"
            />
     <svg x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-         style="display: {{game.board.layers.terrain ? 'inline' : 'none'}}"
+         style="display: {{game.layers.terrain ? 'inline' : 'none'}}"
          >
       <rect x="120" y="136" width="60" height="43"
             style="
@@ -89,7 +89,7 @@
               />
     </svg>
     <svg x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-         style="display: {{game.board.layers.deployment ? 'inline' : 'none'}}"
+         style="display: {{game.layers.deployment ? 'inline' : 'none'}}"
          >
       <line x1="0" y1="70"
             x2="480" y2="70"
@@ -289,7 +289,7 @@
             />
     </svg>
     <svg x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-         style="display: {{game.board.layers.scenario ? 'inline' : 'none'}}"
+         style="display: {{game.layers.scenario ? 'inline' : 'none'}}"
          >
       <rect x="140" y="140" width="200" height="200"
             style="
@@ -341,7 +341,7 @@
     </svg>
     <svg id="model-canvas"
          x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-         style="display: {{game.board.layers.models ? 'inline' : 'none'}}"
+         style="display: {{game.layers.models ? 'inline' : 'none'}}"
          >
       <svg ng-repeat="model in game.models"
            x="{{model.state.x}}" y="{{model.state.y}}">
@@ -448,27 +448,27 @@
       <div><strong>Layers :</strong></div>
       <input id="layer-board-check"
              type="checkbox"
-             ng-model="game.board.layers.board"
+             ng-model="game.layers.board"
              ng-change="onLayerChange('board')" />
       <label for="layer-board-check">Board</label>
       <input id="layer-terrain-check"
              type="checkbox"
-             ng-model="game.board.layers.terrain"
+             ng-model="game.layers.terrain"
              ng-change="onLayerChange('terrain')" />
       <label for="layer-terrain-check">Terrain</label>
       <input id="layer-deployment-check"
              type="checkbox"
-             ng-model="game.board.layers.deployment"
+             ng-model="game.layers.deployment"
              ng-change="onLayerChange('deployment')" />
       <label for="layer-deployment-check">Deployment</label>
       <input id="layer-scenario-check"
              type="checkbox"
-             ng-model="game.board.layers.scenario"
+             ng-model="game.layers.scenario"
              ng-change="onLayerChange('scenario')" />
       <label for="layer-scenario-check">Scenario</label>
       <input id="layer-models-check"
              type="checkbox"
-             ng-model="game.board.layers.models"
+             ng-model="game.layers.models"
              ng-change="onLayerChange('models')" />
       <label for="layer-models-check">Models</label>
     </div>
@@ -511,6 +511,18 @@
       </div>
       <div ng-repeat="cmd in game.commands.slice().reverse()">
         {{cmd.desc()}} - {{cmd.stamp}}
+      </div>
+    </div>
+    <div>
+      <div>
+        <button ng-click="game.generateBackup()">Save</button>
+      </div>
+      <div ng-show="game.save_url !== null">
+        Download the backup file :
+        <a ng-href="{{game.save_url}}"
+           download="{{game.save_name}}">
+          {{game.save_name}}
+        </a>
       </div>
     </div>
   </div>

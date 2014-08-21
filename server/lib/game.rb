@@ -8,14 +8,18 @@ class Game
   attr_reader :commands
   attr_reader :messages
 
-  def initialize id
-    @id = id
-    @models = ModelCollection.new
-    @commands = CommandCollection.new
-    @messages = MessageCollection.new
+  def initialize i, data
+    @id = i
+    @models = ModelCollection.new(data.key?('models') ? data['models'] : nil)
+    @commands = CommandCollection.new(data.key?('commands') ? data['commands'] : nil)
+    @messages = MessageCollection.new(data.key?('messages') ? data['messages'] : nil)
+    
+    @ruler = data.key?('ruler') ? data['ruler'] : nil
+    @selection = data.key?('selection') ? data['selection'] : nil
+    @layers = data.key?('layers') ? data['layers'] : nil
   end
 
   def to_json
-    "{ \"id\": #{@id}, \"models\": #{@models.to_json}, \"commands\": #{@commands.to_json}, \"messages\": #{@messages.to_json} }"
+    "{ \"id\": #{@id}, \"ruler\": #{@ruler.to_json}, \"selection\": #{@selection.to_json}, \"layers\": #{@layers.to_json}, \"models\": #{@models.to_json}, \"commands\": #{@commands.to_json}, \"messages\": #{@messages.to_json} }"
   end
 end

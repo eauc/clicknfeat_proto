@@ -4,11 +4,13 @@ angular.module('vassalApp.services')
   .factory('game', [
     '$rootScope',
     '$http',
+    '$window',
     'model',
     'command',
     'message',
     function($rootScope,
              $http,
+             $window,
              model,
              command,
              message) {
@@ -130,6 +132,13 @@ angular.module('vassalApp.services')
             var msg = message('dice', text);
             this.newMessage(msg);
           },
+          layers: {
+            board: true,
+            terrain: true,
+            deployment: false,
+            scenario: true,
+            models: true
+          },
           board: {
             width: 480,
             height: 480,
@@ -143,13 +152,6 @@ angular.module('vassalApp.services')
               y: 0,
               width: 480,
               height: 480
-            },
-            layers: {
-              board: true,
-              terrain: true,
-              deployment: false,
-              scenario: true,
-              models: true
             },
             refreshView: function() {
               this.view.width = this.width / this.zoom.factor;
@@ -238,9 +240,31 @@ angular.module('vassalApp.services')
               this.state.length = ((this.state.length * 10 + 0.5) >> 0) / 100;
             }
           },
+          save_url: null,
+          generateBackup: function() {
+            // console.log('generate backup file');
+            var old_url = this.save_url;
+            this.save_url = null;
+            if (old_url !== null) {
+              $window.URL.revokeObjectURL(old_url);
+            }
+            var string = JSON.stringify(this);
+            var blob = new $window.Blob([string], {type: 'text/plain'});
+            var url = $window.URL.createObjectURL(blob);
+            var today = Date.now();
+            this.save_name = 'game_' + today + '.txt';
+            this.save_url = url;
+          },
         };
 
-        _.extend(instance, data);
+        instance.id = data.id
+        instance.models = data.models
+        instance.commands = data.commands
+        instance.messages = data.messages
+
+        if(data.ruler) instance.ruler.state = data.ruler.state;
+        if(data.selections) instance.selection = data.selection;
+        if(data.layers) instance.layers = data.layers;
 
         _.each(instance.models, function(mod) {
           model(mod);

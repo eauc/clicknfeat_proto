@@ -145,8 +145,8 @@ angular.module('vassalApp.controllers')
           },
         };
         $scope.onModelMouseDown = function(event, model) {
-          console.log('mmd');
-          console.log(event);
+          // console.log('mmd');
+          // console.log(event);
           skip_model_click = false;
           if(0 <= _.indexOf($scope.game.selection, model.state.id)) {
             model_drag.active = true;
@@ -158,7 +158,7 @@ angular.module('vassalApp.controllers')
           }
         };
         $scope.onModelClick = function(event, model) {
-          console.log(event);
+          // console.log(event);
           // console.log(model);
           if(skip_model_click) {
             skip_model_click = false;
@@ -207,8 +207,8 @@ angular.module('vassalApp.controllers')
           width: 0, height: 0,
         };
         $scope.doSelectStart = function(event) {
-          console.log('smd');
-          console.log(event);
+          // console.log('smd');
+          // console.log(event);
           // console.log($scope.drag_mode);
           var elem_rect = canvas.getBoundingClientRect();
           // console.log(elem_rect);
@@ -231,14 +231,14 @@ angular.module('vassalApp.controllers')
         };
         $scope.doSelectMove = function(event) {
           if(model_drag.active) {
-            console.log(event);
+            // console.log(event);
             var elem_rect = canvas.getBoundingClientRect();
-            console.log(elem_rect);
+            // console.log(elem_rect);
             var dx = event.screenX - model_drag.start_x;
             var dy = event.screenY - model_drag.start_y;
             dx *= ($scope.game.board.view.width / 800);
             dy *= ($scope.game.board.view.height / 800);
-            console.log(dx+' '+dy);
+            // console.log(dx+' '+dy);
             $scope.game.onSelection('draging', dx, dy);
             return;
           }
@@ -291,7 +291,7 @@ angular.module('vassalApp.controllers')
             var dy = event.screenY - model_drag.start_y;
             dx *= ($scope.game.board.view.width / 800);
             dy *= ($scope.game.board.view.height / 800);
-            console.log(dx+' '+dy);
+            // console.log(dx+' '+dy);
             $scope.game.newCommand(command('endDragingSelection', dx, dy));
             // $scope.game.onSelection('endDraging', dx, dy);
             skip_model_click = true;

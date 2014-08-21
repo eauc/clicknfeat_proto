@@ -11,17 +11,17 @@ angular.module('vassalApp.services')
           before: null,
           after: null,
           execute: function(game) {
-            this.before = _.extend({}, game.board.layers);
+            this.before = _.extend({}, game.layers);
             this.before[this.arg] = !this.before[this.arg];
-            this.after = _.extend({}, game.board.layers);
+            this.after = _.extend({}, game.layers);
             // console.log(this.before);
             // console.log(this.after);
           },
           redo: function(game) {
-            _.extend(game.board.layers, this.after);
+            _.extend(game.layers, this.after);
           },
           undo: function(game) {
-            _.extend(game.board.layers, this.before);
+            _.extend(game.layers, this.before);
           },
           desc: function(game) {
             return this.type+'('+this.arg+')';

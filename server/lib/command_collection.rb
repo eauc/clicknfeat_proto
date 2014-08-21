@@ -1,7 +1,7 @@
 class CommandCollection
   
-  def initialize
-    @commands = []
+  def initialize data
+    @commands = data || []
     @connections = []
   end
 

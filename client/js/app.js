@@ -30,4 +30,9 @@ angular.module('vassalApp', [
         data: {}
       });
   }
+]).config([
+  '$compileProvider',
+  function($compileProvider) {   
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|blob):/);
+  }
 ]);

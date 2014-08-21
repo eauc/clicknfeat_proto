@@ -4,4 +4,16 @@
     <input ng-model="search_id" placeholder="Id..." />
     <button ng-click="doSearchGame()">Search Game</button>
   </form>
+  <div>
+    <span>Open game file :</span>
+    <input id="import-file"
+           type="file"
+           onchange="angular.element(this).scope().readBackup(this.files[0])" />
+    ---
+    <span ng-class="{
+          'text-success': backup.read_result === 'loaded file',
+          'text-danger': backup.read_result !== 'loaded file'
+          }">{{read_result}}</strong>
+    </span>
+  </div>
 </div>
