@@ -439,6 +439,35 @@
         {{game.ruler.state.length}}"
       </text>
     </g>
+    <g ng-show="model_drag.active"
+       style="pointer-events: none"
+       >
+      <line x1="{{model_drag.start.x}}" y1="{{model_drag.start.y}}"
+            x2="{{model_drag.end.x}}" y2="{{model_drag.end.y}}"
+            style="
+            stroke:#0FF;
+            stroke-width:1px;
+            marker-start:url(#ruler-start);
+            marker-end:url(#ruler-end);
+            "
+            />
+      <rect x="{{(model_drag.end.x-model_drag.start.x)/2+model_drag.start.x-2.5}}"
+            y="{{(model_drag.end.y-model_drag.start.y)/2+model_drag.start.y-4}}"
+            width="30" height="10"
+            style="
+            fill:#FFC;
+            stroke:#000;
+            stroke-width:0.5px;
+            "
+            />
+      <text x="{{(model_drag.end.x-model_drag.start.x)/2+model_drag.start.x}}"
+            y="{{(model_drag.end.y-model_drag.start.y)/2+model_drag.start.y+4}}"
+            style="
+            font-size:8px;
+            ">
+        {{model_drag.length}}"
+      </text>
+    </g>
   </svg>
   <div style="display:inline-block;vertical-align:top;">
     <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">

@@ -1,4 +1,3 @@
-- AoE sur models
 - distance de drag
 
 - add/remove models
