@@ -147,6 +147,7 @@ angular.module('vassalApp.services')
             layers: {
               board: true,
               terrain: true,
+              deployment: false,
               scenario: true,
               models: true
             },
