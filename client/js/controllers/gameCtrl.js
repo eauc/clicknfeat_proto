@@ -167,7 +167,8 @@ angular.module('vassalApp.controllers')
           // console.log('mmd');
           // console.log(event);
           skip_model_click = false;
-          if(0 <= _.indexOf($scope.game.selection, model.state.id)) {
+          if(!($scope.drag_mode === 'ruler') &&
+             0 <= _.indexOf($scope.game.selection, model.state.id)) {
             $scope.model_drag.active = true;
             $scope.model_drag.start_x = event.screenX;
             $scope.model_drag.start_y = event.screenY;
