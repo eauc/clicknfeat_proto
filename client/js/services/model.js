@@ -69,6 +69,19 @@ angular.module('vassalApp.services')
         },
         toggleReach: function() {
           this.state.show.reach = !this.state.show.reach;
+        },
+        startDraging: function(game) {
+          this.state_before_drag = _.extend({}, this.state);
+        },
+        draging: function(game, dx, dy) {
+          this.state.x = this.state_before_drag.x + dx;
+          this.state.y = this.state_before_drag.y + dy;
+          this.refresh(game);
+        },
+        endDraging: function(game, dx, dy) {
+          this.state.x = this.state_before_drag.x + dx;
+          this.state.y = this.state_before_drag.y + dy;
+          this.refresh(game);
         }
       };
 

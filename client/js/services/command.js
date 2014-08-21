@@ -83,6 +83,54 @@ angular.module('vassalApp.services')
       return factory;
     }
   ])
+  .factory('command_endDragingSelection', [
+    function() {
+      var factory = function() {
+        var instance = {
+          type: 'endDragingSelection',
+          stamp: Date.now(),
+          args: null,
+          before: null,
+          after: null,
+          execute: function(game) {
+            this.before = _.map(game.selection, function(id) {
+              return _.extend({}, game.models[id].state_before_drag);
+            });
+            game.onSelection.apply(game, ['endDraging'].concat(this.args));
+            this.after = _.map(game.selection, function(id) {
+              return _.extend({}, game.models[id].state);
+            });
+            // console.log(this.before);
+            // console.log(this.after);
+          },
+          redo: function(game) {
+            _.each(this.after, function(state) {
+              _.extend(game.models[state.id].state, state);
+            });
+          },
+          undo: function(game) {
+            // console.log(this.before);
+            _.each(this.before, function(state) {
+              _.extend(game.models[state.id].state, state);
+            });
+          },
+          desc: function(game) {
+            return this.type;
+          }
+        };
+        var args = Array.prototype.slice.call(arguments, 0);
+        if(args.length == 1 &&
+           _.isObject(args[0])) {
+          _.extend(instance, args[0]);
+        }
+        else {
+          instance.args = args;
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
   .factory('command_setSelection', [
     function() {
       var factory = function(options) {
@@ -159,15 +207,18 @@ angular.module('vassalApp.services')
   .factory('command', [
     'command_setRuler',
     'command_onSelection',
+    'command_endDragingSelection',
     'command_setSelection',
     'command_addToSelection',
     function(command_setRuler,
              command_onSelection,
+             command_endDragingSelection,
              command_setSelection,
              command_addToSelection) {
       var factories = {
         setRuler: command_setRuler,
         onSelection: command_onSelection,
+        endDragingSelection: command_endDragingSelection,
         setSelection: command_setSelection,
         addToSelection: command_addToSelection,
       };

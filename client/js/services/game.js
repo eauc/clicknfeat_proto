@@ -51,7 +51,7 @@ angular.module('vassalApp.services')
             this.new_commands.push(new_cmd);
             $http.post('/api/games/'+instance.id+'/commands', new_cmd)
               .then(function(response) {
-                console.log('send cmd success');
+                // console.log('send cmd success');
               }, function(response) {
                 console.log('send cmd error');
                 console.log(response);
@@ -62,7 +62,7 @@ angular.module('vassalApp.services')
             $http.put('/api/games/'+this.id+'/commands/undo',
                       { stamp: _.last(this.commands).stamp })
               .then(function(response) {
-                console.log('send undo cmd success');
+                // console.log('send undo cmd success');
               }, function(response) {
                 console.log('send undo cmd error');
                 console.log(response);
@@ -70,7 +70,7 @@ angular.module('vassalApp.services')
           },
           updateCommand: function(new_cmd) {
             if( _.find(this.commands, function(cmd) { return cmd.stamp === new_cmd.stamp; })) {
-              console.log('cmd udpate : already in commands queue');
+              // console.log('cmd udpate : already in commands queue');
               return;
             }
             var find_cmd = _.findWhere(this.new_commands, { stamp: new_cmd.stamp });
@@ -78,10 +78,10 @@ angular.module('vassalApp.services')
               var index = _.indexOf(this.new_commands, find_cmd);
               this.commands.push(find_cmd);
               this.new_commands.splice(index, 1);
-              console.log('cmd udpate : validate new command');
+              // console.log('cmd udpate : validate new command');
               return;
             }
-            console.log('cmd udpate : execute new command');
+            // console.log('cmd udpate : execute new command');
             new_cmd.redo(this);
             this.commands.push(new_cmd);
           },
@@ -91,7 +91,7 @@ angular.module('vassalApp.services')
             this.new_messages.push(new_msg);
             $http.post('/api/games/'+instance.id+'/messages', new_msg)
               .then(function(response) {
-                console.log('send msg success');
+                // console.log('send msg success');
               }, function(response) {
                 console.log('send msg error');
                 console.log(response);
@@ -99,7 +99,7 @@ angular.module('vassalApp.services')
           },
           updateMessage: function(new_msg) {
             if( _.find(this.messages, function(msg) { return msg.stamp === new_msg.stamp; })) {
-              console.log('msg udpate : already in messages queue');
+              // console.log('msg udpate : already in messages queue');
               return;
             }
             var find_msg = _.findWhere(this.new_messages, { stamp: new_msg.stamp });
@@ -107,10 +107,10 @@ angular.module('vassalApp.services')
               var index = _.indexOf(this.new_messages, find_msg);
               this.messages.push(find_msg);
               this.new_messages.splice(index, 1);
-              console.log('msg udpate : validate new message');
+              // console.log('msg udpate : validate new message');
               return;
             }
-            console.log('msg udpate : add new message');
+            // console.log('msg udpate : add new message');
             this.messages.push(new_msg);
           },
           rollDie: function() {
@@ -253,51 +253,23 @@ angular.module('vassalApp.services')
           instance.updateCommand(command(cmd));
         });
 
-        instance.evt_source = new EventSource('/api/games/'+instance.id+
-                                              '/commands/subscribe');
-        instance.evt_source.onmessage = function(e) {
-          console.log(e);
-          var data = JSON.parse(e.data);
-          // console.log(data);
-          var cmd = command(data);
-          console.log(cmd);
-          if(cmd) instance.updateCommand(cmd);
-          $rootScope.$apply();
-        };
-        instance.evt_source.addEventListener('undo', function(e) {
-          console.log('undo event');
-          console.log(e);
-          var data = JSON.parse(e.data);
-          console.log(data);
-          // var cmd = command(data);
-          // console.log(cmd);
-          if(data.stamp === _.last(instance.commands).stamp) {
-            instance.commands.pop().undo(instance);
-          }
-          $rootScope.$apply();
-        });
-        instance.evt_source.onerror = function(e) {
-          console.log('evtSource error');
-          console.log(e);
-        };
-
         instance.cmd_source = new EventSource('/api/games/'+instance.id+
                                               '/commands/subscribe');
         instance.cmd_source.onmessage = function(e) {
-          console.log('cmd event');
-          console.log(e);
+          // console.log('cmd event');
+          // console.log(e);
           var data = JSON.parse(e.data);
           // console.log(data);
           var cmd = command(data);
-          console.log(cmd);
+          // console.log(cmd);
           if(cmd) instance.updateCommand(cmd);
           $rootScope.$apply();
         };
         instance.cmd_source.addEventListener('undo', function(e) {
-          console.log('cmd undo event');
-          console.log(e);
+          // console.log('cmd undo event');
+          // console.log(e);
           var data = JSON.parse(e.data);
-          console.log(data);
+          // console.log(data);
           // var cmd = command(data);
           // console.log(cmd);
           if(data.stamp === _.last(instance.commands).stamp) {
@@ -313,12 +285,12 @@ angular.module('vassalApp.services')
         instance.msg_source = new EventSource('/api/games/'+instance.id+
                                               '/messages/subscribe');
         instance.msg_source.onmessage = function(e) {
-          console.log('msg event');
-          console.log(e);
+          // console.log('msg event');
+          // console.log(e);
           var data = JSON.parse(e.data);
           // console.log(data);
           var msg = message(data);
-          console.log(msg);
+          // console.log(msg);
           if(msg) instance.updateMessage(msg);
           $rootScope.$apply();
         };

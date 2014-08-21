@@ -4,7 +4,7 @@
      style="vertical-align:top">
   <strong>Game Id : {{game.id}}</strong><br />
   <svg id="canvas"
-       style="border:1px solid black;display: inline-block;"
+       style="border:1px solid black;display: inline-block;margin:0;padding:0;"
        width="800px" height="800px"
        viewBox="
        {{game.board.view.x}} {{game.board.view.y}}
@@ -179,7 +179,8 @@
                  xlink:href="{{model.img.link}}"
                  style="pointer-events: none"
                  />
-          <circle ng-click="onModelClick($event, model)"
+          <circle ng-mousedown="onModelMouseDown($event, model)"
+                  ng-click="onModelClick($event, model)"
                   cx="{{model.img.width/2}}" cy="{{model.img.height/2}}" r="{{model.img.r}}"
                   style="
                   fill:#F00;
@@ -311,6 +312,7 @@
       <li>Ctrl + click on models : select multiple models</li>
       <li>Drag-Box (Ruler mode off) : select multiple models</li>
       <li>Drag (Ruler mode on) : mesure distance</li>
+      <li>Drag on a selected model : drag all selected models</li>
     </ul>
     Keyboard shortcuts :
     <ul>
