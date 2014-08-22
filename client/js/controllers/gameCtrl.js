@@ -47,7 +47,7 @@ angular.module('vassalApp.controllers')
         };
 
         $scope.onKeyDown = function(event) {
-          // console.log(event);
+          console.log(event);
           if(event.keyCode == 68 &&
              $scope.game.ruler.state.active !== 'draging') { // d
             $scope.drag_mode = ($scope.drag_mode === 'ruler') ? 'selection' : 'ruler';
@@ -96,6 +96,10 @@ angular.module('vassalApp.controllers')
           }
           if(event.keyCode === 46) { // 5
             $scope.game.newCommand(command('dropSelection'));
+            return;
+          }
+          if(event.keyCode === 27) { // Esc
+            $scope.create_mode = false;
             return;
           }
           if(37 > event.keyCode ||
@@ -174,6 +178,7 @@ angular.module('vassalApp.controllers')
         $scope.onModelMouseDown = function(event, model) {
           // console.log('mmd');
           // console.log(event);
+          if($scope.create_mode) return;
           skip_model_click = false;
           if(!($scope.drag_mode === 'ruler') &&
              0 <= _.indexOf($scope.game.selection, model.state.id)) {
@@ -192,6 +197,7 @@ angular.module('vassalApp.controllers')
         $scope.onModelClick = function(event, model) {
           // console.log(event);
           // console.log(model);
+          if($scope.create_mode) return;
           if(skip_model_click) {
             skip_model_click = false;
             return;
@@ -242,6 +248,7 @@ angular.module('vassalApp.controllers')
           // console.log('smd');
           // console.log(event);
           // console.log($scope.drag_mode);
+          if($scope.create_mode) return;
           var elem_rect = canvas.getBoundingClientRect();
           // console.log(elem_rect);
           var dom_x = event.clientX - elem_rect.left;
@@ -262,6 +269,18 @@ angular.module('vassalApp.controllers')
           }
         };
         $scope.doSelectMove = function(event) {
+          if($scope.create_mode) {
+            // console.log(event);
+            var elem_rect = canvas.getBoundingClientRect();
+            // console.log(elem_rect);
+            var dom_x = event.clientX - elem_rect.left;
+            var dom_y = event.clientY - elem_rect.top;
+            // console.log('dom ' + dom_x + ' ' + dom_y);
+            var user_x = dom_x * $scope.game.board.width / 800;
+            var user_y = dom_y * $scope.game.board.height / 800;
+            $scope.create_preview.x = user_x;
+            $scope.create_preview.y = user_y;
+          }
           if($scope.model_drag.active) {
             // console.log(event);
             var elem_rect = canvas.getBoundingClientRect();
@@ -320,7 +339,18 @@ angular.module('vassalApp.controllers')
           }
         };
         $scope.doSelectStop = function(event) {
-          // console.log(event);
+          console.log(event);
+          if($scope.create_mode) {
+            var elem_rect = canvas.getBoundingClientRect();
+            // console.log(elem_rect);
+            var dom_x = event.clientX - elem_rect.left;
+            var dom_y = event.clientY - elem_rect.top;
+            // console.log('dom ' + dom_x + ' ' + dom_y);
+            var user_x = dom_x * $scope.game.board.width / 800;
+            var user_y = dom_y * $scope.game.board.height / 800;
+            $scope.game.newCommand(command('createModel', $scope.model.info, user_x, user_y));
+            $scope.create_mode = false;
+          }
           if($scope.model_drag.active) {
             var dx = event.screenX - $scope.model_drag.start_x;
             var dy = event.screenY - $scope.model_drag.start_y;
@@ -436,8 +466,15 @@ angular.module('vassalApp.controllers')
                                         ));
         };
 
-        $scope.doCreateModel = function() {
-          $scope.game.newCommand(command('createModel', $scope.model.info, 240, 240));
+        $scope.create_mode = false;
+        $scope.create_preview = {
+          x: 0,
+          y: 0,
+          info: null,
+        };
+        $scope.doToggleCreateModel = function() {
+          $scope.create_mode = !$scope.create_mode;
+          $scope.create_preview.info = $scope.model.info;
         };
       });
     }

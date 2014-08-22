@@ -1,4 +1,3 @@
-- create models at board center
 - place create models
 - units
 - colossal
