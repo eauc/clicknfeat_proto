@@ -1,5 +1,3 @@
-- manage models IDs
-- drop models
 - create models at board center
 - place create models
 - units

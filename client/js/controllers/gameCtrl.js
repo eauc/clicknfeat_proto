@@ -181,8 +181,8 @@ angular.module('vassalApp.controllers')
             $scope.model_drag.start_x = event.screenX;
             $scope.model_drag.start_y = event.screenY;
             $scope.game.onSelection('startDraging');
-            $scope.model_drag.start.x = model.state_before_drag.x + model.info.width/2;
-            $scope.model_drag.start.y = model.state_before_drag.y + model.info.height/2;
+            $scope.model_drag.start.x = model.state_before_drag.x;
+            $scope.model_drag.start.y = model.state_before_drag.y;
             $scope.model_drag.end.x = $scope.model_drag.start.x;
             $scope.model_drag.end.y = $scope.model_drag.start.y;
             $scope.model_drag.length = 0;
@@ -202,13 +202,13 @@ angular.module('vassalApp.controllers')
             var model_end = model;
             if(model_start != model_end) {
               var center_start = {
-                x: model_start.state.x + model_start.info.width /2,
-                y: model_start.state.y + model_start.info.height /2,
+                x: model_start.state.x,
+                y: model_start.state.y,
               };
               // console.log('center start '+JSON.stringify(center_start));
               var center_end = {
-                x: model_end.state.x + model_end.info.width /2,
-                y: model_end.state.y + model_end.info.height /2,
+                x: model_end.state.x,
+                y: model_end.state.y,
               };
               var angle = Math.atan2(center_end.y-center_start.y, center_end.x-center_start.x);
               var start = {
@@ -377,8 +377,8 @@ angular.module('vassalApp.controllers')
                  $scope.selection.height > 0) {
                 var models_selected = [];
                 _.each($scope.game.models, function(model) {
-                  var cx = model.state.x + model.info.width/2;
-                  var cy = model.state.y + model.info.height/2;
+                  var cx = model.state.x;
+                  var cy = model.state.y;
                   if( $scope.selection.x <= cx && cx <= ($scope.selection.x+$scope.selection.width ) &&
                       $scope.selection.y <= cy && cy <= ($scope.selection.y+$scope.selection.height) ) {
                     models_selected.push(model.state.id);
@@ -434,6 +434,10 @@ angular.module('vassalApp.controllers')
                                            return mod.state.id;
                                         })
                                         ));
+        };
+
+        $scope.doCreateModel = function() {
+          $scope.game.newCommand(command('createModel', $scope.model.info, 240, 240));
         };
       });
     }

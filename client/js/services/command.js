@@ -1,6 +1,44 @@
 'use strict';
 
 angular.module('vassalApp.services')
+  .factory('command_createModel', [
+    'model',
+    function(model) {
+      var factory = function(data) {
+        var instance = {
+          type: 'createModel',
+          stamp: Date.now(),
+          args: null,
+          before: null,
+          after: null,
+          execute: function(game) {
+            var new_model = game.createModel.apply(game, this.args);
+            this.after = new_model;
+            // console.log(this.before);
+            // console.log(this.after);
+          },
+          redo: function(game) {
+            game.models[this.after.state.id] = model(this.after);
+          },
+          undo: function(game) {
+            delete game.models[this.after.state.id];
+          },
+          desc: function(game) {
+            return this.type+'('+this.args[0].name+')';
+          }
+        };
+        var args = Array.prototype.slice.call(arguments);
+        if(args.length === 1) {
+          _.extend(instance, data);
+        }
+        else {
+          instance.args = args;
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
   .factory('command_setLayer', [
     function() {
       var factory = function(data) {
@@ -307,6 +345,7 @@ angular.module('vassalApp.services')
     }
   ])
   .factory('command', [
+    'command_createModel',
     'command_setLayer',
     'command_setRuler',
     'command_onSelection',
@@ -315,7 +354,8 @@ angular.module('vassalApp.services')
     'command_restoreFromDropBin',
     'command_setSelection',
     'command_addToSelection',
-    function(command_setLayer,
+    function(command_createModel,
+             command_setLayer,
              command_setRuler,
              command_onSelection,
              command_endDragingSelection,
@@ -324,6 +364,7 @@ angular.module('vassalApp.services')
              command_setSelection,
              command_addToSelection) {
       var factories = {
+        createModel: command_createModel,
         setLayer: command_setLayer,
         setRuler: command_setRuler,
         onSelection: command_onSelection,

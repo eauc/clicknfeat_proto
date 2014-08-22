@@ -20,7 +20,17 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         
         var instance = {
+          new_model_id: 0,
           models: {},
+          createModel: function(info, x, y) {
+            var new_model = model(this.new_model_id++,
+                                  info, {
+                                    x: x,
+                                    y: y
+                                  });
+            this.models[new_model.state.id] = new_model;
+            return new_model;
+          },
           drop_bin: {},
           selection: [],
           onSelection: function(method_name) {
@@ -281,6 +291,7 @@ angular.module('vassalApp.services')
         };
 
         instance.id = data.id
+        instance.new_model_id = data.new_model_id
         instance.models = data.models
         instance.commands = data.commands
         instance.messages = data.messages

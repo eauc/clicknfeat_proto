@@ -10,6 +10,7 @@ class Game
 
   def initialize i, data
     @id = i
+    @new_model_id = 0
     @models = ModelCollection.new(data.key?('models') ? data['models'] : nil)
     @commands = CommandCollection.new(data.key?('commands') ? data['commands'] : nil)
     @messages = MessageCollection.new(data.key?('messages') ? data['messages'] : nil)
@@ -20,6 +21,7 @@ class Game
   end
 
   def to_json
-    "{ \"id\": #{@id}, \"ruler\": #{@ruler.to_json}, \"selection\": #{@selection.to_json}, \"layers\": #{@layers.to_json}, \"models\": #{@models.to_json}, \"commands\": #{@commands.to_json}, \"messages\": #{@messages.to_json} }"
+    @new_model_id += 10000
+    "{ \"id\": #{@id}, \"new_model_id\": #{@new_model_id}, \"ruler\": #{@ruler.to_json}, \"selection\": #{@selection.to_json}, \"layers\": #{@layers.to_json}, \"models\": #{@models.to_json}, \"commands\": #{@commands.to_json}, \"messages\": #{@messages.to_json} }"
   end
 end
