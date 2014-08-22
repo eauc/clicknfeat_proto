@@ -83,24 +83,24 @@ angular.module('vassalApp.services')
           after: null,
           execute: function(game) {
             this.before = _.map(game.selection, function(id) {
-              return _.extend({}, game.models[id].state);
+              return _.deepCopy(game.models[id].state);
             });
             game.onSelection.apply(game, this.args);
             this.after = _.map(game.selection, function(id) {
-              return _.extend({}, game.models[id].state);
+              return _.deepCopy(game.models[id].state);
             });
             // console.log(this.before);
             // console.log(this.after);
           },
           redo: function(game) {
             _.each(this.after, function(state) {
-              _.extend(game.models[state.id].state, state);
+              game.models[state.id].state = _.deepCopy(state);
             });
           },
           undo: function(game) {
             // console.log(this.before);
             _.each(this.before, function(state) {
-              _.extend(game.models[state.id].state, state);
+              game.models[state.id].state = _.deepCopy(state);
             });
           },
           desc: function(game) {
@@ -131,24 +131,24 @@ angular.module('vassalApp.services')
           after: null,
           execute: function(game) {
             this.before = _.map(game.selection, function(id) {
-              return _.extend({}, game.models[id].state_before_drag);
+              return _.deepCopy(game.models[id].state_before_drag);
             });
             game.onSelection.apply(game, ['endDraging'].concat(this.args));
             this.after = _.map(game.selection, function(id) {
-              return _.extend({}, game.models[id].state);
+              return _.deepCopy(game.models[id].state);
             });
             // console.log(this.before);
             // console.log(this.after);
           },
           redo: function(game) {
             _.each(this.after, function(state) {
-              _.extend(game.models[state.id].state, state);
+              game.models[state.id].state = _.deepCopy(state);
             });
           },
           undo: function(game) {
             // console.log(this.before);
             _.each(this.before, function(state) {
-              _.extend(game.models[state.id].state, state);
+              game.models[state.id].state = _.deepCopy(state);
             });
           },
           desc: function(game) {

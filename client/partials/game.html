@@ -48,7 +48,7 @@
       </marker>
     </defs>
     <image x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-           xlink:href="data/Board.png"
+           xlink:href="data/board/Board.png"
            style="display: {{game.layers.board ? 'inline' : 'none'}}"
            />
     <svg x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
@@ -347,9 +347,9 @@
            x="{{model.state.x}}" y="{{model.state.y}}">
         <g transform="rotate({{model.state.rot}}, 30, 30)">
           <path d="
-                M{{10-model.img.r}},30
-                L{{50+model.img.r}},30
-                A{{20+model.img.r}},{{20+model.img.r}} 0 0,0 {{10-model.img.r}},30
+                M{{10-model.info.r}},30
+                L{{50+model.info.r}},30
+                A{{20+model.info.r}},{{20+model.info.r}} 0 0,0 {{10-model.info.r}},30
                 "
                 style="
                 stroke:#000;
@@ -361,9 +361,9 @@
                 ng-show="model.state.show_reach"
                 />
           <path d="
-                M{{25-model.img.r}},30
-                L{{35+model.img.r}},30
-                A{{5+model.img.r}},{{5+model.img.r}} 0 0,0 {{25-model.img.r}},30
+                M{{25-model.info.r}},30
+                L{{35+model.info.r}},30
+                A{{5+model.info.r}},{{5+model.info.r}} 0 0,0 {{25-model.info.r}},30
                 "
                 style="
                 stroke:#000;
@@ -382,14 +382,14 @@
                   stroke-width:0.5px;
                   "
                   />
-          <image x="{{model.img.x}}" y="{{model.img.y}}"
-                 width="{{model.img.width}}" height="{{model.img.height}}"
-                 xlink:href="{{model.img.link}}"
+          <image x="{{model.info.img.x}}" y="{{model.info.img.y}}"
+                 width="{{model.info.width}}" height="{{model.info.height}}"
+                 xlink:href="{{model.info.img.link}}"
                  style="pointer-events: none"
                  />
           <circle ng-mousedown="onModelMouseDown($event, model)"
                   ng-click="onModelClick($event, model)"
-                  cx="{{model.img.width/2}}" cy="{{model.img.height/2}}" r="{{model.img.r}}"
+                  cx="{{model.info.width/2}}" cy="{{model.info.height/2}}" r="{{model.info.r}}"
                   style="
                   fill:#F00;
                   fill-opacity:0.5;
@@ -398,7 +398,6 @@
                   ng-style="{
                   'stroke': model.state.active ? '#0F0' : none
                   }"
-                  
                   /> 
         </g>
       </svg>
@@ -469,7 +468,68 @@
       </text>
     </g>
   </svg>
-  <div style="display:inline-block;vertical-align:top;">
+  <div style="display:inline-block;vertical-align:top;max-width:400px">
+    <div ng-show="game.selection.length === 1"
+         style="border:1px solid black;max-height:300px;overflow-y:scroll;">
+      <div>
+        Name : {{game.models[game.selection[0]].info.name}}
+      </div>
+      <div>
+        Class :
+        {{game.models[game.selection[0]].info.type}} -
+        {{game.models[game.selection[0]].info.base}}
+      </div>
+      <div>
+        Damages :
+        <span ng-show="game.models[game.selection[0]].info.damage.type == 'warrior'">
+          {{game.models[game.selection[0]].info.damage.n}}
+        </span>
+        <div ng-show="game.models[game.selection[0]].info.damage.type == 'warrior'">
+          <div ng-repeat="i in range(game.models[game.selection[0]].info.damage.n).reverse()"
+               style="width:20px;height:20px;border:1px solid black;display:inline-block;text-align:center;"
+               ng-style="{
+               'border-right': (i%5 == 0)?'5px solid black':'1px solid black',
+               'background-color': (i>=game.models[game.selection[0]].info.damage.n-game.models[game.selection[0]].state.damage.n) ? '#999' : 'white'
+               }"
+               ng-click="doModelDamage(game.models[game.selection[0]],game.models[game.selection[0]].info.damage.n-i)"
+               ></div>
+        </div>
+        <table ng-show="game.models[game.selection[0]].info.damage.type == 'jack'"
+               style="border-collapse:collapse;text-align:center;">
+          <tr>
+            <td ng-repeat="col in ['1','2','3','4','5','6']"
+                style="width:20px;height:20px;"
+                ng-click="doModelDamage(game.models[game.selection[0]],col)"
+                >
+              {{col}}
+            </td>
+          </tr>
+          <tr ng-repeat="line in [0,1,2,3,4,5]">
+            <td ng-repeat="col in ['1','2','3','4','5','6']"
+                style="width:20px;height:20px;border:1px solid black;"
+                ng-style="{
+                'background-color':
+                (game.models[game.selection[0]].info.damage[col][line]) ? (
+                  (game.models[game.selection[0]].state.damage[col][line] === 1) ? '#999' : 'white'
+                ) : 'black'
+                }"
+                ng-click="doModelDamage(game.models[game.selection[0]], col, line)"
+                >
+              {{ (game.models[game.selection[0]].info.damage[col][line] === 'b') ? ' ' : 
+                    game.models[game.selection[0]].info.damage[col][line].toUpperCase() }}
+            </td>
+          </tr>
+        </table>
+        <div>
+          Click on boxes to mark/clear damage.
+          <ul>
+            <li>for warriors : damage will be marked up to the clicked box.
+              To clear damages, re-click on the same box.</li>
+            <li>for jacks : you can mark/clear whole colons by clicking on colon numbers.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
       <div><strong>Tools :</strong></div>
       <input id="tools-ruler-check"
@@ -483,31 +543,41 @@
     </div>
     <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
       <div><strong>Layers :</strong></div>
-      <input id="layer-board-check"
-             type="checkbox"
-             ng-model="game.layers.board"
-             ng-change="onLayerChange('board')" />
-      <label for="layer-board-check">Board</label>
-      <input id="layer-terrain-check"
-             type="checkbox"
-             ng-model="game.layers.terrain"
-             ng-change="onLayerChange('terrain')" />
-      <label for="layer-terrain-check">Terrain</label>
-      <input id="layer-deployment-check"
-             type="checkbox"
-             ng-model="game.layers.deployment"
-             ng-change="onLayerChange('deployment')" />
-      <label for="layer-deployment-check">Deployment</label>
-      <input id="layer-scenario-check"
-             type="checkbox"
-             ng-model="game.layers.scenario"
-             ng-change="onLayerChange('scenario')" />
-      <label for="layer-scenario-check">Scenario</label>
-      <input id="layer-models-check"
-             type="checkbox"
-             ng-model="game.layers.models"
-             ng-change="onLayerChange('models')" />
-      <label for="layer-models-check">Models</label>
+      <div style="display:inline-box">
+        <input id="layer-board-check"
+               type="checkbox"
+               ng-model="game.layers.board"
+               ng-change="onLayerChange('board')" />
+        <label for="layer-board-check">Board</label>
+      </div>
+      <div style="display:inline-box">
+        <input id="layer-terrain-check"
+               type="checkbox"
+               ng-model="game.layers.terrain"
+               ng-change="onLayerChange('terrain')" />
+        <label for="layer-terrain-check">Terrain</label>
+      </div>
+      <div style="display:inline-box">
+        <input id="layer-deployment-check"
+               type="checkbox"
+               ng-model="game.layers.deployment"
+               ng-change="onLayerChange('deployment')" />
+        <label for="layer-deployment-check">Deployment</label>
+      </div>
+      <div style="display:inline-box">
+        <input id="layer-scenario-check"
+               type="checkbox"
+               ng-model="game.layers.scenario"
+               ng-change="onLayerChange('scenario')" />
+        <label for="layer-scenario-check">Scenario</label>
+      </div>
+      <div style="display:inline-box">
+        <input id="layer-models-check"
+               type="checkbox"
+               ng-model="game.layers.models"
+               ng-change="onLayerChange('models')" />
+        <label for="layer-models-check">Models</label>
+      </div>
     </div>
     <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
       <button ng-click="game.rollDice(1)">1d6</button>
@@ -550,6 +620,65 @@
         {{cmd.desc()}} - {{cmd.stamp}}
       </div>
     </div>
+    <!-- <div style="border:1px solid black;max-height:400px;overflow-y:scroll;">
+    <div>
+    <strong>Models :</strong>
+    </div>
+    <div>
+    Faction :
+    <select name="model_faction"
+    ng-model="model.faction"
+    ng-options="id as f.name for (id, f) in factions"
+    >
+    </select>
+    </div>
+    <div>
+    Type :
+    <select name="model_type"
+    ng-model="model.type"
+    ng-options="id as id for (id, f) in factions[model.faction].models"
+    >
+    </select>
+    </div>
+    <div>
+    Model :
+    <select name="model_info"
+    ng-model="model.info"
+    ng-options="f as f.name for (id, f) in factions[model.faction].models[model.type]">
+    </select>
+    </div>
+    <div>
+    Name : {{model.info.name}}<br />
+    Class : {{model.info.type}} - {{model.info.base}}<br />
+    Damages : <span ng-show="model.info.damage.type == 'warrior'">{{model.info.damage.n}}</span>
+    <div>
+    <div style="width:20px;height:20px;border:1px solid black;display:inline-block"
+    ng-style="{ 'border-right': (i%5 == 0)?'5px solid black':'1px solid black' }"
+    ng-repeat="i in range(model.info.damage.n).reverse()"></div>
+    </div>
+    
+    <table ng-show="model.info.damage.type == 'jack'"
+    style="border-collapse:collapse;text-align:center;">
+    <tr>
+    <td ng-repeat="col in ['1','2','3','4','5','6']"
+    style="width:20px;height:20px;"
+    >
+    {{col}}
+    </td>
+    </tr>
+    <tr ng-repeat="line in [0,1,2,3,4,5]">
+    <td ng-repeat="col in ['1','2','3','4','5','6']"
+    style="width:20px;height:20px;border:1px solid black;"
+    ng-style="
+    { 'background-color': (model.info.damage[col][line])?'white':'black'}
+    "
+    >
+    {{(model.info.damage[col][line] === 'b')?' ':model.info.damage[col][line].toUpperCase()}}
+    </td>
+    </tr>
+    </table>
+    </div>
+    </div> -->
     <div>
       <div>
         <button ng-click="game.generateBackup()">Save</button>
@@ -563,7 +692,7 @@
       </div>
     </div>
   </div>
-  <div style="">
+  <div>
     Mouse Actions :
     <ul>
       <li>click on model : select the model</li> 

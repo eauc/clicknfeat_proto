@@ -1,0 +1,3 @@
+{
+  "cygnar": "/data/cygnar.js"
+}

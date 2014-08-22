@@ -272,6 +272,38 @@ angular.module('vassalApp.services')
             instance.selection.push(mod.state.id);
           }
         });
+        var new_model;
+        if(instance.models.length === 0) {
+          _.times(20, function(i) {
+            new_model = model(3*i,
+                              $rootScope.factions.cygnar.models.jacks.hammersmith,
+                              {
+                                x: 200,
+                                y: 20+20*i,
+                                rot: -30,
+                                show_reach: true,
+                              });
+            instance.models.push(new_model);
+            new_model = model(3*i+1,
+                              $rootScope.factions.cygnar.models.jacks.grenadier,
+                              {
+                                x: 240,
+                                y: 20+20*i,
+                                rot: 0
+                              });
+            instance.models.push(new_model);
+            new_model = model(3*i+2,
+                              $rootScope.factions.cygnar.models.solos.stormwall_pod,
+                              {
+                                x: 280,
+                                y: 20+20*i,
+                                rot: 30,
+                                show_melee: true,
+                              });
+            instance.models.push(new_model);
+          });
+        }
+
         var cmds = instance.commands;
         instance.commands = [];
         _.each(cmds, function(cmd) {
@@ -334,6 +366,7 @@ angular.module('vassalApp.services')
         //       console.log('put model '+model.state.id+' error '+response.status)
         //     });
         // });
+
         return instance;
       };
       return factory;

@@ -10,6 +10,7 @@ angular.module('vassalApp.controllers')
     'game',
     'command',
     'message',
+    'factions',
     function($scope,
              $state,
              $stateParams,
@@ -17,13 +18,16 @@ angular.module('vassalApp.controllers')
              $q,
              game,
              command,
-             message) {
+             message,
+             factions) {
       console.log('init gameCtrl');
       if(!$stateParams.id || $stateParams.id.length <= 0) $state.go('start');
 
       $http.get('/api/games/'+$stateParams.id).then(function(response) {
         // console.log('search game success');
-        $scope.game = game(response.data);
+        factions.then(function() {
+          $scope.game = game(response.data);
+        });
         // console.log($scope.game);
       }, function(response) {
         console.log('search game error');
@@ -173,8 +177,8 @@ angular.module('vassalApp.controllers')
             $scope.model_drag.start_x = event.screenX;
             $scope.model_drag.start_y = event.screenY;
             $scope.game.onSelection('startDraging');
-            $scope.model_drag.start.x = model.state_before_drag.x + model.img.width/2;
-            $scope.model_drag.start.y = model.state_before_drag.y + model.img.height/2;
+            $scope.model_drag.start.x = model.state_before_drag.x + model.info.width/2;
+            $scope.model_drag.start.y = model.state_before_drag.y + model.info.height/2;
             $scope.model_drag.end.x = $scope.model_drag.start.x;
             $scope.model_drag.end.y = $scope.model_drag.start.y;
             $scope.model_drag.length = 0;
@@ -194,22 +198,22 @@ angular.module('vassalApp.controllers')
             var model_end = model;
             if(model_start != model_end) {
               var center_start = {
-                x: model_start.state.x + model_start.img.width /2,
-                y: model_start.state.y + model_start.img.height /2,
+                x: model_start.state.x + model_start.info.width /2,
+                y: model_start.state.y + model_start.info.height /2,
               };
               // console.log('center start '+JSON.stringify(center_start));
               var center_end = {
-                x: model_end.state.x + model_end.img.width /2,
-                y: model_end.state.y + model_end.img.height /2,
+                x: model_end.state.x + model_end.info.width /2,
+                y: model_end.state.y + model_end.info.height /2,
               };
               var angle = Math.atan2(center_end.y-center_start.y, center_end.x-center_start.x);
               var start = {
-                x: center_start.x + model_start.img.r * Math.cos(angle),
-                y: center_start.y + model_start.img.r * Math.sin(angle),
+                x: center_start.x + model_start.info.r * Math.cos(angle),
+                y: center_start.y + model_start.info.r * Math.sin(angle),
               };
               var end = {
-                x: center_end.x - model_end.img.r * Math.cos(angle),
-                y: center_end.y - model_end.img.r * Math.sin(angle),
+                x: center_end.x - model_end.info.r * Math.cos(angle),
+                y: center_end.y - model_end.info.r * Math.sin(angle),
               };
               $scope.game.ruler.startDraging(start.x, start.y);
               $scope.game.ruler.endDraging(end.x, end.y);
@@ -369,8 +373,8 @@ angular.module('vassalApp.controllers')
                  $scope.selection.height > 0) {
                 var models_selected = [];
                 _.each($scope.game.models, function(model) {
-                  var cx = model.state.x + model.img.width/2;
-                  var cy = model.state.y + model.img.height/2;
+                  var cx = model.state.x + model.info.width/2;
+                  var cy = model.state.y + model.info.height/2;
                   if( $scope.selection.x <= cx && cx <= ($scope.selection.x+$scope.selection.width ) &&
                       $scope.selection.y <= cy && cy <= ($scope.selection.y+$scope.selection.height) ) {
                     models_selected.push(model.state.id);
@@ -399,6 +403,10 @@ angular.module('vassalApp.controllers')
 
         $scope.onLayerChange = function(layer) {
           $scope.game.newCommand(command('setLayer', layer));
+        };
+
+        $scope.doModelDamage = function(model, col, line) {
+          $scope.game.newCommand(command('onSelection', 'toggleDamage', col, line));
         };
 
       });

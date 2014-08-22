@@ -1,4 +1,4 @@
-- distance de drag
+- model info/damage
 
 - add/remove models
 - import liste FK

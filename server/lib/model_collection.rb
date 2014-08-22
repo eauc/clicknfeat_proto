@@ -7,68 +7,6 @@ class ModelCollection
   def initialize data
     if not data
       @models = []
-      20.times do |i|
-        @models << {
-          img: {
-            width: 60,
-            height: 60,
-            x: 0.2,
-            y: -0.2,
-            r: LARGE_BASE_RADIUS,
-            link: 'data/cygnar/jacks/Hammersmith.png'
-          },
-          state: {
-            id: 3*i+0,
-            x: 200,
-            y: 20+20*i,
-            rot: 0,
-            show_melee: false,
-            show_reach: false,
-            show_aoe: 0,
-            active: false
-          }
-        }
-        @models << {
-        img: {
-            width: 60,
-            height: 60,
-            x: 0.2,
-            y: -0.2,
-            r: MEDIUM_BASE_RADIUS,
-            link: 'data/cygnar/jacks/Grenadier.png'
-          },
-          state: {
-            id: 3*i+1,
-            x: 240,
-            y: 20+20*i,
-            rot: 0,
-            show_melee: true,
-            show_reach: false,
-            show_aoe: 0,
-            active: false
-          }
-        }
-        @models << {
-          img: {
-            width: 60,
-            height: 60,
-            x: 0.2,
-            y: -0.5,
-            r: SMALL_BASE_RADIUS,
-            link: 'data/cygnar/jacks/Stormwall_Pod.png'
-          },
-          state: {
-            id: 3*i+2,
-            x: 280,
-            y: 20+20*i,
-            rot: 0,
-            show_melee: false,
-            show_reach: true,
-            show_aoe: 0,
-            active: false
-          }
-        }
-      end
     else
       @models = data
     end

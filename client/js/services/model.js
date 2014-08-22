@@ -3,19 +3,24 @@
 angular.module('vassalApp.services')
   .factory('model', [
     function() {
+      var BASE_RADIUS = {
+        large: 9.842,
+        medium: 7.874,
+        small: 5.905
+      };
       var model_base = {
         refresh: function(game) {
-          this.state.x = Math.max(-(this.img.height/2)+this.img.r,
+          this.state.x = Math.max(-(this.info.height/2)+this.info.r,
                                   this.state.x);
           this.state.x = Math.min(game.board.width
-                                  -(this.img.height/2)
-                                  -this.img.r,
+                                  -(this.info.height/2)
+                                  -this.info.r,
                                   this.state.x);
-          this.state.y = Math.max(-(this.img.height/2)+this.img.r,
+          this.state.y = Math.max(-(this.info.height/2)+this.info.r,
                                   this.state.y);
           this.state.y = Math.min(game.board.height
-                                  -(this.img.width/2)
-                                  -this.img.r,
+                                  -(this.info.width/2)
+                                  -this.info.r,
                                   this.state.y);
         },
         moveFront: function(game, small) {
@@ -101,13 +106,88 @@ angular.module('vassalApp.services')
           this.state.x = this.state_before_drag.x + dx;
           this.state.y = this.state_before_drag.y + dy;
           this.refresh(game);
+        },
+        toggleDamage: function(game, col, line) {
+          switch(this.info.damage.type) {
+          case 'jack':
+            {
+              if(undefined === line) {
+                var instance = this;
+                var damage_in_col = _.reduce(this.state.damage[col], function(sum, n) {
+                  return n + sum;
+                }, 0);
+                var new_val = damage_in_col === 6 ? 0 : 1;
+                _.each(this.state.damage[col], function(val, i) {
+                  instance.state.damage[col][i] = new_val;
+                });
+                break;
+              }
+              if(this.info.damage[col][line]) {
+                this.state.damage[col][line] = 
+                  this.state.damage[col][line] === 1 ? 0 : 1;
+              }
+              break;
+            }
+          case 'warrior':
+            {
+              this.state.damage.n = 
+                this.state.damage.n === col ? 0 : col;
+              break;
+            }
+          }
         }
       };
-
-      var factory = function(data) {
-        
-        return _.extend(data, model_base);
-
+      var factory = function() {
+        var args = Array.prototype.slice.call(arguments);
+        if(args.length === 1) {
+          return _.extend(args[0], model_base);
+        }
+        var instance = {
+          info: args[1],
+          state: args.length == 2 ? {
+            id: args[0],
+            x: 240,
+            y: 240,
+            rot: 0,
+            show_melee: false,
+            show_reach: false,
+            show_aoe: 0,
+            active: false
+          } : _.extend({
+            id: args[0],
+            x: 240,
+            y: 240,
+            rot: 0,
+            show_melee: false,
+            show_reach: false,
+            show_aoe: 0,
+            active: false
+          }, args[2])
+        };
+        instance.info.r = BASE_RADIUS[instance.info.base];
+        switch(instance.info.damage.type) {
+        case 'jack': 
+          {
+            instance.state.damage = {
+              '1': [ 0, 0, 0, 0, 0, 0 ],
+              '2': [ 0, 0, 0, 0, 0, 0 ],
+              '3': [ 0, 0, 0, 0, 0, 0 ],
+              '4': [ 0, 0, 0, 0, 0, 0 ],
+              '5': [ 0, 0, 0, 0, 0, 0 ],
+              '6': [ 0, 0, 0, 0, 0, 0 ]
+            };
+            break;
+          }
+        case 'warrior': 
+          {
+            instance.state.damage = {
+              n: 0
+            };
+            break;
+          }
+        }
+        _.extend(instance, model_base);
+        return instance;
       };
       return factory;
     }
