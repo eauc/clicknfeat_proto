@@ -643,6 +643,29 @@
         </div>
       </div>
     </div>
+    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
+      <div>
+        <strong>Drop Bin :</strong>
+        <button ng-click="doRestoreSelection()"
+                ng-disabled="isRestoreSelectionEmpty()">
+          Restore
+        </button>
+        <button ng-click="doRestoreAll()">
+          Restore All
+        </button>
+      </div>
+      <table>
+        <tr ng-repeat="model in game.drop_bin">
+          <td ng-click="doToggleRestoreSelection(model.state.id)"
+              ng_style="{
+              'background-color': restore_selection[model.state.id] ? '#999' : 'white'
+              }"
+              >
+            {{ model.info.name }} - {{ model.state.id }}
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
   <div style="display:inline-block;vertical-align:top;width:350px">
     <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
@@ -734,29 +757,6 @@
       <div ng-repeat="cmd in game.commands.slice().reverse()">
         {{cmd.desc()}} - {{cmd.stamp}}
       </div>
-    </div>
-    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
-      <div>
-        <strong>Drop Bin :</strong>
-        <button ng-click="doRestoreSelection()"
-                ng-disabled="isRestoreSelectionEmpty()">
-          Restore
-        </button>
-        <button ng-click="doRestoreAll()">
-          Restore All
-        </button>
-      </div>
-      <table>
-        <tr ng-repeat="model in game.drop_bin">
-          <td ng-click="doToggleRestoreSelection(model.state.id)"
-              ng_style="{
-              'background-color': restore_selection[model.state.id] ? '#999' : 'white'
-              }"
-              >
-            {{ model.info.name }} - {{ model.state.id }}
-          </td>
-        </tr>
-      </table>
     </div>
     <div>
       <div>

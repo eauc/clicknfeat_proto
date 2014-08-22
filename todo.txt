@@ -1,4 +1,3 @@
-- place create models
 - units
 - colossal
 - caster
@@ -10,6 +9,6 @@
 - los arcs on model circles.
 - compteurs focus/fury model info.
 - apercu pvs restants/fury directement sur model.
-- mode charge.
 
+- mode charge.
 

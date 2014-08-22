@@ -47,7 +47,7 @@ angular.module('vassalApp.controllers')
         };
 
         $scope.onKeyDown = function(event) {
-          console.log(event);
+          // console.log(event);
           if(event.keyCode == 68 &&
              $scope.game.ruler.state.active !== 'draging') { // d
             $scope.drag_mode = ($scope.drag_mode === 'ruler') ? 'selection' : 'ruler';
@@ -339,7 +339,7 @@ angular.module('vassalApp.controllers')
           }
         };
         $scope.doSelectStop = function(event) {
-          console.log(event);
+          // console.log(event);
           if($scope.create_mode) {
             var elem_rect = canvas.getBoundingClientRect();
             // console.log(elem_rect);
