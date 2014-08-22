@@ -80,18 +80,22 @@ angular.module('vassalApp.controllers')
             return;
           }
           if(event.keyCode === 99 ||
-             event.keyCode == 51) { // 3
+             event.keyCode === 51) { // 3
             $scope.game.newCommand(command('onSelection', 'toggleAoe', 3));
             return;
           }
           if(event.keyCode === 100 ||
-             event.keyCode == 52) { // 4
+             event.keyCode === 52) { // 4
             $scope.game.newCommand(command('onSelection', 'toggleAoe', 4));
             return;
           }
           if(event.keyCode === 101 ||
-             event.keyCode == 53) { // 5
+             event.keyCode === 53) { // 5
             $scope.game.newCommand(command('onSelection', 'toggleAoe', 5));
+            return;
+          }
+          if(event.keyCode === 46) { // 5
+            $scope.game.newCommand(command('dropSelection'));
             return;
           }
           if(37 > event.keyCode ||
@@ -409,6 +413,28 @@ angular.module('vassalApp.controllers')
           $scope.game.newCommand(command('onSelection', 'toggleDamage', col, line));
         };
 
+        $scope.restore_selection = {};
+        $scope.isRestoreSelectionEmpty = function() {
+          return _.keys($scope.restore_selection).length === 0;
+        };
+        $scope.doToggleRestoreSelection = function(id) {
+          if($scope.restore_selection[id]) {
+            delete $scope.restore_selection[id];
+          }
+          else {
+            $scope.restore_selection[id] = true;
+          }
+        };
+        $scope.doRestoreSelection = function() {
+          $scope.game.newCommand(command('restoreFromDropBin', _.keys($scope.restore_selection)));
+        };
+        $scope.doRestoreAll = function() {
+          $scope.game.newCommand(command('restoreFromDropBin',
+                                         _.map($scope.game.drop_bin, function(mod) {
+                                           return mod.state.id;
+                                        })
+                                        ));
+        };
       });
     }
   ]);

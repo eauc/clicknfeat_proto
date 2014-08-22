@@ -168,6 +168,71 @@ angular.module('vassalApp.services')
       return factory;
     }
   ])
+  .factory('command_dropSelection', [
+    function() {
+      var factory = function() {
+        var instance = {
+          type: 'dropSelection',
+          stamp: Date.now(),
+          before: null,
+          execute: function(game) {
+            this.before = [].concat(game.selection);
+            game.dropSelection();
+          },
+          redo: function(game) {
+            game.setSelection(this.before);
+            game.dropSelection();
+          },
+          undo: function(game) {
+            // console.log(this.before);
+            game.restoreFromDropBin(this.before);
+            game.setSelection(this.before);
+          },
+          desc: function(game) {
+            return this.type;
+          }
+        };
+        var args = Array.prototype.slice.call(arguments, 0);
+        if(args.length == 1) {
+          _.extend(instance, args[0]);
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
+  .factory('command_restoreFromDropBin', [
+    function() {
+      var factory = function() {
+        var instance = {
+          type: 'restoreFromDropBin',
+          stamp: Date.now(),
+          args: null,
+          execute: function(game) {
+            game.restoreFromDropBin(this.args);
+          },
+          redo: function(game) {
+            game.restoreFromDropBin(this.args);
+          },
+          undo: function(game) {
+            game.dropModels(this.args);
+          },
+          desc: function(game) {
+            return this.type;
+          }
+        };
+        var args = Array.prototype.slice.call(arguments, 0);
+        if(!_.isArray(args[0])) {
+          _.extend(instance, args[0]);
+        }
+        else {
+          instance.args = args[0];
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
   .factory('command_setSelection', [
     function() {
       var factory = function(options) {
@@ -246,12 +311,16 @@ angular.module('vassalApp.services')
     'command_setRuler',
     'command_onSelection',
     'command_endDragingSelection',
+    'command_dropSelection',
+    'command_restoreFromDropBin',
     'command_setSelection',
     'command_addToSelection',
     function(command_setLayer,
              command_setRuler,
              command_onSelection,
              command_endDragingSelection,
+             command_dropSelection,
+             command_restoreFromDropBin,
              command_setSelection,
              command_addToSelection) {
       var factories = {
@@ -259,13 +328,16 @@ angular.module('vassalApp.services')
         setRuler: command_setRuler,
         onSelection: command_onSelection,
         endDragingSelection: command_endDragingSelection,
+        dropSelection: command_dropSelection,
+        restoreFromDropBin: command_restoreFromDropBin,
         setSelection: command_setSelection,
         addToSelection: command_addToSelection,
       };
       var factory = function() {
         var args = Array.prototype.slice.call(arguments, 0);
         var type = '';
-        if(args.length == 1) {
+        if(args.length == 1 &&
+           !_.isString(args[0])) {
           if( _.isObject(args[0]) &&
               _.isString(args[0].type) ) {
             type = args[0].type;

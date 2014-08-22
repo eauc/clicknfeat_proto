@@ -10,7 +10,7 @@ angular.module('vassalApp.services')
       return $http.get('/data/factions.js')
         .then(function(response) {
           factions = response.data;
-          console.log(factions);
+          // console.log(factions);
           var promises = _.map(factions, function(val) {
             return $http.get(val);
           });
@@ -25,7 +25,7 @@ angular.module('vassalApp.services')
           _.each(responses, function(response) {
             factions[keys[response.config.url]] = response.data;
           });
-          console.log(factions);
+          // console.log(factions);
           return factions;
         }, function(responses) {
           console.log('get factions error');

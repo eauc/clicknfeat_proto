@@ -1,59 +1,18 @@
-- model info/damage
+- manage models IDs
+- drop models
+- create models at board center
+- place create models
+- units
+- colossal
+- caster
 
-- add/remove models
 - import liste FK
 
-- mode charge
+- model circle with faction color/under image.
+- mask model image option.
+- los arcs on model circles.
+- compteurs focus/fury model info.
+- apercu pvs restants/fury directement sur model.
+- mode charge.
 
-==================================================================================================================================
-- verifier si la selection est vide avant de faire une commande onSelection :P
-- ctrl+click Mac
-
-==================================================================================================================================
-Gruxxki
-- la réglette est vraiment pourrie, c'est vraiment un gros frein pour moi
-- le tchat intégré est na
-- quitte à faire un truc pur warmachine, avoir les stats de base intégrée au fig ce serait énorme (DEF/ARM surtout).
-
-Gamin
-- Intégrer ta clock dedans!
-
-Portal/Joss
-- compatible tablettes
-
-SunHunter
-- trouve un moyen de rendre la chose facilement améliorable (au sens large) par la communauté.
-
-Hao
-- ne pas oublier le côté chargement/sauvegarde de partie. Une déconnexion, c'est si vite arrivé... Même si déconnecter 2 joueurs, c'est plus difficile.
-- au niveau interface, pouvoir avoir une vue plein écran ou en tout cas une vue qui permet d'embrasser toute la table.
-- un chat intégré me semble nécessaire (ne serait-ce que pour les jets de dés)
-
-OuiOui
-- Un double tap de la touche dans un intervale très faible permettrait de passer d'un mode à l'autre sans multiplier les raccourcis.
-- Pouvoir associer une couleur à un modèle (pour différencier notamment les unités).
-- Avoir la possibilité d'avoir un marqueur quelconque pour indiquer que la figurine à fait son action ou non.
-- Dans la même veine, faire en sorte que l'adversaire puisse voir quelle unité tu sélectionnes. Ca serait plus simple pour désigner les cibles. Tu sélectionnes ton modèle puis celui de l'adversaire. Pas besoin de faire de manip, si ton adversaire est attentif, il sait qui attaque quoi.
-- la possibilité de vérifier si une ligne de vue existe entre deux modèles sans avoir recours au mètre. 
-
-Supertimor
-- Faudrait implémenter un "unselect"
-- Ton ruler est pas si mal je trouve, néanmoins dès qu'on prend la mesure depuis un modèle sélectionner faut s'arranger pour pas débuter sa mesure sur le modèle car ça le bouge et faut bien débuter au bord du socle pour la même raison.
-- Pour le (Shift + )Ctrl + Directionnal Arrows : (small) move selected model je trouve ça un peu lourdingue et je pense qu'un simple Ctrl + Directionnal Arrows serait plus intuitif et ergonomique.
-- Le seul cas qui me vient comme ça c'est qu'on à le droit de mesurer n'importe quoi depuis notre caster et à tout moment ...
-- Si tu implémentes un "unselect" en cliquant dans une zone vide ou d'une autre manière, je trouve que le "flèche" est suffisant pour naviguer sur la map ... pas besoin de faire un Alt + Flèche.
-- Sinon, étant donné qu'on ne peut pas pour le moment faire sortir une figurine de la zone de combat, est-ce vraiment nécessaire de pouvoir dé-zoomer plus que la largeur de cette même zone de combat ?
-- je trouverais cela intéressant de pouvoir stocker nos models dans une zone à part. Je trouve ça bien naze sur Vassal de n'avoir autorisé les joueurs qu'à stocker les grids et de ne pas pouvoir y placer les models.
-- Un truc qui pourrait être sympa et qui sur Vassal fonctionne moyennement je trouve, c'est la gestion des AOE ... j'ai toujours l'impression que l'AOE est pas centré au milieu de la figurine. La possibilité d'afficher la zone de l'AOE directement sur notre cible pourrait être un plus non ?
-- Et en bonus une gestion automatique de la déviation de l'AOE à partir d'un point donné
-
-Nazbeurk
-- Vu que le rand est fait côté client et envoyé dans la pile de message serveur je suppose que ça se propage chez tout le monde ? Imho, le jet de dés est une données sensibles et par principe faut jamais faire confiance à un client sur ce genre de chose.
-
-Gruxxki
-- Bon pour améliorer, en mode ruler tu devrais pouvoir cliquer sur le contour de la figurine pour attacher le ruler à cet endroit, comme ça bim bam boum tu auras des mesures précises.
-
-Boogy
-- Du coup, je me dis qu'afficher quelque part la distance parcourue serait peut-être utile... ?
-- EDIT : pouvoir afficher les zones de contestation des objos/drapeaux seraient pratiques, aussi... non ?
 

@@ -620,6 +620,29 @@
         {{cmd.desc()}} - {{cmd.stamp}}
       </div>
     </div>
+    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
+      <div>
+        <strong>Drop Bin :</strong>
+        <button ng-click="doRestoreSelection()"
+                ng-disabled="isRestoreSelectionEmpty()">
+          Restore
+        </button>
+        <button ng-click="doRestoreAll()">
+          Restore All
+        </button>
+      </div>
+      <table>
+        <tr ng-repeat="model in game.drop_bin">
+          <td ng-click="doToggleRestoreSelection(model.state.id)"
+              ng_style="{
+              'background-color': restore_selection[model.state.id] ? '#999' : 'white'
+              }"
+              >
+            {{ model.info.name }} - {{ model.state.id }}
+          </td>
+        </tr>
+      </table>
+    </div>
     <!-- <div style="border:1px solid black;max-height:400px;overflow-y:scroll;">
     <div>
     <strong>Models :</strong>
@@ -708,6 +731,7 @@
       <li>(Shift + )Up/Down Arrows : (small) advance selected model</li>
       <li>(Shift + )Right/Left Arrows : (small) rotate selected model</li>
       <li>(Shift + )Ctrl + Directionnal Arrows : (small) move selected model</li>
+      <li>Suppr : move selected models to drop bin.</li>
       <li>m : toggle melee range of selected model</li>
       <li>r : toggle reach range of selected model</li>
       <li>d : toggle Ruler mode</li>

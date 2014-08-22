@@ -20,6 +20,8 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         
         var instance = {
+          models: {},
+          drop_bin: {},
           selection: [],
           onSelection: function(method_name) {
             if(_.isFunction(model_base[method_name])) {
@@ -45,6 +47,27 @@ angular.module('vassalApp.services')
               instance.models[id].state.active = false;
             });
             this.selection.length = 0;
+          },
+          dropSelection: function() {
+            this.dropModels(this.selection);
+          },
+          dropModels: function(ids) {
+            _.each(ids, function(id) {
+              if(_.has(instance.models, id)) {
+                instance.selection = _.without(instance.selection, id);
+                instance.drop_bin[id] = instance.models[id];
+                instance.drop_bin[id].state.active = false;
+                delete instance.models[id];
+              }
+            });
+          },
+          restoreFromDropBin: function(ids) {
+            _.each(ids, function(id) {
+              if(_.has(instance.drop_bin, id)) {
+                instance.models[id] = instance.drop_bin[id];
+                delete instance.drop_bin[id];
+              }
+            });
           },
           new_commands: [],
           commands: [],
@@ -273,7 +296,7 @@ angular.module('vassalApp.services')
           }
         });
         var new_model;
-        if(instance.models.length === 0) {
+        if(_.keys(instance.models).length === 0) {
           _.times(20, function(i) {
             new_model = model(3*i,
                               $rootScope.factions.cygnar.models.jacks.hammersmith,
@@ -283,7 +306,7 @@ angular.module('vassalApp.services')
                                 rot: -30,
                                 show_reach: true,
                               });
-            instance.models.push(new_model);
+            instance.models[new_model.state.id] = new_model;
             new_model = model(3*i+1,
                               $rootScope.factions.cygnar.models.jacks.grenadier,
                               {
@@ -291,7 +314,7 @@ angular.module('vassalApp.services')
                                 y: 20+20*i,
                                 rot: 0
                               });
-            instance.models.push(new_model);
+            instance.models[new_model.state.id] = new_model;
             new_model = model(3*i+2,
                               $rootScope.factions.cygnar.models.solos.stormwall_pod,
                               {
@@ -300,7 +323,7 @@ angular.module('vassalApp.services')
                                 rot: 30,
                                 show_melee: true,
                               });
-            instance.models.push(new_model);
+            instance.models[new_model.state.id] = new_model;
           });
         }
 

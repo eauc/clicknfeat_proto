@@ -6,7 +6,7 @@ class ModelCollection
 
   def initialize data
     if not data
-      @models = []
+      @models = {}
     else
       @models = data
     end
