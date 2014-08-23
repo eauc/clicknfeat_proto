@@ -101,6 +101,11 @@ angular.module('vassalApp.controllers')
             $scope.game.newCommand(command('dropSelection'));
             return;
           }
+          if(event.keyCode === 90 &&
+             event.ctrlKey) { // Shift+z
+            $scope.game.undoLastCommand();
+            return;
+          }
           if(event.keyCode === 67) { //c
             if(event.shiftKey) { // Shift+c
               if($scope.game.selection.length === 1 &&

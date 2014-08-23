@@ -2,9 +2,6 @@
 - model circle with faction color/under image.
 - los arcs on model circles.
 - mask model image option.
-
-- import liste FK
-
 - apercu pvs restants/fury directement sur model.
 
 - sauvegarde des models selectionnes dans un fichier pour import ulterieur ?
