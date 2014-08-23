@@ -99,25 +99,34 @@ angular.module('vassalApp.controllers')
             $scope.game.newCommand(command('dropSelection'));
             return;
           }
-          if(event.keyCode === 67 && event.ctrlKey) { // Ctrl+c
-            if($scope.game.selection.length > 0) {
-              $scope.create_preview.info = [];
-              var x_ref = $scope.game.models[$scope.game.selection[0]].state.x;
-              var y_ref = $scope.game.models[$scope.game.selection[0]].state.y;
-              $scope.create_preview.x = x_ref+10;
-              $scope.create_preview.y = y_ref+10;
-              _.each($scope.game.selection, function(id) {
-                var offset_x = $scope.game.models[id].state.x - x_ref;
-                var offset_y = $scope.game.models[id].state.y - y_ref;
-                $scope.create_preview.info.push({
-                  info: $scope.game.models[id].info,
-                  offset_x: offset_x,
-                  offset_y: offset_y
-                });
-              });
-              $scope.create_mode = true;
+          if(event.keyCode === 67) { //c
+            if(event.shiftKey) { // Shift+c
+              if($scope.game.selection.length === 1 &&
+                 $scope.game.models[$scope.game.selection[0]].info.focus) {
+                $scope.game.newCommand(command('onSelection', 'toggleControl'));
+              }
+              return;
             }
-            return;
+            if(event.ctrlKey) { // Ctrl+c
+              if($scope.game.selection.length > 0) {
+                $scope.create_preview.info = [];
+                var x_ref = $scope.game.models[$scope.game.selection[0]].state.x;
+                var y_ref = $scope.game.models[$scope.game.selection[0]].state.y;
+                $scope.create_preview.x = x_ref+10;
+                $scope.create_preview.y = y_ref+10;
+                _.each($scope.game.selection, function(id) {
+                  var offset_x = $scope.game.models[id].state.x - x_ref;
+                  var offset_y = $scope.game.models[id].state.y - y_ref;
+                  $scope.create_preview.info.push({
+                    info: $scope.game.models[id].info,
+                    offset_x: offset_x,
+                    offset_y: offset_y
+                  });
+                });
+                $scope.create_mode = true;
+              }
+              return;
+            }
           }
           if(event.keyCode === 27) { // Esc
             $scope.create_mode = false;
@@ -217,7 +226,7 @@ angular.module('vassalApp.controllers')
         };
         $scope.onModelClick = function(event, model) {
           // console.log(event);
-          console.log(model);
+          // console.log(model);
           if($scope.create_mode) return;
           if(skip_model_click) {
             skip_model_click = false;
@@ -560,6 +569,10 @@ angular.module('vassalApp.controllers')
               offset_y: offset_y
             });
           });
+        };
+
+        $scope.showControl = function() {
+          return _.filter($scope.game.models, function(model) { return model.state.show_control });
         };
       });
     }

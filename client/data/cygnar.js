@@ -2,6 +2,25 @@
   "name": "Cygnar",
   "icon": "data/icons/cygnar_50.png",
   "models": {
+    "casters": {
+      "nemo1": {
+        "name": "Nemo1 (Commander Adept Nemo)",
+        "type": "wardude",
+        "focus": 7,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cygnar/casters/Nemo1.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 14
+        }
+      }
+    },
     "jacks": {
       "grenadier": {
         "name": "Grenadier",

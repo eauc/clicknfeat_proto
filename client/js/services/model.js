@@ -83,6 +83,11 @@ angular.module('vassalApp.services')
             }
           }
         },
+        toggleControl: function(game) {
+          if(this.info.focus) {
+            this.state.show_control = !this.state.show_control;
+          }
+        },
         startDraging: function(game) {
           this.state_before_drag = _.extend({}, this.state);
         },

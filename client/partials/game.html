@@ -406,6 +406,17 @@
         </g>
       </svg>
     </svg>
+    <circle ng-repeat="model in showControl()"
+            cx="{{model.state.x}}" cy="{{model.state.y}}"
+            r="{{model.info.r+model.info.focus*20}}"
+            style="
+            fill: #0FF;
+            fill-opacity: 0.3;
+            stroke: #099;
+            stroke-width: 1px;
+            pointer-events: none;
+            "
+            />
     <svg ng-show="create_mode"
          ng-repeat="(i,model) in create_preview.info"
          x="{{create_preview.x + model.offset_x - model.info.width/2}}"
@@ -498,15 +509,19 @@
     <div ng-show="game.selection.length === 1"
          style="border:1px solid black;max-height:300px;overflow-y:scroll;">
       <div>
-        Name : {{game.models[game.selection[0]].info.name}}
+        <strong>Name :</strong> {{game.models[game.selection[0]].info.name}}
       </div>
       <div>
-        Class :
+        <strong>Class :</strong>
         {{game.models[game.selection[0]].info.type}} -
         {{game.models[game.selection[0]].info.base}}
       </div>
+      <div ng-show="game.models[game.selection[0]].info.type === 'wardude'">
+        <strong>Focus/Fury :</strong>
+        {{game.models[game.selection[0]].info.focus}}
+      </div>
       <div>
-        Damages :
+        <strong>Damages :</strong>
         <span ng-show="game.models[game.selection[0]].info.damage.type == 'warrior'">
           {{game.models[game.selection[0]].info.damage.n}}
         </span>
@@ -671,13 +686,20 @@
                  />
         </svg>
         <div>
-          Name : {{model.id.name}} x{{ model.size || '1'}}
+          <strong>Name :</strong>
+          {{model.id.name}} x{{ model.size || '1'}}
         </div>
         <div>
-          Class : {{model.id.type}} - {{model.id.base}}
+          <strong>Class :</strong>
+          {{model.id.type}} - {{model.id.base}}
+        </div>
+        <div ng-show="model.id.type === 'wardude'">
+          <strong>Focus/Fury :</strong>
+            {{model.id.focus}}
         </div>
         <div>
-          Damages : <span ng-show="model.id.damage.type == 'warrior'">{{model.id.damage.n}}</span>
+          <strong>Damages :</strong>
+          <span ng-show="model.id.damage.type == 'warrior'">{{model.id.damage.n}}</span>
           <div ng-show="model.id.damage.type == 'warrior'">
             <div style="width:20px;height:20px;border:1px solid black;display:inline-block"
                  ng-style="{ 'border-right': (i%5 == 0)?'5px solid black':'1px solid black' }"
@@ -878,6 +900,7 @@
       <li>(Shift + )Right/Left Arrows : (small) rotate selected model</li>
       <li>(Shift + )Ctrl + Directionnal Arrows : (small) move selected model</li>
       <li>Ctrl+c : copy selected models (move mouse to place new models, then click to create).</li>
+      <li>Shift+c : toggle warnouns Control Zone.</li>
       <li>Suppr : move selected models to drop bin.</li>
       <li>m : toggle melee range of selected model</li>
       <li>r : toggle reach range of selected model</li>

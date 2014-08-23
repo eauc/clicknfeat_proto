@@ -13,3 +13,4 @@
 - template layer.
 - relocalise AoEs et melee ranges dans layer template (ng-repeat sur models filtres avec show_X).
 
+- command range/formation for units
