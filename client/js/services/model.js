@@ -120,18 +120,30 @@ angular.module('vassalApp.services')
             {
               if(undefined === line) {
                 var instance = this;
+                var box_in_col = _.reduce(this.info.damage[col], function(sum, n) {
+                  return (n ? 1 : 0) + sum;
+                }, 0);
                 var damage_in_col = _.reduce(this.state.damage[col], function(sum, n) {
                   return n + sum;
                 }, 0);
-                var new_val = damage_in_col === 6 ? 0 : 1;
+                var new_val = damage_in_col === box_in_col ? 0 : 1;
                 _.each(this.state.damage[col], function(val, i) {
-                  instance.state.damage[col][i] = new_val;
+                  if(instance.info.damage[col][i]) {
+                    var old_val = instance.state.damage[col][i];
+                    instance.state.damage[col][i] = new_val;
+                    instance.state.damage.total += new_val - old_val;
+                  }
                 });
                 break;
               }
               if(this.info.damage[col][line]) {
-                this.state.damage[col][line] = 
-                  this.state.damage[col][line] === 1 ? 0 : 1;
+                if(this.info.damage[col][line]) {
+                  var old_val = this.state.damage[col][line];
+                  this.state.damage[col][line] = 
+                    this.state.damage[col][line] === 1 ? 0 : 1;
+                  var new_val = this.state.damage[col][line];
+                  this.state.damage.total += (new_val - old_val);
+                }
               }
               break;
             }
@@ -139,6 +151,51 @@ angular.module('vassalApp.services')
             {
               this.state.damage.n = 
                 this.state.damage.n === col ? 0 : col;
+              this.state.damage.total = this.state.damage.n;
+              break;
+            }
+          }
+        },
+        resetAllDamage: function(game) {
+          switch(this.info.damage.type) {
+          case 'jack': 
+            {
+              this.state.damage = {
+                'total': 0,
+                '1': [ 0, 0, 0, 0, 0, 0 ],
+                '2': [ 0, 0, 0, 0, 0, 0 ],
+                '3': [ 0, 0, 0, 0, 0, 0 ],
+                '4': [ 0, 0, 0, 0, 0, 0 ],
+                '5': [ 0, 0, 0, 0, 0, 0 ],
+                '6': [ 0, 0, 0, 0, 0, 0 ]
+              };
+              break;
+            }
+          case 'colossal': 
+            {
+              this.state.damage = {
+                'total': 0,
+                'L1': [ 0, 0, 0, 0, 0, 0 ],
+                'L2': [ 0, 0, 0, 0, 0, 0 ],
+                'L3': [ 0, 0, 0, 0, 0, 0 ],
+                'L4': [ 0, 0, 0, 0, 0, 0 ],
+                'L5': [ 0, 0, 0, 0, 0, 0 ],
+                'L6': [ 0, 0, 0, 0, 0, 0 ],
+                'R1': [ 0, 0, 0, 0, 0, 0 ],
+                'R2': [ 0, 0, 0, 0, 0, 0 ],
+                'R3': [ 0, 0, 0, 0, 0, 0 ],
+                'R4': [ 0, 0, 0, 0, 0, 0 ],
+                'R5': [ 0, 0, 0, 0, 0, 0 ],
+                'R6': [ 0, 0, 0, 0, 0, 0 ]
+              };
+              break;
+            }
+          case 'warrior': 
+            {
+              this.state.damage = {
+                'total': 0,
+                'n': 0
+              };
               break;
             }
           }
@@ -181,6 +238,7 @@ angular.module('vassalApp.services')
         case 'jack': 
           {
             instance.state.damage = {
+              'total': 0,
               '1': [ 0, 0, 0, 0, 0, 0 ],
               '2': [ 0, 0, 0, 0, 0, 0 ],
               '3': [ 0, 0, 0, 0, 0, 0 ],
@@ -193,6 +251,7 @@ angular.module('vassalApp.services')
         case 'colossal': 
           {
             instance.state.damage = {
+              'total': 0,
               'L1': [ 0, 0, 0, 0, 0, 0 ],
               'L2': [ 0, 0, 0, 0, 0, 0 ],
               'L3': [ 0, 0, 0, 0, 0, 0 ],
@@ -211,7 +270,8 @@ angular.module('vassalApp.services')
         case 'warrior': 
           {
             instance.state.damage = {
-              n: 0
+              'total': 0,
+              'n': 0
             };
             break;
           }

@@ -384,7 +384,26 @@
                   stroke-width:1px;
                   pointer-events: none;
                   "
-                  /> 
+                  />
+          <line ng-show="model.info.damage.total > 1"
+                x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2+model.info.r}}"
+                x2="{{model.info.width/2+model.info.r}}" y2="{{model.info.height/2+model.info.r}}"
+                style="
+                stroke:#0F0;
+                stroke-width:1px;
+                pointer-events: none;
+                "
+                />
+          <line ng-show="model.info.damage.total > 1"
+                x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2+model.info.r}}"
+                x2="{{model.info.width/2-model.info.r+model.info.r*2*model.state.damage.total/model.info.damage.total}}"
+                y2="{{model.info.height/2+model.info.r}}"
+                style="
+                stroke:#F00;
+                stroke-width:1px;
+                pointer-events: none;
+                "
+                />
         </g>
       </svg>
     </svg>
@@ -576,9 +595,9 @@
       </div>
       <div>
         <strong>Damages :</strong>
-        <span ng-show="game.models[game.selection[0]].info.damage.type == 'warrior'">
-          {{game.models[game.selection[0]].info.damage.n}}
-        </span>
+        {{game.models[game.selection[0]].state.damage.total}} /
+        {{game.models[game.selection[0]].info.damage.total}}
+        <button ng-click="doResetAllModelDamage()">Reset</button>
         <div ng-show="game.models[game.selection[0]].info.damage.type == 'warrior'">
           <div ng-repeat="i in range(game.models[game.selection[0]].info.damage.n).reverse()"
                style="width:20px;height:20px;border:1px solid black;display:inline-block;text-align:center;"
@@ -758,7 +777,7 @@
         </div>
         <div>
           <strong>Damages :</strong>
-          <span ng-show="model.id.damage.type == 'warrior'">{{model.id.damage.n}}</span>
+          {{model.id.damage.total}}
           <div ng-show="model.id.damage.type == 'warrior'">
             <div style="width:20px;height:20px;border:1px solid black;display:inline-block"
                  ng-style="{ 'border-right': (i%5 == 0)?'5px solid black':'1px solid black' }"

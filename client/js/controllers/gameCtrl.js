@@ -49,7 +49,7 @@ angular.module('vassalApp.controllers')
         };
 
         $scope.onKeyDown = function(event) {
-          // console.log(event);
+          console.log(event);
           if($scope.create_mode) return;
           if(event.keyCode == 68 &&
              $scope.game.ruler.state.active !== 'draging') { // d
@@ -680,6 +680,11 @@ angular.module('vassalApp.controllers')
         $scope.readFKString = function(file) {
           importFKList($scope.fk_read_string);
         };
+
+        $scope.doResetAllModelDamage = function() {
+          $scope.game.newCommand(command('onSelection', 'resetAllDamage'));
+        };
+
       });
     }
   ]);

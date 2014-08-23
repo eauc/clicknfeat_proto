@@ -13,6 +13,43 @@ angular.module('vassalApp.services')
         small: 5.905
       };
       var factions;
+      function updateModelInfo(model, faction) {
+        model.r = BASE_RADIUS[model.base];
+        model.color = faction.color;
+        function totalJackDamage(damage, keys) {
+          return _.reduce(keys,
+                          function(tot, col) {
+                            return tot + _.reduce(damage[col],
+                                                  function(tot_col, val) {
+                                                    return tot_col + (val ? 1 : 0);
+                                                  }, 0);
+                          }, 0);
+        }
+        switch(model.damage.type) {
+        case 'jack':
+          {
+            model.damage.total = totalJackDamage(model.damage,
+                                                 ['1', '2', '3', '4', '5', '6']);
+            break;
+          }
+        case 'colossal':
+          {
+            model.damage.total = totalJackDamage(model.damage,
+                                                 ['L1', 'L2', 'L3', 'L4', 'L5', 'L6',
+                                                  'R1', 'R2', 'R3', 'R4', 'R5', 'R6']);
+            break;
+          }
+        case 'warrior':
+          {
+            model.damage.total = model.damage.n;
+            break;
+          }
+        }
+        if(_.isString(model.fk_name)) {
+          factions.fk_keys[model.fk_name] = factions.fk_keys[model.fk_name] || [];
+          factions.fk_keys[model.fk_name].push(model);
+        }
+      }
       return $http.get('/data/factions.js')
         .then(function(response) {
           factions = response.data;
@@ -37,24 +74,14 @@ angular.module('vassalApp.services')
                   _.each(type, function(unit) {
                     _.each(unit.entries, function(entry) {
                       _.each(entry, function(model) {
-                        model.r = BASE_RADIUS[model.base];
-                        model.color = faction.color;
-                        if(_.isString(model.fk_name)) {
-                          factions.fk_keys[model.fk_name] = factions.fk_keys[model.fk_name] || [];
-                          factions.fk_keys[model.fk_name].push(model);
-                        }
+                        updateModelInfo(model, faction);
                       });
                     })
                       });
                 }
                 else {
                   _.each(type, function(model) {
-                    model.r = BASE_RADIUS[model.base];
-                    model.color = faction.color;
-                    if(_.isString(model.fk_name)) {
-                      factions.fk_keys[model.fk_name] = factions.fk_keys[model.fk_name] || [];
-                      factions.fk_keys[model.fk_name].push(model);
-                    }
+                    updateModelInfo(model, faction);
                   });
                 }
               });
