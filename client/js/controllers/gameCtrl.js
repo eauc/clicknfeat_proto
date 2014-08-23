@@ -48,6 +48,7 @@ angular.module('vassalApp.controllers')
 
         $scope.onKeyDown = function(event) {
           // console.log(event);
+          if($scope.create_mode) return;
           if(event.keyCode == 68 &&
              $scope.game.ruler.state.active !== 'draging') { // d
             $scope.drag_mode = ($scope.drag_mode === 'ruler') ? 'selection' : 'ruler';
@@ -96,6 +97,26 @@ angular.module('vassalApp.controllers')
           }
           if(event.keyCode === 46) { // 5
             $scope.game.newCommand(command('dropSelection'));
+            return;
+          }
+          if(event.keyCode === 67 && event.ctrlKey) { // Ctrl+c
+            if($scope.game.selection.length > 0) {
+              $scope.create_preview.info = [];
+              var x_ref = $scope.game.models[$scope.game.selection[0]].state.x;
+              var y_ref = $scope.game.models[$scope.game.selection[0]].state.y;
+              $scope.create_preview.x = x_ref+10;
+              $scope.create_preview.y = y_ref+10;
+              _.each($scope.game.selection, function(id) {
+                var offset_x = $scope.game.models[id].state.x - x_ref;
+                var offset_y = $scope.game.models[id].state.y - y_ref;
+                $scope.create_preview.info.push({
+                  info: $scope.game.models[id].info,
+                  offset_x: offset_x,
+                  offset_y: offset_y
+                });
+              });
+              $scope.create_mode = true;
+            }
             return;
           }
           if(event.keyCode === 27) { // Esc
