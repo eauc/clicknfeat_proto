@@ -512,39 +512,6 @@ angular.module('vassalApp.controllers')
           info: null,
         };
         $scope.$watch('model', function(val, old) {
-          // console.log(val);
-          // console.log(old);
-          // console.log('watch model 1');
-          if(old.faction !== val.faction) {
-            $scope.model.type = null;
-            $scope.model.unit = null;
-            $scope.model.unit_type = null;
-            $scope.model.id = null;
-            $scope.model.size = 1;
-            return;
-          }
-          // console.log('watch model. 2');
-          if(old.type !== val.type) {
-            $scope.model.unit = null;
-            $scope.model.unit_type = null;
-            $scope.model.id = null;
-            $scope.model.size = 1;
-            return;
-          }
-          // console.log('watch model. 3');
-          if(val.unit && old.unit &&
-             old.unit.name !== val.unit.name) {
-            $scope.model.unit_type = null;
-            $scope.model.id = null;
-            $scope.model.size = 1;
-            return;
-          }
-          // console.log('watch model. 4');
-          if(old.unit_type !== val.unit_type) {
-            $scope.model.id = (val.unit_type === 'grunt') ? $scope.model.unit.grunt : null;
-            $scope.model.size = 1;
-            return;
-          }
           $scope.create_mode = null;
         }, true);
         $scope.doToggleCreateModel = function() {
@@ -572,7 +539,8 @@ angular.module('vassalApp.controllers')
         };
 
         $scope.showControl = function() {
-          return _.filter($scope.game.models, function(model) { return model.state.show_control });
+          return $scope.game ? 
+            _.filter($scope.game.models, function(model) { return model.state.show_control }) : [];
         };
       });
     }

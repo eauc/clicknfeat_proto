@@ -1,4 +1,3 @@
-- caster
 - compteurs focus/fury model info.
 - model circle with faction color/under image.
 - los arcs on model circles.
@@ -14,3 +13,18 @@
 - relocalise AoEs et melee ranges dans layer template (ng-repeat sur models filtres avec show_X).
 
 - command range/formation for units
+
+=======================================================
+
+System: Warmachine
+Faction: Cygnar
+Casters: 1/1
+Points: 37/50
+Commander Adept Nemo (*6pts)
+* Grenadier (5pts)
+* Hammersmith (8pts)
+* Stormwall (19pts)
+Trencher Infantry (Leader and 5 Grunts) (6pts)
+* 2 Trencher Infantry Grenadier (2pts)
+* Trencher Infantry Officer & Sniper (3pts)
+

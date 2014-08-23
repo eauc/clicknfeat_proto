@@ -607,6 +607,7 @@
         <select name="model_faction"
                 ng-model="model.faction"
                 ng-options="id as f.name for (id, f) in factions"
+                ng-change="model.type = null"
                 >
         </select>
       </div>
@@ -615,6 +616,7 @@
         <select name="model_type"
                 ng-model="model.type"
                 ng-options="id as id for (id, f) in factions[model.faction].models"
+                ng-change="model.unit = null; model.id = null;"
                 >
         </select>
       </div>
@@ -622,7 +624,9 @@
         Model :
         <select name="model_id_simple"
                 ng-model="model.id"
-                ng-options="f as f.name for (id, f) in factions[model.faction].models[model.type]">
+                ng-options="f as f.name for (id, f) in factions[model.faction].models[model.type]"
+                ng-change="model.size =  1"
+                >
         </select>
       </div>
       <div ng-show="model.type==='units'">
@@ -631,24 +635,25 @@
           <select name="model_unit"
                   ng-model="model.unit"
                   ng-options="f as f.name for (id, f) in factions[model.faction].models.units"
+                  ng-change="model.unit_entry =  null"
                   >
           </select>
         </div>
         <div>
           Unit Entry :
           <select name="model_unit_type"
-                  ng-model="model.unit_type"
+                  ng-model="model.unit_entry"
+                  ng-options="f as id for (id, f) in model.unit.entries"
+                  ng-change="model.id =  null"
                   >
-            <option value="grunt">Grunt</option>
-            <option value="ua">Unit Attach.</option>
-            <option value="wa">Weapon Attach.</option>
           </select>
         </div>
-        <div ng-show="model.unit_type!=='grunt'">
-          Attachments :
+        <div>
+          Model :
           <select name="model_unit_id"
                   ng-model="model.id"
-                  ng-options="f as f.name for (id, f) in model.unit[model.unit_type]"
+                  ng-options="f as f.name for (id, f) in model.unit_entry"
+                  ng-change="model.size =  1"
                   >
           </select>
         </div>

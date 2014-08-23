@@ -23,14 +23,11 @@ angular.module('vassalApp.controllers')
           _.each(faction.models, function(type, key) {
             if(key === 'units') {
               _.each(type, function(unit) {
-                console.log(unit);
-                unit.grunt.r = BASE_RADIUS[unit.grunt.base];
-                _.each(unit.ua, function(ua) {
-                  ua.r = BASE_RADIUS[ua.base];
-                });
-                _.each(unit.wa, function(wa) {
-                  wa.r = BASE_RADIUS[wa.base];
-                });
+                _.each(unit.entries, function(entry) {
+                  _.each(entry, function(model) {
+                    model.r = BASE_RADIUS[model.base];
+                  });
+                })
               });
             }
             else {
@@ -52,9 +49,9 @@ angular.module('vassalApp.controllers')
         faction: null,
         type: null,
         unit: null,
-        unit_type: null,
+        unit_entry: null,
         id: null,
-        size: null,
+        size: 1,
         info: [],
       };
     }

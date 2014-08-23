@@ -5,6 +5,7 @@
     "casters": {
       "nemo1": {
         "name": "Nemo1 (Commander Adept Nemo)",
+        "fk_name": "Command Adept Nemo",
         "type": "wardude",
         "focus": 7,
         "base": "small",
@@ -24,6 +25,7 @@
     "jacks": {
       "grenadier": {
         "name": "Grenadier",
+        "fk_name": "Grenadier",
         "type": "jack",
         "base": "medium",
         "width": 60,
@@ -45,6 +47,7 @@
       },
       "hammersmith": {
         "name": "Hammersmith",
+        "fk_name": "Hammersmith",
         "type": "jack",
         "base": "large",
         "width": 60,
@@ -66,6 +69,7 @@
       },
       "stormwall": {
         "name": "Stormwall",
+        "fk_name": "Stormwall",
         "type": "jack",
         "base": "huge",
         "width": 116.667,
@@ -95,73 +99,81 @@
     "units": {
       "trencher_infantry": {
         "name": "Trencher Infantry",
-        "grunt": {
-          "name": "Trencher Infantry Grunt",
-          "ranges": [1, 6, 10],
-          "type": "warrior",
-          "base": "small",
-          "width": 60,
-          "height": 60,
-          "img": {
-            "x": 0.2,
-            "y": -0.5,
-            "link": "data/cygnar/units/Trencher_Grunt.png"
-          },
-          "damage": {
-            "type": "warrior",
-            "n": 1
-          }
-        },
-        "wa": {
-          "grenadier": {
-            "name": "Trencher Infantry Grenadier",
-            "ranges": [1, 2],
-            "type": "warrior",
-            "base": "small",
-            "width": 60,
-            "height": 60,
-            "img": {
-              "x": 0.2,
-              "y": -0.5,
-              "link": "data/cygnar/units/Trencher_Grenade_Porter.png"
-            },
-            "damage": {
+        "entries": {
+          "grunt": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Trencher Infantry",
+              "ranges": [1, 6, 10],
               "type": "warrior",
-              "n": 1
-            }
-          }
-        },
-        "ua": {
-          "officer": {
-            "name": "Trencher Infantry Officer",
-            "type": "warrior",
-            "base": "small",
-            "width": 60,
-            "height": 60,
-            "img": {
-              "x": 0.2,
-              "y": -0.5,
-              "link": "data/cygnar/units/Trencher_Officer.png"
-            },
-            "damage": {
-              "type": "warrior",
-              "n": 5
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/cygnar/units/Trencher_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
             }
           },
-          "sniper": {
-            "name": "Trencher Infantry Sniper",
-            "type": "warrior",
-            "base": "small",
-            "width": 60,
-            "height": 60,
-            "img": {
-              "x": 0.2,
-              "y": -0.5,
-              "link": "data/cygnar/units/Trencher_Sharpshooter.png"
-            },
-            "damage": {
+          "wa": {
+            "grenadier": {
+              "name": "Trencher Infantry Grenadier",
+              "fk_name": "Trencher Infantry Grenadier",
+              "ranges": [1, 2, 3],
               "type": "warrior",
-              "n": 1
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/cygnar/units/Trencher_Grenade_Porter.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          },
+          "ua": {
+            "officer": {
+              "name": "Trencher Infantry Officer",
+              "fk_name": "Trencher Infantry Officer & Sniper",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/cygnar/units/Trencher_Officer.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "sniper": {
+              "name": "Trencher Infantry Sniper",
+              "fk_name": "Trencher Infantry Officer & Sniper",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/cygnar/units/Trencher_Sharpshooter.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
             }
           }
         }
