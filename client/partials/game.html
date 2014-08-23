@@ -345,11 +345,12 @@
          >
       <svg ng-repeat="model in game.models"
            x="{{model.state.x - model.info.width/2}}" y="{{model.state.y - model.info.height/2}}">
-        <g transform="rotate({{model.state.rot}}, 30, 30)">
+        <g transform="rotate({{model.state.rot}}, {{model.info.width/2}}, {{model.info.height/2}})">
           <path d="
-                M{{10-model.info.r}},30
-                L{{50+model.info.r}},30
-                A{{20+model.info.r}},{{20+model.info.r}} 0 0,0 {{10-model.info.r}},30
+                M{{model.info.width/2-20-model.info.r}},{{model.info.height/2}}
+                L{{model.info.width/2+20+model.info.r}},{{model.info.height/2}}
+                A{{20+model.info.r}},{{20+model.info.r}} 0 0,0
+                {{model.info.width/2-20-model.info.r}},{{model.info.height/2}}
                 "
                 style="
                 stroke:#000;
@@ -361,9 +362,10 @@
                 ng-show="model.state.show_reach"
                 />
           <path d="
-                M{{25-model.info.r}},30
-                L{{35+model.info.r}},30
-                A{{5+model.info.r}},{{5+model.info.r}} 0 0,0 {{25-model.info.r}},30
+                M{{model.info.width/2-5-model.info.r}},{{model.info.height/2}}
+                L{{model.info.width/2+5+model.info.r}},{{model.info.height/2}}
+                A{{5+model.info.r}},{{5+model.info.r}} 0 0,0
+                {{model.info.width/2-5-model.info.r}},{{model.info.height/2}}
                 "
                 style="
                 stroke:#000;
@@ -374,7 +376,9 @@
                 "
                 ng-show="model.state.show_melee"
                 />
-          <circle cx="30" cy="30" r="{{model.state.show_aoe}}"
+          <circle cx="{{model.info.width/2}}"
+                  cy="{{model.info.height/2}}"
+                  r="{{model.state.show_aoe}}"
                   style="
                   fill:#F90;
                   fill-opacity:0.5;
@@ -541,6 +545,33 @@
             </td>
           </tr>
         </table>
+        <table ng-show="game.models[game.selection[0]].info.damage.type == 'colossal'"
+               style="border-collapse:collapse;text-align:center;">
+          <tr>
+            <td ng-repeat="col in ['L1','L2','L3','L4','L5','L6','R1','R2','R3','R4','R5','R6']"
+                style="width:20px;height:20px;"
+                ng-click="doModelDamage(game.models[game.selection[0]],col)"
+                >
+              {{col}}
+            </td>
+          </tr>
+          <tr ng-repeat="line in [0,1,2,3,4,5]">
+            <td ng-repeat="col in ['L1','L2','L3','L4','L5','L6','R1','R2','R3','R4','R5','R6']"
+                style="width:20px;height:20px;border:1px solid black;"
+                ng-style="{
+                'background-color':
+                (game.models[game.selection[0]].info.damage[col][line]) ? (
+                  (game.models[game.selection[0]].state.damage[col][line] === 1) ? '#999' : 'white'
+                ) : 'black',
+                'border-right': col === 'L6' ? '4px solid black':'1px solid black'
+                }"
+                ng-click="doModelDamage(game.models[game.selection[0]], col, line)"
+                >
+              {{ (game.models[game.selection[0]].info.damage[col][line] === 'b') ? ' ' : 
+                    game.models[game.selection[0]].info.damage[col][line].toUpperCase() }}
+            </td>
+          </tr>
+        </table>
         <div>
           Click on boxes to mark/clear damage.
           <ul>
@@ -637,6 +668,31 @@
                   "
                   >
                 {{(model.info.damage[col][line] === 'b')?' ':model.info.damage[col][line].toUpperCase()}}
+              </td>
+            </tr>
+          </table>
+          <table ng-show="model.info.damage.type == 'colossal'"
+                 style="border-collapse:collapse;text-align:center;">
+            <tr>
+              <td ng-repeat="col in ['L1','L2','L3','L4','L5','L6','R1','R2','R3','R4','R5','R6']"
+                  style="width:20px;height:20px;"
+                  ng-click="doModelDamage(model,col)"
+                  >
+                {{col}}
+              </td>
+            </tr>
+            <tr ng-repeat="line in [0,1,2,3,4,5]">
+              <td ng-repeat="col in ['L1','L2','L3','L4','L5','L6','R1','R2','R3','R4','R5','R6']"
+                  style="width:20px;height:20px;border:1px solid black;"
+                  ng-style="{
+                  'background-color':
+                  (model.info.damage[col][line]) ? 'white' : 'black',
+                  'border-right': col === 'L6' ? '4px solid black':'1px solid black'
+                  }"
+                  ng-click="doModelDamage(model, col, line)"
+                  >
+                {{ (model.info.damage[col][line] === 'b') ? ' ' : 
+                model.info.damage[col][line].toUpperCase() }}
               </td>
             </tr>
           </table>

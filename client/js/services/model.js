@@ -4,6 +4,7 @@ angular.module('vassalApp.services')
   .factory('model', [
     function() {
       var BASE_RADIUS = {
+        huge: 24.605,
         large: 9.842,
         medium: 7.874,
         small: 5.905
@@ -110,6 +111,7 @@ angular.module('vassalApp.services')
         toggleDamage: function(game, col, line) {
           switch(this.info.damage.type) {
           case 'jack':
+          case 'colossal':
             {
               if(undefined === line) {
                 var instance = this;
@@ -175,6 +177,24 @@ angular.module('vassalApp.services')
               '4': [ 0, 0, 0, 0, 0, 0 ],
               '5': [ 0, 0, 0, 0, 0, 0 ],
               '6': [ 0, 0, 0, 0, 0, 0 ]
+            };
+            break;
+          }
+        case 'colossal': 
+          {
+            instance.state.damage = {
+              'L1': [ 0, 0, 0, 0, 0, 0 ],
+              'L2': [ 0, 0, 0, 0, 0, 0 ],
+              'L3': [ 0, 0, 0, 0, 0, 0 ],
+              'L4': [ 0, 0, 0, 0, 0, 0 ],
+              'L5': [ 0, 0, 0, 0, 0, 0 ],
+              'L6': [ 0, 0, 0, 0, 0, 0 ],
+              'R1': [ 0, 0, 0, 0, 0, 0 ],
+              'R2': [ 0, 0, 0, 0, 0, 0 ],
+              'R3': [ 0, 0, 0, 0, 0, 0 ],
+              'R4': [ 0, 0, 0, 0, 0, 0 ],
+              'R5': [ 0, 0, 0, 0, 0, 0 ],
+              'R6': [ 0, 0, 0, 0, 0, 0 ]
             };
             break;
           }

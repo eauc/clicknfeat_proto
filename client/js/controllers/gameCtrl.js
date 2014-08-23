@@ -196,7 +196,7 @@ angular.module('vassalApp.controllers')
         };
         $scope.onModelClick = function(event, model) {
           // console.log(event);
-          // console.log(model);
+          console.log(model);
           if($scope.create_mode) return;
           if(skip_model_click) {
             skip_model_click = false;

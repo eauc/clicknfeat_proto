@@ -25,7 +25,7 @@ angular.module('vassalApp.services')
           _.each(responses, function(response) {
             factions[keys[response.config.url]] = response.data;
           });
-          // console.log(factions);
+          console.log(factions);
           return factions;
         }, function(responses) {
           console.log('get factions error');
