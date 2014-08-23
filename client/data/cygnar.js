@@ -5,7 +5,7 @@
     "casters": {
       "nemo1": {
         "name": "Nemo1 (Commander Adept Nemo)",
-        "fk_name": "Command Adept Nemo",
+        "fk_name": "Commander Adept Nemo",
         "type": "wardude",
         "focus": 7,
         "base": "small",

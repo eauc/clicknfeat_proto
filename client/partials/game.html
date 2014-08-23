@@ -761,6 +761,25 @@
     </div>
     <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
       <div>
+        <strong>Import models From FK army list :</strong>
+      </div>
+      <div>
+        <input id="import-fk-file"
+               type="file"
+               onchange="angular.element(this).scope().readFKList(this.files[0])" />
+        <div>
+          <div ng-repeat="line in fk_read_result">
+            {{line}}
+          </div>
+        </div>
+        <p ng-show="fk_read_result[0] === 'loaded file' && create_mode">
+          Move your cursor over the board and click to create the new models under the cursor position.
+        </p>
+        </span>
+      </div>
+    </div>
+    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
+      <div>
         <strong>Drop Bin :</strong>
         <button ng-click="doRestoreSelection()"
                 ng-disabled="isRestoreSelectionEmpty()">
