@@ -11,17 +11,11 @@ angular.module('vassalApp.services')
       };
       var model_base = {
         refresh: function(game) {
-          this.state.x = Math.max(-(this.info.height/2)+this.info.r,
+          this.state.x = Math.max(this.info.r, this.state.x);
+          this.state.x = Math.min(game.board.width-this.info.r,
                                   this.state.x);
-          this.state.x = Math.min(game.board.width
-                                  -(this.info.height/2)
-                                  -this.info.r,
-                                  this.state.x);
-          this.state.y = Math.max(-(this.info.height/2)+this.info.r,
-                                  this.state.y);
-          this.state.y = Math.min(game.board.height
-                                  -(this.info.width/2)
-                                  -this.info.r,
+          this.state.y = Math.max(this.info.r, this.state.y);
+          this.state.y = Math.min(game.board.height-this.info.r,
                                   this.state.y);
         },
         moveFront: function(game, small) {
