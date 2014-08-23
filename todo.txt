@@ -1,5 +1,4 @@
-- compteurs focus/fury model info.
-- apercu pvs restants/fury directement sur model.
+- apercu pvs restants directement sur model.
 
 - sauvegarde des models selectionnes dans un fichier pour import ulterieur ?
 - mode charge.
@@ -7,6 +6,12 @@
 - relocalise AoEs et melee ranges dans layer template (ng-repeat sur models filtres avec show_X).
 
 - command range/formation for units
+- zoom 1.5
+- zoom/view reset
+- model info reset damage button
+
+- control states
+- key event to msgs strings
 
 =======================================================
 
@@ -21,4 +26,5 @@ Commander Adept Nemo (*6pts)
 Trencher Infantry (Leader and 5 Grunts) (6pts)
 * 2 Trencher Infantry Grenadier (2pts)
 * Trencher Infantry Officer & Sniper (3pts)
+
 

@@ -194,7 +194,7 @@
         },
         "damage": {
           "type": "warrior",
-          "n": 18
+          "n": 1
         }
       }
     }

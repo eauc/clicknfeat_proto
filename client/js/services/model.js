@@ -91,6 +91,15 @@ angular.module('vassalApp.services')
             this.state.show_control = !this.state.show_control;
           }
         },
+        incrementFocus: function(game) {
+          this.state.focus++;
+        },
+        decrementFocus: function(game) {
+          this.state.focus = Math.max(0, this.state.focus-1);
+        },
+        toggleFocus: function(game) {
+          this.state.show_focus = !this.state.show_focus;
+        },
         startDraging: function(game) {
           this.state_before_drag = _.extend({}, this.state);
         },
@@ -147,20 +156,24 @@ angular.module('vassalApp.services')
             x: 240,
             y: 240,
             rot: 0,
+            focus: 0,
             show_image: true,
             show_melee: false,
             show_reach: false,
             show_aoe: 0,
+            show_focus: args[1].type !== 'warrior',
             active: false
           } : _.extend({
             id: args[0],
             x: 240,
             y: 240,
             rot: 0,
+            focus: 0,
             show_image: true,
             show_melee: false,
             show_reach: false,
             show_aoe: 0,
+            show_focus: args[1].type !== 'warrior',
             active: false
           }, args[2])
         };

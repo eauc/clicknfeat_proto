@@ -62,17 +62,28 @@ angular.module('vassalApp.controllers')
           switch(event.keyCode) {
           case 107: // +
             {
-              $scope.game.board.zoomIn();
-              event.preventDefault();
-              event.preventDefault();
+              if(event.altKey) {
+                $scope.game.board.zoomIn();
+              }
+              else {
+                $scope.game.newCommand(command('onSelection', 'incrementFocus'));
+              }
               return;
             }
           case 109: // -
             {
-              $scope.game.board.zoomOut();
-              event.preventDefault();
+              if(event.altKey) {
+                $scope.game.board.zoomOut();
+              }
+              else {
+                $scope.game.newCommand(command('onSelection', 'decrementFocus'));
+              }
               return;
             }
+          }
+          if(event.keyCode === 70) { // i
+            $scope.game.newCommand(command('onSelection', 'toggleFocus'));
+            return;
           }
           if(event.keyCode === 73) { // i
             $scope.game.newCommand(command('onSelection', 'toggleImage'));
