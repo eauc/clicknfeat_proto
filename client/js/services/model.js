@@ -3,12 +3,6 @@
 angular.module('vassalApp.services')
   .factory('model', [
     function() {
-      var BASE_RADIUS = {
-        huge: 24.605,
-        large: 9.842,
-        medium: 7.874,
-        small: 5.905
-      };
       var model_base = {
         refresh: function(game) {
           this.state.x = Math.max(this.info.r, this.state.x);
@@ -160,7 +154,6 @@ angular.module('vassalApp.services')
             active: false
           }, args[2])
         };
-        instance.info.r = BASE_RADIUS[instance.info.base];
         switch(instance.info.damage.type) {
         case 'jack': 
           {

@@ -407,19 +407,20 @@
       </svg>
     </svg>
     <svg ng-show="create_mode"
-         x="{{create_preview.x - model.info.width/2}}"
-         y="{{create_preview.y - model.info.height/2}}"
+         ng-repeat="(i,model) in create_preview.info"
+         x="{{create_preview.x + model.offset_x - model.info.width/2}}"
+         y="{{create_preview.y + model.offset_y - model.info.height/2}}"
          style="pointer-events: none"
          >
-      <image x="{{create_preview.info.img.x}}"
-             y="{{create_preview.info.img.y}}"
-             width="{{create_preview.info.width}}"
-             height="{{create_preview.info.height}}"
-             xlink:href="{{create_preview.info.img.link}}"
+      <image x="{{model.info.img.x}}"
+             y="{{model.info.img.y}}"
+             width="{{model.info.width}}"
+             height="{{model.info.height}}"
+             xlink:href="{{model.info.img.link}}"
              />
-      <circle cx="{{create_preview.info.width/2}}"
-              cy="{{create_preview.info.height/2}}"
-              r="{{create_preview.info.r}}"
+      <circle cx="{{model.info.width/2}}"
+              cy="{{model.info.height/2}}"
+              r="{{model.info.r}}"
               style="
               fill:#F00;
               fill-opacity:0.5;
@@ -591,7 +592,6 @@
         <select name="model_faction"
                 ng-model="model.faction"
                 ng-options="id as f.name for (id, f) in factions"
-                ng-change="model.type = null"
                 >
         </select>
       </div>
@@ -600,19 +600,54 @@
         <select name="model_type"
                 ng-model="model.type"
                 ng-options="id as id for (id, f) in factions[model.faction].models"
-                ng-change="model.info = null"
+                >
+        </select>
+      </div>
+      <div ng-show="model.type!=='units'">
+        Model :
+        <select name="model_id_simple"
+                ng-model="model.id"
+                ng-options="f as f.name for (id, f) in factions[model.faction].models[model.type]">
+        </select>
+      </div>
+      <div ng-show="model.type==='units'">
+        <div>
+          Unit :
+          <select name="model_unit"
+                  ng-model="model.unit"
+                  ng-options="f as f.name for (id, f) in factions[model.faction].models.units"
+                  >
+          </select>
+        </div>
+        <div>
+          Unit Entry :
+          <select name="model_unit_type"
+                  ng-model="model.unit_type"
+                  >
+            <option value="grunt">Grunt</option>
+            <option value="ua">Unit Attach.</option>
+            <option value="wa">Weapon Attach.</option>
+          </select>
+        </div>
+        <div ng-show="model.unit_type!=='grunt'">
+          Attachments :
+          <select name="model_unit_id"
+                  ng-model="model.id"
+                  ng-options="f as f.name for (id, f) in model.unit[model.unit_type]"
+                  >
+          </select>
+        </div>
+      </div>
+      <div ng-show="model.id.ranges">
+        Size :
+        <select name="model_size"
+                ng-model="model.size"
+                ng-options="s as s for s in model.id.ranges"
                 >
         </select>
       </div>
       <div>
-        Model :
-        <select name="model_info"
-                ng-model="model.info"
-                ng-options="f as f.name for (id, f) in factions[model.faction].models[model.type]">
-        </select>
-      </div>
-      <div>
-        <button ng-disabled="!model.info"
+        <button ng-disabled="!model.id"
                 ng-click="doToggleCreateModel()">
           {{ create_mode ? 'Cancel' : 'Create' }}
         </button>
@@ -621,37 +656,35 @@
           <br />To cancel, press Esc.
         </p>
       </div>
-      <div ng-show="model.info">
+      <div ng-show="model.id">
         <div>
           <strong>Description</strong>
         </div>
+        <svg width="{{model.id.r*10}}px" height="{{model.id.r*10}}px"
+             viewBox="0 0 {{model.id.r*4}} {{model.id.r*4}}"
+             >
+          <image x="{{model.id.r*2+model.id.img.x-model.id.width/2}}"
+                 y="{{model.id.r*2+model.id.img.y-model.id.height/2}}"
+                 width="{{model.id.width}}" height="{{model.id.height}}"
+                 xlink:href="{{model.id.img.link}}"
+                 style="pointer-events: none"
+                 />
+        </svg>
         <div>
-          <svg width="{{model.info.r*10}}px" height="{{model.info.r*10}}px"
-               viewBox="0 0 {{model.info.r*4}} {{model.info.r*4}}"
-               >
-            <image x="{{model.info.r*2+model.info.img.x-model.info.width/2}}"
-                   y="{{model.info.r*2+model.info.img.y-model.info.height/2}}"
-                   width="{{model.info.width}}" height="{{model.info.height}}"
-                   xlink:href="{{model.info.img.link}}"
-                   style="pointer-events: none"
-                   />
-          </svg>
+          Name : {{model.id.name}} x{{ model.size || '1'}}
         </div>
         <div>
-          Name : {{model.info.name}}
+          Class : {{model.id.type}} - {{model.id.base}}
         </div>
         <div>
-          Class : {{model.info.type}} - {{model.info.base}}
-        </div>
-        <div>
-          Damages : <span ng-show="model.info.damage.type == 'warrior'">{{model.info.damage.n}}</span>
-          <div>
+          Damages : <span ng-show="model.id.damage.type == 'warrior'">{{model.id.damage.n}}</span>
+          <div ng-show="model.id.damage.type == 'warrior'">
             <div style="width:20px;height:20px;border:1px solid black;display:inline-block"
                  ng-style="{ 'border-right': (i%5 == 0)?'5px solid black':'1px solid black' }"
-                 ng-repeat="i in range(model.info.damage.n).reverse()"></div>
+                 ng-repeat="i in range(model.id.damage.n).reverse()"></div>
           </div>
           
-          <table ng-show="model.info.damage.type == 'jack'"
+          <table ng-show="model.id.damage.type == 'jack'"
                  style="border-collapse:collapse;text-align:center;">
             <tr>
               <td ng-repeat="col in ['1','2','3','4','5','6']"
@@ -664,14 +697,14 @@
               <td ng-repeat="col in ['1','2','3','4','5','6']"
                   style="width:20px;height:20px;border:1px solid black;"
                   ng-style="
-                  { 'background-color': (model.info.damage[col][line])?'white':'black'}
+                  { 'background-color': (model.id.damage[col][line])?'white':'black'}
                   "
                   >
-                {{(model.info.damage[col][line] === 'b')?' ':model.info.damage[col][line].toUpperCase()}}
+                {{(model.id.damage[col][line] === 'b')?' ':model.id.damage[col][line].toUpperCase()}}
               </td>
             </tr>
           </table>
-          <table ng-show="model.info.damage.type == 'colossal'"
+          <table ng-show="model.id.damage.type == 'colossal'"
                  style="border-collapse:collapse;text-align:center;">
             <tr>
               <td ng-repeat="col in ['L1','L2','L3','L4','L5','L6','R1','R2','R3','R4','R5','R6']"
@@ -686,13 +719,13 @@
                   style="width:20px;height:20px;border:1px solid black;"
                   ng-style="{
                   'background-color':
-                  (model.info.damage[col][line]) ? 'white' : 'black',
+                  (model.id.damage[col][line]) ? 'white' : 'black',
                   'border-right': col === 'L6' ? '4px solid black':'1px solid black'
                   }"
                   ng-click="doModelDamage(model, col, line)"
                   >
-                {{ (model.info.damage[col][line] === 'b') ? ' ' : 
-                model.info.damage[col][line].toUpperCase() }}
+                {{ (model.id.damage[col][line] === 'b') ? ' ' : 
+                model.id.damage[col][line].toUpperCase() }}
               </td>
             </tr>
           </table>

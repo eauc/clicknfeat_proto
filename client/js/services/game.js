@@ -22,14 +22,18 @@ angular.module('vassalApp.services')
         var instance = {
           new_model_id: 0,
           models: {},
-          createModel: function(info, x, y) {
-            var new_model = model(this.new_model_id++,
-                                  info, {
-                                    x: x,
-                                    y: y
-                                  });
-            this.models[new_model.state.id] = new_model;
-            return new_model;
+          createModel: function(options) {
+            var new_models = []
+            _.each(options, function(option) {
+              var new_model = model(instance.new_model_id++,
+                                    option.info, {
+                                      x: option.x,
+                                      y: option.y
+                                    });
+              instance.models[new_model.state.id] = new_model;
+              new_models.push(new_model);
+            });
+            return new_models;
           },
           drop_bin: {},
           selection: [],

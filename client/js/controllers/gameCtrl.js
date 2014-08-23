@@ -348,7 +348,16 @@ angular.module('vassalApp.controllers')
             // console.log('dom ' + dom_x + ' ' + dom_y);
             var user_x = dom_x * $scope.game.board.width / 800;
             var user_y = dom_y * $scope.game.board.height / 800;
-            $scope.game.newCommand(command('createModel', $scope.model.info, user_x, user_y));
+            var create_options = [];
+            _.each($scope.create_preview.info, function(info) {
+              create_options.push({
+                info: info.info,
+                x: user_x+info.offset_x,
+                y: user_y+info.offset_y
+              });
+            });
+            $scope.game.newCommand(command('createModel',
+                                           create_options));
             $scope.create_mode = false;
           }
           if($scope.model_drag.active) {
@@ -472,9 +481,64 @@ angular.module('vassalApp.controllers')
           y: 0,
           info: null,
         };
+        $scope.$watch('model', function(val, old) {
+          // console.log(val);
+          // console.log(old);
+          // console.log('watch model 1');
+          if(old.faction !== val.faction) {
+            $scope.model.type = null;
+            $scope.model.unit = null;
+            $scope.model.unit_type = null;
+            $scope.model.id = null;
+            $scope.model.size = 1;
+            return;
+          }
+          // console.log('watch model. 2');
+          if(old.type !== val.type) {
+            $scope.model.unit = null;
+            $scope.model.unit_type = null;
+            $scope.model.id = null;
+            $scope.model.size = 1;
+            return;
+          }
+          // console.log('watch model. 3');
+          if(val.unit && old.unit &&
+             old.unit.name !== val.unit.name) {
+            $scope.model.unit_type = null;
+            $scope.model.id = null;
+            $scope.model.size = 1;
+            return;
+          }
+          // console.log('watch model. 4');
+          if(old.unit_type !== val.unit_type) {
+            $scope.model.id = (val.unit_type === 'grunt') ? $scope.model.unit.grunt : null;
+            $scope.model.size = 1;
+            return;
+          }
+          $scope.create_mode = null;
+        }, true);
         $scope.doToggleCreateModel = function() {
           $scope.create_mode = !$scope.create_mode;
-          $scope.create_preview.info = $scope.model.info;
+          $scope.create_preview.info = [];
+          var mid_size = Math.ceil($scope.model.size/2);
+          var unit_step = 3*$scope.model.id.r;
+          _.times($scope.model.size, function(i) {
+            var offset_x = 0;
+            var offset_y = 0;
+            if($scope.model.size <= 5) {
+              offset_x = i*unit_step-($scope.model.size-1)*unit_step/2;
+              offset_y = 0;
+            }
+            else {
+              offset_x = (i%mid_size)*unit_step-(mid_size-1)*unit_step/2;
+              offset_y = (i >= mid_size) ? unit_step : 0;
+            }
+            $scope.create_preview.info.push({
+              info: $scope.model.id,
+              offset_x: offset_x,
+              offset_y: offset_y
+            });
+          });
         };
       });
     }

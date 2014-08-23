@@ -12,27 +12,33 @@ angular.module('vassalApp.services')
           before: null,
           after: null,
           execute: function(game) {
-            var new_model = game.createModel.apply(game, this.args);
-            this.after = new_model;
+            var new_models = game.createModel(this.args);
+            this.after = new_models;
             // console.log(this.before);
             // console.log(this.after);
           },
           redo: function(game) {
-            game.models[this.after.state.id] = model(this.after);
+            _.each(this.after, function(new_mod) {
+              game.models[new_mod.state.id] = new_mod;
+            });
           },
           undo: function(game) {
-            delete game.models[this.after.state.id];
+            _.each(this.after, function(new_mod) {
+              delete game.models[new_mod.state.id];
+            });
           },
           desc: function(game) {
-            return this.type+'('+this.args[0].name+')';
+            return this.type;
           }
         };
-        var args = Array.prototype.slice.call(arguments);
-        if(args.length === 1) {
+        if(!_.isArray(data)) {
           _.extend(instance, data);
+          _.each(instance.after, function(new_mod) {
+              model(new_mod);
+          });
         }
         else {
-          instance.args = args;
+          instance.args = data;
         }
         return instance;
       };

@@ -73,6 +73,81 @@
         }
       }
     },
+    "units": {
+      "trencher_infantry": {
+        "name": "Trencher Infantry",
+        "grunt": {
+          "name": "Trencher Infantry Grunt",
+          "ranges": [1, 6, 10],
+          "type": "warrior",
+          "base": "small",
+          "width": 60,
+          "height": 60,
+          "img": {
+            "x": 0.2,
+            "y": -0.5,
+            "link": "data/cygnar/units/Trencher_Grunt.png"
+          },
+          "damage": {
+            "type": "warrior",
+            "n": 1
+          }
+        },
+        "wa": {
+          "grenadier": {
+            "name": "Trencher Infantry Grenadier",
+            "ranges": [1, 2],
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cygnar/units/Trencher_Grenade_Porter.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        },
+        "ua": {
+          "officer": {
+            "name": "Trencher Infantry Officer",
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cygnar/units/Trencher_Officer.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 5
+            }
+          },
+          "sniper": {
+            "name": "Trencher Infantry Sniper",
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cygnar/units/Trencher_Sharpshooter.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        }
+      }      
+    },
     "solos": {
       "stormwall_pod": {
         "name": "Stormwall Pod",
