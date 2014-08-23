@@ -346,67 +346,93 @@
       <svg ng-repeat="model in game.models"
            x="{{model.state.x - model.info.width/2}}" y="{{model.state.y - model.info.height/2}}">
         <g transform="rotate({{model.state.rot}}, {{model.info.width/2}}, {{model.info.height/2}})">
-          <path d="
-                M{{model.info.width/2-20-model.info.r}},{{model.info.height/2}}
-                L{{model.info.width/2+20+model.info.r}},{{model.info.height/2}}
-                A{{20+model.info.r}},{{20+model.info.r}} 0 0,0
-                {{model.info.width/2-20-model.info.r}},{{model.info.height/2}}
-                "
-                style="
-                stroke:#000;
-                stroke-width:0.5px;
-                pointer-events: none;
-                fill: #000;
-                fill-opacity: 0.5;
-                "
-                ng-show="model.state.show_reach"
-                />
-          <path d="
-                M{{model.info.width/2-5-model.info.r}},{{model.info.height/2}}
-                L{{model.info.width/2+5+model.info.r}},{{model.info.height/2}}
-                A{{5+model.info.r}},{{5+model.info.r}} 0 0,0
-                {{model.info.width/2-5-model.info.r}},{{model.info.height/2}}
-                "
-                style="
-                stroke:#000;
-                stroke-width:0.5px;
-                pointer-events: none;
-                fill: #000;
-                fill-opacity: 0.5;
-                "
-                ng-show="model.state.show_melee"
-                />
-          <circle cx="{{model.info.width/2}}"
-                  cy="{{model.info.height/2}}"
-                  r="{{model.state.show_aoe}}"
-                  style="
-                  fill:#F90;
-                  fill-opacity:0.5;
-                  stroke:#C60;
-                  stroke-width:0.5px;
-                  "
-                  />
-          <image x="{{model.info.img.x}}" y="{{model.info.img.y}}"
-                 width="{{model.info.width}}" height="{{model.info.height}}"
-                 xlink:href="{{model.info.img.link}}"
-                 style="pointer-events: none"
-                 />
           <circle ng-mousedown="onModelMouseDown($event, model)"
                   ng-click="onModelClick($event, model)"
                   cx="{{model.info.width/2}}" cy="{{model.info.height/2}}" r="{{model.info.r}}"
                   style="
-                  fill:#F00;
-                  fill-opacity:0.5;
-                  stroke-width:1px;
+                  fill:{{model.info.color}};
+                  fill-opacity:1.0;
+                  stroke:black;
+                  stroke-width:0.5px;
                   "
-                  ng-style="{
-                  'stroke': model.state.active ? '#0F0' : none
-                  }"
+                  /> 
+          <line x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2}}"
+                x2="{{model.info.width/2+model.info.r}}" y2="{{model.info.height/2}}"
+                style="
+                stroke:black;
+                stroke-width:0.5px;
+                "
+                />
+          <line x1="{{model.info.width/2}}" y1="{{model.info.height/2}}"
+                x2="{{model.info.width/2}}" y2="{{model.info.height/2-model.info.r}}"
+                style="
+                stroke:black;
+                stroke-width:0.5px;
+                "
+                />
+          <image ng-show="model.state.show_image"
+                 x="{{model.info.img.x}}" y="{{model.info.img.y}}"
+                 width="{{model.info.width}}" height="{{model.info.height}}"
+                 xlink:href="{{model.info.img.link}}"
+                 style="pointer-events: none"
+                 />
+          <circle ng-show="model.state.active"
+                  cx="{{model.info.width/2}}" cy="{{model.info.height/2}}" r="{{model.info.r}}"
+                  style="
+                  fill:none;
+                  stroke:#0F0;
+                  stroke-width:1px;
+                  pointer-events: none;
+                  "
                   /> 
         </g>
       </svg>
     </svg>
-    <circle ng-repeat="model in showControl()"
+    <path ng-repeat="model in modelShow('melee')"
+          d="
+          M{{model.state.x-5-model.info.r}},{{model.state.y}}
+          L{{model.state.x+5+model.info.r}},{{model.state.y}}
+          A{{5+model.info.r}},{{5+model.info.r}} 0 0,0
+          {{model.state.x-5-model.info.r}},{{model.state.y}}
+          M{{model.state.x}},{{model.state.y}}
+          L{{model.state.x}},{{model.state.y-model.info.r-5}}
+          "
+          style="
+          stroke:#000;
+          stroke-width:0.5px;
+          pointer-events: none;
+          fill: #000;
+          fill-opacity: 0.4;
+          "
+          transform="
+          rotate({{model.state.rot}},
+                 {{model.state.x}},
+                 {{model.state.y}})
+          "
+          />
+    <path ng-repeat="model in modelShow('reach')"
+          d="
+          M{{model.state.x-20-model.info.r}},{{model.state.y}}
+          L{{model.state.x+20+model.info.r}},{{model.state.y}}
+          A{{20+model.info.r}},{{20+model.info.r}} 0 0,0
+          {{model.state.x-20-model.info.r}},{{model.state.y}}
+          M{{model.state.x}},{{model.state.y}}
+          L{{model.state.x}},{{model.state.y-model.info.r-20}}
+          "
+          style="
+          stroke:#000;
+          stroke-width:0.5px;
+          pointer-events: none;
+          fill: #000;
+          fill-opacity: 0.4;
+          "
+          transform="
+          rotate({{model.state.rot}},
+                 {{model.state.x}},
+                 {{model.state.y}})
+          "
+          />
+    <circle ng-repeat="model in modelShow('control')"
             cx="{{model.state.x}}" cy="{{model.state.y}}"
             r="{{model.info.r+model.info.focus*20}}"
             style="
@@ -414,6 +440,18 @@
             fill-opacity: 0.3;
             stroke: #099;
             stroke-width: 1px;
+            pointer-events: none;
+            "
+            />
+    <circle ng-repeat="model in showCenteredAoE()"
+            cx="{{model.state.x}}"
+            cy="{{model.state.y}}"
+            r="{{model.state.show_aoe}}"
+            style="
+            fill:#F90;
+            fill-opacity:0.2;
+            stroke:#C60;
+            stroke-width:0.5px;
             pointer-events: none;
             "
             />
@@ -940,6 +978,7 @@
       <li>Ctrl+c : copy selected models (move mouse to place new models, then click to create).</li>
       <li>Shift+c : toggle warnouns Control Zone.</li>
       <li>Suppr : move selected models to drop bin.</li>
+      <li>i : toggle image of selected model</li>
       <li>m : toggle melee range of selected model</li>
       <li>r : toggle reach range of selected model</li>
       <li>d : toggle Ruler mode</li>

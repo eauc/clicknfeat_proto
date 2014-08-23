@@ -74,6 +74,10 @@ angular.module('vassalApp.controllers')
               return;
             }
           }
+          if(event.keyCode === 73) { // i
+            $scope.game.newCommand(command('onSelection', 'toggleImage'));
+            return;
+          }
           if(event.keyCode === 77) { // m
             $scope.game.newCommand(command('onSelection', 'toggleMelee'));
             return;
@@ -556,9 +560,13 @@ angular.module('vassalApp.controllers')
           });
         };
 
-        $scope.showControl = function() {
+        $scope.modelShow = function(type) {
           return $scope.game ? 
-            _.filter($scope.game.models, function(model) { return model.state.show_control }) : [];
+            _.filter($scope.game.models, function(model) { return model.state['show_'+type] }) : [];
+        };
+        $scope.showCenteredAoE = function() {
+          return $scope.game ? 
+            _.filter($scope.game.models, function(model) { return model.state.show_aoe > 0 }) : [];
         };
 
         $scope.fk_read_result = [];

@@ -1,5 +1,6 @@
 {
   "name": "Cygnar",
+  "color": "#5963a2",
   "icon": "data/icons/cygnar_50.png",
   "models": {
     "casters": {

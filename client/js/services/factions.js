@@ -38,6 +38,7 @@ angular.module('vassalApp.services')
                     _.each(unit.entries, function(entry) {
                       _.each(entry, function(model) {
                         model.r = BASE_RADIUS[model.base];
+                        model.color = faction.color;
                         if(_.isString(model.fk_name)) {
                           factions.fk_keys[model.fk_name] = factions.fk_keys[model.fk_name] || [];
                           factions.fk_keys[model.fk_name].push(model);
@@ -49,6 +50,7 @@ angular.module('vassalApp.services')
                 else {
                   _.each(type, function(model) {
                     model.r = BASE_RADIUS[model.base];
+                    model.color = faction.color;
                     if(_.isString(model.fk_name)) {
                       factions.fk_keys[model.fk_name] = factions.fk_keys[model.fk_name] || [];
                       factions.fk_keys[model.fk_name].push(model);

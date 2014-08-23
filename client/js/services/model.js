@@ -58,6 +58,9 @@ angular.module('vassalApp.services')
           this.state.y += dl;
           this.refresh(game);
         },
+        toggleImage: function(game) {
+          this.state.show_image = !this.state.show_image;
+        },
         toggleMelee: function(game) {
           this.state.show_melee = !this.state.show_melee;
         },
@@ -144,6 +147,7 @@ angular.module('vassalApp.services')
             x: 240,
             y: 240,
             rot: 0,
+            show_image: true,
             show_melee: false,
             show_reach: false,
             show_aoe: 0,
@@ -153,6 +157,7 @@ angular.module('vassalApp.services')
             x: 240,
             y: 240,
             rot: 0,
+            show_image: true,
             show_melee: false,
             show_reach: false,
             show_aoe: 0,
