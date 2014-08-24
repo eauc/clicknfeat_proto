@@ -1,6 +1,6 @@
-- template origin, target.
-- aoe auto deviation.
+- template spray origin, target.
 
+- ruler range limit.
 - ruler origin, target.
 
 - model label

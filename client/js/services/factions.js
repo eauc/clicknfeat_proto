@@ -50,7 +50,7 @@ angular.module('vassalApp.services')
           factions.fk_keys[model.fk_name].push(model);
         }
       }
-      return $http.get('/data/factions.js')
+      return $http.get('/data/factions.json')
         .then(function(response) {
           factions = response.data;
           // console.log(factions);
