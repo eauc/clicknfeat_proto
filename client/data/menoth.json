@@ -258,13 +258,690 @@
             }
         },
         "jacks": {
-
+            "dervish": {
+                "name": "Dervish",
+                "fk_name": "Dervish",
+                "type": "jack",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/Dervish.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null,  "b",  "b",  "l", null ],
+                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+                    "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
+                    "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
+                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, null,  "b",  "b",  "r", null ]
+                }
+            },
+            "devout": {
+                "name": "Devout",
+                "fk_name": "Devout",
+                "type": "jack",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/Devout.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null,  "b",  "b",  "l", null ],
+                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+                    "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
+                    "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
+                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, null,  "b",  "b",  "r", null ]
+                }
+            },
+            "redeemer": {
+                "name": "Redeemer",
+                "fk_name": "Redeemer",
+                "type": "jack",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/Redeemer.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null,  "b",  "b",  "l", null ],
+                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+                    "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
+                    "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
+                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, null,  "b",  "b",  "r", null ]
+                }
+            },
+            "repenter": {
+                "name": "Repenter",
+                "fk_name": "Repenter",
+                "type": "jack",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/Repenter.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null,  "b",  "b",  "l", null ],
+                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+                    "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
+                    "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
+                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, null,  "b",  "b",  "r", null ]
+                }
+            },
+            "revenger": {
+                "name": "Revenger",
+                "fk_name": "Revenger",
+                "type": "jack",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/Revenger.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null,  "b",  "b",  "l", null ],
+                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+                    "3": [  "b",  "b",  "b",  "a",  "m", "m"  ],
+                    "4": [  "b",  "b",  "b",  "a",  "c", "c"  ],
+                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, null,  "b",  "b",  "r", null ]
+                }
+            },
+            "vigilant": {
+                "name": "Vigilant",
+                "fk_name": "Vigilant",
+                "type": "jack",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/Vigilant.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null,  "b",  "b",  "l", null ],
+                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+                    "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
+                    "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
+                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, null,  "b",  "b",  "r", null ]
+                }
+            },
+            "blessingOfVengeance": {
+                "name": "Blessing of Vengeance",
+                "fk_name": "Blessing of Vengeance",
+                "type": "jack",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/BlessingOfVengeance.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null,  "b",  "b",  "l", null ],
+                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+                    "3": [  "b",  "b",  "b",  "a",  "m", "m"  ],
+                    "4": [  "b",  "b",  "b",  "a",  "c", "c"  ],
+                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, null,  "b",  "b",  "r", null ]
+                }
+            },
+            "castigator": {
+                "name": "Castigator",
+                "fk_name": "Castigator",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/Castigator.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, "b",  "b",  "b",  "l", null ],
+                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, "b",  "b",  "b",  "r", null ]
+                }
+            },
+            "crusader": {
+                "name": "Crusader",
+                "fk_name": "Crusader",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/Crusader.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, "b",  "b",  "b",  "l", null ],
+                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, "b",  "b",  "b",  "r", null ]
+                }
+            },
+            "guardian": {
+                "name": "Guardian",
+                "fk_name": "Guardian",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/Guardian.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [  "b", "b",  "b",  "b",  "l", null ],
+                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+                    "3": [  "b", "b",  "b",  "a",  "m", "m"  ],
+                    "4": [  "b", "b",  "b",  "a",  "c", "c"  ],
+                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+                    "6": [  "b", "b",  "b",  "b",  "r", null ]
+                }
+            },
+            "reckoner": {
+                "name": "Reckoner",
+                "fk_name": "Reckoner",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/Reckoner.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, "b",  "b",  "b",  "l", null ],
+                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, "b",  "b",  "b",  "r", null ]
+                }
+            },
+            "templar": {
+                "name": "Templar",
+                "fk_name": "Templar",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/Templar.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, "b",  "b",  "b",  "l", null ],
+                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, "b",  "b",  "b",  "r", null ]
+                }
+            },
+            "vanquisher": {
+                "name": "Vanquisher",
+                "fk_name": "Vanquisher",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/Vanquisher.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, "b",  "b",  "b",  "l", null ],
+                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, "b",  "b",  "b",  "r", null ]
+                }
+            },
+            "avatar": {
+                "name": "Avatar of Menoth",
+                "fk_name": "Avatar of Menoth",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/Avatar.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, "b",  "b",  "b",  "l", null ],
+                    "2": [  "b", "b",  "b",  "b",  "l", "l"  ],
+                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+                    "4": [  "b", "b",  "b",  "b",  "b", "m"  ],
+                    "5": [  "b", "b",  "b",  "b",  "r", "r"  ],
+                    "6": [ null, "b",  "b",  "b",  "r", null ]
+                }
+            },
+            "fireOfSalvation": {
+                "name": "Fire of Salvation",
+                "fk_name": "Fire of Salvation",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/FireOfSalvation.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, "b",  "b",  "b",  "l", null ],
+                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, "b",  "b",  "b",  "r", null ]
+                }
+            },
+            "sanctifier": {
+                "name": "Sanctifier",
+                "fk_name": "Sanctifier",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/Sanctifier.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, "b",  "b",  "b",  "l", null ],
+                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, "b",  "b",  "b",  "r", null ]
+                }
+            },
+            "bloodOfMartyrs": {
+                "name": "Blood of Martyrs",
+                "fk_name": "Blood of Martyrs",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/BloodOfMartyrs.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, "b",  "b",  "b",  "l", null ],
+                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, "b",  "b",  "b",  "r", null ]
+                }
+            },
+            "scourgeOfHeresy": {
+                "name": "Scourge of Heresy",
+                "fk_name": "Scourge of Heresy",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": "data/menoth/jacks/ScourgeOfHeresy.png"
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, "b",  "b",  "b",  "l", null ],
+                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, "b",  "b",  "b",  "r", null ]
+                }
+            },
+            "judicator": {
+                "name": "Judicator",
+                "fk_name": "Judicator",
+                "type": "jack",
+                "base": "huge",
+                "width": 116.667,
+                "height": 116.667,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/jacks/Judicator.png"
+                },
+                "damage": {
+                    "type": "colossal",
+                    "L1": [ null, null, "b", "b", "l", "l" ],
+                    "L2": [ null, null, "b", "b", "l", "c" ],
+                    "L3": [ null,  "b", "b", "l", "c", "m" ],
+                    "L4": [ null,  "b", "b", "l", "c", "m" ],
+                    "L5": [  "b",  "b", "s", "s", "c", "m" ],
+                    "L6": [  "b",  "b", "s", "c", "c", "m" ],
+                    "R1": [  "b",  "b", "s", "c", "c", "m" ],
+                    "R2": [  "b",  "b", "s", "s", "c", "m" ],
+                    "R3": [ null,  "b", "b", "r", "c", "m" ],
+                    "R4": [ null,  "b", "b", "r", "c", "m" ],
+                    "R5": [ null, null, "b", "b", "r", "c" ],
+                    "R6": [ null, null, "b", "b", "r", "r" ]
+                }
+            }
         },
         "units": {
 
         },
         "solos": {
-
+            "allegiant": {
+                "name": "Allegiant of the Order of the Fist",
+                "fk_name" : "Allegiant of the Order of the Fist",
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/Allegiant.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
+            "convenant": {
+                "name": "The Covenant of Menoth",
+                "fk_name" : "The Covenant of Menoth",
+                "type": "warrior",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/Convenant.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
+            "errantSeneschal": {
+                "name": "Exemplar Errant Seneschal",
+                "fk_name" : "Exemplar Errant Seneschal",
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/ErrantSeneshal.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
+            "hierophant": {
+                "name": "Hierophant",
+                "fk_name" : "Hierophant",
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/Hierophant.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
+            "knightSeneshal": {
+                "name": "Knight Exemplar Seneschal",
+                "fk_name" : "Knight Exemplar Seneschal",
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/KnightSenechal.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
+            "paladin": {
+                "name": "Paladin of the Order of the Wall",
+                "fk_name" : "Paladin of the Order of the Wall",
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/Paladin.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
+            "reclaimer": {
+                "name": "Reclaimer",
+                "fk_name" : "Reclaimer",
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/Reclaimer.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
+            "vassalMechanik": {
+                "name": "Vassal Mechanik",
+                "fk_name" : "Vassal Mechanik",
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/Mechanik.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
+            "vassalMenoth": {
+                "name": "Vassal of Menoth",
+                "fk_name" : "Vassal of Menoth",
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/Vassal.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
+            "wrack": {
+                "name": "The Wrack (3 wracks)",
+                "fk_name" : "The Wrack (3 wracks)",
+                "type": "warrior",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/Wrack.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 1
+                }
+            },
+            "gravus": {
+                "name": "High Exemplar Gravus",
+                "fk_name" : "High Exemplar Gravus",
+                "type": "warrior",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/Gravus.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 10
+                }
+            },
+            "gravusDismount": {
+                "name": "High Exemplar Gravus (Dismounted)",
+                "fk_name" : "High Exemplar Gravus (Dismounted)",
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/GravusDismount.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
+            "vilmon": {
+                "name": "High Paladin Dartan Vilmon",
+                "fk_name" : "High Paladin Dartan Vilmon",
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/Vilmon.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
+            "nicia": {
+                "name": "Nicia, Tear of Vengeance",
+                "fk_name" : "Nicia, Tear of Vengeance",
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/Nicia.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
+            "bastionSeneschal": {
+                "name": "Exemplar Bastion Seneschal",
+                "fk_name" : "Exemplar Bastion Seneschal",
+                "type": "warrior",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/solos/BastionSeneschal.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 8
+                }
+            }
         }
     }
 }
