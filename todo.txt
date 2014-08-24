@@ -1,8 +1,14 @@
+- template layer/list.
+- aoe rotation.
+- template origin, target.
+- aoe auto deviation.
+
+- ruler origin, target.
+
 - model label
 - model effect (spell, etc)
 - model unit number
 
-- template layer/list.
 - mode charge.
 - mode ranged attack.
 - sauvegarde des models selectionnes dans un fichier pour import ulterieur ?

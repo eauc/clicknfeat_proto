@@ -45,6 +45,16 @@
                  "
                  />
       </marker>
+      <marker id="aoe-direction-end"
+              markerWidth="6" markerHeight="8"
+              refx="6" refy="4"
+              orient="auto">
+        <polygon points="0,8 6,4 0,0"
+                 style="
+                 fill:#0F0;
+                 "
+                 />
+      </marker>
     </defs>
     <image id="canvas"
            x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
@@ -532,6 +542,20 @@
               ng-click="onTemplateClick($event, aoe)"
               ng-mousedown="onTemplateMouseDown($event, aoe)"
               />
+      <line ng-show="!game.templates.active.locked"
+            x1="{{game.templates.active.x}}" y1="{{game.templates.active.y}}"
+            x2="{{game.templates.active.x}}" y2="{{game.templates.active.y-game.templates.active.r}}"
+            style="
+            stroke:#0F0;
+            stroke-width:0.75px;
+            marker-end:url(#aoe-direction-end);
+            "
+            transform="
+            rotate({{game.templates.active.rot}},
+            {{game.templates.active.x}},
+            {{game.templates.active.y}})
+            "
+            />
     </svg>
     <circle ng-show="create_template_mode && create_template_preview.type === 'aoe'"
             cx="{{create_template_preview.x}}"
@@ -1089,7 +1113,8 @@
       <li>i : toggle image of selected model</li>
       <li>l : lock selected template (place it under models and prevent drag)</li>
       <li>m : toggle melee range of selected model</li>
-      <li>r : toggle reach range of selected model</li>
+      <li>r (AoE selected & ruler active) : place the selected AoE at the end of the ruler.</li>
+      <li>r (model selected) : toggle reach range of selected model</li>
       <li>d : toggle Ruler mode</li>
       <li>+/- (Numeric Kbd only) : increment/decrement focus/counter of selected model.</li>
       <li>3/4/5 (AoE selected) : change AoE size to 3/4/5"</li>

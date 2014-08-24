@@ -12,6 +12,12 @@ angular.module('vassalApp.services')
           this.y = Math.min(game.board.height,
                                   this.y);
         },
+        set: function(game, x, y, rot) {
+          this.x = x;
+          this.y = y;
+          this.rot = rot;
+          this.refresh(game);
+        },
         moveFront: function(game, small) {
           var dl = small ? 1 : 10;
           var dx = dl * Math.sin(this.rot * Math.PI / 180);
@@ -31,7 +37,7 @@ angular.module('vassalApp.services')
           this.refresh(game);
         },
         rotateLeft: function(game, small) {
-          var dr = small ? 5 : 30;
+          var dr = small ? 10 : 60;
           this.rot = this.rot - dr;
         },
         moveLeft: function(game, small) {
@@ -45,8 +51,8 @@ angular.module('vassalApp.services')
           this.refresh(game);
         },
         rotateRight: function(game, small) {
-          var dr = small ? 5 : 30;
-          this.rot = this.state.rot + dr;
+          var dr = small ? 10 : 60;
+          this.rot = this.rot + dr;
         },
         moveRight: function(game, small) {
           var dl = small ? 1 : 10;
