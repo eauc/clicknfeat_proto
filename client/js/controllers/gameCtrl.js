@@ -842,10 +842,13 @@ angular.module('vassalApp.controllers')
               size = match[1] >> 0;
               line = line.replace(/^\d+ /,'');
             }                
+            match = line.match(/\((\d+)\s.+?\)/i);
+            if(match) {
+              size = (match[1] >> 0);
+            }                
             match = line.match(/\(leader and (\d+) grunts?\)/i);
             if(match) {
               size = (match[1] >> 0) + 1;
-              line = line.replace(/\(leader and (\d+) grunts?\)/gi,'');
             }                
             line = line.replace(/\s*\(.+\)\s*$/,'');
             // console.log(line);

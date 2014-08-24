@@ -1,5 +1,3 @@
-- template spray origin, target.
-
 - ruler range limit.
 - ruler origin, target.
 
@@ -20,20 +18,5 @@
 
 - flag to disable drag preview to prevent pre-measuring
 - text no highlight
-- change color of active models when template is selected
-
-=======================================================
-
-System: Warmachine
-Faction: Cygnar
-Casters: 1/1
-Points: 37/50
-Commander Adept Nemo (*6pts)
-* Grenadier (5pts)
-* Hammersmith (8pts)
-* Stormwall (19pts)
-Trencher Infantry (Leader and 5 Grunts) (6pts)
-* 2 Trencher Infantry Grenadier (2pts)
-* Trencher Infantry Officer & Sniper (3pts)
 
 

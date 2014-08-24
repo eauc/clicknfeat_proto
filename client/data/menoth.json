@@ -841,8 +841,8 @@
                 }
             },
             "wrack": {
-                "name": "The Wrack (3 wracks)",
-                "fk_name" : "The Wrack (3 wracks)",
+                "name": "The Wrack",
+                "fk_name" : "The Wrack",
                 "ranges": [1, 3],
                 "type": "warrior",
                 "base": "medium",
