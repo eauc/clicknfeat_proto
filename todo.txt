@@ -1,5 +1,3 @@
-- template layer/list.
-- aoe rotation.
 - template origin, target.
 - aoe auto deviation.
 

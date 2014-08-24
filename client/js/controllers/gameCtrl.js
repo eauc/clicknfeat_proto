@@ -52,14 +52,6 @@ angular.module('vassalApp.controllers')
         $scope.onKeyDown = function(event) {
           // console.log(event);
           if($scope.create_mode) return;
-          if(event.keyCode == 68 &&
-             $scope.game.ruler.state.active !== 'draging') { // d
-            $scope.drag_mode = ($scope.drag_mode === 'ruler') ? 'selection' : 'ruler';
-            if($scope.drag_mode === 'selection') {
-              $scope.game.ruler.setActive(false);
-            }
-            return;
-          }
           switch(event.keyCode) {
           case 107: // +
             {
@@ -80,6 +72,22 @@ angular.module('vassalApp.controllers')
                 $scope.game.newCommand(command('onSelection', 'decrementFocus'));
               }
               return;
+            }
+          }
+          if(event.keyCode === 68) { // d
+            if($scope.game.templates.active &&
+               $scope.game.templates.active.type === 'aoe') {
+              $scope.doAoEDeviation();
+              return;
+            }
+            else {
+              if($scope.game.ruler.state.active !== 'draging') {
+                $scope.drag_mode = ($scope.drag_mode === 'ruler') ? 'selection' : 'ruler';
+                if($scope.drag_mode === 'selection') {
+                  $scope.game.ruler.setActive(false);
+                }
+                return;
+              }
             }
           }
           if(event.keyCode === 70) { // f
@@ -852,6 +860,16 @@ angular.module('vassalApp.controllers')
           $scope.create_template_preview.x = 240;
           $scope.create_template_preview.y = 240;
           $scope.create_template_mode = true;
+        };
+        $scope.aoe_max_deviation = 6;
+        $scope.doAoEDeviation = function() {
+          var aoe = $scope.game.templates.active;
+          var deviation = $scope.game.rollDeviation($scope.aoe_max_deviation);
+          var angle = 60 * (deviation.direction-1) + aoe.rot;
+          var new_x = aoe.x + deviation.distance * Math.sin(angle*Math.PI/180);
+          var new_y = aoe.y - deviation.distance * Math.cos(angle*Math.PI/180);
+          // console.log(deviation, new_x, new_y, angle);
+          $scope.game.newCommand(command('onActiveTemplate', 'set', new_x, new_y, angle));
         };
         $scope.templateShowLocked = function(type) {
           return $scope.game ? 
