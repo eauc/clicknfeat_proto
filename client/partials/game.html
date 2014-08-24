@@ -339,6 +339,25 @@
       "
       /> -->
     </svg>
+    <svg id="locked-template-canvas"
+         x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
+         style="display: {{game.layers.templates ? 'inline' : 'none'}}"
+         >
+      <circle ng-repeat="aoe in templateShowLocked('aoe')"
+              cx="{{aoe.x}}"
+              cy="{{aoe.y}}"
+              r="{{aoe.r}}"
+              style="
+              fill:#F90;
+              fill-opacity:0.2;
+              stroke-width:0.5px;
+              "
+              ng-style="{
+              'stroke': aoe === game.templates.active ? '#0F0' : '#C60',
+              }"
+              ng-click="game.templates.active = (aoe === game.templates.active) ? null : aoe"
+              />
+    </svg>
     <svg id="model-canvas"
          x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
          style="display: {{game.layers.models ? 'inline' : 'none'}}"
@@ -361,6 +380,7 @@
                 style="
                 stroke:black;
                 stroke-width:0.5px;
+                pointer-events: none;
                 "
                 />
           <line x1="{{model.info.width/2}}" y1="{{model.info.height/2}}"
@@ -368,6 +388,7 @@
                 style="
                 stroke:black;
                 stroke-width:0.5px;
+                pointer-events: none;
                 "
                 />
           <image ng-show="model.state.show_image"
@@ -380,10 +401,12 @@
                   cx="{{model.info.width/2}}" cy="{{model.info.height/2}}" r="{{model.info.r}}"
                   style="
                   fill:none;
-                  stroke:#0F0;
                   stroke-width:1px;
                   pointer-events: none;
                   "
+                  ng-style="{
+                  'stroke': game.templates.active ? '#0C0' : '#0F0'
+                  }"
                   />
           <line ng-show="model.info.damage.total > 1"
                 x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2+model.info.r}}"
@@ -490,6 +513,38 @@
           >
       {{model.state.focus}}
     </text>
+    <svg id="template-canvas"
+         x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
+         style="display: {{game.layers.templates ? 'inline' : 'none'}}"
+         >
+      <circle ng-repeat="aoe in templateShowUnlocked('aoe')"
+              cx="{{aoe.x}}"
+              cy="{{aoe.y}}"
+              r="{{aoe.r}}"
+              style="
+              fill:#F90;
+              fill-opacity:0.5;
+              stroke-width:0.5px;
+              "
+              ng-style="{
+              'stroke': aoe === game.templates.active ? '#0F0' : '#C60',
+              }"
+              ng-click="onTemplateClick($event, aoe)"
+              ng-mousedown="onTemplateMouseDown($event, aoe)"
+              />
+    </svg>
+    <circle ng-show="create_template_mode && create_template_preview.type === 'aoe'"
+            cx="{{create_template_preview.x}}"
+            cy="{{create_template_preview.y}}"
+            r="{{create_template_preview.r}}"
+            style="
+            fill:#F90;
+            fill-opacity:0.5;
+            stroke-width:0.5px;
+            pointer-events: none;
+            stroke: #C60;
+            "
+            />
     <svg ng-show="create_mode"
          ng-repeat="(i,model) in create_preview.info"
          x="{{create_preview.x + model.offset_x - model.info.width/2}}"
@@ -891,14 +946,23 @@
   <div style="display:inline-block;vertical-align:top;width:350px">
     <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
       <div><strong>Tools :</strong></div>
-      <input id="tools-ruler-check"
-             type="checkbox"
-             ng-model="drag_mode"
-             ng-true-value="'ruler'"
-             ng-false-value="'selection'"
-             ng-change="onDragModeChange()"
-             />
-      <label for="tools-ruler-check">Ruler</label>
+      <div>
+        <input id="tools-ruler-check"
+               type="checkbox"
+               ng-model="drag_mode"
+               ng-true-value="'ruler'"
+               ng-false-value="'selection'"
+               ng-change="onDragModeChange()"
+               />
+        <label for="tools-ruler-check">Ruler</label>
+      </div>
+      <div>
+        <button ng-click="doCreateAoE(3)">New AoE</button>
+        <p ng-show="create_template_mode && create_template_preview.type === 'aoe'">
+          - use your mouse to position the AoE over the board, then click to place it.
+          - to center AoE on a model, press the shift key then click on the model.
+        </p>
+      </div>
     </div>
     <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
       <div><strong>Layers :</strong></div>
@@ -936,6 +1000,13 @@
                ng-model="game.layers.models"
                ng-change="onLayerChange('models')" />
         <label for="layer-models-check">Models</label>
+      </div>
+      <div style="display:inline-box">
+        <input id="layer-templates-check"
+               type="checkbox"
+               ng-model="game.layers.templates"
+               ng-change="onLayerChange('templates')" />
+        <label for="layer-templates-check">Templates</label>
       </div>
     </div>
     <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
@@ -1012,14 +1083,17 @@
       <li>Ctrl+z : undo last command.</li>
       <li>Ctrl+c : copy selected models (move mouse to place new models, then click to create).</li>
       <li>Shift+c : toggle warnouns Control Zone.</li>
-      <li>Suppr : move selected models to drop bin.</li>
+      <li>Suppr (AoE selected) : delete selected template.</li>
+      <li>Suppr (model selected) : move selected models to drop bin.</li>
       <li>f : toggle focus/counter of selected model</li>
       <li>i : toggle image of selected model</li>
+      <li>l : lock selected template (place it under models and prevent drag)</li>
       <li>m : toggle melee range of selected model</li>
       <li>r : toggle reach range of selected model</li>
       <li>d : toggle Ruler mode</li>
       <li>+/- (Numeric Kbd only) : increment/decrement focus/counter of selected model.</li>
-      <li>3/4/5 : toggle AOE 3/4/5" centered on selected model</li>
+      <li>3/4/5 (AoE selected) : change AoE size to 3/4/5"</li>
+      <li>3/4/5 (model selected) : toggle AOE 3/4/5" centered on selected model</li>
     </ul>
   </div>
 </div>

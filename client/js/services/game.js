@@ -6,12 +6,14 @@ angular.module('vassalApp.services')
     '$http',
     '$window',
     'model',
+    'template',
     'command',
     'message',
     function($rootScope,
              $http,
              $window,
              model,
+             template,
              command,
              message) {
 
@@ -82,6 +84,17 @@ angular.module('vassalApp.services')
                 delete instance.drop_bin[id];
               }
             });
+          },
+          templates: {
+            aoe: {},
+            sprays: {},
+            active: null,
+          },
+          createTemplate: function(options) {
+            var temp = template(options);
+            this.templates[temp.type][temp.stamp] = temp;
+            this.templates.active = temp;
+            return temp;
           },
           new_commands: [],
           commands: [],
@@ -174,7 +187,8 @@ angular.module('vassalApp.services')
             terrain: true,
             deployment: false,
             scenario: true,
-            models: true
+            models: true,
+            templates: true
           },
           board: {
             width: 480,
