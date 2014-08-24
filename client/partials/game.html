@@ -356,7 +356,7 @@
       <circle ng-repeat="aoe in templateShowLocked('aoe')"
               cx="{{aoe.x}}"
               cy="{{aoe.y}}"
-              r="{{aoe.r}}"
+              r="{{aoe.size*5}}"
               style="
               fill:#F90;
               fill-opacity:0.2;
@@ -367,6 +367,30 @@
               }"
               ng-click="game.templates.active = (aoe === game.templates.active) ? null : aoe"
               />
+      <polygon ng-repeat="sp in templateShowLocked('spray')"
+               points="
+               8.75,0
+               {{
+               (10-8.125*sp.size/10) + ','  + (98.34*sp.size/10) +
+               ' 10,' + (100*sp.size/10) +
+               ' ' + (10+8.125*sp.size/10) + ',' + (98.34*sp.size/10)
+               }}
+               11.25,0
+               "
+               style="
+               fill:#F90;
+               fill-opacity:0.2;
+               stroke-width:0.5px;
+               "
+               transform="
+               translate({{sp.x-10}},{{sp.y}})
+               rotate({{sp.rot-180}}, 10, 0)
+               "
+               ng-style="{
+               'stroke': sp === game.templates.active ? '#0F0' : '#C60',
+               }"
+               ng-click="game.templates.active = (sp === game.templates.active) ? null : sp"
+               />
     </svg>
     <svg id="model-canvas"
          x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
@@ -530,7 +554,7 @@
       <circle ng-repeat="aoe in templateShowUnlocked('aoe')"
               cx="{{aoe.x}}"
               cy="{{aoe.y}}"
-              r="{{aoe.r}}"
+              r="{{aoe.size*5}}"
               style="
               fill:#F90;
               fill-opacity:0.5;
@@ -542,9 +566,9 @@
               ng-click="onTemplateClick($event, aoe)"
               ng-mousedown="onTemplateMouseDown($event, aoe)"
               />
-      <line ng-show="!game.templates.active.locked"
+      <line ng-show="game.templates.active.type == 'aoe' && !game.templates.active.locked"
             x1="{{game.templates.active.x}}" y1="{{game.templates.active.y}}"
-            x2="{{game.templates.active.x}}" y2="{{game.templates.active.y-game.templates.active.r}}"
+            x2="{{game.templates.active.x}}" y2="{{game.templates.active.y-game.templates.active.size*5}}"
             style="
             stroke:#0F0;
             stroke-width:0.75px;
@@ -556,11 +580,36 @@
             {{game.templates.active.y}})
             "
             />
+      <polygon ng-repeat="sp in templateShowUnlocked('spray')"
+               points="
+               8.75,0
+               {{
+               (10-8.125*sp.size/10) + ','  + (98.34*sp.size/10) +
+               ' 10,' + (100*sp.size/10) +
+               ' ' + (10+8.125*sp.size/10) + ',' + (98.34*sp.size/10)
+               }}
+               11.25,0
+               "
+               style="
+               fill:#F90;
+               fill-opacity:0.5;
+               stroke-width:0.5px;
+               "
+               transform="
+               translate({{sp.x-10}},{{sp.y}})
+               rotate({{sp.rot-180}}, 10, 0)
+               "
+               ng-style="{
+               'stroke': sp === game.templates.active ? '#0F0' : '#C60',
+               }"
+               ng-click="onTemplateClick($event, sp)"
+               ng-mousedown="onTemplateMouseDown($event, sp)"
+               />
     </svg>
     <circle ng-show="create_template_mode && create_template_preview.type === 'aoe'"
             cx="{{create_template_preview.x}}"
             cy="{{create_template_preview.y}}"
-            r="{{create_template_preview.r}}"
+            r="{{create_template_preview.size*5}}"
             style="
             fill:#F90;
             fill-opacity:0.5;
@@ -569,6 +618,29 @@
             stroke: #C60;
             "
             />
+    <polygon ng-show="create_template_mode && create_template_preview.type === 'spray'"
+             points="
+             8.75,0
+             {{
+             (10-8.125*create_template_preview.size/10) +
+             ','  + (98.34*create_template_preview.size/10) +
+             ' 10,' + (100*create_template_preview.size/10) +
+             ' ' + (10+8.125*create_template_preview.size/10) +
+             ',' + (98.34*create_template_preview.size/10)
+             }}
+             11.25,0
+             "
+             style="
+             fill:#F90;
+             fill-opacity:0.5;
+             stroke:#C60,
+             stroke-width:0.5px;
+             "
+             transform="
+             translate({{create_template_preview.x-10}},{{create_template_preview.y}})
+             rotate({{create_template_preview.rot-180}}, 10, 0)
+             "
+             />
     <svg ng-show="create_mode"
          ng-repeat="(i,model) in create_preview.info"
          x="{{create_preview.x + model.offset_x - model.info.width/2}}"
@@ -981,14 +1053,15 @@
         <label for="tools-ruler-check">Ruler</label>
       </div>
       <div>
-        <button ng-click="doCreateAoE(3)">New AoE</button>
+        <button ng-click="doCreateTemplate('aoe',3)">New AoE</button>
         <form style="display:inline;"
               ng-show="game.templates.active.type === 'aoe'">
           Max Deviation : <input style="width:5em;"
                                  type="number"
                                  ng-model="aoe_max_deviation"
                                  />
-        </form>
+        </form><br />
+        <button ng-click="doCreateTemplate('spray',6)">New Spray</button>
         <p ng-show="create_template_mode && create_template_preview.type === 'aoe'">
           - use your mouse to position the AoE over the board, then click to place it.
           - to center AoE on a model, press the shift key then click on the model.
@@ -1127,6 +1200,7 @@
       <li>+/- (Numeric Kbd only) : increment/decrement focus/counter of selected model.</li>
       <li>3/4/5 (AoE selected) : change AoE size to 3/4/5"</li>
       <li>3/4/5 (model selected) : toggle AOE 3/4/5" centered on selected model</li>
+      <li>6/8/0 (Spray selected) : change spray size to 6/8/10"</li>
     </ul>
   </div>
 </div>

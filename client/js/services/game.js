@@ -87,7 +87,7 @@ angular.module('vassalApp.services')
           },
           templates: {
             aoe: {},
-            sprays: {},
+            spray: {},
             active: null,
           },
           createTemplate: function(options) {
