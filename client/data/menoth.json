@@ -1,0 +1,270 @@
+{
+    "name" : "Menoth",
+    "color" : "ecc76d",
+    "icon": "data/icons/menoth_50.png",
+    "models": {
+        "casters": {
+            "amon1": {
+                "name": "Amon1 (High Allegiant Amon Ad-Raza)",
+                "fk_name": "High Allegiant Amon Ad-Raza",
+                "type": "wardude",
+                "focus": 6,
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/casters/Amon1.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 17
+                }
+            },
+            "feora1": {
+                "name": "Feora1 (Feora, Priestess of the Flame)",
+                "fk_name": "Feora, Priestess of the Flame",
+                "type": "wardude",
+                "focus": 6,
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/casters/Feora1.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 16
+                }
+            },
+            "feora2": {
+                "name": "Feora2 (Feora, Protector of the Flame)",
+                "fk_name": "Feora, Protector of the Flame",
+                "type": "wardude",
+                "focus": 6,
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/casters/Feora2.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 16
+                }
+            },
+            "harbinger1": {
+                "name": "Harbinger1 (Harbinger of Menoth)",
+                "fk_name": "Harbinger of Menoth",
+                "type": "wardude",
+                "focus": 10,
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/casters/Harbinger1.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 17
+                }
+            },
+            "reclaimer1": {
+                "name": "Reclaimer1 (The High Reclaimer)",
+                "fk_name": "The High Reclaimer",
+                "type": "wardude",
+                "focus": 5,
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/casters/Reclaimer1.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 18
+                }
+            },
+            "testament1": {
+                "name": "Testament1 (Testament of Menoth)",
+                "fk_name": "Testament of Menoth",
+                "type": "wardude",
+                "focus": 5,
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/casters/Testament1.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 18
+                }
+            },
+            "reznik1": {
+                "name": "Reznik1 (High Executioner Servath Reznik)",
+                "fk_name": "High Executioner Servath Reznik",
+                "type": "wardude",
+                "focus": 6,
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/casters/Reznik1.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 17
+                }
+            },
+            "kreoss1": {
+                "name": "Kreoss1 (High Exemplar Kreoss)",
+                "fk_name": "High Exemplar Kreoss",
+                "type": "wardude",
+                "focus": 7,
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/casters/Kreoss1.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 18
+                }
+            },
+            "kreoss2": {
+                "name": "Kreoss2 (Grand Exemplar Kreoss)",
+                "fk_name": "Grand Exemplar Kreoss",
+                "type": "wardude",
+                "focus": 7,
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/casters/Kreoss2.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 18
+                }
+            },
+            "kreoss3": {
+                "name": "Kreoss3 (Intercessor Kreoss)",
+                "fk_name": "Intercessor Kreoss",
+                "type": "wardude",
+                "focus": 7,
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/casters/Kreoss3.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 18
+                }
+            },
+            "severius1": {
+                "name": "Severius1 (Grand Scrutator Severius)",
+                "fk_name": "Grand Scrutator Severius",
+                "type": "wardude",
+                "focus": 8,
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/casters/Severius1.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 16
+                }
+            },
+            "severius2": {
+                "name": "Severius2 (Hierarch Severius)",
+                "fk_name": "Hierarch Severius",
+                "type": "wardude",
+                "focus": 8,
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/casters/Severius2.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 16
+                }
+            },
+            "thyra1": {
+                "name": "Thyra1 (Thyra, Flame of Sorrow)",
+                "fk_name": "Thyra, Flame of Sorrow",
+                "type": "wardude",
+                "focus": 6,
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/casters/Thyra1.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 15
+                }
+            },
+            "vindictus1": {
+                "name": "Vindictus1 (Vice Scrutator Vindictus)",
+                "fk_name": "Vice Scrutator Vindictus",
+                "type": "wardude",
+                "focus": 6,
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/casters/Vindictus1.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 16
+                }
+            }
+        },
+        "jacks": {
+
+        },
+        "units": {
+
+        },
+        "solos": {
+
+        }
+    }
+}
