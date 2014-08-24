@@ -3,9 +3,9 @@
 - ruler range limit.
 - ruler origin, target.
 
-- model label
-- model effect (spell, etc)
+- model continuous effect
 - model unit number
+- scyrah fields
 
 - mode charge.
 - mode ranged attack.
