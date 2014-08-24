@@ -182,6 +182,17 @@ angular.module('vassalApp.services')
             var msg = message('dice', text);
             this.newMessage(msg);
           },
+          rollDeviation: function(dist_max) {
+            var direction = instance.rollDie();
+            var distance = Math.min(instance.rollDie(), dist_max ? dist_max : 6);
+            var msg = message('dice', 'AoE deviation : direction '+direction+
+                              ', distance '+distance+'"');
+            this.newMessage(msg);
+            return {
+              direction: direction,
+              distance: distance*10,
+            };
+          },
           layers: {
             board: true,
             terrain: true,

@@ -982,6 +982,13 @@
       </div>
       <div>
         <button ng-click="doCreateAoE(3)">New AoE</button>
+        <form style="display:inline;"
+              ng-show="game.templates.active.type === 'aoe'">
+          Max Deviation : <input style="width:5em;"
+                                 type="number"
+                                 ng-model="aoe_max_deviation"
+                                 />
+        </form>
         <p ng-show="create_template_mode && create_template_preview.type === 'aoe'">
           - use your mouse to position the AoE over the board, then click to place it.
           - to center AoE on a model, press the shift key then click on the model.
@@ -1115,7 +1122,8 @@
       <li>m : toggle melee range of selected model</li>
       <li>r (AoE selected & ruler active) : place the selected AoE at the end of the ruler.</li>
       <li>r (model selected) : toggle reach range of selected model</li>
-      <li>d : toggle Ruler mode</li>
+      <li>d (AoE selected): auto-deviate AoE</li>
+      <li>d (model selected): toggle Ruler mode</li>
       <li>+/- (Numeric Kbd only) : increment/decrement focus/counter of selected model.</li>
       <li>3/4/5 (AoE selected) : change AoE size to 3/4/5"</li>
       <li>3/4/5 (model selected) : toggle AOE 3/4/5" centered on selected model</li>
