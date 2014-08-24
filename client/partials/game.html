@@ -389,7 +389,7 @@
                  rotate({{sp.rot-180}}, 10, 0)
                  "
                  ng-style="{
-                 'stroke': sp === game.templates.active ? '#0F0' : '#C60',
+                 'stroke': sp === game.templates.active ? (mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')) : '#C60',
                  }"
                  ng-click="game.templates.active = (sp === game.templates.active) ? null : sp"
                  />
@@ -441,7 +441,7 @@
                     pointer-events: none;
                     "
                     ng-style="{
-                    'stroke': game.templates.active ? '#0C0' : '#0F0'
+                    'stroke': game.templates.active ? '#090' : '#0F0'
                     }"
                     />
             <line ng-show="model.info.damage.total > 1"
@@ -619,11 +619,22 @@
                  rotate({{sp.rot-180}}, 10, 0)
                  "
                  ng-style="{
-                 'stroke': sp === game.templates.active ? '#0F0' : '#C60',
+                 'stroke': sp === game.templates.active ? (mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')) : '#C60',
                  }"
                  ng-click="onTemplateClick($event, sp)"
                  ng-mousedown="onTemplateMouseDown($event, sp)"
                  />
+        <circle ng-show="game.templates.active !== null && game.templates.active.origin !== null"
+                cx="{{game.templates.active.origin.state.x}}"
+                cy="{{game.templates.active.origin.state.y}}"
+                r="{{game.templates.active.origin.info.r}}"
+                style="
+                fill:none;
+                stroke:#FF0;
+                stroke-width:1px;
+                pointer-events: none;
+                "
+                />
       </svg>
       <circle ng-show="create_template_mode && create_template_preview.type === 'aoe'"
               cx="{{create_template_preview.x}}"
@@ -1087,9 +1098,12 @@
                                  />
         </form><br />
         <button ng-click="doCreateTemplate('spray',6)">New Spray</button>
-        <p ng-show="create_template_mode && create_template_preview.type === 'aoe'">
-          - use your mouse to position the AoE over the board, then click to place it.
-          - to center AoE on a model, press the shift key then click on the model.
+        <p ng-show="create_template_mode">
+          - use your mouse to position the template over the board, then click to place it.
+          - to center an AoE on a model, press the shift key then click on the model.
+          - use t/o+click-on-model to select a spray's target/origin model.
+          - use l to lock a template.
+          - use Suppr to remove a template.
         </p>
       </div>
     </div>
@@ -1214,14 +1228,16 @@
       <li>Shift+c : toggle warnouns Control Zone.</li>
       <li>Suppr (AoE selected) : delete selected template.</li>
       <li>Suppr (model selected) : move selected models to drop bin.</li>
+      <li>d (AoE selected): auto-deviate AoE</li>
+      <li>d (model selected): toggle Ruler mode</li>
       <li>f : toggle focus/counter of selected model</li>
       <li>i : toggle image of selected model</li>
       <li>l : lock selected template (place it under models and prevent drag)</li>
       <li>m : toggle melee range of selected model</li>
       <li>r (AoE selected & ruler active) : place the selected AoE at the end of the ruler.</li>
       <li>r (model selected) : toggle reach range of selected model</li>
-      <li>d (AoE selected): auto-deviate AoE</li>
-      <li>d (model selected): toggle Ruler mode</li>
+      <li>t (spray selected) : trigger spray's target selection mode</li>
+      <li>o (spray selected) : trigger spray's origin selection mode</li>
       <li>+/- (Numeric Kbd only) : increment/decrement focus/counter of selected model.</li>
       <li>3/4/5 (AoE selected) : change AoE size to 3/4/5"</li>
       <li>3/4/5 (model selected) : toggle AOE 3/4/5" centered on selected model</li>
