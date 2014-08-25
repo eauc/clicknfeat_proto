@@ -730,6 +730,28 @@
               ">
           {{game.ruler.state.length}}"
         </text>
+        <circle ng-show="game.ruler.origin !== null"
+                cx="{{game.ruler.origin.state.x}}"
+                cy="{{game.ruler.origin.state.y}}"
+                r="{{game.ruler.origin.info.r}}"
+                style="
+                fill:none;
+                stroke:#F90;
+                stroke-width:1px;
+                pointer-events: none;
+                "
+                />
+        <circle ng-show="game.ruler.target !== null"
+                cx="{{game.ruler.target.state.x}}"
+                cy="{{game.ruler.target.state.y}}"
+                r="{{game.ruler.target.info.r}}"
+                style="
+                fill:none;
+                stroke:#F09;
+                stroke-width:1px;
+                pointer-events: none;
+                "
+                />
       </g>
       <g ng-show="model_drag.active"
          style="pointer-events: none"
@@ -1081,14 +1103,18 @@
     <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
       <div><strong>Tools :</strong></div>
       <div>
-        <input id="tools-ruler-check"
+        Ruler:
+        <input id="tools-ruler-use-check"
                type="checkbox"
-               ng-model="drag_mode"
-               ng-true-value="'ruler'"
-               ng-false-value="'selection'"
-               ng-change="onDragModeChange()"
+               ng-model="ruler_drag.active"
                />
-        <label for="tools-ruler-check">Ruler</label>
+        <label for="tools-ruler-use-check">use</label>
+        <input id="tools-ruler-show-check"
+               type="checkbox"
+               ng-model="show_ruler"
+               ng-change="game.ruler.setActive(show_ruler)"
+               />
+        <label for="tools-ruler-show-check">show</label>
       </div>
       <div>
         <button ng-click="doCreateTemplate('aoe',3)">New AoE</button>
@@ -1230,13 +1256,13 @@
       <li>Suppr (AoE selected) : delete selected template.</li>
       <li>Suppr (model selected) : move selected models to drop bin.</li>
       <li>d (AoE selected): auto-deviate AoE</li>
-      <li>d (no AoE selected): toggle Ruler mode</li>
       <li>f : toggle focus/counter of selected model</li>
       <li>i : toggle image of selected model</li>
       <li>l : lock selected template (place it under models and prevent drag)</li>
       <li>m : toggle melee range of selected model</li>
       <li>r (AoE selected & ruler active) : place the selected AoE at the end of the ruler.</li>
       <li>r (model selected) : toggle reach range of selected model</li>
+      <li>R (Shift+r): toggle Ruler mode</li>
       <li>o (template selected) : trigger template's origin selection mode</li>
       <li>t (template selected) : trigger template's target selection mode</li>
       <li>u : unselect all models.</li>

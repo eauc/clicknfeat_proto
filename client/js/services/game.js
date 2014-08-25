@@ -263,7 +263,16 @@ angular.module('vassalApp.services')
               length: 90,
               active: false
             },
+            origin: null,
+            target: null,
             cmd: undefined,
+            sendStateCmd: function() {
+              if(!this.cmd) {
+                this.cmd = command('setRuler', this.state);
+              }
+              instance.newCommand(this.cmd);
+              this.cmd = undefined;
+            },
             setActive: function(active) {
               if(this.state.active != active) {
                 var previous = this.state.active;
@@ -281,14 +290,18 @@ angular.module('vassalApp.services')
               this.cmd = undefined;
             },
             startDraging: function(x, y) {
+              this.origin = null;
+              this.target = null;
               this.cmd = command('setRuler', this.state);
               this.setStart(x, y);
-              this.state.active = 'draging';
+              this.state.active = true;
             },
             endDraging: function(x, y) {
+              // this.origin = null;
+              // this.target = null;
               this.setEnd(x, y);
               this.refresh();
-              this.setActive((this.state.length > 0.05));
+              this.sendStateCmd();
             },
             setStart: function(x, y) {
               this.state.length = '';

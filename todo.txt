@@ -1,3 +1,5 @@
+- model label synchro
+
 - ruler range limit.
 - ruler origin, target.
 - shortcut pour reset model rot/tourner de 180
@@ -19,4 +21,8 @@
 
 - flag to disable drag preview to prevent pre-measuring
 - text no highlight
+
+
+des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
+Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui reviennent très souvent dans les règles spéciales, genre les lignes de 3" et de 5".
 
