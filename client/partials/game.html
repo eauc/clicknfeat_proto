@@ -365,7 +365,7 @@
                 stroke-width:0.5px;
                 "
                 ng-style="{
-                'stroke': aoe === game.templates.active ? '#0F0' : '#C60',
+                 'stroke': aoe === game.templates.active ? (mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')) : '#C60',
                 }"
                 ng-click="game.templates.active = (aoe === game.templates.active) ? null : aoe"
                 />
@@ -580,7 +580,7 @@
                 stroke-width:0.5px;
                 "
                 ng-style="{
-                'stroke': aoe === game.templates.active ? '#0F0' : '#C60',
+                 'stroke': aoe === game.templates.active ? (mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')) : '#C60',
                 }"
                 ng-click="onTemplateClick($event, aoe)"
                 ng-mousedown="onTemplateMouseDown($event, aoe)"
@@ -589,10 +589,12 @@
               x1="{{game.templates.active.x}}" y1="{{game.templates.active.y}}"
               x2="{{game.templates.active.x}}" y2="{{game.templates.active.y-game.templates.active.size*5}}"
               style="
-              stroke:#0F0;
               stroke-width:0.75px;
               marker-end:url(#aoe-direction-end);
               "
+              ng-style="{
+              'stroke': mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')
+              }"
               transform="
               rotate({{game.templates.active.rot}},
               {{game.templates.active.x}},
@@ -1100,8 +1102,7 @@
         <button ng-click="doCreateTemplate('spray',6)">New Spray</button>
         <p ng-show="create_template_mode">
           - use your mouse to position the template over the board, then click to place it.
-          - to center an AoE on a model, press the shift key then click on the model.
-          - use t/o+click-on-model to select a spray's target/origin model.
+          - use t/o+click-on-model to select a template's target/origin model.
           - use l to lock a template.
           - use Suppr to remove a template.
         </p>
@@ -1217,28 +1218,28 @@
     </ul>
     Keyboard shortcuts :
     <ul>
-      <li>Esc : exit create mode</li>
+      <li>Esc : exit sub-modes</li>
       <li>Alt + +/- (Numeric Kbd only) : Zoom in/out</li>
       <li>Alt + Directionnal Arrows : move view</li>
-      <li>(Shift + )Up/Down Arrows : (small) advance selected model</li>
-      <li>(Shift + )Right/Left Arrows : (small) rotate selected model</li>
-      <li>(Shift + )Ctrl + Directionnal Arrows : (small) move selected model</li>
+      <li>(Shift + )Up/Down Arrows : (small) advance selected model/template</li>
+      <li>(Shift + )Right/Left Arrows : (small) rotate selected model/template</li>
+      <li>(Shift + )Ctrl + Directionnal Arrows : (small) move selected model/template</li>
       <li>Ctrl+z : undo last command.</li>
       <li>Ctrl+c : copy selected models (move mouse to place new models, then click to create).</li>
       <li>Shift+c : toggle warnouns Control Zone.</li>
       <li>Suppr (AoE selected) : delete selected template.</li>
       <li>Suppr (model selected) : move selected models to drop bin.</li>
       <li>d (AoE selected): auto-deviate AoE</li>
-      <li>d (model selected): toggle Ruler mode</li>
+      <li>d (no AoE selected): toggle Ruler mode</li>
       <li>f : toggle focus/counter of selected model</li>
       <li>i : toggle image of selected model</li>
       <li>l : lock selected template (place it under models and prevent drag)</li>
       <li>m : toggle melee range of selected model</li>
       <li>r (AoE selected & ruler active) : place the selected AoE at the end of the ruler.</li>
       <li>r (model selected) : toggle reach range of selected model</li>
-      <li>t (spray selected) : trigger spray's target selection mode</li>
+      <li>o (template selected) : trigger template's origin selection mode</li>
+      <li>t (template selected) : trigger template's target selection mode</li>
       <li>u : unselect all models.</li>
-      <li>o (spray selected) : trigger spray's origin selection mode</li>
       <li>+/- (Numeric Kbd only) : increment/decrement focus/counter of selected model.</li>
       <li>3/4/5 (AoE selected) : change AoE size to 3/4/5"</li>
       <li>3/4/5 (model selected) : toggle AOE 3/4/5" centered on selected model</li>

@@ -1,4 +1,3 @@
-- target AoE
 - ruler range limit.
 - ruler origin, target.
 - shortcut pour reset model rot/tourner de 180
