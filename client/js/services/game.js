@@ -335,37 +335,37 @@ angular.module('vassalApp.services')
             instance.selection.push(mod.state.id);
           }
         });
-        var new_model;
-        if(_.keys(instance.models).length === 0) {
-          _.times(20, function(i) {
-            new_model = model(3*i,
-                              $rootScope.factions.cygnar.models.jacks.hammersmith,
-                              {
-                                x: 200,
-                                y: 20+20*i,
-                                rot: -30,
-                                show_reach: true,
-                              });
-            instance.models[new_model.state.id] = new_model;
-            new_model = model(3*i+1,
-                              $rootScope.factions.cygnar.models.jacks.grenadier,
-                              {
-                                x: 240,
-                                y: 20+20*i,
-                                rot: 0
-                              });
-            instance.models[new_model.state.id] = new_model;
-            new_model = model(3*i+2,
-                              $rootScope.factions.cygnar.models.solos.stormwall_pod,
-                              {
-                                x: 280,
-                                y: 20+20*i,
-                                rot: 30,
-                                show_melee: true,
-                              });
-            instance.models[new_model.state.id] = new_model;
-          });
-        }
+        // var new_model;
+        // if(_.keys(instance.models).length === 0) {
+        //   _.times(20, function(i) {
+        //     new_model = model(3*i,
+        //                       $rootScope.factions.cygnar.models.jacks.hammersmith,
+        //                       {
+        //                         x: 200,
+        //                         y: 20+20*i,
+        //                         rot: -30,
+        //                         show_reach: true,
+        //                       });
+        //     instance.models[new_model.state.id] = new_model;
+        //     new_model = model(3*i+1,
+        //                       $rootScope.factions.cygnar.models.jacks.grenadier,
+        //                       {
+        //                         x: 240,
+        //                         y: 20+20*i,
+        //                         rot: 0
+        //                       });
+        //     instance.models[new_model.state.id] = new_model;
+        //     new_model = model(3*i+2,
+        //                       $rootScope.factions.cygnar.models.solos.stormwall_pod,
+        //                       {
+        //                         x: 280,
+        //                         y: 20+20*i,
+        //                         rot: 30,
+        //                         show_melee: true,
+        //                       });
+        //     instance.models[new_model.state.id] = new_model;
+        //   });
+        // }
 
         var cmds = instance.commands;
         instance.commands = [];
