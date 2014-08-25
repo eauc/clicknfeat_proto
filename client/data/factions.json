@@ -1,4 +1,5 @@
 {
   "cygnar": "/data/cygnar.json",
-  "menoth" : "/data/menoth.json"
+  "menoth" : "/data/menoth.json",
+  "oroboros" : "/data/oroboros.json"
 }

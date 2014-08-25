@@ -486,6 +486,7 @@
                    width="10"
                    height="10"
                    xlink:href="data/icons/Fire.png"
+                   style="pointer-events:none;"
                    />
             <image ng-if="model.state.show_corrosion"
                    x="{{model.info.width/2-11}}"
@@ -493,6 +494,7 @@
                    width="10"
                    height="10"
                    xlink:href="data/icons/Corrosion.png"
+                   style="pointer-events:none;"
                    />
             <image ng-if="model.state.show_stationary"
                    x="{{model.info.width/2+2}}"
@@ -500,6 +502,7 @@
                    width="10"
                    height="10"
                    xlink:href="data/icons/Stationary.png"
+                   style="pointer-events:none;"
                    />
             <image ng-if="model.state.show_blind"
                    x="{{model.info.width/2-18}}"
@@ -507,6 +510,7 @@
                    width="10"
                    height="10"
                    xlink:href="data/icons/Blind.png"
+                   style="pointer-events:none;"
                    />
             <image ng-if="model.state.show_kd"
                    x="{{model.info.width/2+9}}"
@@ -514,6 +518,7 @@
                    width="10"
                    height="10"
                    xlink:href="data/icons/Disrupted.png"
+                   style="pointer-events:none;"
                    />
             <image ng-if="model.state.show_leader"
                    x="{{model.info.width/2-5+model.info.r*0.7}}"
@@ -521,6 +526,7 @@
                    width="10"
                    height="10"
                    xlink:href="data/icons/Leader.png"
+                   style="pointer-events:none;"
                    />
           </g>
         </svg>
@@ -866,7 +872,11 @@
             ng-click="doModelDamage(game.models[game.selection[0]],game.models[game.selection[0]].info.damage.n-i)"
             ></div>
         </div>
-        <table ng-show="game.models[game.selection[0]].info.damage.type == 'jack'"
+        <table ng-show="
+               game.models[game.selection[0]].info.damage.type === 'jack' ||
+               game.models[game.selection[0]].info.damage.type === 'gargantuan' ||
+               game.models[game.selection[0]].info.damage.type === 'beast'
+               "
                style="border-collapse:collapse;text-align:center;">
           <tr>
             <td ng-repeat="col in ['1','2','3','4','5','6']"
@@ -876,7 +886,7 @@
               {{col}}
             </td>
           </tr>
-          <tr ng-repeat="line in [0,1,2,3,4,5]">
+          <tr ng-repeat="line in range(game.models[game.selection[0]].info.damage.depth)">
             <td ng-repeat="col in ['1','2','3','4','5','6']"
                 style="width:20px;height:20px;border:1px solid black;"
                 ng-style="{
@@ -1042,7 +1052,11 @@
                  ng-repeat="i in range(model.id.damage.n).reverse()"></div>
           </div>
           
-          <table ng-show="model.id.damage.type == 'jack'"
+          <table ng-show="
+                 model.id.damage.type === 'jack' ||
+                 model.id.damage.type === 'beast' ||
+                 model.id.damage.type === 'gargantuan'
+                 "
                  style="border-collapse:collapse;text-align:center;">
             <tr>
               <td ng-repeat="col in ['1','2','3','4','5','6']"
@@ -1051,7 +1065,7 @@
                 {{col}}
               </td>
             </tr>
-            <tr ng-repeat="line in [0,1,2,3,4,5]">
+            <tr ng-repeat="line in range(model.id.damage.depth)">
               <td ng-repeat="col in ['1','2','3','4','5','6']"
                   style="width:20px;height:20px;border:1px solid black;"
                   ng-style="

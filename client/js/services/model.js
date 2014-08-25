@@ -110,6 +110,8 @@ angular.module('vassalApp.services')
         },
         toggleDamage: function(game, col, line) {
           switch(this.info.damage.type) {
+          case 'beast':
+          case 'gargantuan':
           case 'jack':
           case 'colossal':
             {
@@ -154,15 +156,23 @@ angular.module('vassalApp.services')
         resetAllDamage: function(game) {
           switch(this.info.damage.type) {
           case 'jack': 
+          case 'beast': 
+          case 'gargantuan': 
             {
               this.state.damage = {
                 'total': 0,
-                '1': [ 0, 0, 0, 0, 0, 0 ],
-                '2': [ 0, 0, 0, 0, 0, 0 ],
-                '3': [ 0, 0, 0, 0, 0, 0 ],
-                '4': [ 0, 0, 0, 0, 0, 0 ],
-                '5': [ 0, 0, 0, 0, 0, 0 ],
-                '6': [ 0, 0, 0, 0, 0, 0 ]
+                '1': Array.apply(null, new Array(this.info.damage.depth))
+                  .map(Number.prototype.valueOf,0),
+                '2': Array.apply(null, new Array(this.info.damage.depth))
+                  .map(Number.prototype.valueOf,0),
+                '3': Array.apply(null, new Array(this.info.damage.depth))
+                  .map(Number.prototype.valueOf,0),
+                '4': Array.apply(null, new Array(this.info.damage.depth))
+                  .map(Number.prototype.valueOf,0),
+                '5': Array.apply(null, new Array(this.info.damage.depth))
+                  .map(Number.prototype.valueOf,0),
+                '6': Array.apply(null, new Array(this.info.damage.depth))
+                  .map(Number.prototype.valueOf,0),
               };
               break;
             }
@@ -247,15 +257,23 @@ angular.module('vassalApp.services')
         };
         switch(instance.info.damage.type) {
         case 'jack': 
+        case 'beast': 
+        case 'gargantuan': 
           {
             instance.state.damage = {
               'total': 0,
-              '1': [ 0, 0, 0, 0, 0, 0 ],
-              '2': [ 0, 0, 0, 0, 0, 0 ],
-              '3': [ 0, 0, 0, 0, 0, 0 ],
-              '4': [ 0, 0, 0, 0, 0, 0 ],
-              '5': [ 0, 0, 0, 0, 0, 0 ],
-              '6': [ 0, 0, 0, 0, 0, 0 ]
+              '1': Array.apply(null, new Array(instance.info.damage.depth))
+                .map(Number.prototype.valueOf,0),
+              '2': Array.apply(null, new Array(instance.info.damage.depth))
+                .map(Number.prototype.valueOf,0),
+              '3': Array.apply(null, new Array(instance.info.damage.depth))
+                .map(Number.prototype.valueOf,0),
+              '4': Array.apply(null, new Array(instance.info.damage.depth))
+                .map(Number.prototype.valueOf,0),
+              '5': Array.apply(null, new Array(instance.info.damage.depth))
+                .map(Number.prototype.valueOf,0),
+              '6': Array.apply(null, new Array(instance.info.damage.depth))
+                .map(Number.prototype.valueOf,0)
             };
             break;
           }

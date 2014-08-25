@@ -1,0 +1,77 @@
+{
+  "name": "Circle Oroboros",
+  "color": "#5ab36e",
+  "icon": "data/icons/oroboros_50.png",
+  "models": {
+    "locks": {
+      "morvahna1": {
+        "name": "Morvahna1 (Morvahna the Autumnblade)",
+        "fk_name": "Morvahna the Autumnblade",
+        "type": "wardude",
+        "focus": 7,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/oroboros/locks/Morvahna1.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 14
+        }
+      }
+    },
+    "beasts": {
+      "warpwolf_stalker": {
+        "name": "Warpwolf Stalker",
+        "fk_name": "Warpwolf Stalker",
+        "type": "beast",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/oroboros/beasts/Warpwolf_Stalker.png"
+        },
+        "damage": {
+          "type": "beast",
+          "1": [  "b",  "b",  "b", null, null ],
+          "2": [  "b",  "b",  "b",  "b",  "b" ],
+          "3": [  "b",  "b",  "b",  "b", null ],
+          "4": [  "b",  "b",  "b",  "b",  "b" ],
+          "5": [  "b",  "b",  "b", null, null ],
+          "6": [  "b",  "b",  "b",  "b",  "b" ]
+        }
+      },
+      "woldwrath": {
+        "name": "Woldwrath",
+        "fk_name": "Woldwrath",
+        "type": "beast",
+        "base": "huge",
+        "width": 116.667,
+        "height": 116.667,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/oroboros/beasts/Woldwrath.png"
+        },
+        "damage": {
+          "type": "gargantuan",
+          "1": [  "b",  "b",  "b",  "b",  "b", null, null, null, null, null, null, null, null ],
+          "2": [  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null, null, null, null, null ],
+          "3": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null ],
+          "4": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b" ],
+          "5": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null, null, null ],
+          "6": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null ]
+        }
+      }
+    },
+    "units": {
+    },
+    "solos": {
+    }
+  }
+}

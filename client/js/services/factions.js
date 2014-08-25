@@ -27,9 +27,12 @@ angular.module('vassalApp.services')
         }
         switch(model.damage.type) {
         case 'jack':
+        case 'beast':
+        case 'gargantuan':
           {
             model.damage.total = totalJackDamage(model.damage,
                                                  ['1', '2', '3', '4', '5', '6']);
+            model.damage.depth = model.damage['1'].length;
             break;
           }
         case 'colossal':
