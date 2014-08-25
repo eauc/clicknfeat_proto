@@ -1,7 +1,8 @@
-- model continuous effect
 - test warbeasts
 - test gargantuans
 - scyrah fields
+
+- target mode model
 
 - model unit number
 - shortcut pour reset model rot/tourner de 180

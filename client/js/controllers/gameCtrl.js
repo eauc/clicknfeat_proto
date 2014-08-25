@@ -211,6 +211,16 @@ angular.module('vassalApp.controllers')
               return;
             }
           }
+          if(event.keyCode === 80) { // p
+            if($scope.game.selection.length > 0) {
+              if(event.altKey) {
+                var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_leader;
+                $scope.game.newCommand(command('onSelection', 'toggle', 'leader', new_val));
+                event.preventDefault();
+              }
+            }
+            return;
+          }
           if(event.keyCode === 82) { // r
             if($scope.game.templates.active &&
                $scope.game.ruler.state.active) {

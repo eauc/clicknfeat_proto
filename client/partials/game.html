@@ -515,6 +515,13 @@
                    height="10"
                    xlink:href="data/icons/Disrupted.png"
                    />
+            <image ng-if="model.state.show_leader"
+                   x="{{model.info.width/2-5+model.info.r*0.7}}"
+                   y="{{model.info.height/2-5+model.info.r*0.7-2}}"
+                   width="10"
+                   height="10"
+                   xlink:href="data/icons/Leader.png"
+                   />
           </g>
         </svg>
       </svg>
@@ -1318,6 +1325,7 @@
       <li>3/4/5 (model selected) : toggle AOE 3/4/5" centered on selected model</li>
       <li>6/8/0 (Spray selected) : change spray size to 6/8/10"</li>
       <li>Alt + b/c/f/k/s (model selected) : toggle Blind/Corrosion/Fire/KD/Stationary marker.</li>
+      <li>Alt + p (model selected) : toggle promote (leader marker) selected model.</li>
     </ul>
   </div>
 </div>
