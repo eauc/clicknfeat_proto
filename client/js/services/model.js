@@ -58,16 +58,9 @@ angular.module('vassalApp.services')
           this.state.y += dl;
           this.refresh(game);
         },
-        toggleImage: function(game) {
-          this.state.show_image = !this.state.show_image;
-        },
-        toggleMelee: function(game, val) {
-          var new_val = (val === undefined) ? !this.state.show_melee : val;
-          this.state.show_melee = new_val;
-        },
-        toggleReach: function(game, val) {
-          var new_val = (val === undefined) ? !this.state.show_melee : val;
-          this.state.show_reach = new_val;
+        toggle: function(game, type, val) {
+          var new_val = (val === undefined) ? !this.state['show_'+type] : val;
+          this.state['show_'+type] = new_val;
         },
         toggleAoe: function(game, size) {
           switch(size) {
@@ -101,9 +94,6 @@ angular.module('vassalApp.services')
         },
         decrementFocus: function(game) {
           this.state.focus = Math.max(0, this.state.focus-1);
-        },
-        toggleFocus: function(game) {
-          this.state.show_focus = !this.state.show_focus;
         },
         startDraging: function(game) {
           this.state_before_drag = _.extend({}, this.state);
@@ -225,6 +215,11 @@ angular.module('vassalApp.services')
             show_reach: false,
             show_aoe: 0,
             show_focus: args[1].type !== 'warrior',
+            show_fire: false,
+            show_corrosion: false,
+            show_stationary: false,
+            show_blind: false,
+            show_kd: false,
             active: false
           } : _.extend({
             id: args[0],
@@ -238,6 +233,11 @@ angular.module('vassalApp.services')
             show_reach: false,
             show_aoe: 0,
             show_focus: args[1].type !== 'warrior',
+            show_fire: false,
+            show_corrosion: false,
+            show_stationary: false,
+            show_blind: false,
+            show_kd: false,
             active: false
           }, args[2])
         };

@@ -480,6 +480,41 @@
                     "
                     >{{model.state.label}}</text>
             </g>
+            <image ng-if="model.state.show_fire"
+                   x="{{model.info.width/2-4}}"
+                   y="{{model.info.height/2+model.info.r-2}}"
+                   width="10"
+                   height="10"
+                   xlink:href="data/icons/Fire.png"
+                   />
+            <image ng-if="model.state.show_corrosion"
+                   x="{{model.info.width/2-11}}"
+                   y="{{model.info.height/2+model.info.r}}"
+                   width="10"
+                   height="10"
+                   xlink:href="data/icons/Corrosion.png"
+                   />
+            <image ng-if="model.state.show_stationary"
+                   x="{{model.info.width/2+2}}"
+                   y="{{model.info.height/2+model.info.r-1}}"
+                   width="10"
+                   height="10"
+                   xlink:href="data/icons/Stationary.png"
+                   />
+            <image ng-if="model.state.show_blind"
+                   x="{{model.info.width/2-18}}"
+                   y="{{model.info.height/2+model.info.r-2}}"
+                   width="10"
+                   height="10"
+                   xlink:href="data/icons/Blind.png"
+                   />
+            <image ng-if="model.state.show_kd"
+                   x="{{model.info.width/2+9}}"
+                   y="{{model.info.height/2+model.info.r-1}}"
+                   width="10"
+                   height="10"
+                   xlink:href="data/icons/Disrupted.png"
+                   />
           </g>
         </svg>
       </svg>
@@ -1282,6 +1317,7 @@
       <li>3/4/5 (AoE selected) : change AoE size to 3/4/5"</li>
       <li>3/4/5 (model selected) : toggle AOE 3/4/5" centered on selected model</li>
       <li>6/8/0 (Spray selected) : change spray size to 6/8/10"</li>
+      <li>Alt + b/c/f/k/s (model selected) : toggle Blind/Corrosion/Fire/KD/Stationary marker.</li>
     </ul>
   </div>
 </div>

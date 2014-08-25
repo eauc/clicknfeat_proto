@@ -1,7 +1,9 @@
 - model continuous effect
-- model unit number
+- test warbeasts
+- test gargantuans
 - scyrah fields
 
+- model unit number
 - shortcut pour reset model rot/tourner de 180
 - mode charge.
 - mode ranged attack.
