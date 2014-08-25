@@ -130,6 +130,24 @@
                     "n": 17
                 }
             },
+            "reznik2": {
+                "name": "Reznik2 (Servath Reznik, Wrath of Ages)",
+                "fk_name": "Servath Reznik, Wrath of Ages",
+                "type": "wardude",
+                "focus": 7,
+                "base": "huge",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 20
+                }
+            },
             "kreoss1": {
                 "name": "Kreoss1 (High Exemplar Kreoss)",
                 "fk_name": "High Exemplar Kreoss",
@@ -681,12 +699,660 @@
                     "R5": [ null, null, "b", "b", "r", "c" ],
                     "R6": [ null, null, "b", "b", "r", "r" ]
                 }
+            },
+            "indictor": {
+                "name": "Indictor",
+                "fk_name": "Indictor",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.2,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, "b",  "b",  "b",  "l", null ],
+                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+                    "6": [ null, "b",  "b",  "b",  "r", null ]
+                }
             }
         },
         "units": {
-
+            "choir": {
+                "name": "Choir of Menoth",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Grunts",
+                            "fk_name": "Choir of Menoth",
+                            "ranges": [1, 3, 5],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Choir_Grunt.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        },
+                        "priest": {
+                            "name": "Priest",
+                            "ranges": [1],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Choir_Priest.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    }
+                }
+            },
+            "daughtersOfTheFlame": {
+                "name": "Daughters of the Flame",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Leader and Grunts",
+                            "fk_name": "Daughters of the Flame",
+                            "ranges": [1, 6],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Daughters_Grunt.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    }
+                }
+            },
+            "deliverers": {
+                "name": "Deliverers",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Leader and Grunts",
+                            "fk_name": "Deliverers",
+                            "ranges": [1, 6, 10],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Delivers_Grunt.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    }
+                }
+            },
+            "delivererSunburstCrew": {
+                "name": "Deliverer Sunburst Crew",
+                "entries": {
+                    "grunt": {
+                        "grunt1": {
+                            "name": "Sunburst Crew 1",
+                            "fk_name": "Deliverer Sunburst Crew",
+                            "ranges": [1, 3],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/SunburstCrew1.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        },
+                        "grunt2": {
+                            "name": "Sunburst Crew 2",
+                            "fk_name": "Deliverer Sunburst Crew",
+                            "ranges": [1, 3],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/SunburstCrew2.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        },
+                        "leader": {
+                            "name": "Leader",
+                            "fk_name": "Deliverer Sunburst Crew",
+                            "ranges": [1, 3],
+                            "type": "warrior",
+                            "base": "large",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Sunburst.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    }
+                }
+            },
+            "bastions": {
+                "name": "Exemplar Bastions",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Leader and Grunts",
+                            "fk_name": "Exemplar Bastions",
+                            "ranges": [1, 3, 5],
+                            "type": "warrior",
+                            "base": "medium",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Bastions_Grunt.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 8
+                            }
+                        }
+                    }
+                }
+            },
+            "cinerators": {
+                "name": "Exemplar Cinerators",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Leader and 5 Grunts",
+                            "fk_name": "Exemplar Cinerators",
+                            "ranges": [1, 3, 5],
+                            "type": "warrior",
+                            "base": "medium",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Cinerators_Grunt.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 8
+                            }
+                        }
+                    }
+                }
+            },
+            "vengers": {
+                "name": "Exemplar Vengers",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Leader and Grunts",
+                            "fk_name": "Exemplar Vengers",
+                            "ranges": [1, 3, 5],
+                            "type": "warrior",
+                            "base": "large",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Vengers_Grunt.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 5
+                            }
+                        }
+                    }
+                }
+            },
+            "errants": {
+                "name": "Exemplar Errants",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Leader and Grunts",
+                            "fk_name": "Exemplar Errants",
+                            "ranges": [1, 6, 10],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Errant_Grunt.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    },
+                    "ua": {
+                        "officer": {
+                            "name": "Officer",
+                            "fk_name": "Exemplar Errant Officer & Standard Bearer",
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Errant_Officer.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 5
+                            }
+                        },
+                        "bearer": {
+                            "name": "Standard Bearer",
+                            "fk_name": "Exemplar Errant Officer & Standard Bearer",
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Errant_StandardBearer.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    }
+                }
+            },
+            "cleansers": {
+                "name": "Flameguard Cleansers",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Leader and Grunts",
+                            "fk_name": "Flameguard Cleansers",
+                            "ranges": [1, 6, 10],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Cleansers_Grunt.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    },
+                    "ua": {
+                        "officer": {
+                            "name": "Officer",
+                            "fk_name": "Flameguard Cleanser Officer",
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Cleanser_Officer.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 5
+                            }
+                        }
+                    }
+                }
+            },
+            "knights": {
+                "name": "Knights Exemplar",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Leader and Grunts",
+                            "fk_name": "Knights Exemplar",
+                            "ranges": [1, 6],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Knights_Grunt.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    }
+                }
+            },
+            "zealots": {
+                "name": "Holy Zealots",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Leader and Grunts",
+                            "fk_name": "Holy Zealots",
+                            "ranges": [1, 6, 10],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Zealots_Grunt.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    },
+                    "ua": {
+                        "officer": {
+                            "name": "Monolith Bearer",
+                            "fk_name": "Holy Zealot Monolith Bearer",
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Zealots_Monolith.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 5
+                            }
+                        }
+                    }
+                }
+            },
+            "idrianSkirmisher": {
+                "name": "Idrian Skirmishers",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Leader and Grunts",
+                            "fk_name": "Idrian Skirmishers",
+                            "ranges": [1, 6, 10],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Idrians_Grunt.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    },
+                    "ua": {
+                        "chieftain": {
+                            "name": "Chieftain",
+                            "fk_name": "Idrian Skirmishers Chieftain & Guide",
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Idrians_Chieftain.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 5
+                            }
+                        },
+                        "guide": {
+                            "name": "Guide",
+                            "fk_name": "Idrian Skirmishers Chieftain & Guide",
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Idrians_Guide.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 5
+                            }
+                        }
+                    }
+                }
+            },
+            "templeFlameguard": {
+                "name": "Temple Flameguard",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Leader and Grunts",
+                            "fk_name": "Temple Flameguard",
+                            "ranges": [1, 6, 10],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/TempleFlameguard_Grunt.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    },
+                    "ua": {
+                        "officer": {
+                            "name": "Officer",
+                            "fk_name": "Temple Flameguard Officer & Standard",
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/TempleFlameguard_Officer.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 5
+                            }
+                        },
+                        "standard": {
+                            "name": "Standard Bearer",
+                            "fk_name": "Temple Flameguard Officer & Standard",
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/TempleFlameguard_StandardBearer.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    }
+                }
+            },
+            "visigoth": {
+                "name": "Visgoth Juviah Rhoven & 2 Honor Guard",
+                "entries": {
+                    "grunt": {
+                        "rhoven": {
+                            "name": "Visgoth Juviah Rhoven",
+                            "fk_name": "Visgoth Juviah Rhoven & 2 Honor Guard",
+                            "ranges": [1, 3],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Visigoth_Rhoven.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 5
+                            }
+                        },
+                        "guis": {
+                            "name": "Guis",
+                            "fk_name": "Visgoth Juviah Rhoven & 2 Honor Guard",
+                            "ranges": [1, 3],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Visigoth_Guis.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 5
+                            }
+                        },
+                        "cassian": {
+                            "name": "Cassian",
+                            "fk_name": "Visgoth Juviah Rhoven & 2 Honor Guard",
+                            "ranges": [1, 3],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": "data/menoth/units/Visigoth_Cassian.png"
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 5
+                            }
+                        }
+                    }
+                }
+            },
+            "flamebringers": {
+                "name": "Flamebringers",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Leader and Grunts",
+                            "fk_name": "Flamebringers",
+                            "ranges": [1, 3, 5],
+                            "type": "warrior",
+                            "base": "large",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": ""
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 5
+                            }
+                        }
+                    }
+                }
+            }
         },
         "solos": {
+            "attendant": {
+                "name": "Attendant Priest",
+                "fk_name": "Attendant Priest",
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": "data/menoth/units/AttendantPriest.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
             "allegiant": {
                 "name": "Allegiant of the Order of the Fist",
                 "fk_name" : "Allegiant of the Order of the Fist",
@@ -941,6 +1607,24 @@
                 "damage": {
                     "type": "warrior",
                     "n": 8
+                }
+            },
+            "tristan": {
+                "name": "Initiate Tristan Durant",
+                "fk_name": "Initiate Tristan Durant",
+                "type": "warrior",
+                "focus": 6,
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
                 }
             }
         }
