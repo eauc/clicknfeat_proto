@@ -290,15 +290,11 @@ angular.module('vassalApp.services')
               this.cmd = undefined;
             },
             startDraging: function(x, y) {
-              this.origin = null;
-              this.target = null;
               this.cmd = command('setRuler', this.state);
               this.setStart(x, y);
               this.state.active = true;
             },
             endDraging: function(x, y) {
-              // this.origin = null;
-              // this.target = null;
               this.setEnd(x, y);
               this.refresh();
               this.sendStateCmd();

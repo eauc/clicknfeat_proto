@@ -23,11 +23,41 @@ angular.module('vassalApp.controllers')
              message,
              factions) {
       console.log('init gameCtrl');
+      $scope.ruler_drag = {
+        active: false,
+        start_x: 0, start_y: 0,
+        origin: null,
+        target: null
+      };
+      var skip_model_click = false;
+      $scope.model_drag = {
+        active: false,
+        start: {
+          x: null,
+          y: null,
+        },
+        end: {
+          x: null,
+          y: null,
+        },
+        length: 0,
+      };
+      $scope.template_drag = {
+        active: false,
+        start: {
+          x: null,
+          y: null,
+        },
+        ref: {
+          x: null,
+          y: null,
+        }
+      };
       if(!$stateParams.id || $stateParams.id.length <= 0) $state.go('start');
 
       $http.get('/api/games/'+$stateParams.id).then(function(response) {
         // console.log('search game success');
-        factions.then(function() {
+        return factions.then(function() {
           $scope.game = game(response.data);
           console.log($scope.game);
         });
@@ -135,6 +165,8 @@ angular.module('vassalApp.controllers')
                 if($scope.ruler_drag.state !== 'draging') {
                   $scope.ruler_drag.active = !$scope.ruler_drag.active;
                   $scope.ruler_drag.state = null;
+                  $scope.mode_ruler_origin = null;
+                  $scope.mode_ruler_target = null;
                 }
                 return;
               }
@@ -375,19 +407,6 @@ angular.module('vassalApp.controllers')
           }
         };
 
-        var skip_model_click = false;
-        $scope.model_drag = {
-          active: false,
-          start: {
-            x: null,
-            y: null,
-          },
-          end: {
-            x: null,
-            y: null,
-          },
-          length: 0,
-        };
         $scope.onModelMouseDown = function(event, model) {
           // console.log('mmd');
           // console.log(event);
@@ -396,12 +415,41 @@ angular.module('vassalApp.controllers')
           if($scope.create_template_mode) return;
           if($scope.game.templates.active) return;
           if($scope.mode_ruler_origin) {
-            $scope.game.ruler.origin = model;
+            $scope.ruler_drag.origin = model;
+            $scope.game.ruler.setStart(model.state.x, model.state.y);
+            $scope.game.ruler.state.active = false;
+            $scope.ruler_drag.target = null;
+            $scope.game.ruler.sendStateCmd();
             event.stopPropagation();
             return;
           }
           if($scope.mode_ruler_target) {
-            $scope.game.ruler.target = model;
+            if($scope.ruler_drag.origin === model) {
+              event.stopPropagation();
+              return;
+            }
+            $scope.ruler_drag.target = model;
+            var ruler = $scope.game.ruler;
+            var start_x = ruler.state.x1;
+            var start_y = ruler.state.y1;
+            var end_x = model.state.x;
+            var end_y = model.state.y;
+            if($scope.ruler_drag.origin) {
+              start_x = $scope.ruler_drag.origin.state.x;
+              start_y = $scope.ruler_drag.origin.state.y;
+            }
+            var angle = Math.atan2(end_x-start_x, start_y-end_y);
+            if($scope.ruler_drag.origin) {
+              start_x += $scope.ruler_drag.origin.info.r * Math.sin(angle);
+              start_y -= $scope.ruler_drag.origin.info.r * Math.cos(angle);
+            }
+            end_x -= model.info.r * Math.sin(angle);
+            end_y += model.info.r * Math.cos(angle);
+            $scope.game.ruler.setStart(start_x, start_y);
+            $scope.game.ruler.setEnd(end_x, end_y);
+            $scope.game.ruler.refresh();
+            $scope.game.ruler.state.active = true;
+            $scope.game.ruler.sendStateCmd();
             event.stopPropagation();
             return;
           }
@@ -417,17 +465,6 @@ angular.module('vassalApp.controllers')
             $scope.model_drag.end.y = $scope.model_drag.start.y;
             $scope.model_drag.length = 0;
             event.stopPropagation();
-          }
-        };
-        $scope.template_drag = {
-          active: false,
-          start: {
-            x: null,
-            y: null,
-          },
-          ref: {
-            x: null,
-            y: null,
           }
         };
         var template_active_before_down;
@@ -572,18 +609,12 @@ angular.module('vassalApp.controllers')
           }
         };
 
+        $scope.show_ruler = $scope.game.ruler.state.active;
         $scope.selection = {
           active: false,
           x: 10, y: 10,
           start_x: 10, start_y: 10,
           width: 0, height: 0,
-        };
-        $scope.show_ruler = $scope.game.ruler.state.active;
-        $scope.ruler_drag = {
-          active: false,
-          start_x: 0, start_y: 0,
-          origin: null,
-          target: null
         };
         $scope.doSelectStart = function(event) {
           // console.log('smd');
@@ -600,13 +631,13 @@ angular.module('vassalApp.controllers')
           var user_y = dom_y * $scope.game.board.height / elem_rect.height;
           // console.log('user ' + user_x + ' ' + user_y);
           if($scope.ruler_drag.active) {
-            console.log('starting');
+            // console.log('starting');
             $scope.ruler_drag.state = 'starting';
             $scope.ruler_drag.start_x = event.screenX;
             $scope.ruler_drag.start_y = event.screenY;
             $scope.ruler_drag.user_start_x = user_x;
             $scope.ruler_drag.user_start_y = user_y;
-            console.log($scope.ruler_drag);
+            // console.log($scope.ruler_drag);
             return;
           }
           $scope.selection.active = true;
@@ -661,7 +692,7 @@ angular.module('vassalApp.controllers')
             var dy = event.screenY - $scope.ruler_drag.start_y;
             dx *= ($scope.game.board.view.width / 800);
             dy *= ($scope.game.board.view.height / 800);
-            console.log(dx, dy);
+            // console.log(dx, dy);
             var elem_rect = canvas.getBoundingClientRect();
             // console.log(elem_rect);
             var dom_x = event.clientX - elem_rect.left;
@@ -672,17 +703,21 @@ angular.module('vassalApp.controllers')
             // console.log('user ' + user_x + ' ' + user_y);
             if($scope.ruler_drag.state === 'starting' &&
                (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1)) {
-              console.log('starting -> draging');
+              // console.log('starting -> draging');
               $scope.ruler_drag.state = 'draging';
+              $scope.mode_ruler_origin = false;
+              $scope.mode_ruler_target = false;
+              $scope.ruler_drag.origin = null;
+              $scope.ruler_drag.target = null;
               $scope.game.ruler.startDraging($scope.ruler_drag.user_start_x,
                                              $scope.ruler_drag.user_start_y);
               $scope.show_ruler = true;
-              console.log($scope.ruler_drag);
+              // console.log($scope.ruler_drag);
             }
             else if($scope.ruler_drag.state === 'draging') {
-              console.log('draging');
+              // console.log('draging');
               $scope.game.ruler.setEnd(user_x, user_y);
-              console.log($scope.ruler_drag);
+              // console.log($scope.ruler_drag);
             }
             return;
           }
@@ -769,7 +804,7 @@ angular.module('vassalApp.controllers')
           if($scope.template_drag.active) return;
           if($scope.ruler_drag.active) {
             if($scope.ruler_drag.state === 'draging') {
-              console.log('draging -> end');
+              // console.log('draging -> end');
               var elem_rect = canvas.getBoundingClientRect();
               // console.log(elem_rect);
               var dom_x = event.clientX - elem_rect.left;
@@ -781,10 +816,10 @@ angular.module('vassalApp.controllers')
               $scope.game.ruler.endDraging(user_x, user_y);
             }
             else {
-              console.log($scope.ruler_drag.state+' -> end');
+              // console.log($scope.ruler_drag.state+' -> end');
             }
             $scope.ruler_drag.state = null;
-            console.log($scope.ruler_drag);
+            // console.log($scope.ruler_drag);
             return;
           }
           if($scope.model_drag.active) {
