@@ -93,6 +93,9 @@ angular.module('vassalApp.services')
             this.state.show_control = !this.state.show_control;
           }
         },
+        setLabel: function(game, label) {
+          this.state.label = label;
+        },
         incrementFocus: function(game) {
           this.state.focus++;
         },

@@ -1,12 +1,8 @@
-- model label synchro
-
-- ruler range limit.
-- shortcut pour reset model rot/tourner de 180
-
 - model continuous effect
 - model unit number
 - scyrah fields
 
+- shortcut pour reset model rot/tourner de 180
 - mode charge.
 - mode ranged attack.
 - sauvegarde des models selectionnes dans un fichier pour import ulterieur ?

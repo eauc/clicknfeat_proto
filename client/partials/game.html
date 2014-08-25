@@ -799,8 +799,11 @@
       </div>
       <div>
         <strong>Label :</strong>
-        <input type="text"
-               ng-model="game.models[game.selection[0]].state.label" />
+        <form style="display:inline-block;margin:0px;padding:0px;"
+              ng-submit="doSetLabel()">
+          <input type="text"
+                 ng-model="model_label" />
+        </form>
       </div>
       <div ng-show="game.models[game.selection[0]].info.type === 'wardude'">
         <strong>Focus/Fury :</strong>

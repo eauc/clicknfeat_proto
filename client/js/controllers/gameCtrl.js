@@ -1124,6 +1124,10 @@ angular.module('vassalApp.controllers')
           importFKList($scope.fk_read_string);
         };
 
+        $scope.doSetLabel = function() {
+          $scope.game.newCommand(command('onSelection', 'setLabel', $scope.model_label));
+          $scope.model_label = '';
+        };
         $scope.doResetAllModelDamage = function() {
           $scope.game.newCommand(command('onSelection', 'resetAllDamage'));
         };
