@@ -144,6 +144,10 @@ angular.module('vassalApp.controllers')
               return;
             }
           }
+          if(event.keyCode === 85) { // u
+            $scope.game.newCommand(command('setSelection', []));
+            return;
+          }
           if(event.keyCode === 99 ||
              event.keyCode === 51) { // 3
             if($scope.game.templates.active &&
@@ -489,7 +493,12 @@ angular.module('vassalApp.controllers')
             return;
           }
           if(event.ctrlKey) {
-            $scope.game.newCommand(command('addToSelection', [model.state.id]));
+            if(model.state.active) {
+              $scope.game.newCommand(command('removeFromSelection', [model.state.id]));
+            }
+            else {
+              $scope.game.newCommand(command('addToSelection', [model.state.id]));
+            }
           }
           else {
             $scope.game.newCommand(command('setSelection', [model.state.id]));
@@ -623,11 +632,12 @@ angular.module('vassalApp.controllers')
           }
         };
         $scope.doSelectStop = function(event) {
-          // console.log(event);
+          console.log(event);
           if($scope.create_template_mode) {
             $scope.game.newCommand(command('createTemplate', $scope.create_template_preview));
             $scope.create_template_mode = false;
             skip_model_click = true;
+            return;
           }
           if($scope.create_mode) {
             var elem_rect = canvas.getBoundingClientRect();
@@ -649,6 +659,7 @@ angular.module('vassalApp.controllers')
                                            create_options));
             $scope.create_mode = false;
             skip_model_click = true;
+            return;
           }
           if($scope.template_drag.active) return;
           if($scope.model_drag.active) {
@@ -657,9 +668,11 @@ angular.module('vassalApp.controllers')
             dx *= ($scope.game.board.view.width / 800);
             dy *= ($scope.game.board.view.height / 800);
             // console.log(dx+' '+dy);
-            $scope.game.newCommand(command('endDragingSelection', dx, dy));
-            // $scope.game.onSelection('endDraging', dx, dy);
-            skip_model_click = true;
+            if(dx > 0.1 && dy > 0.1) {
+              $scope.game.newCommand(command('endDragingSelection', dx, dy));
+              // $scope.game.onSelection('endDraging', dx, dy);
+              skip_model_click = true;
+            }
             $scope.model_drag.start.x = 0;
             $scope.model_drag.start.y = 0;
             $scope.model_drag.end.x = 0;
@@ -714,15 +727,22 @@ angular.module('vassalApp.controllers')
                     models_selected.push(model.state.id);
                   }
                 });
-                $scope.game.newCommand(command('setSelection', models_selected));
+                if(event.ctrlKey) {
+                  $scope.game.newCommand(command('addToSelection', models_selected));
+                }
+                else {
+                  $scope.game.newCommand(command('setSelection', models_selected));
+                }
 
                 $scope.selection.width = 0;
                 $scope.selection.height = 0;
+                return;
               }
             }
             if('ruler' === $scope.drag_mode) {
               $scope.game.ruler.model_end = null;
               $scope.game.ruler.endDraging(user_x, user_y);
+            return;
             }
           }
         };

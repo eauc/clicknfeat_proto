@@ -515,6 +515,41 @@ angular.module('vassalApp.services')
       return factory;
     }
   ])
+  .factory('command_removeFromSelection', [
+    function() {
+      var factory = function(options) {
+        var instance = {
+          type: 'removeFromSelection',
+          stamp: Date.now(),
+          model_ids: [],
+          before: null,
+          after: null,
+          execute: function(game) {
+            this.before = [].concat(game.selection);
+            game.removeFromSelection(this.model_ids);
+            this.after = [].concat(game.selection);
+          },
+          redo: function(game) {
+            game.setSelection(this.after);
+          },
+          undo: function(game) {
+            game.setSelection(this.before);
+          },
+          desc: function(game) {
+            return this.type;
+          }
+        };
+        if(_.isArray(options)) {
+          instance.model_ids = options;
+        }
+        else {
+          _.extend(instance, options);
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
   .factory('command', [
     'command_createTemplate',
     'command_deleteActiveTemplate',
@@ -529,6 +564,7 @@ angular.module('vassalApp.services')
     'command_restoreFromDropBin',
     'command_setSelection',
     'command_addToSelection',
+    'command_removeFromSelection',
     function(command_createTemplate,
              command_deleteActiveTemplate,
              command_onActiveTemplate,
@@ -541,7 +577,8 @@ angular.module('vassalApp.services')
              command_dropSelection,
              command_restoreFromDropBin,
              command_setSelection,
-             command_addToSelection) {
+             command_addToSelection,
+             command_removeFromSelection) {
       var factories = {
         createTemplate: command_createTemplate,
         deleteActiveTemplate: command_deleteActiveTemplate,
@@ -556,6 +593,7 @@ angular.module('vassalApp.services')
         restoreFromDropBin: command_restoreFromDropBin,
         setSelection: command_setSelection,
         addToSelection: command_addToSelection,
+        removeFromSelection: command_removeFromSelection,
       };
       var factory = function() {
         var args = Array.prototype.slice.call(arguments, 0);

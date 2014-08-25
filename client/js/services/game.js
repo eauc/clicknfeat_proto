@@ -54,6 +54,12 @@ angular.module('vassalApp.services')
               instance.models[id].state.active = true;
             });
           },
+          removeFromSelection: function(model_ids) {
+            this.selection = _.without(this.selection, model_ids);
+            _.each(model_ids, function(id) {
+              instance.models[id].state.active = false;
+            });
+          },
           setSelection: function(model_ids) {
             this.clearSelection();
             this.addToSelection(model_ids);
