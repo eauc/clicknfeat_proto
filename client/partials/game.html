@@ -430,7 +430,7 @@
             <image ng-show="model.state.show_image"
                    x="{{model.info.img.x}}" y="{{model.info.img.y}}"
                    width="{{model.info.width}}" height="{{model.info.height}}"
-                   xlink:href="{{model.info.img.link}}"
+                   xlink:href="{{(model.state.show_incorporeal && model.info.img.incorporeal) ? model.info.img.incorporeal : model.info.img.link}}"
                    style="pointer-events: none"
                    />
             <circle ng-show="model.state.active"
@@ -1325,7 +1325,8 @@
       <li>3/4/5 (model selected) : toggle AOE 3/4/5" centered on selected model</li>
       <li>6/8/0 (Spray selected) : change spray size to 6/8/10"</li>
       <li>Alt + b/c/f/k/s (model selected) : toggle Blind/Corrosion/Fire/KD/Stationary marker.</li>
-      <li>Alt + p (model selected) : toggle promote (leader marker) selected model.</li>
+      <li>Alt + i (model selected) : toggle incorporeal (if it exists) for selected model.</li>
+      <li>Alt + p (model selected) : toggle promote (leader marker) for selected model.</li>
     </ul>
   </div>
 </div>

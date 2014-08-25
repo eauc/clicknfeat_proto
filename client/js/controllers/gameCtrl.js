@@ -170,7 +170,14 @@ angular.module('vassalApp.controllers')
           }
           if(event.keyCode === 73) { // i
             if($scope.game.selection.length > 0) {
-              $scope.game.newCommand(command('onSelection', 'toggle', 'image'));
+              if(event.altKey) {
+                var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_incorporeal;
+                $scope.game.newCommand(command('onSelection', 'toggle', 'incorporeal', new_val));
+                event.preventDefault();
+              }
+              else{
+                $scope.game.newCommand(command('onSelection', 'toggle', 'image'));
+              }
             }
             return;
           }

@@ -221,6 +221,7 @@ angular.module('vassalApp.services')
             show_blind: false,
             show_kd: false,
             show_leader: false,
+            show_incorporeal: false,
             active: false
           } : _.extend({
             id: args[0],
@@ -240,6 +241,7 @@ angular.module('vassalApp.services')
             show_blind: false,
             show_kd: false,
             show_leader: false,
+            show_incorporeal: false,
             active: false
           }, args[2])
         };
