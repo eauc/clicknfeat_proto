@@ -1,6 +1,4 @@
 - target AoE
-- selection unselect, (Ctrl+)click model et select-box
-- melee range toggle->set true/false en fct du premier
 - ruler range limit.
 - ruler origin, target.
 - shortcut pour reset model rot/tourner de 180
@@ -22,5 +20,4 @@
 
 - flag to disable drag preview to prevent pre-measuring
 - text no highlight
-
 

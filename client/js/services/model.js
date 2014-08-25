@@ -61,11 +61,13 @@ angular.module('vassalApp.services')
         toggleImage: function(game) {
           this.state.show_image = !this.state.show_image;
         },
-        toggleMelee: function(game) {
-          this.state.show_melee = !this.state.show_melee;
+        toggleMelee: function(game, val) {
+          var new_val = (val === undefined) ? !this.state.show_melee : val;
+          this.state.show_melee = new_val;
         },
-        toggleReach: function(game) {
-          this.state.show_reach = !this.state.show_reach;
+        toggleReach: function(game, val) {
+          var new_val = (val === undefined) ? !this.state.show_melee : val;
+          this.state.show_reach = new_val;
         },
         toggleAoe: function(game, size) {
           switch(size) {
