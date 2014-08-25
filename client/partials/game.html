@@ -577,7 +577,7 @@
             />
       <circle ng-repeat="model in modelShow('control')"
               cx="{{model.state.x}}" cy="{{model.state.y}}"
-              r="{{model.info.r+model.info.focus*20}}"
+              r="{{model.info.r+(model.info.focus || model.info.fury)*20}}"
               style="
               fill: #0FF;
               fill-opacity: 0.3;
@@ -853,8 +853,12 @@
                  ng-model="model_label" />
         </form>
       </div>
-      <div ng-show="game.models[game.selection[0]].info.type === 'wardude'">
-        <strong>Focus/Fury :</strong>
+      <div ng-show="game.models[game.selection[0]].info.fury">
+        <strong>Fury :</strong>
+        {{game.models[game.selection[0]].info.fury}}
+      </div>
+      <div ng-show="game.models[game.selection[0]].info.focus">
+        <strong>Focus :</strong>
         {{game.models[game.selection[0]].info.focus}}
       </div>
       <div>
@@ -1039,9 +1043,13 @@
           <strong>Class :</strong>
           {{model.id.type}} - {{model.id.base}}
         </div>
-        <div ng-show="model.id.type === 'wardude'">
-          <strong>Focus/Fury :</strong>
+        <div ng-show="model.id.focus">
+          <strong>Focus :</strong>
           {{model.id.focus}}
+        </div>
+        <div ng-show="model.id.fury">
+          <strong>Fury :</strong>
+          {{model.id.fury}}
         </div>
         <div>
           <strong>Damages :</strong>

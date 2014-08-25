@@ -122,7 +122,8 @@ angular.module('vassalApp.controllers')
             }
             if(event.shiftKey) { // Shift+c
               if($scope.game.selection.length === 1 &&
-                 $scope.game.models[$scope.game.selection[0]].info.focus) {
+                 ($scope.game.models[$scope.game.selection[0]].info.focus ||
+                  $scope.game.models[$scope.game.selection[0]].info.fury)) {
                 $scope.game.newCommand(command('onSelection', 'toggleControl'));
               }
               return;

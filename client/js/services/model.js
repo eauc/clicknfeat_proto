@@ -82,7 +82,8 @@ angular.module('vassalApp.services')
           }
         },
         toggleControl: function(game) {
-          if(this.info.focus) {
+          if(this.info.focus ||
+             (this.info.fury && this.info.type !== 'beast')) {
             this.state.show_control = !this.state.show_control;
           }
         },
