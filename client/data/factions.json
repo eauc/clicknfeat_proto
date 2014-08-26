@@ -4,5 +4,6 @@
   "menoth" : "/data/menoth.json",
   "oroboros" : "/data/oroboros.json",
   "scyrah" : "/data/scyrah.json",
+  "minions" : "/data/minions.json",
   "scenario" : "/data/scenario.json"
 }
