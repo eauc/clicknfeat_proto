@@ -354,9 +354,6 @@ angular.module('vassalApp.controllers')
             if($scope.game.templates.active) {
               $scope.game.newCommand(command('deleteActiveTemplate'));
             }
-            else if($scope.ruler_drag.active) {
-              $scope.game.ruler.setActive(false);
-            }
             else {
               $scope.game.newCommand(command('dropSelection'));
             }
