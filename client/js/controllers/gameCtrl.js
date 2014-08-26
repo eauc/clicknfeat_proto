@@ -1036,7 +1036,7 @@ angular.module('vassalApp.controllers')
             dx *= ($scope.game.board.view.width / 800);
             dy *= ($scope.game.board.view.height / 800);
             // console.log(dx+' '+dy);
-            if(dx > 0.1 && dy > 0.1) {
+            if(Math.abs(dx) > 0.1 && Math.abs(dy) > 0.1) {
               $scope.game.newCommand(command('endDragingSelection', dx, dy));
               // $scope.game.onSelection('endDraging', dx, dy);
               skip_model_click = true;
