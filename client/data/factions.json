@@ -2,5 +2,6 @@
   "cygnar": "/data/cygnar.json",
   "menoth" : "/data/menoth.json",
   "oroboros" : "/data/oroboros.json",
-  "scyrah" : "/data/scyrah.json"
+  "scyrah" : "/data/scyrah.json",
+  "scenario" : "/data/scenario.json"
 }

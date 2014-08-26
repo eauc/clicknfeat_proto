@@ -1,4 +1,5 @@
 - target mode model
+- immovable models
 
 - model unit number
 - shortcut pour reset model rot/tourner de 180
