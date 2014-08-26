@@ -171,16 +171,17 @@ angular.module('vassalApp.services')
             // console.log('msg udpate : add new message');
             this.messages.push(new_msg);
           },
-          rollDie: function() {
+          rollDie: function(sides) {
+            var n = sides || 6;
             var rand = Math.random();
-            var die_float = rand * 6 + 1;
+            var die_float = rand * n + 1;
             return die_float >> 0;
           },
-          rollDice: function(nb_dice) {
+          rollDice: function(nb_dice, sides) {
             var text = '';
             var total = 0;
             _.times(nb_dice, function() {
-              var die = instance.rollDie();
+              var die = instance.rollDie(sides);
               total += die;
               text += die + ' ';
             });
