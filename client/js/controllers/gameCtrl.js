@@ -672,8 +672,10 @@ angular.module('vassalApp.controllers')
           //   return;
           // }
           if($scope.mode_model_target) {
-            $scope.game.newCommand(command('onSelection',
-                                           'alignWith', model.state.x, model.state.y));
+            if(!model.state.active) {
+              $scope.game.newCommand(command('onSelection',
+                                             'alignWith', model.state.x, model.state.y));
+            }
             $scope.mode_model_target = false;
             return;
           }
