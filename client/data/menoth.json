@@ -1620,6 +1620,25 @@
                     "n": 5
                 }
             }
+        },
+        "battle_engines": {
+            "vessel_of_judgement": {
+                "name": "Vessel of Judgement",
+                "fk_name": "Vessel of Judgement",
+                "type": "warrior",
+                "base": "huge",
+                "width": 90,
+                "height": 90,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/bes/VesselOfJudgement.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 24
+                }
+            }
         }
     }
 }
