@@ -309,6 +309,11 @@ angular.module('vassalApp.controllers')
           }
           if(event.keyCode === 96 ||
              event.keyCode === 48) { // 0
+            if($scope.game.templates.active &&
+               $scope.game.templates.active.type === 'spray') {
+              $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 10));
+              return;
+            }
             if(event.ctrlKey) {
               if($scope.game.selection.length > 0) {
                 $scope.game.newCommand(command('onSelection', 'toggle', 'color', false));
@@ -409,14 +414,6 @@ angular.module('vassalApp.controllers')
             if($scope.game.templates.active &&
                $scope.game.templates.active.type === 'spray') {
               $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 8));
-              return;
-            }
-          }
-          if(event.keyCode === 96 ||
-             event.keyCode === 48) { // 0
-            if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'spray') {
-              $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 10));
               return;
             }
           }
