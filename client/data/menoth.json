@@ -748,7 +748,6 @@
                         },
                         "priest": {
                             "name": "Priest",
-                            "ranges": [1],
                             "type": "warrior",
                             "base": "small",
                             "width": 60,
@@ -823,7 +822,6 @@
                         "grunt1": {
                             "name": "Sunburst Crew 1",
                             "fk_name": "Deliverer Sunburst Crew",
-                            "ranges": [1, 3],
                             "type": "warrior",
                             "base": "small",
                             "width": 60,
@@ -841,7 +839,6 @@
                         "grunt2": {
                             "name": "Sunburst Crew 2",
                             "fk_name": "Deliverer Sunburst Crew",
-                            "ranges": [1, 3],
                             "type": "warrior",
                             "base": "small",
                             "width": 60,
@@ -859,7 +856,6 @@
                         "leader": {
                             "name": "Leader",
                             "fk_name": "Deliverer Sunburst Crew",
-                            "ranges": [1, 3],
                             "type": "warrior",
                             "base": "large",
                             "width": 60,
@@ -1255,7 +1251,6 @@
                         "rhoven": {
                             "name": "Visgoth Juviah Rhoven",
                             "fk_name": "Visgoth Juviah Rhoven & 2 Honor Guard",
-                            "ranges": [1, 3],
                             "type": "warrior",
                             "base": "small",
                             "width": 60,
@@ -1273,7 +1268,6 @@
                         "guis": {
                             "name": "Guis",
                             "fk_name": "Visgoth Juviah Rhoven & 2 Honor Guard",
-                            "ranges": [1, 3],
                             "type": "warrior",
                             "base": "small",
                             "width": 60,
@@ -1291,7 +1285,6 @@
                         "cassian": {
                             "name": "Cassian",
                             "fk_name": "Visgoth Juviah Rhoven & 2 Honor Guard",
-                            "ranges": [1, 3],
                             "type": "warrior",
                             "base": "small",
                             "width": 60,
@@ -1613,7 +1606,7 @@
                 "name": "Initiate Tristan Durant",
                 "fk_name": "Initiate Tristan Durant",
                 "type": "warrior",
-                "focus": 6,
+                "focus": 4,
                 "base": "small",
                 "width": 60,
                 "height": 60,
