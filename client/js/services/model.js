@@ -12,6 +12,10 @@ angular.module('vassalApp.services')
           this.state.y = Math.min(game.board.height-this.info.r,
                                   this.state.y);
         },
+        alignWith: function(game, x, y) {
+          var angle = Math.atan2(x - this.state.x, this.state.y - y) * 180 / Math.PI;
+          this.state.rot = angle;
+        },
         moveFront: function(game, small) {
           var dl = small ? 1 : 10;
           var dx = dl * Math.sin(this.state.rot * Math.PI / 180);
@@ -58,14 +62,9 @@ angular.module('vassalApp.services')
           this.state.y += dl;
           this.refresh(game);
         },
-        toggleImage: function(game) {
-          this.state.show_image = !this.state.show_image;
-        },
-        toggleMelee: function(game) {
-          this.state.show_melee = !this.state.show_melee;
-        },
-        toggleReach: function(game) {
-          this.state.show_reach = !this.state.show_reach;
+        toggle: function(game, type, val) {
+          var new_val = (val === undefined) ? !this.state['show_'+type] : val;
+          this.state['show_'+type] = new_val;
         },
         toggleAoe: function(game, size) {
           switch(size) {
@@ -87,18 +86,19 @@ angular.module('vassalApp.services')
           }
         },
         toggleControl: function(game) {
-          if(this.info.focus) {
+          if(this.info.focus ||
+             (this.info.fury && this.info.type !== 'beast')) {
             this.state.show_control = !this.state.show_control;
           }
+        },
+        setLabel: function(game, label) {
+          this.state.label = label;
         },
         incrementFocus: function(game) {
           this.state.focus++;
         },
         decrementFocus: function(game) {
           this.state.focus = Math.max(0, this.state.focus-1);
-        },
-        toggleFocus: function(game) {
-          this.state.show_focus = !this.state.show_focus;
         },
         startDraging: function(game) {
           this.state_before_drag = _.extend({}, this.state);
@@ -115,9 +115,16 @@ angular.module('vassalApp.services')
         },
         toggleDamage: function(game, col, line) {
           switch(this.info.damage.type) {
+          case 'beast':
+          case 'gargantuan':
           case 'jack':
           case 'colossal':
             {
+              if(col === 'field') {
+                this.state.damage.field = (this.state.damage.field === line) ?
+                  0 : line;
+                return;
+              }
               if(undefined === line) {
                 var instance = this;
                 var box_in_col = _.reduce(this.info.damage[col], function(sum, n) {
@@ -159,15 +166,24 @@ angular.module('vassalApp.services')
         resetAllDamage: function(game) {
           switch(this.info.damage.type) {
           case 'jack': 
+          case 'beast': 
+          case 'gargantuan': 
             {
               this.state.damage = {
                 'total': 0,
-                '1': [ 0, 0, 0, 0, 0, 0 ],
-                '2': [ 0, 0, 0, 0, 0, 0 ],
-                '3': [ 0, 0, 0, 0, 0, 0 ],
-                '4': [ 0, 0, 0, 0, 0, 0 ],
-                '5': [ 0, 0, 0, 0, 0, 0 ],
-                '6': [ 0, 0, 0, 0, 0, 0 ]
+                '1': Array.apply(null, new Array(this.info.damage.depth))
+                  .map(Number.prototype.valueOf,0),
+                '2': Array.apply(null, new Array(this.info.damage.depth))
+                  .map(Number.prototype.valueOf,0),
+                '3': Array.apply(null, new Array(this.info.damage.depth))
+                  .map(Number.prototype.valueOf,0),
+                '4': Array.apply(null, new Array(this.info.damage.depth))
+                  .map(Number.prototype.valueOf,0),
+                '5': Array.apply(null, new Array(this.info.damage.depth))
+                  .map(Number.prototype.valueOf,0),
+                '6': Array.apply(null, new Array(this.info.damage.depth))
+                  .map(Number.prototype.valueOf,0),
+                'field': 0
               };
               break;
             }
@@ -186,7 +202,8 @@ angular.module('vassalApp.services')
                 'R3': [ 0, 0, 0, 0, 0, 0 ],
                 'R4': [ 0, 0, 0, 0, 0, 0 ],
                 'R5': [ 0, 0, 0, 0, 0, 0 ],
-                'R6': [ 0, 0, 0, 0, 0, 0 ]
+                'R6': [ 0, 0, 0, 0, 0, 0 ],
+                'field': 0
               };
               break;
             }
@@ -214,37 +231,62 @@ angular.module('vassalApp.services')
             y: 240,
             rot: 0,
             focus: 0,
+            label: '',
             show_image: true,
             show_melee: false,
             show_reach: false,
             show_aoe: 0,
             show_focus: args[1].type !== 'warrior',
-            active: false
+            show_fire: false,
+            show_corrosion: false,
+            show_stationary: false,
+            show_blind: false,
+            show_kd: false,
+            show_leader: false,
+            show_incorporeal: false,
+            show_color: false,
           } : _.extend({
             id: args[0],
             x: 240,
             y: 240,
             rot: 0,
             focus: 0,
+            label: '',
             show_image: true,
             show_melee: false,
             show_reach: false,
             show_aoe: 0,
             show_focus: args[1].type !== 'warrior',
-            active: false
+            show_fire: false,
+            show_corrosion: false,
+            show_stationary: false,
+            show_blind: false,
+            show_kd: false,
+            show_leader: false,
+            show_incorporeal: false,
+            show_color: false,
           }, args[2])
         };
         switch(instance.info.damage.type) {
         case 'jack': 
+        case 'beast': 
+        case 'gargantuan': 
           {
             instance.state.damage = {
               'total': 0,
-              '1': [ 0, 0, 0, 0, 0, 0 ],
-              '2': [ 0, 0, 0, 0, 0, 0 ],
-              '3': [ 0, 0, 0, 0, 0, 0 ],
-              '4': [ 0, 0, 0, 0, 0, 0 ],
-              '5': [ 0, 0, 0, 0, 0, 0 ],
-              '6': [ 0, 0, 0, 0, 0, 0 ]
+              '1': Array.apply(null, new Array(instance.info.damage.depth))
+                .map(Number.prototype.valueOf,0),
+              '2': Array.apply(null, new Array(instance.info.damage.depth))
+                .map(Number.prototype.valueOf,0),
+              '3': Array.apply(null, new Array(instance.info.damage.depth))
+                .map(Number.prototype.valueOf,0),
+              '4': Array.apply(null, new Array(instance.info.damage.depth))
+                .map(Number.prototype.valueOf,0),
+              '5': Array.apply(null, new Array(instance.info.damage.depth))
+                .map(Number.prototype.valueOf,0),
+              '6': Array.apply(null, new Array(instance.info.damage.depth))
+                .map(Number.prototype.valueOf,0),
+              'field': 0
             };
             break;
           }
@@ -263,7 +305,8 @@ angular.module('vassalApp.services')
               'R3': [ 0, 0, 0, 0, 0, 0 ],
               'R4': [ 0, 0, 0, 0, 0, 0 ],
               'R5': [ 0, 0, 0, 0, 0, 0 ],
-              'R6': [ 0, 0, 0, 0, 0, 0 ]
+              'R6': [ 0, 0, 0, 0, 0, 0 ],
+              'field': 0
             };
             break;
           }

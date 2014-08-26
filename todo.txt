@@ -1,39 +1,34 @@
-- template origin, target.
-- aoe auto deviation.
 
-- ruler origin, target.
+- auto deviate model (max distance?, origin?)
+- auto-slam model
+- place model to ruler end
 
-- model label
-- model effect (spell, etc)
+- tablet demo
+
+- zoom/view reset
+- split factions files in subfiles
+- sauvegarde des models selectionnes dans un fichier pour import ulterieur ? -> avec la meme formation, et permet la save des labels, etc.
+- immovable models
+
+- models with specials
+
 - model unit number
-
+- shortcut pour reset model rot/tourner de 180
 - mode charge.
 - mode ranged attack.
-- sauvegarde des models selectionnes dans un fichier pour import ulterieur ?
 
 - command range/formation for units
-- zoom 1.5
-- zoom/view reset
 
 - key/mouse control states
 - key event to msgs strings
 
 - flag to disable drag preview to prevent pre-measuring
 - text no highlight
-- change color of active models when template is selected
 
-=======================================================
+=======================================================================================
+- spell martyr(s)
 
-System: Warmachine
-Faction: Cygnar
-Casters: 1/1
-Points: 37/50
-Commander Adept Nemo (*6pts)
-* Grenadier (5pts)
-* Hammersmith (8pts)
-* Stormwall (19pts)
-Trencher Infantry (Leader and 5 Grunts) (6pts)
-* 2 Trencher Infantry Grenadier (2pts)
-* Trencher Infantry Officer & Sniper (3pts)
-
+=======================================================================================
+- des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
+Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui reviennent très souvent dans les règles spéciales, genre les lignes de 3" et de 5".
 

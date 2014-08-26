@@ -1,0 +1,44 @@
+{
+  "name": "Scenario",
+  "color": "#999",
+  "icon": "",
+  "models": {
+    "objectives": {
+      "sr14obj": {
+        "name": "SR14 Objective",
+        "fk_name": null,
+        "type": "objective",
+        "base": "large",
+        "width": 30,
+        "height": 30,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 15
+        }
+      }
+    },
+    "flags": {
+      "sr14flag": {
+        "name": "SR14 Flag",
+        "fk_name": null,
+        "type": "flag",
+        "base": "medium",
+        "width": 20,
+        "height": 20,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "none"
+        }
+      }
+    }
+  }
+}

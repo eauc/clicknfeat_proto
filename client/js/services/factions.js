@@ -27,9 +27,12 @@ angular.module('vassalApp.services')
         }
         switch(model.damage.type) {
         case 'jack':
+        case 'beast':
+        case 'gargantuan':
           {
             model.damage.total = totalJackDamage(model.damage,
                                                  ['1', '2', '3', '4', '5', '6']);
+            model.damage.depth = model.damage['1'].length;
             break;
           }
         case 'colossal':
@@ -50,7 +53,7 @@ angular.module('vassalApp.services')
           factions.fk_keys[model.fk_name].push(model);
         }
       }
-      return $http.get('/data/factions.js')
+      return $http.get('/data/factions.json')
         .then(function(response) {
           factions = response.data;
           // console.log(factions);

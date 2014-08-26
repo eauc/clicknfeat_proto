@@ -39,6 +39,7 @@ angular.module('vassalApp.services')
           },
           drop_bin: {},
           selection: [],
+          update_selection: [],
           onSelection: function(method_name) {
             if(_.isFunction(model_base[method_name])) {
               var forward_args = Array.prototype.slice.call(arguments, 1);
@@ -50,29 +51,23 @@ angular.module('vassalApp.services')
           },
           addToSelection: function(model_ids) {
             this.selection = _.uniq(this.selection.concat(model_ids));
-            _.each(this.selection, function(id) {
-              instance.models[id].state.active = true;
-            });
+          },
+          removeFromSelection: function(model_ids) {
+            this.selection = _.without.apply(_, [this.selection].concat(model_ids));
           },
           setSelection: function(model_ids) {
             this.clearSelection();
             this.addToSelection(model_ids);
           },
           clearSelection: function() {
-            _.each(this.selection, function(id) {
-              instance.models[id].state.active = false;
-            });
             this.selection.length = 0;
           },
-          dropSelection: function() {
-            this.dropModels(this.selection);
-          },
           dropModels: function(ids) {
+            this.selection = _.without.apply(_, [this.selection].concat(ids));
+            this.update_selection = _.without.apply(_, [this.update_selection].concat(ids));
             _.each(ids, function(id) {
               if(_.has(instance.models, id)) {
-                instance.selection = _.without(instance.selection, id);
                 instance.drop_bin[id] = instance.models[id];
-                instance.drop_bin[id].state.active = false;
                 delete instance.models[id];
               }
             });
@@ -87,7 +82,7 @@ angular.module('vassalApp.services')
           },
           templates: {
             aoe: {},
-            sprays: {},
+            spray: {},
             active: null,
           },
           createTemplate: function(options) {
@@ -165,16 +160,17 @@ angular.module('vassalApp.services')
             // console.log('msg udpate : add new message');
             this.messages.push(new_msg);
           },
-          rollDie: function() {
+          rollDie: function(sides) {
+            var n = sides || 6;
             var rand = Math.random();
-            var die_float = rand * 6 + 1;
+            var die_float = rand * n + 1;
             return die_float >> 0;
           },
-          rollDice: function(nb_dice) {
+          rollDice: function(nb_dice, sides) {
             var text = '';
             var total = 0;
             _.times(nb_dice, function() {
-              var die = instance.rollDie();
+              var die = instance.rollDie(sides);
               total += die;
               text += die + ' ';
             });
@@ -222,11 +218,11 @@ angular.module('vassalApp.services')
               this.view.y = this.zoom.cy - this.view.height / 2;
             },
             zoomIn: function() {
-              this.zoom.factor *= 2;
+              this.zoom.factor *= 1.5;
               this.refreshView();
             },
             zoomOut: function() {
-              this.zoom.factor /= 2;
+              this.zoom.factor /= 1.5;
               this.refreshView();
             },
             moveLeft: function() {
@@ -255,9 +251,19 @@ angular.module('vassalApp.services')
               x1: 0, y1: 0,
               x2: 100, y2: 100,
               length: 90,
+              range: 0,
               active: false
             },
+            origin: null,
+            target: null,
             cmd: undefined,
+            sendStateCmd: function() {
+              if(!this.cmd) {
+                this.cmd = command('setRuler', this.state);
+              }
+              instance.newCommand(this.cmd);
+              this.cmd = undefined;
+            },
             setActive: function(active) {
               if(this.state.active != active) {
                 var previous = this.state.active;
@@ -277,12 +283,12 @@ angular.module('vassalApp.services')
             startDraging: function(x, y) {
               this.cmd = command('setRuler', this.state);
               this.setStart(x, y);
-              this.state.active = 'draging';
+              this.state.active = true;
             },
             endDraging: function(x, y) {
               this.setEnd(x, y);
               this.refresh();
-              this.setActive((this.state.length > 0.05));
+              this.sendStateCmd();
             },
             setStart: function(x, y) {
               this.state.length = '';
@@ -300,6 +306,33 @@ angular.module('vassalApp.services')
               var dy = this.state.y2-this.state.y1;
               this.state.length = Math.sqrt( dx*dx + dy*dy );
               this.state.length = ((this.state.length * 10 + 0.5) >> 0) / 100;
+            }
+          },
+          los: {
+            state: {
+              x1: 0, y1: 0,
+              x2: 100, y2: 100,
+              active: false
+            },
+            setActive: function(active) {
+              this.state.active = active;
+            },
+            startDraging: function(x, y) {
+              this.setStart(x, y);
+              this.state.active = true;
+            },
+            endDraging: function(x, y) {
+              this.setEnd(x, y);
+            },
+            setStart: function(x, y) {
+              this.state.x1 = x;
+              this.state.y1 = y;
+              this.state.x2 = x;
+              this.state.y2 = y;
+            },
+            setEnd: function(x, y) {
+              this.state.x2 = x;
+              this.state.y2 = y;
             }
           },
           save_url: null,
@@ -331,41 +364,38 @@ angular.module('vassalApp.services')
 
         _.each(instance.models, function(mod) {
           model(mod);
-          if(mod.state.active) {
-            instance.selection.push(mod.state.id);
-          }
         });
-        var new_model;
-        if(_.keys(instance.models).length === 0) {
-          _.times(20, function(i) {
-            new_model = model(3*i,
-                              $rootScope.factions.cygnar.models.jacks.hammersmith,
-                              {
-                                x: 200,
-                                y: 20+20*i,
-                                rot: -30,
-                                show_reach: true,
-                              });
-            instance.models[new_model.state.id] = new_model;
-            new_model = model(3*i+1,
-                              $rootScope.factions.cygnar.models.jacks.grenadier,
-                              {
-                                x: 240,
-                                y: 20+20*i,
-                                rot: 0
-                              });
-            instance.models[new_model.state.id] = new_model;
-            new_model = model(3*i+2,
-                              $rootScope.factions.cygnar.models.solos.stormwall_pod,
-                              {
-                                x: 280,
-                                y: 20+20*i,
-                                rot: 30,
-                                show_melee: true,
-                              });
-            instance.models[new_model.state.id] = new_model;
-          });
-        }
+        // var new_model;
+        // if(_.keys(instance.models).length === 0) {
+        //   _.times(20, function(i) {
+        //     new_model = model(3*i,
+        //                       $rootScope.factions.cygnar.models.jacks.hammersmith,
+        //                       {
+        //                         x: 200,
+        //                         y: 20+20*i,
+        //                         rot: -30,
+        //                         show_reach: true,
+        //                       });
+        //     instance.models[new_model.state.id] = new_model;
+        //     new_model = model(3*i+1,
+        //                       $rootScope.factions.cygnar.models.jacks.grenadier,
+        //                       {
+        //                         x: 240,
+        //                         y: 20+20*i,
+        //                         rot: 0
+        //                       });
+        //     instance.models[new_model.state.id] = new_model;
+        //     new_model = model(3*i+2,
+        //                       $rootScope.factions.cygnar.models.solos.stormwall_pod,
+        //                       {
+        //                         x: 280,
+        //                         y: 20+20*i,
+        //                         rot: 30,
+        //                         show_melee: true,
+        //                       });
+        //     instance.models[new_model.state.id] = new_model;
+        //   });
+        // }
 
         var cmds = instance.commands;
         instance.commands = [];

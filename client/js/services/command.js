@@ -186,9 +186,13 @@ angular.module('vassalApp.services')
             _.each(this.after, function(new_mod) {
               game.models[new_mod.state.id] = new_mod;
             });
+            game.update_selection = _.map(this.after, function(mod) { return mod.state.id; });
           },
           undo: function(game) {
-            _.each(this.after, function(new_mod) {
+            var ids = _.map(this.after, function(mod) { return mod.state.id; });
+            game.selection = _.without.apply(_, [game.selection].concat(ids));
+            game.update_selection = _.without.apply(_, [game.update_selection].concat(ids));
+            _.each(this.after, function(new_mod) { 
               delete game.models[new_mod.state.id];
             });
           },
@@ -281,6 +285,44 @@ angular.module('vassalApp.services')
       return factory;
     }
   ])
+  .factory('command_onLos', [
+    function() {
+      var factory = function(data) {
+        var instance = {
+          type: 'onLos',
+          stamp: Date.now(),
+          method: null,
+          args: null,
+          before: null,
+          after: null,
+          execute: function(game) {
+            this.before = _.deepCopy(game.los.state);
+            game.los[this.method].apply(game.los, this.args);
+            this.after = _.deepCopy(game.los.state);
+          },
+          redo: function(game) {
+            _.extend(game.los.state, this.after);
+          },
+          undo: function(game) {
+            _.extend(game.los.state, this.before);
+          },
+          desc: function(game) {
+            return this.type+'('+this.method+')';
+          }
+        };
+        if(_.isNumber(data.stamp)) {
+          _.extend(instance, data);
+        }
+        else {
+          var args = Array.prototype.slice.call(arguments, 1);
+          instance.method = data;
+          instance.args = args;
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
   .factory('command_onSelection', [
     function() {
       var factory = function() {
@@ -305,12 +347,14 @@ angular.module('vassalApp.services')
             _.each(this.after, function(state) {
               game.models[state.id].state = _.deepCopy(state);
             });
+            game.update_selection = _.map(this.after, function(st) { return st.id; });
           },
           undo: function(game) {
             // console.log(this.before);
             _.each(this.before, function(state) {
               game.models[state.id].state = _.deepCopy(state);
             });
+            game.update_selection = _.map(this.before, function(st) { return st.id; });
           },
           desc: function(game) {
             return this.type+'('+this.args[0]+')';
@@ -353,12 +397,14 @@ angular.module('vassalApp.services')
             _.each(this.after, function(state) {
               game.models[state.id].state = _.deepCopy(state);
             });
+            game.update_selection = _.map(this.after, function(st) { return st.id; });
           },
           undo: function(game) {
             // console.log(this.before);
             _.each(this.before, function(state) {
               game.models[state.id].state = _.deepCopy(state);
             });
+            game.update_selection = _.map(this.before, function(st) { return st.id; });
           },
           desc: function(game) {
             return this.type;
@@ -386,16 +432,15 @@ angular.module('vassalApp.services')
           before: null,
           execute: function(game) {
             this.before = [].concat(game.selection);
-            game.dropSelection();
+            game.dropModels(this.before);
           },
           redo: function(game) {
-            game.setSelection(this.before);
-            game.dropSelection();
+            game.dropModels(this.before);
           },
           undo: function(game) {
             // console.log(this.before);
             game.restoreFromDropBin(this.before);
-            game.setSelection(this.before);
+            game.update_selection = this.before;
           },
           desc: function(game) {
             return this.type;
@@ -422,6 +467,7 @@ angular.module('vassalApp.services')
           },
           redo: function(game) {
             game.restoreFromDropBin(this.args);
+            game.update_selection = this.args;
           },
           undo: function(game) {
             game.dropModels(this.args);
@@ -459,11 +505,11 @@ angular.module('vassalApp.services')
             // console.log(this.after);
           },
           redo: function(game) {
-            game.setSelection(this.after);
+            game.update_selection = this.after;
           },
           undo: function(game) {
             // console.log(this.before);
-            game.setSelection(this.before);
+            game.update_selection = this.before;
           },
           desc: function(game) {
             return this.type;
@@ -495,10 +541,45 @@ angular.module('vassalApp.services')
             this.after = [].concat(game.selection);
           },
           redo: function(game) {
-            game.setSelection(this.after);
+            game.update_selection = this.after;
           },
           undo: function(game) {
-            game.setSelection(this.before);
+            game.update_selection = this.before;
+          },
+          desc: function(game) {
+            return this.type;
+          }
+        };
+        if(_.isArray(options)) {
+          instance.model_ids = options;
+        }
+        else {
+          _.extend(instance, options);
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
+  .factory('command_removeFromSelection', [
+    function() {
+      var factory = function(options) {
+        var instance = {
+          type: 'removeFromSelection',
+          stamp: Date.now(),
+          model_ids: [],
+          before: null,
+          after: null,
+          execute: function(game) {
+            this.before = [].concat(game.selection);
+            game.removeFromSelection(this.model_ids);
+            this.after = [].concat(game.selection);
+          },
+          redo: function(game) {
+            game.update_selection = this.after;
+          },
+          undo: function(game) {
+            game.update_selection = this.before;
           },
           desc: function(game) {
             return this.type;
@@ -523,12 +604,14 @@ angular.module('vassalApp.services')
     'command_createModel',
     'command_setLayer',
     'command_setRuler',
+    'command_onLos',
     'command_onSelection',
     'command_endDragingSelection',
     'command_dropSelection',
     'command_restoreFromDropBin',
     'command_setSelection',
     'command_addToSelection',
+    'command_removeFromSelection',
     function(command_createTemplate,
              command_deleteActiveTemplate,
              command_onActiveTemplate,
@@ -536,12 +619,15 @@ angular.module('vassalApp.services')
              command_createModel,
              command_setLayer,
              command_setRuler,
+             command_onLos,
              command_onSelection,
              command_endDragingSelection,
              command_dropSelection,
              command_restoreFromDropBin,
              command_setSelection,
-             command_addToSelection) {
+             command_addToSelection,
+             command_removeFromSelection
+            ) {
       var factories = {
         createTemplate: command_createTemplate,
         deleteActiveTemplate: command_deleteActiveTemplate,
@@ -550,12 +636,14 @@ angular.module('vassalApp.services')
         createModel: command_createModel,
         setLayer: command_setLayer,
         setRuler: command_setRuler,
+        onLos: command_onLos,
         onSelection: command_onSelection,
         endDragingSelection: command_endDragingSelection,
         dropSelection: command_dropSelection,
         restoreFromDropBin: command_restoreFromDropBin,
         setSelection: command_setSelection,
         addToSelection: command_addToSelection,
+        removeFromSelection: command_removeFromSelection,
       };
       var factory = function() {
         var args = Array.prototype.slice.call(arguments, 0);
