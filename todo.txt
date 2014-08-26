@@ -28,7 +28,14 @@
 =======================================================================================
 - spell martyr(s)
 
+- bouger AoE avec fleches quand lockee
+- faire une action sur un template le selectionne pour le joueur
+- police focus illisible
+- le zoom du navigateur fausse le calcul du drag
+- label rotation
+- conserver label model precedent
+- raccourcis marchent en dehors de l'image mais sont desactives dans les inputs
 =======================================================================================
 - des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
 Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui reviennent très souvent dans les règles spéciales, genre les lignes de 3" et de 5".
-
+- limiter distance drag model comme ruler
