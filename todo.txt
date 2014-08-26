@@ -1,5 +1,6 @@
 - los tool
-- 1D3 dice
+- unsync selection
+
 - auto deviate model (max distance?, origin?)
 - auto-slam model
 - place model to ruler end

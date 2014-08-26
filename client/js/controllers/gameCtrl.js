@@ -289,6 +289,7 @@ angular.module('vassalApp.controllers')
           }
           if(event.keyCode === 85) { // u
             $scope.game.newCommand(command('setSelection', []));
+            // $scope.game.setSelection([]);
             return;
           }
           if(event.keyCode === 96 ||
@@ -730,15 +731,18 @@ angular.module('vassalApp.controllers')
             return;
           }
           if(event.ctrlKey) {
-            if(model.state.active) {
+            if(0 <= _.indexOf($scope.game.selection, model.state.id)) {
               $scope.game.newCommand(command('removeFromSelection', [model.state.id]));
+              // $scope.game.removeFromSelection([model.state.id]);
             }
             else {
               $scope.game.newCommand(command('addToSelection', [model.state.id]));
+              // $scope.game.addToSelection([model.state.id]);
             }
           }
           else {
             $scope.game.newCommand(command('setSelection', [model.state.id]));
+            // $scope.game.setSelection([model.state.id]);
           }
         };
 
@@ -1040,9 +1044,11 @@ angular.module('vassalApp.controllers')
               });
               if(event.ctrlKey) {
                 $scope.game.newCommand(command('addToSelection', models_selected));
+                // $scope.game.addToSelection(models_selected);
               }
               else {
                 $scope.game.newCommand(command('setSelection', models_selected));
+                // $scope.game.setSelection(models_selected);
               }
 
               $scope.selection.width = 0;

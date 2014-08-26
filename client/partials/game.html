@@ -447,17 +447,6 @@
                    xlink:href="{{(model.state.show_incorporeal && model.info.img.incorporeal) ? model.info.img.incorporeal : model.info.img.link}}"
                    style="pointer-events: none"
                    />
-            <circle ng-show="model.state.active"
-                    cx="{{model.info.width/2}}" cy="{{model.info.height/2}}" r="{{model.info.r}}"
-                    style="
-                    fill:none;
-                    stroke-width:1px;
-                    pointer-events: none;
-                    "
-                    ng-style="{
-                    'stroke': game.templates.active ? '#090' : (mode_model_target ? '#00F' : '#0F0')
-                    }"
-                    />
             <line ng-show="model.info.damage.total > 1"
               x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2+model.info.r}}"
               x2="{{model.info.width/2+model.info.r}}" y2="{{model.info.height/2+model.info.r}}"
@@ -566,6 +555,30 @@
                    />
           </g>
         </svg>
+        <circle ng-repeat="id in game.update_selection"
+                cx="{{game.models[id].state.x}}"
+                cy="{{game.models[id].state.y}}"
+                r="{{game.models[id].info.r}}"
+                style="
+                fill:none;
+                stroke: #0FF;
+                stroke-width:0.5px;
+                pointer-events: none;
+                "
+                />
+        <circle ng-repeat="id in game.selection"
+                cx="{{game.models[id].state.x}}"
+                cy="{{game.models[id].state.y}}"
+                r="{{game.models[id].info.r}}"
+                style="
+                fill:none;
+                stroke-width:1px;
+                pointer-events: none;
+                "
+                ng-style="{
+                'stroke': game.templates.active ? '#090' : (mode_model_target ? '#00F' : '#0F0')
+                }"
+                />
       </svg>
       <path ng-repeat="model in modelShow('melee')"
             d="

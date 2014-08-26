@@ -186,9 +186,13 @@ angular.module('vassalApp.services')
             _.each(this.after, function(new_mod) {
               game.models[new_mod.state.id] = new_mod;
             });
+            game.update_selection = _.map(this.after, function(mod) { return mod.state.id; });
           },
           undo: function(game) {
-            _.each(this.after, function(new_mod) {
+            var ids = _.map(this.after, function(mod) { return mod.state.id; });
+            _.without.apply(_, [game.selection].concat(ids));
+            _.without.apply(_, [game.update_selection].concat(ids));
+            _.each(this.after, function(new_mod) { 
               delete game.models[new_mod.state.id];
             });
           },
@@ -305,12 +309,14 @@ angular.module('vassalApp.services')
             _.each(this.after, function(state) {
               game.models[state.id].state = _.deepCopy(state);
             });
+            game.update_selection = _.map(this.after, function(st) { return st.id; });
           },
           undo: function(game) {
             // console.log(this.before);
             _.each(this.before, function(state) {
               game.models[state.id].state = _.deepCopy(state);
             });
+            game.update_selection = _.map(this.before, function(st) { return st.id; });
           },
           desc: function(game) {
             return this.type+'('+this.args[0]+')';
@@ -353,12 +359,14 @@ angular.module('vassalApp.services')
             _.each(this.after, function(state) {
               game.models[state.id].state = _.deepCopy(state);
             });
+            game.update_selection = _.map(this.after, function(st) { return st.id; });
           },
           undo: function(game) {
             // console.log(this.before);
             _.each(this.before, function(state) {
               game.models[state.id].state = _.deepCopy(state);
             });
+            game.update_selection = _.map(this.before, function(st) { return st.id; });
           },
           desc: function(game) {
             return this.type;
@@ -386,16 +394,15 @@ angular.module('vassalApp.services')
           before: null,
           execute: function(game) {
             this.before = [].concat(game.selection);
-            game.dropSelection();
+            game.dropModels(this.before);
           },
           redo: function(game) {
-            game.setSelection(this.before);
-            game.dropSelection();
+            game.dropModels(this.before);
           },
           undo: function(game) {
             // console.log(this.before);
             game.restoreFromDropBin(this.before);
-            game.setSelection(this.before);
+            game.update_selection = this.before;
           },
           desc: function(game) {
             return this.type;
@@ -422,6 +429,7 @@ angular.module('vassalApp.services')
           },
           redo: function(game) {
             game.restoreFromDropBin(this.args);
+            game.update_selection = this.args;
           },
           undo: function(game) {
             game.dropModels(this.args);
@@ -459,11 +467,11 @@ angular.module('vassalApp.services')
             // console.log(this.after);
           },
           redo: function(game) {
-            game.setSelection(this.after);
+            game.update_selection = this.after;
           },
           undo: function(game) {
             // console.log(this.before);
-            game.setSelection(this.before);
+            game.update_selection = this.before;
           },
           desc: function(game) {
             return this.type;
@@ -495,10 +503,10 @@ angular.module('vassalApp.services')
             this.after = [].concat(game.selection);
           },
           redo: function(game) {
-            game.setSelection(this.after);
+            game.update_selection = this.after;
           },
           undo: function(game) {
-            game.setSelection(this.before);
+            game.update_selection = this.before;
           },
           desc: function(game) {
             return this.type;
@@ -530,10 +538,10 @@ angular.module('vassalApp.services')
             this.after = [].concat(game.selection);
           },
           redo: function(game) {
-            game.setSelection(this.after);
+            game.update_selection = this.after;
           },
           undo: function(game) {
-            game.setSelection(this.before);
+            game.update_selection = this.before;
           },
           desc: function(game) {
             return this.type;
@@ -578,7 +586,8 @@ angular.module('vassalApp.services')
              command_restoreFromDropBin,
              command_setSelection,
              command_addToSelection,
-             command_removeFromSelection) {
+             command_removeFromSelection
+            ) {
       var factories = {
         createTemplate: command_createTemplate,
         deleteActiveTemplate: command_deleteActiveTemplate,

@@ -245,7 +245,6 @@ angular.module('vassalApp.services')
             show_leader: false,
             show_incorporeal: false,
             show_color: false,
-            active: false
           } : _.extend({
             id: args[0],
             x: 240,
@@ -266,7 +265,6 @@ angular.module('vassalApp.services')
             show_leader: false,
             show_incorporeal: false,
             show_color: false,
-            active: false
           }, args[2])
         };
         switch(instance.info.damage.type) {

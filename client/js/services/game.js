@@ -39,6 +39,7 @@ angular.module('vassalApp.services')
           },
           drop_bin: {},
           selection: [],
+          update_selection: [],
           onSelection: function(method_name) {
             if(_.isFunction(model_base[method_name])) {
               var forward_args = Array.prototype.slice.call(arguments, 1);
@@ -50,35 +51,23 @@ angular.module('vassalApp.services')
           },
           addToSelection: function(model_ids) {
             this.selection = _.uniq(this.selection.concat(model_ids));
-            _.each(this.selection, function(id) {
-              instance.models[id].state.active = true;
-            });
           },
           removeFromSelection: function(model_ids) {
-            this.selection = _.without(this.selection, model_ids);
-            _.each(model_ids, function(id) {
-              instance.models[id].state.active = false;
-            });
+            this.selection = _.without.apply(_, [this.selection].concat(model_ids));
           },
           setSelection: function(model_ids) {
             this.clearSelection();
             this.addToSelection(model_ids);
           },
           clearSelection: function() {
-            _.each(this.selection, function(id) {
-              instance.models[id].state.active = false;
-            });
             this.selection.length = 0;
           },
-          dropSelection: function() {
-            this.dropModels(this.selection);
-          },
           dropModels: function(ids) {
+            this.selection = _.without.apply(_, [this.selection].concat(ids));
+            this.update_selection = _.without.apply(_, [this.update_selection].concat(ids));
             _.each(ids, function(id) {
               if(_.has(instance.models, id)) {
-                instance.selection = _.without(instance.selection, id);
                 instance.drop_bin[id] = instance.models[id];
-                instance.drop_bin[id].state.active = false;
                 delete instance.models[id];
               }
             });
@@ -348,9 +337,6 @@ angular.module('vassalApp.services')
 
         _.each(instance.models, function(mod) {
           model(mod);
-          if(mod.state.active) {
-            instance.selection.push(mod.state.id);
-          }
         });
         // var new_model;
         // if(_.keys(instance.models).length === 0) {
