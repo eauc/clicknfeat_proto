@@ -15,6 +15,12 @@
          ng-mousemove="doSelectMove($event)"
          ng-mouseup="doSelectStop($event)">
       <defs>
+        <filter id="aura-filter"
+                x="-50%" y="-50%"
+                width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic"
+                          stdDeviation="2"/>
+        </filter>
         <marker id="ruler-start"
                 markerWidth="6" markerHeight="8"
                 refx="0" refy="4"
@@ -398,6 +404,14 @@
            x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
            style="display: {{game.layers.models ? 'inline' : 'none'}}"
            >
+        <circle ng-repeat="model in modelShow('color')"
+                cx="{{model.state.x}}" cy="{{model.state.y}}"
+                r="{{model.info.r+2}}"
+                style="
+                fill:{{model.state.show_color}};
+                filter: url(#aura-filter);
+                "
+                />
         <svg ng-repeat="model in game.models"
              x="{{model.state.x - model.info.width/2}}" y="{{model.state.y - model.info.height/2}}">
           <g transform="rotate({{model.state.rot}}, {{model.info.width/2}}, {{model.info.height/2}})">
@@ -1390,6 +1404,7 @@
       <li>t (template selected/ruler mode/model selected) : trigger template/ruler/model's target selection mode</li>
       <li>u : unselect all models.</li>
       <li>+/- (Numeric Kbd only) : increment/decrement focus/counter of selected model.</li>
+      <li>Ctrl + 1/2/3/4/5/6/0 : set selected model aura color (0 = Off)</li>
       <li>3/4/5 (AoE selected) : change AoE size to 3/4/5"</li>
       <li>3/4/5 (model selected) : toggle AOE 3/4/5" centered on selected model</li>
       <li>6/8/0 (Spray selected) : change spray size to 6/8/10"</li>
