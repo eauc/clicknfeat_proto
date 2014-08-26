@@ -1252,6 +1252,8 @@ angular.module('vassalApp.controllers')
           reader.readAsText(file);
         };
         $scope.readFKString = function(file) {
+          $scope.create_mode = false;
+          $scope.fk_read_result = [];
           importFKList($scope.fk_read_string);
         };
 
