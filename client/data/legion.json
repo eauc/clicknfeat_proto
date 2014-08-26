@@ -1,32 +1,32 @@
 {
-  "name": "Legion",
-  "color": "#005a61",
+  "name": "Legion of Everblight",
+  "color": "#a9bae0",
   "icon": "data/icons/legion_50.png",
   "models": {
-    "casters": {
-      "Absy1": {
+    "locks": {
+      "absylonia1": {
         "name": "Absylonia1 (Absylonia, Terror of Everblight)",
         "fk_name": "Absylonia, Terror of Everblight",
         "type": "wardude",
-        "focus": 6,
+        "fury": 6,
         "base": "small",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/warlocks/absy1.png"
+          "link": "data/legion/warlocks/Absylonia1.png"
         },
         "damage": {
           "type": "warrior",
           "n": 16
         }
       },
-      "Absy2": {
+      "absylonia2": {
         "name": "Absylonia2 (Absylonia, Daughter of Everblight)",
         "fk_name": "",
         "type": "wardude",
-        "focus": 6,
+        "fury": 6,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -40,86 +40,86 @@
           "n": 18
         }
       },
-      "Bethayne1": {
+      "bethayne1": {
         "name": "Bethayne1 (Bethayne, Voice of Everblight)",
         "fk_name": "Bethayne & Belphagor",
         "type": "wardude",
-        "focus": 7,
+        "fury": 7,
         "base": "small",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/warlocks/beth1.png"
+          "link": "data/legion/warlocks/Bethayne1.png"
         },
         "damage": {
           "type": "warrior",
           "n": 14
         }
       },
-      "Kallus1": {
+      "kallus1": {
         "name": "Kallus1 (Kallus, Wrath of Everblight)",
         "fk_name": "Kallus, Wrath of Everblight",
         "type": "wardude",
-        "focus": 6,
+        "fury": 6,
         "base": "small",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/warlocks/kallus1.png"
+          "link": "data/legion/warlocks/Kallus1.png"
         },
         "damage": {
           "type": "warrior",
           "n": 18
         }
       },
-      "Lylyth1": {
+      "lylyth1": {
         "name": "Lylyth1 (Lylyth, Herald of Everblight)",
         "fk_name": "Lylyth, Herald of Everblight",
         "type": "wardude",
-        "focus": 5,
+        "fury": 5,
         "base": "small",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/warlocks/lylyth1.png"
+          "link": "data/legion/warlocks/Lylyth1.png"
         },
         "damage": {
           "type": "warrior",
           "n": 15
         }
       },
-      "Lylyth2": {
+      "lylyth2": {
         "name": "Lylyth2 (Lylyth, Shadow of Everblight)",
         "fk_name": "Lylyth, Shadow of Everblight",
         "type": "wardude",
-        "focus": 5,
+        "fury": 5,
         "base": "small",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/warlocks/lylyth2.png"
+          "link": "data/legion/warlocks/Lylyth2.png"
         },
         "damage": {
           "type": "warrior",
           "n": 15
         }
       },
-      "Lylyth3": {
+      "lylyth3": {
         "name": "Lylyth3 (Lylyth, Reckoning of Everblight)",
         "fk_name": "Lylyth, Reckoning of Everblight",
         "type": "wardude",
-        "focus": 5,
+        "fury": 5,
         "base": "huge",
-        "width": 60,
-        "height": 60,
+        "width": 116.667,
+        "height": 116.667,
         "img": {
           "x": 0,
           "y": 0,
@@ -130,108 +130,108 @@
           "n": 18
         }
       },
-      "Rhyas1": {
+      "rhyas1": {
         "name": "Rhyas1 (Rhyas, Sigil of Everblight)",
         "fk_name": "Rhyas, Sigil of Everblight",
         "type": "wardude",
-        "focus": 5,
+        "fury": 5,
         "base": "small",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/warlocks/rhyas1.png"
+          "link": "data/legion/warlocks/Rhyas1.png"
         },
         "damage": {
           "type": "warrior",
           "n": 16
         }
       },
-      "Saeryn1": {
+      "saeryn1": {
         "name": "Saeryn1 (Saeryn, Omen of Everblight)",
         "fk_name": "Saeryn, Omen of Everblight",
         "type": "wardude",
-        "focus": 7,
+        "fury": 7,
         "base": "small",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/warlocks/saeryn1.png"
+          "link": "data/legion/warlocks/Saeryn1.png"
         },
         "damage": {
           "type": "warrior",
           "n": 16
         }
       },
-      "Thagrosh1": {
+      "thagrosh1": {
         "name": "Thagrosh1 (Thagrosh, Prophet of Everblight)",
         "fk_name": "Thagrosh, Prophet of Everblight",
         "type": "wardude",
-        "focus": 7,
+        "fury": 7,
         "base": "medium",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/warlocks/thags1.png"
+          "link": "data/legion/warlocks/Thagrosh1.png"
         },
         "damage": {
           "type": "warrior",
           "n": 18
         }
       },
-      "Thagrosh2": {
+      "thagrosh2": {
         "name": "Thagrosh2 (Thagrosh, the Messiah)",
         "fk_name": "Thagrosh, the Messiah",
         "type": "wardude",
-        "focus": 7,
+        "fury": 7,
         "base": "large",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/warlocks/thags2.png"
+          "link": "data/legion/warlocks/Thagrosh2.png"
         },
         "damage": {
           "type": "warrior",
           "n": 20
         }
       },
-      "Vayl1": {
+      "vayl1": {
         "name": "Vayl1 (Vayl, Disciple of Everblight)",
         "fk_name": "Vayl, Disciple of Everblight",
         "type": "wardude",
-        "focus": 8,
+        "fury": 8,
         "base": "small",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/warlocks/vayl1.png"
+          "link": "data/legion/warlocks/Vayl1.png"
         },
         "damage": {
           "type": "warrior",
           "n": 14
         }
       },
-      "Vayl2": {
+      "vayl2": {
         "name": "Vayl2 (Vayl, Consul of Everblight)",
         "fk_name": "Vayl, Consul of Everblight",
         "type": "wardude",
-        "focus": 8,
+        "fury": 8,
         "base": "small",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/warlocks/vayl2.png"
+          "link": "data/legion/warlocks/Vayl2.png"
         },
         "damage": {
           "type": "warrior",
@@ -240,10 +240,11 @@
       }
     },
     "beasts": {
-      "Afflictor": {
+      "afflictor": {
         "name": "Afflictor",
         "fk_name": "Afflictor",
         "type": "beast",
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -262,17 +263,18 @@
           "6": [ "b", "b", "b", "b" ]
         }
       },
-      "Angelius": {
+      "angelius": {
         "name": "Angelius",
         "fk_name": "Angelius",
         "type": "beast",
+        "fury": 4,
         "base": "large",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/beasts/angelius.png"
+          "link": "data/legion/beasts/Angelius.png"
         },
         "damage": {
           "type": "beast",
@@ -284,17 +286,18 @@
           "6": [ "b", "b", "b", "b", "b" ]
         }
       },
-      "Archangel": {
+      "archangel": {
         "name": "Archangel",
         "fk_name": "Archangel",
         "type": "beast",
+        "fury": 4,
         "base": "huge",
-        "width": 180,
-        "height": 180,
+        "width": 216.667,
+        "height": 216.667,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/beasts/archangel.png"
+          "link": "data/legion/beasts/Archangel.png"
         },
         "damage": {
           "type": "gargantuan",
@@ -306,17 +309,18 @@
           "6": [ "b", "b", "b", "b", "b", "b", "b", "b", null, null ]
         }
       },
-      "Belphagor": {
+      "belphagor": {
         "name": "Belphagor",
         "fk_name": "Bethayne & Belphagor",
         "type": "beast",
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/beasts/belphagor.png"
+          "link": "data/legion/beasts/Belphagor.png"
         },
         "damage": {
           "type": "beast",
@@ -328,17 +332,18 @@
           "6": [ "b", "b", "b", "b", null, null, null ]
         }
       },
-      "Carnivean": {
+      "carnivean": {
         "name": "Carnivean",
         "fk_name": "Carnivean",
         "type": "beast",
+        "fury": 4,
         "base": "large",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/beasts/carnivean.png"
+          "link": "data/legion/beasts/Carnivean.png"
         },
         "damage": {
           "type": "beast",
@@ -350,17 +355,18 @@
           "6": [ "b", "b", "b", "b", "b", "b", null ]
         }
       },
-      "Harrier": {
+      "harrier": {
         "name": "Harrier",
         "fk_name": "Harrier",
         "type": "beast",
+        "fury": 2,
         "base": "small",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/beasts/harrier.png"
+          "link": "data/legion/beasts/Harrier.png"
         },
         "damage": {
           "type": "beast",
@@ -372,17 +378,18 @@
           "6": [ "b", "b", "b" ]
         }
       },
-      "Naga Nightlurker": {
+      "naga": {
         "name": "Naga Nightlurker",
         "fk_name": "Naga Nightlurker",
         "type": "beast",
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/beasts/naga.png"
+          "link": "data/legion/beasts/Naga.png"
         },
         "damage": {
           "type": "beast",
@@ -394,10 +401,11 @@
           "6": [ "b", "b", "b", "b" ]
         }
       },
-      "Nephilim Bloodseer": {
+      "bloodseer": {
         "name": "Nephilim Bloodseer",
         "fk_name": "Nephilim Bloodseer",
         "type": "beast",
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -416,10 +424,11 @@
           "6": [ "b", "b", "b", "b", "b" ]
         }
       },
-      "Nephilim Bolt Thrower": {
+      "bolt_thrower": {
         "name": "Nephilim Bolt Thrower",
         "fk_name": "Nephilim Bolt Thrower",
         "type": "beast",
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -438,10 +447,11 @@
           "6": [ "b", "b", "b", "b", null ]
         }
       },
-      "Nephilim Protector": {
+      "protector": {
         "name": "Nephilim Protector",
         "fk_name": "Nephilim Protector",
         "type": "beast",
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -460,10 +470,11 @@
           "6": [ "b", "b", "b", "b", null ]
         }
       },
-      "Nephilim Soldier": {
+      "soldier": {
         "name": "Nephilim Soldier",
         "fk_name": "Nephilim Soldier",
         "type": "beast",
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -482,17 +493,18 @@
           "6": [ "b", "b", "b", "b", null ]
         }
       },
-      "Proteus": {
+      "proteus": {
         "name": "Proteus",
         "fk_name": "Proteus",
         "type": "beast",
+        "fury": 5,
         "base": "large",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/beasts/proteus.png"
+          "link": "data/legion/beasts/Proteus.png"
         },
         "damage": {
           "type": "beast",
@@ -504,10 +516,11 @@
           "6": [ "b", "b", "b", "b", "b", "b", null ]
         }
       },
-      "Raek": {
+      "raek": {
         "name": "Raek",
         "fk_name": "Raek",
         "type": "beast",
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -526,10 +539,11 @@
           "6": [ "b", "b", "b", "b" ]
         }
       },
-      "Ravagore": {
+      "ravagore": {
         "name": "Ravagore",
         "fk_name": "Ravagore",
         "type": "beast",
+        "fury": 4,
         "base": "large",
         "width": 60,
         "height": 60,
@@ -548,17 +562,18 @@
           "6": [ "b", "b", "b", "b", "b", "b", null ]
         }
       },
-      "Scythean": {
+      "scythean": {
         "name": "Scythean",
         "fk_name": "Scythean",
         "type": "beast",
+        "fury": 4,
         "base": "large",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/beasts/scythean.png"
+          "link": "data/legion/beasts/Scythean.png"
         },
         "damage": {
           "type": "beast",
@@ -570,17 +585,18 @@
           "6": [ "b", "b", "b", "b", "b", "b", null ]
         }
       },
-      "Seraph": {
-        "name": "Seraph",
-        "fk_name": "Seraph",
+      "neraph": {
+        "name": "Neraph",
+        "fk_name": "Neraph",
         "type": "beast",
+        "fury": 4,
         "base": "large",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/beasts/seraph.png"
+          "link": ""
         },
         "damage": {
           "type": "beast",
@@ -592,17 +608,41 @@
           "6": [ "b", "b", "b", "b", "b" ]
         }
       },
-      "Shredder": {
+      "seraph": {
+        "name": "Seraph",
+        "fk_name": "Seraph",
+        "type": "beast",
+        "fury": 4,
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/legion/beasts/Seraph.png"
+        },
+        "damage": {
+          "type": "beast",
+          "1": [ "b", "b", "b", null, null ],
+          "2": [ "b", "b", "b", "b", "b" ],
+          "3": [ "b", "b", "b", "b", null ],
+          "4": [ "b", "b", "b", "b", "b" ],
+          "5": [ "b", "b", "b", null, null ],
+          "6": [ "b", "b", "b", "b", "b" ]
+        }
+      },
+      "shredder": {
         "name": "Shredder",
         "fk_name": "Shredder",
         "type": "beast",
+        "fury": 2,
         "base": "small",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/beasts/shredder.png"
+          "link": "data/legion/beasts/Shredder.png"
         },
         "damage": {
           "type": "beast",
@@ -614,17 +654,18 @@
           "6": [ "b", "b", "b" ]
         }
       },
-      "Stinger": {
+      "stinger": {
         "name": "Stinger",
         "fk_name": "Stinger",
         "type": "beast",
+        "fury": 2,
         "base": "small",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/beasts/stinger.png"
+          "link": "data/legion/beasts/Stinger.png"
         },
         "damage": {
           "type": "beast",
@@ -636,10 +677,11 @@
           "6": [ "b", "b", "b" ]
         }
       },
-      "Teraph": {
+      "teraph": {
         "name": "Teraph",
         "fk_name": "Teraph",
         "type": "beast",
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -658,17 +700,18 @@
           "6": [ "b", "b", "b", "b" ]
         }
       },
-      "Typhon": {
+      "typhon": {
         "name": "Typhon",
         "fk_name": "Typhon",
         "type": "beast",
+        "fury": 4,
         "base": "large",
         "width": 60,
         "height": 60,
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/beasts/typhon.png"
+          "link": "data/legion/beasts/Typhon.png"
         },
         "damage": {
           "type": "beast",
@@ -682,8 +725,8 @@
       }
     },
     "units": {
-      "BFS": {
-        "name": "BlackFrost Shard",
+      "bfs": {
+        "name": "Blackfrost Shard",
         "entries": {
           "grunt": {
             "Sevryn": {
@@ -740,12 +783,12 @@
           }
         }
       },
-      "Archers": {
+      "archers": {
         "name": "Blighted Nyss Archers",
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Archer Grunt",
               "fk_name": "Blighted Nyss Archers",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -755,7 +798,7 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": "data/legion/units/Archer_grunt.png"
+                "link": "data/legion/units/Archer_Grunt.png"
               },
               "damage": {
                 "type": "warrior",
@@ -764,7 +807,7 @@
             }
           },
           "ua": {
-            "Officer": {
+            "officer": {
               "name": "Officer",
               "fk_name": "Blighted Nyss Archers Officer & Standard",
               "type": "warrior",
@@ -781,7 +824,7 @@
                 "n": 5
               }
             },
-            "Ammo": {
+            "ammo": {
               "name": "Ammo Porter",
               "fk_name": "Blighted Nyss Archers Officer & Standard",
               "type": "warrior",
@@ -801,12 +844,12 @@
           }
         }
       },
-      "Grotesques": {
+      "grotesques": {
         "name": "Blighted Nyss Grotesques",
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Grotesque Grunt",
               "fk_name": "Blighted Nyss Grotesques",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -816,7 +859,7 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": "data/legion/units/Grotesque_grunt.png"
+                "link": "data/legion/units/Grotesque_Grunt.png"
               },
               "damage": {
                 "type": "warrior",
@@ -826,12 +869,12 @@
           }
         }
       },
-      "Hex hunters": {
+      "hex_hunters": {
         "name": "Blighted Nyss Hex hunters",
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Hex Hunter Grunt",
               "fk_name": "Blighted Nyss Hex Hunters",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -841,7 +884,7 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": "data/legion/units/HexHunter_grunt.png"
+                "link": "data/legion/units/HexHunter_Grunt.png"
               },
               "damage": {
                 "type": "warrior",
@@ -850,7 +893,7 @@
             }
           },
           "ua": {
-            "Officer": {
+            "bayal": {
               "name": "Bayal",
               "fk_name": "Bayal, Hound of Everblight",
               "type": "warrior",
@@ -870,12 +913,12 @@
           }
         }
       },
-      "Legionnaires": {
+      "legionnaires": {
         "name": "Blighted Nyss Legionnaires",
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Legionnaire Grunt",
               "fk_name": "Blighted Nyss Legionnaires",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -885,7 +928,7 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": "data/legion/units/Legionaire_grunt.png"
+                "link": "data/legion/units/Legionaire_Grunt.png"
               },
               "damage": {
                 "type": "warrior",
@@ -894,7 +937,7 @@
             }
           },
           "ua": {
-            "Officer": {
+            "farilor": {
               "name": "Farilor",
               "fk_name": "Captain Farilor & Standard",
               "type": "warrior",
@@ -911,7 +954,7 @@
                 "n": 5
               }
             },
-            "Standard": {
+            "standard": {
               "name": "Standard bearer",
               "fk_name": "Captain Farilor & Standard",
               "type": "warrior",
@@ -931,12 +974,12 @@
           }
         }
       },
-      "Raptors": {
+      "raptors": {
         "name": "Blighted Nyss Raptors",
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Raptor Grunt",
               "fk_name": "Blighted Nyss Raptors",
               "ranges": [ 1, 3, 5 ],
               "type": "warrior",
@@ -946,7 +989,7 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": "data/legion/units/Raptor_grunt.png"
+                "link": "data/legion/units/Raptor_Grunt.png"
               },
               "damage": {
                 "type": "warrior",
@@ -956,12 +999,12 @@
           }
         }
       },
-      "Scather Crew": {
+      "scather_crew": {
         "name": "Blighted Nyss Scather Crew",
         "entries": {
           "grunt": {
-            "grunt": {
-              "name": "Scather crew",
+            "grunt1": {
+              "name": "Scather crew grunt 1",
               "fk_name": "Blighted Nyss Scather Crew",
               "type": "warrior",
               "base": "small",
@@ -970,7 +1013,24 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": "data/legion/units/Scather_grunt.png"
+                "link": "data/legion/units/Scather_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            },
+            "grunt2": {
+              "name": "Scather crew grunt 2",
+              "fk_name": "Blighted Nyss Scather Crew",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/legion/units/Scather_Grunt.png"
               },
               "damage": {
                 "type": "warrior",
@@ -997,12 +1057,12 @@
           }
         }
       },
-      "Swordsmen": {
+      "swordsmen": {
         "name": "Blighted Nyss Swordsmen",
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Swordmen Grunt",
               "fk_name": "Blighted Nyss Swordsmen",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -1012,7 +1072,7 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": "data/legion/units/Swordsmen_grunt.png"
+                "link": "data/legion/units/Swordsmen_Grunt.png"
               },
               "damage": {
                 "type": "warrior",
@@ -1021,7 +1081,7 @@
             }
           },
           "ua": {
-            "Officer": {
+            "abbot": {
               "name": "Swordsman Abbot",
               "fk_name": "Blighted Nyss Swordsmen Abbot & Champion",
               "type": "warrior",
@@ -1038,7 +1098,7 @@
                 "n": 5
               }
             },
-            "Champion": {
+            "champion": {
               "name": "Swordsman Champion",
               "fk_name": "Blighted Nyss Swordsmen Abbot & Champion",
               "type": "warrior",
@@ -1058,12 +1118,12 @@
           }
         }
       },
-      "Warmongers": {
+      "warmongers": {
         "name": "Blighted Ogrun Warmongers",
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Warmonger Grunt",
               "fk_name": "Blighted Ogrun Warmongers",
               "ranges": [ 1, 3, 5 ],
               "type": "warrior",
@@ -1073,7 +1133,7 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": "data/legion/units/Warmonger_grunt.png"
+                "link": "data/legion/units/Warmonger_Grunt.png"
               },
               "damage": {
                 "type": "warrior",
@@ -1083,12 +1143,12 @@
           }
         }
       },
-      "Warspears": {
+      "warspears": {
         "name": "Blighted Ogrun Warspears",
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Warspear Grunt",
               "fk_name": "Blighted Ogrun Warspears",
               "ranges": [ 1, 3, 5 ],
               "type": "warrior",
@@ -1098,7 +1158,7 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": "data/legion/units/Warspear_grunt.png"
+                "link": "data/legion/units/Warspear_Grunt.png"
               },
               "damage": {
                 "type": "warrior",
@@ -1107,7 +1167,7 @@
             }
           },
           "ua": {
-            "Chieftain": {
+            "chieftain": {
               "name": "Warspear Chieftan",
               "fk_name": "Warspear Chieftan",
               "type": "warrior",
@@ -1117,7 +1177,7 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": "data/legion/units/Warspear_chieftain.png"
+                "link": "data/legion/units/Warspear_Chieftain.png"
               },
               "damage": {
                 "type": "warrior",
@@ -1127,12 +1187,12 @@
           }
         }
       },
-      "Spawning Vessel": {
+      "spawning_vessel": {
         "name": "Spawning Vessel",
         "entries": {
           "grunt": {
-            "grunt1": {
-              "name": "Acolyth",
+            "grunt": {
+              "name": "Spawning Vessel Acolyth",
               "fk_name": "Spawning Vessel",
               "ranges": [ 4, 6 ],
               "type": "warrior",
@@ -1142,16 +1202,15 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": "data/legion/units/Vessel_grunt.png"
+                "link": "data/legion/units/Vessel_Grunt.png"
               },
               "damage": {
                 "type": "warrior",
                 "n": 1
               }
             },
-            "grunt2": {
-              "name": "Vessel",
-              "fk_name": "Spawning Vessel",
+            "vessel": {
+              "name": "Spawning Vessel",
               "type": "warrior",
               "base": "large",
               "width": 60,
@@ -1169,12 +1228,12 @@
           }
         }
       },
-      "Strider Rangers": {
+      "rangers": {
         "name": "Strider Rangers",
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Strider Ranger Grunt",
               "fk_name": "Blighted Nyss Striders",
               "ranges": [ 1, 6 ],
               "type": "warrior",
@@ -1184,7 +1243,7 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": "data/legion/units/Rangers_grunt.png"
+                "link": "data/legion/units/Rangers_Grunt.png"
               },
               "damage": {
                 "type": "warrior",
@@ -1193,8 +1252,8 @@
             }
           },
           "ua": {
-            "Officer": {
-              "name": "Ranger Officer",
+            "officer": {
+              "name": "Strider Ranger Officer",
               "fk_name": "Blighted Nyss Striders Officer & Musician",
               "type": "warrior",
               "base": "small",
@@ -1210,8 +1269,8 @@
                 "n": 5
               }
             },
-            "Musician": {
-              "name": "Ranger Musician",
+            "musician": {
+              "name": "Strider Ranger Musician",
               "fk_name": "Blighted Nyss Striders Officer & Musician",
               "type": "warrior",
               "base": "small",
@@ -1232,7 +1291,7 @@
       }
     },
     "solos": {
-      "Annyssa": {
+      "annyssa": {
         "name": "Annyssa Ryvaal",
         "type": "warrior",
         "base": "large",
@@ -1252,7 +1311,7 @@
         "name": "Beast mistress",
         "fk_name": "Beast Mistress",
         "type": "warrior",
-        "focus": 4,
+        "fury": 4,
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1266,7 +1325,7 @@
           "n": 5
         }
       },
-      "Shepherd": {
+      "shepherd": {
         "name": "Blighted Nyss Shepherd",
         "fk_name": "Blighted Nyss Shepherd",
         "type": "warrior",
@@ -1283,7 +1342,7 @@
           "n": 1
         }
       },
-      "Hellion": {
+      "hellion": {
         "name": "Blighted Nyss Sorceress and Hellion",
         "fk_name": "Blighted Nyss Sorceress and Hellion",
         "type": "warrior",
@@ -1300,7 +1359,7 @@
           "n": 10
         }
       },
-      "Fyanna": {
+      "fyanna": {
         "name": "Fyanna the Lash",
         "fk_name": "Fyanna the Lash",
         "type": "warrior",
@@ -1317,10 +1376,10 @@
           "n": 5
         }
       },
-      "Incubus": {
+      "incubus": {
         "name": "Incubus",
         "fk_name": "Incubus",
-        "ranges": [ 5 ],
+        "ranges": [ 1, 5 ],
         "type": "warrior",
         "base": "small",
         "width": 60,
@@ -1328,14 +1387,14 @@
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/solos/Incubi.png"
+          "link": "data/legion/solos/Incubus.png"
         },
         "damage": {
           "type": "warrior",
           "n": 1
         }
       },
-      "Martyr": {
+      "martyr": {
         "name": "Spell Martyr",
         "fk_name": "Spell Martyr",
         "type": "warrior",
@@ -1345,14 +1404,14 @@
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/solos/martyr.png"
+          "link": "data/legion/solos/Martyr.png"
         },
         "damage": {
           "type": "warrior",
           "n": 1
         }
       },
-      "Deathstalker": {
+      "deathstalker": {
         "name": "Strider Deathstalker",
         "fk_name": "Strider Deathstalker",
         "type": "warrior",
@@ -1396,7 +1455,7 @@
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/legion/solos/forsaken.png"
+          "link": "data/legion/solos/Forsaken.png"
         },
         "damage": {
           "type": "warrior",
@@ -1422,10 +1481,10 @@
       }
     },
     "battle_engines": {
-      "Throne": {
+      "throne": {
         "name": "Throne of Everblight",
         "fk_name": "Throne of Everblight",
-        "type": "BE",
+        "type": "be",
         "base": "huge",
         "width": 90,
         "height": 90,

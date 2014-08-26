@@ -29,6 +29,10 @@ angular.module('vassalApp.controllers')
         origin: null,
         target: null,
       };
+      $scope.los_drag = {
+        active: false,
+        start_x: 0, start_y: 0,
+      };
       var skip_model_click = false;
       $scope.model_drag = {
         active: false,
@@ -197,6 +201,17 @@ angular.module('vassalApp.controllers')
             if($scope.game.templates.active) {
               $scope.game.newCommand(command('onActiveTemplate', 'toggleLocked'));
             }
+            if(event.shiftKey) {
+              if($scope.los_drag.state !== 'draging') {
+                $scope.los_drag.active = !$scope.los_drag.active;
+                $scope.los_drag.state = null;
+                if(!$scope.los_drag.active &&
+                   $scope.game.los.state.active) {
+                  $scope.game.newCommand(command('onLos', 'setActive', false));
+                }
+              }
+              return;
+            }
             return;
           }
           if(event.keyCode === 77) { // m
@@ -289,6 +304,34 @@ angular.module('vassalApp.controllers')
           }
           if(event.keyCode === 85) { // u
             $scope.game.newCommand(command('setSelection', []));
+            // $scope.game.setSelection([]);
+            return;
+          }
+          if(event.keyCode === 96 ||
+             event.keyCode === 48) { // 0
+            if(event.ctrlKey) {
+              if($scope.game.selection.length > 0) {
+                $scope.game.newCommand(command('onSelection', 'toggle', 'color', false));
+              }
+            }
+            return;
+          }
+          if(event.keyCode === 97 ||
+             event.keyCode === 49) { // 1
+            if(event.ctrlKey) {
+              if($scope.game.selection.length > 0) {
+                $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#0FF'));
+              }
+            }
+            return;
+          }
+          if(event.keyCode === 98 ||
+             event.keyCode === 50) { // 2
+            if(event.ctrlKey) {
+              if($scope.game.selection.length > 0) {
+                $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#F0F'));
+              }
+            }
             return;
           }
           if(event.keyCode === 99 ||
@@ -299,7 +342,12 @@ angular.module('vassalApp.controllers')
             }
             else {
               if($scope.game.selection.length > 0) {
-                $scope.game.newCommand(command('onSelection', 'toggleAoe', 3));
+                if(event.ctrlKey) {
+                  $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#FF0'));
+                }
+                else {
+                  $scope.game.newCommand(command('onSelection', 'toggleAoe', 3));
+                }
               }
             }
             return;
@@ -312,7 +360,12 @@ angular.module('vassalApp.controllers')
             }
             else {
               if($scope.game.selection.length > 0) {
-                $scope.game.newCommand(command('onSelection', 'toggleAoe', 4));
+                if(event.ctrlKey) {
+                  $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#F00'));
+                }
+                else {
+                  $scope.game.newCommand(command('onSelection', 'toggleAoe', 4));
+                }
               }
             }
             return;
@@ -325,7 +378,12 @@ angular.module('vassalApp.controllers')
             }
             else {
               if($scope.game.selection.length > 0) {
-                $scope.game.newCommand(command('onSelection', 'toggleAoe', 5));
+                if(event.ctrlKey) {
+                  $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#0F0'));
+                }
+                else {
+                  $scope.game.newCommand(command('onSelection', 'toggleAoe', 5));
+                }
               }
             }
             return;
@@ -335,6 +393,14 @@ angular.module('vassalApp.controllers')
             if($scope.game.templates.active &&
                $scope.game.templates.active.type === 'spray') {
               $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 6));
+              return;
+            }
+            else {
+              if($scope.game.selection.length > 0) {
+                if(event.ctrlKey) {
+                  $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#00F'));
+                }
+              }
               return;
             }
           }
@@ -530,6 +596,7 @@ angular.module('vassalApp.controllers')
             return;
           }
           if($scope.ruler_drag.active) return;
+          if($scope.los_drag.active) return;
           if(0 <= _.indexOf($scope.game.selection, model.state.id)) {
             $scope.model_drag.active = true;
             $scope.model_drag.start_x = event.screenX;
@@ -642,35 +709,7 @@ angular.module('vassalApp.controllers')
             return;
           }
           if($scope.ruler_drag.active) return;
-          // if($scope.drag_mode === 'ruler' &&
-          //    $scope.game.selection.length > 0) {
-          //   var model_start = $scope.game.models[$scope.game.selection[0]];
-          //   var model_end = model;
-          //   $scope.game.ruler.model_end = model;
-          //   if(model_start != model_end) {
-          //     var center_start = {
-          //       x: model_start.state.x,
-          //       y: model_start.state.y,
-          //     };
-          //     // console.log('center start '+JSON.stringify(center_start));
-          //     var center_end = {
-          //       x: model_end.state.x,
-          //       y: model_end.state.y,
-          //     };
-          //     var angle = Math.atan2(center_end.y-center_start.y, center_end.x-center_start.x);
-          //     var start = {
-          //       x: center_start.x + model_start.info.r * Math.cos(angle),
-          //       y: center_start.y + model_start.info.r * Math.sin(angle),
-          //     };
-          //     var end = {
-          //       x: center_end.x - model_end.info.r * Math.cos(angle),
-          //       y: center_end.y - model_end.info.r * Math.sin(angle),
-          //     };
-          //     $scope.game.ruler.startDraging(start.x, start.y);
-          //     $scope.game.ruler.endDraging(end.x, end.y);
-          //   }
-          //   return;
-          // }
+          if($scope.los_drag.active) return;
           if($scope.mode_model_target) {
             if(!model.state.active) {
               $scope.game.newCommand(command('onSelection',
@@ -680,15 +719,18 @@ angular.module('vassalApp.controllers')
             return;
           }
           if(event.ctrlKey) {
-            if(model.state.active) {
+            if(0 <= _.indexOf($scope.game.selection, model.state.id)) {
               $scope.game.newCommand(command('removeFromSelection', [model.state.id]));
+              // $scope.game.removeFromSelection([model.state.id]);
             }
             else {
               $scope.game.newCommand(command('addToSelection', [model.state.id]));
+              // $scope.game.addToSelection([model.state.id]);
             }
           }
           else {
             $scope.game.newCommand(command('setSelection', [model.state.id]));
+            // $scope.game.setSelection([model.state.id]);
           }
         };
 
@@ -721,6 +763,16 @@ angular.module('vassalApp.controllers')
             $scope.ruler_drag.user_start_x = user_x;
             $scope.ruler_drag.user_start_y = user_y;
             // console.log($scope.ruler_drag);
+            return;
+          }
+          if($scope.los_drag.active) {
+            // console.log('starting');
+            $scope.los_drag.state = 'starting';
+            $scope.los_drag.start_x = event.screenX;
+            $scope.los_drag.start_y = event.screenY;
+            $scope.los_drag.user_start_x = user_x;
+            $scope.los_drag.user_start_y = user_y;
+            // console.log($scope.los_drag);
             return;
           }
           $scope.selection.active = true;
@@ -810,6 +862,37 @@ angular.module('vassalApp.controllers')
                   (user_y - $scope.game.ruler.state.y1) * display_length / length;
               $scope.game.ruler.setEnd(x, y);
               // console.log($scope.ruler_drag);
+            }
+            return;
+          }
+          if($scope.los_drag.active &&
+             ($scope.los_drag.state === 'draging' ||
+              $scope.los_drag.state === 'starting')) {
+            var dx = event.screenX - $scope.los_drag.start_x;
+            var dy = event.screenY - $scope.los_drag.start_y;
+            dx *= ($scope.game.board.view.width / 800);
+            dy *= ($scope.game.board.view.height / 800);
+            // console.log(dx, dy);
+            var elem_rect = canvas.getBoundingClientRect();
+            // console.log(elem_rect);
+            var dom_x = event.clientX - elem_rect.left;
+            var dom_y = event.clientY - elem_rect.top;
+            // console.log('dom ' + dom_x + ' ' + dom_y);
+            var user_x = dom_x * $scope.game.board.width / elem_rect.width;
+            var user_y = dom_y * $scope.game.board.height / elem_rect.height;
+            // console.log('user ' + user_x + ' ' + user_y);
+            if($scope.los_drag.state === 'starting' &&
+               (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1)) {
+              // console.log('starting -> draging');
+              $scope.los_drag.state = 'draging';
+              $scope.game.los.startDraging($scope.los_drag.user_start_x,
+                                           $scope.los_drag.user_start_y);
+              // console.log($scope.los_drag);
+            }
+            else if($scope.los_drag.state === 'draging') {
+              // console.log('draging');
+              $scope.game.los.setEnd(user_x, user_y);
+              // console.log($scope.los_drag);
             }
             return;
           }
@@ -927,6 +1010,26 @@ angular.module('vassalApp.controllers')
             // console.log($scope.ruler_drag);
             return;
           }
+          if($scope.los_drag.active) {
+            if($scope.los_drag.state === 'draging') {
+              // console.log('draging -> end');
+              var elem_rect = canvas.getBoundingClientRect();
+              // console.log(elem_rect);
+              var dom_x = event.clientX - elem_rect.left;
+              var dom_y = event.clientY - elem_rect.top;
+              // console.log('dom ' + dom_x + ' ' + dom_y);
+              var user_x = dom_x * $scope.game.board.width / elem_rect.width;
+              var user_y = dom_y * $scope.game.board.height / elem_rect.height;
+              // console.log('user ' + user_x + ' ' + user_y);
+              $scope.game.newCommand(command('onLos', 'endDraging', user_x, user_y));
+            }
+            else {
+              // console.log($scope.los_drag.state+' -> end');
+            }
+            $scope.los_drag.state = null;
+            // console.log($scope.los_drag);
+            return;
+          }
           if($scope.model_drag.active) {
             var dx = event.screenX - $scope.model_drag.start_x;
             var dy = event.screenY - $scope.model_drag.start_y;
@@ -990,9 +1093,11 @@ angular.module('vassalApp.controllers')
               });
               if(event.ctrlKey) {
                 $scope.game.newCommand(command('addToSelection', models_selected));
+                // $scope.game.addToSelection(models_selected);
               }
               else {
                 $scope.game.newCommand(command('setSelection', models_selected));
+                // $scope.game.setSelection(models_selected);
               }
 
               $scope.selection.width = 0;
@@ -1196,6 +1301,8 @@ angular.module('vassalApp.controllers')
           reader.readAsText(file);
         };
         $scope.readFKString = function(file) {
+          $scope.create_mode = false;
+          $scope.fk_read_result = [];
           importFKList($scope.fk_read_string);
         };
 
@@ -1245,6 +1352,12 @@ angular.module('vassalApp.controllers')
           return $scope.game ? 
             _.filter($scope.game.templates[type],
                      function(temp) { return !temp.locked; }) : [];
+        };
+
+        $scope.hideLos = function() {
+          if($scope.game.los.state.active) {
+            $scope.game.newCommand(command('onLos', 'setActive', false));
+          }
         };
       });
     }
