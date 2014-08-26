@@ -285,6 +285,44 @@ angular.module('vassalApp.services')
       return factory;
     }
   ])
+  .factory('command_onLos', [
+    function() {
+      var factory = function(data) {
+        var instance = {
+          type: 'onLos',
+          stamp: Date.now(),
+          method: null,
+          args: null,
+          before: null,
+          after: null,
+          execute: function(game) {
+            this.before = _.deepCopy(game.los.state);
+            game.los[this.method].apply(game.los, this.args);
+            this.after = _.deepCopy(game.los.state);
+          },
+          redo: function(game) {
+            _.extend(game.los.state, this.after);
+          },
+          undo: function(game) {
+            _.extend(game.los.state, this.before);
+          },
+          desc: function(game) {
+            return this.type+'('+this.method+')';
+          }
+        };
+        if(_.isNumber(data.stamp)) {
+          _.extend(instance, data);
+        }
+        else {
+          var args = Array.prototype.slice.call(arguments, 1);
+          instance.method = data;
+          instance.args = args;
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
   .factory('command_onSelection', [
     function() {
       var factory = function() {
@@ -566,6 +604,7 @@ angular.module('vassalApp.services')
     'command_createModel',
     'command_setLayer',
     'command_setRuler',
+    'command_onLos',
     'command_onSelection',
     'command_endDragingSelection',
     'command_dropSelection',
@@ -580,6 +619,7 @@ angular.module('vassalApp.services')
              command_createModel,
              command_setLayer,
              command_setRuler,
+             command_onLos,
              command_onSelection,
              command_endDragingSelection,
              command_dropSelection,
@@ -596,6 +636,7 @@ angular.module('vassalApp.services')
         createModel: command_createModel,
         setLayer: command_setLayer,
         setRuler: command_setRuler,
+        onLos: command_onLos,
         onSelection: command_onSelection,
         endDragingSelection: command_endDragingSelection,
         dropSelection: command_dropSelection,

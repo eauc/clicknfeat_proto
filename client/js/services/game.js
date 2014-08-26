@@ -308,6 +308,33 @@ angular.module('vassalApp.services')
               this.state.length = ((this.state.length * 10 + 0.5) >> 0) / 100;
             }
           },
+          los: {
+            state: {
+              x1: 0, y1: 0,
+              x2: 100, y2: 100,
+              active: false
+            },
+            setActive: function(active) {
+              this.state.active = active;
+            },
+            startDraging: function(x, y) {
+              this.setStart(x, y);
+              this.state.active = true;
+            },
+            endDraging: function(x, y) {
+              this.setEnd(x, y);
+            },
+            setStart: function(x, y) {
+              this.state.x1 = x;
+              this.state.y1 = y;
+              this.state.x2 = x;
+              this.state.y2 = y;
+            },
+            setEnd: function(x, y) {
+              this.state.x2 = x;
+              this.state.y2 = y;
+            }
+          },
           save_url: null,
           generateBackup: function() {
             // console.log('generate backup file');

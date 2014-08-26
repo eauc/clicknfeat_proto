@@ -830,6 +830,15 @@
           {{game.ruler.state.length}}"
         </text>
       </g>
+      <line ng-show="game.los.state.active"
+            x1="{{game.los.state.x1}}" y1="{{game.los.state.y1}}"
+            x2="{{game.los.state.x2}}" y2="{{game.los.state.y2}}"
+            style="
+            stroke: #0F0;
+            stroke-width:0.5px;
+            pointer-events: none;
+            "
+            />
       <circle ng-show="ruler_drag.active && ruler_drag.origin !== null"
               cx="{{ruler_drag.origin.state.x}}"
               cy="{{ruler_drag.origin.state.y}}"
@@ -1267,6 +1276,15 @@
                />
       </div>
       <div>
+        LOS :
+        <input id="tools-los-use-check"
+               type="checkbox"
+               ng-model="los_drag.active"
+               ng-change="hideLos()"
+               />
+        <label for="tools-los-use-check">use</label>
+      </div>
+      <div>
         <button ng-click="doCreateTemplate('aoe',3)">New AoE</button>
         <form style="display:inline;"
               ng-show="game.templates.active.type === 'aoe'">
@@ -1410,6 +1428,7 @@
       <li>f : toggle focus/counter of selected model</li>
       <li>i : toggle image of selected model</li>
       <li>l : lock selected template (place it under models and prevent drag)</li>
+      <li>L (Shift+l): toggle LOS mode</li>
       <li>m : toggle melee range of selected model</li>
       <li>r (AoE selected & ruler active) : place the selected AoE at the end of the ruler.</li>
       <li>r (model selected) : toggle reach range of selected model</li>
