@@ -1,0 +1,38 @@
+{
+  "name": "Retribution of Scyrah",
+  "color": "#85d1bd",
+  "icon": "data/icons/scyrah_50.png",
+  "models": {
+    "casters": {
+    },
+    "jacks": {
+      "phoenix": {
+        "name": "Phoenix",
+        "fk_name": "Phoenix",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/scyrah/jacks/Phoenix.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null, null,  "b",  "l",  "l",  "m" ],
+          "3": [ null,  "b",  "b",  "b",  "m",  "m" ],
+          "4": [ null,  "b",  "b",  "b",  "c",  "c" ],
+          "5": [ null, null,  "b",  "r",  "r",  "c" ],
+          "6": [ null, null,  "b",  "b",  "r", null ],
+          "field": 10
+        }
+      }
+    },
+    "units": {
+    },
+    "solos": {
+    }
+  }
+}

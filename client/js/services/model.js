@@ -116,6 +116,11 @@ angular.module('vassalApp.services')
           case 'jack':
           case 'colossal':
             {
+              if(col === 'field') {
+                this.state.damage.field = (this.state.damage.field === line) ?
+                  0 : line;
+                return;
+              }
               if(undefined === line) {
                 var instance = this;
                 var box_in_col = _.reduce(this.info.damage[col], function(sum, n) {
@@ -174,6 +179,7 @@ angular.module('vassalApp.services')
                   .map(Number.prototype.valueOf,0),
                 '6': Array.apply(null, new Array(this.info.damage.depth))
                   .map(Number.prototype.valueOf,0),
+                'field': 0
               };
               break;
             }
@@ -192,7 +198,8 @@ angular.module('vassalApp.services')
                 'R3': [ 0, 0, 0, 0, 0, 0 ],
                 'R4': [ 0, 0, 0, 0, 0, 0 ],
                 'R5': [ 0, 0, 0, 0, 0, 0 ],
-                'R6': [ 0, 0, 0, 0, 0, 0 ]
+                'R6': [ 0, 0, 0, 0, 0, 0 ],
+                'field': 0
               };
               break;
             }
@@ -274,7 +281,8 @@ angular.module('vassalApp.services')
               '5': Array.apply(null, new Array(instance.info.damage.depth))
                 .map(Number.prototype.valueOf,0),
               '6': Array.apply(null, new Array(instance.info.damage.depth))
-                .map(Number.prototype.valueOf,0)
+                .map(Number.prototype.valueOf,0),
+              'field': 0
             };
             break;
           }
@@ -293,7 +301,8 @@ angular.module('vassalApp.services')
               'R3': [ 0, 0, 0, 0, 0, 0 ],
               'R4': [ 0, 0, 0, 0, 0, 0 ],
               'R5': [ 0, 0, 0, 0, 0, 0 ],
-              'R6': [ 0, 0, 0, 0, 0, 0 ]
+              'R6': [ 0, 0, 0, 0, 0, 0 ],
+              'field': 0
             };
             break;
           }

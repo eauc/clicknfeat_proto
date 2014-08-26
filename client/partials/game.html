@@ -463,6 +463,28 @@
               pointer-events: none;
               "
               />
+            <g ng-if="model.info.damage.field">
+              <line x1="{{model.info.width/2-model.info.r}}"
+                    y1="{{model.info.height/2+model.info.r+1}}"
+                    x2="{{model.info.width/2+model.info.r}}"
+                    y2="{{model.info.height/2+model.info.r+1}}"
+                    style="
+                    stroke:#0FF;
+                    stroke-width:1px;
+                    pointer-events: none;
+                    "
+                    />
+              <line x1="{{model.info.width/2-model.info.r}}"
+                    y1="{{model.info.height/2+model.info.r+1}}"
+                    x2="{{model.info.width/2-model.info.r+model.info.r*2*model.state.damage.field/model.info.damage.field}}"
+                    y2="{{model.info.height/2+model.info.r+1}}"
+                    style="
+                    stroke:#066;
+                    stroke-width:1px;
+                    pointer-events: none;
+                    "
+                    />
+            </g>
             <g ng-if="model.state.label.length != 0">
               <rect x="{{model.info.width/2-model.state.label.length*3.5/2-2}}"
                     y="{{model.info.height/2+model.info.r+1}}"
@@ -482,7 +504,7 @@
             </g>
             <image ng-if="model.state.show_fire"
                    x="{{model.info.width/2-4}}"
-                   y="{{model.info.height/2+model.info.r-2}}"
+                   y="{{model.info.height/2+model.info.r-1}}"
                    width="10"
                    height="10"
                    xlink:href="data/icons/Fire.png"
@@ -490,7 +512,7 @@
                    />
             <image ng-if="model.state.show_corrosion"
                    x="{{model.info.width/2-11}}"
-                   y="{{model.info.height/2+model.info.r}}"
+                   y="{{model.info.height/2+model.info.r+1}}"
                    width="10"
                    height="10"
                    xlink:href="data/icons/Corrosion.png"
@@ -498,7 +520,7 @@
                    />
             <image ng-if="model.state.show_stationary"
                    x="{{model.info.width/2+2}}"
-                   y="{{model.info.height/2+model.info.r-1}}"
+                   y="{{model.info.height/2+model.info.r}}"
                    width="10"
                    height="10"
                    xlink:href="data/icons/Stationary.png"
@@ -506,7 +528,7 @@
                    />
             <image ng-if="model.state.show_blind"
                    x="{{model.info.width/2-18}}"
-                   y="{{model.info.height/2+model.info.r-2}}"
+                   y="{{model.info.height/2+model.info.r-1}}"
                    width="10"
                    height="10"
                    xlink:href="data/icons/Blind.png"
@@ -514,7 +536,7 @@
                    />
             <image ng-if="model.state.show_kd"
                    x="{{model.info.width/2+9}}"
-                   y="{{model.info.height/2+model.info.r-1}}"
+                   y="{{model.info.height/2+model.info.r}}"
                    width="10"
                    height="10"
                    xlink:href="data/icons/Disrupted.png"
@@ -522,7 +544,7 @@
                    />
             <image ng-if="model.state.show_leader"
                    x="{{model.info.width/2-5+model.info.r*0.7}}"
-                   y="{{model.info.height/2-5+model.info.r*0.7-2}}"
+                   y="{{model.info.height/2-5+model.info.r*0.7-1}}"
                    width="10"
                    height="10"
                    xlink:href="data/icons/Leader.png"
@@ -865,6 +887,11 @@
         <strong>Damages :</strong>
         {{game.models[game.selection[0]].state.damage.total}} /
         {{game.models[game.selection[0]].info.damage.total}}
+        <span ng-if="game.models[game.selection[0]].info.damage.field">
+          +
+          {{game.models[game.selection[0]].state.damage.field}} /
+          {{game.models[game.selection[0]].info.damage.field}}
+        </span>          
         <button ng-click="doResetAllModelDamage()">Reset</button>
         <div ng-show="game.models[game.selection[0]].info.damage.type == 'warrior'">
           <div ng-repeat="i in range(game.models[game.selection[0]].info.damage.n).reverse()"
@@ -876,6 +903,18 @@
             ng-click="doModelDamage(game.models[game.selection[0]],game.models[game.selection[0]].info.damage.n-i)"
             ></div>
         </div>
+        <table style="border-collapse:collapse;"
+               ng-if="game.models[game.selection[0]].info.damage.field">
+          <tr ng-repeat="line in [0, 1]">
+            <td ng-repeat="col in range(game.models[game.selection[0]].info.damage.field/2)"
+                style="width:20px;height:20px;border:1px solid black;text-align:center;"
+                ng-style="{
+                'background-color': (col+(line*game.models[game.selection[0]].info.damage.field/2)) < game.models[game.selection[0]].state.damage.field ? '#999' : 'white'
+                }"
+                ng-click="doModelDamage(game.models[game.selection[0]], 'field', col+(line*game.models[game.selection[0]].info.damage.field/2)+1)"
+            >F</td>
+          </tr>
+        </table>
         <table ng-show="
                game.models[game.selection[0]].info.damage.type === 'jack' ||
                game.models[game.selection[0]].info.damage.type === 'gargantuan' ||
@@ -1051,9 +1090,17 @@
           <strong>Fury :</strong>
           {{model.id.fury}}
         </div>
+        <div ng-show="model.id.damage.field">
+          <strong>Field :</strong>
+          {{model.id.damage.field}}
+        </div>
         <div>
           <strong>Damages :</strong>
           {{model.id.damage.total}}
+          <span ng-if="model.id.damage.field">
+            +
+            {{model.id.damage.field}}
+          </span>          
           <div ng-show="model.id.damage.type == 'warrior'">
             <div style="width:20px;height:20px;border:1px solid black;display:inline-block"
                  ng-style="{ 'border-right': (i%5 == 0)?'5px solid black':'1px solid black' }"
