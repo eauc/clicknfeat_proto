@@ -53,6 +53,7 @@ angular.module('vassalApp.controllers')
           y: null,
         }
       };
+      $scope.mode_model_target = false;
       if(!$stateParams.id || $stateParams.id.length <= 0) $state.go('start');
 
       $http.get('/api/games/'+$stateParams.id).then(function(response) {
@@ -277,9 +278,12 @@ angular.module('vassalApp.controllers')
               return;
             }
             else if($scope.ruler_drag.active) {
-              // console.log('mode template origin');
               $scope.mode_ruler_origin = false;
               $scope.mode_ruler_target = true;
+              return;
+            }
+            else {
+              $scope.mode_model_target = true;
               return;
             }
           }
@@ -369,6 +373,9 @@ angular.module('vassalApp.controllers')
             $scope.create_template_mode = false;
             $scope.mode_template_origin = false;
             $scope.mode_template_target = false;
+            $scope.mode_ruler_origin = false;
+            $scope.mode_ruler_target = false;
+            $scope.mode_model_target = false;
             return;
           }
           if(37 > event.keyCode ||
@@ -664,6 +671,12 @@ angular.module('vassalApp.controllers')
           //   }
           //   return;
           // }
+          if($scope.mode_model_target) {
+            $scope.game.newCommand(command('onSelection',
+                                           'alignWith', model.state.x, model.state.y));
+            $scope.mode_model_target = false;
+            return;
+          }
           if(event.ctrlKey) {
             if(model.state.active) {
               $scope.game.newCommand(command('removeFromSelection', [model.state.id]));

@@ -441,7 +441,7 @@
                     pointer-events: none;
                     "
                     ng-style="{
-                    'stroke': game.templates.active ? '#090' : '#0F0'
+                    'stroke': game.templates.active ? '#090' : (mode_model_target ? '#00F' : '#0F0')
                     }"
                     />
             <line ng-show="model.info.damage.total > 1"
@@ -1387,7 +1387,7 @@
       <li>r (model selected) : toggle reach range of selected model</li>
       <li>R (Shift+r): toggle Ruler mode</li>
       <li>o (template selected/ruler mode) : trigger template/ruler's origin selection mode</li>
-      <li>t (template selected/ruler mode) : trigger template/ruler's target selection mode</li>
+      <li>t (template selected/ruler mode/model selected) : trigger template/ruler/model's target selection mode</li>
       <li>u : unselect all models.</li>
       <li>+/- (Numeric Kbd only) : increment/decrement focus/counter of selected model.</li>
       <li>3/4/5 (AoE selected) : change AoE size to 3/4/5"</li>

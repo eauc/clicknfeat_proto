@@ -1,4 +1,3 @@
-- target mode model
 - immovable models
 
 - model unit number

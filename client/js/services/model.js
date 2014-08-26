@@ -12,6 +12,10 @@ angular.module('vassalApp.services')
           this.state.y = Math.min(game.board.height-this.info.r,
                                   this.state.y);
         },
+        alignWith: function(game, x, y) {
+          var angle = Math.atan2(x - this.state.x, this.state.y - y) * 180 / Math.PI;
+          this.state.rot = angle;
+        },
         moveFront: function(game, small) {
           var dl = small ? 1 : 10;
           var dx = dl * Math.sin(this.state.rot * Math.PI / 180);
