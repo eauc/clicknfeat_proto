@@ -228,11 +228,11 @@ angular.module('vassalApp.services')
               this.view.y = this.zoom.cy - this.view.height / 2;
             },
             zoomIn: function() {
-              this.zoom.factor *= 2;
+              this.zoom.factor *= 1.5;
               this.refreshView();
             },
             zoomOut: function() {
-              this.zoom.factor /= 2;
+              this.zoom.factor /= 1.5;
               this.refreshView();
             },
             moveLeft: function() {
