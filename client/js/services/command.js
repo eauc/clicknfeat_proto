@@ -190,8 +190,8 @@ angular.module('vassalApp.services')
           },
           undo: function(game) {
             var ids = _.map(this.after, function(mod) { return mod.state.id; });
-            _.without.apply(_, [game.selection].concat(ids));
-            _.without.apply(_, [game.update_selection].concat(ids));
+            game.selection = _.without.apply(_, [game.selection].concat(ids));
+            game.update_selection = _.without.apply(_, [game.update_selection].concat(ids));
             _.each(this.after, function(new_mod) { 
               delete game.models[new_mod.state.id];
             });
