@@ -733,15 +733,24 @@ angular.module('vassalApp.controllers')
             if(0 <= _.indexOf($scope.game.selection, model.state.id)) {
               $scope.game.newCommand(command('removeFromSelection', [model.state.id]));
               // $scope.game.removeFromSelection([model.state.id]);
+              if($scope.game.selection.length > 0) {
+                $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
+              }
             }
             else {
               $scope.game.newCommand(command('addToSelection', [model.state.id]));
               // $scope.game.addToSelection([model.state.id]);
+              if($scope.game.selection.length > 0) {
+                $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
+              }
             }
           }
           else {
             $scope.game.newCommand(command('setSelection', [model.state.id]));
             // $scope.game.setSelection([model.state.id]);
+            if($scope.game.selection.length > 0) {
+              $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
+            }
           }
         };
 
@@ -1105,10 +1114,16 @@ angular.module('vassalApp.controllers')
               if(event.ctrlKey) {
                 $scope.game.newCommand(command('addToSelection', models_selected));
                 // $scope.game.addToSelection(models_selected);
+                if($scope.game.selection.length > 0) {
+                  $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
+                }
               }
               else {
                 $scope.game.newCommand(command('setSelection', models_selected));
                 // $scope.game.setSelection(models_selected);
+                if($scope.game.selection.length > 0) {
+                  $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
+                }
               }
 
               $scope.selection.width = 0;
