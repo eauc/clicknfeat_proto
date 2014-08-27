@@ -841,61 +841,63 @@
                 }
             }
         },
-        "name": "Heavy Rifle Team",
-        "entries": {
+        "rifleTeam": {
+          "name": "Heavy Rifle Team",
+          "entries": {
             "grunt": {
-                "grunt1": {
-                    "name": "Heavy Rifle Team Crew 1",
-                    "fk_name": "Heavy Rifle Team",
-                    "type": "warrior",
-                    "base": "small",
-                    "width": 60,
-                    "height": 60,
-                    "img": {
-                        "x": 0.2,
-                        "y": -0.5,
-                        "link": "data/scyrah/units/HeavyRifleCrew.png"
-                    },
-                    "damage": {
-                        "type": "warrior",
-                        "n": 1
-                    }
+              "grunt1": {
+                "name": "Heavy Rifle Team Crew 1",
+                "fk_name": "Heavy Rifle Team",
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                  "x": 0.2,
+                  "y": -0.5,
+                  "link": "data/scyrah/units/HeavyRifleCrew.png"
                 },
-                "grunt2": {
-                    "name": "Heavy Rifle Team Crew 2",
-                    "fk_name": "Heavy Rifle Team",
-                    "type": "warrior",
-                    "base": "small",
-                    "width": 60,
-                    "height": 60,
-                    "img": {
-                        "x": 0.2,
-                        "y": -0.5,
-                        "link": "data/scyrah/units/HeavyRifleCrew.png"
-                    },
-                    "damage": {
-                        "type": "warrior",
-                        "n": 1
-                    }
-                },
-                "leader": {
-                    "name": "Leader",
-                    "fk_name": "Heavy Rifle Team",
-                    "type": "warrior",
-                    "base": "large",
-                    "width": 60,
-                    "height": 60,
-                    "img": {
-                        "x": 0.2,
-                        "y": -0.5,
-                        "link": "data/scyrah/units/HeavyRifle.png"
-                    },
-                    "damage": {
-                        "type": "warrior",
-                        "n": 1
-                    }
+                "damage": {
+                  "type": "warrior",
+                  "n": 1
                 }
+              },
+              "grunt2": {
+                "name": "Heavy Rifle Team Crew 2",
+                "fk_name": "Heavy Rifle Team",
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                  "x": 0.2,
+                  "y": -0.5,
+                  "link": "data/scyrah/units/HeavyRifleCrew.png"
+                },
+                "damage": {
+                  "type": "warrior",
+                  "n": 1
+                }
+              },
+              "leader": {
+                "name": "Leader",
+                "fk_name": "Heavy Rifle Team",
+                "type": "warrior",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                  "x": 0.2,
+                  "y": -0.5,
+                  "link": "data/scyrah/units/HeavyRifle.png"
+                },
+                "damage": {
+                  "type": "warrior",
+                  "n": 1
+                }
+              }
             }
+          }
         }
     },
     "solos": {
