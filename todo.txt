@@ -24,7 +24,6 @@
 - text no highlight
 
 =======================================================================================
-- units with leader sprite
 - spell martyr(s)
 
 - le zoom du navigateur fausse le calcul du drag

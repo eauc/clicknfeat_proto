@@ -444,7 +444,7 @@
             <image ng-show="model.state.show_image"
                    x="{{model.info.img.x}}" y="{{model.info.img.y}}"
                    width="{{model.info.width}}" height="{{model.info.height}}"
-                   xlink:href="{{(model.state.show_incorporeal && model.info.img.incorporeal) ? model.info.img.incorporeal : model.info.img.link}}"
+                   xlink:href="{{(model.state.show_incorporeal && model.info.img.incorporeal) ? model.info.img.incorporeal : ((model.state.show_leader && model.info.img.leader) ? model.info.img.leader : model.info.img.link)}}"
                    style="pointer-events: none"
                    />
             <line ng-show="model.info.damage.total > 1"
