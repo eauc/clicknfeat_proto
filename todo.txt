@@ -1,5 +1,3 @@
-- select model remove active template if not in origin/target mode
-
 - auto deviate model (max distance?, origin?)
 - auto-slam model
 - place model to ruler end
@@ -32,8 +30,6 @@
 - listes trop longues
 
 - le zoom du navigateur fausse le calcul du drag
-- label rotation
-- conserver label model precedent
 - raccourcis marchent en dehors de l'image mais sont desactives dans les inputs
 =======================================================================================
 - des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
