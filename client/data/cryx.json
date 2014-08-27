@@ -4,7 +4,7 @@
   "icon": "data/icons/cryx_50.png",
   "models": {
     "casters": {
-	"Asphyxious1": {
+      "Asphyxious1": {
         "name": "Asphyxious1 (Iron Lich Asphyxious)",
         "fk_name": "Iron Lich Asphyxious",
         "type": "wardude",
@@ -20,9 +20,9 @@
         "damage": {
           "type": "warrior",
           "n": 18
-		  }
-		  },
-		  "Asphyxious2": {
+        }
+      },
+      "Asphyxious2": {
         "name": "Asphyxious2 (Lich Lord Asphyxious)",
         "fk_name": "Lich Lord Asphyxious",
         "type": "wardude",
@@ -38,14 +38,10 @@
         "damage": {
           "type": "warrior",
           "n": 18
-		  }
-		  },
-	"Asphyxious3": {
-        "name": "Asphyxious3 (Asphyxious the Hellbringer & Vociferon)",
-"entries":{
-"grunt"{
-"Asphyxious"{
-"name": "Asphyxious the Hellbringer"
+        }
+      },
+      "Asphyxious3": {
+        "name": "Asphyxious3 (Asphyxious the Hellbringer)",
         "fk_name": "Asphyxious the Hellbringer",
         "type": "wardude",
         "focus": 7,
@@ -62,8 +58,8 @@
           "n": 18
         }
       },
-"Vociferon"{
-"name": "Kovaas"
+      "Vociferon": {
+        "name": "Asphyxious3 (Vociferon)",
         "fk_name": "Asphyxious the Hellbringer",
         "type": "warrior",
         "base": "small",
@@ -72,17 +68,14 @@
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/cryx/casters/Vociferon.png",
-	              },
+          "link": "data/cryx/casters/Vociferon.png"
+        },
         "damage": {
           "type": "warrior",
           "n": 5
         }
-      }
-}
-}
-},
-"Deneghra1": {
+      },
+      "Deneghra1": {
         "name": "Deneghra1 (Warwitch Deneghra)",
         "fk_name": "Warwitch Deneghra",
         "type": "wardude",
@@ -98,9 +91,9 @@
         "damage": {
           "type": "warrior",
           "n": 16
-		  }
-		  },	
-"Deneghra2": {
+        }
+      },        
+      "Deneghra2": {
         "name": "Deneghra2 (Wraithwitch Deneghra)",
         "fk_name": "Wraithwitch Deneghra",
         "type": "wardude",
@@ -111,20 +104,16 @@
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/cryx/casters/Deneghra2.png"
-		  'incorporeal": "data/cryx/casters/Deneghra2_Incorporeal.png"
+          "link": "data/cryx/casters/Deneghra2.png",
+          "incorporeal": "data/cryx/casters/Deneghra2_Incorporeal.png"
         },
         "damage": {
           "type": "warrior",
           "n": 16
-		  }
-		  },		
-"Goreshade1": {
+        }
+      },                
+      "Goreshade1": {
         "name": "Goreshade1 (Goreshade the Bastard & Deathwalker)",
-"entries":{
-"grunt"{
-"Goreshade1"{
-"name": "Goreshade the Bastard"
         "fk_name": "Goreshade the Bastard",
         "type": "wardude",
         "focus": 7,
@@ -141,8 +130,8 @@
           "n": 17
         }
       },
-"Deathwalker"{
-"name": "Deathwalker"
+      "Deathwalker": {
+        "name": "Goreshade1 (Deathwalker)",
         "fk_name": "Goreshade the Bastard",
         "type": "warrior",
         "base": "small",
@@ -151,17 +140,14 @@
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/cryx/casters/Deathwalker.png",
-	              },
+          "link": "data/cryx/casters/Deathwalker.png"
+        },
         "damage": {
           "type": "warrior",
           "n": 5
         }
-      }
-}
-}
-},	  
-"Goreshade2": {
+      },          
+      "Goreshade2": {
         "name": "Goreshade2 (Goreshade the Cursed)",
         "fk_name": "Goreshade the Cursed",
         "type": "wardude",
@@ -173,13 +159,13 @@
           "x": 0,
           "y": 0,
           "link": "data/cryx/casters/Goreshade2.png"
-	    },
+        },
         "damage": {
           "type": "warrior",
           "n": 17
-		  }
-		  },		
- "Goreshade3": {
+        }
+      },                
+      "Goreshade3": {
         "name": "Goreshade3 (Goreshade, Lord of Ruin)",
         "fk_name": "Goreshade, Lord of Ruin",
         "type": "wardude",
@@ -190,19 +176,15 @@
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/cryx/casters/.png"
-	    },
+          "link": null
+        },
         "damage": {
           "type": "warrior",
           "n": 17
-		  }
-		  },		
-	Mortenebra1": {
-     "name": "Mortenebra1 (Master Necrotech Mortenebra & Deryliss)",
-"entries":{
-"grunt"{
-"Mortenebra1"{
-"name": "Master Necrotech Mortenebra"
+        }
+      },                
+      "Mortenebra1": {
+        "name": "Mortenebra1 (Master Necrotech Mortenebra & Deryliss)",
         "fk_name": "Master Necrotech Mortenebra",
         "type": "wardude",
         "focus": 7,
@@ -219,8 +201,8 @@
           "n": 16
         }
       },
-"Deryliss"{
-"name": "Deryliss"
+      "Deryliss": {
+        "name": "Mortenebra1 (Deryliss)",
         "fk_name": "Master Necrotech Mortenebra",
         "type": "warrior",
         "base": "small",
@@ -229,17 +211,14 @@
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/cryx/casters/Deryliss.png",
-	              },
+          "link": "data/cryx/casters/Deryliss.png"
+        },
         "damage": {
           "type": "warrior",
           "n": 5
         }
-      }
-}
-}
-},	  
-"Scaverous1": {
+      },        
+      "Scaverous1": {
         "name": "Scaverous1 (Lord Exhumator Scaverous)",
         "fk_name": "Lord Exhumator Scaverous",
         "type": "wardude",
@@ -251,13 +230,13 @@
           "x": 0,
           "y": 0,
           "link": "data/cryx/casters/Scaverous1.png"
-	    },
+        },
         "damage": {
           "type": "warrior",
           "n": 18
-		  }
-		  },
-"Skarre1": {
+        }
+      },
+      "Skarre1": {
         "name": "Skarre1 (Pirate Queen Skarre)",
         "fk_name": "Pirate Queen Skarre",
         "type": "wardude",
@@ -269,13 +248,13 @@
           "x": 0,
           "y": 0,
           "link": "data/cryx/casters/Skarre1.png"
-	    },
+        },
         "damage": {
           "type": "warrior",
           "n": 16
-		  }
-		  },
- "Skarre2": {
+        }
+      },
+      "Skarre2": {
         "name": "Skarre2 (Skarre, Queen of the Broken Coast)",
         "fk_name": "Skarre, Queen of the Broken Coast",
         "type": "wardude",
@@ -287,13 +266,13 @@
           "x": 0,
           "y": 0,
           "link": "data/cryx/casters/Skarre2.png"
-	    },
+        },
         "damage": {
           "type": "warrior",
           "n": 16
-		  }
-		  },
-"Terminus1": {
+        }
+      },
+      "Terminus1": {
         "name": "Terminus1 (Lich Lord Terminus)",
         "fk_name": "Lich Lord Terminus",
         "type": "wardude",
@@ -305,13 +284,13 @@
           "x": 0,
           "y": 0,
           "link": "data/cryx/casters/Terminus1.png"
-	    },
+        },
         "damage": {
           "type": "warrior",
           "n": 20
-		  }
-		  },
- "Venethrax1": {
+        }
+      },
+      "Venethrax1": {
         "name": "Venethrax1 (Lich Lord Venethrax)",
         "fk_name": "Lich Lord Venethrax",
         "type": "wardude",
@@ -323,18 +302,14 @@
           "x": 0,
           "y": 0,
           "link": "data/cryx/casters/Venethrax1.png"
-	    },
+        },
         "damage": {
           "type": "warrior",
           "n": 18
-		  }
-		  },
-Mortenebra1": {
-     "name": "Mortenebra1 (The Witch Coven of Garlghast & Egregore)",
-"entries":{
-"grunt"{
-"Egregore"{
-"name": "Egregore"
+        }
+      },
+      "Egregore": {
+        "name": "Coven1 (Egregore)",
         "fk_name": "The Witch Coven of Garlghast",
         "type": "wardude",
         "focus": 9,
@@ -351,8 +326,8 @@ Mortenebra1": {
           "n": 0
         }
       },
-"Helena"{
-"name": "Helena"
+      "Helena": {
+        "name": "Coven1 (Heleana)",
         "fk_name": "The Witch Coven of Garlghast",
         "type": "warrior",
         "base": "small",
@@ -361,15 +336,15 @@ Mortenebra1": {
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/cryx/casters/Coven_Helena.png",
-	              },
+          "link": "data/cryx/casters/Coven_Heleana.png"
+        },
         "damage": {
           "type": "warrior",
           "n": 5
         }
-      }
-	  "Morgaen"{
-"name": "Morgaen"
+      },
+      "Morgaen": {
+        "name": "Coven1 (Morgaen)",
         "fk_name": "The Witch Coven of Garlghast",
         "type": "warrior",
         "base": "small",
@@ -378,15 +353,15 @@ Mortenebra1": {
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/cryx/casters/Coven_Morgaen.png",
-	              },
+          "link": "data/cryx/casters/Coven_Morgaen.png"
+        },
         "damage": {
           "type": "warrior",
           "n": 5
         }
-      }
-	  "Selene"{
-"name": "Selene"
+      },
+      "Selene": {
+        "name": "Coven1 (Selene)",
         "fk_name": "The Witch Coven of Garlghast",
         "type": "warrior",
         "base": "small",
@@ -395,464 +370,461 @@ Mortenebra1": {
         "img": {
           "x": 0,
           "y": 0,
-          "link": "data/cryx/casters/Coven_Selene.png",
-	              },
+          "link": "data/cryx/casters/Coven_Selene.png"
+        },
         "damage": {
           "type": "warrior",
           "n": 5
         }
       }
+    },
+    "jacks":{
+      "Deathripper": {
+        "name": "Deathripper",
+        "fk_name": "Deathripper",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Deathripper.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  null,  "b",  "h", "h" ],
+          "2": [ null,  null,  null,  "b",  "h", "c"  ],
+          "3": [ null,  null,  "b",  "b",  "c", "c"  ],
+          "4": [ null,  null,  "b",  "b",  "a", "m"  ],
+          "5": [ null,  null,  null,  "b",  "a", "m"  ],
+          "6": [ null, null,  null,  null,  "m", "m" ]
+        }
+      },
+      "Defiler": {
+        "name": "Defiler",
+        "fk_name": "Defiler",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Defiler.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  null,  "b",  "h", "h" ],
+          "2": [ null,  null,  null,  "b",  "h", "c"  ],
+          "3": [ null,  null,  "b",  "b",  "c", "c"  ],
+          "4": [ null,  null,  "b",  "b",  "a", "m"  ],
+          "5": [ null,  null,  null,  "b",  "a", "m"  ],
+          "6": [ null, null,  null,  null,  "m", "m" ]
+        }
+      },
+      "Helldiver": {
+        "name": "Helldiver",
+        "fk_name": "Helldiver",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Helldiver.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  null,  "b",  "h", "h" ],
+          "2": [ null,  null,  "b",  "b",  "c", "h"  ],
+          "3": [ null,  null,  "b",  "b",  "c", "h"  ],
+          "4": [ null,  null,  "b",  "b",  "c", "m"  ],
+          "5": [ null,  null,  "b",  "b",  "c", "m"  ],
+          "6": [ null, null,  null,  "b",  "m", "m" ]
+        }
+      },
+      "Nightwretch": {
+        "name": "Nightwretch",
+        "fk_name": "Nightwretch",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Nightwretch.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  null,  "b",  "h", "h" ],
+          "2": [ null,  null,  null,  "b",  "h", "c"  ],
+          "3": [ null,  null,  "b",  "b",  "c", "c"  ],
+          "4": [ null,  null,  "b",  "b",  "a", "m"  ],
+          "5": [ null,  null,  null,  "b",  "a", "m"  ],
+          "6": [ null, null,  null,  null,  "m", "m" ]
+        }
+      },
+      "Ripjaw": {
+        "name": "Ripjaw",
+        "fk_name": "Ripjaw",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Ripjaw.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  null,  "b",  "h", "h" ],
+          "2": [ null,  null,  null,  "b",  "h", "c"  ],
+          "3": [ null,  null,  "b",  "b",  "c", "c"  ],
+          "4": [ null,  null,  "b",  "b",  "a", "m"  ],
+          "5": [ null,  null,  null,  "b",  "a", "m"  ],
+          "6": [ null, null,  null,  null,  "m", "m" ]
+        }
+      },
+      "Scavanger": {
+        "name": "Scavanger",
+        "fk_name": "Scavanger",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Scavanger.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  null,  "b",  "h", null ],
+          "2": [ null,  null,  "b",  "b",  "c", "h"  ],
+          "3": [ null,  null,  null,  "b",  "c", "h"  ],
+          "4": [ null,  null,  null,  "b",  "c", "m"  ],
+          "5": [ null,  null,  "b",  "b",  "c", "m"  ],
+          "6": [ null, null,  null,  null,  "m", null ]
+        }
+      },
+      "Stalker": {
+        "name": "Stalker",
+        "fk_name": "Stalker",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Stalker.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  null,  "b",  "l", null ],
+          "2": [ null,  null,  "b",  "l",  "l", "c"  ],
+          "3": [ null,  null,  null, "b",  "c", "c"  ],
+          "4": [ null,  null,  null, "b",  "m", "m"  ],
+          "5": [ null,  null,  "b",  "r",  "r", "m"  ],
+          "6": [ null, null,  null,  "b",  "r", null ]
+        }
+      },
+      "Cankerworm": {
+        "name": "Cankerworm",
+        "fk_name": "Cankerworm",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Cankerworm.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "h", "h" ],
+          "2": [ null,  null,  "b",  "b",  "c", "h"  ],
+          "3": [ null,  null,  "b",  "b",  "c", "h"  ],
+          "4": [ null,  null,  "b",  "b",  "c", "m"  ],
+          "5": [ null,  null,  "b",  "b",  "c", "m"  ],
+          "6": [ null, null,  "b",  "b",  "m", "m" ]
+        }
+      },
+      "Corruptor": {
+        "name": "Corruptor",
+        "fk_name": "Corruptor",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Corruptor.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "Desecrator": {
+        "name": "Desecrator",
+        "fk_name": "Desecrator",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Desecrator.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "Harrower": {
+        "name": "Harrower",
+        "fk_name": "Harrower",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Harrower.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "Leviathan": {
+        "name": "Leviathan",
+        "fk_name": "Leviathan",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Harrower.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "Reaper": {
+        "name": "Reaper",
+        "fk_name": "Reaper",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Reaper.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "Seether": {
+        "name": "Seether",
+        "fk_name": "Seether",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Seether.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "Slayer": {
+        "name": "Slayer",
+        "fk_name": "Slayer",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Slayer.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "Deathjack": {
+        "name": "Deathjack",
+        "fk_name": "Deathjack",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Deathjack.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [ "b",  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ "b",  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "Erebus": {
+        "name": "Erebus",
+        "fk_name": "Erebus",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Erebus.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "Malice": {
+        "name": "Malice",
+        "fk_name": "Malice",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Malice.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "Nightmare": {
+        "name": "Nightmare",
+        "fk_name": "Nightmare",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/cryx/jacks/Nightmare.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "Kraken": {
+        "name": "Kraken",
+        "fk_name": "Kraken",
+        "type": "jack",
+        "base": "huge",
+        "width": 116.667,
+        "height": 116.667,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/jacks/Kraken.png"
+        },
+        "damage": {
+          "type": "colossal",
+          "L1": [ null, null, "b", "b", "l", "l" ],
+          "L2": [ null, null, "b", "b", "l", "c" ],
+          "L3": [ null, null, "b", "l", "c", "m" ],
+          "L4": [ null,  "b", "b", "l", "c", "m" ],
+          "L5": [  "b",  "b", "s", "s", "c", "m" ],
+          "L6": [  "b",  "b", "s", "c", "c", "m" ],
+          "R1": [  "b",  "b", "s", "c", "c", "m" ],
+          "R2": [  "b",  "b", "s", "s", "c", "m" ],
+          "R3": [ null,  "b", "b", "r", "c", "m" ],
+          "R4": [ null, null, "b", "r", "c", "m" ],
+          "R5": [ null, null, "b", "b", "r", "c" ],
+          "R6": [ null, null, "b", "b", "r", "r" ]
+        }
+      }
+    }
+  }
 }
-}
-},	  
-"jacks":{
-"Deathripper": {
-                "name": "Deathripper",
-                "fk_name": "Deathripper",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Deathripper.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  null,  "b",  "h", "h" ],
-                    "2": [ null,  null,  null,  "b",  "h", "c"  ],
-                    "3": [ null,  null,  "b",  "b",  "c", "c"  ],
-                    "4": [ null,  null,  "b",  "b",  "a", "m"  ],
-                    "5": [ null,  null,  null,  "b",  "a", "m"  ],
-                    "6": [ null, null,  null,  null,  "m", "m" ]
-                }
-            },
-"Defiler": {
-                "name": "Defiler",
-                "fk_name": "Defiler",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Defiler.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  null,  "b",  "h", "h" ],
-                    "2": [ null,  null,  null,  "b",  "h", "c"  ],
-                    "3": [ null,  null,  "b",  "b",  "c", "c"  ],
-                    "4": [ null,  null,  "b",  "b",  "a", "m"  ],
-                    "5": [ null,  null,  null,  "b",  "a", "m"  ],
-                    "6": [ null, null,  null,  null,  "m", "m" ]
-                }
-            },
-"Helldiver": {
-                "name": "Helldiver",
-                "fk_name": "Helldiver",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Helldiver.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  null,  "b",  "h", "h" ],
-                    "2": [ null,  null,  "b",  "b",  "c", "h"  ],
-                    "3": [ null,  null,  "b",  "b",  "c", "h"  ],
-                    "4": [ null,  null,  "b",  "b",  "c", "m"  ],
-                    "5": [ null,  null,  "b",  "b",  "c", "m"  ],
-                    "6": [ null, null,  null,  "b",  "m", "m" ]
-                }
-            },
-"Nightwretch": {
-                "name": "Nightwretch",
-                "fk_name": "Nightwretch",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Nightwretch.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  null,  "b",  "h", "h" ],
-                    "2": [ null,  null,  null,  "b",  "h", "c"  ],
-                    "3": [ null,  null,  "b",  "b",  "c", "c"  ],
-                    "4": [ null,  null,  "b",  "b",  "a", "m"  ],
-                    "5": [ null,  null,  null,  "b",  "a", "m"  ],
-                    "6": [ null, null,  null,  null,  "m", "m" ]
-                }
-            },
-"Ripjaw": {
-                "name": "Ripjaw",
-                "fk_name": "Ripjaw",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Ripjaw.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  null,  "b",  "h", "h" ],
-                    "2": [ null,  null,  null,  "b",  "h", "c"  ],
-                    "3": [ null,  null,  "b",  "b",  "c", "c"  ],
-                    "4": [ null,  null,  "b",  "b",  "a", "m"  ],
-                    "5": [ null,  null,  null,  "b",  "a", "m"  ],
-                    "6": [ null, null,  null,  null,  "m", "m" ]
-                }
-            },
-"Scavanger": {
-                "name": "Scavanger",
-                "fk_name": "Scavanger",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Scavanger.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  null,  "b",  "h", null ],
-                    "2": [ null,  null,  "b",  "b",  "c", "h"  ],
-                    "3": [ null,  null,  null,  "b",  "c", "h"  ],
-                    "4": [ null,  null,  null,  "b",  "c", "m"  ],
-                    "5": [ null,  null,  "b",  "b",  "c", "m"  ],
-                    "6": [ null, null,  null,  null,  "m", null ]
-                }
-            },
-"Stalker": {
-                "name": "Stalker",
-                "fk_name": "Stalker",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Stalker.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  null,  "b",  "l", null ],
-                    "2": [ null,  null,  "b",  "l",  "l", "c"  ],
-                    "3": [ null,  null,  null,  "b",  "c", "c"  ],
-                    "4": [ null,  null,  null,  "b",  "m", "m"  ],
-                    "5": [ null,  null,  "b",  "r",  "r", "m"  ],
-                    "6": [ null, null,  null,  null,  "r", null ]
-                }
-            },
-"Cankerworm": {
-                "name": "Cankerworm",
-                "fk_name": "Cankerworm",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Cankerworm.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "h", "h" ],
-                    "2": [ null,  null,  "b",  "b",  "c", "h"  ],
-                    "3": [ null,  null,  "b",  "b",  "c", "h"  ],
-                    "4": [ null,  null,  "b",  "b",  "c", "m"  ],
-                    "5": [ null,  null,  "b",  "b",  "c", "m"  ],
-                    "6": [ null, null,  "b",  "b",  "m", "m" ]
-                }
-            },
-"Corruptor": {
-                "name": "Corruptor",
-                "fk_name": "Corruptor",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Corruptor.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, null,  "b",  "b",  "r", null ]
-                }
-            },
-"Desecrator": {
-                "name": "Desecrator",
-                "fk_name": "Desecrator",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Desecrator.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            },
-"Harrower": {
-                "name": "Harrower",
-                "fk_name": "Harrower",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Harrower.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            },
-"Leviathan": {
-                "name": "Leviathan",
-                "fk_name": "Leviathan",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Harrower.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            },
-"Reaper": {
-                "name": "Reaper",
-                "fk_name": "Reaper",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Reaper.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, null,  "b",  "b",  "r", null ]
-                }
-            },
-"Seether": {
-                "name": "Seether",
-                "fk_name": "Seether",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Seether.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, null,  "b",  "b",  "r", null ]
-                }
-            },
-"Slayer": {
-                "name": "Slayer",
-                "fk_name": "Slayer",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Slayer.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, null,  "b",  "b",  "r", null ]
-                }
-            },
-"Deathjack": {
-                "name": "Deathjack",
-                "fk_name": "Deathjack",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Deathjack.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [ "b",  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ "b",  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            },
-"Erebus": {
-                "name": "Erebus",
-                "fk_name": "Erebus",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Erebus.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, null,  "b",  "b",  "r", null ]
-                }
-            },
-"Malice": {
-                "name": "Malice",
-                "fk_name": "Malice",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Malice.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, null,  "b",  "b",  "r", null ]
-                }
-            },
-"Nightmare": {
-                "name": "Nightmare",
-                "fk_name": "Nightmare",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/cryx/jacks/Nightmare.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, null,  "b",  "b",  "r", null ]
-                }
-            }
-"Kraken": {
-                "name": "Kraken",
-                "fk_name": "Kraken",
-                "type": "jack",
-                "base": "huge",
-                "width": 116.667,
-                "height": 116.667,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/cryx/jacks/Kraken.png"
-                },
-                "damage": {
-                    "type": "colossal",
-                    "L1": [ null, null, "b", "b", "l", "l" ],
-                    "L2": [ null, null, "b", "b", "l", "c" ],
-                    "L3": [ null, null, "b", "l", "c", "m" ],
-                    "L4": [ null,  "b", "b", "l", "c", "m" ],
-                    "L5": [  "b",  "b", "s", "s", "c", "m" ],
-                    "L6": [  "b",  "b", "s", "c", "c", "m" ],
-                    "R1": [  "b",  "b", "s", "c", "c", "m" ],
-                    "R2": [  "b",  "b", "s", "s", "c", "m" ],
-                    "R3": [ null,  "b", "b", "r", "c", "m" ],
-                    "R4": [ null, null, "b", "r", "c", "m" ],
-                    "R5": [ null, null, "b", "b", "r", "c" ],
-                    "R6": [ null, null, "b", "b", "r", "r" ]
-                }
-            }
-			},
-			}
-			}
-			}
