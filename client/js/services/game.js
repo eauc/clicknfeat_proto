@@ -218,6 +218,12 @@ angular.module('vassalApp.services')
               this.view.x = this.zoom.cx - this.view.width / 2;
               this.view.y = this.zoom.cy - this.view.height / 2;
             },
+            reset: function() {
+              this.zoom.factor = 1.;
+              this.zoom.cx = 240;
+              this.zoom.cy = 240;
+              this.refreshView();
+            },
             zoomIn: function() {
               this.zoom.factor *= 1.5;
               this.refreshView();

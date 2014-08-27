@@ -317,6 +317,10 @@ angular.module('vassalApp.controllers')
           }
           if(event.keyCode === 96 ||
              event.keyCode === 48) { // 0
+            if(event.altKey) {
+              $scope.game.board.reset();
+              return;
+            }
             if($scope.game.templates.active &&
                $scope.game.templates.active.type === 'spray' &&
                !$scope.game.templates.active.locked) {
