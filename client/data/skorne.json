@@ -78,10 +78,10 @@
 		  },	
 		  "Makeda3": {
         "name": "Makeda3 (Makeda and the Exalted Court)",
-"entries":{
-"grunt"{
-"Makeda3"{
-"name": "Makeda"
+        "entries":{
+        "grunt"{
+          "Makeda3"{
+            "name": "Makeda"
         "fk_name": "Makeda and the Exalted Court",
         "type": "wardude",
         "fury": 6,
@@ -1217,7 +1217,7 @@
                     "grunt": {
                         "grunt": {
                             "name": "Leader and Grunts",
-                            "fk_name": "Venator Slingers",
+                            "fk_name": "Venators Slingers",
                             "ranges": [1, 6, 10],
                             "type": "warrior",
                             "base": "small",
