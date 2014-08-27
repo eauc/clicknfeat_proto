@@ -1,22 +1,21 @@
+- zoom/view reset
+- shortcut pour reset model rot/tourner de 180
+
+- sauvegarde des models selectionnes dans un fichier pour import ulterieur ? -> avec la meme formation, et permet la save des labels, etc.
 - auto deviate model (max distance?, origin?)
 - auto-slam model
 - place model to ruler end
 
 - tablet demo
 
-- zoom/view reset
 - split factions files in subfiles
-- sauvegarde des models selectionnes dans un fichier pour import ulterieur ? -> avec la meme formation, et permet la save des labels, etc.
 - immovable models
 
-- models with specials
+- models with specials ?
 
 - model unit number
-- shortcut pour reset model rot/tourner de 180
 - mode charge.
 - mode ranged attack.
-
-- command range/formation for units
 
 - key/mouse control states
 - key event to msgs strings

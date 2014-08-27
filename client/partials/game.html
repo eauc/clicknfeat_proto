@@ -546,6 +546,7 @@
                   style="
                   fill:#333;
                   fill-opacity:0.4;
+                  pointer-events: none;
                   "
                   />
             <text x="{{model.info.width/2}}"
@@ -557,6 +558,9 @@
                   text-anchor:middle;
                   font-size:6px;
                   font-family:monospace;
+                  pointer-events: none;
+                  -webkit-user-select: none;
+                  -moz-user-select:none;
                   "
                   >{{model.state.label}}</text>
           </g>
