@@ -3,12 +3,12 @@
   "color": "#889751",
   "icon": "data/icons/minions_50.png",
   "models": {
-    "casters": {
+    "locks": {
       "Arkadius1": {
         "name": "Arkadius1 (Dr. Arkadius)",
         "fk_name": "Dr. Arkadius",
         "type": "wardude",
-        "focus": 7,
+        "fury": 7,
         "base": "small",
         "width": 60,
         "height": 60,
@@ -26,7 +26,7 @@
         "name": "Helga1 (Helga the Conqueror)",
         "fk_name": "",
         "type": "wardude",
-        "focus": 6,
+        "fury": 6,
         "base": "small",
         "width": 60,
         "height": 60,
@@ -44,7 +44,7 @@
         "name": "LordCarver1 (Lord Carver, BMMD, Esq. III)",
         "fk_name": "Lord Carver",
         "type": "wardude",
-        "focus": 6,
+        "fury": 6,
         "base": "small",
         "width": 60,
         "height": 60,
@@ -62,7 +62,7 @@
         "name": "Midas1 (Midas)",
         "fk_name": "Midas",
         "type": "wardude",
-        "focus": 6,
+        "fury": 6,
         "base": "small",
         "width": 60,
         "height": 60,
@@ -80,7 +80,7 @@
         "name": "Sturm&Drang1 (Sturm&Drang)",
         "fk_name": "Sturm und Drang",
         "type": "wardude",
-        "focus": 7,
+        "fury": 7,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -98,7 +98,7 @@
         "name": "Barnabas1 (Bloody Barnabas)",
         "fk_name": "Bloody Barnabas",
         "type": "wardude",
-        "focus": 6,
+        "fury": 6,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -116,7 +116,7 @@
         "name": "Calaban1 (Calaban, The grave walker)",
         "fk_name": "Calaban, the Gravewalker",
         "type": "wardude",
-        "focus": 7,
+        "fury": 7,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -134,7 +134,7 @@
         "name": "Jaga1 (Jaga-Jaga, the Death Charmer)",
         "fk_name": "",
         "type": "wardude",
-        "focus": 7,
+        "fury": 7,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -152,7 +152,7 @@
         "name": "Maelok1 (Maelok the Dreadbound)",
         "fk_name": "Maelok, the Dreadbound",
         "type": "wardude",
-        "focus": 6,
+        "fury": 6,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -170,7 +170,7 @@
         "name": "Rask1 (Rask)",
         "fk_name": "Rask",
         "type": "wardude",
-        "focus": 6,
+        "fury": 6,
         "base": "small",
         "width": 60,
         "height": 60,
@@ -186,10 +186,11 @@
       }
     },
     "beasts": {
-      "Blackhide Wrastler": {
+      "Blackhide_Wrastler": {
         "name": "Blackhide Wrastler",
         "fk_name": "Blackhide Wrastler",
         "type": "beast",
+        "fury": 4,
         "base": "large",
         "width": 60,
         "height": 60,
@@ -212,6 +213,7 @@
         "name": "Bone Swarm",
         "fk_name": "Bone Swarm",
         "type": "beast",
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -230,10 +232,11 @@
           "6": [ "b", "b", "b", "b", null ]
         }
       },
-      "Bull Snaper": {
+      "Bull_Snaper": {
         "name": "Bull Snapper",
         "fk_name": "Bull Snapper",
         "type": "beast",
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -252,10 +255,11 @@
           "6": [ "b", "b", "b", null ]
         }
       },
-      "Ironback Spitter": {
+      "Ironback_Spitter": {
         "name": "Ironback Spitter",
         "fk_name": "Ironback Spitter",
         "type": "beast",
+        "fury": 4,
         "base": "large",
         "width": 60,
         "height": 60,
@@ -274,10 +278,11 @@
           "6": [ "b", "b", "b", "b", "b", null ]
         }
       },
-      "Swamp Horror": {
+      "Swamp_Horror": {
         "name": "Swamp Horror",
         "fk_name": "Swamp Horror",
         "type": "beast",
+        "fury": 4,
         "base": "large",
         "width": 60,
         "height": 60,
@@ -296,10 +301,11 @@
           "6": [ "b", "b", "b", "b", "b", null ]
         }
       },
-      "Gun Boar": {
+      "Gun_Boar": {
         "name": "Gun Boar",
         "fk_name": "Gun Boar",
         "type": "beast",
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -318,10 +324,11 @@
           "6": [ "b", "b", "b", "b", null, null ]
         }
       },
-      "Razor Boar": {
+      "Razor_Boar": {
         "name": "Razor Boar",
         "fk_name": "Razor Boar",
         "type": "beast",
+        "fury": 2,
         "base": "small",
         "width": 60,
         "height": 60,
@@ -340,10 +347,11 @@
           "6": [ "b", "b", "b", null ]
         }
       },
-      "Road Hog": {
+      "Road_Hog": {
         "name": "Road Hog",
         "fk_name": "Road Hog",
         "type": "beast",
+        "fury": 4,
         "base": "large",
         "width": 60,
         "height": 60,
@@ -362,10 +370,11 @@
           "6": [ "b", "b", "b", "b", "b", null, null ]
         }
       },
-      "War hog": {
+      "War_hog": {
         "name": "War Hog",
         "fk_name": "War Hog",
         "type": "beast",
+        "fury": 4,
         "base": "large",
         "width": 60,
         "height": 60,
@@ -386,7 +395,7 @@
       }
     },
     "units": {
-      "Bog Trog Ambushers": {
+      "Bog_Trog_Ambushers": {
         "name": "Bog Trog Ambushers",
         "entries": {
           "grunts": {
@@ -428,7 +437,7 @@
           }
         }
       },
-      "Bokor and Shamblers": {
+      "Bokor_and_Shamblers": {
         "name": "Gatorman Bokor and Bog Trog Shamblers",
         "entries": {
           "grunts": {
@@ -470,7 +479,7 @@
           }
         }
       },
-      "Gatormen Posse": {
+      "Gatormen_Posse": {
         "name": "Gatormen Posse",
         "entries": {
           "grunts": {
@@ -493,7 +502,7 @@
               }
             },
             "Leader": {
-              "name": "Gatormen leader",
+              "name": "Gatormen Leader",
               "fk_name": "Gatormen Posse",
               "type": "warrior",
               "base": "medium",
@@ -512,46 +521,48 @@
           }
         }
       },
-      "Swamp Gobbers": {
+      "Swamp_Gobbers": {
         "name": "Swamp Gobber Bellows Crew",
         "entries": {
-          "Gobber crew": {
-            "name": "Swamp Gobber",
-            "fk_name": "Swamp Gobber Bellows Crew",
-            "type": "warrior",
-            "base": "small",
-            "width": 60,
-            "height": 60,
-            "img": {
-              "x": 0,
-              "y": 0,
-              "link": "data/minions/units/SwampGobber_grunt.png"
-            },
-            "damage": {
+          "grunts": {
+            "Gobber crew": {
+              "name": "Swamp Gobber",
+              "fk_name": "Swamp Gobber Bellows Crew",
               "type": "warrior",
-              "n": 1
-            }
-          },
-          "Gobber Leader": {
-            "name": "Swamp Gobber Gunner",
-            "fk_name": "Swamp Gobber Bellows Crew",
-            "type": "warrior",
-            "base": "small",
-            "width": 60,
-            "height": 60,
-            "img": {
-              "x": 0,
-              "y": 0,
-              "link": "data/minions/units/SwampGobber_Gunner.png"
+                "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/minions/units/SwampGobber_grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
             },
-            "damage": {
+            "Gobber Leader": {
+              "name": "Swamp Gobber Gunner",
+              "fk_name": "Swamp Gobber Bellows Crew",
               "type": "warrior",
-              "n": 1
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/minions/units/SwampGobber_Gunner.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
             }
           }
         }
       },
-      "Farrow Bone Grinders": {
+      "Farrow_Bone_Grinders": {
         "name": "Farrow Bone Grinders",
         "entries": {
           "grunts": {
@@ -593,49 +604,51 @@
           }
         }
       },
-      "Razorback Crew": {
+      "Razorback_Crew": {
         "name": "Farrow Razorback Crew",
         "entries": {
-          "grunt": {
-            "name": "Razorback Crew",
-            "fk_name": "Farrow Razorback Crew",
-            "type": "warrior",
-            "base": "small",
-            "width": 60,
-            "height": 60,
-            "img": {
-              "x": 0,
-              "y": 0,
-              "link": "data/minions/units/Razorback_grunt.png"
-            },
-            "damage": {
+          "grunts": {
+            "grunt": {
+              "name": "Razorback Crew",
+              "fk_name": "Farrow Razorback Crew",
               "type": "warrior",
-              "n": 1
-            }
-          },
-          "leader": {
-            "name": "Razorback Gunner",
-            "fk_name": "Farrow Razorback Crew",
-            "type": "warrior",
-            "base": "large",
-            "width": 60,
-            "height": 60,
-            "img": {
-              "x": 0,
-              "y": 0,
-              "link": "data/minions/units/RazorbackGunner.png"
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/minions/units/Razorback_grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
             },
-            "damage": {
+            "leader": {
+              "name": "Razorback Gunner",
+              "fk_name": "Farrow Razorback Crew",
               "type": "warrior",
-              "n": 1
+              "base": "large",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/minions/units/RazorbackGunner.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
             }
           }
         }
       },
-      "Farrow Brigands": {
+      "Farrow_Brigands": {
         "name": "Farrow Brigands",
         "entries": {
-          "grunt": {
+          "grunts": {
             "grunt": {
               "name": "Farrow Brigand",
               "fk_name": "Farrow Brigands",
@@ -674,10 +687,10 @@
           }
         }
       },
-      "Farrow Slaughterhousers": {
+      "Farrow_Slaughterhousers": {
         "name": "Farrow Slaughterhousers",
         "entries": {
-          "grunt": {
+          "grunts": {
             "grunt": {
               "name": "Farrow Slaughterhouser",
               "fk_name": "Farrow Slaughterhousers",
@@ -701,7 +714,7 @@
       }
     },
     "solos": {
-      "Alten Ashley": {
+      "Alten_Ashley": {
         "name": "Alten Ashley",
         "type": "warrior",
         "base": "large",
@@ -720,44 +733,47 @@
       "Brun&Lug": {
         "name": "Brun Cragback & Lug",
         "entries": {
-          "Brun Cragback": {
-            "name": "Brun Cragback",
-            "fk_name": "Brun Cragback & Lug",
-            "type": "warrior",
-            "focus": 3,
-            "base": "small",
-            "width": 60,
-            "height": 60,
-            "img": {
-              "x": 0,
-              "y": 0,
-              "link": "data/minions/solos/Brun.png"
-            },
-            "damage": {
+          "Brun&Lug": {
+            "Brun Cragback": {
+              "name": "Brun Cragback",
+              "fk_name": "Brun Cragback & Lug",
               "type": "warrior",
-              "n": 8
-            }
-          },
-          "Lug": {
-            "name": "Lug",
-            "fk_name": "Brun Cragback & Lug",
-            "type": "beast",
-            "base": "large",
-            "width": 60,
-            "height": 60,
-            "img": {
-              "x": 0,
-              "y": 0,
-              "link": "data/minions/solos/Lug.png"
+              "fury": 3,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/minions/solos/Brun.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 8
+              }
             },
-            "damage": {
+            "Lug": {
+              "name": "Lug",
+              "fk_name": "Brun Cragback & Lug",
               "type": "beast",
-              "1": [ "b", "b", "b", null, null, null ],
-              "2": [ "b", "b", "b", "b", "b", null ],
-              "3": [ "b", "b", "b", "b", "b", null ],
-              "4": [ "b", "b", "b", "b", "b", "b" ],
-              "5": [ "b", "b", "b", null, null, null ],
-              "6": [ "b", "b", "b", "b", "b", null ]
+              "fury": 4,
+              "base": "large",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/minions/solos/Lug.png"
+              },
+              "damage": {
+                "type": "beast",
+                "1": [ "b", "b", "b", null, null, null ],
+                "2": [ "b", "b", "b", "b", "b", null ],
+                "3": [ "b", "b", "b", "b", "b", null ],
+                "4": [ "b", "b", "b", "b", "b", "b" ],
+                "5": [ "b", "b", "b", null, null, null ],
+                "6": [ "b", "b", "b", "b", "b", null ]
+              }
             }
           }
         }
@@ -765,44 +781,47 @@
       "Dahlia&Skarath": {
         "name": "Dahlia Hallyr & Skarath",
         "entries": {
-          "Dahlia Hallyr": {
-            "name": "Dahlia Hallyr",
-            "fk_name": "Dahlia Hallyr & Skarath",
-            "type": "warrior",
-            "focus": 4,
-            "base": "small",
-            "width": 60,
-            "height": 60,
-            "img": {
-              "x": 0,
-              "y": 0,
-              "link": "data/minions/solos/Dahlia.png"
-            },
-            "damage": {
+          "Dahlia&Skarath": {
+            "Dahlia Hallyr": {
+              "name": "Dahlia Hallyr",
+              "fk_name": "Dahlia Hallyr & Skarath",
               "type": "warrior",
-              "n": 8
-            }
-          },
-          "Skarath": {
-            "name": "Skarath",
-            "fk_name": "Dahlia Hallyr & Skarath",
-            "type": "beast",
-            "base": "large",
-            "width": 60,
-            "height": 60,
-            "img": {
-              "x": 0,
-              "y": 0,
-              "link": "data/minions/solos/Skarath.png"
+              "fury": 4,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/minions/solos/Dahlia.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 8
+              }
             },
-            "damage": {
+            "Skarath": {
+              "name": "Skarath",
+              "fk_name": "Dahlia Hallyr & Skarath",
               "type": "beast",
-              "1": [ "b", "b", "b", null, null ],
-              "2": [ "b", "b", "b", "b", null ],
-              "3": [ "b", "b", "b", "b", null ],
-              "4": [ "b", "b", "b", "b", "b" ],
-              "5": [ "b", "b", "b", "b", null ],
-              "6": [ "b", "b", "b", "b", "b" ]
+              "fury": 4,
+              "base": "large",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/minions/solos/Skarath.png"
+              },
+              "damage": {
+                "type": "beast",
+                "1": [ "b", "b", "b", null, null ],
+                "2": [ "b", "b", "b", "b", null ],
+                "3": [ "b", "b", "b", "b", null ],
+                "4": [ "b", "b", "b", "b", "b" ],
+                "5": [ "b", "b", "b", "b", null ],
+                "6": [ "b", "b", "b", "b", "b" ]
+              }
             }
           }
         }
@@ -810,11 +829,12 @@
       "Rorsh&Brine": {
         "name": "Rorsh & Brine",
         "entries": {
-           "Rorsh": {
+          "Rorsh&Brine": {
+            "Rorsh": {
              "name": "Rorsh",
              "fk_name": "Rorsh & Brine",
              "type": "warrior",
-             "focus": 3,
+             "fury": 3,
              "base": "small",
              "width": 60,
              "height": 60,
@@ -832,6 +852,7 @@
              "name": "Brine",
              "fk_name": "Rorsh & Brine",
              "type": "beast",
+             "fury": 4,
              "base": "large",
              "width": 60,
              "height": 60,
@@ -850,54 +871,58 @@
                "6": [ "b", "b", "b", "b", "b", null, null ]
              }
            }
+          }
         }
       },
       "WrongEye&Snapjaw": {
         "name": "Wrong Eye & Snapjaw",
         "entries": {
-          "Wrong Eye": {
-            "name": "Wrong Eye",
-            "fk_name": "Wrong Eye & Snapjaw",
-            "type": "warrior",
-            "focus": 4,
-            "base": "small",
-            "width": 60,
-            "height": 60,
-            "img": {
-              "x": 0,
-              "y": 0,
-              "link": "data/minions/solos/Wrong_Eye.png"
-            },
-            "damage": {
+          "WrongEye&Snapjaw": {
+            "Wrong Eye": {
+              "name": "Wrong Eye",
+              "fk_name": "Wrong Eye & Snapjaw",
               "type": "warrior",
-              "n": 8
-            }
-          },
-          "Snapjaw": {
-            "name": "Snapjaw",
-            "fk_name": "Wrong Eye & Snapjaw",
-            "type": "beast",
-            "base": "large",
-            "width": 60,
-            "height": 60,
-            "img": {
-              "x": 0,
-              "y": 0,
-              "link": "data/minions/solos/snapjaw.png"
+              "fury": 4,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/minions/solos/Wrong_Eye.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 8
+              }
             },
-            "damage": {
+            "Snapjaw": {
+              "name": "Snapjaw",
+              "fk_name": "Wrong Eye & Snapjaw",
               "type": "beast",
-              "1": [ "b", "b", null, null, null, null, null, null ],
-              "2": [ "b", "b", "b", null, null, null, null, null ],
-              "3": [ "b", "b", "b", "b", "b", "b", null, null ],
-              "4": [ "b", "b", "b", "b", "b", "b", "b", "b" ],
-              "5": [ "b", "b", "b", null, null, null, null, null ],
-              "6": [ "b", "b", "b", "b", "b", null, null, null ]
+              "fury": 4,
+              "base": "large",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/minions/solos/snapjaw.png"
+              },
+              "damage": {
+                "type": "beast",
+                "1": [ "b", "b", null, null, null, null, null, null ],
+                "2": [ "b", "b", "b", null, null, null, null, null ],
+                "3": [ "b", "b", "b", "b", "b", "b", null, null ],
+                "4": [ "b", "b", "b", "b", "b", "b", "b", "b" ],
+                "5": [ "b", "b", "b", null, null, null, null, null ],
+                "6": [ "b", "b", "b", "b", "b", null, null, null ]
+              }
             }
           }
         }
       },
-      "Croak Hunter": {
+      "Croak_Hunter": {
         "name": "Croak Hunter",
         "fk_name": "Croak Hunter",
         "type": "warrior",
@@ -931,7 +956,7 @@
           "n": 1
         }
       },
-      "Witch Doctor": {
+      "Witch_Doctor": {
         "name": "Gatorman Witch Doctor",
         "fk_name": "Gatorman Witch Doctor",
         "type": "warrior",
@@ -948,7 +973,7 @@
           "n": 8
         }
       },
-      "Gobber Tinker": {
+      "Gobber_Tinker": {
         "name": "Gobber Tinker",
         "fk_name": "Goblin Tinker",
         "type": "warrior",
@@ -1067,7 +1092,7 @@
           "n": 8
         }
       },
-      "Totem Hunter": {
+      "Totem_Hunter": {
         "name": "Totem Hunter",
         "fk_name": "Totem Hunter",
         "type": "warrior",

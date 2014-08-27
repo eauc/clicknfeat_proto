@@ -4,7 +4,7 @@
   "icon": "data/icons/legion_50.png",
   "models": {
     "locks": {
-      "absylonia1": {
+      "Absylonia1": {
         "name": "Absylonia1 (Absylonia, Terror of Everblight)",
         "fk_name": "Absylonia, Terror of Everblight",
         "type": "wardude",
@@ -22,7 +22,7 @@
           "n": 16
         }
       },
-      "absylonia2": {
+      "Absylonia2": {
         "name": "Absylonia2 (Absylonia, Daughter of Everblight)",
         "fk_name": "",
         "type": "wardude",
@@ -40,7 +40,7 @@
           "n": 18
         }
       },
-      "bethayne1": {
+      "Bethayne1": {
         "name": "Bethayne1 (Bethayne, Voice of Everblight)",
         "fk_name": "Bethayne & Belphagor",
         "type": "wardude",
@@ -58,7 +58,7 @@
           "n": 14
         }
       },
-      "kallus1": {
+      "Kallus1": {
         "name": "Kallus1 (Kallus, Wrath of Everblight)",
         "fk_name": "Kallus, Wrath of Everblight",
         "type": "wardude",
@@ -76,7 +76,7 @@
           "n": 18
         }
       },
-      "lylyth1": {
+      "Lylyth1": {
         "name": "Lylyth1 (Lylyth, Herald of Everblight)",
         "fk_name": "Lylyth, Herald of Everblight",
         "type": "wardude",
@@ -94,7 +94,7 @@
           "n": 15
         }
       },
-      "lylyth2": {
+      "Lylyth2": {
         "name": "Lylyth2 (Lylyth, Shadow of Everblight)",
         "fk_name": "Lylyth, Shadow of Everblight",
         "type": "wardude",
@@ -112,7 +112,7 @@
           "n": 15
         }
       },
-      "lylyth3": {
+      "Lylyth3": {
         "name": "Lylyth3 (Lylyth, Reckoning of Everblight)",
         "fk_name": "Lylyth, Reckoning of Everblight",
         "type": "wardude",
@@ -130,7 +130,7 @@
           "n": 18
         }
       },
-      "rhyas1": {
+      "Rhyas1": {
         "name": "Rhyas1 (Rhyas, Sigil of Everblight)",
         "fk_name": "Rhyas, Sigil of Everblight",
         "type": "wardude",
@@ -148,7 +148,7 @@
           "n": 16
         }
       },
-      "saeryn1": {
+      "Saeryn1": {
         "name": "Saeryn1 (Saeryn, Omen of Everblight)",
         "fk_name": "Saeryn, Omen of Everblight",
         "type": "wardude",
@@ -166,7 +166,7 @@
           "n": 16
         }
       },
-      "thagrosh1": {
+      "Thagrosh1": {
         "name": "Thagrosh1 (Thagrosh, Prophet of Everblight)",
         "fk_name": "Thagrosh, Prophet of Everblight",
         "type": "wardude",
@@ -184,7 +184,7 @@
           "n": 18
         }
       },
-      "thagrosh2": {
+      "Thagrosh2": {
         "name": "Thagrosh2 (Thagrosh, the Messiah)",
         "fk_name": "Thagrosh, the Messiah",
         "type": "wardude",
@@ -202,7 +202,7 @@
           "n": 20
         }
       },
-      "vayl1": {
+      "Vayl1": {
         "name": "Vayl1 (Vayl, Disciple of Everblight)",
         "fk_name": "Vayl, Disciple of Everblight",
         "type": "wardude",
@@ -220,7 +220,7 @@
           "n": 14
         }
       },
-      "vayl2": {
+      "Vayl2": {
         "name": "Vayl2 (Vayl, Consul of Everblight)",
         "fk_name": "Vayl, Consul of Everblight",
         "type": "wardude",
@@ -240,7 +240,7 @@
       }
     },
     "beasts": {
-      "afflictor": {
+      "Afflictor": {
         "name": "Afflictor",
         "fk_name": "Afflictor",
         "type": "beast",
@@ -263,7 +263,7 @@
           "6": [ "b", "b", "b", "b" ]
         }
       },
-      "angelius": {
+      "Angelius": {
         "name": "Angelius",
         "fk_name": "Angelius",
         "type": "beast",
@@ -286,7 +286,7 @@
           "6": [ "b", "b", "b", "b", "b" ]
         }
       },
-      "archangel": {
+      "Archangel": {
         "name": "Archangel",
         "fk_name": "Archangel",
         "type": "beast",
@@ -309,7 +309,7 @@
           "6": [ "b", "b", "b", "b", "b", "b", "b", "b", null, null ]
         }
       },
-      "belphagor": {
+      "Belphagor": {
         "name": "Belphagor",
         "fk_name": "Bethayne & Belphagor",
         "type": "beast",
@@ -332,7 +332,7 @@
           "6": [ "b", "b", "b", "b", null, null, null ]
         }
       },
-      "carnivean": {
+      "Carnivean": {
         "name": "Carnivean",
         "fk_name": "Carnivean",
         "type": "beast",
@@ -355,7 +355,7 @@
           "6": [ "b", "b", "b", "b", "b", "b", null ]
         }
       },
-      "harrier": {
+      "Harrier": {
         "name": "Harrier",
         "fk_name": "Harrier",
         "type": "beast",
@@ -378,7 +378,7 @@
           "6": [ "b", "b", "b" ]
         }
       },
-      "naga": {
+      "Naga": {
         "name": "Naga Nightlurker",
         "fk_name": "Naga Nightlurker",
         "type": "beast",
@@ -401,7 +401,7 @@
           "6": [ "b", "b", "b", "b" ]
         }
       },
-      "bloodseer": {
+      "Bloodseer": {
         "name": "Nephilim Bloodseer",
         "fk_name": "Nephilim Bloodseer",
         "type": "beast",
@@ -424,7 +424,7 @@
           "6": [ "b", "b", "b", "b", "b" ]
         }
       },
-      "bolt_thrower": {
+      "Bolt_Thrower": {
         "name": "Nephilim Bolt Thrower",
         "fk_name": "Nephilim Bolt Thrower",
         "type": "beast",
@@ -447,7 +447,7 @@
           "6": [ "b", "b", "b", "b", null ]
         }
       },
-      "protector": {
+      "Protector": {
         "name": "Nephilim Protector",
         "fk_name": "Nephilim Protector",
         "type": "beast",
@@ -470,7 +470,7 @@
           "6": [ "b", "b", "b", "b", null ]
         }
       },
-      "soldier": {
+      "Soldier": {
         "name": "Nephilim Soldier",
         "fk_name": "Nephilim Soldier",
         "type": "beast",
@@ -493,7 +493,7 @@
           "6": [ "b", "b", "b", "b", null ]
         }
       },
-      "proteus": {
+      "Proteus": {
         "name": "Proteus",
         "fk_name": "Proteus",
         "type": "beast",
@@ -516,7 +516,7 @@
           "6": [ "b", "b", "b", "b", "b", "b", null ]
         }
       },
-      "raek": {
+      "Raek": {
         "name": "Raek",
         "fk_name": "Raek",
         "type": "beast",
@@ -539,7 +539,7 @@
           "6": [ "b", "b", "b", "b" ]
         }
       },
-      "ravagore": {
+      "Ravagore": {
         "name": "Ravagore",
         "fk_name": "Ravagore",
         "type": "beast",
@@ -562,7 +562,7 @@
           "6": [ "b", "b", "b", "b", "b", "b", null ]
         }
       },
-      "scythean": {
+      "Scythean": {
         "name": "Scythean",
         "fk_name": "Scythean",
         "type": "beast",
@@ -585,7 +585,7 @@
           "6": [ "b", "b", "b", "b", "b", "b", null ]
         }
       },
-      "neraph": {
+      "Neraph": {
         "name": "Neraph",
         "fk_name": "Neraph",
         "type": "beast",
@@ -608,7 +608,7 @@
           "6": [ "b", "b", "b", "b", "b" ]
         }
       },
-      "seraph": {
+      "Seraph": {
         "name": "Seraph",
         "fk_name": "Seraph",
         "type": "beast",
@@ -631,7 +631,7 @@
           "6": [ "b", "b", "b", "b", "b" ]
         }
       },
-      "shredder": {
+      "Shredder": {
         "name": "Shredder",
         "fk_name": "Shredder",
         "type": "beast",
@@ -654,7 +654,7 @@
           "6": [ "b", "b", "b" ]
         }
       },
-      "stinger": {
+      "Stinger": {
         "name": "Stinger",
         "fk_name": "Stinger",
         "type": "beast",
@@ -677,7 +677,7 @@
           "6": [ "b", "b", "b" ]
         }
       },
-      "teraph": {
+      "Teraph": {
         "name": "Teraph",
         "fk_name": "Teraph",
         "type": "beast",
@@ -700,7 +700,7 @@
           "6": [ "b", "b", "b", "b" ]
         }
       },
-      "typhon": {
+      "Typhon": {
         "name": "Typhon",
         "fk_name": "Typhon",
         "type": "beast",
@@ -725,10 +725,10 @@
       }
     },
     "units": {
-      "bfs": {
+      "BFS": {
         "name": "Blackfrost Shard",
         "entries": {
-          "grunt": {
+          "grunts": {
             "Sevryn": {
               "name": "Sevryn",
               "fk_name": "Blackfrost Shard",
@@ -783,10 +783,10 @@
           }
         }
       },
-      "archers": {
+      "Archers": {
         "name": "Blighted Nyss Archers",
         "entries": {
-          "grunt": {
+          "grunts": {
             "grunt": {
               "name": "Archer Grunt",
               "fk_name": "Blighted Nyss Archers",
@@ -844,10 +844,10 @@
           }
         }
       },
-      "grotesques": {
+      "Grotesques": {
         "name": "Blighted Nyss Grotesques",
         "entries": {
-          "grunt": {
+          "grunts": {
             "grunt": {
               "name": "Grotesque Grunt",
               "fk_name": "Blighted Nyss Grotesques",
@@ -869,10 +869,10 @@
           }
         }
       },
-      "hex_hunters": {
+      "Hex_hunters": {
         "name": "Blighted Nyss Hex hunters",
         "entries": {
-          "grunt": {
+          "grunts": {
             "grunt": {
               "name": "Hex Hunter Grunt",
               "fk_name": "Blighted Nyss Hex Hunters",
@@ -913,10 +913,10 @@
           }
         }
       },
-      "legionnaires": {
+      "Legionnaires": {
         "name": "Blighted Nyss Legionnaires",
         "entries": {
-          "grunt": {
+          "grunts": {
             "grunt": {
               "name": "Legionnaire Grunt",
               "fk_name": "Blighted Nyss Legionnaires",
@@ -974,10 +974,10 @@
           }
         }
       },
-      "raptors": {
+      "Raptors": {
         "name": "Blighted Nyss Raptors",
         "entries": {
-          "grunt": {
+          "grunts": {
             "grunt": {
               "name": "Raptor Grunt",
               "fk_name": "Blighted Nyss Raptors",
@@ -999,10 +999,10 @@
           }
         }
       },
-      "scather_crew": {
+      "Scather_crew": {
         "name": "Blighted Nyss Scather Crew",
         "entries": {
-          "grunt": {
+          "grunts": {
             "grunt1": {
               "name": "Scather crew grunt 1",
               "fk_name": "Blighted Nyss Scather Crew",
@@ -1057,10 +1057,10 @@
           }
         }
       },
-      "swordsmen": {
+      "Swordsmen": {
         "name": "Blighted Nyss Swordsmen",
         "entries": {
-          "grunt": {
+          "grunts": {
             "grunt": {
               "name": "Swordmen Grunt",
               "fk_name": "Blighted Nyss Swordsmen",
@@ -1118,10 +1118,10 @@
           }
         }
       },
-      "warmongers": {
+      "Warmongers": {
         "name": "Blighted Ogrun Warmongers",
         "entries": {
-          "grunt": {
+          "grunts": {
             "grunt": {
               "name": "Warmonger Grunt",
               "fk_name": "Blighted Ogrun Warmongers",
@@ -1143,10 +1143,10 @@
           }
         }
       },
-      "warspears": {
+      "Warspears": {
         "name": "Blighted Ogrun Warspears",
         "entries": {
-          "grunt": {
+          "grunts": {
             "grunt": {
               "name": "Warspear Grunt",
               "fk_name": "Blighted Ogrun Warspears",
@@ -1187,10 +1187,10 @@
           }
         }
       },
-      "spawning_vessel": {
+      "Spawning_vessel": {
         "name": "Spawning Vessel",
         "entries": {
-          "grunt": {
+          "grunts": {
             "grunt": {
               "name": "Spawning Vessel Acolyth",
               "fk_name": "Spawning Vessel",
@@ -1228,10 +1228,10 @@
           }
         }
       },
-      "rangers": {
+      "Rangers": {
         "name": "Strider Rangers",
         "entries": {
-          "grunt": {
+          "grunts": {
             "grunt": {
               "name": "Strider Ranger Grunt",
               "fk_name": "Blighted Nyss Striders",
@@ -1291,7 +1291,7 @@
       }
     },
     "solos": {
-      "annyssa": {
+      "Annyssa": {
         "name": "Annyssa Ryvaal",
         "type": "warrior",
         "base": "large",
@@ -1307,7 +1307,7 @@
           "n": 8
         }
       },
-      "mistress": {
+      "Mistress": {
         "name": "Beast mistress",
         "fk_name": "Beast Mistress",
         "type": "warrior",
@@ -1325,7 +1325,7 @@
           "n": 5
         }
       },
-      "shepherd": {
+      "Shepherd": {
         "name": "Blighted Nyss Shepherd",
         "fk_name": "Blighted Nyss Shepherd",
         "type": "warrior",
@@ -1342,7 +1342,7 @@
           "n": 1
         }
       },
-      "hellion": {
+      "Hellion": {
         "name": "Blighted Nyss Sorceress and Hellion",
         "fk_name": "Blighted Nyss Sorceress and Hellion",
         "type": "warrior",
@@ -1359,7 +1359,7 @@
           "n": 10
         }
       },
-      "fyanna": {
+      "Fyanna": {
         "name": "Fyanna the Lash",
         "fk_name": "Fyanna the Lash",
         "type": "warrior",
@@ -1376,7 +1376,7 @@
           "n": 5
         }
       },
-      "incubus": {
+      "Incubus": {
         "name": "Incubus",
         "fk_name": "Incubus",
         "ranges": [ 1, 5 ],
@@ -1394,7 +1394,7 @@
           "n": 1
         }
       },
-      "martyr": {
+      "Martyr": {
         "name": "Spell Martyr",
         "fk_name": "Spell Martyr",
         "type": "warrior",
@@ -1411,7 +1411,7 @@
           "n": 1
         }
       },
-      "deathstalker": {
+      "Deathstalker": {
         "name": "Strider Deathstalker",
         "fk_name": "Strider Deathstalker",
         "type": "warrior",
@@ -1481,7 +1481,7 @@
       }
     },
     "battle_engines": {
-      "throne": {
+      "Throne": {
         "name": "Throne of Everblight",
         "fk_name": "Throne of Everblight",
         "type": "be",
