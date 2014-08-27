@@ -5,5 +5,6 @@
   "minions" : "/data/minions.json",
   "oroboros" : "/data/oroboros.json",
   "scyrah" : "/data/scyrah.json",
-  "scenario" : "/data/scenario.json"
+  "scenario" : "/data/scenario.json",
+  "skorne" : "/data/skorne.json"
 }
