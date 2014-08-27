@@ -31,8 +31,6 @@
 - units with leader sprite
 
 - bouger AoE avec fleches quand lockee
-- faire une action sur un template le selectionne pour le joueur
-- police focus illisible
 - le zoom du navigateur fausse le calcul du drag
 - label rotation
 - conserver label model precedent

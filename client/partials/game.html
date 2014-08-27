@@ -647,20 +647,27 @@
               pointer-events: none;
               "
               />
-      <text ng-repeat="model in modelShow('focus')"
-            x="{{model.state.x}}" y="{{model.state.y+4}}"
-            style="
-            fill:white;
-            stroke:black;
-            stroke-width:0.25px;
-            text-anchor:middle;
-            font-size:9px;
-            font-weight:bold;
-            pointer-events: none;
-            -webkit-user-select: none;
-            -moz-user-select:none;
-            "
-            >
+      <g ng-repeat="model in modelShow('focus')">
+        <rect x="{{model.state.x-4}}" y="{{model.state.y-4}}"
+              width="8" height="9"
+              style="
+              fill:#333;
+              fill-opacity:0.7;
+              pointer-events: none;
+              "
+              />
+        <text x="{{model.state.x}}" y="{{model.state.y+4}}"
+              style="
+              fill:white;
+              text-anchor:middle;
+              font-size:9px;
+              font-weight:bold;
+              font-family:Verdana, sans-serif;
+              pointer-events: none;
+              -webkit-user-select: none;
+              -moz-user-select:none;
+              "
+              >
         {{model.state.focus}}
       </text>
       <svg id="template-canvas"
