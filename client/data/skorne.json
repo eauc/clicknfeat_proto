@@ -1202,7 +1202,7 @@
           "grunt": {
             "grunt": {
               "name": "Leader and Grunts",
-              "fk_name": "Venator Slingers",
+              "fk_name": "Venators Slingers",
               "ranges": [1, 6, 10],
               "type": "warrior",
               "base": "small",
