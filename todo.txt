@@ -29,8 +29,8 @@
 =======================================================================================
 - spell martyr(s)
 - units with leader sprite
+- listes trop longues
 
-- bouger AoE avec fleches quand lockee
 - le zoom du navigateur fausse le calcul du drag
 - label rotation
 - conserver label model precedent
