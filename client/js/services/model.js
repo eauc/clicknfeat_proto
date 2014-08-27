@@ -34,6 +34,9 @@ angular.module('vassalApp.services')
           this.state.y += dy;
           this.refresh(game);
         },
+        setRotation: function(game, angle) {
+          this.state.rot = angle;
+        },
         rotateLeft: function(game, small) {
           var dr = small ? 5 : 30;
           this.state.rot = this.state.rot - dr;

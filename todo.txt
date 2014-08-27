@@ -1,4 +1,3 @@
-- zoom/view reset
 - shortcut pour reset model rot/tourner de 180
 
 - sauvegarde des models selectionnes dans un fichier pour import ulterieur ? -> avec la meme formation, et permet la save des labels, etc.

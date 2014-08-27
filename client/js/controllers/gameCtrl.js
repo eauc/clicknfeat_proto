@@ -166,6 +166,15 @@ angular.module('vassalApp.controllers')
               return;
             }
           }
+          if(event.keyCode === 69) { // e
+            if(event.ctrlKey) {
+              if($scope.game.selection.length > 0) {
+                $scope.game.newCommand(command('onSelection', 'setRotation', 90));
+              }
+              event.preventDefault();
+            }
+            return;
+          }
           if(event.keyCode === 70) { // f
             if($scope.game.selection.length > 0) {
               if(event.altKey) {
@@ -226,6 +235,15 @@ angular.module('vassalApp.controllers')
             }
             return;
           }
+          if(event.keyCode === 78) { // n
+            if(event.ctrlKey) {
+              if($scope.game.selection.length > 0) {
+                $scope.game.newCommand(command('onSelection', 'setRotation', 0));
+              }
+              event.preventDefault();
+            }
+            return;
+          }
           if(event.keyCode === 79) { // o
             if($scope.game.templates.active &&
                !$scope.game.templates.active.locked) {
@@ -240,6 +258,7 @@ angular.module('vassalApp.controllers')
               $scope.mode_ruler_target = false;
               return;
             }
+            return;
           }
           if(event.keyCode === 80) { // p
             if($scope.game.selection.length > 0) {
@@ -283,12 +302,18 @@ angular.module('vassalApp.controllers')
             return;
           }
           if(event.keyCode === 83) { // s
-            if($scope.game.selection.length > 0) {
-              if(event.altKey) {
+            if(event.altKey) {
+              if($scope.game.selection.length > 0) {
                 var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_stationary;
                 $scope.game.newCommand(command('onSelection', 'toggle', 'stationary', new_val));
                 event.preventDefault();
               }
+            }
+            else if(event.ctrlKey) {
+              if($scope.game.selection.length > 0) {
+                $scope.game.newCommand(command('onSelection', 'setRotation', 180));
+              }
+              event.preventDefault();
             }
             return;
           }
@@ -313,6 +338,15 @@ angular.module('vassalApp.controllers')
           if(event.keyCode === 85) { // u
             $scope.game.newCommand(command('setSelection', []));
             // $scope.game.setSelection([]);
+            return;
+          }
+          if(event.keyCode === 87) { // w
+            if(event.ctrlKey) {
+              if($scope.game.selection.length > 0) {
+                $scope.game.newCommand(command('onSelection', 'setRotation', 270));
+              }
+              event.preventDefault();
+            }
             return;
           }
           if(event.keyCode === 96 ||
