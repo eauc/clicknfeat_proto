@@ -729,9 +729,9 @@
                 "entries": {
                     "grunt": {
                         "grunt": {
-                            "name": "Grunts",
+                            "name": "Leader and Grunts",
                             "fk_name": "Choir of Menoth",
-                            "ranges": [1, 3, 5],
+                            "ranges": [1, 4, 6],
                             "type": "warrior",
                             "base": "small",
                             "width": 60,
@@ -739,23 +739,8 @@
                             "img": {
                                 "x": 0.2,
                                 "y": -0.5,
-                                "link": "data/menoth/units/Choir_Grunt.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        },
-                        "priest": {
-                            "name": "Priest",
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Choir_Priest.png"
+                                "link": "data/menoth/units/Choir_Grunt.png",
+                                "leader": "data/menoth/units/Choir_Priest.png"
                             },
                             "damage": {
                                 "type": "warrior",

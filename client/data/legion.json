@@ -788,7 +788,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Archer Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Nyss Archers",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -849,7 +849,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Grotesque Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Nyss Grotesques",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -874,7 +874,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Hex Hunter Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Nyss Hex Hunters",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -918,7 +918,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Legionnaire Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Nyss Legionnaires",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -979,7 +979,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Raptor Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Nyss Raptors",
               "ranges": [ 1, 3, 5 ],
               "type": "warrior",
@@ -1004,7 +1004,7 @@
         "entries": {
           "grunt": {
             "grunt1": {
-              "name": "Scather crew grunt 1",
+              "name": "Scather crew 1",
               "fk_name": "Blighted Nyss Scather Crew",
               "type": "warrior",
               "base": "small",
@@ -1021,7 +1021,7 @@
               }
             },
             "grunt2": {
-              "name": "Scather crew grunt 2",
+              "name": "Scather crew 2",
               "fk_name": "Blighted Nyss Scather Crew",
               "type": "warrior",
               "base": "small",
@@ -1062,7 +1062,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Swordmen Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Nyss Swordsmen",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -1123,7 +1123,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Warmonger Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Ogrun Warmongers",
               "ranges": [ 1, 3, 5 ],
               "type": "warrior",
@@ -1148,7 +1148,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Warspear Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Ogrun Warspears",
               "ranges": [ 1, 3, 5 ],
               "type": "warrior",
@@ -1233,7 +1233,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Strider Ranger Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Nyss Striders",
               "ranges": [ 1, 6 ],
               "type": "warrior",
