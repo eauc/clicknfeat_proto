@@ -24,9 +24,8 @@
 - text no highlight
 
 =======================================================================================
-- spell martyr(s)
 - units with leader sprite
-- listes trop longues
+- spell martyr(s)
 
 - le zoom du navigateur fausse le calcul du drag
 - raccourcis marchent en dehors de l'image mais sont desactives dans les inputs

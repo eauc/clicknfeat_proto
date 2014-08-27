@@ -1240,6 +1240,7 @@ angular.module('vassalApp.controllers')
           // console.log(lines);
           var i = 0;
           var global_offset_x = 0;
+          var global_offset_y = 0;
           _.each(lines, function(line) {
             if(line.match(/^(System:|Faction:|Casters:|Points:|Tiers:)/)) {
               return;
@@ -1272,9 +1273,13 @@ angular.module('vassalApp.controllers')
                   $scope.create_preview.info.push({
                     info: id,
                     offset_x: global_offset_x + 1.25*$scope.factions.fk_keys[line][0].r,
-                    offset_y: 0
+                    offset_y: global_offset_y
                   });
                   global_offset_x += 2.5*$scope.factions.fk_keys[line][0].r;
+                  if(global_offset_x > 360) {
+                    global_offset_x = 0;
+                    global_offset_y = 55;
+                  }
                   i++;
                 });
               }
@@ -1287,11 +1292,11 @@ angular.module('vassalApp.controllers')
                   var offset_y = 0;
                   if(size <= 5) {
                     offset_x = n*unit_step+unit_step/2;
-                    offset_y = 0;
+                    offset_y = global_offset_y;
                   }
                   else {
                     offset_x = (i%mid_size)*unit_step+unit_step/2;
-                    offset_y = (n >= mid_size) ? unit_step : 0;
+                    offset_y = global_offset_y + ((n >= mid_size) ? unit_step : 0);
                   }
                   max_offset_x = Math.max(max_offset_x, offset_x);
                   $scope.create_preview.info.push({
@@ -1302,6 +1307,10 @@ angular.module('vassalApp.controllers')
                   i++;
                 });
                 global_offset_x += max_offset_x + unit_step/2;
+                if(global_offset_x > 360) {
+                  global_offset_x = 0;
+                  global_offset_y = 55;
+                }
               }
             }
             else {
