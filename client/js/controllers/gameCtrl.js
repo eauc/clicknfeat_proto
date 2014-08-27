@@ -156,7 +156,8 @@ angular.module('vassalApp.controllers')
           }
           if(event.keyCode === 68) { // d
             if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'aoe') {
+               $scope.game.templates.active.type === 'aoe' &&
+               !$scope.game.templates.active.locked) {
               $scope.doAoEDeviation();
               return;
             }
@@ -222,7 +223,8 @@ angular.module('vassalApp.controllers')
             return;
           }
           if(event.keyCode === 79) { // o
-            if($scope.game.templates.active) {
+            if($scope.game.templates.active &&
+               !$scope.game.templates.active.locked) {
               // console.log('mode template origin');
               $scope.mode_template_origin = true;
               $scope.mode_template_target = false;
@@ -247,7 +249,8 @@ angular.module('vassalApp.controllers')
           }
           if(event.keyCode === 82) { // r
             if($scope.game.templates.active &&
-               $scope.game.ruler.state.active) {
+               $scope.game.ruler.state.active &&
+               !$scope.game.templates.active.locked) {
               var x = $scope.game.ruler.model_end ? 
                   $scope.game.ruler.model_end.state.x : $scope.game.ruler.state.x2;
               var y = $scope.game.ruler.model_end ? 
@@ -286,7 +289,8 @@ angular.module('vassalApp.controllers')
             return;
           }
           if(event.keyCode === 84) { // t
-            if($scope.game.templates.active) {
+            if($scope.game.templates.active &&
+               !$scope.game.templates.active.locked) {
               // console.log('mode template target');
               $scope.mode_template_origin = false;
               $scope.mode_template_target = true;
@@ -310,7 +314,8 @@ angular.module('vassalApp.controllers')
           if(event.keyCode === 96 ||
              event.keyCode === 48) { // 0
             if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'spray') {
+               $scope.game.templates.active.type === 'spray' &&
+               !$scope.game.templates.active.locked) {
               $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 10));
               return;
             }
@@ -342,7 +347,8 @@ angular.module('vassalApp.controllers')
           if(event.keyCode === 99 ||
              event.keyCode === 51) { // 3
             if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'aoe') {
+               $scope.game.templates.active.type === 'aoe' &&
+               !$scope.game.templates.active.locked) {
               $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 3));
             }
             else {
@@ -360,7 +366,8 @@ angular.module('vassalApp.controllers')
           if(event.keyCode === 100 ||
              event.keyCode === 52) { // 4
             if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'aoe') {
+               $scope.game.templates.active.type === 'aoe' &&
+               !$scope.game.templates.active.locked) {
               $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 4));
             }
             else {
@@ -378,7 +385,8 @@ angular.module('vassalApp.controllers')
           if(event.keyCode === 101 ||
              event.keyCode === 53) { // 5
             if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'aoe') {
+               $scope.game.templates.active.type === 'aoe' &&
+               !$scope.game.templates.active.locked) {
               $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 5));
             }
             else {
@@ -396,7 +404,8 @@ angular.module('vassalApp.controllers')
           if(event.keyCode === 102 ||
              event.keyCode === 54) { // 6
             if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'spray') {
+               $scope.game.templates.active.type === 'spray' &&
+               !$scope.game.templates.active.locked) {
               $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 6));
               return;
             }
@@ -412,7 +421,8 @@ angular.module('vassalApp.controllers')
           if(event.keyCode === 104 ||
              event.keyCode === 56) { // 8
             if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'spray') {
+               $scope.game.templates.active.type === 'spray' &&
+               !$scope.game.templates.active.locked) {
               $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 8));
               return;
             }
@@ -451,7 +461,8 @@ angular.module('vassalApp.controllers')
               if(event.altKey) {
                 $scope.game.board.moveLeft();
               }
-              else if($scope.game.templates.active) {
+              else if($scope.game.templates.active &&
+                      !$scope.game.templates.active.locked) {
                 $scope.game.newCommand(command('onActiveTemplate', 
                                                event.ctrlKey ? 'moveLeft' : 'rotateLeft',
                                                event.shiftKey));
@@ -473,7 +484,8 @@ angular.module('vassalApp.controllers')
               if(event.altKey) {
                 $scope.game.board.moveUp();
               }
-              else if($scope.game.templates.active) {
+              else if($scope.game.templates.active &&
+                      !$scope.game.templates.active.locked) {
                 $scope.game.newCommand(command('onActiveTemplate', 
                                                event.ctrlKey ? 'moveUp' : 'moveFront',
                                                event.shiftKey));
@@ -495,7 +507,8 @@ angular.module('vassalApp.controllers')
               if(event.altKey) {
                 $scope.game.board.moveRight();
               }
-              else if($scope.game.templates.active) {
+              else if($scope.game.templates.active &&
+                      !$scope.game.templates.active.locked) {
                 $scope.game.newCommand(command('onActiveTemplate', 
                                                event.ctrlKey ? 'moveRight' : 'rotateRight',
                                                event.shiftKey));
@@ -517,7 +530,8 @@ angular.module('vassalApp.controllers')
               if(event.altKey) {
                 $scope.game.board.moveDown();
               }
-              else if($scope.game.templates.active) {
+              else if($scope.game.templates.active &&
+                      !$scope.game.templates.active.locked) {
                 $scope.game.newCommand(command('onActiveTemplate', 
                                                event.ctrlKey ? 'moveDown' : 'moveBack',
                                                event.shiftKey));
