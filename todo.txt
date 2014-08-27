@@ -1,3 +1,4 @@
+- select model remove active template if not in origin/target mode
 
 - auto deviate model (max distance?, origin?)
 - auto-slam model
@@ -27,6 +28,7 @@
 
 =======================================================================================
 - spell martyr(s)
+- units with leader sprite
 
 - bouger AoE avec fleches quand lockee
 - faire une action sur un template le selectionne pour le joueur

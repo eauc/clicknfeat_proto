@@ -18,7 +18,7 @@ angular.module('vassalApp.services')
           },
           redo: function(game) {
             game.templates[this.after.type][this.after.stamp] = _.deepCopy(this.after);
-            game.templates.active = game.templates[this.after.type][this.after.stamp];
+            // game.templates.active = game.templates[this.after.type][this.after.stamp];
           },
           undo: function(game) {
             if(game.templates.active === game.templates[this.after.type][this.after.stamp]) {
@@ -65,7 +65,7 @@ angular.module('vassalApp.services')
           },
           undo: function(game) {
             game.templates[this.before.type][this.before.stamp] = _.deepCopy(this.before);
-            game.templates.active = game.templates[this.before.type][this.before.stamp];
+            // game.templates.active = game.templates[this.before.type][this.before.stamp];
           },
           desc: function(game) {
             return this.type+'('+this.before.type+')';
@@ -100,11 +100,11 @@ angular.module('vassalApp.services')
           },
           redo: function(game) {
             _.deepExtend(game.templates[this.after.type][this.after.stamp], this.after);
-            game.templates.active = game.templates[this.after.type][this.after.stamp];
+            // game.templates.active = game.templates[this.after.type][this.after.stamp];
           },
           undo: function(game) {
             _.deepExtend(game.templates[this.before.type][this.before.stamp], this.before);
-            game.templates.active = game.templates[this.after.type][this.after.stamp];
+            // game.templates.active = game.templates[this.after.type][this.after.stamp];
           },
           desc: function(game) {
             return this.type+'('+this.method+')';
@@ -143,11 +143,11 @@ angular.module('vassalApp.services')
           },
           redo: function(game) {
             _.deepExtend(game.templates[this.after.type][this.after.stamp], this.after);
-            game.templates.active = game.templates[this.after.type][this.after.stamp];
+            // game.templates.active = game.templates[this.after.type][this.after.stamp];
           },
           undo: function(game) {
             _.deepExtend(game.templates[this.before.type][this.before.stamp], this.before);
-            game.templates.active = game.templates[this.after.type][this.after.stamp];
+            // game.templates.active = game.templates[this.after.type][this.after.stamp];
           },
           desc: function(game) {
             return this.type+'('+this.method+')';
