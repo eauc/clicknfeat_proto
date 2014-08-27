@@ -990,7 +990,8 @@ angular.module('vassalApp.controllers')
               create_options.push({
                 info: info.info,
                 x: user_x+info.offset_x,
-                y: user_y+info.offset_y
+                y: user_y+info.offset_y,
+                show_leader: info.show_leader
               });
             });
             $scope.game.newCommand(command('createModel',
@@ -1302,7 +1303,8 @@ angular.module('vassalApp.controllers')
                   $scope.create_preview.info.push({
                     info: $scope.factions.fk_keys[line][0],
                     offset_x: global_offset_x + offset_x,
-                    offset_y: offset_y
+                    offset_y: offset_y,
+                    show_leader: (size > 1 && n === 0)
                   });
                   i++;
                 });
