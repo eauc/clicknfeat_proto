@@ -77,6 +77,10 @@ angular.module('vassalApp.controllers')
         var canvas = document.getElementById('canvas');
         // console.log(canvas_rect);
 
+        $scope.stopKeyPropagation = function(event) {
+          // console.log('test', event);
+          event.stopPropagation();
+        };
         $scope.onKeyDown = function(event) {
           // console.log(event);
           if($scope.create_mode) return;
@@ -613,7 +617,7 @@ angular.module('vassalApp.controllers')
           // console.log(elem_rect);
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
-          console.log('user_x=', user_x, 'user_y=', user_y);
+          // console.log('user_x=', user_x, 'user_y=', user_y);
           if(0 <= _.indexOf($scope.game.selection, model.state.id)) {
             $scope.model_drag.active = true;
             $scope.model_drag.start_x = user_x;
@@ -639,7 +643,7 @@ angular.module('vassalApp.controllers')
           // console.log(elem_rect);
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
-          console.log('user_x=', user_x, 'user_y=', user_y);
+          // console.log('user_x=', user_x, 'user_y=', user_y);
 
           template_active_before_down = $scope.game.templates.active;
           $scope.game.templates.active = temp;
@@ -668,7 +672,7 @@ angular.module('vassalApp.controllers')
             // console.log(elem_rect);
             var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
             var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
-            console.log('user_x=', user_x, 'user_y=', user_y);
+            // console.log('user_x=', user_x, 'user_y=', user_y);
 
             var dx = user_x - $scope.template_drag.start.x;
             var dy = user_y - $scope.template_drag.start.y;
@@ -794,7 +798,7 @@ angular.module('vassalApp.controllers')
           // console.log(elem_rect);
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
-          console.log('user_x=', user_x, 'user_y=', user_y);
+          // console.log('user_x=', user_x, 'user_y=', user_y);
           // var elem_rect = canvas.getBoundingClientRect();
           // // console.log(elem_rect);
           // var dom_x = event.clientX - elem_rect.left;
@@ -835,7 +839,7 @@ angular.module('vassalApp.controllers')
           // console.log(elem_rect);
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
-          console.log('user_x=', user_x, 'user_y=', user_y);
+          // console.log('user_x=', user_x, 'user_y=', user_y);
           if($scope.create_template_mode) {
             // // console.log('-------------');
             // var elem_rect = canvas.getBoundingClientRect();
@@ -1013,7 +1017,7 @@ angular.module('vassalApp.controllers')
           // console.log(elem_rect);
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
-          console.log('user_x=', user_x, 'user_y=', user_y);
+          // console.log('user_x=', user_x, 'user_y=', user_y);
           if($scope.create_template_mode) {
             $scope.game.newCommand(command('createTemplate', $scope.create_template_preview));
             $scope.create_template_mode = false;

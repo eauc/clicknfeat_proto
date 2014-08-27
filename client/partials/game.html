@@ -1,8 +1,9 @@
-<div style="vertical-align:top">
+<div style="vertical-align:top"
+     ng-keydown="onKeyDown($event)"
+     ng-keypress="onKeyPress($event)"
+     tabindex="0"
+     >
   <div style="display: inline-block;margin:0;padding:0;"
-       ng-keydown="onKeyDown($event)"
-       ng-keypress="onKeyPress($event)"
-       tabindex="0"
        >
     <strong>Game Id : {{game.id}}</strong><br />
     <svg style="border:1px solid black;display: inline-block;margin:0;padding:0;"
@@ -13,7 +14,8 @@
          preserveAspectRatio="xMinYMin meet"
          ng-mousedown="doSelectStart($event)"
          ng-mousemove="doSelectMove($event)"
-         ng-mouseup="doSelectStop($event)">
+         ng-mouseup="doSelectStop($event)"
+         >
       <defs>
         <filter id="aura-filter"
                 x="-50%" y="-50%"
@@ -926,7 +928,10 @@
         <form style="display:inline-block;margin:0px;padding:0px;"
               ng-submit="doSetLabel()">
           <input type="text"
-                 ng-model="model_label" />
+                 ng-model="model_label"
+                 ng-keydown="stopKeyPropagation($event)"
+                 ng-keypress="stopKeyPropagation($event)"
+                 />
         </form>
       </div>
       <div ng-show="game.models[game.selection[0]].info.fury">
@@ -1229,6 +1234,8 @@
                     width:10em;
                     height:10em;
                     "
+                    ng-keydown="stopKeyPropagation($event)"
+                    ng-keypress="stopKeyPropagation($event)"
                     >
           </textarea>
           <button style="vertical-align:top"
@@ -1291,6 +1298,8 @@
                ng-model="game.ruler.state.range"
                placeholder="Max Range"
                ng-change="game.ruler.sendStateCmd()"
+               ng-keydown="stopKeyPropagation($event)"
+               ng-keypress="stopKeyPropagation($event)"
                />
       </div>
       <div>
@@ -1376,7 +1385,10 @@
             ng-submit="doSendMessage()">
         <input style="width:100%;"
                ng-model="chat_msg"
-               placeholder="Chat msg..." />
+               placeholder="Chat msg..."
+               ng-keydown="stopKeyPropagation($event)"
+               ng-keypress="stopKeyPropagation($event)"
+               />
       </form>
       <div>
         <strong>New Messages :</strong>
