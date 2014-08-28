@@ -582,7 +582,7 @@
       },
       "olrowdy": {
         "name": "Ol'Rowdy",
-        "fk_name": "OlRowdy",
+        "fk_name": "Ol' Rowdy",
         "type": "jack",
         "base": "large",
         "width": 60,
@@ -912,12 +912,12 @@
 	}
       },
       "long_gunner_infantry": {
-        "name": "Long Gunner Infantry ",
+        "name": "Long Gunner Infantry",
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
-              "fk_name": "Long Gunner Infantry ",
+              "name": "Long Gunner Infantry Leader and Grunts",
+              "fk_name": "Long Gunner Infantry",
               "ranges": [1, 6, 10],
               "type": "warrior",
               "base": "small",
@@ -977,7 +977,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Precursor Knights Leader and Grunts",
               "fk_name": "Precursor Knights",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -1038,7 +1038,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Rangers Leader and Grunts",
               "fk_name": "Rangers",
               "ranges": [1, 6],
               "type": "warrior",
@@ -1130,7 +1130,7 @@
               }
             },
 	    "gunner": {
-              "name": "Storm Tower",
+              "name": "Storm Tower Leader",
               "fk_name": "Storm Tower",
               "type": "warrior",
               "base": "small",
@@ -1154,7 +1154,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Stormblade Infantry Leader and Grunts",
               "fk_name": "Stormblade Infantry",
               "ranges": [1, 6],
               "type": "warrior",
@@ -1236,7 +1236,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Stormguard Leader and Grunts",
               "fk_name": "Stormguard",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -1262,7 +1262,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Sword Knights Leader and Grunts",
               "fk_name": "Sword Knights",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -1323,7 +1323,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Tempest Blazers Leader and Grunts",
               "fk_name": "Tempest Blazers ",
               "ranges": [1, 3, 5],
               "type": "warrior",
@@ -1348,7 +1348,7 @@
         "entries": {
           "grunt": {
             "crew1": {
-              "name": "Crew1",
+              "name": "Trencher Cannon Crew1",
               "fk_name": "Trencher Cannon",
               "type": "warrior",
               "base": "small",
@@ -1365,7 +1365,7 @@
               }
             },
 	    "crew2": {
-              "name": "Crew2",
+              "name": "Trencher Cannon Crew2",
               "fk_name": "Trencher Cannon",
               "type": "warrior",
               "base": "small",
@@ -1382,7 +1382,7 @@
               }
             },
 	    "leader": {
-              "name": "Gunner",
+              "name": "Trencher Cannon Leader",
               "fk_name": "Trencher Cannon",
               "type": "warrior",
               "base": "medium",
@@ -1406,7 +1406,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Crew",
+              "name": "Trencher Chaingun Grunt",
               "fk_name": "Trencher Chaingun Crew",
               "type": "warrior",
               "base": "small",
@@ -1423,7 +1423,7 @@
               }
             },
 	    "leader": {
-              "name": "Gunner",
+              "name": "Trencher Chaingun Leader",
               "fk_name": "Trencher Chaingun Crew",
               "ranges": 1,
               "type": "warrior",
@@ -1448,7 +1448,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Trencher Commandos Leader and Grunts",
               "fk_name": "Trencher Commandos",
               "type": "warrior",
               "ranges": [1, 6, 10],
@@ -1493,7 +1493,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Trencher Infantry Leader and Grunts",
               "fk_name": "Trencher Infantry",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -1589,8 +1589,8 @@
         }
       },
       "arlan": {
-        "name": "Captain Arlan Strangeways",
-	"fk_name": "Captain Arlan Strangeways",
+        "name": "Captain Arlan Strangewayes",
+	"fk_name": "Captain Arlan Strangewayes",
         "type": "warrior",
         "base": "small",
         "width": 60,
@@ -1659,8 +1659,8 @@
         }
       },	  
       "allison": {
-        "name": "Lieutenant Allison Jakes",
-	"fk_name": "Lieutenant Allison Jakes",
+        "name": "Lieutnant Allison Jakes",
+	"fk_name": "Lieutnant Allison Jakes",
         "type": "warrior",
         "focus": 4,
         "base": "small",
