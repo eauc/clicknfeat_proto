@@ -615,7 +615,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Leader & Grunts",
+              "name": "Kriel Warriors Leader & Grunts",
               "fk_name": "Kriel Warriors",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -935,7 +935,7 @@
         "entries": {
           "grunt": {
             "leader": {
-              "name": "Thumper",
+              "name": "Thumpercrew Thumper",
               "fk_name": "Thumpercrew",
               "type": "warrior",
               "base": "medium",
@@ -952,8 +952,8 @@
               }
 	    },
 	    "crew": {
-              "name": "Grunts",
-              "fk_name": "Thumpercrew ",
+              "name": "Thumpercrew Grunts",
+              "fk_name": "Thumpercrew",
               "type": "warrior",
               "base": "medium",
 	      "range":[1, 2],
