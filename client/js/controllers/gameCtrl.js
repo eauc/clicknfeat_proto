@@ -1337,7 +1337,7 @@ angular.module('vassalApp.controllers')
             }
             line = line.replace(/^\s*/,'');
             if(line.length === 0) return;
-            line = line.replace(/^\* /,'');
+            line = line.replace(/^\*+ /,'');
             var size = 1;
             var match = line.match(/^(\d+) /);
             if(match) {
