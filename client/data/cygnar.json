@@ -204,7 +204,7 @@
       },
       "nemo3": {
         "name": "Nemo3 (Artificer General Nemo)",
-        "fk_name": "Artificer General Nemo",
+        "fk_name": "Artificier General Nemo",
         "type": "wardude",
         "focus": 7,
         "base": "small",
