@@ -425,8 +425,8 @@
         }
       },
       "rok": {
-        "name": "Rök ",
-        "fk_name": "Ršk",
+        "name": "RÃ¶k ",
+        "fk_name": "RÅ¡k",
         "type": "beast",
 	"fury": 5,
         "base": "large",
@@ -936,7 +936,7 @@
           "grunt": {
             "leader": {
               "name": "Thumper",
-              "fk_name": "Thumpercrew ",
+              "fk_name": "Thumpercrew",
               "type": "warrior",
               "base": "medium",
               "width": 60,
