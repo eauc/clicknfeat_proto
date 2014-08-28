@@ -862,5 +862,628 @@
         }
       }
     }
+  },
+  "units":{
+    "Bane Knights": {
+      "name": "Bane Knights",
+      "entries": {
+        "grunt": {
+          "grunt": {
+            "name": "Leader and Grunts",
+            "fk_name": "Bane Knights",
+            "ranges": [1, 6, 10],
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/BaneKnight.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        }
+      }
+    },
+    "Bile Thralls": {
+      "name": "Bile Thralls",
+      "entries": {
+        "grunt": {
+          "grunt": {
+            "name": "Leader and Grunts",
+            "fk_name": "Bile Thralls",
+            "ranges": [1, 6, 10],
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/Bilethrall.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        }
+      }
+    },
+    "Bane Tralls": {
+      "name": "Bane Thralls",
+      "entries": {
+        "grunt": {
+          "grunt": {
+            "name": "Leader and Grunts",
+            "fk_name": "Bane Thralls",
+            "ranges": [1, 6, 10],
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/BaneThrall.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        },
+        "ua": {
+          "officer": {
+            "name": "Officer",
+            "fk_name": "Bane Thrall Officer & Standard",
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/Bane_Thrall_Officer.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 5
+            }
+          },
+          "bearer": {
+            "name": "Standard Bearer",
+            "fk_name": "Bane Thrall Officer & Standard",
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/Bane_Thrall_Standard_Bearer.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        }
+      }
+    },
+    "Black Ogrun Boarding Party": {
+      "name": "Black Ogrun Boarding Party",
+      "entries": {
+        "grunt": {
+          "grunt": {
+            "name": "Leader and Grunts",
+            "fk_name": "Black Ogrun Boarding Party",
+            "ranges": [1, 2, 5],
+            "type": "warrior",
+            "base": "medium",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/BlackOgrun.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        }
+      }
+    },
+    "Bloodgorgers": {
+      "name": "Bloodgorgers",
+      "entries": {
+        "grunt": {
+          "grunt": {
+            "name": "Leader and Grunts",
+            "fk_name": "Bloodgorgers",
+            "ranges": [1, 6, 10],
+            "type": "warrior",
+            "base": "medium",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/Bloodgorgers.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        }
+      }
+    },
+    "Cephalyx Mind Slaver & Drudges": {
+      "name": "Cephalyx Mind Slaver & Drudges",
+      "entries": {
+        "grunt": {
+          "leader": {
+            "name": "Cephalyx Mind Slaver ",
+            "fk_name": "Cephalyx Mind Slaver & Drudges",
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/CephalyxSlaver.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 5
+            }
+          },
+          "grunt": {
+            "name": "Drudges",
+            "fk_name": "Cephalyx Mind Slaver & Drudges",
+            "ranges": [1, 5, 9],
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/DrudgeMindSlave.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        }
+      }
+    },
+    "Cephalyx Overlords": {
+      "name": "Cephalyx Overlords",
+      "entries": {
+        "grunt": {
+          "grunt": {
+            "name": "Cephalyx Overlords",
+            "fk_name": "Cephalyx Overlords",
+            "ranges": [1, 3],
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/CephalyxOverlord.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 5
+            }
+          }
+        }
+      }
+    },
+    "Mechanithralls": {
+      "name": "Mechanithralls",
+      "entries": {
+        "grunt": {
+          "grunt": {
+            "name": "Leader and Grunts",
+            "fk_name": "Mechanithralls",
+            "ranges": [1, 6, 10],
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cygnar/units/MechThrall.png",
+              "leader": "data/cygnar/units/MechThrall_Lt.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        },
+        "wa": {
+          "Brute Thrall": {
+            "name": "Brute Thrall",
+            "fk_name": "Brute Thrall",
+            "ranges": [1, 2, 3],
+            "type": "warrior",
+            "base": "medium",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/BruteThrall.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 5
+            }
+          }
+        }
+      }
+    },
+    "Necrosurgeon & Stitch Thralls": {
+      "name": "Necrosurgeon & Stitch Thralls",
+      "entries": {
+        "grunt": {
+          "leader": {
+            "name": "Necrosurgeon",
+            "fk_name": "Necrosurgeon & 3 Stitch Thralls",
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/Necrosurgeon.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 5
+            }
+          },
+          "grunt": {
+            "name": "Stitch Thralls",
+            "fk_name": "Necrosurgeon & 3 Stitch Thralls",
+            "ranges": [1, 3],
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/StitchThrall.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        }
+      }
+    },
+    "Revenant Crew of the Atramentous": {
+      "name": "Revenant Crew of the Atramentous",
+      "entries": {
+        "grunt": {
+          "grunt": {
+            "name": "Leader and Grunts",
+            "fk_name": "Revenant Crew",
+            "ranges": [1, 6, 10],
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cygnar/units/RevenantCrew.png",
+              "leader": "data/cygnar/units/RevenantQuartermaster.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        },
+        "wa": {
+          "Rifleman": {
+            "name": "Revenant Crew Crew Rifleman",
+            "fk_name": "Revenant Crew Crew Rifleman",
+            "ranges": [1, 2, 3],
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/RevenantRifleman.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        }
+      }
+    },
+    "Revenant Cannon Crew": {
+      "name": "Revenant Cannon Crew",
+      "entries": {
+        "grunt": {
+          "grunt1": {
+            "name": "Revenant Cannon Gunners",
+            "fk_name": "Revenant Cannon Crew",
+            "ranges" : [2],
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/skorne/units/RevenantCannonGunner.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          },
+          "leader": {
+            "name": "Leader",
+            "fk_name": "Revenant Cannon Crew",
+            "type": "warrior",
+            "base": "large",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/skorne/units/RevenantCannon.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        }
+      }
+    },
+    "Satyxis Blood Witches": {
+      "name": "Satyxis Blood Witches",
+      "entries": {
+        "grunt": {
+          "grunt": {
+            "name": "Leader and Grunts",
+            "fk_name": "Satyxis Blood Witches",
+            "ranges": [1, 6, 10],
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/Satyxis_WitchReaver.png",
+              "incorporeal": "data/cryx/units/Satyxis_WitchReaver_Incorporeal.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        },
+        "ua": {
+          "Blood Hag": {
+            "name": "Officer",
+            "fk_name": "Satyxis Blood Hag",
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/Satyxis_Hag.png",
+              "incorporeal": "data/cryx/units/Satyxis_Hag_Incorporeal.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 5
+            }
+          }
+        }
+      }
+    },
+    "Satyxis Raiders": {
+      "name": "Satyxis Raiders",
+      "entries": {
+        "grunt": {
+          "grunt": {
+            "name": "Leader and Grunts",
+            "fk_name": "Satyxis Raiders",
+            "ranges": [1, 6, 10],
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/SatyxisRaider.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        },
+        "ua": {
+          "Satyxis Raider Sea Witch": {
+            "name": "Officer",
+            "fk_name": "Satyxis Raider Sea Witch",
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/SeaWitch.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 5
+            }
+          }
+        }
+      }
+    },
+    "Soulhunters": {
+      "name": "Soulhunters",
+      "entries": {
+        "grunt": {
+          "grunt": {
+            "name": "Leader and Grunts",
+            "fk_name": "Soulhunters",
+            "ranges": [1, 2, 5],
+            "type": "warrior",
+            "base": "large",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/Soulhunter.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 5
+            }
+          }
+        }
+      }
+    },
+    "The Withershadow Combine": {
+      "name": "The Withershadow Combine",
+      "entries": {
+        "grunt": {
+          "Admonia": {
+            "name": "Admonia",
+            "fk_name": "The Withershadow Combine",
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/WithershadowCombine_Admonia.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 5
+            }
+          },
+          "Maelovus": {
+            "name": "Maelovus",
+            "fk_name": "The Withershadow Combine",
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/WithershadowCombine_Maelovus.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 5
+            }
+          },
+          "Tremulous": {
+            "name": "Tremulous",
+            "fk_name": "The Withershadow Combine",
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/WithershadowCombine_Tremulous.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 5
+            }
+          }
+        }
+      }
+    },  
+    "Blackbane's Ghost Raiders": {
+      "name": "Blackbane's Ghost Raiders",
+      "entries": {
+        "grunt": {
+          "leader": {
+            "name": "Blackbane ",
+            "fk_name": "Blackbane's Ghost Raiders",
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/Blackbane.png",
+              "incorporeal": "data/cryx/units/Blackbane_Incorporeal.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 5
+            }
+          },
+          "grunt": {
+            "name": " (Leader and Grunts)",
+            "fk_name": "Blackbane's Ghost Raiders",
+            "ranges": [1, 5, 9],
+            "type": "warrior",
+            "base": "small",
+            "width": 60,
+            "height": 60,
+            "img": {
+              "x": 0.2,
+              "y": -0.5,
+              "link": "data/cryx/units/GhostRaiders.png",
+              "incorporeal": "data/cryx/units/GhostRaiders_Incorporeal.png"
+            },
+            "damage": {
+              "type": "warrior",
+              "n": 1
+            }
+          }
+        }
+      }
+    }
   }
 }
