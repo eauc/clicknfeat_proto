@@ -7,5 +7,6 @@
   "oroboros" : "/data/oroboros.json",
   "scyrah" : "/data/scyrah.json",
   "scenario" : "/data/scenario.json",
-  "skorne" : "/data/skorne.json"
+  "skorne" : "/data/skorne.json",
+  "trolls" : "/data/trollblood.json"
 }
