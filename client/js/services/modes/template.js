@@ -142,7 +142,7 @@ angular.module('vassalApp.services')
           },
           'L': function(scope) {
             scope.game.newCommand(command('onActiveTemplate', 'toggleLocked'));
-            modes.goTo('template');
+            modes.goTo('template', scope);
           },
           'Delete': function(scope) {
             scope.game.newCommand(command('deleteActiveTemplate'));
@@ -188,9 +188,10 @@ angular.module('vassalApp.services')
   ])
   .factory('template_mode', [
     'command',
-    function(command) {
+    function(command,
+             template_locked_mode) {
       return function(modes, common) {
-        var template_mode = _.deepCopy(common);
+        var template_mode = _.deepCopy(modes['template_locked']);
         _.deepExtend(template_mode, {
           name: 'Template',
           group: 'Template',
@@ -203,10 +204,6 @@ angular.module('vassalApp.services')
             if(scope.game.templates.active.type === 'aoe') {
               scope.doAoEDeviation();
             }
-          },
-          'L': function(scope) {
-            scope.game.newCommand(command('onActiveTemplate', 'toggleLocked'));
-            modes.goTo('template');
           },
           'O': function(scope) {
             modes.goTo('template_origin', scope);
@@ -257,10 +254,6 @@ angular.module('vassalApp.services')
               scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 8));
             }
           },
-          'Delete': function(scope) {
-            scope.game.newCommand(command('deleteActiveTemplate'));
-            modes.goTo('default', scope);
-          },
           'Up': function(scope) {
             scope.game.newCommand(command('onActiveTemplate', 'moveFront', false));
           },
@@ -308,39 +301,6 @@ angular.module('vassalApp.services')
           },
           'Ctrl Shift Down': function(scope) {
             scope.game.newCommand(command('onActiveTemplate', 'moveDown', true));
-          },
-          // ------------------------------------------------------------------
-          'DragStart': function(scope, event, drag, dx, dy) {
-            if(drag.event === 'Template') {
-              scope.game.templates.active = drag.target;
-              drag.target.startDraging();
-
-              modes.goTo('template_drag', scope);
-            }
-          },
-          'Click': function(scope, event, drag, dx, dy) {
-            switch(drag.event)
-            {
-            case 'Template': 
-              {
-                if(scope.game.templates.active === drag.target) {
-                  scope.game.templates.active = null;
-                  modes.goTo('default', scope);
-                }
-                else {
-                  scope.game.templates.active = drag.target;
-                  modes.goTo('template');
-                }
-                break;
-              }
-            case 'Model':
-              {
-                scope.game.templates.active = null;
-                modes['default']['Click'].apply(modes['default'],
-                                                Array.prototype.slice.call(arguments));
-                modes.goTo('default', scope);
-              }
-            }
           },
         });
         return template_mode;

@@ -88,7 +88,7 @@ angular.module('vassalApp.controllers')
           221: 'CloseBracket',
           222: 'SingleQuote',
         };
-        $scope.onKeyDown = function(_event) {
+        $scope.onKeyDown = function(event) {
           // console.log(event);
           var key;
           if((event.keyCode >= 48 &&
