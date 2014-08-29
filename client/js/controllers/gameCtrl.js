@@ -12,6 +12,7 @@ angular.module('vassalApp.controllers')
     'command',
     'message',
     'factions',
+    'modes',
     function($scope,
              $state,
              $stateParams,
@@ -21,889 +22,24 @@ angular.module('vassalApp.controllers')
              game,
              command,
              message,
-             factions) {
+             factions,
+             modes) {
       console.log('init gameCtrl');
 
-      var default_mode = {
-        name: 'Default',
-        'Alt B': function() {
-          if($scope.game.selection.length > 0) {
-            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_blind;
-            $scope.game.newCommand(command('onSelection', 'toggle', 'blind', new_val));
-          }
-        },
-        'Alt C': function() {
-          if($scope.game.selection.length > 0) {
-            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_corrosion;
-            $scope.game.newCommand(command('onSelection', 'toggle', 'corrosion', new_val));
-          }
-        },
-        'Ctrl C': function() {
-          if($scope.game.selection.length > 0) {
-            model_create_mode.info = [];
-            var x_ref = $scope.game.models[$scope.game.selection[0]].state.x;
-            var y_ref = $scope.game.models[$scope.game.selection[0]].state.y;
-            model_create_mode.x = x_ref+10;
-            model_create_mode.y = y_ref+10;
-            _.each($scope.game.selection, function(id) {
-              var offset_x = $scope.game.models[id].state.x - x_ref;
-              var offset_y = $scope.game.models[id].state.y - y_ref;
-              model_create_mode.info.push({
-                info: $scope.game.models[id].info,
-                offset_x: offset_x,
-                offset_y: offset_y
-              });
-            });
-            $scope.current_mode = model_create_mode;
-          }
-        },
-        'Shift C': function() {
-          if($scope.game.selection.length === 1 &&
-             ($scope.game.models[$scope.game.selection[0]].info.focus ||
-              $scope.game.models[$scope.game.selection[0]].info.fury)) {
-            $scope.game.newCommand(command('onSelection', 'toggleControl'));
-          }
-        },
-        'Ctrl E': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'setRotation', 90));
-          }
-        },
-        'F': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'toggle', 'focus'));
-          }
-        },
-        'Alt F': function() {
-          if($scope.game.selection.length > 0) {
-            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_fire;
-            $scope.game.newCommand(command('onSelection', 'toggle', 'fire', new_val));
-          }
-        },
-        'I': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'toggle', 'image'));
-          }
-        },
-        'Alt I': function() {
-          if($scope.game.selection.length > 0) {
-            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_incorporeal;
-            $scope.game.newCommand(command('onSelection', 'toggle', 'incorporeal', new_val));
-          }
-        },
-        'Alt K': function() {
-          if($scope.game.selection.length > 0) {
-            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_kd;
-            $scope.game.newCommand(command('onSelection', 'toggle', 'kd', new_val));
-          }
-        },
-        'Shift L': function() {
-          $scope.current_mode = los_mode;
-        },
-        'M': function() {
-          if($scope.game.selection.length > 0) {
-              var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_melee;
-              $scope.game.newCommand(command('onSelection', 'toggle', 'melee', new_val));
-          }
-        },
-        'Ctrl N': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'setRotation', 0));
-          }
-        },
-        'Alt P': function() {
-          if($scope.game.selection.length > 0) {
-            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_leader;
-            $scope.game.newCommand(command('onSelection', 'toggle', 'leader', new_val));
-          }
-        },
-        'R': function() {
-          if($scope.game.selection.length > 0) {
-            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_reach;
-            $scope.game.newCommand(command('onSelection', 'toggle' ,'reach', new_val));
-          }
-        },
-        'Shift R': function() {
-          $scope.current_mode = ruler_mode;
-        },
-        'Alt S': function() {
-          if($scope.game.selection.length > 0) {
-            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_stationary;
-            $scope.game.newCommand(command('onSelection', 'toggle', 'stationary', new_val));
-          }
-        },
-        'Ctrl S': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'setRotation', 180));
-          }
-        },
-        'T': function() {
-          $scope.current_mode = model_target_mode;
-        },
-        'U': function() {
-          $scope.game.newCommand(command('setSelection', []));
-        },
-        'Ctrl W': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'setRotation', 270));
-          }
-        },
-        'Ctrl Z': function() {
-          $scope.game.undoLastCommand();
-        },
-        'Alt 0': function() {
-          $scope.game.board.reset();
-        },
-        'Ctrl 0': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'toggle', 'color', false));
-          }
-        },
-        'Ctrl 1': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#0FF'));
-          }
-        },
-        'Ctrl 2': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#F0F'));
-          }
-        },
-        '3': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'toggleAoe', 3));
-          }
-        },
-        'Ctrl 3': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#FF0'));
-          }
-        },
-        '4': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'toggleAoe', 4));
-          }
-        },
-        'Ctrl 4': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#00F'));
-          }
-        },
-        '5': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'toggleAoe', 5));
-          }
-        },
-        'Ctrl 5': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#0F0'));
-          }
-        },
-        'Ctrl 6': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#F00'));
-          }
-        },
-        'Delete': function() {
-          $scope.game.newCommand(command('dropSelection'));
-        },
-        'Add': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'incrementFocus'));
-          }
-        },
-        'Alt Add': function() {
-          $scope.game.board.zoomIn();
-        },
-        'Substract': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'decrementFocus'));
-          }
-        },
-        'Alt Substract': function() {
-          $scope.game.board.zoomOut();
-        },
-        'Left': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'rotateLeft', false));
-          }
-        },
-        'Shift Left': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'rotateLeft', true));
-          }
-        },
-        'Alt Left': function() {
-          $scope.game.board.moveLeft();
-        },
-        'Ctrl Left': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'moveLeft', false));
-          }
-        },
-        'Ctrl Shift Left': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'moveLeft', true));
-          }
-        },
-        'Down': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'moveBack', false));
-          }
-        },
-        'Shift Down': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'moveBack', true));
-          }
-        },
-        'Alt Down': function() {
-          $scope.game.board.moveDown();
-        },
-        'Ctrl Down': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'moveDown', false));
-          }
-        },
-        'Ctrl Shift Down': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'moveDown', true));
-          }
-        },
-        'Right': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'rotateRight', false));
-          }
-        },
-        'Shift Right': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'rotateRight', true));
-          }
-        },
-        'Alt Right': function() {
-          $scope.game.board.moveRight();
-        },
-        'Ctrl Right': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'moveRight', false));
-          }
-        },
-        'Ctrl Shift Right': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'moveRight', true));
-          }
-        },
-        'Up': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'moveFront', false));
-          }
-        },
-        'Shift Up': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'moveFront', true));
-          }
-        },
-        'Alt Up': function() {
-          $scope.game.board.moveUp();
-        },
-        'Ctrl Up': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'moveUp', false));
-          }
-        },
-        'Ctrl Shift Up': function() {
-          if($scope.game.selection.length > 0) {
-            $scope.game.newCommand(command('onSelection', 'moveUp', true));
-          }
-        },
-        // ------------------------------------------------------------------
-        'DragStart': function(event, drag, dx, dy) {
-          switch(drag.event)
-          {
-          case 'Template':
-            {
-              $scope.game.templates.active = drag.target;
-              drag.target.startDraging();
-
-              $scope.current_mode = template_drag_mode;
-              break;
-            }
-          case 'Model':
-            {
-              // si la selection est vide, ajouter le model a la selection
-              if(0 <= _.indexOf($scope.game.selection, drag.target.state.id)) {
-                $scope.game.onSelection('startDraging');
-                model_drag_mode.length = 0;
-
-                model_drag_mode.start_x = drag.target.state.x;
-                model_drag_mode.start_y = drag.target.state.y;
-                model_drag_mode.end_x = drag.target.state.x;
-                model_drag_mode.end_y = drag.target.state.y;
-                model_drag_mode.length = '';
-                $scope.current_mode = model_drag_mode;
-              }
-              break;
-            }
-          case 'Board':
-            {
-              selection_drag_mode.width = 0;
-              selection_drag_mode.height = 0;
-
-              $scope.current_mode = selection_drag_mode;
-              break;
-            }
-          }
-        },
-        'Click': function(event, drag, user_x, user_y, dx, dy) {
-          switch(drag.event)
-          {
-          case 'Model':
-            {
-              if(event.ctrlKey) {
-                if(0 <= _.indexOf($scope.game.selection, drag.target.state.id)) {
-                  $scope.game.newCommand(command('removeFromSelection', [drag.target.state.id]));
-                }
-                else {
-                  $scope.game.newCommand(command('addToSelection', [drag.target.state.id]));
-                }
-              }
-              else {
-                $scope.game.newCommand(command('setSelection', [drag.target.state.id]));
-              }
-              if($scope.game.selection.length > 0) {
-                $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
-              }
-              break;
-            }
-          case 'Template':
-            {
-              $scope.game.templates.active = drag.target;
-              $scope.current_mode = template_mode;
-              break;
-            }
-          }
-        },
-      };
-      ////////////////////////////////////////////////////////////////////
-      var selection_drag_mode = {
-        name: 'Selection Drag',
-        'Drag': function(event, drag, user_x, user_y, dx, dy) {
-          this.x = drag.start_x;
-          this.width = dx;
-          if(this.width < 0) {
-            this.width = -this.width;
-            this.x = this.x - this.width;
-          }
-          this.y = drag.start_y;
-          this.height = dy;
-          if(this.height < 0) {
-            this.height = -this.height;
-            this.y = this.y - this.height;
-          }
-        },
-        'DragEnd': function(event, drag, user_x, user_y, dx, dy) {
-          this['Drag'].apply(this, Array.prototype.slice.call(arguments));
-
-          if(this.width > 0 &&
-             this.height > 0) {
-            var models_selected = [];
-            _.each($scope.game.models, function(model) {
-              var cx = model.state.x;
-              var cy = model.state.y;
-              if( selection_drag_mode.x <= cx &&
-                  cx <= (selection_drag_mode.x+selection_drag_mode.width ) &&
-                  selection_drag_mode.y <= cy &&
-                  cy <= (selection_drag_mode.y+selection_drag_mode.height) ) {
-                models_selected.push(model.state.id);
-              }
-            });
-            if(event.ctrlKey) {
-              $scope.game.newCommand(command('addToSelection', models_selected));
-              if($scope.game.selection.length > 0) {
-                $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
-              }
-            }
-            else {
-              $scope.game.newCommand(command('setSelection', models_selected));
-              if($scope.game.selection.length > 0) {
-                $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
-              }
-            }
-          }
-          this.width = 0;
-          this.height = 0;
-
-          $scope.current_mode = default_mode;
-        },
-      };
-      ////////////////////////////////////////////////////////////////////
-      var model_create_mode = {
-        name: 'Model Create',
-        'MouseMove': function(event, user_x, user_y) {
-          model_create_mode.x = user_x;
-          model_create_mode.y = user_y;
-        },
-        'Click': function(event, drag, user_x, user_y) {
-          var create_options = [];
-          _.each(model_create_mode.info, function(info) {
-            create_options.push({
-              info: info.info,
-              x: user_x+info.offset_x,
-              y: user_y+info.offset_y,
-              show_leader: info.show_leader
-            });
-          });
-          $scope.game.newCommand(command('createModel',
-                                         create_options));
-
-          $scope.current_mode = default_mode;
-        },
-      };
-      var model_drag_mode = {
-        name: 'Model Drag',
-        'Drag': function(event, drag, user_x, user_y, dx, dy) {
-          $scope.game.onSelection('draging', dx, dy);
-          this.end_x = this.start_x + dx;
-          this.end_y = this.start_y + dy;
-          this.length = ((Math.sqrt(dx*dx+dy*dy) * 10) >> 0) / 100;
-        },
-        'DragEnd': function(event, drag, user_x, user_y, dx, dy) {
-          $scope.game.newCommand(command('endDragingSelection', dx, dy));
-
-          $scope.current_mode = default_mode;
-        },
-      };
-      var model_target_mode = {
-        name: 'Model Target',
-        'Click': function(event, drag) {
-          if(drag.event === 'Model' &&
-             0 > _.indexOf($scope.game.selection, drag.target.state.id)) {
-            $scope.game.newCommand(command('onSelection', 'alignWith',
-                                           drag.target.state.x, drag.target.state.y));
-            $scope.current_mode = default_mode;
-          }
-        },
-      };
-      ////////////////////////////////////////////////////////////////////
-      var template_mode = {
-        name: 'Template',
-        'D': function() {
-          if($scope.game.templates.active.type === 'aoe' &&
-             !$scope.game.templates.active.locked) {
-            $scope.doAoEDeviation();
-          }
-        },
-        'L': function() {
-          $scope.game.newCommand(command('onActiveTemplate', 'toggleLocked'));
-        },
-        'O': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.current_mode = template_origin_mode;
-          }
-        },
-        'R': function() {
-          if($scope.game.ruler.state.active &&
-             !$scope.game.templates.active.locked) {
-            var x = $scope.game.ruler.model_end ? 
-                $scope.game.ruler.model_end.state.x : $scope.game.ruler.state.x2;
-            var y = $scope.game.ruler.model_end ? 
-                $scope.game.ruler.model_end.state.y : $scope.game.ruler.state.y2;
-            // console.log($scope.game.ruler.state);
-            var rot = Math.atan2($scope.game.ruler.state.x2-$scope.game.ruler.state.x1,
-                                 -($scope.game.ruler.state.y2-$scope.game.ruler.state.y1)) *
-                180 / Math.PI;
-            $scope.game.newCommand(command('onActiveTemplate', 'set', x, y, rot));
-          }
-        },
-        'T': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.current_mode = template_target_mode;
-          }
-        },
-        '0': function() {
-          if($scope.game.templates.active.type === 'spray' &&
-             !$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 10));
-          }
-        },
-        '3': function() {
-          if($scope.game.templates.active.type === 'aoe' &&
-             !$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 3));
-          }
-        },
-        '4': function() {
-          if($scope.game.templates.active.type === 'aoe' &&
-             !$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 4));
-          }
-        },
-        '5': function() {
-          if($scope.game.templates.active.type === 'aoe' &&
-             !$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 5));
-          }
-        },
-        '6': function() {
-          if($scope.game.templates.active.type === 'spray' &&
-             !$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 6));
-          }
-        },
-        '8': function() {
-          if($scope.game.templates.active.type === 'spray' &&
-             !$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 8));
-          }
-        },
-        'Delete': function() {
-          $scope.game.newCommand(command('deleteActiveTemplate'));
-        },
-        'Up': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'moveFront', false));
-          }
-        },
-        'Shift Up': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'moveFront', true));
-          }
-        },
-        'Ctrl Up': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'moveUp', false));
-          }
-        },
-        'Ctrl Shift Up': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'moveUp', true));
-          }
-        },
-        'Left': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'rotateLeft', false));
-          }
-        },
-        'Shift Left': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'rotateLeft', true));
-          }
-        },
-        'Ctrl Left': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'moveLeft', false));
-          }
-        },
-        'Ctrl Shift Left': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'moveLeft', true));
-          }
-        },
-        'Right': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'rotateRight', false));
-          }
-        },
-        'Shift Right': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'rotateRight', true));
-          }
-        },
-        'Ctrl Right': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'moveRight', false));
-          }
-        },
-        'Ctrl Shift Right': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'moveRight', true));
-          }
-        },
-        'Down': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'moveBack', false));
-          }
-        },
-        'Shift Down': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'moveBack', true));
-          }
-        },
-        'Ctrl Down': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'moveDown', false));
-          }
-        },
-        'Ctrl Shift Down': function() {
-          if(!$scope.game.templates.active.locked) {
-            $scope.game.newCommand(command('onActiveTemplate', 'moveDown', true));
-          }
-        },
-        // ------------------------------------------------------------------
-        'DragStart': function(event, drag, dx, dy) {
-          if(drag.event === 'Template') {
-            $scope.game.templates.active = drag.target;
-            drag.target.startDraging();
-
-            $scope.current_mode = template_drag_mode;
-          }
-        },
-        'Click': function(event, drag, dx, dy) {
-          switch(drag.event)
-          {
-          case 'Template': 
-            {
-              if($scope.game.templates.active === drag.target) {
-                $scope.game.templates.active = null;
-                $scope.current_mode = default_mode;
-              }
-              else {
-                $scope.game.templates.active = drag.target;
-              }
-              break;
-            }
-          case 'Model':
-            {
-              $scope.game.templates.active = null;
-              default_mode['Click'].apply(default_mode,
-                                          Array.prototype.slice.call(arguments));
-              $scope.current_mode = default_mode;
-            }
-          }
-        },
-      };
-      var template_drag_mode = {
-        name: 'Template Drag',
-        'Drag': function(event, drag, user_x, user_y, dx, dy) {
-          $scope.game.templates.active.draging($scope.game, dx, dy);
-        },
-        'DragEnd': function(event, drag, user_x, user_y, dx, dy) {
-          $scope.game.newCommand(command('dragActiveTemplate', dx, dy));
-
-          $scope.game.templates.active = drag.target;
-          $scope.current_mode = template_mode;
-        },
-      };
-      var template_origin_mode = {
-        name: 'Template Origin',
-        'Click': function(event, drag) {
-          if(drag.event === 'Model') {
-            var model = drag.target;
-            var active = $scope.game.templates.active;
-            if(active.type === 'aoe') {
-              var x1 = model.state.x;
-              var y1 = model.state.y;
-              var x2 = active.x;
-              var y2 = active.y;
-              var angle = Math.atan2(x2-x1, y1-y2)*180/Math.PI;
-              $scope.game.newCommand(command('onActiveTemplate', 'set',
-                                             active.x, active.y, angle));
-            }
-            else {
-              active.origin = model;
-              var x = model.state.x +
-                  model.info.r * Math.sin(active.rot*Math.PI/180);
-              var y = model.state.y -
-                  model.info.r * Math.cos(active.rot*Math.PI/180);
-              $scope.game.newCommand(command('onActiveTemplate', 'set',
-                                             x, y, active.rot));
-            }
-            $scope.current_mode = template_mode;
-          }
-        },
-      };
-      var template_target_mode = {
-        name: 'Template Target',
-        'Click': function(event, drag) {
-          if(drag.event === 'Model') {
-            var model = drag.target;
-            var active = $scope.game.templates.active;
-            var x;
-            var y;
-            if(active.type === 'aoe') {
-              x = model.state.x;
-              y = model.state.y;
-              $scope.game.newCommand(command('onActiveTemplate', 'set',
-                                             x, y, $scope.game.templates.active.rot));
-            }
-            else {
-              if(active.origin === model) return;
-              var x1 = active.origin ? active.origin.state.x : active.x;
-              var y1 = active.origin ? active.origin.state.y : active.y;
-              var x2 = model.state.x;
-              var y2 = model.state.y;
-              var angle = Math.atan2(x2-x1, y1-y2)*180/Math.PI;
-              x = active.origin === null ? active.x : active.origin.state.x +
-                  active.origin.info.r * Math.sin(angle*Math.PI/180);
-              y = active.origin === null ? active.y : active.origin.state.y -
-                  active.origin.info.r * Math.cos(angle*Math.PI/180);
-              $scope.game.newCommand(command('onActiveTemplate', 'set',
-                                             x, y, angle));
-            }
-            $scope.current_mode = template_mode;
-          }
-        },
-      };
-      var template_create_mode = {
-        name: 'Template Create',
-        'MouseMove': function(event, user_x, user_y) {
-          template_create_mode.x = user_x;
-          template_create_mode.y = user_y;
-        },
-        'Click': function(event, click, user_x, user_y) {
-          template_create_mode.x = user_x;
-          template_create_mode.y = user_y;
-          $scope.game.newCommand(command('createTemplate', template_create_mode));
-
-          $scope.current_mode = template_mode;
-        },
-      };
-      ////////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////////
       $scope.doToggleLosMode = function() {
         if(_.has($scope.current_mode, 'Shift L')) {
-          $scope.current_mode['Shift L']();
+          $scope.current_mode['Shift L']($scope);
         }
       };
-      var los_mode = {
-        name: 'LoS',
-        'Shift L': function() {
-          if($scope.game.los.state.active) {
-            $scope.game.newCommand(command('onLos', 'setActive', false));
-          }
-          $scope.current_mode = default_mode;
-        },
-        'DragStart': function(event, drag, user_x, user_y) {
-          $scope.game.los.startDraging(drag.start_x, drag.start_y);
-          $scope.current_mode = los_drag_mode;
-        },
-      };
-      var los_drag_mode = {
-        name: 'LoS Drag',
-        'Drag': function(event, drag, user_x, user_y) {
-          $scope.game.los.setEnd(user_x, user_y);
-        },
-        'DragEnd': function(event, drag, user_x, user_y) {
-          $scope.game.newCommand(command('onLos', 'endDraging', user_x, user_y));
-          $scope.current_mode = los_mode;
-        },
-      };
-      ////////////////////////////////////////////////////////////////////
       $scope.doToggleRulerMode = function() {
         if(_.has($scope.current_mode, 'Shift R')) {
-          $scope.current_mode['Shift R']();
+          $scope.current_mode['Shift R']($scope);
         }
-      };
-      var ruler_mode = {
-        name: 'Ruler',
-        'O': function() {
-          ruler_origin_mode.origin = this.origin;
-          ruler_origin_mode.target = this.target;
-          $scope.current_mode = ruler_origin_mode;
-        },
-        'Shift R': function() {
-          $scope.current_mode = default_mode;
-        },
-        'T': function() {
-          ruler_target_mode.origin = this.origin;
-          ruler_target_mode.target = this.target;
-          $scope.current_mode = ruler_target_mode;
-        },
-        'DragStart': function(event, drag) {
-          this.origin = null;
-          this.target = null;
-          $scope.game.ruler.startDraging(drag.start_x, drag.start_y);
-          $scope.show_ruler = true;
-          $scope.current_mode = ruler_drag_mode;
-        },
-      };
-      var ruler_drag_mode = {
-        name: 'Ruler Drag',
-        'Drag': function(event, drag, user_x, user_y, dx, dy) {
-          var length = Math.sqrt(dx*dx + dy*dy);
-          var display_length = length;
-          if($scope.game.ruler.state.range > 0) {
-            display_length = Math.min($scope.game.ruler.state.range*10, length);
-          }
-          var x = $scope.game.ruler.state.x1 +
-              (user_x - $scope.game.ruler.state.x1) * display_length / length;
-          var y = $scope.game.ruler.state.y1 +
-              (user_y - $scope.game.ruler.state.y1) * display_length / length;
-          $scope.game.ruler.setEnd(x, y);
-        },
-        'DragEnd': function(event, drag, user_x, user_y, dx, dy) {
-          var length = Math.sqrt(dx*dx + dy*dy);
-          var display_length = length;
-          if($scope.game.ruler.state.range > 0) {
-            display_length = Math.min($scope.game.ruler.state.range*10, length);
-          }
-          var x = $scope.game.ruler.state.x1 +
-              (user_x - $scope.game.ruler.state.x1) * display_length / length;
-          var y = $scope.game.ruler.state.y1 +
-              (user_y - $scope.game.ruler.state.y1) * display_length / length;
-          $scope.game.ruler.endDraging(x, y);
-
-          $scope.current_mode = ruler_mode;
-        },
-      };      
-      var ruler_origin_mode = {
-        name: 'Ruler Origin',
-        'Click': function(event, drag) {
-          if(drag.event !== 'Model') return;
-          var model = drag.target;
-          ruler_mode.origin = model;
-          $scope.game.ruler.setStart(model.state.x, model.state.y);
-          $scope.game.ruler.state.active = false;
-          ruler_mode.target = null;
-          $scope.game.ruler.sendStateCmd();
-
-          $scope.current_mode = ruler_mode;
-        },
-      };
-      var ruler_target_mode = {
-        name: 'Ruler Target',
-        'Click': function(event, drag) {
-          if(drag.event !== 'Model') return;
-          var model = drag.target;
-
-          if(ruler_mode.origin === model) return;
-
-          ruler_mode.target = model;
-          var ruler = $scope.game.ruler;
-          var start_x = ruler.state.x1;
-          var start_y = ruler.state.y1;
-          var end_x = model.state.x;
-          var end_y = model.state.y;
-          if(ruler_mode.origin) {
-            start_x = ruler_mode.origin.state.x;
-            start_y = ruler_mode.origin.state.y;
-          }
-          var angle = Math.atan2(end_x-start_x, start_y-end_y);
-          if(ruler_mode.origin) {
-            start_x += ruler_mode.origin.info.r * Math.sin(angle);
-            start_y -= ruler_mode.origin.info.r * Math.cos(angle);
-          }
-          end_x -= model.info.r * Math.sin(angle);
-          end_y += model.info.r * Math.cos(angle);
-          var dx = end_x - start_x;
-          var dy = end_y - start_y;
-          var length = Math.sqrt(dx*dx + dy*dy);
-          var display_length = length;
-          if($scope.game.ruler.state.range > 0) {
-            display_length = Math.min($scope.game.ruler.state.range*10, length);
-          }
-          end_x = start_x + (end_x - start_x) * display_length / length;
-          end_y = start_y + (end_y - start_y) * display_length / length;
-          $scope.game.ruler.setStart(start_x, start_y);
-          $scope.game.ruler.setEnd(end_x, end_y);
-          $scope.game.ruler.refresh();
-          $scope.game.ruler.state.active = true;
-          $scope.game.ruler.sendStateCmd();
-
-          $scope.current_mode = ruler_mode;
-        },
       };
       ////////////////////////////////////////////////////////////////////
 
-      $scope.current_mode = default_mode;
+      $scope.current_mode = modes['default'];
 
       $scope.drag = {
         start_x: 0, start_y: 0,
@@ -997,7 +133,7 @@ angular.module('vassalApp.controllers')
           if(_.has($scope.current_mode, key)) {
             console.log(key);
             event.preventDefault();
-            $scope.current_mode[key](event);
+            $scope.current_mode[key]($scope, event);
             return;
           }
         };
@@ -1071,14 +207,14 @@ angular.module('vassalApp.controllers')
               $scope.drag.state = 'draging';
               console.log('DragStart', $scope.drag);
               if(_.has($scope.current_mode, 'DragStart')) {
-                $scope.current_mode['DragStart'](event, $scope.drag, dx, dy);
+                $scope.current_mode['DragStart']($scope, event, $scope.drag, dx, dy);
               }
             }
             else if($scope.drag.state === 'draging') {
               // console.log('draging');
               console.log('Drag', $scope.drag);
               if(_.has($scope.current_mode, 'Drag')) {
-                $scope.current_mode['Drag'](event, $scope.drag,
+                $scope.current_mode['Drag']($scope, event, $scope.drag,
                                             user_x, user_y,
                                             dx, dy);
               }
@@ -1087,7 +223,7 @@ angular.module('vassalApp.controllers')
           }
           // console.log('MouseMove', $scope.drag);
           if(_.has($scope.current_mode, 'MouseMove')) {
-            $scope.current_mode['MouseMove'](event, user_x, user_y);
+            $scope.current_mode['MouseMove']($scope, event, user_x, user_y);
           }
         };
         $scope.doSelectStop = function(event) {
@@ -1104,14 +240,14 @@ angular.module('vassalApp.controllers')
             var dy = user_y - $scope.drag.start_y;
             console.log('DragEnd', $scope.drag);
             if(_.has($scope.current_mode, 'DragEnd')) {
-              $scope.current_mode['DragEnd'](event, $scope.drag,
+              $scope.current_mode['DragEnd']($scope, event, $scope.drag,
                                              user_x, user_y, dx, dy);
             }
           }
           else {
             console.log('Click', $scope.drag);
             if(_.has($scope.current_mode, 'Click')) {
-              $scope.current_mode['Click'](event, $scope.drag,
+              $scope.current_mode['Click']($scope, event, $scope.drag,
                                            user_x, user_y);
             }
           }
@@ -1167,16 +303,16 @@ angular.module('vassalApp.controllers')
           info: [],
         };
         $scope.$watch('model', function(val, old) {
-          if($scope.current_mode === model_create_mode) {
+          if($scope.current_mode === modes['model_create']) {
             $scope.current_mode = default_mode;
           }
         }, true);
         $scope.doToggleCreateModel = function() {
-          $scope.current_mode = ($scope.current_mode === model_create_mode) ?
-            default_mode : model_create_mode;
-          if($scope.current_mode !== model_create_mode) return;
+          $scope.current_mode = ($scope.current_mode === modes['model_create']) ?
+            default_mode : modes['model_create'];
+          if($scope.current_mode !== modes['model_create']) return;
 
-          model_create_mode.info = [];
+          modes['model_create'].info = [];
           var mid_size = Math.ceil($scope.model.size/2);
           var unit_step = 3*$scope.model.id.r;
           _.times($scope.model.size, function(i) {
@@ -1190,7 +326,7 @@ angular.module('vassalApp.controllers')
               offset_x = (i%mid_size)*unit_step-(mid_size-1)*unit_step/2;
               offset_y = (i >= mid_size) ? unit_step : 0;
             }
-            model_create_mode.info.push({
+            modes['model_create'].info.push({
               info: $scope.model.id,
               offset_x: offset_x,
               offset_y: offset_y
@@ -1212,7 +348,7 @@ angular.module('vassalApp.controllers')
         function importFKList(data) {
           // console.log(data);
           var lines = data.match(/[^\r\n]+/g);
-          model_create_mode.info = [];
+          modes['model_create'].info = [];
           // console.log(lines);
           var i = 0;
           var global_offset_x = 0;
@@ -1246,7 +382,7 @@ angular.module('vassalApp.controllers')
 
               if($scope.factions.fk_keys[line].length > 1) {
                 _.each($scope.factions.fk_keys[line], function(id) {
-                  model_create_mode.info.push({
+                  modes['model_create'].info.push({
                     info: id,
                     offset_x: global_offset_x + 1.25*$scope.factions.fk_keys[line][0].r,
                     offset_y: global_offset_y
@@ -1275,7 +411,7 @@ angular.module('vassalApp.controllers')
                     offset_y = global_offset_y + ((n >= mid_size) ? unit_step : 0);
                   }
                   max_offset_x = Math.max(max_offset_x, offset_x);
-                  model_create_mode.info.push({
+                  modes['model_create'].info.push({
                     info: $scope.factions.fk_keys[line][0],
                     offset_x: global_offset_x + offset_x,
                     offset_y: offset_y,
@@ -1294,8 +430,8 @@ angular.module('vassalApp.controllers')
               $scope.fk_read_result.push('!!! unknown model \"'+line+'\"');
             }
           });
-          // console.log(model_create_mode.info);
-          if(i > 0) $scope.current_mode = model_create_mode;
+          // console.log(modes['model_create'].info);
+          if(i > 0) $scope.current_mode = modes['model_create'];
         }
         $scope.readFKFile = function(file) {
           $scope.current_mode = default_mode;
@@ -1333,11 +469,11 @@ angular.module('vassalApp.controllers')
 
 
         $scope.doCreateTemplate = function(type, size) {
-          template_create_mode.type = type;
-          template_create_mode.size = size;
-          template_create_mode.x = 240;
-          template_create_mode.y = 240;
-          $scope.current_mode = template_create_mode;
+          modes['template_create'].type = type;
+          modes['template_create'].size = size;
+          modes['template_create'].x = 240;
+          modes['template_create'].y = 240;
+          $scope.current_mode = modes['template_create'];
         };
         $scope.aoe_max_deviation = 6;
         $scope.doAoEDeviation = function() {
