@@ -973,38 +973,50 @@
         </tr>
       </table>
     </div>
-    <div style="border:1px solid black;max-height:300px;overflow-y:scroll;"
+    <div style="border:1px solid black;max-height:400px;overflow-y:scroll;"
          ng-include="'partials/modeBox.html'">
     </div>
-    <div style="border:1px solid black;max-height:300px;overflow-y:scroll;"
+    <div style="border:1px solid black;max-height:400px;overflow-y:scroll;"
          ng-show="game.selection.length === 1"
          ng-include="'partials/modelViewBox.html'">
     </div>
-    <div style="border:1px solid black;max-height:600px;overflow-y:scroll;"
-         ng-include="'partials/createBox.html'">
-    </div>
-    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
-         ng-include="'partials/importBox.html'">
-    </div>
-    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
-         ng-include="'partials/dropBinBox.html'">
-    </div>
   </div>
   <div style="display:inline-block;vertical-align:top;width:350px">
-    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
-         ng-include="'partials/toolsBox.html'">
+    <button ng-style="{
+            'background-color': menu_view === 'tools' ? '#6F6' : 'none'
+            }"
+            ng-click="menu_view = 'tools'">Tools</button>
+    <button ng-style="{
+            'background-color': menu_view === 'models' ? '#6F6' : 'none'
+            }"
+            ng-click="menu_view = 'models'">Manage Models</button>
+    <div ng-show="menu_view === 'models'">
+      <div style="border:1px solid black;max-height:600px;overflow-y:scroll;"
+           ng-include="'partials/createBox.html'">
+      </div>
+      <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+           ng-include="'partials/importBox.html'">
+      </div>
+      <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+           ng-include="'partials/dropBinBox.html'">
+      </div>
     </div>
-    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
-         ng-include="'partials/layersBox.html'">
-    </div>
-    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
-         ng-include="'partials/chatBox.html'">
-    </div>
-    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
-         ng-include="'partials/commandBox.html'">
-    </div>
-    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
-         ng-include="'partials/backupBox.html'">
+    <div ng-show="menu_view === 'tools'">
+      <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+           ng-include="'partials/toolsBox.html'">
+      </div>
+      <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+           ng-include="'partials/layersBox.html'">
+      </div>
+      <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+           ng-include="'partials/chatBox.html'">
+      </div>
+      <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+           ng-include="'partials/commandBox.html'">
+      </div>
+      <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+           ng-include="'partials/backupBox.html'">
+      </div>
     </div>
   </div>
   <div>

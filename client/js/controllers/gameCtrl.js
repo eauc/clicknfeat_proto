@@ -35,6 +35,7 @@ angular.module('vassalApp.controllers')
       $scope.aoe = {
         max_deviation: 6
       };
+      $scope.menu_view = 'tools';
 
       if(!$stateParams.id || $stateParams.id.length <= 0) $state.go('start');
 
