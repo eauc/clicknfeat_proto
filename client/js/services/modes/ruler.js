@@ -10,22 +10,22 @@ angular.module('vassalApp.services')
           'O': function(scope) {
             modes['ruler_origin'].origin = this.origin;
             modes['ruler_origin'].target = this.target;
-            scope.current_mode = modes['ruler_origin'];
+            modes.current = modes['ruler_origin'];
           },
           'Shift R': function(scope) {
-            scope.current_mode = modes['default'];
+            modes.current = modes['default'];
           },
           'T': function(scope) {
             modes['ruler_target'].origin = this.origin;
             modes['ruler_target'].target = this.target;
-            scope.current_mode = modes['ruler_target'];
+            modes.current = modes['ruler_target'];
           },
           'DragStart': function(scope, event, drag) {
             this.origin = null;
             this.target = null;
             scope.game.ruler.startDraging(drag.start_x, drag.start_y);
             scope.show_ruler = true;
-            scope.current_mode = modes['ruler_drag'];
+            modes.current = modes['ruler_drag'];
           },
         };
         return ruler_mode;
@@ -62,7 +62,7 @@ angular.module('vassalApp.services')
                 (user_y - scope.game.ruler.state.y1) * display_length / length;
             scope.game.ruler.endDraging(x, y);
 
-            scope.current_mode = modes['ruler'];
+            modes.current = modes['ruler'];
           },
         };      
         return ruler_drag_mode;
@@ -84,7 +84,7 @@ angular.module('vassalApp.services')
             modes['ruler'].target = null;
             scope.game.ruler.sendStateCmd();
 
-            scope.current_mode = modes['ruler'];
+            modes.current = modes['ruler'];
           },
         };
         return ruler_origin_mode;
@@ -135,7 +135,7 @@ angular.module('vassalApp.services')
             scope.game.ruler.state.active = true;
             scope.game.ruler.sendStateCmd();
 
-            scope.current_mode = modes['ruler'];
+            modes.current = modes['ruler'];
           },
         };
         return ruler_target_mode;

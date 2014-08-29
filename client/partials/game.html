@@ -586,7 +586,7 @@
                 pointer-events: none;
                 "
                 ng-style="{
-                'stroke': game.templates.active ? none : (current_mode.name === 'Model Target' ? '#00F' : '#0F0')
+                'stroke': game.templates.active ? none : (modes.current.name === 'Model Target' ? '#00F' : '#0F0')
                 }"
                 />
         <path ng-repeat="model in modelShow('melee')"
@@ -695,7 +695,7 @@
                 stroke-width:0.5px;
                 "
                 ng-style="{
-                 'stroke': aoe === game.templates.active ? (current_mode.name === 'Template Origin' ? '#FF0' : (current_mode.name === 'Template Target' ? '#0FF' : '#0F0')) : '#C60',
+                 'stroke': aoe === game.templates.active ? (modes.current.name === 'Template Origin' ? '#FF0' : (modes.current.name === 'Template Target' ? '#0FF' : '#0F0')) : '#C60',
                 }"
                 ng-click="onTemplateClick($event, aoe)"
                 ng-mousedown="onTemplateMouseDown($event, aoe)"
@@ -736,7 +736,7 @@
                  rotate({{sp.rot-180}}, 10, 0)
                  "
                  ng-style="{
-                 'stroke': sp === game.templates.active ? (current_mode.name === 'Template Origin' ? '#FF0' : (current_mode.name === 'Template Target' ? '#0FF' : '#0F0')) : '#C60',
+                 'stroke': sp === game.templates.active ? (modes.current.name === 'Template Origin' ? '#FF0' : (modes.current.name === 'Template Target' ? '#0FF' : '#0F0')) : '#C60',
                  }"
                  ng-click="onTemplateClick($event, sp)"
                  ng-mousedown="onTemplateMouseDown($event, sp)"
@@ -754,12 +754,12 @@
                 />
       </svg>
       <circle ng-show="
-              current_mode.name === 'Template Create' &&
-              current_mode.type === 'aoe'
+              modes.current.name === 'Template Create' &&
+              modes.current.type === 'aoe'
               "
-              cx="{{current_mode.x}}"
-              cy="{{current_mode.y}}"
-              r="{{current_mode.size*5}}"
+              cx="{{modes.current.x}}"
+              cy="{{modes.current.y}}"
+              r="{{modes.current.size*5}}"
               style="
               fill:#F90;
               fill-opacity:0.5;
@@ -769,17 +769,17 @@
               "
               />
       <polygon ng-show="
-               current_mode.name === 'Template Create' &&
-               current_mode.type === 'spray'
+               modes.current.name === 'Template Create' &&
+               modes.current.type === 'spray'
                "
                points="
                8.75,0
                {{
-               (10-8.125*current_mode.size/10) +
-               ','  + (98.34*current_mode.size/10) +
-               ' 10,' + (100*current_mode.size/10) +
-               ' ' + (10+8.125*current_mode.size/10) +
-               ',' + (98.34*current_mode.size/10)
+               (10-8.125*modes.current.size/10) +
+               ','  + (98.34*modes.current.size/10) +
+               ' 10,' + (100*modes.current.size/10) +
+               ' ' + (10+8.125*modes.current.size/10) +
+               ',' + (98.34*modes.current.size/10)
                }}
                11.25,0
                "
@@ -790,14 +790,14 @@
                stroke-width:0.5px;
                "
                transform="
-               translate({{current_mode.x-10}},{{current_mode.y}})
-               rotate({{current_mode.rot-180}}, 10, 0)
+               translate({{modes.current.x-10}},{{modes.current.y}})
+               rotate({{modes.current.rot-180}}, 10, 0)
                "
                />
-      <svg ng-show="current_mode.name === 'Model Create'"
-           ng-repeat="(i,model) in current_mode.info"
-           x="{{current_mode.x + model.offset_x - model.info.width/2}}"
-           y="{{current_mode.y + model.offset_y - model.info.height/2}}"
+      <svg ng-show="modes.current.name === 'Model Create'"
+           ng-repeat="(i,model) in modes.current.info"
+           x="{{modes.current.x + model.offset_x - model.info.width/2}}"
+           y="{{modes.current.y + model.offset_y - model.info.height/2}}"
            style="pointer-events: none"
            >
         <image x="{{model.info.img.x}}"
@@ -816,9 +816,9 @@
                 "
                 />
       </svg>
-      <rect ng-if="current_mode.name === 'Selection Drag'"
-            x="{{current_mode.x}}" y="{{current_mode.y}}"
-            width="{{current_mode.width}}" height="{{current_mode.height}}"
+      <rect ng-if="modes.current.name === 'Selection Drag'"
+            x="{{modes.current.x}}" y="{{modes.current.y}}"
+            width="{{modes.current.width}}" height="{{modes.current.height}}"
             style="
             fill: none;
             stroke:#00F;
@@ -835,7 +835,7 @@
               marker-end:url(#ruler-end);
               "
               ng-style="{
-              'stroke': (current_mode.name === 'Ruler Target') ? '#F09' : (current_mode.name === 'Ruler Origin' ? '#F90' : '#0FF')
+              'stroke': (modes.current.name === 'Ruler Target') ? '#F09' : (modes.current.name === 'Ruler Origin' ? '#F90' : '#0FF')
               }"
               />
         <rect x="{{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1-2.5}}"
@@ -865,14 +865,14 @@
             "
             />
       <circle ng-show="
-              (current_mode.name === 'Ruler' ||
-               current_mode.name === 'Ruler Origin' ||
-               current_mode.name === 'Ruler Target') &&
-              current_mode.origin !== null
+              (modes.current.name === 'Ruler' ||
+               modes.current.name === 'Ruler Origin' ||
+               modes.current.name === 'Ruler Target') &&
+              modes.current.origin !== null
               "
-              cx="{{current_mode.origin.state.x}}"
-              cy="{{current_mode.origin.state.y}}"
-              r="{{current_mode.origin.info.r}}"
+              cx="{{modes.current.origin.state.x}}"
+              cy="{{modes.current.origin.state.y}}"
+              r="{{modes.current.origin.info.r}}"
               style="
               fill:none;
               stroke:#F90;
@@ -881,14 +881,14 @@
               "
               />
       <circle ng-show="
-              (current_mode.name === 'Ruler' ||
-               current_mode.name === 'Ruler Origin' ||
-               current_mode.name === 'Ruler Target') &&
-              current_mode.target !== null
+              (modes.current.name === 'Ruler' ||
+               modes.current.name === 'Ruler Origin' ||
+               modes.current.name === 'Ruler Target') &&
+              modes.current.target !== null
               "
-              cx="{{current_mode.target.state.x}}"
-              cy="{{current_mode.target.state.y}}"
-              r="{{current_mode.target.info.r}}"
+              cx="{{modes.current.target.state.x}}"
+              cy="{{modes.current.target.state.y}}"
+              r="{{modes.current.target.info.r}}"
               style="
               fill:none;
               stroke:#F09;
@@ -896,11 +896,11 @@
               pointer-events: none;
               "
               />
-      <g ng-show="current_mode.name === 'Model Drag'"
+      <g ng-show="modes.current.name === 'Model Drag'"
          style="pointer-events: none"
          >
-        <line x1="{{current_mode.start_x}}" y1="{{current_mode.start_y}}"
-              x2="{{current_mode.end_x}}" y2="{{current_mode.end_y}}"
+        <line x1="{{modes.current.start_x}}" y1="{{modes.current.start_y}}"
+              x2="{{modes.current.end_x}}" y2="{{modes.current.end_y}}"
               style="
               stroke:#0FF;
               stroke-width:1px;
@@ -908,8 +908,8 @@
               marker-end:url(#ruler-end);
               "
               />
-        <rect x="{{(current_mode.end_x-current_mode.start_x)/2+current_mode.start_x-2.5}}"
-              y="{{(current_mode.end_y-current_mode.start_y)/2+current_mode.start_y-4}}"
+        <rect x="{{(modes.current.end_x-modes.current.start_x)/2+modes.current.start_x-2.5}}"
+              y="{{(modes.current.end_y-modes.current.start_y)/2+modes.current.start_y-4}}"
               width="30" height="10"
               style="
               fill:#FFC;
@@ -917,19 +917,19 @@
               stroke-width:0.5px;
               "
               />
-        <text x="{{(current_mode.end_x-current_mode.start_x)/2+current_mode.start_x}}"
-              y="{{(current_mode.end_y-current_mode.start_y)/2+current_mode.start_y+4}}"
+        <text x="{{(modes.current.end_x-modes.current.start_x)/2+modes.current.start_x}}"
+              y="{{(modes.current.end_y-modes.current.start_y)/2+modes.current.start_y+4}}"
               style="
               font-size:8px;
               ">
-          {{current_mode.length}}"
+          {{modes.current.length}}"
         </text>
       </g>
     </svg>
   </div>
   <div style="display:inline-block;vertical-align:top;width:350px">
     <div style="border:1px solid black;max-height:300px;overflow-y:scroll;">
-      <strong>Current Mode :</strong> {{current_mode.name}}
+      <strong>Current Mode :</strong> {{modes.current.name}}
     </div>
     <div ng-show="game.selection.length === 1"
          style="border:1px solid black;max-height:300px;overflow-y:scroll;">
@@ -1130,7 +1130,7 @@
       <div>
         <button ng-disabled="!model.id"
                 ng-click="doToggleCreateModel()">
-          {{ current_mode.name === 'Model Create' ? 'Cancel' : 'Create' }}
+          {{ modes.current.name === 'Model Create' ? 'Cancel' : 'Create' }}
         </button>
         <p ng-show="create_mode">
           Move your cursor over the board and click to create the new model under the cursor position.
@@ -1300,9 +1300,9 @@
       <div>
         Ruler :
         <button ng-style="{
-                'background-color': (current_mode.name === 'Ruler' ||
-                                     current_mode.name === 'Ruler Origin' ||
-                                     current_mode.name === 'Ruler Target') ? '#6F6' : 'none'
+                'background-color': (modes.current.name === 'Ruler' ||
+                                     modes.current.name === 'Ruler Origin' ||
+                                     modes.current.name === 'Ruler Target') ? '#6F6' : 'none'
                 }"
                 ng-click="doToggleRulerMode()"
                 >
@@ -1327,7 +1327,7 @@
       <div>
         LOS :
         <button ng-style="{
-                'background-color': (current_mode.name === 'LoS') ? '#6F6' : 'none'
+                'background-color': (modes.current.name === 'LoS') ? '#6F6' : 'none'
                 }"
                 ng-click="doToggleLosMode()"
                 >

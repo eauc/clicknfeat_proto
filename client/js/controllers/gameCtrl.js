@@ -26,20 +26,18 @@ angular.module('vassalApp.controllers')
              modes) {
       console.log('init gameCtrl');
 
+      $scope.modes = modes;
+
       //////////////////////////////////////////////////////////////////////
       $scope.doToggleLosMode = function() {
-        if(_.has($scope.current_mode, 'Shift L')) {
-          $scope.current_mode['Shift L']($scope);
-        }
+        $scope.modes.send('Shift L', $scope);
       };
       $scope.doToggleRulerMode = function() {
-        if(_.has($scope.current_mode, 'Shift R')) {
-          $scope.current_mode['Shift R']($scope);
-        }
+        $scope.modes.send('Shift R', $scope);
       };
       ////////////////////////////////////////////////////////////////////
 
-      $scope.current_mode = modes['default'];
+      $scope.modes.current = modes['default'];
 
       $scope.drag = {
         start_x: 0, start_y: 0,
@@ -122,20 +120,18 @@ angular.module('vassalApp.controllers')
           if(event.shiftKey) key = 'Shift ' + key;
           if(event.ctrlKey) key = 'Ctrl ' + key;
           if(event.altKey) key = 'Alt ' + key;
-          console.log(key);
+          // console.log(key);
           
           if('Escape' === key) {
             console.log(key+' -> Reset mode');
             event.preventDefault();
-            $scope.current_mode = default_mode;
+            $scope.modes.current = modes['default'];
             return;
           }
-          if(_.has($scope.current_mode, key)) {
-            console.log(key);
-            event.preventDefault();
-            $scope.current_mode[key]($scope, event);
-            return;
-          }
+          $scope.modes.send(key, $scope, event)
+            .then(function() {
+              event.preventDefault();
+            })
         };
         $scope.stopKeyPropagation = function(event) {
           // console.log('test', event);
@@ -206,25 +202,19 @@ angular.module('vassalApp.controllers')
               // console.log('starting -> draging');
               $scope.drag.state = 'draging';
               console.log('DragStart', $scope.drag);
-              if(_.has($scope.current_mode, 'DragStart')) {
-                $scope.current_mode['DragStart']($scope, event, $scope.drag, dx, dy);
-              }
+              $scope.modes.send('DragStart', $scope, event, $scope.drag, dx, dy);
             }
             else if($scope.drag.state === 'draging') {
               // console.log('draging');
               console.log('Drag', $scope.drag);
-              if(_.has($scope.current_mode, 'Drag')) {
-                $scope.current_mode['Drag']($scope, event, $scope.drag,
-                                            user_x, user_y,
-                                            dx, dy);
-              }
+              $scope.modes.send('Drag', $scope, event, $scope.drag,
+                                user_x, user_y,
+                                dx, dy);
             }
             return;
           }
           // console.log('MouseMove', $scope.drag);
-          if(_.has($scope.current_mode, 'MouseMove')) {
-            $scope.current_mode['MouseMove']($scope, event, user_x, user_y);
-          }
+          $scope.modes.send('MouseMove', $scope, event, user_x, user_y);
         };
         $scope.doSelectStop = function(event) {
           // console.log('mu');
@@ -239,17 +229,13 @@ angular.module('vassalApp.controllers')
             var dx = user_x - $scope.drag.start_x;
             var dy = user_y - $scope.drag.start_y;
             console.log('DragEnd', $scope.drag);
-            if(_.has($scope.current_mode, 'DragEnd')) {
-              $scope.current_mode['DragEnd']($scope, event, $scope.drag,
-                                             user_x, user_y, dx, dy);
-            }
+            $scope.modes.send('DragEnd', $scope, event, $scope.drag,
+                              user_x, user_y, dx, dy);
           }
           else {
             console.log('Click', $scope.drag);
-            if(_.has($scope.current_mode, 'Click')) {
-              $scope.current_mode['Click']($scope, event, $scope.drag,
-                                           user_x, user_y);
-            }
+            $scope.modes.send('Click', $scope, event, $scope.drag,
+                              user_x, user_y);
           }
         };
 
@@ -303,14 +289,14 @@ angular.module('vassalApp.controllers')
           info: [],
         };
         $scope.$watch('model', function(val, old) {
-          if($scope.current_mode === modes['model_create']) {
-            $scope.current_mode = default_mode;
+          if($scope.modes.current === modes['model_create']) {
+            $scope.modes.current = default_mode;
           }
         }, true);
         $scope.doToggleCreateModel = function() {
-          $scope.current_mode = ($scope.current_mode === modes['model_create']) ?
+          $scope.modes.current = ($scope.modes.current === modes['model_create']) ?
             default_mode : modes['model_create'];
-          if($scope.current_mode !== modes['model_create']) return;
+          if($scope.modes.current !== modes['model_create']) return;
 
           modes['model_create'].info = [];
           var mid_size = Math.ceil($scope.model.size/2);
@@ -431,10 +417,10 @@ angular.module('vassalApp.controllers')
             }
           });
           // console.log(modes['model_create'].info);
-          if(i > 0) $scope.current_mode = modes['model_create'];
+          if(i > 0) $scope.modes.current = modes['model_create'];
         }
         $scope.readFKFile = function(file) {
-          $scope.current_mode = default_mode;
+          $scope.modes.current = default_mode;
           $scope.fk_read_result = [];
           var reader = new $window.FileReader();
           reader.onload = function(e) {
@@ -454,7 +440,7 @@ angular.module('vassalApp.controllers')
           reader.readAsText(file);
         };
         $scope.readFKString = function(file) {
-          $scope.current_mode = default_mode;
+          $scope.modes.current = default_mode;
           $scope.fk_read_result = [];
           importFKList($scope.fk_read_string);
         };
@@ -473,7 +459,7 @@ angular.module('vassalApp.controllers')
           modes['template_create'].size = size;
           modes['template_create'].x = 240;
           modes['template_create'].y = 240;
-          $scope.current_mode = modes['template_create'];
+          $scope.modes.current = modes['template_create'];
         };
         $scope.aoe_max_deviation = 6;
         $scope.doAoEDeviation = function() {

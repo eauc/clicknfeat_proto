@@ -35,7 +35,7 @@ mode.group = default/ruller/template
 $scope.goToMode()
 -> mode.enter()
 -> mode.leave()
-transferer les modes dans des services et passer le scope en argument de la fonction
+
 afficher les menus en fonction du mode
 afficher les raccourcis en fonction du mode : brutalement, objets commands dans le mode (execute + desc = function qui se fait passer la key d'event et retourne une liste d'items).
 cette description a un bouton qui permet de faire la commande a la main si possible, en emettant l'evenement clavier sur le mode courant
