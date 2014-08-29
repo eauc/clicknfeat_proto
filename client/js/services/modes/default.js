@@ -8,6 +8,9 @@ angular.module('vassalApp.services')
         var default_mode = _.deepCopy(common);
         _.deepExtend(default_mode, {
           name: 'Default',
+          enter: function(scope) {
+            scope.game.templates.active = null;
+          },
           'Alt B': function(scope) {
             if(scope.game.selection.length > 0) {
               var new_val = !scope.game.models[scope.game.selection[0]].state.show_blind;
@@ -36,7 +39,7 @@ angular.module('vassalApp.services')
                   offset_y: offset_y
                 });
               });
-              modes.goTo('model_create');
+              modes.goTo('model_create', scope);
             }
           },
           'Shift C': function(scope) {
@@ -80,7 +83,7 @@ angular.module('vassalApp.services')
             }
           },
           'Shift L': function(scope) {
-            modes.goTo('los');
+            modes.goTo('los', scope);
           },
           'M': function(scope) {
             if(scope.game.selection.length > 0) {
@@ -106,7 +109,7 @@ angular.module('vassalApp.services')
             }
           },
           'Shift R': function(scope) {
-            modes.goTo('ruler');
+            modes.goTo('ruler', scope);
           },
           'Alt S': function(scope) {
             if(scope.game.selection.length > 0) {
@@ -120,7 +123,7 @@ angular.module('vassalApp.services')
             }
           },
           'T': function(scope) {
-            modes.goTo('model_target');
+            modes.goTo('model_target', scope);
           },
           'U': function(scope) {
             scope.game.newCommand(command('setSelection', []));
@@ -282,7 +285,7 @@ angular.module('vassalApp.services')
                 scope.game.templates.active = drag.target;
                 drag.target.startDraging();
 
-                modes.goTo('template_drag');
+                modes.goTo('template_drag', scope);
                 break;
               }
             case 'Model':
@@ -297,7 +300,7 @@ angular.module('vassalApp.services')
                   modes['model_drag'].end_x = drag.target.state.x;
                   modes['model_drag'].end_y = drag.target.state.y;
                   modes['model_drag'].length = '';
-                  modes.goTo('model_drag');
+                  modes.goTo('model_drag', scope);
                 }
                 break;
               }
@@ -335,7 +338,7 @@ angular.module('vassalApp.services')
             case 'Template':
               {
                 scope.game.templates.active = drag.target;
-                modes.goTo('template');
+                modes.goTo('template', scope);
                 break;
               }
             }

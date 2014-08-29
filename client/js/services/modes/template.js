@@ -16,7 +16,7 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('dragActiveTemplate', dx, dy));
 
             scope.game.templates.active = drag.target;
-            modes.goTo('template');
+            modes.goTo('template', scope);
           },
         });
         return template_drag_mode;
@@ -53,7 +53,7 @@ angular.module('vassalApp.services')
                 scope.game.newCommand(command('onActiveTemplate', 'set',
                                               x, y, active.rot));
               }
-              modes.goTo('template');
+              modes.goTo('template', scope);
             }
           },
         });
@@ -95,7 +95,7 @@ angular.module('vassalApp.services')
                 scope.game.newCommand(command('onActiveTemplate', 'set',
                                               x, y, angle));
               }
-              modes.goTo('template');
+              modes.goTo('template', scope);
             }
           },
         });
@@ -120,7 +120,7 @@ angular.module('vassalApp.services')
             template_create_mode.rot = 0;
             scope.game.newCommand(command('createTemplate', template_create_mode));
 
-            modes.goTo('template');
+            modes.goTo('template', scope);
           },
         });
         return template_create_mode;
@@ -146,7 +146,7 @@ angular.module('vassalApp.services')
           },
           'O': function(scope) {
             if(!scope.game.templates.active.locked) {
-              modes.goTo('template_origin');
+              modes.goTo('template_origin', scope);
             }
           },
           'R': function(scope) {
@@ -165,7 +165,7 @@ angular.module('vassalApp.services')
           },
           'T': function(scope) {
             if(!scope.game.templates.active.locked) {
-              modes.goTo('template_target');
+              modes.goTo('template_target', scope);
             }
           },
           '0': function(scope) {
@@ -206,7 +206,7 @@ angular.module('vassalApp.services')
           },
           'Delete': function(scope) {
             scope.game.newCommand(command('deleteActiveTemplate'));
-            modes.goTo('default');
+            modes.goTo('default', scope);
           },
           'Up': function(scope) {
             if(!scope.game.templates.active.locked) {
@@ -294,7 +294,7 @@ angular.module('vassalApp.services')
               scope.game.templates.active = drag.target;
               drag.target.startDraging();
 
-              modes.goTo('template_drag');
+              modes.goTo('template_drag', scope);
             }
           },
           'Click': function(scope, event, drag, dx, dy) {
@@ -304,7 +304,7 @@ angular.module('vassalApp.services')
               {
                 if(scope.game.templates.active === drag.target) {
                   scope.game.templates.active = null;
-                  modes.goTo('default');
+                  modes.goTo('default', scope);
                 }
                 else {
                   scope.game.templates.active = drag.target;
@@ -316,7 +316,7 @@ angular.module('vassalApp.services')
                 scope.game.templates.active = null;
                 modes['default']['Click'].apply(modes['default'],
                                             Array.prototype.slice.call(arguments));
-                modes.goTo('default');
+                modes.goTo('default', scope);
               }
             }
           },

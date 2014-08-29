@@ -10,24 +10,18 @@ angular.module('vassalApp.services')
           name: 'Ruler',
           group: 'Ruler',
           'O': function(scope) {
-            modes['ruler_origin'].origin = this.origin;
-            modes['ruler_origin'].target = this.target;
-            modes.goTo('ruler_origin');
+            modes.goTo('ruler_origin', scope);
           },
           'Shift R': function(scope) {
-            modes.goTo('default');
+            modes.goTo('default', scope);
           },
           'T': function(scope) {
-            modes['ruler_target'].origin = this.origin;
-            modes['ruler_target'].target = this.target;
-            modes.goTo('ruler_target');
+            modes.goTo('ruler_target', scope);
           },
           'DragStart': function(scope, event, drag) {
-            this.origin = null;
-            this.target = null;
             scope.game.ruler.startDraging(drag.start_x, drag.start_y);
             scope.show_ruler = true;
-            modes.goTo('ruler_drag');
+            modes.goTo('ruler_drag', scope);
           },
         });
         return ruler_mode;
@@ -42,6 +36,10 @@ angular.module('vassalApp.services')
         _.deepExtend(ruler_drag_mode, {
           name: 'Ruler Drag',
           group: 'Ruler',
+          enter: function(scope) {
+            modes['ruler'].origin = null;
+            modes['ruler'].target = null;
+          },
           'Drag': function(scope, event, drag, user_x, user_y, dx, dy) {
             var length = Math.sqrt(dx*dx + dy*dy);
             var display_length = length;
@@ -66,7 +64,7 @@ angular.module('vassalApp.services')
                 (user_y - scope.game.ruler.state.y1) * display_length / length;
             scope.game.ruler.endDraging(x, y);
 
-            modes.goTo('ruler');
+            modes.goTo('ruler', scope);
           },
         });
         return ruler_drag_mode;
@@ -81,6 +79,10 @@ angular.module('vassalApp.services')
         _.deepExtend(ruler_origin_mode, {
           name: 'Ruler Origin',
           group: 'Ruler',
+          enter: function(scope) {
+            modes['ruler_origin'].origin = modes['ruler'].origin;
+            modes['ruler_origin'].target = modes['ruler'].target;
+          },
           'Click': function(scope, event, drag) {
             if(drag.event !== 'Model') return;
             var model = drag.target;
@@ -90,7 +92,7 @@ angular.module('vassalApp.services')
             modes['ruler'].target = null;
             scope.game.ruler.sendStateCmd();
 
-            modes.goTo('ruler');
+            modes.goTo('ruler', scope);
           },
         });
         return ruler_origin_mode;
@@ -105,6 +107,10 @@ angular.module('vassalApp.services')
         _.deepExtend(ruler_target_mode, {
           name: 'Ruler Target',
           group: 'Ruler',
+          enter: function(scope) {
+            modes['ruler_target'].origin = modes['ruler'].origin;
+            modes['ruler_target'].target = modes['ruler'].target;
+          },
           'Click': function(scope, event, drag) {
             if(drag.event !== 'Model') return;
             var model = drag.target;
@@ -143,7 +149,7 @@ angular.module('vassalApp.services')
             scope.game.ruler.state.active = true;
             scope.game.ruler.sendStateCmd();
 
-            modes.goTo('ruler');
+            modes.goTo('ruler', scope);
           },
         });
         return ruler_target_mode;

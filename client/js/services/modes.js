@@ -58,16 +58,17 @@ angular.module('vassalApp.services')
       modes['ruler_target'] = ruler_target_mode(modes, common);
 
       modes.current = modes['default'];
-      modes.goTo = function(mode, scope) {
-        if(!_.has(modes, mode)) {
-          console.log('unknown mode '+mode);
+      modes.goTo = function(next, scope) {
+        if(!_.has(modes, next)) {
+          console.log('unknown mode '+next);
           return;
         }
+        var previous = modes.current;
         if(modes.current) {
-          modes.current.leave(scope);
+          modes.current.leave(scope, modes[next]);
         }
-        modes.current = modes[mode];
-        modes.current.enter(scope);
+        modes.current = modes[next];
+        modes.current.enter(scope, previous);
       };
       modes.send = function(event) {
         var defer = $q.defer();

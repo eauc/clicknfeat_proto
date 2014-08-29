@@ -54,7 +54,7 @@ angular.module('vassalApp.services')
             this.width = 0;
             this.height = 0;
 
-            modes.goTo('default');
+            modes.goTo('default', scope);
           },
         });
         return selection_drag_mode;

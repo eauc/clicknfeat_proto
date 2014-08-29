@@ -121,7 +121,7 @@ angular.module('vassalApp.controllers')
           if('Escape' === key) {
             console.log(key+' -> Reset mode');
             event.preventDefault();
-            $scope.modes.goTo('default');
+            $scope.modes.goTo('default', $scope);
             return;
           }
           $scope.modes.send(key, $scope, event)
@@ -413,10 +413,10 @@ angular.module('vassalApp.controllers')
             }
           });
           // console.log(modes['model_create'].info);
-          if(i > 0) $scope.modes.goTo('model_create');
+          if(i > 0) $scope.modes.goTo('model_create', $scope);
         }
         $scope.readFKFile = function(file) {
-          $scope.modes.goTo('default');
+          $scope.modes.goTo('default', $scope);
           $scope.fk_read_result = [];
           var reader = new $window.FileReader();
           reader.onload = function(e) {
@@ -436,7 +436,7 @@ angular.module('vassalApp.controllers')
           reader.readAsText(file);
         };
         $scope.readFKString = function(file) {
-          $scope.modes.goTo('default');
+          $scope.modes.goTo('default', $scope);
           $scope.fk_read_result = [];
           importFKList($scope.fk_read_string);
         };
@@ -455,7 +455,7 @@ angular.module('vassalApp.controllers')
           modes['template_create'].size = size;
           modes['template_create'].x = 240;
           modes['template_create'].y = 240;
-          $scope.modes.goTo('template_create');
+          $scope.modes.goTo('template_create', $scope);
         };
         $scope.aoe_max_deviation = 6;
         $scope.doAoEDeviation = function() {

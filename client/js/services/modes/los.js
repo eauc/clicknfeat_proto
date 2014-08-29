@@ -9,15 +9,18 @@ angular.module('vassalApp.services')
         _.deepExtend(los_mode, {
           name: 'LoS',
           group: 'LoS',
-          'Shift L': function(scope) {
-            if(scope.game.los.state.active) {
+          leave: function(scope, next) {
+            if(next.group !== 'LoS' &&
+               scope.game.los.state.active) {
               scope.game.newCommand(command('onLos', 'setActive', false));
             }
-            modes.goTo('default');
+          },
+          'Shift L': function(scope) {
+            modes.goTo('default', scope);
           },
           'DragStart': function(scope, event, drag, user_x, user_y) {
             scope.game.los.startDraging(drag.start_x, drag.start_y);
-            modes.goTo('los_drag');
+            modes.goTo('los_drag', scope);
           },
         });
         return los_mode;
@@ -37,7 +40,7 @@ angular.module('vassalApp.services')
           },
           'DragEnd': function(scope, event, drag, user_x, user_y) {
             scope.game.newCommand(command('onLos', 'endDraging', user_x, user_y));
-            modes.goTo('los');
+            modes.goTo('los', scope);
           },
         });
         return los_drag_mode;
