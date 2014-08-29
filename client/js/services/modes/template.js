@@ -168,7 +168,7 @@ angular.module('vassalApp.services')
                 }
                 else {
                   scope.game.templates.active = drag.target;
-                  modes.goTo('template');
+                  modes.goTo('template', scope);
                 }
                 break;
               }

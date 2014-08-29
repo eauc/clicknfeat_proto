@@ -1,0 +1,51 @@
+<div ng-controller="toolsBoxCtrl">
+  <div><strong>Tools :</strong></div>
+  <div>
+    Ruler :
+    <button ng-style="{
+            'background-color': modes.current.group === 'Ruler' ? '#6F6' : 'none'
+            }"
+            ng-click="doToggleRulerMode()"
+            >
+      Use
+    </button>
+    <button ng-style="{
+            'background-color': (game.ruler.state.active) ? '#6F6' : 'none'
+            }"
+            ng-click="game.ruler.setActive(!game.ruler.state.active)"
+            >
+      Show
+    </button>
+    <input style="display:inline-block;width:5em;"
+           type="number"
+           ng-model="game.ruler.state.range"
+           placeholder="Max Range"
+           ng-change="game.ruler.sendStateCmd()"
+           ng-keydown="stopKeyPropagation($event)"
+           ng-keypress="stopKeyPropagation($event)"
+           />
+  </div>
+  <div>
+    LOS :
+    <button ng-style="{
+            'background-color': (modes.current.name === 'LoS') ? '#6F6' : 'none'
+            }"
+            ng-click="doToggleLosMode()"
+            >
+      Use
+    </button>
+  </div>
+  <div>
+    <button ng-click="doCreateTemplate('aoe',3)">New AoE</button>
+    <form style="display:inline;"
+          ng-show="game.templates.active.type === 'aoe'">
+      Max Deviation : <input style="width:5em;"
+                             type="number"
+                             ng-model="aoe.max_deviation"
+                             ng-keydown="stopKeyPropagation($event)"
+                             ng-keypress="stopKeyPropagation($event)"
+                             />
+    </form><br />
+    <button ng-click="doCreateTemplate('spray',6)">New Spray</button>
+  </div>
+</div>

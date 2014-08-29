@@ -28,15 +28,12 @@ angular.module('vassalApp.controllers')
 
       $scope.modes = modes;
 
-      $scope.doToggleLosMode = function() {
-        $scope.modes.send('Shift L', $scope);
-      };
-      $scope.doToggleRulerMode = function() {
-        $scope.modes.send('Shift R', $scope);
-      };
-
       $scope.drag = {
         start_x: 0, start_y: 0,
+      };
+      $scope.model_view = {};
+      $scope.aoe = {
+        max_deviation: 6
       };
 
       if(!$stateParams.id || $stateParams.id.length <= 0) $state.go('start');
@@ -235,87 +232,6 @@ angular.module('vassalApp.controllers')
           }
         };
 
-        $scope.chat_msg = '';
-        $scope.doSendMessage = function() {
-          if(0 >= $scope.chat_msg.length) return;
-          // console.log('do send msg '+$scope.chat_msg);
-          var msg = message('chat', $scope.chat_msg);
-          $scope.game.newMessage(msg);
-          $scope.chat_msg = '';
-        };
-
-        $scope.onLayerChange = function(layer) {
-          $scope.game.newCommand(command('setLayer', layer));
-        };
-
-        $scope.doModelDamage = function(model, col, line) {
-          $scope.game.newCommand(command('onSelection', 'toggleDamage', col, line));
-        };
-
-        $scope.restore_selection = {};
-        $scope.isRestoreSelectionEmpty = function() {
-          return _.keys($scope.restore_selection).length === 0;
-        };
-        $scope.doToggleRestoreSelection = function(id) {
-          if($scope.restore_selection[id]) {
-            delete $scope.restore_selection[id];
-          }
-          else {
-            $scope.restore_selection[id] = true;
-          }
-        };
-        $scope.doRestoreSelection = function() {
-          $scope.game.newCommand(command('restoreFromDropBin', _.keys($scope.restore_selection)));
-        };
-        $scope.doRestoreAll = function() {
-          $scope.game.newCommand(command('restoreFromDropBin',
-                                         _.map($scope.game.drop_bin, function(mod) {
-                                           return mod.state.id;
-                                        })
-                                        ));
-        };
-
-        $scope.model = {
-          faction: null,
-          type: null,
-          unit: null,
-          unit_entry: null,
-          id: null,
-          size: 1,
-          info: [],
-        };
-        $scope.$watch('model', function(val, old) {
-          if($scope.modes.current === modes['model_create']) {
-            $scope.modes.current = default_mode;
-          }
-        }, true);
-        $scope.doToggleCreateModel = function() {
-          $scope.modes.current = ($scope.modes.current === modes['model_create']) ?
-            default_mode : modes['model_create'];
-          if($scope.modes.current !== modes['model_create']) return;
-
-          modes['model_create'].info = [];
-          var mid_size = Math.ceil($scope.model.size/2);
-          var unit_step = 3*$scope.model.id.r;
-          _.times($scope.model.size, function(i) {
-            var offset_x = 0;
-            var offset_y = 0;
-            if($scope.model.size <= 5) {
-              offset_x = i*unit_step-($scope.model.size-1)*unit_step/2;
-              offset_y = 0;
-            }
-            else {
-              offset_x = (i%mid_size)*unit_step-(mid_size-1)*unit_step/2;
-              offset_y = (i >= mid_size) ? unit_step : 0;
-            }
-            modes['model_create'].info.push({
-              info: $scope.model.id,
-              offset_x: offset_x,
-              offset_y: offset_y
-            });
-          });
-        };
-
         $scope.modelShow = function(type) {
           return $scope.game ? 
             _.filter($scope.game.models, function(model) { return model.state['show_'+type]; }) : [];
@@ -325,142 +241,9 @@ angular.module('vassalApp.controllers')
             _.filter($scope.game.models, function(model) { return model.state.show_aoe > 0; }) : [];
         };
 
-        $scope.fk_read_result = [];
-        $scope.fk_read_string = '';
-        function importFKList(data) {
-          // console.log(data);
-          var lines = data.match(/[^\r\n]+/g);
-          modes['model_create'].info = [];
-          // console.log(lines);
-          var i = 0;
-          var global_offset_x = 0;
-          var global_offset_y = 0;
-          _.each(lines, function(line) {
-            if(line.match(/^(System:|Faction:|Casters:|Points:|Tiers:)/)) {
-              return;
-            }
-            line = line.replace(/^\s*/,'');
-            if(line.length === 0) return;
-            line = line.replace(/^\*+ /,'');
-            var size = 1;
-            var match = line.match(/^(\d+) /);
-            if(match) {
-              size = match[1] >> 0;
-              line = line.replace(/^\d+ /,'');
-            }                
-            match = line.match(/\((\d+)\s.+?\)/i);
-            if(match) {
-              size = (match[1] >> 0);
-            }                
-            match = line.match(/\(leader and (\d+) grunts?\)/i);
-            if(match) {
-              size = (match[1] >> 0) + 1;
-            }                
-            line = line.replace(/\s*\(.+\)\s*$/,'');
-            // console.log(line);
-            if(_.isArray($scope.factions.fk_keys[line]) &&
-               $scope.factions.fk_keys[line].length > 0) {
-              // console.log(size);
-
-              if($scope.factions.fk_keys[line].length > 1) {
-                _.each($scope.factions.fk_keys[line], function(id) {
-                  modes['model_create'].info.push({
-                    info: id,
-                    offset_x: global_offset_x + 1.25*$scope.factions.fk_keys[line][0].r,
-                    offset_y: global_offset_y
-                  });
-                  global_offset_x += 2.5*$scope.factions.fk_keys[line][0].r;
-                  if(global_offset_x > 360) {
-                    global_offset_x = 0;
-                    global_offset_y = 55;
-                  }
-                  i++;
-                });
-              }
-              else {
-                var mid_size = Math.ceil(size/2);
-                var unit_step = 2.5*$scope.factions.fk_keys[line][0].r;
-                var max_offset_x = 0;
-                _.times(size, function(n) {
-                  var offset_x = 0;
-                  var offset_y = 0;
-                  if(size <= 5) {
-                    offset_x = n*unit_step+unit_step/2;
-                    offset_y = global_offset_y;
-                  }
-                  else {
-                    offset_x = (i%mid_size)*unit_step+unit_step/2;
-                    offset_y = global_offset_y + ((n >= mid_size) ? unit_step : 0);
-                  }
-                  max_offset_x = Math.max(max_offset_x, offset_x);
-                  modes['model_create'].info.push({
-                    info: $scope.factions.fk_keys[line][0],
-                    offset_x: global_offset_x + offset_x,
-                    offset_y: offset_y,
-                    show_leader: (size > 1 && n === 0)
-                  });
-                  i++;
-                });
-                global_offset_x += max_offset_x + unit_step/2;
-                if(global_offset_x > 360) {
-                  global_offset_x = 0;
-                  global_offset_y = 55;
-                }
-              }
-            }
-            else {
-              $scope.fk_read_result.push('!!! unknown model \"'+line+'\"');
-            }
-          });
-          // console.log(modes['model_create'].info);
-          if(i > 0) $scope.modes.goTo('model_create', $scope);
-        }
-        $scope.readFKFile = function(file) {
-          $scope.modes.goTo('default', $scope);
-          $scope.fk_read_result = [];
-          var reader = new $window.FileReader();
-          reader.onload = function(e) {
-            $scope.fk_read_result.push('loaded file');
-            var data = e.target.result;
-            importFKList(data);
-            $scope.$apply();
-          };
-          reader.onerror = function(e) {
-            $scope.fk_read_result = ['error reading file'];
-            $scope.$apply();
-          };
-          reader.onabort = function(e) {
-            $scope.fk_read_result = ['abort reading file'];
-            $scope.$apply();
-          };
-          reader.readAsText(file);
-        };
-        $scope.readFKString = function(file) {
-          $scope.modes.goTo('default', $scope);
-          $scope.fk_read_result = [];
-          importFKList($scope.fk_read_string);
-        };
-
-        $scope.doSetLabel = function() {
-          $scope.game.newCommand(command('onSelection', 'setLabel', $scope.model_label));
-          $scope.model_label = '';
-        };
-        $scope.doResetAllModelDamage = function() {
-          $scope.game.newCommand(command('onSelection', 'resetAllDamage'));
-        };
-
-
-        $scope.doCreateTemplate = function(type, size) {
-          modes['template_create'].type = type;
-          modes['template_create'].size = size;
-          modes['template_create'].x = 240;
-          modes['template_create'].y = 240;
-          $scope.modes.goTo('template_create', $scope);
-        };
-        $scope.aoe_max_deviation = 6;
         $scope.doAoEDeviation = function() {
           var aoe = $scope.game.templates.active;
-          var deviation = $scope.game.rollDeviation($scope.aoe_max_deviation);
+          var deviation = $scope.game.rollDeviation($scope.aoe.max_deviation);
           var angle = 60 * (deviation.direction-1) + aoe.rot;
           var new_x = aoe.x + deviation.distance * Math.sin(angle*Math.PI/180);
           var new_y = aoe.y - deviation.distance * Math.cos(angle*Math.PI/180);
@@ -476,12 +259,6 @@ angular.module('vassalApp.controllers')
           return $scope.game ? 
             _.filter($scope.game.templates[type],
                      function(temp) { return !temp.locked; }) : [];
-        };
-
-        $scope.hideLos = function() {
-          if($scope.game.los.state.active) {
-            $scope.game.newCommand(command('onLos', 'setActive', false));
-          }
         };
       });
     }

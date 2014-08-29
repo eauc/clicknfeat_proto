@@ -41,13 +41,13 @@ angular.module('vassalApp.services')
               if(event.ctrlKey || scope.force_ctrl) {
                 scope.game.newCommand(command('addToSelection', models_selected));
                 if(scope.game.selection.length > 0) {
-                  scope.model_label = scope.game.models[scope.game.selection[0]].state.label;
+                  scope.model_view.label = scope.game.models[scope.game.selection[0]].state.label;
                 }
               }
               else {
                 scope.game.newCommand(command('setSelection', models_selected));
                 if(scope.game.selection.length > 0) {
-                  scope.model_label = scope.game.models[scope.game.selection[0]].state.label;
+                  scope.model_view.label = scope.game.models[scope.game.selection[0]].state.label;
                 }
               }
             }

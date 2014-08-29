@@ -76,7 +76,7 @@ angular.module('vassalApp.services')
                   scope.game.newCommand(command('setSelection', [drag.target.state.id]));
                 }
                 if(scope.game.selection.length > 0) {
-                  scope.model_label = scope.game.models[scope.game.selection[0]].state.label;
+                  scope.model_view.label = scope.game.models[scope.game.selection[0]].state.label;
                 }
                 modes.goTo('default', scope);
                 break;

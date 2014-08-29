@@ -1,0 +1,23 @@
+<div ng-controller="dropBinBoxCtrl">
+  <div>
+    <strong>Drop Bin :</strong>
+    <button ng-click="doRestoreSelection()"
+            ng-disabled="isRestoreSelectionEmpty()">
+      Restore
+    </button>
+    <button ng-click="doRestoreAll()">
+      Restore All
+    </button>
+  </div>
+  <table>
+    <tr ng-repeat="model in game.drop_bin">
+      <td ng-click="doToggleRestoreSelection(model.state.id)"
+          ng_style="{
+          'background-color': restore_selection[model.state.id] ? '#999' : 'white'
+          }"
+          >
+        {{ model.info.name }} - {{ model.state.id }}
+      </td>
+    </tr>
+  </table>
+</div>

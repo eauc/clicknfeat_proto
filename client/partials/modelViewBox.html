@@ -1,0 +1,128 @@
+<div ng-controller="modelViewBoxCtrl"
+     >
+  <div>
+    <strong>Name :</strong> {{game.models[game.selection[0]].info.name}}
+  </div>
+  <div>
+    <strong>Class :</strong>
+    {{game.models[game.selection[0]].info.type}} -
+    {{game.models[game.selection[0]].info.base}}
+  </div>
+  <div>
+    <strong>Label :</strong>
+    <form style="display:inline-block;margin:0px;padding:0px;"
+          ng-submit="doSetLabel()">
+      <input type="text"
+             ng-model="model_view.label"
+             ng-keydown="stopKeyPropagation($event)"
+             ng-keypress="stopKeyPropagation($event)"
+             />
+    </form>
+  </div>
+  <div ng-show="game.models[game.selection[0]].info.fury">
+    <strong>Fury :</strong>
+    {{game.models[game.selection[0]].info.fury}}
+  </div>
+  <div ng-show="game.models[game.selection[0]].info.focus">
+    <strong>Focus :</strong>
+    {{game.models[game.selection[0]].info.focus}}
+  </div>
+  <div>
+    <strong>Damages :</strong>
+    {{game.models[game.selection[0]].state.damage.total}} /
+    {{game.models[game.selection[0]].info.damage.total}}
+    <span ng-if="game.models[game.selection[0]].info.damage.field">
+      +
+      {{game.models[game.selection[0]].state.damage.field}} /
+      {{game.models[game.selection[0]].info.damage.field}}
+    </span>          
+    <button ng-click="doResetAllModelDamage()">Reset</button>
+    <div ng-show="game.models[game.selection[0]].info.damage.type == 'warrior'">
+      <div ng-repeat="i in range(game.models[game.selection[0]].info.damage.n).reverse()"
+           style="width:20px;height:20px;border:1px solid black;display:inline-block;text-align:center;"
+           ng-style="{
+        'border-right': (i%5 == 0)?'5px solid black':'1px solid black',
+        'background-color': (i>=game.models[game.selection[0]].info.damage.n-game.models[game.selection[0]].state.damage.n) ? '#999' : 'white'
+        }"
+        ng-click="doModelDamage(game.models[game.selection[0]],game.models[game.selection[0]].info.damage.n-i)"
+        ></div>
+    </div>
+    <table style="border-collapse:collapse;"
+           ng-if="game.models[game.selection[0]].info.damage.field">
+      <tr ng-repeat="line in [0, 1]">
+        <td ng-repeat="col in range(game.models[game.selection[0]].info.damage.field/2)"
+            style="width:20px;height:20px;border:1px solid black;text-align:center;"
+            ng-style="{
+            'background-color': (col+(line*game.models[game.selection[0]].info.damage.field/2)) < game.models[game.selection[0]].state.damage.field ? '#999' : 'white'
+            }"
+            ng-click="doModelDamage(game.models[game.selection[0]], 'field', col+(line*game.models[game.selection[0]].info.damage.field/2)+1)"
+            >F</td>
+      </tr>
+    </table>
+    <table ng-show="
+           game.models[game.selection[0]].info.damage.type === 'jack' ||
+           game.models[game.selection[0]].info.damage.type === 'gargantuan' ||
+           game.models[game.selection[0]].info.damage.type === 'beast'
+           "
+           style="border-collapse:collapse;text-align:center;">
+      <tr>
+        <td ng-repeat="col in ['1','2','3','4','5','6']"
+            style="width:20px;height:20px;"
+            ng-click="doModelDamage(game.models[game.selection[0]],col)"
+            >
+          {{col}}
+        </td>
+      </tr>
+      <tr ng-repeat="line in range(game.models[game.selection[0]].info.damage.depth)">
+        <td ng-repeat="col in ['1','2','3','4','5','6']"
+            style="width:20px;height:20px;border:1px solid black;"
+            ng-style="{
+            'background-color':
+            (game.models[game.selection[0]].info.damage[col][line]) ? (
+            (game.models[game.selection[0]].state.damage[col][line] === 1) ? '#999' : 'white'
+            ) : 'black'
+            }"
+            ng-click="doModelDamage(game.models[game.selection[0]], col, line)"
+            >
+          {{ (game.models[game.selection[0]].info.damage[col][line] === 'b') ? ' ' : 
+          game.models[game.selection[0]].info.damage[col][line].toUpperCase() }}
+        </td>
+      </tr>
+    </table>
+    <table ng-show="game.models[game.selection[0]].info.damage.type == 'colossal'"
+           style="border-collapse:collapse;text-align:center;">
+      <tr>
+        <td ng-repeat="col in ['L1','L2','L3','L4','L5','L6','R1','R2','R3','R4','R5','R6']"
+            style="width:20px;height:20px;"
+            ng-click="doModelDamage(game.models[game.selection[0]],col)"
+            >
+          {{col}}
+        </td>
+      </tr>
+      <tr ng-repeat="line in [0,1,2,3,4,5]">
+        <td ng-repeat="col in ['L1','L2','L3','L4','L5','L6','R1','R2','R3','R4','R5','R6']"
+            style="width:20px;height:20px;border:1px solid black;"
+            ng-style="{
+            'background-color':
+            (game.models[game.selection[0]].info.damage[col][line]) ? (
+            (game.models[game.selection[0]].state.damage[col][line] === 1) ? '#999' : 'white'
+            ) : 'black',
+            'border-right': col === 'L6' ? '4px solid black':'1px solid black'
+            }"
+            ng-click="doModelDamage(game.models[game.selection[0]], col, line)"
+            >
+          {{ (game.models[game.selection[0]].info.damage[col][line] === 'b') ? ' ' : 
+          game.models[game.selection[0]].info.damage[col][line].toUpperCase() }}
+        </td>
+      </tr>
+    </table>
+    <div>
+      Click on boxes to mark/clear damage.
+      <ul>
+        <li>for warriors : damage will be marked up to the clicked box.
+          To clear damages, re-click on the same box.</li>
+        <li>for jacks : you can mark/clear whole colons by clicking on colon numbers.</li>
+      </ul>
+    </div>
+  </div>
+</div>

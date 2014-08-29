@@ -1,0 +1,45 @@
+<div ng-controller="layersBoxCtrl">
+  <div><strong>Layers :</strong></div>
+  <div style="display:inline-box">
+    <input id="layer-board-check"
+           type="checkbox"
+           ng-model="game.layers.board"
+           ng-change="onLayerChange('board')" />
+    <label for="layer-board-check">Board</label>
+  </div>
+  <div style="display:inline-box">
+    <input id="layer-terrain-check"
+           type="checkbox"
+           ng-model="game.layers.terrain"
+           ng-change="onLayerChange('terrain')" />
+    <label for="layer-terrain-check">Terrain</label>
+  </div>
+  <div style="display:inline-box">
+    <input id="layer-deployment-check"
+           type="checkbox"
+           ng-model="game.layers.deployment"
+           ng-change="onLayerChange('deployment')" />
+    <label for="layer-deployment-check">Deployment</label>
+  </div>
+  <div style="display:inline-box">
+    <input id="layer-scenario-check"
+           type="checkbox"
+           ng-model="game.layers.scenario"
+           ng-change="onLayerChange('scenario')" />
+    <label for="layer-scenario-check">Scenario</label>
+  </div>
+  <div style="display:inline-box">
+    <input id="layer-models-check"
+           type="checkbox"
+           ng-model="game.layers.models"
+           ng-change="onLayerChange('models')" />
+    <label for="layer-models-check">Models</label>
+  </div>
+  <div style="display:inline-box">
+    <input id="layer-templates-check"
+           type="checkbox"
+           ng-model="game.layers.templates"
+           ng-change="onLayerChange('templates')" />
+    <label for="layer-templates-check">Templates</label>
+  </div>
+</div>

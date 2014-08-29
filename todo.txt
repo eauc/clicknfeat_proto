@@ -33,5 +33,4 @@ afficher les raccourcis en fonction du mode : brutalement, objets commands dans 
 cette description a un bouton qui permet de faire la commande a la main si possible, en emettant l'evenement clavier sur le mode courant
 
 reflechir pour chaque mode les transitions autorisees vers d'autre modes.
-chaque menu a son controleur et partial inclus dans la page principale.
 
