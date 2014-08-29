@@ -160,16 +160,16 @@ angular.module('vassalApp.services')
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_kd;
             scope.game.newCommand(command('onSelection', 'toggle', 'kd', new_val));
           },
+          'Alt L': function(scope) {
+            var new_val = !scope.game.models[scope.game.selection[0]].state.show_leader;
+            scope.game.newCommand(command('onSelection', 'toggle', 'leader', new_val));
+          },
           'M': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_melee;
             scope.game.newCommand(command('onSelection', 'toggle', 'melee', new_val));
           },
           'Ctrl N': function(scope) {
             scope.game.newCommand(command('onSelection', 'setRotation', 0));
-          },
-          'Alt P': function(scope) {
-            var new_val = !scope.game.models[scope.game.selection[0]].state.show_leader;
-            scope.game.newCommand(command('onSelection', 'toggle', 'leader', new_val));
           },
           'R': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_reach;
