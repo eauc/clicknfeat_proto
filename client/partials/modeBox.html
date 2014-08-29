@@ -1,4 +1,297 @@
 <div>
   <strong>Current Mode :</strong> {{modes.current.name}}<br />
   <strong>Mode Group :</strong> {{modes.current.group}}<br />
+  <div style="background-color:#6CC;"
+       ng-show="modes.current.name === 'Selection Drag'">
+    <strong>Selection Drag Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li>Select Models (Drag-box on models)</li>
+      <li>Add Models to selection (Ctrl + Drag-box on models)</li>
+    </ul>
+  </div>
+  <div style="background-color:#6CC;"
+       ng-show="modes.current.name === 'Model Create'">
+    <strong>Model Create Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li>Position created model(s) (Move mouse over board)</li>
+      <li>Create model(s) (Click on board)</li>
+    </ul>
+  </div>
+  <div style="background-color:#6CC;"
+       ng-show="modes.current.name === 'Template Create'">
+    <strong>Template Create Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li>Position created template (Move mouse over board)</li>
+      <li>Create template (Click on board)</li>
+    </ul>
+  </div>
+  <div style="background-color:#6CC;"
+       ng-show="
+       modes.current.name === 'Model Selected' ||
+       modes.current.name === 'Model Drag'
+       ">
+    <strong>Model Selected Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li>Position model(s) (Drag model)</li>
+      <li>Move model(s) ([Shift +][Ctrl +] Arrows)</li>
+      <li>Select a model (Click on model)</li>
+      <li>Add a model to selection (Ctrl + Click on model)</li>
+      <li>Remove a model from selection (Ctrl + Click on selected model)</li>
+      <li><button ng-click="sendKey('Ctrl C', $event)">Copy</button> (Ctrl+'C')</li>
+      <li><button ng-click="sendKey('U', $event)">Unselect All</button> ('E')</li>
+      <li><button ng-click="sendKey('T', $event)">Set Target</button> ('T')</li>
+      <li><button ng-click="sendKey('Ctrl N', $event)">Orient North</button> (Ctrl+'N')</li>
+      <li><button ng-click="sendKey('Ctrl E', $event)">Orient East</button> (Ctrl+'E')</li>
+      <li><button ng-click="sendKey('Ctrl W', $event)">Orient West</button> (Ctrl+'W')</li>
+      <li><button ng-click="sendKey('Ctrl S', $event)">Orient South</button> (Ctrl+'S')</li>
+      <li><button ng-click="sendKey('M', $event)">Toggle Melee</button> ('M')</li>
+      <li><button ng-click="sendKey('R', $event)">Toggle Reach</button> ('R')</li>
+      <li><button ng-click="sendKey('F', $event)">Toggle Focus</button> ('F')</li>
+      <li><button ng-click="sendKey('Add', $event)">Incr. Focus</button> ('Add')</li>
+      <li><button ng-click="sendKey('Substract', $event)">Decr. Focus</button> ('Substract')</li>
+      <li><button ng-click="sendKey('I', $event)">Toggle Image</button> ('I')</li>
+      <li><button ng-click="sendKey('Shift C', $event)">Toggle Ctrl Area</button> (Shift+'C')</li>
+      <li><button ng-click="sendKey('Alt B', $event)">Toggle Blind</button> (Alt + 'B')</li>
+      <li><button ng-click="sendKey('Alt C', $event)">Toggle Corrosion</button> (Alt + 'C')</li>
+      <li><button ng-click="sendKey('Alt F', $event)">Toggle Fire</button> (Alt + 'F')</li>
+      <li><button ng-click="sendKey('Alt I', $event)">Toggle Incorporeal</button> (Alt + 'I')</li>
+      <li><button ng-click="sendKey('Alt K', $event)">Toggle KD</button> (Alt + 'K')</li>
+      <li><button ng-click="sendKey('Alt L', $event)">Toggle Leader</button> (Alt + 'L')</li>
+      <li><button ng-click="sendKey('Alt S', $event)">Toggle Stationary</button> (Alt + 'S')</li>
+      <li><button ng-click="sendKey('Ctrl 0', $event)">Aura Off</button> (Ctrl + '0')</li>
+      <li><button ng-click="sendKey('Ctrl 1', $event)">Aura Cyan</button> (Ctrl + '1')</li>
+      <li><button ng-click="sendKey('Ctrl 2', $event)">Aura Purple</button> (Ctrl + '2')</li>
+      <li><button ng-click="sendKey('Ctrl 3', $event)">Aura Yellow</button> (Ctrl + '3')</li>
+      <li><button ng-click="sendKey('Ctrl 4', $event)">Aura Blue</button> (Ctrl + '4')</li>
+      <li><button ng-click="sendKey('Ctrl 5', $event)">Aura Green</button> (Ctrl + '5')</li>
+      <li><button ng-click="sendKey('Ctrl 6', $event)">Aura Red</button> (Ctrl + '6')</li>
+      <li><button ng-click="sendKey('3', $event)">Toggle AoE 3"</button> ('0')</li>
+      <li><button ng-click="sendKey('4', $event)">Toggle AoE 4"</button> ('0')</li>
+      <li><button ng-click="sendKey('5', $event)">Toggle AoE 5"</button> ('0')</li>
+      <li>
+        <button ng-click="sendKey('Delete', $event)">Drop</button> (Delete)
+      </li>
+    </ul>
+  </div>
+  <div style="background-color:#6CC;"
+       ng-show="modes.current.name === 'Model Target'">
+    <strong>Model Target Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li>Set selected model(s) target (Click on model)</li>
+    </ul>
+  </div>
+  <div style="background-color:#6CC;"
+       ng-show="modes.current.group === 'LoS'">
+    <strong>Line of Sight Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li>Trace Line of Sight (Drag on board)</li>
+      <li><button ng-click="sendKey('Shift L', $event)">Exit</button> (Shift + 'L')</li>
+    </ul>
+  </div>
+  <div style="background-color:#6CC;"
+       ng-show="
+       modes.current.name === 'Ruler' ||
+       modes.current.name === 'Ruler Drag'
+       ">
+    <strong>Ruler Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li>Measure distance (Drag on board)</li>
+      <li><button ng-click="sendKey('O', $event)">Set Origin</button> ('O')</li>
+      <li><button ng-click="sendKey('T', $event)">Set Target</button> ('T')</li>
+      <li><button ng-click="sendKey('Shift R', $event)">Exit</button> (Shift + 'R')</li>
+    </ul>
+  </div>
+  <div style="background-color:#6CC;"
+       ng-show="modes.current.name === 'Ruler Origin'">
+    <strong>Ruler Origin Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li>Attach ruler origin to model (Click on Model)</li>
+    </ul>
+  </div>
+  <div style="background-color:#6CC;"
+       ng-show="modes.current.name === 'Ruler Target'">
+    <strong>Ruler Origin Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li>Set model as ruler target (Click on Model)</li>
+    </ul>
+  </div>
+  <div style="background-color:#6CC;"
+       ng-show="
+       modes.current.name === 'Template Locked'
+       ">
+    <strong>Template Locked Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li><button ng-click="sendKey('L', $event)">Unlock</button> ('L')</li>
+      <li><button ng-click="sendKey('Delete', $event)">Delete</button> (Delete)</li>
+      <li>Select Template (Click on inactive template)</li>
+      <li>Exit (Click on active template/on model)</li>
+    </ul>
+  </div>
+  <div style="background-color:#6CC;"
+       ng-show="
+       modes.current.name === 'Template' ||
+       modes.current.name === 'Template Drag'
+       ">
+    <strong>Ruler Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li>Position template (Drag template)</li>
+      <li>Move template ([Shift +][Ctrl +] Arrows)</li>
+      <li ng-if="game.templates.active.type === 'aoe'">
+        <button ng-click="sendKey('3', $event)">AoE 3"</button> ('3')
+      </li>
+      <li ng-if="game.templates.active.type === 'aoe'">
+        <button ng-click="sendKey('4', $event)">AoE 4"</button> ('4')
+      </li>
+      <li ng-if="game.templates.active.type === 'aoe'">
+        <button ng-click="sendKey('5', $event)">AoE 5"</button> ('5')
+      </li>
+      <li ng-if="game.templates.active.type === 'spray'">
+        <button ng-click="sendKey('6', $event)">Spray 6"</button> ('6')
+      </li>
+      <li ng-if="game.templates.active.type === 'spray'">
+        <button ng-click="sendKey('8', $event)">Spray 8"</button> ('8')
+      </li>
+      <li ng-if="game.templates.active.type === 'spray'">
+        <button ng-click="sendKey('0', $event)">Spray 10"</button> ('0')
+      </li>
+      <li><button ng-click="sendKey('O', $event)">Set Origin</button> ('O')</li>
+      <li><button ng-click="sendKey('T', $event)">Set Target</button> ('T')</li>
+      <li ng-if="game.templates.active.type === 'aoe'">
+        <button ng-click="sendKey('D', $event)">Deviate</button> ('D')
+      </li>
+      <li>
+        <button ng-click="sendKey('R', $event)">To End of Ruler</button> ('R')
+      </li>
+      <li>
+        <button ng-click="sendKey('L', $event)">Lock</button> ('L')
+      </li>
+      <li>
+        <button ng-click="sendKey('Delete', $event)">Delete</button> (Delete)
+      </li>
+      <li>Select Template (Click on inactive template)</li>
+      <li>Exit (Click on active template/on model)</li>
+    </ul>
+  </div>
+  <div style="background-color:#6CC;"
+       ng-show="modes.current.name === 'Template Origin'">
+    <strong>Template Origin Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li ng-if="game.templates.active.type === 'aoe'">
+        Orient AoE template from model (Click on model)
+      </li>
+      <li ng-if="game.templates.active.type === 'spray'">
+        Attach spray template to model (Click on model)
+      </li>
+    </ul>
+  </div>
+  <div style="background-color:#6CC;"
+       ng-show="modes.current.name === 'Template Target'">
+    <strong>Template Target Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li>
+        Center template on model (Click on model)
+      </li>
+    </ul>
+  </div>
+  <div style="font-size:0.75em">
+    <strong>View Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li>Move view (Alt + Arrows)</li>
+      <li><button ng-click="sendKey('Alt Add', $event)">Zoom in</button> (Alt + '+')</li>
+      <li><button ng-click="sendKey('Alt Substract', $event)">Zoom out</button> (Alt + '-')</li>
+      <li><button ng-click="sendKey('Alt 0', $event)">Reset</button> (Alt + '0')</li>
+    </ul>
+  </div>
+  <div style="font-size:0.75em">
+    <strong>Generic Commands</strong>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        >
+      <li><button ng-click="sendKey('Escape', $event)">Default mode</button> (Escape)</li>
+      <li><button ng-click="sendKey('Ctrl Z', $event)">Undo</button> last command (Ctrl + 'Z')</li>
+    </ul>
+    <ul style="
+        margin:0px;
+        padding:0px;
+        list-style-type:none;
+        "
+        ng-if="modes.current.group === 'Default'">
+      <li>Select Model (Click on model)</li>
+      <li>Select Mulptiple Models (Drag-box on models)</li>
+      <li>Select Template (Click on template)</li>
+    </ul>
+  </div>
 </div>
