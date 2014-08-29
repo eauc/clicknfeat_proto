@@ -373,9 +373,8 @@
                 stroke-width:0.5px;
                 "
                 ng-style="{
-                 'stroke': aoe === game.templates.active ? (mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')) : '#C60',
+                 'stroke': aoe === game.templates.active ? '#0F0' : '#C60',
                 }"
-                ng-click="game.templates.active = (aoe === game.templates.active) ? null : aoe"
                 />
         <polygon ng-repeat="sp in templateShowLocked('spray')"
                  points="
@@ -397,9 +396,8 @@
                  rotate({{sp.rot-180}}, 10, 0)
                  "
                  ng-style="{
-                 'stroke': sp === game.templates.active ? (mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')) : '#C60',
+                 'stroke': sp === game.templates.active ? '#0F0' : '#C60',
                  }"
-                 ng-click="game.templates.active = (sp === game.templates.active) ? null : sp"
                  />
       </svg>
       <svg id="model-canvas"
@@ -588,101 +586,101 @@
                 pointer-events: none;
                 "
                 ng-style="{
-                'stroke': game.templates.active ? none : (mode_model_target ? '#00F' : '#0F0')
+                'stroke': game.templates.active ? none : (current_mode.name === 'Model Target' ? '#00F' : '#0F0')
                 }"
                 />
-      </svg>
-      <path ng-repeat="model in modelShow('melee')"
-            d="
-            M{{model.state.x-5-model.info.r}},{{model.state.y}}
-            L{{model.state.x+5+model.info.r}},{{model.state.y}}
-            A{{5+model.info.r}},{{5+model.info.r}} 0 0,0
-            {{model.state.x-5-model.info.r}},{{model.state.y}}
-            M{{model.state.x}},{{model.state.y}}
-            L{{model.state.x}},{{model.state.y-model.info.r-5}}
-            "
-            style="
-            stroke:#000;
-            stroke-width:0.5px;
-            fill: #000;
-            fill-opacity: 0.4;
-            pointer-events: none;
-            "
-            transform="
-            rotate({{model.state.rot}},
-            {{model.state.x}},
-            {{model.state.y}})
-            "
-            />
-      <path ng-repeat="model in modelShow('reach')"
-            d="
-            M{{model.state.x-20-model.info.r}},{{model.state.y}}
-            L{{model.state.x+20+model.info.r}},{{model.state.y}}
-            A{{20+model.info.r}},{{20+model.info.r}} 0 0,0
-            {{model.state.x-20-model.info.r}},{{model.state.y}}
-            M{{model.state.x}},{{model.state.y}}
-            L{{model.state.x}},{{model.state.y-model.info.r-20}}
-            "
-            style="
-            stroke:#000;
-            stroke-width:0.5px;
-            fill: #000;
-            fill-opacity: 0.4;
-            pointer-events: none;
-            "
-            transform="
-            rotate({{model.state.rot}},
-            {{model.state.x}},
-            {{model.state.y}})
-            "
-            />
-      <circle ng-repeat="model in modelShow('control')"
-              cx="{{model.state.x}}" cy="{{model.state.y}}"
-              r="{{model.info.r+(model.info.focus || model.info.fury)*20}}"
-              style="
-              fill: #0FF;
-              fill-opacity: 0.3;
-              stroke: #099;
-              stroke-width: 1px;
-              pointer-events: none;
+        <path ng-repeat="model in modelShow('melee')"
+              d="
+              M{{model.state.x-5-model.info.r}},{{model.state.y}}
+              L{{model.state.x+5+model.info.r}},{{model.state.y}}
+              A{{5+model.info.r}},{{5+model.info.r}} 0 0,0
+              {{model.state.x-5-model.info.r}},{{model.state.y}}
+              M{{model.state.x}},{{model.state.y}}
+              L{{model.state.x}},{{model.state.y-model.info.r-5}}
               "
-              />
-      <circle ng-repeat="model in showCenteredAoE()"
-              cx="{{model.state.x}}"
-              cy="{{model.state.y}}"
-              r="{{model.state.show_aoe}}"
               style="
-              fill:#F90;
-              fill-opacity:0.2;
-              stroke:#C60;
+              stroke:#000;
               stroke-width:0.5px;
+              fill: #000;
+              fill-opacity: 0.4;
               pointer-events: none;
+              "
+              transform="
+              rotate({{model.state.rot}},
+              {{model.state.x}},
+              {{model.state.y}})
               "
               />
-      <g ng-repeat="model in modelShow('focus')">
-        <rect x="{{model.state.x-4}}" y="{{model.state.y-4}}"
-              width="8" height="9"
+        <path ng-repeat="model in modelShow('reach')"
+              d="
+              M{{model.state.x-20-model.info.r}},{{model.state.y}}
+              L{{model.state.x+20+model.info.r}},{{model.state.y}}
+              A{{20+model.info.r}},{{20+model.info.r}} 0 0,0
+              {{model.state.x-20-model.info.r}},{{model.state.y}}
+              M{{model.state.x}},{{model.state.y}}
+              L{{model.state.x}},{{model.state.y-model.info.r-20}}
+              "
               style="
-              fill:#333;
-              fill-opacity:0.7;
+              stroke:#000;
+              stroke-width:0.5px;
+              fill: #000;
+              fill-opacity: 0.4;
               pointer-events: none;
+              "
+              transform="
+              rotate({{model.state.rot}},
+              {{model.state.x}},
+              {{model.state.y}})
               "
               />
-        <text x="{{model.state.x}}" y="{{model.state.y+4}}"
-              style="
-              fill:white;
-              text-anchor:middle;
-              font-size:9px;
-              font-weight:bold;
-              font-family:Verdana, sans-serif;
-              pointer-events: none;
-              -webkit-user-select: none;
-              -moz-user-select:none;
-              "
-              >
-          {{model.state.focus}}
-        </text>
-      </g>
+        <circle ng-repeat="model in modelShow('control')"
+                cx="{{model.state.x}}" cy="{{model.state.y}}"
+                r="{{model.info.r+(model.info.focus || model.info.fury)*20}}"
+                style="
+                fill: #0FF;
+                fill-opacity: 0.3;
+                stroke: #099;
+                stroke-width: 1px;
+                pointer-events: none;
+                "
+                />
+        <circle ng-repeat="model in showCenteredAoE()"
+                cx="{{model.state.x}}"
+                cy="{{model.state.y}}"
+                r="{{model.state.show_aoe}}"
+                style="
+                fill:#F90;
+                fill-opacity:0.2;
+                stroke:#C60;
+                stroke-width:0.5px;
+                pointer-events: none;
+                "
+                />
+        <g ng-repeat="model in modelShow('focus')">
+          <rect x="{{model.state.x-4}}" y="{{model.state.y-4}}"
+                width="8" height="9"
+                style="
+                fill:#333;
+                fill-opacity:0.7;
+                pointer-events: none;
+                "
+                />
+          <text x="{{model.state.x}}" y="{{model.state.y+4}}"
+                style="
+                fill:white;
+                text-anchor:middle;
+                font-size:9px;
+                font-weight:bold;
+                font-family:Verdana, sans-serif;
+                pointer-events: none;
+                -webkit-user-select: none;
+                -moz-user-select:none;
+                "
+                >
+            {{model.state.focus}}
+          </text>
+        </g>
+      </svg>
       <svg id="template-canvas"
            x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
            style="display: {{game.layers.templates ? 'inline' : 'none'}}"
@@ -697,7 +695,7 @@
                 stroke-width:0.5px;
                 "
                 ng-style="{
-                 'stroke': aoe === game.templates.active ? (mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')) : '#C60',
+                 'stroke': aoe === game.templates.active ? (current_mode.name === 'Template Origin' ? '#FF0' : (current_mode.name === 'Template Target' ? '#0FF' : '#0F0')) : '#C60',
                 }"
                 ng-click="onTemplateClick($event, aoe)"
                 ng-mousedown="onTemplateMouseDown($event, aoe)"
@@ -738,7 +736,7 @@
                  rotate({{sp.rot-180}}, 10, 0)
                  "
                  ng-style="{
-                 'stroke': sp === game.templates.active ? (mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')) : '#C60',
+                 'stroke': sp === game.templates.active ? (current_mode.name === 'Template Origin' ? '#FF0' : (current_mode.name === 'Template Target' ? '#0FF' : '#0F0')) : '#C60',
                  }"
                  ng-click="onTemplateClick($event, sp)"
                  ng-mousedown="onTemplateMouseDown($event, sp)"
@@ -755,7 +753,10 @@
                 "
                 />
       </svg>
-      <circle ng-show="create_template_mode && create_template_preview.type === 'aoe'"
+      <circle ng-show="
+              current_mode.name === 'Template Create' &&
+              create_template_preview.type === 'aoe'
+              "
               cx="{{create_template_preview.x}}"
               cy="{{create_template_preview.y}}"
               r="{{create_template_preview.size*5}}"
@@ -767,7 +768,10 @@
               stroke: #C60;
               "
               />
-      <polygon ng-show="create_template_mode && create_template_preview.type === 'spray'"
+      <polygon ng-show="
+               current_mode.name === 'Template Create' &&
+               create_template_preview.type === 'spray'
+               "
                points="
                8.75,0
                {{
@@ -790,10 +794,10 @@
                rotate({{create_template_preview.rot-180}}, 10, 0)
                "
                />
-      <svg ng-show="create_mode"
-           ng-repeat="(i,model) in create_preview.info"
-           x="{{create_preview.x + model.offset_x - model.info.width/2}}"
-           y="{{create_preview.y + model.offset_y - model.info.height/2}}"
+      <svg ng-show="current_mode.name === 'Model Create'"
+           ng-repeat="(i,model) in create_model_preview.info"
+           x="{{create_model_preview.x + model.offset_x - model.info.width/2}}"
+           y="{{create_model_preview.y + model.offset_y - model.info.height/2}}"
            style="pointer-events: none"
            >
         <image x="{{model.info.img.x}}"
@@ -830,7 +834,7 @@
               marker-end:url(#ruler-end);
               "
               ng-style="{
-              'stroke': ruler_drag.active ? (mode_ruler_target ? '#F09' : (mode_ruler_origin ? '#F90' : '#0FF')) : '#0FF'
+              'stroke': (current_mode.name === 'Ruler Target') ? '#F09' : (current_mode.name === 'Ruler Origin' ? '#F90' : '#0FF')
               }"
               />
         <rect x="{{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1-2.5}}"
@@ -859,10 +863,15 @@
             pointer-events: none;
             "
             />
-      <circle ng-show="ruler_drag.active && ruler_drag.origin !== null"
-              cx="{{ruler_drag.origin.state.x}}"
-              cy="{{ruler_drag.origin.state.y}}"
-              r="{{ruler_drag.origin.info.r}}"
+      <circle ng-show="
+              (current_mode.name === 'Ruler' ||
+               current_mode.name === 'Ruler Origin' ||
+               current_mode.name === 'Ruler Target') &&
+              current_mode.origin !== null
+              "
+              cx="{{current_mode.origin.state.x}}"
+              cy="{{current_mode.origin.state.y}}"
+              r="{{current_mode.origin.info.r}}"
               style="
               fill:none;
               stroke:#F90;
@@ -870,10 +879,15 @@
               pointer-events: none;
               "
               />
-      <circle ng-show="ruler_drag.active && ruler_drag_drag.target !== null"
-              cx="{{ruler_drag.target.state.x}}"
-              cy="{{ruler_drag.target.state.y}}"
-              r="{{ruler_drag.target.info.r}}"
+      <circle ng-show="
+              (current_mode.name === 'Ruler' ||
+               current_mode.name === 'Ruler Origin' ||
+               current_mode.name === 'Ruler Target') &&
+              current_mode.target !== null
+              "
+              cx="{{current_mode.target.state.x}}"
+              cy="{{current_mode.target.state.y}}"
+              r="{{current_mode.target.info.r}}"
               style="
               fill:none;
               stroke:#F09;
@@ -881,11 +895,11 @@
               pointer-events: none;
               "
               />
-      <g ng-show="model_drag.active"
+      <g ng-show="current_mode.name === 'Model Drag'"
          style="pointer-events: none"
          >
-        <line x1="{{model_drag.start.x}}" y1="{{model_drag.start.y}}"
-              x2="{{model_drag.end.x}}" y2="{{model_drag.end.y}}"
+        <line x1="{{current_mode.start_x}}" y1="{{current_mode.start_y}}"
+              x2="{{current_mode.end_x}}" y2="{{current_mode.end_y}}"
               style="
               stroke:#0FF;
               stroke-width:1px;
@@ -893,8 +907,8 @@
               marker-end:url(#ruler-end);
               "
               />
-        <rect x="{{(model_drag.end.x-model_drag.start.x)/2+model_drag.start.x-2.5}}"
-              y="{{(model_drag.end.y-model_drag.start.y)/2+model_drag.start.y-4}}"
+        <rect x="{{(current_mode.end_x-current_mode.start_x)/2+current_mode.start_x-2.5}}"
+              y="{{(current_mode.end_y-current_mode.start_y)/2+current_mode.start_y-4}}"
               width="30" height="10"
               style="
               fill:#FFC;
@@ -902,17 +916,20 @@
               stroke-width:0.5px;
               "
               />
-        <text x="{{(model_drag.end.x-model_drag.start.x)/2+model_drag.start.x}}"
-              y="{{(model_drag.end.y-model_drag.start.y)/2+model_drag.start.y+4}}"
+        <text x="{{(current_mode.end_x-current_mode.start_x)/2+current_mode.start_x}}"
+              y="{{(current_mode.end_y-current_mode.start_y)/2+current_mode.start_y+4}}"
               style="
               font-size:8px;
               ">
-          {{model_drag.length}}"
+          {{current_mode.length}}"
         </text>
       </g>
     </svg>
   </div>
   <div style="display:inline-block;vertical-align:top;width:350px">
+    <div style="border:1px solid black;max-height:300px;overflow-y:scroll;">
+      <strong>Current Mode :</strong> {{current_mode.name}}
+    </div>
     <div ng-show="game.selection.length === 1"
          style="border:1px solid black;max-height:300px;overflow-y:scroll;">
       <div>
@@ -1112,7 +1129,7 @@
       <div>
         <button ng-disabled="!model.id"
                 ng-click="doToggleCreateModel()">
-          {{ create_mode ? 'Cancel' : 'Create' }}
+          {{ current_mode.name === 'Model Create' ? 'Cancel' : 'Create' }}
         </button>
         <p ng-show="create_mode">
           Move your cursor over the board and click to create the new model under the cursor position.
@@ -1280,19 +1297,23 @@
     <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
       <div><strong>Tools :</strong></div>
       <div>
-        Ruler:
-        <input id="tools-ruler-use-check"
-               type="checkbox"
-               ng-model="ruler_drag.active"
-               ng-change="(mode_ruler_origin = false) || (mode_ruler_target = false)"
-               />
-        <label for="tools-ruler-use-check">use</label>
-        <input id="tools-ruler-show-check"
-               type="checkbox"
-               ng-model="show_ruler"
-               ng-change="game.ruler.setActive(show_ruler)"
-               />
-        <label for="tools-ruler-show-check">show</label>
+        Ruler :
+        <button ng-style="{
+                'background-color': (current_mode.name === 'Ruler' ||
+                                     current_mode.name === 'Ruler Origin' ||
+                                     current_mode.name === 'Ruler Target') ? '#6F6' : 'none'
+                }"
+                ng-click="doToggleRulerMode()"
+                >
+          Use
+        </button>
+        <button ng-style="{
+                'background-color': (game.ruler.state.active) ? '#6F6' : 'none'
+                }"
+                ng-click="game.ruler.setActive(!game.ruler.state.active)"
+                >
+          Show
+        </button>
         <input style="display:inline-block;width:5em;"
                type="number"
                ng-model="game.ruler.state.range"
@@ -1304,12 +1325,13 @@
       </div>
       <div>
         LOS :
-        <input id="tools-los-use-check"
-               type="checkbox"
-               ng-model="los_drag.active"
-               ng-change="hideLos()"
-               />
-        <label for="tools-los-use-check">use</label>
+        <button ng-style="{
+                'background-color': (current_mode.name === 'LoS') ? '#6F6' : 'none'
+                }"
+                ng-click="doToggleLosMode()"
+                >
+          Use
+        </button>
       </div>
       <div>
         <button ng-click="doCreateTemplate('aoe',3)">New AoE</button>

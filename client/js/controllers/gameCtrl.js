@@ -23,716 +23,669 @@ angular.module('vassalApp.controllers')
              message,
              factions) {
       console.log('init gameCtrl');
-      $scope.ruler_drag = {
-        active: false,
-        start_x: 0, start_y: 0,
-        origin: null,
-        target: null,
-      };
-      $scope.los_drag = {
-        active: false,
-        start_x: 0, start_y: 0,
-      };
-      var skip_model_click = false;
-      $scope.model_drag = {
-        active: false,
-        start: {
-          x: null,
-          y: null,
-        },
-        end: {
-          x: null,
-          y: null,
-        },
-        length: 0,
-      };
-      $scope.template_drag = {
-        active: false,
-        start: {
-          x: null,
-          y: null,
-        },
-        ref: {
-          x: null,
-          y: null,
-        }
-      };
-      $scope.mode_model_target = false;
-      if(!$stateParams.id || $stateParams.id.length <= 0) $state.go('start');
 
-      $http.get('/api/games/'+$stateParams.id).then(function(response) {
-        // console.log('search game success');
-        return factions.then(function() {
-          $scope.game = game(response.data);
-          console.log($scope.game);
-        });
-        // console.log($scope.game);
-      }, function(response) {
-        console.log('search game error');
-        console.log(response);
-        $state.go('start');
-        return $q.reject();
-      }).then(function() {
-
-        var canvas = document.getElementById('canvas');
-        // console.log(canvas_rect);
-
-        $scope.stopKeyPropagation = function(event) {
-          // console.log('test', event);
-          event.stopPropagation();
-        };
-        $scope.onKeyDown = function(event) {
-          // console.log(event);
-          if($scope.create_mode) return;
-          switch(event.keyCode) {
-          case 107: // +
-            {
-              if(event.altKey) {
-                $scope.game.board.zoomIn();
-              }
-              else {
-                if($scope.game.selection.length > 0) {
-                  $scope.game.newCommand(command('onSelection', 'incrementFocus'));
-                }
-              }
-              return;
-            }
-          case 109: // -
-            {
-              if(event.altKey) {
-                $scope.game.board.zoomOut();
-              }
-              else {
-                if($scope.game.selection.length > 0) {
-                  $scope.game.newCommand(command('onSelection', 'decrementFocus'));
-                }
-              }
-              return;
-            }
+      var default_mode = {
+        name: 'Default',
+        'Alt B': function() {
+          if($scope.game.selection.length > 0) {
+            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_blind;
+            $scope.game.newCommand(command('onSelection', 'toggle', 'blind', new_val));
           }
-          if(event.keyCode === 66) { // b
-            if($scope.game.selection.length > 0) {
-              if(event.altKey) {
-                var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_blind;
-                $scope.game.newCommand(command('onSelection', 'toggle', 'blind', new_val));
-                event.preventDefault();
-              }
-            }
-            return;
+        },
+        'Alt C': function() {
+          if($scope.game.selection.length > 0) {
+            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_corrosion;
+            $scope.game.newCommand(command('onSelection', 'toggle', 'corrosion', new_val));
           }
-          if(event.keyCode === 67) { // c
-            if(event.altKey) {
-              if($scope.game.selection.length > 0) {
-                var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_corrosion;
-                $scope.game.newCommand(command('onSelection', 'toggle', 'corrosion', new_val));
-                event.preventDefault();
-              }
-              return;
-            }
-            if(event.shiftKey) { // Shift+c
-              if($scope.game.selection.length === 1 &&
-                 ($scope.game.models[$scope.game.selection[0]].info.focus ||
-                  $scope.game.models[$scope.game.selection[0]].info.fury)) {
-                $scope.game.newCommand(command('onSelection', 'toggleControl'));
-              }
-              return;
-            }
-            if(event.ctrlKey) { // Ctrl+c
-              if($scope.game.selection.length > 0) {
-                $scope.create_preview.info = [];
-                var x_ref = $scope.game.models[$scope.game.selection[0]].state.x;
-                var y_ref = $scope.game.models[$scope.game.selection[0]].state.y;
-                $scope.create_preview.x = x_ref+10;
-                $scope.create_preview.y = y_ref+10;
-                _.each($scope.game.selection, function(id) {
-                  var offset_x = $scope.game.models[id].state.x - x_ref;
-                  var offset_y = $scope.game.models[id].state.y - y_ref;
-                  $scope.create_preview.info.push({
-                    info: $scope.game.models[id].info,
-                    offset_x: offset_x,
-                    offset_y: offset_y
-                  });
-                });
-                $scope.create_mode = true;
-              }
-              return;
-            }
+        },
+        'Ctrl C': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.create_model_preview.info = [];
+            var x_ref = $scope.game.models[$scope.game.selection[0]].state.x;
+            var y_ref = $scope.game.models[$scope.game.selection[0]].state.y;
+            $scope.create_model_preview.x = x_ref+10;
+            $scope.create_model_preview.y = y_ref+10;
+            _.each($scope.game.selection, function(id) {
+              var offset_x = $scope.game.models[id].state.x - x_ref;
+              var offset_y = $scope.game.models[id].state.y - y_ref;
+              $scope.create_model_preview.info.push({
+                info: $scope.game.models[id].info,
+                offset_x: offset_x,
+                offset_y: offset_y
+              });
+            });
+            $scope.current_mode = model_create_mode;
           }
-          if(event.keyCode === 68) { // d
-            if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'aoe' &&
-               !$scope.game.templates.active.locked) {
-              $scope.doAoEDeviation();
-              return;
-            }
+        },
+        'Shift C': function() {
+          if($scope.game.selection.length === 1 &&
+             ($scope.game.models[$scope.game.selection[0]].info.focus ||
+              $scope.game.models[$scope.game.selection[0]].info.fury)) {
+            $scope.game.newCommand(command('onSelection', 'toggleControl'));
           }
-          if(event.keyCode === 69) { // e
-            if(event.ctrlKey) {
-              if($scope.game.selection.length > 0) {
-                $scope.game.newCommand(command('onSelection', 'setRotation', 90));
-              }
-              event.preventDefault();
-            }
-            return;
+        },
+        'Ctrl E': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'setRotation', 90));
           }
-          if(event.keyCode === 70) { // f
-            if($scope.game.selection.length > 0) {
-              if(event.altKey) {
-                var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_fire;
-                $scope.game.newCommand(command('onSelection', 'toggle', 'fire', new_val));
-                event.preventDefault();
-              }
-              else {
-                $scope.game.newCommand(command('onSelection', 'toggle', 'focus'));
-              }
-            }
-            return;
+        },
+        'F': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'toggle', 'focus'));
           }
-          if(event.keyCode === 73) { // i
-            if($scope.game.selection.length > 0) {
-              if(event.altKey) {
-                var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_incorporeal;
-                $scope.game.newCommand(command('onSelection', 'toggle', 'incorporeal', new_val));
-                event.preventDefault();
-              }
-              else{
-                $scope.game.newCommand(command('onSelection', 'toggle', 'image'));
-              }
-            }
-            return;
+        },
+        'Alt F': function() {
+          if($scope.game.selection.length > 0) {
+            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_fire;
+            $scope.game.newCommand(command('onSelection', 'toggle', 'fire', new_val));
           }
-          if(event.keyCode === 75) { // k
-            if($scope.game.selection.length > 0) {
-              if(event.altKey) {
-                var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_kd;
-                $scope.game.newCommand(command('onSelection', 'toggle', 'kd', new_val));
-                event.preventDefault();
-              }
-            }
-            return;
+        },
+        'I': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'toggle', 'image'));
           }
-          if(event.keyCode === 76) { // l
-            if($scope.game.templates.active) {
-              $scope.game.newCommand(command('onActiveTemplate', 'toggleLocked'));
-            }
-            if(event.shiftKey) {
-              if($scope.los_drag.state !== 'draging') {
-                $scope.los_drag.active = !$scope.los_drag.active;
-                $scope.los_drag.state = null;
-                if(!$scope.los_drag.active &&
-                   $scope.game.los.state.active) {
-                  $scope.game.newCommand(command('onLos', 'setActive', false));
-                }
-              }
-              return;
-            }
-            return;
+        },
+        'Alt I': function() {
+          if($scope.game.selection.length > 0) {
+            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_incorporeal;
+            $scope.game.newCommand(command('onSelection', 'toggle', 'incorporeal', new_val));
           }
-          if(event.keyCode === 77) { // m
-            if($scope.game.selection.length > 0) {
+        },
+        'Alt K': function() {
+          if($scope.game.selection.length > 0) {
+            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_kd;
+            $scope.game.newCommand(command('onSelection', 'toggle', 'kd', new_val));
+          }
+        },
+        'Shift L': function() {
+          $scope.current_mode = los_mode;
+        },
+        'M': function() {
+          if($scope.game.selection.length > 0) {
               var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_melee;
               $scope.game.newCommand(command('onSelection', 'toggle', 'melee', new_val));
-            }
-            return;
           }
-          if(event.keyCode === 78) { // n
-            if(event.ctrlKey) {
-              if($scope.game.selection.length > 0) {
-                $scope.game.newCommand(command('onSelection', 'setRotation', 0));
+        },
+        'Ctrl N': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'setRotation', 0));
+          }
+        },
+        'Alt P': function() {
+          if($scope.game.selection.length > 0) {
+            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_leader;
+            $scope.game.newCommand(command('onSelection', 'toggle', 'leader', new_val));
+          }
+        },
+        'R': function() {
+          if($scope.game.selection.length > 0) {
+            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_reach;
+            $scope.game.newCommand(command('onSelection', 'toggle' ,'reach', new_val));
+          }
+        },
+        'Shift R': function() {
+          $scope.current_mode = ruler_mode;
+        },
+        'Alt S': function() {
+          if($scope.game.selection.length > 0) {
+            var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_stationary;
+            $scope.game.newCommand(command('onSelection', 'toggle', 'stationary', new_val));
+          }
+        },
+        'Ctrl S': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'setRotation', 180));
+          }
+        },
+        'T': function() {
+          $scope.current_mode = model_target_mode;
+        },
+        'U': function() {
+          $scope.game.newCommand(command('setSelection', []));
+        },
+        'Ctrl W': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'setRotation', 270));
+          }
+        },
+        'Ctrl Z': function() {
+          $scope.game.undoLastCommand();
+        },
+        'Alt 0': function() {
+          $scope.game.board.reset();
+        },
+        'Ctrl 0': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'toggle', 'color', false));
+          }
+        },
+        'Ctrl 1': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#0FF'));
+          }
+        },
+        'Ctrl 2': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#F0F'));
+          }
+        },
+        '3': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'toggleAoe', 3));
+          }
+        },
+        'Ctrl 3': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#FF0'));
+          }
+        },
+        '4': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'toggleAoe', 4));
+          }
+        },
+        'Ctrl 4': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#00F'));
+          }
+        },
+        '5': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'toggleAoe', 5));
+          }
+        },
+        'Ctrl 5': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#0F0'));
+          }
+        },
+        'Ctrl 6': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#F00'));
+          }
+        },
+        'Delete': function() {
+          $scope.game.newCommand(command('dropSelection'));
+        },
+        'Add': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'incrementFocus'));
+          }
+        },
+        'Alt Add': function() {
+          $scope.game.board.zoomIn();
+        },
+        'Substract': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'decrementFocus'));
+          }
+        },
+        'Alt Substract': function() {
+          $scope.game.board.zoomOut();
+        },
+        'Left': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'rotateLeft', false));
+          }
+        },
+        'Shift Left': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'rotateLeft', true));
+          }
+        },
+        'Alt Left': function() {
+          $scope.game.board.moveLeft();
+        },
+        'Ctrl Left': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'moveLeft', false));
+          }
+        },
+        'Ctrl Shift Left': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'moveLeft', true));
+          }
+        },
+        'Down': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'moveBack', false));
+          }
+        },
+        'Shift Down': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'moveBack', true));
+          }
+        },
+        'Alt Down': function() {
+          $scope.game.board.moveDown();
+        },
+        'Ctrl Down': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'moveDown', false));
+          }
+        },
+        'Ctrl Shift Down': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'moveDown', true));
+          }
+        },
+        'Right': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'rotateRight', false));
+          }
+        },
+        'Shift Right': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'rotateRight', true));
+          }
+        },
+        'Alt Right': function() {
+          $scope.game.board.moveRight();
+        },
+        'Ctrl Right': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'moveRight', false));
+          }
+        },
+        'Ctrl Shift Right': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'moveRight', true));
+          }
+        },
+        'Up': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'moveFront', false));
+          }
+        },
+        'Shift Up': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'moveFront', true));
+          }
+        },
+        'Alt Up': function() {
+          $scope.game.board.moveUp();
+        },
+        'Ctrl Up': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'moveUp', false));
+          }
+        },
+        'Ctrl Shift Up': function() {
+          if($scope.game.selection.length > 0) {
+            $scope.game.newCommand(command('onSelection', 'moveUp', true));
+          }
+        },
+        // ------------------------------------------------------------------
+        'DragStart': function(event, drag, dx, dy) {
+          switch(drag.event)
+          {
+          case 'Template':
+            {
+              $scope.game.templates.active = drag.target;
+              drag.target.startDraging();
+
+              $scope.current_mode = template_drag_mode;
+              break;
+            }
+          case 'Model':
+            {
+              // si la selection est vide, ajouter le model a la selection
+              if(0 <= _.indexOf($scope.game.selection, drag.target.state.id)) {
+                $scope.game.onSelection('startDraging');
+                model_drag_mode.length = 0;
+
+                model_drag_mode.start_x = drag.target.state.x;
+                model_drag_mode.start_y = drag.target.state.y;
+                model_drag_mode.end_x = drag.target.state.x;
+                model_drag_mode.end_y = drag.target.state.y;
+                model_drag_mode.length = '';
+                $scope.current_mode = model_drag_mode;
               }
-              event.preventDefault();
+              break;
             }
-            return;
-          }
-          if(event.keyCode === 79) { // o
-            if($scope.game.templates.active &&
-               !$scope.game.templates.active.locked) {
-              // console.log('mode template origin');
-              $scope.mode_template_origin = true;
-              $scope.mode_template_target = false;
-              return;
-            }
-            else if($scope.ruler_drag.active) {
-              // console.log('mode template origin');
-              $scope.mode_ruler_origin = true;
-              $scope.mode_ruler_target = false;
-              return;
-            }
-            return;
-          }
-          if(event.keyCode === 80) { // p
-            if($scope.game.selection.length > 0) {
-              if(event.altKey) {
-                var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_leader;
-                $scope.game.newCommand(command('onSelection', 'toggle', 'leader', new_val));
-                event.preventDefault();
-              }
-            }
-            return;
-          }
-          if(event.keyCode === 82) { // r
-            if($scope.game.templates.active &&
-               $scope.game.ruler.state.active &&
-               !$scope.game.templates.active.locked) {
-              var x = $scope.game.ruler.model_end ? 
-                  $scope.game.ruler.model_end.state.x : $scope.game.ruler.state.x2;
-              var y = $scope.game.ruler.model_end ? 
-                  $scope.game.ruler.model_end.state.y : $scope.game.ruler.state.y2;
-              // console.log($scope.game.ruler.state);
-              var rot = Math.atan2($scope.game.ruler.state.x2-$scope.game.ruler.state.x1,
-                                   -($scope.game.ruler.state.y2-$scope.game.ruler.state.y1))
-                  * 180 / Math.PI;
-              $scope.game.newCommand(command('onActiveTemplate', 'set', x, y, rot));
-            }
-            else {
-              if(event.shiftKey) {
-                if($scope.ruler_drag.state !== 'draging') {
-                  $scope.ruler_drag.active = !$scope.ruler_drag.active;
-                  $scope.ruler_drag.state = null;
-                  $scope.mode_ruler_origin = null;
-                  $scope.mode_ruler_target = null;
-                }
-                return;
-              }
-              if($scope.game.selection.length > 0) {
-                var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_reach;
-                $scope.game.newCommand(command('onSelection', 'toggle' ,'reach', new_val));
-              }
-            }
-            return;
-          }
-          if(event.keyCode === 83) { // s
-            if(event.altKey) {
-              if($scope.game.selection.length > 0) {
-                var new_val = !$scope.game.models[$scope.game.selection[0]].state.show_stationary;
-                $scope.game.newCommand(command('onSelection', 'toggle', 'stationary', new_val));
-                event.preventDefault();
-              }
-            }
-            else if(event.ctrlKey) {
-              if($scope.game.selection.length > 0) {
-                $scope.game.newCommand(command('onSelection', 'setRotation', 180));
-              }
-              event.preventDefault();
-            }
-            return;
-          }
-          if(event.keyCode === 84) { // t
-            if($scope.game.templates.active &&
-               !$scope.game.templates.active.locked) {
-              // console.log('mode template target');
-              $scope.mode_template_origin = false;
-              $scope.mode_template_target = true;
-              return;
-            }
-            else if($scope.ruler_drag.active) {
-              $scope.mode_ruler_origin = false;
-              $scope.mode_ruler_target = true;
-              return;
-            }
-            else {
-              $scope.mode_model_target = true;
-              return;
+          case 'Board':
+            {
+              $scope.selection.width = 0;
+              $scope.selection.height = 0;
+
+              $scope.current_mode = selection_drag_mode;
+              break;
             }
           }
-          if(event.keyCode === 85) { // u
-            $scope.game.newCommand(command('setSelection', []));
-            // $scope.game.setSelection([]);
-            return;
-          }
-          if(event.keyCode === 87) { // w
-            if(event.ctrlKey) {
-              if($scope.game.selection.length > 0) {
-                $scope.game.newCommand(command('onSelection', 'setRotation', 270));
-              }
-              event.preventDefault();
-            }
-            return;
-          }
-          if(event.keyCode === 96 ||
-             event.keyCode === 48) { // 0
-            if(event.altKey) {
-              $scope.game.board.reset();
-              return;
-            }
-            if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'spray' &&
-               !$scope.game.templates.active.locked) {
-              $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 10));
-              return;
-            }
-            if(event.ctrlKey) {
-              if($scope.game.selection.length > 0) {
-                $scope.game.newCommand(command('onSelection', 'toggle', 'color', false));
-              }
-            }
-            return;
-          }
-          if(event.keyCode === 97 ||
-             event.keyCode === 49) { // 1
-            if(event.ctrlKey) {
-              if($scope.game.selection.length > 0) {
-                $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#0FF'));
-              }
-            }
-            return;
-          }
-          if(event.keyCode === 98 ||
-             event.keyCode === 50) { // 2
-            if(event.ctrlKey) {
-              if($scope.game.selection.length > 0) {
-                $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#F0F'));
-              }
-            }
-            return;
-          }
-          if(event.keyCode === 99 ||
-             event.keyCode === 51) { // 3
-            if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'aoe' &&
-               !$scope.game.templates.active.locked) {
-              $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 3));
-            }
-            else {
-              if($scope.game.selection.length > 0) {
-                if(event.ctrlKey) {
-                  $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#FF0'));
+        },
+        'Click': function(event, drag, user_x, user_y, dx, dy) {
+          switch(drag.event)
+          {
+          case 'Model':
+            {
+              if(event.ctrlKey) {
+                if(0 <= _.indexOf($scope.game.selection, drag.target.state.id)) {
+                  $scope.game.newCommand(command('removeFromSelection', [drag.target.state.id]));
                 }
                 else {
-                  $scope.game.newCommand(command('onSelection', 'toggleAoe', 3));
+                  $scope.game.newCommand(command('addToSelection', [drag.target.state.id]));
                 }
               }
-            }
-            return;
-          }
-          if(event.keyCode === 100 ||
-             event.keyCode === 52) { // 4
-            if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'aoe' &&
-               !$scope.game.templates.active.locked) {
-              $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 4));
-            }
-            else {
+              else {
+                $scope.game.newCommand(command('setSelection', [drag.target.state.id]));
+              }
               if($scope.game.selection.length > 0) {
-                if(event.ctrlKey) {
-                  $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#F00'));
-                }
-                else {
-                  $scope.game.newCommand(command('onSelection', 'toggleAoe', 4));
-                }
+                $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
               }
+              break;
             }
-            return;
+          case 'Template':
+            {
+              $scope.game.templates.active = drag.target;
+              $scope.current_mode = template_mode;
+              break;
+            }
           }
-          if(event.keyCode === 101 ||
-             event.keyCode === 53) { // 5
-            if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'aoe' &&
-               !$scope.game.templates.active.locked) {
-              $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 5));
-            }
-            else {
+        },
+      };
+      ////////////////////////////////////////////////////////////////////
+      var selection_drag_mode = {
+        name: 'Selection Drag',
+        'Drag': function(event, drag, user_x, user_y, dx, dy) {
+          $scope.selection.x = drag.start_x;
+          $scope.selection.width = dx;
+          if($scope.selection.width < 0) {
+            $scope.selection.width = -$scope.selection.width;
+            $scope.selection.x = $scope.selection.x - $scope.selection.width;
+          }
+          $scope.selection.y = drag.start_y;
+          $scope.selection.height = dy;
+          if($scope.selection.height < 0) {
+            $scope.selection.height = -$scope.selection.height;
+            $scope.selection.y = $scope.selection.y - $scope.selection.height;
+          }
+        },
+        'DragEnd': function(event, drag, user_x, user_y, dx, dy) {
+          this['Drag'].apply(this, Array.prototype.slice.call(arguments));
+
+          if($scope.selection.width > 0 &&
+             $scope.selection.height > 0) {
+            var models_selected = [];
+            _.each($scope.game.models, function(model) {
+              var cx = model.state.x;
+              var cy = model.state.y;
+              if( $scope.selection.x <= cx && cx <= ($scope.selection.x+$scope.selection.width ) &&
+                  $scope.selection.y <= cy && cy <= ($scope.selection.y+$scope.selection.height) ) {
+                models_selected.push(model.state.id);
+              }
+            });
+            if(event.ctrlKey) {
+              $scope.game.newCommand(command('addToSelection', models_selected));
               if($scope.game.selection.length > 0) {
-                if(event.ctrlKey) {
-                  $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#0F0'));
-                }
-                else {
-                  $scope.game.newCommand(command('onSelection', 'toggleAoe', 5));
-                }
+                $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
               }
             }
-            return;
-          }
-          if(event.keyCode === 102 ||
-             event.keyCode === 54) { // 6
-            if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'spray' &&
-               !$scope.game.templates.active.locked) {
-              $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 6));
-              return;
-            }
             else {
+              $scope.game.newCommand(command('setSelection', models_selected));
               if($scope.game.selection.length > 0) {
-                if(event.ctrlKey) {
-                  $scope.game.newCommand(command('onSelection', 'toggle', 'color', '#00F'));
-                }
+                $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
               }
-              return;
             }
           }
-          if(event.keyCode === 104 ||
-             event.keyCode === 56) { // 8
-            if($scope.game.templates.active &&
-               $scope.game.templates.active.type === 'spray' &&
-               !$scope.game.templates.active.locked) {
-              $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 8));
-              return;
-            }
+          $scope.selection.width = 0;
+          $scope.selection.height = 0;
+
+          $scope.current_mode = default_mode;
+        },
+      };
+      ////////////////////////////////////////////////////////////////////
+      var model_create_mode = {
+        name: 'Model Create',
+        'MouseMove': function(event, user_x, user_y) {
+          $scope.create_model_preview.x = user_x;
+          $scope.create_model_preview.y = user_y;
+        },
+        'Click': function(event, drag, user_x, user_y) {
+          var create_options = [];
+          _.each($scope.create_model_preview.info, function(info) {
+            create_options.push({
+              info: info.info,
+              x: user_x+info.offset_x,
+              y: user_y+info.offset_y,
+              show_leader: info.show_leader
+            });
+          });
+          $scope.game.newCommand(command('createModel',
+                                         create_options));
+
+          $scope.current_mode = default_mode;
+        },
+      };
+      var model_drag_mode = {
+        name: 'Model Drag',
+        'Drag': function(event, drag, user_x, user_y, dx, dy) {
+          $scope.game.onSelection('draging', dx, dy);
+          this.end_x = this.start_x + dx;
+          this.end_y = this.start_y + dy;
+          this.length = ((Math.sqrt(dx*dx+dy*dy) * 10) >> 0) / 100;
+        },
+        'DragEnd': function(event, drag, user_x, user_y, dx, dy) {
+          $scope.game.newCommand(command('endDragingSelection', dx, dy));
+
+          $scope.current_mode = default_mode;
+        },
+      };
+      var model_target_mode = {
+        name: 'Model Target',
+        'Click': function(event, drag) {
+          if(drag.event === 'Model' &&
+             0 > _.indexOf($scope.game.selection, drag.target.state.id)) {
+            $scope.game.newCommand(command('onSelection', 'alignWith',
+                                           drag.target.state.x, drag.target.state.y));
+            $scope.current_mode = default_mode;
           }
-          if(event.keyCode === 46) { // Suppr
-            if($scope.game.templates.active) {
-              $scope.game.newCommand(command('deleteActiveTemplate'));
-            }
-            else {
-              $scope.game.newCommand(command('dropSelection'));
-            }
-            return;
+        },
+      };
+      ////////////////////////////////////////////////////////////////////
+      var template_mode = {
+        name: 'Template',
+        'D': function() {
+          if($scope.game.templates.active.type === 'aoe' &&
+             !$scope.game.templates.active.locked) {
+            $scope.doAoEDeviation();
           }
-          if(event.keyCode === 90 &&
-             event.ctrlKey) { // Shift+z
-            $scope.game.undoLastCommand();
-            return;
+        },
+        'L': function() {
+          $scope.game.newCommand(command('onActiveTemplate', 'toggleLocked'));
+        },
+        'O': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.current_mode = template_origin_mode;
           }
-          if(event.keyCode === 27) { // Esc
-            $scope.create_mode = false;
-            $scope.create_template_mode = false;
-            $scope.mode_template_origin = false;
-            $scope.mode_template_target = false;
-            $scope.mode_ruler_origin = false;
-            $scope.mode_ruler_target = false;
-            $scope.mode_model_target = false;
-            return;
+        },
+        'R': function() {
+          if($scope.game.ruler.state.active &&
+             !$scope.game.templates.active.locked) {
+            var x = $scope.game.ruler.model_end ? 
+                $scope.game.ruler.model_end.state.x : $scope.game.ruler.state.x2;
+            var y = $scope.game.ruler.model_end ? 
+                $scope.game.ruler.model_end.state.y : $scope.game.ruler.state.y2;
+            // console.log($scope.game.ruler.state);
+            var rot = Math.atan2($scope.game.ruler.state.x2-$scope.game.ruler.state.x1,
+                                 -($scope.game.ruler.state.y2-$scope.game.ruler.state.y1)) *
+                180 / Math.PI;
+            $scope.game.newCommand(command('onActiveTemplate', 'set', x, y, rot));
           }
-          if(37 > event.keyCode ||
-             40 < event.keyCode) return;
-          event.preventDefault();
-          switch(event.keyCode) {
-          case 37: // leftArrow
+        },
+        'T': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.current_mode = template_target_mode;
+          }
+        },
+        '0': function() {
+          if($scope.game.templates.active.type === 'spray' &&
+             !$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 10));
+          }
+        },
+        '3': function() {
+          if($scope.game.templates.active.type === 'aoe' &&
+             !$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 3));
+          }
+        },
+        '4': function() {
+          if($scope.game.templates.active.type === 'aoe' &&
+             !$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 4));
+          }
+        },
+        '5': function() {
+          if($scope.game.templates.active.type === 'aoe' &&
+             !$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 5));
+          }
+        },
+        '6': function() {
+          if($scope.game.templates.active.type === 'spray' &&
+             !$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 6));
+          }
+        },
+        '8': function() {
+          if($scope.game.templates.active.type === 'spray' &&
+             !$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 8));
+          }
+        },
+        'Delete': function() {
+          $scope.game.newCommand(command('deleteActiveTemplate'));
+        },
+        'Up': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'moveFront', false));
+          }
+        },
+        'Shift Up': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'moveFront', true));
+          }
+        },
+        'Ctrl Up': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'moveUp', false));
+          }
+        },
+        'Ctrl Shift Up': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'moveUp', true));
+          }
+        },
+        'Left': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'rotateLeft', false));
+          }
+        },
+        'Shift Left': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'rotateLeft', true));
+          }
+        },
+        'Ctrl Left': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'moveLeft', false));
+          }
+        },
+        'Ctrl Shift Left': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'moveLeft', true));
+          }
+        },
+        'Right': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'rotateRight', false));
+          }
+        },
+        'Shift Right': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'rotateRight', true));
+          }
+        },
+        'Ctrl Right': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'moveRight', false));
+          }
+        },
+        'Ctrl Shift Right': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'moveRight', true));
+          }
+        },
+        'Down': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'moveBack', false));
+          }
+        },
+        'Shift Down': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'moveBack', true));
+          }
+        },
+        'Ctrl Down': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'moveDown', false));
+          }
+        },
+        'Ctrl Shift Down': function() {
+          if(!$scope.game.templates.active.locked) {
+            $scope.game.newCommand(command('onActiveTemplate', 'moveDown', true));
+          }
+        },
+        // ------------------------------------------------------------------
+        'DragStart': function(event, drag, dx, dy) {
+          if(drag.event === 'Template') {
+            $scope.game.templates.active = drag.target;
+            drag.target.startDraging();
+
+            $scope.current_mode = template_drag_mode;
+          }
+        },
+        'Click': function(event, drag, dx, dy) {
+          switch(drag.event)
+          {
+          case 'Template': 
             {
-              // $scope.game.onSelection('moveLeft', event.ctrlKey);
-              if(event.altKey) {
-                $scope.game.board.moveLeft();
-              }
-              else if($scope.game.templates.active &&
-                      !$scope.game.templates.active.locked) {
-                $scope.game.newCommand(command('onActiveTemplate', 
-                                               event.ctrlKey ? 'moveLeft' : 'rotateLeft',
-                                               event.shiftKey));
-              }
-              else if(event.ctrlKey) {
-                if($scope.game.selection.length > 0) {
-                  $scope.game.newCommand(command('onSelection', 'moveLeft', event.shiftKey));
-                }
+              if($scope.game.templates.active === drag.target) {
+                $scope.game.templates.active = null;
+                $scope.current_mode = default_mode;
               }
               else {
-                if($scope.game.selection.length > 0) {
-                  $scope.game.newCommand(command('onSelection', 'rotateLeft', event.shiftKey));
-                }
+                $scope.game.templates.active = drag.target;
               }
               break;
             }
-          case 38: // upArrow
+          case 'Model':
             {
-              if(event.altKey) {
-                $scope.game.board.moveUp();
-              }
-              else if($scope.game.templates.active &&
-                      !$scope.game.templates.active.locked) {
-                $scope.game.newCommand(command('onActiveTemplate', 
-                                               event.ctrlKey ? 'moveUp' : 'moveFront',
-                                               event.shiftKey));
-              }
-              else if(event.ctrlKey) {
-                if($scope.game.selection.length > 0) {
-                  $scope.game.newCommand(command('onSelection', 'moveUp', event.shiftKey));
-                }
-              }
-              else {
-                if($scope.game.selection.length > 0) {
-                  $scope.game.newCommand(command('onSelection', 'moveFront', event.shiftKey));
-                }
-              }
-              break;
-            }
-          case 39: // rightArrow
-            {
-              if(event.altKey) {
-                $scope.game.board.moveRight();
-              }
-              else if($scope.game.templates.active &&
-                      !$scope.game.templates.active.locked) {
-                $scope.game.newCommand(command('onActiveTemplate', 
-                                               event.ctrlKey ? 'moveRight' : 'rotateRight',
-                                               event.shiftKey));
-              }
-              else if(event.ctrlKey) {
-                if($scope.game.selection.length > 0) {
-                  $scope.game.newCommand(command('onSelection', 'moveRight', event.shiftKey));
-                }
-              }
-              else {
-                if($scope.game.selection.length > 0) {
-                  $scope.game.newCommand(command('onSelection', 'rotateRight', event.shiftKey));
-                }
-              }
-              break;
-            }
-          case 40: // downArrow
-            {
-              if(event.altKey) {
-                $scope.game.board.moveDown();
-              }
-              else if($scope.game.templates.active &&
-                      !$scope.game.templates.active.locked) {
-                $scope.game.newCommand(command('onActiveTemplate', 
-                                               event.ctrlKey ? 'moveDown' : 'moveBack',
-                                               event.shiftKey));
-              }
-              else if(event.ctrlKey) {
-                if($scope.game.selection.length > 0) {
-                  $scope.game.newCommand(command('onSelection', 'moveDown', event.shiftKey));
-                }
-              }
-              else {
-                if($scope.game.selection.length > 0) {
-                  $scope.game.newCommand(command('onSelection', 'moveBack', event.shiftKey));
-                }
-              }
-              break;
+              $scope.game.templates.active = null;
+              default_mode['Click'].apply(default_mode,
+                                          Array.prototype.slice.call(arguments));
+              $scope.current_mode = default_mode;
             }
           }
-        };
+        },
+      };
+      var template_drag_mode = {
+        name: 'Template Drag',
+        'Drag': function(event, drag, user_x, user_y, dx, dy) {
+          $scope.game.templates.active.draging($scope.game, dx, dy);
+        },
+        'DragEnd': function(event, drag, user_x, user_y, dx, dy) {
+          $scope.game.newCommand(command('dragActiveTemplate', dx, dy));
 
-        $scope.onModelMouseDown = function(event, model) {
-          // console.log('mmd');
-          // console.log(event);
-          skip_model_click = false;
-          if($scope.create_mode) return;
-          if($scope.create_template_mode) return;
-          if($scope.game.templates.active) return;
-          if($scope.mode_ruler_origin) {
-            $scope.ruler_drag.origin = model;
-            $scope.game.ruler.setStart(model.state.x, model.state.y);
-            $scope.game.ruler.state.active = false;
-            $scope.ruler_drag.target = null;
-            $scope.game.ruler.sendStateCmd();
-            event.stopPropagation();
-            return;
-          }
-          if($scope.mode_ruler_target) {
-            if($scope.ruler_drag.origin === model) {
-              event.stopPropagation();
-              return;
-            }
-            $scope.ruler_drag.target = model;
-            var ruler = $scope.game.ruler;
-            var start_x = ruler.state.x1;
-            var start_y = ruler.state.y1;
-            var end_x = model.state.x;
-            var end_y = model.state.y;
-            if($scope.ruler_drag.origin) {
-              start_x = $scope.ruler_drag.origin.state.x;
-              start_y = $scope.ruler_drag.origin.state.y;
-            }
-            var angle = Math.atan2(end_x-start_x, start_y-end_y);
-            if($scope.ruler_drag.origin) {
-              start_x += $scope.ruler_drag.origin.info.r * Math.sin(angle);
-              start_y -= $scope.ruler_drag.origin.info.r * Math.cos(angle);
-            }
-            end_x -= model.info.r * Math.sin(angle);
-            end_y += model.info.r * Math.cos(angle);
-            var dx = end_x - start_x;
-            var dy = end_y - start_y;
-            var length = Math.sqrt(dx*dx + dy*dy);
-            var display_length = length;
-            if($scope.game.ruler.state.range > 0) {
-              display_length = Math.min($scope.game.ruler.state.range*10, length);
-            }
-            end_x = start_x + (end_x - start_x) * display_length / length;
-            end_y = start_y + (end_y - start_y) * display_length / length;
-            $scope.game.ruler.setStart(start_x, start_y);
-            $scope.game.ruler.setEnd(end_x, end_y);
-            $scope.game.ruler.refresh();
-            $scope.game.ruler.state.active = true;
-            $scope.game.ruler.sendStateCmd();
-            event.stopPropagation();
-            return;
-          }
-          if($scope.ruler_drag.active) return;
-          if($scope.los_drag.active) return;
-          // console.log(event);
-          var elem_rect = canvas.getBoundingClientRect();
-          // console.log(elem_rect);
-          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
-          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
-          // console.log('user_x=', user_x, 'user_y=', user_y);
-          if(0 <= _.indexOf($scope.game.selection, model.state.id)) {
-            $scope.model_drag.active = true;
-            $scope.model_drag.start_x = user_x;
-            $scope.model_drag.start_y = user_y;
-            $scope.game.onSelection('startDraging');
-            $scope.model_drag.start.x = model.state_before_drag.x;
-            $scope.model_drag.start.y = model.state_before_drag.y;
-            $scope.model_drag.end.x = $scope.model_drag.start.x;
-            $scope.model_drag.end.y = $scope.model_drag.start.y;
-            $scope.model_drag.length = 0;
-            event.stopPropagation();
-          }
-        };
-        var template_active_before_down;
-        $scope.onTemplateMouseDown = function(event, temp) {
-          // console.log('mmd');
-          // console.log(event);
-          if($scope.create_mode) return;
-          if($scope.create_template_mode) return;
-
-          // console.log(event);
-          var elem_rect = canvas.getBoundingClientRect();
-          // console.log(elem_rect);
-          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
-          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
-          // console.log('user_x=', user_x, 'user_y=', user_y);
-
-          template_active_before_down = $scope.game.templates.active;
-          $scope.game.templates.active = temp;
-
-          $scope.template_drag.active = true;
-          $scope.template_drag.start.x = user_x;
-          $scope.template_drag.start.y = user_y;
-          temp.startDraging();
-          // console.log($scope.template_drag);
-          event.stopPropagation();
-        };
-        $scope.onTemplateClick = function(event, temp) {
-          // console.log('mmd');
-          // console.log(event);
-          if($scope.create_mode) return;
-          if($scope.create_template_mode) return;
-          if((Math.abs(temp.startDraging.ref.x-temp.x) < 0.05 &&
-              Math.abs(temp.startDraging.ref.y-temp.y) < 0.05)) {
-            $scope.game.templates.active = (temp === template_active_before_down) ? null : temp;
-            $scope.mode_template_origin = false;
-            $scope.mode_template_target = false;
-          }
-          else {
-            // console.log(event);
-            var elem_rect = canvas.getBoundingClientRect();
-            // console.log(elem_rect);
-            var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
-            var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
-            // console.log('user_x=', user_x, 'user_y=', user_y);
-
-            var dx = user_x - $scope.template_drag.start.x;
-            var dy = user_y - $scope.template_drag.start.y;
-            // dx *= ($scope.game.board.view.width / 800);
-            // dy *= ($scope.game.board.view.height / 800);
-            // // console.log(dx+' '+dy);
-            $scope.game.newCommand(command('dragActiveTemplate', dx, dy));
-            // $scope.game.onSelection('endDraging', dx, dy);
-            $scope.template_drag.start.x = 0;
-            $scope.template_drag.start.y = 0;
-          }
-          $scope.template_drag.active = false;
-        };
-        $scope.onModelClick = function(event, model) {
-          // console.log(event);
-          // console.log(model);
-          if(skip_model_click) {
-            skip_model_click = false;
-            return;
-          }
-          if($scope.mode_template_origin) {
-            // console.log('mode template origin from');
+          $scope.game.templates.active = drag.target;
+          $scope.current_mode = template_mode;
+        },
+      };
+      var template_origin_mode = {
+        name: 'Template Origin',
+        'Click': function(event, drag) {
+          if(drag.event === 'Model') {
+            var model = drag.target;
             var active = $scope.game.templates.active;
             if(active.type === 'aoe') {
               var x1 = model.state.x;
@@ -752,15 +705,21 @@ angular.module('vassalApp.controllers')
               $scope.game.newCommand(command('onActiveTemplate', 'set',
                                              x, y, active.rot));
             }
-            $scope.mode_template_origin = false;
-            return;
+            $scope.current_mode = template_mode;
           }
-          if($scope.mode_template_target) {
-            // console.log('mode template target to');
+        },
+      };
+      var template_target_mode = {
+        name: 'Template Target',
+        'Click': function(event, drag) {
+          if(drag.event === 'Model') {
+            var model = drag.target;
             var active = $scope.game.templates.active;
+            var x;
+            var y;
             if(active.type === 'aoe') {
-              var x = model.state.x;
-              var y = model.state.y;
+              x = model.state.x;
+              y = model.state.y;
               $scope.game.newCommand(command('onActiveTemplate', 'set',
                                              x, y, $scope.game.templates.active.rot));
             }
@@ -771,459 +730,426 @@ angular.module('vassalApp.controllers')
               var x2 = model.state.x;
               var y2 = model.state.y;
               var angle = Math.atan2(x2-x1, y1-y2)*180/Math.PI;
-              var x = active.origin === null ? active.x : active.origin.state.x +
+              x = active.origin === null ? active.x : active.origin.state.x +
                   active.origin.info.r * Math.sin(angle*Math.PI/180);
-              var y = active.origin === null ? active.y : active.origin.state.y -
+              y = active.origin === null ? active.y : active.origin.state.y -
                   active.origin.info.r * Math.cos(angle*Math.PI/180);
               $scope.game.newCommand(command('onActiveTemplate', 'set',
                                              x, y, angle));
             }
-            $scope.mode_template_target = false;
+            $scope.current_mode = template_mode;
+          }
+        },
+      };
+      var template_create_mode = {
+        name: 'Template Create',
+        'MouseMove': function(event, user_x, user_y) {
+          $scope.create_template_preview.x = user_x;
+          $scope.create_template_preview.y = user_y;
+        },
+        'Click': function(event, click, user_x, user_y) {
+          $scope.create_template_preview.x = user_x;
+          $scope.create_template_preview.y = user_y;
+          $scope.game.newCommand(command('createTemplate', $scope.create_template_preview));
+
+          $scope.current_mode = template_mode;
+        },
+      };
+      ////////////////////////////////////////////////////////////////////
+      $scope.doToggleLosMode = function() {
+        if(_.has($scope.current_mode, 'Shift L')) {
+          $scope.current_mode['Shift L']();
+        }
+      };
+      var los_mode = {
+        name: 'LoS',
+        'Shift L': function() {
+          if($scope.game.los.state.active) {
+            $scope.game.newCommand(command('onLos', 'setActive', false));
+          }
+          $scope.current_mode = default_mode;
+        },
+        'DragStart': function(event, drag, user_x, user_y) {
+          $scope.game.los.startDraging(drag.start_x, drag.start_y);
+          $scope.current_mode = los_drag_mode;
+        },
+      };
+      var los_drag_mode = {
+        name: 'LoS Drag',
+        'Drag': function(event, drag, user_x, user_y) {
+          $scope.game.los.setEnd(user_x, user_y);
+        },
+        'DragEnd': function(event, drag, user_x, user_y) {
+          $scope.game.newCommand(command('onLos', 'endDraging', user_x, user_y));
+          $scope.current_mode = los_mode;
+        },
+      };
+      ////////////////////////////////////////////////////////////////////
+      $scope.doToggleRulerMode = function() {
+        if(_.has($scope.current_mode, 'Shift R')) {
+          $scope.current_mode['Shift R']();
+        }
+      };
+      var ruler_mode = {
+        name: 'Ruler',
+        'O': function() {
+          ruler_origin_mode.origin = this.origin;
+          ruler_origin_mode.target = this.target;
+          $scope.current_mode = ruler_origin_mode;
+        },
+        'Shift R': function() {
+          $scope.current_mode = default_mode;
+        },
+        'T': function() {
+          ruler_target_mode.origin = this.origin;
+          ruler_target_mode.target = this.target;
+          $scope.current_mode = ruler_target_mode;
+        },
+        'DragStart': function(event, drag) {
+          this.origin = null;
+          this.target = null;
+          $scope.game.ruler.startDraging(drag.start_x, drag.start_y);
+          $scope.show_ruler = true;
+          $scope.current_mode = ruler_drag_mode;
+        },
+      };
+      var ruler_drag_mode = {
+        name: 'Ruler Drag',
+        'Drag': function(event, drag, user_x, user_y, dx, dy) {
+          var length = Math.sqrt(dx*dx + dy*dy);
+          var display_length = length;
+          if($scope.game.ruler.state.range > 0) {
+            display_length = Math.min($scope.game.ruler.state.range*10, length);
+          }
+          var x = $scope.game.ruler.state.x1 +
+              (user_x - $scope.game.ruler.state.x1) * display_length / length;
+          var y = $scope.game.ruler.state.y1 +
+              (user_y - $scope.game.ruler.state.y1) * display_length / length;
+          $scope.game.ruler.setEnd(x, y);
+        },
+        'DragEnd': function(event, drag, user_x, user_y, dx, dy) {
+          var length = Math.sqrt(dx*dx + dy*dy);
+          var display_length = length;
+          if($scope.game.ruler.state.range > 0) {
+            display_length = Math.min($scope.game.ruler.state.range*10, length);
+          }
+          var x = $scope.game.ruler.state.x1 +
+              (user_x - $scope.game.ruler.state.x1) * display_length / length;
+          var y = $scope.game.ruler.state.y1 +
+              (user_y - $scope.game.ruler.state.y1) * display_length / length;
+          $scope.game.ruler.endDraging(x, y);
+
+          $scope.current_mode = ruler_mode;
+        },
+      };      
+      var ruler_origin_mode = {
+        name: 'Ruler Origin',
+        'Click': function(event, drag) {
+          if(drag.event !== 'Model') return;
+          var model = drag.target;
+          ruler_mode.origin = model;
+          $scope.game.ruler.setStart(model.state.x, model.state.y);
+          $scope.game.ruler.state.active = false;
+          ruler_mode.target = null;
+          $scope.game.ruler.sendStateCmd();
+
+          $scope.current_mode = ruler_mode;
+        },
+      };
+      var ruler_target_mode = {
+        name: 'Ruler Target',
+        'Click': function(event, drag) {
+          if(drag.event !== 'Model') return;
+          var model = drag.target;
+
+          if(ruler_mode.origin === model) return;
+
+          ruler_mode.target = model;
+          var ruler = $scope.game.ruler;
+          var start_x = ruler.state.x1;
+          var start_y = ruler.state.y1;
+          var end_x = model.state.x;
+          var end_y = model.state.y;
+          if(ruler_mode.origin) {
+            start_x = ruler_mode.origin.state.x;
+            start_y = ruler_mode.origin.state.y;
+          }
+          var angle = Math.atan2(end_x-start_x, start_y-end_y);
+          if(ruler_mode.origin) {
+            start_x += ruler_mode.origin.info.r * Math.sin(angle);
+            start_y -= ruler_mode.origin.info.r * Math.cos(angle);
+          }
+          end_x -= model.info.r * Math.sin(angle);
+          end_y += model.info.r * Math.cos(angle);
+          var dx = end_x - start_x;
+          var dy = end_y - start_y;
+          var length = Math.sqrt(dx*dx + dy*dy);
+          var display_length = length;
+          if($scope.game.ruler.state.range > 0) {
+            display_length = Math.min($scope.game.ruler.state.range*10, length);
+          }
+          end_x = start_x + (end_x - start_x) * display_length / length;
+          end_y = start_y + (end_y - start_y) * display_length / length;
+          $scope.game.ruler.setStart(start_x, start_y);
+          $scope.game.ruler.setEnd(end_x, end_y);
+          $scope.game.ruler.refresh();
+          $scope.game.ruler.state.active = true;
+          $scope.game.ruler.sendStateCmd();
+
+          $scope.current_mode = ruler_mode;
+        },
+      };
+      ////////////////////////////////////////////////////////////////////
+
+      $scope.current_mode = default_mode;
+
+      $scope.selection = {
+        active: false,
+        x: 10, y: 10,
+        start_x: 10, start_y: 10,
+        width: 0, height: 0,
+      };
+      $scope.drag = {
+        start_x: 0, start_y: 0,
+      };
+      // $scope.ruler_drag = {
+      //   active: false,
+      //   start_x: 0, start_y: 0,
+      //   origin: null,
+      //   target: null,
+      // };
+      // $scope.los_drag = {
+      //   active: false,
+      //   start_x: 0, start_y: 0,
+      // };
+      // $scope.model_drag = {
+      //   active: false,
+      //   start: {
+      //     x: null,
+      //     y: null,
+      //   },
+      //   end: {
+      //     x: null,
+      //     y: null,
+      //   },
+      //   length: 0,
+      // };
+      // $scope.template_drag = {
+      //   active: false,
+      //   start: {
+      //     x: null,
+      //     y: null,
+      //   },
+      //   ref: {
+      //     x: null,
+      //     y: null,
+      //   }
+      // };
+      // $scope.mode_model_target = false;
+      if(!$stateParams.id || $stateParams.id.length <= 0) $state.go('start');
+
+      $http.get('/api/games/'+$stateParams.id).then(function(response) {
+        // console.log('search game success');
+        return factions.then(function() {
+          $scope.game = game(response.data);
+          console.log($scope.game);
+        });
+        // console.log($scope.game);
+      }, function(response) {
+        console.log('search game error');
+        console.log(response);
+        $state.go('start');
+        return $q.reject();
+      }).then(function() {
+
+        var canvas = document.getElementById('canvas');
+        // console.log(canvas_rect);
+        $scope.show_ruler = $scope.game.ruler.state.active;
+
+        var KEY_CODES = {
+          8: 'Backspace',
+          27: 'Escape',
+          33: 'PageUp',
+          34: 'PageDown',
+          35: 'End',
+          36: 'Home',
+          37: 'Left',
+          38: 'Up',
+          39: 'Right',
+          40: 'Down',
+          45: 'Insert',
+          46: 'Delete',
+          106: 'Multiply',
+          107: 'Add',
+          109: 'Substract',
+          110: 'Point',
+          111: 'Divide',
+          59: 'SemiColon',
+          61: 'Equal',
+          188: 'Comma',
+          189: 'Dash',
+          190: 'Period',
+          191: 'ForwardSlash',
+          219: 'OpenBracket',
+          220: 'BackSlash',
+          221: 'CloseBracket',
+          222: 'SingleQuote',
+        };
+        $scope.onKeyDown = function(event) {
+          // console.log(event);
+          var key;
+          if((event.keyCode >= 48 &&
+              event.keyCode <= 57) ||
+             (event.keyCode >= 65 &&
+              event.keyCode <= 90)) {
+            key = String.fromCharCode(event.keyCode);
+          }
+          else if(event.keyCode >= 96 &&
+                  event.keyCode <= 105) {
+            key = String.fromCharCode(event.keyCode - 48);
+          }
+          else if(event.keyCode >= 112 &&
+                  event.keyCode <= 120) {
+            key = 'F'+String.fromCharCode(event.keyCode - 63);
+          }
+          else if(event.keyCode >= 121 &&
+                  event.keyCode <= 123) {
+            key = 'F1'+String.fromCharCode(event.keyCode - 73);
+          }
+          else if(_.has(KEY_CODES, event.keyCode)) {
+            key = KEY_CODES[event.keyCode];
+          }
+          else return;
+          if(event.shiftKey) key = 'Shift ' + key;
+          if(event.ctrlKey) key = 'Ctrl ' + key;
+          if(event.altKey) key = 'Alt ' + key;
+          console.log(key);
+          
+          if('Escape' === key) {
+            console.log(key+' -> Reset mode');
+            event.preventDefault();
+            $scope.current_mode = default_mode;
             return;
           }
-          if($scope.ruler_drag.active) return;
-          if($scope.los_drag.active) return;
-          if($scope.mode_model_target) {
-            if(!model.state.active) {
-              $scope.game.newCommand(command('onSelection',
-                                             'alignWith', model.state.x, model.state.y));
-            }
-            $scope.mode_model_target = false;
+          if(_.has($scope.current_mode, key)) {
+            console.log(key);
+            event.preventDefault();
+            $scope.current_mode[key](event);
             return;
           }
-          if(event.ctrlKey) {
-            if(0 <= _.indexOf($scope.game.selection, model.state.id)) {
-              $scope.game.newCommand(command('removeFromSelection', [model.state.id]));
-              // $scope.game.removeFromSelection([model.state.id]);
-              $scope.game.templates.active = null;
-              if($scope.game.selection.length > 0) {
-                $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
-              }
-            }
-            else {
-              $scope.game.newCommand(command('addToSelection', [model.state.id]));
-              $scope.game.templates.active = null;
-              // $scope.game.addToSelection([model.state.id]);
-              if($scope.game.selection.length > 0) {
-                $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
-              }
-            }
-          }
-          else {
-            $scope.game.newCommand(command('setSelection', [model.state.id]));
-            // $scope.game.setSelection([model.state.id]);
-            $scope.game.templates.active = null;
-            if($scope.game.selection.length > 0) {
-              $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
-            }
-          }
+        };
+        $scope.stopKeyPropagation = function(event) {
+          // console.log('test', event);
+          event.stopPropagation();
         };
 
-        $scope.show_ruler = $scope.game.ruler.state.active;
-        $scope.selection = {
-          active: false,
-          x: 10, y: 10,
-          start_x: 10, start_y: 10,
-          width: 0, height: 0,
-        };
-        $scope.doSelectStart = function(event) {
-          // console.log('smd');
+        $scope.onModelMouseDown = function(event, model) {
+          // console.log('mmd');
           // console.log(event);
-          // console.log($scope.drag_mode);
-          if($scope.create_mode) return;
-          if($scope.create_template_mode) return;
           var elem_rect = canvas.getBoundingClientRect();
-          // console.log(elem_rect);
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
-          // console.log('user_x=', user_x, 'user_y=', user_y);
-          // var elem_rect = canvas.getBoundingClientRect();
-          // // console.log(elem_rect);
-          // var dom_x = event.clientX - elem_rect.left;
-          // var dom_y = event.clientY - elem_rect.top;
-          // // console.log('dom ' + dom_x + ' ' + dom_y);
-          // var user_x = dom_x * $scope.game.board.width / elem_rect.width;
-          // var user_y = dom_y * $scope.game.board.height / elem_rect.height;
-          // // console.log('user ' + user_x + ' ' + user_y);
-          if($scope.ruler_drag.active) {
-            // console.log('starting');
-            $scope.ruler_drag.state = 'starting';
-            $scope.ruler_drag.start_x = user_x;
-            $scope.ruler_drag.start_y = user_y;
-            $scope.ruler_drag.user_start_x = user_x;
-            $scope.ruler_drag.user_start_y = user_y;
-            // console.log($scope.ruler_drag);
-            return;
-          }
-          if($scope.los_drag.active) {
-            // console.log('starting');
-            $scope.los_drag.state = 'starting';
-            $scope.los_drag.start_x = user_x;
-            $scope.los_drag.start_y = user_y;
-            $scope.los_drag.user_start_x = user_x;
-            $scope.los_drag.user_start_y = user_y;
-            // console.log($scope.los_drag);
-            return;
-          }
-          $scope.selection.active = true;
-          $scope.selection.start_x = user_x;
-          $scope.selection.start_y = user_y;
-          $scope.selection.width = 0;
-          $scope.selection.height = 0;
+
+          $scope.drag.state = 'starting';
+          $scope.drag.start_x = user_x;
+          $scope.drag.start_y = user_y;
+          $scope.drag.event = 'Model';
+          $scope.drag.target = model;
+          event.stopPropagation();
+        };
+        $scope.onTemplateMouseDown = function(event, temp) {
+          // console.log('tmd');
+          // console.log(event);
+          var elem_rect = canvas.getBoundingClientRect();
+          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
+          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
+
+          $scope.drag.state = 'starting';
+          $scope.drag.start_x = user_x;
+          $scope.drag.start_y = user_y;
+          $scope.drag.event = 'Template';
+          $scope.drag.target = temp;
+          event.stopPropagation();
+        };
+        $scope.onModelClick = function(event, model) {
+          // console.log('mc');
+          // console.log(event);
+        };
+        $scope.onTemplateClick = function(event, temp) {
+          // console.log('tc');
+          // console.log(event);
+        };
+
+        $scope.doSelectStart = function(event) {
+          // console.log('md');
+          // console.log(event);
+          var elem_rect = canvas.getBoundingClientRect();
+          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
+          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
+          $scope.drag.state = 'starting';
+          $scope.drag.start_x = user_x;
+          $scope.drag.start_y = user_y;
+          $scope.drag.event = 'Board';
         };
         $scope.doSelectMove = function(event) {
+          // console.log('mm');
           // console.log(event);
           var elem_rect = canvas.getBoundingClientRect();
-          // console.log(elem_rect);
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
-          // console.log('user_x=', user_x, 'user_y=', user_y);
-          if($scope.create_template_mode) {
-            // // console.log('-------------');
-            // var elem_rect = canvas.getBoundingClientRect();
-            // // console.log(elem_rect);
-            // var dom_x = event.clientX - elem_rect.left;
-            // var dom_y = event.clientY - elem_rect.top;
-            // // console.log('dom ' + dom_x + ' ' + dom_y);
-            // var user_x = dom_x * $scope.game.board.width / elem_rect.width;
-            // var user_y = dom_y * $scope.game.board.height / elem_rect.height;
-            // // console.log('user ' + user_x + ' ' + user_y);
-            $scope.create_template_preview.x = user_x;
-            $scope.create_template_preview.y = user_y;
-          }
-          if($scope.create_mode) {
-            // // console.log(event);
-            // var elem_rect = canvas.getBoundingClientRect();
-            // // console.log(elem_rect);
-            // var dom_x = event.clientX - elem_rect.left;
-            // var dom_y = event.clientY - elem_rect.top;
-            // // console.log('dom ' + dom_x + ' ' + dom_y);
-            // var user_x = dom_x * $scope.game.board.width / elem_rect.width;
-            // var user_y = dom_y * $scope.game.board.height / elem_rect.height;
-            $scope.create_preview.x = user_x;
-            $scope.create_preview.y = user_y;
-          }
-          if($scope.template_drag.active) {
-            // // console.log(event);
-            // var elem_rect = canvas.getBoundingClientRect();
-            // // console.log(elem_rect);
-            // var dx = event.screenX - $scope.template_drag.start.x;
-            // var dy = event.screenY - $scope.template_drag.start.y;
-            // dx *= ($scope.game.board.view.width / 800);
-            // dy *= ($scope.game.board.view.height / 800);
-            // // console.log(dx+' '+dy);
-            var dx = user_x - $scope.template_drag.start.x;
-            var dy = user_y - $scope.template_drag.start.y;
-            $scope.game.templates.active.draging($scope.game, dx, dy);
-            return;
-          }
-          if($scope.ruler_drag.active &&
-             ($scope.ruler_drag.state === 'draging' ||
-              $scope.ruler_drag.state === 'starting')) {
-            // var dx = event.screenX - $scope.ruler_drag.start_x;
-            // var dy = event.screenY - $scope.ruler_drag.start_y;
-            // dx *= ($scope.game.board.view.width / 800);
-            // dy *= ($scope.game.board.view.height / 800);
-            // // console.log(dx, dy);
-            // var elem_rect = canvas.getBoundingClientRect();
-            // // console.log(elem_rect);
-            // var dom_x = event.clientX - elem_rect.left;
-            // var dom_y = event.clientY - elem_rect.top;
-            // // console.log('dom ' + dom_x + ' ' + dom_y);
-            // var user_x = dom_x * $scope.game.board.width / elem_rect.width;
-            // var user_y = dom_y * $scope.game.board.height / elem_rect.height;
-            // // console.log('user ' + user_x + ' ' + user_y);
-            var dx = user_x - $scope.ruler_drag.start_x;
-            var dy = user_y - $scope.ruler_drag.start_y;
-            if($scope.ruler_drag.state === 'starting' &&
+
+          if($scope.drag.state === 'draging' ||
+             $scope.drag.state === 'starting') {
+            var dx = user_x - $scope.drag.start_x;
+            var dy = user_y - $scope.drag.start_y;
+            if($scope.drag.state === 'starting' &&
                (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1)) {
               // console.log('starting -> draging');
-              $scope.ruler_drag.state = 'draging';
-              $scope.mode_ruler_origin = false;
-              $scope.mode_ruler_target = false;
-              $scope.ruler_drag.origin = null;
-              $scope.ruler_drag.target = null;
-              $scope.game.ruler.startDraging($scope.ruler_drag.user_start_x,
-                                             $scope.ruler_drag.user_start_y);
-              $scope.show_ruler = true;
-              // console.log($scope.ruler_drag);
-            }
-            else if($scope.ruler_drag.state === 'draging') {
-              // console.log('draging');
-              var length = Math.sqrt(dx*dx + dy*dy);
-              var display_length = length;
-              if($scope.game.ruler.state.range > 0) {
-                display_length = Math.min($scope.game.ruler.state.range*10, length);
+              $scope.drag.state = 'draging';
+              console.log('DragStart', $scope.drag);
+              if(_.has($scope.current_mode, 'DragStart')) {
+                $scope.current_mode['DragStart'](event, $scope.drag, dx, dy);
               }
-              var x = $scope.game.ruler.state.x1 +
-                  (user_x - $scope.game.ruler.state.x1) * display_length / length;
-              var y = $scope.game.ruler.state.y1 +
-                  (user_y - $scope.game.ruler.state.y1) * display_length / length;
-              $scope.game.ruler.setEnd(x, y);
-              // console.log($scope.ruler_drag);
             }
-            return;
-          }
-          if($scope.los_drag.active &&
-             ($scope.los_drag.state === 'draging' ||
-              $scope.los_drag.state === 'starting')) {
-            // var dx = event.screenX - $scope.los_drag.start_x;
-            // var dy = event.screenY - $scope.los_drag.start_y;
-            // dx *= ($scope.game.board.view.width / 800);
-            // dy *= ($scope.game.board.view.height / 800);
-            // // console.log(dx, dy);
-            // var elem_rect = canvas.getBoundingClientRect();
-            // // console.log(elem_rect);
-            // var dom_x = event.clientX - elem_rect.left;
-            // var dom_y = event.clientY - elem_rect.top;
-            // // console.log('dom ' + dom_x + ' ' + dom_y);
-            // var user_x = dom_x * $scope.game.board.width / elem_rect.width;
-            // var user_y = dom_y * $scope.game.board.height / elem_rect.height;
-            // // console.log('user ' + user_x + ' ' + user_y);
-            var dx = user_x - $scope.los_drag.start_x;
-            var dy = user_y - $scope.los_drag.start_y;
-            if($scope.los_drag.state === 'starting' &&
-               (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1)) {
-              // console.log('starting -> draging');
-              $scope.los_drag.state = 'draging';
-              $scope.game.los.startDraging($scope.los_drag.user_start_x,
-                                           $scope.los_drag.user_start_y);
-              // console.log($scope.los_drag);
-            }
-            else if($scope.los_drag.state === 'draging') {
+            else if($scope.drag.state === 'draging') {
               // console.log('draging');
-              $scope.game.los.setEnd(user_x, user_y);
-              // console.log($scope.los_drag);
+              console.log('Drag', $scope.drag);
+              if(_.has($scope.current_mode, 'Drag')) {
+                $scope.current_mode['Drag'](event, $scope.drag,
+                                            user_x, user_y,
+                                            dx, dy);
+              }
             }
             return;
           }
-          if($scope.model_drag.active) {
-            // // console.log(event);
-            // var elem_rect = canvas.getBoundingClientRect();
-            // // console.log(elem_rect);
-            // var dx = event.screenX - $scope.model_drag.start_x;
-            // var dy = event.screenY - $scope.model_drag.start_y;
-            // dx *= ($scope.game.board.view.width / 800);
-            // dy *= ($scope.game.board.view.height / 800);
-            // // console.log(dx+' '+dy);
-            var dx = user_x - $scope.model_drag.start_x;
-            var dy = user_y - $scope.model_drag.start_y;
-            $scope.game.onSelection('draging', dx, dy);
-            $scope.model_drag.end.x = $scope.model_drag.start.x + dx;
-            $scope.model_drag.end.y = $scope.model_drag.start.y + dy;
-            $scope.model_drag.length = ((Math.sqrt(dx*dx+dy*dy) * 10) >> 0) / 100;
-            return;
-          }
-          if($scope.selection.active) {
-            // // console.log(event);
-            // var elem_rect = canvas.getBoundingClientRect();
-            // // console.log(elem_rect);
-            // var dom_x = event.clientX - elem_rect.left;
-            // var dom_y = event.clientY - elem_rect.top;
-            // // console.log('dom ' + dom_x + ' ' + dom_y);
-            // var user_x = dom_x * $scope.game.board.width / elem_rect.width;
-            // var user_y = dom_y * $scope.game.board.height / elem_rect.height;
-            // // console.log('user ' + user_x + ' ' + user_y);
-            $scope.selection.x = $scope.selection.start_x;
-            $scope.selection.width = user_x - $scope.selection.start_x;
-            if($scope.selection.width < 0) {
-              $scope.selection.width = -$scope.selection.width;
-              $scope.selection.x = $scope.selection.x - $scope.selection.width;
-            }
-            if($scope.selection.width < 1) {
-              $scope.selection.width = 0;
-            }
-            $scope.selection.y = $scope.selection.start_y;
-            $scope.selection.height = user_y - $scope.selection.start_y;
-            if($scope.selection.height < 0) {
-              $scope.selection.height = -$scope.selection.height;
-              $scope.selection.y = $scope.selection.y - $scope.selection.height;
-            }
-            if($scope.selection.height < 1) {
-              $scope.selection.height = 0;
-            }
-            // console.log($scope.selection.x + ' ' +
-            //             $scope.selection.y + ' ' +
-            //             $scope.selection.width + ' ' +
-            //             $scope.selection.height);
-            return;
+          // console.log('MouseMove', $scope.drag);
+          if(_.has($scope.current_mode, 'MouseMove')) {
+            $scope.current_mode['MouseMove'](event, user_x, user_y);
           }
         };
         $scope.doSelectStop = function(event) {
+          // console.log('mu');
           // console.log(event);
           var elem_rect = canvas.getBoundingClientRect();
-          // console.log(elem_rect);
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
-          // console.log('user_x=', user_x, 'user_y=', user_y);
-          if($scope.create_template_mode) {
-            $scope.game.newCommand(command('createTemplate', $scope.create_template_preview));
-            $scope.create_template_mode = false;
-            skip_model_click = true;
-            return;
-          }
-          if($scope.create_mode) {
-            // var elem_rect = canvas.getBoundingClientRect();
-            // // console.log(elem_rect);
-            // var dom_x = event.clientX - elem_rect.left;
-            // var dom_y = event.clientY - elem_rect.top;
-            // // console.log('dom ' + dom_x + ' ' + dom_y);
-            // var user_x = dom_x * $scope.game.board.width / elem_rect.width;
-            // var user_y = dom_y * $scope.game.board.height / elem_rect.height;
-            var create_options = [];
-            _.each($scope.create_preview.info, function(info) {
-              create_options.push({
-                info: info.info,
-                x: user_x+info.offset_x,
-                y: user_y+info.offset_y,
-                show_leader: info.show_leader
-              });
-            });
-            $scope.game.newCommand(command('createModel',
-                                           create_options));
-            $scope.create_mode = false;
-            skip_model_click = true;
-            return;
-          }
-          if($scope.template_drag.active) return;
-          if($scope.ruler_drag.active) {
-            if($scope.ruler_drag.state === 'draging') {
-              // var dx = event.screenX - $scope.ruler_drag.start_x;
-              // var dy = event.screenY - $scope.ruler_drag.start_y;
-              // dx *= ($scope.game.board.view.width / 800);
-              // dy *= ($scope.game.board.view.height / 800);
-              // // console.log('draging -> end');
-              // var elem_rect = canvas.getBoundingClientRect();
-              // // console.log(elem_rect);
-              // var dom_x = event.clientX - elem_rect.left;
-              // var dom_y = event.clientY - elem_rect.top;
-              // // console.log('dom ' + dom_x + ' ' + dom_y);
-              // var user_x = dom_x * $scope.game.board.width / elem_rect.width;
-              // var user_y = dom_y * $scope.game.board.height / elem_rect.height;
-              // // console.log('user ' + user_x + ' ' + user_y);
-              var dx = user_x - $scope.ruler_drag.start_x;
-              var dy = user_y - $scope.ruler_drag.start_y;
-              var length = Math.sqrt(dx*dx + dy*dy);
-              var display_length = length;
-              if($scope.game.ruler.state.range > 0) {
-                display_length = Math.min($scope.game.ruler.state.range*10, length);
-              }
-              var x = $scope.game.ruler.state.x1 +
-                  (user_x - $scope.game.ruler.state.x1) * display_length / length;
-              var y = $scope.game.ruler.state.y1 +
-                  (user_y - $scope.game.ruler.state.y1) * display_length / length;
-              $scope.game.ruler.endDraging(x, y);
-            }
-            else {
-              // console.log($scope.ruler_drag.state+' -> end');
-            }
-            $scope.ruler_drag.state = null;
-            // console.log($scope.ruler_drag);
-            return;
-          }
-          if($scope.los_drag.active) {
-            if($scope.los_drag.state === 'draging') {
-              // // console.log('draging -> end');
-              // var elem_rect = canvas.getBoundingClientRect();
-              // // console.log(elem_rect);
-              // var dom_x = event.clientX - elem_rect.left;
-              // var dom_y = event.clientY - elem_rect.top;
-              // // console.log('dom ' + dom_x + ' ' + dom_y);
-              // var user_x = dom_x * $scope.game.board.width / elem_rect.width;
-              // var user_y = dom_y * $scope.game.board.height / elem_rect.height;
-              // // console.log('user ' + user_x + ' ' + user_y);
-              $scope.game.newCommand(command('onLos', 'endDraging', user_x, user_y));
-            }
-            else {
-              // console.log($scope.los_drag.state+' -> end');
-            }
-            $scope.los_drag.state = null;
-            // console.log($scope.los_drag);
-            return;
-          }
-          if($scope.model_drag.active) { 
-            var dx = user_x - $scope.model_drag.start_x;
-            var dy = user_y - $scope.model_drag.start_y;
-            // var dx = event.screenX - $scope.model_drag.start_x;
-            // var dy = event.screenY - $scope.model_drag.start_y;
-            // dx *= ($scope.game.board.view.width / 800);
-            // dy *= ($scope.game.board.view.height / 800);
-            // // console.log(dx+' '+dy);
-            if(Math.abs(dx) > 0.1 && Math.abs(dy) > 0.1) {
-              $scope.game.newCommand(command('endDragingSelection', dx, dy));
-              // $scope.game.onSelection('endDraging', dx, dy);
-              skip_model_click = true;
-            }
-            $scope.model_drag.start.x = 0;
-            $scope.model_drag.start.y = 0;
-            $scope.model_drag.end.x = 0;
-            $scope.model_drag.end.y = 0;
-            $scope.model_drag.active = false;
-            return;
-          }
-          if($scope.selection.active) {
-            // var elem_rect = canvas.getBoundingClientRect();
-            // // console.log(elem_rect);
-            // var dom_x = event.clientX - elem_rect.left;
-            // var dom_y = event.clientY - elem_rect.top;
-            // // console.log('dom ' + dom_x + ' ' + dom_y);
-            // var user_x = dom_x * $scope.game.board.width / elem_rect.width;
-            // var user_y = dom_y * $scope.game.board.height / elem_rect.height;
-            // // console.log('user ' + user_x + ' ' + user_y);
-            $scope.selection.active = false;
-            $scope.selection.x = $scope.selection.start_x;
-            $scope.selection.width = user_x - $scope.selection.start_x;
-            if($scope.selection.width < 0) {
-              $scope.selection.width = -$scope.selection.width;
-              $scope.selection.x = $scope.selection.x - $scope.selection.width;
-            }
-            if($scope.selection.width < 1) {
-              $scope.selection.width = 0;
-            }
-            $scope.selection.y = $scope.selection.start_y;
-            $scope.selection.height = user_y - $scope.selection.start_y;
-            if($scope.selection.height < 0) {
-              $scope.selection.height = -$scope.selection.height;
-              $scope.selection.y = $scope.selection.y - $scope.selection.height;
-            }
-            if($scope.selection.height < 1) {
-              $scope.selection.height = 0;
-            }
-            // console.log($scope.selection.x + ' ' +
-            //             $scope.selection.y + ' ' +
-            //             $scope.selection.width + ' ' +
-            //             $scope.selection.height);
-            if($scope.selection.width > 0 &&
-               $scope.selection.height > 0) {
-              var models_selected = [];
-              _.each($scope.game.models, function(model) {
-                var cx = model.state.x;
-                var cy = model.state.y;
-                if( $scope.selection.x <= cx && cx <= ($scope.selection.x+$scope.selection.width ) &&
-                    $scope.selection.y <= cy && cy <= ($scope.selection.y+$scope.selection.height) ) {
-                  models_selected.push(model.state.id);
-                }
-              });
-              if(event.ctrlKey) {
-                $scope.game.newCommand(command('addToSelection', models_selected));
-                // $scope.game.addToSelection(models_selected);
-                $scope.game.templates.active = null;
-                if($scope.game.selection.length > 0) {
-                  $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
-                }
-              }
-              else {
-                $scope.game.newCommand(command('setSelection', models_selected));
-                // $scope.game.setSelection(models_selected);
-                $scope.game.templates.active = null;
-                if($scope.game.selection.length > 0) {
-                  $scope.model_label = $scope.game.models[$scope.game.selection[0]].state.label;
-                }
-              }
 
-              $scope.selection.width = 0;
-              $scope.selection.height = 0;
-              return;
+          var drag_state = $scope.drag.state;
+          $scope.drag.state = null;
+          if(drag_state === 'draging') {
+            var dx = user_x - $scope.drag.start_x;
+            var dy = user_y - $scope.drag.start_y;
+            console.log('DragEnd', $scope.drag);
+            if(_.has($scope.current_mode, 'DragEnd')) {
+              $scope.current_mode['DragEnd'](event, $scope.drag,
+                                             user_x, user_y, dx, dy);
+            }
+          }
+          else {
+            console.log('Click', $scope.drag);
+            if(_.has($scope.current_mode, 'Click')) {
+              $scope.current_mode['Click'](event, $scope.drag,
+                                           user_x, user_y);
             }
           }
         };
@@ -1268,7 +1194,6 @@ angular.module('vassalApp.controllers')
                                         ));
         };
 
-        $scope.create_mode = false;
         $scope.model = {
           faction: null,
           type: null,
@@ -1278,19 +1203,22 @@ angular.module('vassalApp.controllers')
           size: 1,
           info: [],
         };
-        $scope.create_preview = {
+        $scope.create_model_preview = {
           x: 0,
           y: 0,
           info: null,
         };
         $scope.$watch('model', function(val, old) {
-          $scope.create_mode = null;
+          if($scope.current_mode === model_create_mode) {
+            $scope.current_mode = default_mode;
+          }
         }, true);
         $scope.doToggleCreateModel = function() {
-          $scope.create_mode = !$scope.create_mode;
-          if(!$scope.create_mode) return;
+          $scope.current_mode = ($scope.current_mode === model_create_mode) ?
+            default_mode : model_create_mode;
+          if($scope.current_mode !== model_create_mode) return;
 
-          $scope.create_preview.info = [];
+          $scope.create_model_preview.info = [];
           var mid_size = Math.ceil($scope.model.size/2);
           var unit_step = 3*$scope.model.id.r;
           _.times($scope.model.size, function(i) {
@@ -1304,7 +1232,7 @@ angular.module('vassalApp.controllers')
               offset_x = (i%mid_size)*unit_step-(mid_size-1)*unit_step/2;
               offset_y = (i >= mid_size) ? unit_step : 0;
             }
-            $scope.create_preview.info.push({
+            $scope.create_model_preview.info.push({
               info: $scope.model.id,
               offset_x: offset_x,
               offset_y: offset_y
@@ -1314,11 +1242,11 @@ angular.module('vassalApp.controllers')
 
         $scope.modelShow = function(type) {
           return $scope.game ? 
-            _.filter($scope.game.models, function(model) { return model.state['show_'+type] }) : [];
+            _.filter($scope.game.models, function(model) { return model.state['show_'+type]; }) : [];
         };
         $scope.showCenteredAoE = function() {
           return $scope.game ? 
-            _.filter($scope.game.models, function(model) { return model.state.show_aoe > 0 }) : [];
+            _.filter($scope.game.models, function(model) { return model.state.show_aoe > 0; }) : [];
         };
 
         $scope.fk_read_result = [];
@@ -1326,7 +1254,7 @@ angular.module('vassalApp.controllers')
         function importFKList(data) {
           // console.log(data);
           var lines = data.match(/[^\r\n]+/g);
-          $scope.create_preview.info = [];
+          $scope.create_model_preview.info = [];
           // console.log(lines);
           var i = 0;
           var global_offset_x = 0;
@@ -1360,7 +1288,7 @@ angular.module('vassalApp.controllers')
 
               if($scope.factions.fk_keys[line].length > 1) {
                 _.each($scope.factions.fk_keys[line], function(id) {
-                  $scope.create_preview.info.push({
+                  $scope.create_model_preview.info.push({
                     info: id,
                     offset_x: global_offset_x + 1.25*$scope.factions.fk_keys[line][0].r,
                     offset_y: global_offset_y
@@ -1389,7 +1317,7 @@ angular.module('vassalApp.controllers')
                     offset_y = global_offset_y + ((n >= mid_size) ? unit_step : 0);
                   }
                   max_offset_x = Math.max(max_offset_x, offset_x);
-                  $scope.create_preview.info.push({
+                  $scope.create_model_preview.info.push({
                     info: $scope.factions.fk_keys[line][0],
                     offset_x: global_offset_x + offset_x,
                     offset_y: offset_y,
@@ -1408,11 +1336,11 @@ angular.module('vassalApp.controllers')
               $scope.fk_read_result.push('!!! unknown model \"'+line+'\"');
             }
           });
-          // console.log($scope.create_preview.info);
-          if(i > 0) $scope.create_mode = true;
+          // console.log($scope.create_model_preview.info);
+          if(i > 0) $scope.current_mode = model_create_mode;
         }
         $scope.readFKFile = function(file) {
-          $scope.create_mode = false;
+          $scope.current_mode = default_mode;
           $scope.fk_read_result = [];
           var reader = new $window.FileReader();
           reader.onload = function(e) {
@@ -1432,7 +1360,7 @@ angular.module('vassalApp.controllers')
           reader.readAsText(file);
         };
         $scope.readFKString = function(file) {
-          $scope.create_mode = false;
+          $scope.current_mode = default_mode;
           $scope.fk_read_result = [];
           importFKList($scope.fk_read_string);
         };
@@ -1462,7 +1390,7 @@ angular.module('vassalApp.controllers')
           $scope.create_template_preview.size = size;
           $scope.create_template_preview.x = 240;
           $scope.create_template_preview.y = 240;
-          $scope.create_template_mode = true;
+          $scope.current_mode = template_create_mode;
         };
         $scope.aoe_max_deviation = 6;
         $scope.doAoEDeviation = function() {
