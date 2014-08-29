@@ -40,15 +40,15 @@ angular.module('vassalApp.controllers')
         },
         'Ctrl C': function() {
           if($scope.game.selection.length > 0) {
-            $scope.create_model_preview.info = [];
+            model_create_mode.info = [];
             var x_ref = $scope.game.models[$scope.game.selection[0]].state.x;
             var y_ref = $scope.game.models[$scope.game.selection[0]].state.y;
-            $scope.create_model_preview.x = x_ref+10;
-            $scope.create_model_preview.y = y_ref+10;
+            model_create_mode.x = x_ref+10;
+            model_create_mode.y = y_ref+10;
             _.each($scope.game.selection, function(id) {
               var offset_x = $scope.game.models[id].state.x - x_ref;
               var offset_y = $scope.game.models[id].state.y - y_ref;
-              $scope.create_model_preview.info.push({
+              model_create_mode.info.push({
                 info: $scope.game.models[id].info,
                 offset_x: offset_x,
                 offset_y: offset_y
@@ -345,8 +345,8 @@ angular.module('vassalApp.controllers')
             }
           case 'Board':
             {
-              $scope.selection.width = 0;
-              $scope.selection.height = 0;
+              selection_drag_mode.width = 0;
+              selection_drag_mode.height = 0;
 
               $scope.current_mode = selection_drag_mode;
               break;
@@ -387,30 +387,32 @@ angular.module('vassalApp.controllers')
       var selection_drag_mode = {
         name: 'Selection Drag',
         'Drag': function(event, drag, user_x, user_y, dx, dy) {
-          $scope.selection.x = drag.start_x;
-          $scope.selection.width = dx;
-          if($scope.selection.width < 0) {
-            $scope.selection.width = -$scope.selection.width;
-            $scope.selection.x = $scope.selection.x - $scope.selection.width;
+          this.x = drag.start_x;
+          this.width = dx;
+          if(this.width < 0) {
+            this.width = -this.width;
+            this.x = this.x - this.width;
           }
-          $scope.selection.y = drag.start_y;
-          $scope.selection.height = dy;
-          if($scope.selection.height < 0) {
-            $scope.selection.height = -$scope.selection.height;
-            $scope.selection.y = $scope.selection.y - $scope.selection.height;
+          this.y = drag.start_y;
+          this.height = dy;
+          if(this.height < 0) {
+            this.height = -this.height;
+            this.y = this.y - this.height;
           }
         },
         'DragEnd': function(event, drag, user_x, user_y, dx, dy) {
           this['Drag'].apply(this, Array.prototype.slice.call(arguments));
 
-          if($scope.selection.width > 0 &&
-             $scope.selection.height > 0) {
+          if(this.width > 0 &&
+             this.height > 0) {
             var models_selected = [];
             _.each($scope.game.models, function(model) {
               var cx = model.state.x;
               var cy = model.state.y;
-              if( $scope.selection.x <= cx && cx <= ($scope.selection.x+$scope.selection.width ) &&
-                  $scope.selection.y <= cy && cy <= ($scope.selection.y+$scope.selection.height) ) {
+              if( selection_drag_mode.x <= cx &&
+                  cx <= (selection_drag_mode.x+selection_drag_mode.width ) &&
+                  selection_drag_mode.y <= cy &&
+                  cy <= (selection_drag_mode.y+selection_drag_mode.height) ) {
                 models_selected.push(model.state.id);
               }
             });
@@ -427,8 +429,8 @@ angular.module('vassalApp.controllers')
               }
             }
           }
-          $scope.selection.width = 0;
-          $scope.selection.height = 0;
+          this.width = 0;
+          this.height = 0;
 
           $scope.current_mode = default_mode;
         },
@@ -437,12 +439,12 @@ angular.module('vassalApp.controllers')
       var model_create_mode = {
         name: 'Model Create',
         'MouseMove': function(event, user_x, user_y) {
-          $scope.create_model_preview.x = user_x;
-          $scope.create_model_preview.y = user_y;
+          model_create_mode.x = user_x;
+          model_create_mode.y = user_y;
         },
         'Click': function(event, drag, user_x, user_y) {
           var create_options = [];
-          _.each($scope.create_model_preview.info, function(info) {
+          _.each(model_create_mode.info, function(info) {
             create_options.push({
               info: info.info,
               x: user_x+info.offset_x,
@@ -744,13 +746,13 @@ angular.module('vassalApp.controllers')
       var template_create_mode = {
         name: 'Template Create',
         'MouseMove': function(event, user_x, user_y) {
-          $scope.create_template_preview.x = user_x;
-          $scope.create_template_preview.y = user_y;
+          template_create_mode.x = user_x;
+          template_create_mode.y = user_y;
         },
         'Click': function(event, click, user_x, user_y) {
-          $scope.create_template_preview.x = user_x;
-          $scope.create_template_preview.y = user_y;
-          $scope.game.newCommand(command('createTemplate', $scope.create_template_preview));
+          template_create_mode.x = user_x;
+          template_create_mode.y = user_y;
+          $scope.game.newCommand(command('createTemplate', template_create_mode));
 
           $scope.current_mode = template_mode;
         },
@@ -903,49 +905,10 @@ angular.module('vassalApp.controllers')
 
       $scope.current_mode = default_mode;
 
-      $scope.selection = {
-        active: false,
-        x: 10, y: 10,
-        start_x: 10, start_y: 10,
-        width: 0, height: 0,
-      };
       $scope.drag = {
         start_x: 0, start_y: 0,
       };
-      // $scope.ruler_drag = {
-      //   active: false,
-      //   start_x: 0, start_y: 0,
-      //   origin: null,
-      //   target: null,
-      // };
-      // $scope.los_drag = {
-      //   active: false,
-      //   start_x: 0, start_y: 0,
-      // };
-      // $scope.model_drag = {
-      //   active: false,
-      //   start: {
-      //     x: null,
-      //     y: null,
-      //   },
-      //   end: {
-      //     x: null,
-      //     y: null,
-      //   },
-      //   length: 0,
-      // };
-      // $scope.template_drag = {
-      //   active: false,
-      //   start: {
-      //     x: null,
-      //     y: null,
-      //   },
-      //   ref: {
-      //     x: null,
-      //     y: null,
-      //   }
-      // };
-      // $scope.mode_model_target = false;
+
       if(!$stateParams.id || $stateParams.id.length <= 0) $state.go('start');
 
       $http.get('/api/games/'+$stateParams.id).then(function(response) {
@@ -1203,11 +1166,6 @@ angular.module('vassalApp.controllers')
           size: 1,
           info: [],
         };
-        $scope.create_model_preview = {
-          x: 0,
-          y: 0,
-          info: null,
-        };
         $scope.$watch('model', function(val, old) {
           if($scope.current_mode === model_create_mode) {
             $scope.current_mode = default_mode;
@@ -1218,7 +1176,7 @@ angular.module('vassalApp.controllers')
             default_mode : model_create_mode;
           if($scope.current_mode !== model_create_mode) return;
 
-          $scope.create_model_preview.info = [];
+          model_create_mode.info = [];
           var mid_size = Math.ceil($scope.model.size/2);
           var unit_step = 3*$scope.model.id.r;
           _.times($scope.model.size, function(i) {
@@ -1232,7 +1190,7 @@ angular.module('vassalApp.controllers')
               offset_x = (i%mid_size)*unit_step-(mid_size-1)*unit_step/2;
               offset_y = (i >= mid_size) ? unit_step : 0;
             }
-            $scope.create_model_preview.info.push({
+            model_create_mode.info.push({
               info: $scope.model.id,
               offset_x: offset_x,
               offset_y: offset_y
@@ -1254,7 +1212,7 @@ angular.module('vassalApp.controllers')
         function importFKList(data) {
           // console.log(data);
           var lines = data.match(/[^\r\n]+/g);
-          $scope.create_model_preview.info = [];
+          model_create_mode.info = [];
           // console.log(lines);
           var i = 0;
           var global_offset_x = 0;
@@ -1288,7 +1246,7 @@ angular.module('vassalApp.controllers')
 
               if($scope.factions.fk_keys[line].length > 1) {
                 _.each($scope.factions.fk_keys[line], function(id) {
-                  $scope.create_model_preview.info.push({
+                  model_create_mode.info.push({
                     info: id,
                     offset_x: global_offset_x + 1.25*$scope.factions.fk_keys[line][0].r,
                     offset_y: global_offset_y
@@ -1317,7 +1275,7 @@ angular.module('vassalApp.controllers')
                     offset_y = global_offset_y + ((n >= mid_size) ? unit_step : 0);
                   }
                   max_offset_x = Math.max(max_offset_x, offset_x);
-                  $scope.create_model_preview.info.push({
+                  model_create_mode.info.push({
                     info: $scope.factions.fk_keys[line][0],
                     offset_x: global_offset_x + offset_x,
                     offset_y: offset_y,
@@ -1336,7 +1294,7 @@ angular.module('vassalApp.controllers')
               $scope.fk_read_result.push('!!! unknown model \"'+line+'\"');
             }
           });
-          // console.log($scope.create_model_preview.info);
+          // console.log(model_create_mode.info);
           if(i > 0) $scope.current_mode = model_create_mode;
         }
         $scope.readFKFile = function(file) {
@@ -1373,23 +1331,12 @@ angular.module('vassalApp.controllers')
           $scope.game.newCommand(command('onSelection', 'resetAllDamage'));
         };
 
-        $scope.create_template_mode = false;
-        $scope.mode_template_origin = false;
-        $scope.mode_template_target = false;
-        $scope.create_template_preview = {
-          type: null,
-          size: 0,
-          origin: null,
-          x: 0,
-          y: 0,
-          rot: 0,
-          locked: false,
-        };
+
         $scope.doCreateTemplate = function(type, size) {
-          $scope.create_template_preview.type = type;
-          $scope.create_template_preview.size = size;
-          $scope.create_template_preview.x = 240;
-          $scope.create_template_preview.y = 240;
+          template_create_mode.type = type;
+          template_create_mode.size = size;
+          template_create_mode.x = 240;
+          template_create_mode.y = 240;
           $scope.current_mode = template_create_mode;
         };
         $scope.aoe_max_deviation = 6;

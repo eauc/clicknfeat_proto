@@ -1,4 +1,3 @@
-- shortcut pour reset model rot/tourner de 180
 
 - sauvegarde des models selectionnes dans un fichier pour import ulterieur ? -> avec la meme formation, et permet la save des labels, etc.
 - auto deviate model (max distance?, origin?)
@@ -16,9 +15,6 @@
 - mode charge.
 - mode ranged attack.
 
-- key/mouse control states
-- key event to msgs strings
-
 - flag to disable drag preview to prevent pre-measuring
 - text no highlight
 
@@ -29,3 +25,21 @@
 - des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
 Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui reviennent très souvent dans les règles spéciales, genre les lignes de 3" et de 5".
 - limiter distance drag model comme ruler
+
+=======================================================================================
+common_mode
+model_selected_mode
+template_locked_mode
+
+mode.group = default/ruller/template
+$scope.goToMode()
+-> mode.enter()
+-> mode.leave()
+refactorer les objets preview/selection/etc... dans les modes concernes
+transferer les modes dans des services et passer le scope en argument de la fonction
+afficher les menus en fonction du mode
+afficher les raccourcis en fonction du mode : brutalement, objets commands dans le mode (execute + desc = function qui se fait passer la key d'event et retourne une liste d'items).
+cette description a un bouton qui permet de faire la commande a la main si possible, en emettant l'evenement clavier sur le mode courant
+reflechir pour chaque mode les transitions autorisees vers d'autre modes.
+chaque menu a son controleur et partial inclus dans la page principale.
+

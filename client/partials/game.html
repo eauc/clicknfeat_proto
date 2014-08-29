@@ -755,11 +755,11 @@
       </svg>
       <circle ng-show="
               current_mode.name === 'Template Create' &&
-              create_template_preview.type === 'aoe'
+              current_mode.type === 'aoe'
               "
-              cx="{{create_template_preview.x}}"
-              cy="{{create_template_preview.y}}"
-              r="{{create_template_preview.size*5}}"
+              cx="{{current_mode.x}}"
+              cy="{{current_mode.y}}"
+              r="{{current_mode.size*5}}"
               style="
               fill:#F90;
               fill-opacity:0.5;
@@ -770,16 +770,16 @@
               />
       <polygon ng-show="
                current_mode.name === 'Template Create' &&
-               create_template_preview.type === 'spray'
+               current_mode.type === 'spray'
                "
                points="
                8.75,0
                {{
-               (10-8.125*create_template_preview.size/10) +
-               ','  + (98.34*create_template_preview.size/10) +
-               ' 10,' + (100*create_template_preview.size/10) +
-               ' ' + (10+8.125*create_template_preview.size/10) +
-               ',' + (98.34*create_template_preview.size/10)
+               (10-8.125*current_mode.size/10) +
+               ','  + (98.34*current_mode.size/10) +
+               ' 10,' + (100*current_mode.size/10) +
+               ' ' + (10+8.125*current_mode.size/10) +
+               ',' + (98.34*current_mode.size/10)
                }}
                11.25,0
                "
@@ -790,14 +790,14 @@
                stroke-width:0.5px;
                "
                transform="
-               translate({{create_template_preview.x-10}},{{create_template_preview.y}})
-               rotate({{create_template_preview.rot-180}}, 10, 0)
+               translate({{current_mode.x-10}},{{current_mode.y}})
+               rotate({{current_mode.rot-180}}, 10, 0)
                "
                />
       <svg ng-show="current_mode.name === 'Model Create'"
-           ng-repeat="(i,model) in create_model_preview.info"
-           x="{{create_model_preview.x + model.offset_x - model.info.width/2}}"
-           y="{{create_model_preview.y + model.offset_y - model.info.height/2}}"
+           ng-repeat="(i,model) in current_mode.info"
+           x="{{current_mode.x + model.offset_x - model.info.width/2}}"
+           y="{{current_mode.y + model.offset_y - model.info.height/2}}"
            style="pointer-events: none"
            >
         <image x="{{model.info.img.x}}"
@@ -816,8 +816,9 @@
                 "
                 />
       </svg>
-      <rect x="{{selection.x}}" y="{{selection.y}}"
-            width="{{selection.width}}" height="{{selection.height}}"
+      <rect ng-if="current_mode.name === 'Selection Drag'"
+            x="{{current_mode.x}}" y="{{current_mode.y}}"
+            width="{{current_mode.width}}" height="{{current_mode.height}}"
             style="
             fill: none;
             stroke:#00F;
