@@ -25,7 +25,7 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('createModel',
                                           create_options));
 
-            modes.current = modes['default'];
+            modes.goTo('default');
           },
         });
         return model_create_mode;
@@ -48,7 +48,7 @@ angular.module('vassalApp.services')
           'DragEnd': function(scope, event, drag, user_x, user_y, dx, dy) {
             scope.game.newCommand(command('endDragingSelection', dx, dy));
 
-            modes.current = modes['default'];
+            modes.goTo('default');
           },
         });
         return model_drag_mode;
@@ -67,7 +67,7 @@ angular.module('vassalApp.services')
                0 > _.indexOf(scope.game.selection, drag.target.state.id)) {
               scope.game.newCommand(command('onSelection', 'alignWith',
                                             drag.target.state.x, drag.target.state.y));
-              modes.current = modes['default'];
+              modes.goTo('default');
             }
           },
         });

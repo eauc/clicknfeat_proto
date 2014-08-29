@@ -12,11 +12,11 @@ angular.module('vassalApp.services')
             if(scope.game.los.state.active) {
               scope.game.newCommand(command('onLos', 'setActive', false));
             }
-            modes.current = modes['default'];
+            modes.goTo('default');
           },
           'DragStart': function(scope, event, drag, user_x, user_y) {
             scope.game.los.startDraging(drag.start_x, drag.start_y);
-            modes.current = modes['los_drag'];
+            modes.goTo('los_drag');
           },
         });
         return los_mode;
@@ -35,7 +35,7 @@ angular.module('vassalApp.services')
           },
           'DragEnd': function(scope, event, drag, user_x, user_y) {
             scope.game.newCommand(command('onLos', 'endDraging', user_x, user_y));
-            modes.current = modes['los'];
+            modes.goTo('los');
           },
         });
         return los_drag_mode;

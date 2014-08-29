@@ -31,9 +31,6 @@ model_selected_mode
 template_locked_mode
 
 mode.group = default/ruller/template
-$scope.goToMode()
--> mode.enter()
--> mode.leave()
 
 afficher les menus en fonction du mode
 afficher les raccourcis en fonction du mode : brutalement, objets commands dans le mode (execute + desc = function qui se fait passer la key d'event et retourne une liste d'items).

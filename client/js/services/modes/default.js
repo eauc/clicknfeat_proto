@@ -36,7 +36,7 @@ angular.module('vassalApp.services')
                   offset_y: offset_y
                 });
               });
-              modes.current = modes['model_create'];
+              modes.goTo('model_create');
             }
           },
           'Shift C': function(scope) {
@@ -80,7 +80,7 @@ angular.module('vassalApp.services')
             }
           },
           'Shift L': function(scope) {
-            modes.current = modes['los'];
+            modes.goTo('los');
           },
           'M': function(scope) {
             if(scope.game.selection.length > 0) {
@@ -106,7 +106,7 @@ angular.module('vassalApp.services')
             }
           },
           'Shift R': function(scope) {
-            modes.current = modes['ruler'];
+            modes.goTo('ruler');
           },
           'Alt S': function(scope) {
             if(scope.game.selection.length > 0) {
@@ -120,7 +120,7 @@ angular.module('vassalApp.services')
             }
           },
           'T': function(scope) {
-            modes.current = modes['model_target'];
+            modes.goTo('model_target');
           },
           'U': function(scope) {
             scope.game.newCommand(command('setSelection', []));
@@ -282,7 +282,7 @@ angular.module('vassalApp.services')
                 scope.game.templates.active = drag.target;
                 drag.target.startDraging();
 
-                modes.current = modes['template_drag'];
+                modes.goTo('template_drag');
                 break;
               }
             case 'Model':
@@ -297,7 +297,7 @@ angular.module('vassalApp.services')
                   modes['model_drag'].end_x = drag.target.state.x;
                   modes['model_drag'].end_y = drag.target.state.y;
                   modes['model_drag'].length = '';
-                  modes.current = modes['model_drag'];
+                  modes.goTo('model_drag');
                 }
                 break;
               }
@@ -335,7 +335,7 @@ angular.module('vassalApp.services')
             case 'Template':
               {
                 scope.game.templates.active = drag.target;
-                modes.current = modes['template'];
+                modes.goTo('template');
                 break;
               }
             }

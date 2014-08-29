@@ -59,7 +59,7 @@ angular.module('vassalApp.services')
 
       modes.current = modes['default'];
       modes.goTo = function(mode, scope) {
-        if(_.has(modes, mode)) {
+        if(!_.has(modes, mode)) {
           console.log('unknown mode '+mode);
           return;
         }

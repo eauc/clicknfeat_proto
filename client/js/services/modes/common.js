@@ -7,6 +7,8 @@ angular.module('vassalApp.services')
       return function(modes) {
         var common_mode = {
           name: 'Common',
+          enter: function() {},
+          leave: function() {},
           'Ctrl Z': function(scope) {
             scope.game.undoLastCommand();
             modes.current = modes['default'];
