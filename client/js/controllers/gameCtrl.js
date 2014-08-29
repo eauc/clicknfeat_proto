@@ -85,6 +85,18 @@ angular.module('vassalApp.controllers')
           221: 'CloseBracket',
           222: 'SingleQuote',
         };
+        function keyHandler(key, event) {
+          if('Escape' === key) {
+            console.log(key+' -> Reset mode');
+            event.preventDefault();
+            $scope.modes.goTo('default', $scope);
+            return;
+          }
+          $scope.modes.send(key, $scope, event)
+            .then(function() {
+              event.preventDefault();
+            })
+        }
         $scope.onKeyDown = function(event) {
           // console.log(event);
           var key;
@@ -112,19 +124,17 @@ angular.module('vassalApp.controllers')
           else return;
           if(event.shiftKey || $scope.force_shift) key = 'Shift ' + key;
           if(event.ctrlKey || $scope.force_ctrl) key = 'Ctrl ' + key;
-          if(event.altKey) key = 'Alt ' + key;
+          if(event.altKey || $scope.force_alt) key = 'Alt ' + key;
           // console.log(key);
           
-          if('Escape' === key) {
-            console.log(key+' -> Reset mode');
-            event.preventDefault();
-            $scope.modes.goTo('default', $scope);
-            return;
-          }
-          $scope.modes.send(key, $scope, event)
-            .then(function() {
-              event.preventDefault();
-            })
+          keyHandler(key, event);
+        };
+        $scope.sendKey = function(key, event) {
+          if(event.shiftKey || $scope.force_shift) key = 'Shift ' + key;
+          if(event.ctrlKey || $scope.force_ctrl) key = 'Ctrl ' + key;
+          if(event.altKey || $scope.force_alt) key = 'Alt ' + key;
+          
+          keyHandler(key, event);
         };
         $scope.stopKeyPropagation = function(event) {
           // console.log('test', event);

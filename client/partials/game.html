@@ -937,6 +937,41 @@
               }"
               ng-click="force_shift = !force_shift"
               >Shift</button>
+      <button ng-style="{
+              'background-color': force_alt ? '#6F6' : 'none'
+              }"
+              ng-click="force_alt = !force_alt"
+              >Alt</button>
+      <table>
+        <tr>
+          <td></td>
+          <td>
+            <button ng-click="sendKey('Up', $event)"
+                    >&#8593;</button>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <button ng-click="sendKey('Left', $event)"
+                    >&#8592;
+            </button>
+          </td>
+          <td></td>
+          <td>
+            <button ng-click="sendKey('Right', $event)"
+                    >&#8594;</button>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <button ng-click="sendKey('Down', $event)"
+                    >&#8595;</button>
+          </td>
+          <td></td>
+        </tr>
+      </table>
     </div>
     <div style="border:1px solid black;max-height:300px;overflow-y:scroll;"
          ng-include="'partials/modeBox.html'">
