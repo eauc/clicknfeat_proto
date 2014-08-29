@@ -5,6 +5,7 @@ angular.module('vassalApp.services')
     '$q',
     'common_mode',
     'default_mode',
+    'model_selected_mode',
     'selection_drag_mode',
     'model_create_mode',
     'model_drag_mode',
@@ -24,6 +25,7 @@ angular.module('vassalApp.services')
     function($q,
              common_mode,
              default_mode,
+             model_selected_mode,
              selection_drag_mode,
              model_create_mode,
              model_drag_mode,
@@ -42,7 +44,10 @@ angular.module('vassalApp.services')
              ruler_target_mode) {
       var modes = {};
       var common = common_mode(modes);
+      ////////////////////////////////////////////////
       modes['default'] = default_mode(modes, common);
+      modes['model_selected'] = model_selected_mode(modes, common);
+      ////////////////////////////////////////////////
       modes['selection_drag'] = selection_drag_mode(modes, common);
       modes['model_create'] = model_create_mode(modes, common);
       modes['model_drag'] = model_drag_mode(modes, common);

@@ -27,7 +27,6 @@ Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui 
 - limiter distance drag model comme ruler
 
 =======================================================================================
-model_selected_mode
 
 afficher les raccourcis en fonction du mode : brutalement, objets commands dans le mode (execute + desc = function qui se fait passer la key d'event et retourne une liste d'items).
 
