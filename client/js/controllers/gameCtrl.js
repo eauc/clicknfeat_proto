@@ -130,11 +130,12 @@ angular.module('vassalApp.controllers')
           
           keyHandler(key, event);
         };
-        $scope.sendKey = function(key, event) {
-          if(event.shiftKey || $scope.force_shift) key = 'Shift ' + key;
-          if(event.ctrlKey || $scope.force_ctrl) key = 'Ctrl ' + key;
-          if(event.altKey || $scope.force_alt) key = 'Alt ' + key;
-          
+        $scope.sendKey = function(key, event, meta_keys) {
+          if(meta_keys) {
+            if(event.shiftKey || $scope.force_shift) key = 'Shift ' + key;
+            if(event.ctrlKey || $scope.force_ctrl) key = 'Ctrl ' + key;
+            if(event.altKey || $scope.force_alt) key = 'Alt ' + key;
+          }
           keyHandler(key, event);
         };
         $scope.stopKeyPropagation = function(event) {
