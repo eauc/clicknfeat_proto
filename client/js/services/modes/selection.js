@@ -4,8 +4,9 @@ angular.module('vassalApp.services')
   .factory('selection_drag_mode', [
     'command',
     function(command) {
-      return function(modes) {
-        var selection_drag_mode = {
+      return function(modes, common) {
+        var selection_drag_mode = _.deepCopy(common);
+        _.deepExtend(selection_drag_mode, {
           name: 'Selection Drag',
           'Drag': function(scope, event, drag, user_x, user_y, dx, dy) {
             this.x = drag.start_x;
@@ -55,7 +56,7 @@ angular.module('vassalApp.services')
 
             modes.current = modes['default'];
           },
-        };
+        });
         return selection_drag_mode;
       }
     }

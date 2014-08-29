@@ -4,8 +4,9 @@ angular.module('vassalApp.services')
   .factory('template_drag_mode', [
     'command',
     function(command) {
-      return function(modes) {
-        var template_drag_mode = {
+      return function(modes, common) {
+        var template_drag_mode = _.deepCopy(common);
+        _.deepExtend(template_drag_mode, {
           name: 'Template Drag',
           'Drag': function(scope, event, drag, user_x, user_y, dx, dy) {
             scope.game.templates.active.draging(scope.game, dx, dy);
@@ -16,7 +17,7 @@ angular.module('vassalApp.services')
             scope.game.templates.active = drag.target;
             modes.current = modes['template'];
           },
-        };
+        });
         return template_drag_mode;
       }
     }
@@ -24,8 +25,9 @@ angular.module('vassalApp.services')
   .factory('template_origin_mode', [
     'command',
     function(command) {
-      return function(modes) {
-        var template_origin_mode = {
+      return function(modes, common) {
+        var template_origin_mode = _.deepCopy(common);
+        _.deepExtend(template_origin_mode, {
           name: 'Template Origin',
           'Click': function(scope, event, drag) {
             if(drag.event === 'Model') {
@@ -52,7 +54,7 @@ angular.module('vassalApp.services')
               modes.current = modes['template'];
             }
           },
-        };
+        });
         return template_origin_mode;
       }
     }
@@ -60,8 +62,9 @@ angular.module('vassalApp.services')
   .factory('template_target_mode', [
     'command',
     function(command) {
-      return function(modes) {
-        var template_target_mode = {
+      return function(modes, common) {
+        var template_target_mode = _.deepCopy(common);
+        _.deepExtend(template_target_mode, {
           name: 'Template Target',
           'Click': function(scope, event, drag) {
             if(drag.event === 'Model') {
@@ -92,7 +95,7 @@ angular.module('vassalApp.services')
               modes.current = modes['template'];
             }
           },
-        };
+        });
         return template_target_mode;
       }
     }
@@ -100,8 +103,9 @@ angular.module('vassalApp.services')
   .factory('template_create_mode', [
     'command',
     function(command) {
-      return function(modes) {
-        var template_create_mode = {
+      return function(modes, common) {
+        var template_create_mode = _.deepCopy(common);
+        _.deepExtend(template_create_mode, {
           name: 'Template Create',
           'MouseMove': function(scope, event, user_x, user_y) {
             template_create_mode.x = user_x;
@@ -115,7 +119,7 @@ angular.module('vassalApp.services')
 
             modes.current = modes['template'];
           },
-        };
+        });
         return template_create_mode;
       }
     }
@@ -123,8 +127,9 @@ angular.module('vassalApp.services')
   .factory('template_mode', [
     'command',
     function(command) {
-      return function(modes) {
-        var template_mode = {
+      return function(modes, common) {
+        var template_mode = _.deepCopy(common);
+        _.deepExtend(template_mode, {
           name: 'Template',
           'D': function(scope) {
             if(scope.game.templates.active.type === 'aoe' &&
@@ -310,7 +315,7 @@ angular.module('vassalApp.services')
               }
             }
           },
-        };
+        });
         return template_mode;
       }
     }

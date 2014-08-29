@@ -27,7 +27,6 @@ Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui 
 - limiter distance drag model comme ruler
 
 =======================================================================================
-common_mode
 model_selected_mode
 template_locked_mode
 

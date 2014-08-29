@@ -4,8 +4,9 @@ angular.module('vassalApp.services')
   .factory('ruler_mode', [
     'command',
     function(command) {
-      return function(modes) {
-        var ruler_mode = {
+      return function(modes, common) {
+        var ruler_mode = _.deepCopy(common);
+        _.deepExtend(ruler_mode, {
           name: 'Ruler',
           'O': function(scope) {
             modes['ruler_origin'].origin = this.origin;
@@ -27,7 +28,7 @@ angular.module('vassalApp.services')
             scope.show_ruler = true;
             modes.current = modes['ruler_drag'];
           },
-        };
+        });
         return ruler_mode;
       }
     }
@@ -35,8 +36,9 @@ angular.module('vassalApp.services')
   .factory('ruler_drag_mode', [
     'command',
     function(command) {
-      return function(modes) {
-        var ruler_drag_mode = {
+      return function(modes, common) {
+        var ruler_drag_mode = _.deepCopy(common);
+        _.deepExtend(ruler_drag_mode, {
           name: 'Ruler Drag',
           'Drag': function(scope, event, drag, user_x, user_y, dx, dy) {
             var length = Math.sqrt(dx*dx + dy*dy);
@@ -64,7 +66,7 @@ angular.module('vassalApp.services')
 
             modes.current = modes['ruler'];
           },
-        };      
+        });
         return ruler_drag_mode;
       }
     }
@@ -72,8 +74,9 @@ angular.module('vassalApp.services')
   .factory('ruler_origin_mode', [
     'command',
     function(command) {
-      return function(modes) {
-        var ruler_origin_mode = {
+      return function(modes, common) {
+        var ruler_origin_mode = _.deepCopy(common);
+        _.deepExtend(ruler_origin_mode, {
           name: 'Ruler Origin',
           'Click': function(scope, event, drag) {
             if(drag.event !== 'Model') return;
@@ -86,7 +89,7 @@ angular.module('vassalApp.services')
 
             modes.current = modes['ruler'];
           },
-        };
+        });
         return ruler_origin_mode;
       }
     }
@@ -94,8 +97,9 @@ angular.module('vassalApp.services')
   .factory('ruler_target_mode', [
     'command',
     function(command) {
-      return function(modes) {
-        var ruler_target_mode = {
+      return function(modes, common) {
+        var ruler_target_mode = _.deepCopy(common);
+        _.deepExtend(ruler_target_mode, {
           name: 'Ruler Target',
           'Click': function(scope, event, drag) {
             if(drag.event !== 'Model') return;
@@ -137,7 +141,7 @@ angular.module('vassalApp.services')
 
             modes.current = modes['ruler'];
           },
-        };
+        });
         return ruler_target_mode;
       }
     }

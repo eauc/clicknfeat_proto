@@ -3,6 +3,7 @@
 angular.module('vassalApp.services')
   .factory('modes', [
     '$q',
+    'common_mode',
     'default_mode',
     'selection_drag_mode',
     'model_create_mode',
@@ -20,6 +21,7 @@ angular.module('vassalApp.services')
     'ruler_origin_mode',
     'ruler_target_mode',
     function($q,
+             common_mode,
              default_mode,
              selection_drag_mode,
              model_create_mode,
@@ -37,22 +39,23 @@ angular.module('vassalApp.services')
              ruler_origin_mode,
              ruler_target_mode) {
       var modes = {};
-      modes['default'] = default_mode(modes);
-      modes['selection_drag'] = selection_drag_mode(modes);
-      modes['model_create'] = model_create_mode(modes);
-      modes['model_drag'] = model_drag_mode(modes);
-      modes['model_target'] = model_target_mode(modes);
-      modes['template'] = template_mode(modes);
-      modes['template_create'] = template_create_mode(modes);
-      modes['template_drag'] = template_drag_mode(modes);
-      modes['template_origin'] = template_origin_mode(modes);
-      modes['template_target'] = template_target_mode(modes);
-      modes['los'] = los_mode(modes);
-      modes['los_drag'] = los_drag_mode(modes);
-      modes['ruler'] = ruler_mode(modes);
-      modes['ruler_drag'] = ruler_drag_mode(modes);
-      modes['ruler_origin'] = ruler_origin_mode(modes);
-      modes['ruler_target'] = ruler_target_mode(modes);
+      var common = common_mode(modes);
+      modes['default'] = default_mode(modes, common);
+      modes['selection_drag'] = selection_drag_mode(modes, common);
+      modes['model_create'] = model_create_mode(modes, common);
+      modes['model_drag'] = model_drag_mode(modes, common);
+      modes['model_target'] = model_target_mode(modes, common);
+      modes['template'] = template_mode(modes, common);
+      modes['template_create'] = template_create_mode(modes, common);
+      modes['template_drag'] = template_drag_mode(modes, common);
+      modes['template_origin'] = template_origin_mode(modes, common);
+      modes['template_target'] = template_target_mode(modes, common);
+      modes['los'] = los_mode(modes, common);
+      modes['los_drag'] = los_drag_mode(modes, common);
+      modes['ruler'] = ruler_mode(modes, common);
+      modes['ruler_drag'] = ruler_drag_mode(modes, common);
+      modes['ruler_origin'] = ruler_origin_mode(modes, common);
+      modes['ruler_target'] = ruler_target_mode(modes, common);
 
       modes.current = modes['default'];
       modes.goTo = function(mode, scope) {
@@ -80,6 +83,7 @@ angular.module('vassalApp.services')
         }
         return defer.promise;
       };
+      console.log(modes);
       return modes;
     }
   ]);

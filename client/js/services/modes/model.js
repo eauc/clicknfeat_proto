@@ -4,8 +4,9 @@ angular.module('vassalApp.services')
   .factory('model_create_mode', [
     'command',
     function(command) {
-      return function(modes) {
-        var model_create_mode = {
+      return function(modes, common) {
+        var model_create_mode = _.deepCopy(common);
+        _.deepExtend(model_create_mode, {
           name: 'Model Create',
           'MouseMove': function(scope, event, user_x, user_y) {
             model_create_mode.x = user_x;
@@ -26,7 +27,7 @@ angular.module('vassalApp.services')
 
             modes.current = modes['default'];
           },
-        };
+        });
         return model_create_mode;
       }
     }
@@ -34,8 +35,9 @@ angular.module('vassalApp.services')
   .factory('model_drag_mode', [
     'command',
     function(command) {
-      return function(modes) {
-        var model_drag_mode = {
+      return function(modes, common) {
+        var model_drag_mode = _.deepCopy(common);
+        _.deepExtend(model_drag_mode, {
           name: 'Model Drag',
           'Drag': function(scope, event, drag, user_x, user_y, dx, dy) {
             scope.game.onSelection('draging', dx, dy);
@@ -48,7 +50,7 @@ angular.module('vassalApp.services')
 
             modes.current = modes['default'];
           },
-        };
+        });
         return model_drag_mode;
       }
     }
@@ -56,8 +58,9 @@ angular.module('vassalApp.services')
   .factory('model_target_mode', [
     'command',
     function(command) {
-      return function(modes) {
-        var model_target_mode = {
+      return function(modes, common) {
+        var model_target_mode = _.deepCopy(common);
+        _.deepExtend(model_target_mode, {
           name: 'Model Target',
           'Click': function(scope, event, drag) {
             if(drag.event === 'Model' &&
@@ -67,7 +70,7 @@ angular.module('vassalApp.services')
               modes.current = modes['default'];
             }
           },
-        };
+        });
         return model_target_mode;
       }
     }
