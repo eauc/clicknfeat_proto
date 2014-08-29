@@ -1,0 +1,46 @@
+<div>
+  <strong>Template Commands</strong>
+  <ul style="
+      margin:0px;
+      padding:0px;
+      list-style-type:none;
+      "
+      >
+    <li>Position template (Drag template)</li>
+    <li>Move template ([Shift +][Ctrl +] Arrows)</li>
+    <li ng-if="game.templates.active.type === 'aoe'">
+      <button ng-click="sendKey('3', $event)">AoE 3"</button> ('3')
+    </li>
+    <li ng-if="game.templates.active.type === 'aoe'">
+      <button ng-click="sendKey('4', $event)">AoE 4"</button> ('4')
+    </li>
+    <li ng-if="game.templates.active.type === 'aoe'">
+      <button ng-click="sendKey('5', $event)">AoE 5"</button> ('5')
+    </li>
+    <li ng-if="game.templates.active.type === 'spray'">
+      <button ng-click="sendKey('6', $event)">Spray 6"</button> ('6')
+    </li>
+    <li ng-if="game.templates.active.type === 'spray'">
+      <button ng-click="sendKey('8', $event)">Spray 8"</button> ('8')
+    </li>
+    <li ng-if="game.templates.active.type === 'spray'">
+      <button ng-click="sendKey('0', $event)">Spray 10"</button> ('0')
+    </li>
+    <li><button ng-click="sendKey('O', $event)">Set Origin</button> ('O')</li>
+    <li><button ng-click="sendKey('T', $event)">Set Target</button> ('T')</li>
+    <li ng-if="game.templates.active.type === 'aoe'">
+      <button ng-click="sendKey('D', $event)">Deviate</button> ('D')
+    </li>
+    <li>
+      <button ng-click="sendKey('R', $event)">To End of Ruler</button> ('R')
+    </li>
+    <li>
+      <button ng-click="sendKey('L', $event)">Lock</button> ('L')
+    </li>
+    <li>
+      <button ng-click="sendKey('Delete', $event)">Delete</button> (Delete)
+    </li>
+    <li>Select Template (Click on inactive template)</li>
+    <li>Exit (Click on active template/on model)</li>
+  </ul>
+</div>

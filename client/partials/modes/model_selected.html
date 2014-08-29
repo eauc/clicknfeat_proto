@@ -1,0 +1,49 @@
+<div>
+  <strong>Model Selected Commands</strong>
+  <ul style="
+      margin:0px;
+      padding:0px;
+      list-style-type:none;
+      "
+      >
+    <li>Position model(s) (Drag model)</li>
+    <li>Move model(s) ([Shift +][Ctrl +] Arrows)</li>
+    <li>Select a model (Click on model)</li>
+    <li>Add a model to selection (Ctrl + Click on model)</li>
+    <li>Remove a model from selection (Ctrl + Click on selected model)</li>
+    <li><button ng-click="sendKey('Ctrl C', $event)">Copy</button> (Ctrl+'C')</li>
+    <li><button ng-click="sendKey('U', $event)">Unselect All</button> ('E')</li>
+    <li><button ng-click="sendKey('T', $event)">Set Target</button> ('T')</li>
+    <li><button ng-click="sendKey('Ctrl N', $event)">Orient North</button> (Ctrl+'N')</li>
+    <li><button ng-click="sendKey('Ctrl E', $event)">Orient East</button> (Ctrl+'E')</li>
+    <li><button ng-click="sendKey('Ctrl W', $event)">Orient West</button> (Ctrl+'W')</li>
+    <li><button ng-click="sendKey('Ctrl S', $event)">Orient South</button> (Ctrl+'S')</li>
+    <li><button ng-click="sendKey('M', $event)">Toggle Melee</button> ('M')</li>
+    <li><button ng-click="sendKey('R', $event)">Toggle Reach</button> ('R')</li>
+    <li><button ng-click="sendKey('F', $event)">Toggle Focus</button> ('F')</li>
+    <li><button ng-click="sendKey('Add', $event)">Incr. Focus</button> ('Add')</li>
+    <li><button ng-click="sendKey('Substract', $event)">Decr. Focus</button> ('Substract')</li>
+    <li><button ng-click="sendKey('I', $event)">Toggle Image</button> ('I')</li>
+    <li><button ng-click="sendKey('Shift C', $event)">Toggle Ctrl Area</button> (Shift+'C')</li>
+    <li><button ng-click="sendKey('Alt B', $event)">Toggle Blind</button> (Alt + 'B')</li>
+    <li><button ng-click="sendKey('Alt C', $event)">Toggle Corrosion</button> (Alt + 'C')</li>
+    <li><button ng-click="sendKey('Alt F', $event)">Toggle Fire</button> (Alt + 'F')</li>
+    <li><button ng-click="sendKey('Alt I', $event)">Toggle Incorporeal</button> (Alt + 'I')</li>
+    <li><button ng-click="sendKey('Alt K', $event)">Toggle KD</button> (Alt + 'K')</li>
+    <li><button ng-click="sendKey('Alt L', $event)">Toggle Leader</button> (Alt + 'L')</li>
+    <li><button ng-click="sendKey('Alt S', $event)">Toggle Stationary</button> (Alt + 'S')</li>
+    <li><button ng-click="sendKey('Ctrl 0', $event)">Aura Off</button> (Ctrl + '0')</li>
+    <li><button ng-click="sendKey('Ctrl 1', $event)">Aura Cyan</button> (Ctrl + '1')</li>
+    <li><button ng-click="sendKey('Ctrl 2', $event)">Aura Purple</button> (Ctrl + '2')</li>
+    <li><button ng-click="sendKey('Ctrl 3', $event)">Aura Yellow</button> (Ctrl + '3')</li>
+    <li><button ng-click="sendKey('Ctrl 4', $event)">Aura Blue</button> (Ctrl + '4')</li>
+    <li><button ng-click="sendKey('Ctrl 5', $event)">Aura Green</button> (Ctrl + '5')</li>
+    <li><button ng-click="sendKey('Ctrl 6', $event)">Aura Red</button> (Ctrl + '6')</li>
+    <li><button ng-click="sendKey('3', $event)">Toggle AoE 3"</button> ('0')</li>
+    <li><button ng-click="sendKey('4', $event)">Toggle AoE 4"</button> ('0')</li>
+    <li><button ng-click="sendKey('5', $event)">Toggle AoE 5"</button> ('0')</li>
+    <li>
+      <button ng-click="sendKey('Delete', $event)">Drop</button> (Delete)
+    </li>
+  </ul>
+</div>

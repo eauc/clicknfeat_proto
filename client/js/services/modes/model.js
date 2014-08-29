@@ -8,6 +8,7 @@ angular.module('vassalApp.services')
         var model_create_mode = _.deepCopy(common);
         _.deepExtend(model_create_mode, {
           name: 'Model Create',
+          template: 'model_create.html',
           'MouseMove': function(scope, event, user_x, user_y) {
             model_create_mode.x = user_x;
             model_create_mode.y = user_y;
@@ -39,6 +40,7 @@ angular.module('vassalApp.services')
         var model_drag_mode = _.deepCopy(common);
         _.deepExtend(model_drag_mode, {
           name: 'Model Drag',
+          template: 'model_selected.html',
           'Drag': function(scope, event, drag, user_x, user_y, dx, dy) {
             scope.game.onSelection('draging', dx, dy);
             this.end_x = this.start_x + dx;
@@ -62,6 +64,7 @@ angular.module('vassalApp.services')
         var model_target_mode = _.deepCopy(common);
         _.deepExtend(model_target_mode, {
           name: 'Model Target',
+          template: 'model_target.html',
           'Click': function(scope, event, drag) {
             if(drag.event === 'Model' &&
                0 > _.indexOf(scope.game.selection, drag.target.state.id)) {

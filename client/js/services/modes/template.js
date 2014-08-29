@@ -9,6 +9,7 @@ angular.module('vassalApp.services')
         _.deepExtend(template_drag_mode, {
           name: 'Template Drag',
           group: 'Template',
+          template: 'template.html',
           'Drag': function(scope, event, drag, user_x, user_y, dx, dy) {
             scope.game.templates.active.draging(scope.game, dx, dy);
           },
@@ -31,6 +32,7 @@ angular.module('vassalApp.services')
         _.deepExtend(template_origin_mode, {
           name: 'Template Origin',
           group: 'Template',
+          template: 'template_origin.html',
           'Click': function(scope, event, drag) {
             if(drag.event === 'Model') {
               var model = drag.target;
@@ -69,6 +71,7 @@ angular.module('vassalApp.services')
         _.deepExtend(template_target_mode, {
           name: 'Template Target',
           group: 'Template',
+          template: 'template_target.html',
           'Click': function(scope, event, drag) {
             if(drag.event === 'Model') {
               var model = drag.target;
@@ -110,6 +113,7 @@ angular.module('vassalApp.services')
         var template_create_mode = _.deepCopy(common);
         _.deepExtend(template_create_mode, {
           name: 'Template Create',
+          template: 'template_create.html',
           'MouseMove': function(scope, event, user_x, user_y) {
             template_create_mode.x = user_x;
             template_create_mode.y = user_y;
@@ -135,6 +139,7 @@ angular.module('vassalApp.services')
         _.deepExtend(template_mode, {
           name: 'Template Locked',
           group: 'Template',
+          template: 'template_locked.html',
           enter: function(scope) {
             if(!scope.game.templates.active.locked) {
               modes.goTo('template', scope);
@@ -188,13 +193,13 @@ angular.module('vassalApp.services')
   ])
   .factory('template_mode', [
     'command',
-    function(command,
-             template_locked_mode) {
+    function(command) {
       return function(modes, common) {
         var template_mode = _.deepCopy(modes['template_locked']);
         _.deepExtend(template_mode, {
           name: 'Template',
           group: 'Template',
+          template: 'template.html',
           enter: function(scope) {
             if(scope.game.templates.active.locked) {
               modes.goTo('template_locked', scope);

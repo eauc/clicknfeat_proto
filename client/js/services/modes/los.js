@@ -9,6 +9,7 @@ angular.module('vassalApp.services')
         _.deepExtend(los_mode, {
           name: 'LoS',
           group: 'LoS',
+          template: 'los.html',
           leave: function(scope, next) {
             if(next.group !== 'LoS' &&
                scope.game.los.state.active) {
@@ -35,6 +36,7 @@ angular.module('vassalApp.services')
         _.deepExtend(los_drag_mode, {
           name: 'LoS Drag',
           group: 'LoS',
+          template: 'los.html',
           'Drag': function(scope, event, drag, user_x, user_y) {
             scope.game.los.setEnd(user_x, user_y);
           },

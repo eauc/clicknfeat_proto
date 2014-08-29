@@ -9,6 +9,7 @@ angular.module('vassalApp.services')
         _.deepExtend(ruler_mode, {
           name: 'Ruler',
           group: 'Ruler',
+          template: 'ruler.html',
           'O': function(scope) {
             modes.goTo('ruler_origin', scope);
           },
@@ -36,6 +37,7 @@ angular.module('vassalApp.services')
         _.deepExtend(ruler_drag_mode, {
           name: 'Ruler Drag',
           group: 'Ruler',
+          template: 'ruler.html',
           enter: function(scope) {
             modes['ruler'].origin = null;
             modes['ruler'].target = null;
@@ -79,6 +81,7 @@ angular.module('vassalApp.services')
         _.deepExtend(ruler_origin_mode, {
           name: 'Ruler Origin',
           group: 'Ruler',
+          template: 'ruler_origin.html',
           enter: function(scope) {
             modes['ruler_origin'].origin = modes['ruler'].origin;
             modes['ruler_origin'].target = modes['ruler'].target;
@@ -107,6 +110,7 @@ angular.module('vassalApp.services')
         _.deepExtend(ruler_target_mode, {
           name: 'Ruler Target',
           group: 'Ruler',
+          template: 'ruler_target.html',
           enter: function(scope) {
             modes['ruler_target'].origin = modes['ruler'].origin;
             modes['ruler_target'].target = modes['ruler'].target;

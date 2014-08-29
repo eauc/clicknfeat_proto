@@ -8,6 +8,7 @@ angular.module('vassalApp.services')
         var selection_drag_mode = _.deepCopy(common);
         _.deepExtend(selection_drag_mode, {
           name: 'Selection Drag',
+          template: 'selection_drag.html',
           'Drag': function(scope, event, drag, user_x, user_y, dx, dy) {
             this.x = drag.start_x;
             this.width = dx;

@@ -102,6 +102,7 @@ angular.module('vassalApp.services')
         _.deepExtend(model_selected_mode, {
           name: 'Model Selected',
           group: 'Default',
+          template: 'model_selected.html',
           enter: function(scope) {
             if(scope.game.selection.length <= 0) {
               modes.goTo('default', scope);
