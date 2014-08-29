@@ -88,7 +88,7 @@ angular.module('vassalApp.controllers')
           221: 'CloseBracket',
           222: 'SingleQuote',
         };
-        $scope.onKeyDown = function(event) {
+        $scope.onKeyDown = function(_event) {
           // console.log(event);
           var key;
           if((event.keyCode >= 48 &&
@@ -113,8 +113,8 @@ angular.module('vassalApp.controllers')
             key = KEY_CODES[event.keyCode];
           }
           else return;
-          if(event.shiftKey) key = 'Shift ' + key;
-          if(event.ctrlKey) key = 'Ctrl ' + key;
+          if(event.shiftKey || $scope.force_shift) key = 'Shift ' + key;
+          if(event.ctrlKey || $scope.force_ctrl) key = 'Ctrl ' + key;
           if(event.altKey) key = 'Alt ' + key;
           // console.log(key);
           

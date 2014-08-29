@@ -926,6 +926,18 @@
     </svg>
   </div>
   <div style="display:inline-block;vertical-align:top;width:350px">
+    <div style="">
+      <button ng-style="{
+              'background-color': force_ctrl ? '#6F6' : 'none'
+              }"
+              ng-click="force_ctrl = !force_ctrl"
+              >Ctrl</button>
+      <button ng-style="{
+              'background-color': force_shift ? '#6F6' : 'none'
+              }"
+              ng-click="force_shift = !force_shift"
+              >Shift</button>
+    </div>
     <div style="border:1px solid black;max-height:300px;overflow-y:scroll;">
       <strong>Current Mode :</strong> {{modes.current.name}}<br />
       <strong>Mode Group :</strong> {{modes.current.group}}<br />
