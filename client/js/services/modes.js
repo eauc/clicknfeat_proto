@@ -10,6 +10,7 @@ angular.module('vassalApp.services')
     'model_drag_mode',
     'model_target_mode',
     'template_mode',
+    'template_locked_mode',
     'template_create_mode',
     'template_drag_mode',
     'template_origin_mode',
@@ -28,6 +29,7 @@ angular.module('vassalApp.services')
              model_drag_mode,
              model_target_mode,
              template_mode,
+             template_locked_mode,
              template_create_mode,
              template_drag_mode,
              template_origin_mode,
@@ -46,6 +48,7 @@ angular.module('vassalApp.services')
       modes['model_drag'] = model_drag_mode(modes, common);
       modes['model_target'] = model_target_mode(modes, common);
       modes['template'] = template_mode(modes, common);
+      modes['template_locked'] = template_locked_mode(modes, common);
       modes['template_create'] = template_create_mode(modes, common);
       modes['template_drag'] = template_drag_mode(modes, common);
       modes['template_origin'] = template_origin_mode(modes, common);

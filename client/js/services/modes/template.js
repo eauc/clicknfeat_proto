@@ -127,166 +127,26 @@ angular.module('vassalApp.services')
       }
     }
   ])
-  .factory('template_mode', [
+  .factory('template_locked_mode', [
     'command',
     function(command) {
       return function(modes, common) {
         var template_mode = _.deepCopy(common);
         _.deepExtend(template_mode, {
-          name: 'Template',
+          name: 'Template Locked',
           group: 'Template',
-          'D': function(scope) {
-            if(scope.game.templates.active.type === 'aoe' &&
-               !scope.game.templates.active.locked) {
-              scope.doAoEDeviation();
+          enter: function(scope) {
+            if(!scope.game.templates.active.locked) {
+              modes.goTo('template', scope);
             }
           },
           'L': function(scope) {
             scope.game.newCommand(command('onActiveTemplate', 'toggleLocked'));
-          },
-          'O': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              modes.goTo('template_origin', scope);
-            }
-          },
-          'R': function(scope) {
-            if(scope.game.ruler.state.active &&
-               !scope.game.templates.active.locked) {
-              var x = scope.game.ruler.model_end ? 
-                  scope.game.ruler.model_end.state.x : scope.game.ruler.state.x2;
-              var y = scope.game.ruler.model_end ? 
-                  scope.game.ruler.model_end.state.y : scope.game.ruler.state.y2;
-              // console.log(scope.game.ruler.state);
-              var rot = Math.atan2(scope.game.ruler.state.x2-scope.game.ruler.state.x1,
-                                   -(scope.game.ruler.state.y2-scope.game.ruler.state.y1)) *
-                  180 / Math.PI;
-              scope.game.newCommand(command('onActiveTemplate', 'set', x, y, rot));
-            }
-          },
-          'T': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              modes.goTo('template_target', scope);
-            }
-          },
-          '0': function(scope) {
-            if(scope.game.templates.active.type === 'spray' &&
-               !scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 10));
-            }
-          },
-          '3': function(scope) {
-            if(scope.game.templates.active.type === 'aoe' &&
-               !scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 3));
-            }
-          },
-          '4': function(scope) {
-            if(scope.game.templates.active.type === 'aoe' &&
-               !scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 4));
-            }
-          },
-          '5': function(scope) {
-            if(scope.game.templates.active.type === 'aoe' &&
-               !scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 5));
-            }
-          },
-          '6': function(scope) {
-            if(scope.game.templates.active.type === 'spray' &&
-               !scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 6));
-            }
-          },
-          '8': function(scope) {
-            if(scope.game.templates.active.type === 'spray' &&
-               !scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 8));
-            }
+            modes.goTo('template');
           },
           'Delete': function(scope) {
             scope.game.newCommand(command('deleteActiveTemplate'));
             modes.goTo('default', scope);
-          },
-          'Up': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'moveFront', false));
-            }
-          },
-          'Shift Up': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'moveFront', true));
-            }
-          },
-          'Ctrl Up': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'moveUp', false));
-            }
-          },
-          'Ctrl Shift Up': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'moveUp', true));
-            }
-          },
-          'Left': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'rotateLeft', false));
-            }
-          },
-          'Shift Left': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'rotateLeft', true));
-            }
-          },
-          'Ctrl Left': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'moveLeft', false));
-            }
-          },
-          'Ctrl Shift Left': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'moveLeft', true));
-            }
-          },
-          'Right': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'rotateRight', false));
-            }
-          },
-          'Shift Right': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'rotateRight', true));
-            }
-          },
-          'Ctrl Right': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'moveRight', false));
-            }
-          },
-          'Ctrl Shift Right': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'moveRight', true));
-            }
-          },
-          'Down': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'moveBack', false));
-            }
-          },
-          'Shift Down': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'moveBack', true));
-            }
-          },
-          'Ctrl Down': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'moveDown', false));
-            }
-          },
-          'Ctrl Shift Down': function(scope) {
-            if(!scope.game.templates.active.locked) {
-              scope.game.newCommand(command('onActiveTemplate', 'moveDown', true));
-            }
           },
           // ------------------------------------------------------------------
           'DragStart': function(scope, event, drag, dx, dy) {
@@ -308,6 +168,7 @@ angular.module('vassalApp.services')
                 }
                 else {
                   scope.game.templates.active = drag.target;
+                  modes.goTo('template');
                 }
                 break;
               }
@@ -316,6 +177,167 @@ angular.module('vassalApp.services')
                 scope.game.templates.active = null;
                 modes['default']['Click'].apply(modes['default'],
                                             Array.prototype.slice.call(arguments));
+                modes.goTo('default', scope);
+              }
+            }
+          },
+        });
+        return template_mode;
+      }
+    }
+  ])
+  .factory('template_mode', [
+    'command',
+    function(command) {
+      return function(modes, common) {
+        var template_mode = _.deepCopy(common);
+        _.deepExtend(template_mode, {
+          name: 'Template',
+          group: 'Template',
+          enter: function(scope) {
+            if(scope.game.templates.active.locked) {
+              modes.goTo('template_locked', scope);
+            }
+          },
+          'D': function(scope) {
+            if(scope.game.templates.active.type === 'aoe') {
+              scope.doAoEDeviation();
+            }
+          },
+          'L': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'toggleLocked'));
+            modes.goTo('template');
+          },
+          'O': function(scope) {
+            modes.goTo('template_origin', scope);
+          },
+          'R': function(scope) {
+            if(scope.game.ruler.state.active) {
+              var x = scope.game.ruler.model_end ? 
+                  scope.game.ruler.model_end.state.x : scope.game.ruler.state.x2;
+              var y = scope.game.ruler.model_end ? 
+                  scope.game.ruler.model_end.state.y : scope.game.ruler.state.y2;
+              // console.log(scope.game.ruler.state);
+              var rot = Math.atan2(scope.game.ruler.state.x2-scope.game.ruler.state.x1,
+                                   -(scope.game.ruler.state.y2-scope.game.ruler.state.y1)) *
+                  180 / Math.PI;
+              scope.game.newCommand(command('onActiveTemplate', 'set', x, y, rot));
+            }
+          },
+          'T': function(scope) {
+            modes.goTo('template_target', scope);
+          },
+          '0': function(scope) {
+            if(scope.game.templates.active.type === 'spray') {
+              scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 10));
+            }
+          },
+          '3': function(scope) {
+            if(scope.game.templates.active.type === 'aoe') {
+              scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 3));
+            }
+          },
+          '4': function(scope) {
+            if(scope.game.templates.active.type === 'aoe') {
+              scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 4));
+            }
+          },
+          '5': function(scope) {
+            if(scope.game.templates.active.type === 'aoe') {
+              scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 5));
+            }
+          },
+          '6': function(scope) {
+            if(scope.game.templates.active.type === 'spray') {
+              scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 6));
+            }
+          },
+          '8': function(scope) {
+            if(scope.game.templates.active.type === 'spray') {
+              scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 8));
+            }
+          },
+          'Delete': function(scope) {
+            scope.game.newCommand(command('deleteActiveTemplate'));
+            modes.goTo('default', scope);
+          },
+          'Up': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'moveFront', false));
+          },
+          'Shift Up': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'moveFront', true));
+          },
+          'Ctrl Up': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'moveUp', false));
+          },
+          'Ctrl Shift Up': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'moveUp', true));
+          },
+          'Left': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'rotateLeft', false));
+          },
+          'Shift Left': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'rotateLeft', true));
+          },
+          'Ctrl Left': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'moveLeft', false));
+          },
+          'Ctrl Shift Left': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'moveLeft', true));
+          },
+          'Right': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'rotateRight', false));
+          },
+          'Shift Right': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'rotateRight', true));
+          },
+          'Ctrl Right': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'moveRight', false));
+          },
+          'Ctrl Shift Right': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'moveRight', true));
+          },
+          'Down': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'moveBack', false));
+          },
+          'Shift Down': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'moveBack', true));
+          },
+          'Ctrl Down': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'moveDown', false));
+          },
+          'Ctrl Shift Down': function(scope) {
+            scope.game.newCommand(command('onActiveTemplate', 'moveDown', true));
+          },
+          // ------------------------------------------------------------------
+          'DragStart': function(scope, event, drag, dx, dy) {
+            if(drag.event === 'Template') {
+              scope.game.templates.active = drag.target;
+              drag.target.startDraging();
+
+              modes.goTo('template_drag', scope);
+            }
+          },
+          'Click': function(scope, event, drag, dx, dy) {
+            switch(drag.event)
+            {
+            case 'Template': 
+              {
+                if(scope.game.templates.active === drag.target) {
+                  scope.game.templates.active = null;
+                  modes.goTo('default', scope);
+                }
+                else {
+                  scope.game.templates.active = drag.target;
+                  modes.goTo('template');
+                }
+                break;
+              }
+            case 'Model':
+              {
+                scope.game.templates.active = null;
+                modes['default']['Click'].apply(modes['default'],
+                                                Array.prototype.slice.call(arguments));
                 modes.goTo('default', scope);
               }
             }

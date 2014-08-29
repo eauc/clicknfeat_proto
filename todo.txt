@@ -30,11 +30,10 @@ Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui 
 model_selected_mode
 template_locked_mode
 
-mode.group = default/ruller/template
-
-afficher les menus en fonction du mode
 afficher les raccourcis en fonction du mode : brutalement, objets commands dans le mode (execute + desc = function qui se fait passer la key d'event et retourne une liste d'items).
+
 cette description a un bouton qui permet de faire la commande a la main si possible, en emettant l'evenement clavier sur le mode courant
+
 reflechir pour chaque mode les transitions autorisees vers d'autre modes.
 chaque menu a son controleur et partial inclus dans la page principale.
 

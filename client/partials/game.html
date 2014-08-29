@@ -375,6 +375,7 @@
                 ng-style="{
                  'stroke': aoe === game.templates.active ? '#0F0' : '#C60',
                 }"
+                ng-mousedown="onTemplateMouseDown($event, aoe)"
                 />
         <polygon ng-repeat="sp in templateShowLocked('spray')"
                  points="
@@ -398,6 +399,7 @@
                  ng-style="{
                  'stroke': sp === game.templates.active ? '#0F0' : '#C60',
                  }"
+                 ng-mousedown="onTemplateMouseDown($event, sp)"
                  />
       </svg>
       <svg id="model-canvas"
