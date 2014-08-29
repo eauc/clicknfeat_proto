@@ -8,6 +8,7 @@ angular.module('vassalApp.services')
         var los_mode = _.deepCopy(common);
         _.deepExtend(los_mode, {
           name: 'LoS',
+          group: 'LoS',
           'Shift L': function(scope) {
             if(scope.game.los.state.active) {
               scope.game.newCommand(command('onLos', 'setActive', false));
@@ -30,6 +31,7 @@ angular.module('vassalApp.services')
         var los_drag_mode = _.deepCopy(common);
         _.deepExtend(los_drag_mode, {
           name: 'LoS Drag',
+          group: 'LoS',
           'Drag': function(scope, event, drag, user_x, user_y) {
             scope.game.los.setEnd(user_x, user_y);
           },

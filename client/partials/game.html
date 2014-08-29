@@ -824,6 +824,34 @@
             stroke:#00F;
             stroke-width:0.5px;
             " />
+      <circle ng-show="
+              modes.current.group === 'Ruler' &&
+              modes.current.origin !== null
+              "
+              cx="{{modes.current.origin.state.x}}"
+              cy="{{modes.current.origin.state.y}}"
+              r="{{modes.current.origin.info.r}}"
+              style="
+              fill:none;
+              stroke:#F90;
+              stroke-width:1px;
+              pointer-events: none;
+              "
+              />
+      <circle ng-show="
+              modes.current.group === 'Ruler' &&
+              modes.current.target !== null
+              "
+              cx="{{modes.current.target.state.x}}"
+              cy="{{modes.current.target.state.y}}"
+              r="{{modes.current.target.info.r}}"
+              style="
+              fill:none;
+              stroke:#F09;
+              stroke-width:1px;
+              pointer-events: none;
+              "
+              />
       <g ng-show="game.ruler.state.active"
          style="pointer-events: none"
          >
@@ -864,38 +892,6 @@
             pointer-events: none;
             "
             />
-      <circle ng-show="
-              (modes.current.name === 'Ruler' ||
-               modes.current.name === 'Ruler Origin' ||
-               modes.current.name === 'Ruler Target') &&
-              modes.current.origin !== null
-              "
-              cx="{{modes.current.origin.state.x}}"
-              cy="{{modes.current.origin.state.y}}"
-              r="{{modes.current.origin.info.r}}"
-              style="
-              fill:none;
-              stroke:#F90;
-              stroke-width:1px;
-              pointer-events: none;
-              "
-              />
-      <circle ng-show="
-              (modes.current.name === 'Ruler' ||
-               modes.current.name === 'Ruler Origin' ||
-               modes.current.name === 'Ruler Target') &&
-              modes.current.target !== null
-              "
-              cx="{{modes.current.target.state.x}}"
-              cy="{{modes.current.target.state.y}}"
-              r="{{modes.current.target.info.r}}"
-              style="
-              fill:none;
-              stroke:#F09;
-              stroke-width:1px;
-              pointer-events: none;
-              "
-              />
       <g ng-show="modes.current.name === 'Model Drag'"
          style="pointer-events: none"
          >
@@ -929,7 +925,8 @@
   </div>
   <div style="display:inline-block;vertical-align:top;width:350px">
     <div style="border:1px solid black;max-height:300px;overflow-y:scroll;">
-      <strong>Current Mode :</strong> {{modes.current.name}}
+      <strong>Current Mode :</strong> {{modes.current.name}}<br />
+      <strong>Mode Group :</strong> {{modes.current.group}}<br />
     </div>
     <div ng-show="game.selection.length === 1"
          style="border:1px solid black;max-height:300px;overflow-y:scroll;">
@@ -1300,9 +1297,7 @@
       <div>
         Ruler :
         <button ng-style="{
-                'background-color': (modes.current.name === 'Ruler' ||
-                                     modes.current.name === 'Ruler Origin' ||
-                                     modes.current.name === 'Ruler Target') ? '#6F6' : 'none'
+                'background-color': modes.current.group === 'Ruler' ? '#6F6' : 'none'
                 }"
                 ng-click="doToggleRulerMode()"
                 >

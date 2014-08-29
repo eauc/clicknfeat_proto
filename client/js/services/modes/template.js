@@ -8,6 +8,7 @@ angular.module('vassalApp.services')
         var template_drag_mode = _.deepCopy(common);
         _.deepExtend(template_drag_mode, {
           name: 'Template Drag',
+          group: 'Template',
           'Drag': function(scope, event, drag, user_x, user_y, dx, dy) {
             scope.game.templates.active.draging(scope.game, dx, dy);
           },
@@ -29,6 +30,7 @@ angular.module('vassalApp.services')
         var template_origin_mode = _.deepCopy(common);
         _.deepExtend(template_origin_mode, {
           name: 'Template Origin',
+          group: 'Template',
           'Click': function(scope, event, drag) {
             if(drag.event === 'Model') {
               var model = drag.target;
@@ -66,6 +68,7 @@ angular.module('vassalApp.services')
         var template_target_mode = _.deepCopy(common);
         _.deepExtend(template_target_mode, {
           name: 'Template Target',
+          group: 'Template',
           'Click': function(scope, event, drag) {
             if(drag.event === 'Model') {
               var model = drag.target;
@@ -131,6 +134,7 @@ angular.module('vassalApp.services')
         var template_mode = _.deepCopy(common);
         _.deepExtend(template_mode, {
           name: 'Template',
+          group: 'Template',
           'D': function(scope) {
             if(scope.game.templates.active.type === 'aoe' &&
                !scope.game.templates.active.locked) {
@@ -202,6 +206,7 @@ angular.module('vassalApp.services')
           },
           'Delete': function(scope) {
             scope.game.newCommand(command('deleteActiveTemplate'));
+            modes.goTo('default');
           },
           'Up': function(scope) {
             if(!scope.game.templates.active.locked) {

@@ -8,6 +8,7 @@ angular.module('vassalApp.services')
         var ruler_mode = _.deepCopy(common);
         _.deepExtend(ruler_mode, {
           name: 'Ruler',
+          group: 'Ruler',
           'O': function(scope) {
             modes['ruler_origin'].origin = this.origin;
             modes['ruler_origin'].target = this.target;
@@ -40,6 +41,7 @@ angular.module('vassalApp.services')
         var ruler_drag_mode = _.deepCopy(common);
         _.deepExtend(ruler_drag_mode, {
           name: 'Ruler Drag',
+          group: 'Ruler',
           'Drag': function(scope, event, drag, user_x, user_y, dx, dy) {
             var length = Math.sqrt(dx*dx + dy*dy);
             var display_length = length;
@@ -78,6 +80,7 @@ angular.module('vassalApp.services')
         var ruler_origin_mode = _.deepCopy(common);
         _.deepExtend(ruler_origin_mode, {
           name: 'Ruler Origin',
+          group: 'Ruler',
           'Click': function(scope, event, drag) {
             if(drag.event !== 'Model') return;
             var model = drag.target;
@@ -101,6 +104,7 @@ angular.module('vassalApp.services')
         var ruler_target_mode = _.deepCopy(common);
         _.deepExtend(ruler_target_mode, {
           name: 'Ruler Target',
+          group: 'Ruler',
           'Click': function(scope, event, drag) {
             if(drag.event !== 'Model') return;
             var model = drag.target;
