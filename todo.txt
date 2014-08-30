@@ -27,10 +27,7 @@ Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui 
 - limiter distance drag model comme ruler
 
 =======================================================================================
-
-afficher les raccourcis en fonction du mode : brutalement, objets commands dans le mode (execute + desc = function qui se fait passer la key d'event et retourne une liste d'items).
-
-cette description a un bouton qui permet de faire la commande a la main si possible, en emettant l'evenement clavier sur le mode courant
+afficher les raccourcis en fonction du mode : objets commands dans le mode (execute + desc = function qui se fait passer la key d'event et retourne une liste d'items).
 
 reflechir pour chaque mode les transitions autorisees vers d'autre modes.
 
