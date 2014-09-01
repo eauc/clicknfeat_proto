@@ -1,19 +1,27 @@
+- colorer la cible en rouge si pas within range du ruler.
+- memoriser l'origin de l'AoE (et la colorer) pour reorient l'AoE a chaque placement (+ effacer quand on l'oriente a la main)
+- recuperer les infos origin/target de l'AoE ou du Ruler pour calculer la deviation max.
+- renomer compteur focus en Counter/Number.
+- ramener les figs pas dans la zone lors de la creation (wrap around ?)
+
+- mode charge basic : shortcut to trigger then orient from starting position, orient to target, move only front/back, draw charge lane, color target when within active melee range.
+
+- unit numbers.
+- select whole unit.
+- highlight all unit members.
+- tablet demo docks.
+
+- mode ranged attack.
 
 - sauvegarde des models selectionnes dans un fichier pour import ulterieur ? -> avec la meme formation, et permet la save des labels, etc.
 - auto deviate model (max distance?, origin?)
 - auto-slam model
 - place model to ruler end
-
-- tablet demo
-
 - split factions files in subfiles
 - immovable models
 
 - models with specials ?
 
-- model unit number
-- mode charge.
-- mode ranged attack.
 
 - flag to disable drag preview to prevent pre-measuring
 - text no highlight
@@ -27,7 +35,5 @@ Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui 
 - limiter distance drag model comme ruler
 
 =======================================================================================
-afficher les raccourcis en fonction du mode : objets commands dans le mode (execute + desc = function qui se fait passer la key d'event et retourne une liste d'items).
-
 reflechir pour chaque mode les transitions autorisees vers d'autre modes.
 
