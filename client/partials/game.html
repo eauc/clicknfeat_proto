@@ -704,7 +704,8 @@
                   pointer-events: none;
                   "
                   />
-            <line x1="{{game.models[game.selection[0]].state.x-700}}"
+            <line ng-if="game.selection.length === 1"
+                  x1="{{game.models[game.selection[0]].state.x-700}}"
                   y1="{{game.models[game.selection[0]].state.y}}"
                   x2="{{game.models[game.selection[0]].state.x+700}}"
                   y2="{{game.models[game.selection[0]].state.y}}"
