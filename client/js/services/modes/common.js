@@ -11,7 +11,7 @@ angular.module('vassalApp.services')
           leave: function() {},
           'Ctrl Z': function(scope) {
             scope.game.undoLastCommand();
-            modes.current = modes['default'];
+            modes.goTo('default', scope);
           },
           'Alt 0': function(scope) {
             scope.game.board.reset();
