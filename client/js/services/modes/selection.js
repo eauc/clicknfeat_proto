@@ -39,7 +39,7 @@ angular.module('vassalApp.services')
                   models_selected.push(model.state.id);
                 }
               });
-              if(event.ctrlKey || scope.force_ctrl) {
+              if(event.ctrlKey || scope.force.ctrl) {
                 scope.game.newCommand(command('addToSelection', models_selected));
                 if(scope.game.selection.length > 0) {
                   scope.model_view.label = scope.game.models[scope.game.selection[0]].state.label;

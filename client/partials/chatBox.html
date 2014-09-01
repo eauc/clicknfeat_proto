@@ -16,16 +16,16 @@
     <button style="width:15%;"
             type="submit">Send</button>
   </form>
-  <div>
-    <strong>New Messages :</strong>
-  </div>
+  <!-- <div>
+  <strong>New Messages :</strong>
+  </div> -->
   <div ng-repeat="msg in game.new_messages.slice().reverse()">
     {{msg.type}} - {{msg.text}}
   </div>
-  <div>
-    <strong>Messages :</strong>
-  </div>
+  <!-- <div>
+  <strong>Messages :</strong>
+  </div> -->
   <div ng-repeat="msg in game.messages.slice().reverse()">
-    {{msg.type}} - {{msg.text}}
+    &#8594; {{msg.type}} - {{msg.text}}
   </div>
 </div>

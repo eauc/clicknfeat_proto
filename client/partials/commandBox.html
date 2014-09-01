@@ -1,16 +1,13 @@
 <div>
   <div>
-    <strong>New Commands :</strong>
-    <button ng-click="game.undoLastCommand()">Undo</button>
+    <strong>Commands :</strong>
+    <button title="(Ctrl + 'Z')"
+            ng-click="game.undoLastCommand()">Undo</button>
   </div>
   <div ng-repeat="cmd in game.new_commands.slice().reverse()">
     {{cmd.desc()}} - {{cmd.stamp}}
   </div>
-  <div>
-    <strong>Commands :</strong>
-    <button ng-click="game.undoLastCommand()">Undo</button>
-  </div>
   <div ng-repeat="cmd in game.commands.slice().reverse()">
-    {{cmd.desc()}} - {{cmd.stamp}}
+    &#8594; {{cmd.desc()}} - {{cmd.stamp}}
   </div>
 </div>

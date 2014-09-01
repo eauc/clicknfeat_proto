@@ -1,14 +1,35 @@
 <div>
-  <strong>Ruler Commands</strong>
+  <!-- <strong>Ruler Commands</strong>
   <ul style="
-      margin:0px;
-      padding:0px;
-      list-style-type:none;
-      "
-      >
-    <li>Measure distance (Drag on board)</li>
-    <li><button ng-click="sendKey('O', $event)">Set Origin</button> ('O')</li>
-    <li><button ng-click="sendKey('T', $event)">Set Target</button> ('T')</li>
-    <li><button ng-click="sendKey('Shift R', $event)">Exit</button> (Shift + 'R')</li>
-  </ul>
+  margin:0px;
+  padding:0px;
+  list-style-type:none;
+  "
+  >
+  <li>Measure distance (Drag on board)</li>
+  <li><button ng-click="sendKey('Shift R', $event)">Exit</button> (Shift + 'R')</li>
+  </ul> -->
+  <strong>Ruler</strong>
+  <table style="border-collapse:collapse;">
+    <tr ng-click="command_last_click=''">
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('O')"
+                ng-click="sendKey('O', $event)">Set Origin</button>
+      </td>
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('T')"
+                ng-click="sendKey('T', $event)">Set Target</button>
+      </td>
+    </tr>
+  </table>
 </div>

@@ -28,6 +28,41 @@ angular.module('vassalApp.controllers')
 
       $scope.modes = modes;
 
+      $scope.auras = {
+        '0': {
+          color: 'none',
+          name: 'Off',
+        },
+        '1': {
+          color: '#0FF',
+          name: 'Cyan',
+        },
+        '2': {
+          color: '#F0F',
+          name: 'Purple',
+        },
+        '3': {
+          color: '#FF0',
+          name: 'Yellow',
+        },
+        '4': {
+          color: '#00F',
+          name: 'Blue',
+        },
+        '5': {
+          color: '#0F0',
+          name: 'Green',
+        },
+        '6': {
+          color: '#F00',
+          name: 'Red',
+        },
+      };
+      $scope.model_selected_aura = '0';
+      $scope.model_selected_aoe = '3';
+      $scope.model_selected_melee = 'M';
+      $scope.force = {};
+
       $scope.drag = {
         start_x: 0, start_y: 0,
       };
@@ -35,7 +70,7 @@ angular.module('vassalApp.controllers')
       $scope.aoe = {
         max_deviation: 6
       };
-      $scope.menu_view = 'tools';
+      $scope.menu_view = 'main';
 
       if(!$stateParams.id || $stateParams.id.length <= 0) $state.go('start');
 
@@ -96,6 +131,9 @@ angular.module('vassalApp.controllers')
           $scope.modes.send(key, $scope, event)
             .then(function() {
               event.preventDefault();
+              if($scope.force.ctrl !== 'lock') $scope.force.ctrl = false;
+              if($scope.force.shift !== 'lock') $scope.force.shift = false;
+              if($scope.force.alt !== 'lock') $scope.force.alt = false;
             })
         }
         $scope.onKeyDown = function(event) {
@@ -123,18 +161,18 @@ angular.module('vassalApp.controllers')
             key = KEY_CODES[event.keyCode];
           }
           else return;
-          if(event.shiftKey || $scope.force_shift) key = 'Shift ' + key;
-          if(event.ctrlKey || $scope.force_ctrl) key = 'Ctrl ' + key;
-          if(event.altKey || $scope.force_alt) key = 'Alt ' + key;
+          if(event.shiftKey || $scope.force.shift) key = 'Shift ' + key;
+          if(event.ctrlKey || $scope.force.ctrl) key = 'Ctrl ' + key;
+          if(event.altKey || $scope.force.alt) key = 'Alt ' + key;
           // console.log(key);
           
           keyHandler(key, event);
         };
         $scope.sendKey = function(key, event, meta_keys) {
           if(meta_keys) {
-            if(event.shiftKey || $scope.force_shift) key = 'Shift ' + key;
-            if(event.ctrlKey || $scope.force_ctrl) key = 'Ctrl ' + key;
-            if(event.altKey || $scope.force_alt) key = 'Alt ' + key;
+            if(event.shiftKey || $scope.force.shift) key = 'Shift ' + key;
+            if(event.ctrlKey || $scope.force.ctrl) key = 'Ctrl ' + key;
+            if(event.altKey || $scope.force.alt) key = 'Alt ' + key;
           }
           keyHandler(key, event);
         };

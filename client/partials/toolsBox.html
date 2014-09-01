@@ -1,21 +1,77 @@
 <div ng-controller="toolsBoxCtrl">
-  <div><strong>Tools :</strong></div>
   <div>
-    Ruler :
-    <button ng-style="{
+    <button style="
+            width: 50px;
+            height: 50px;
+            align:center;
+            "
+            ng-style="{
             'background-color': modes.current.group === 'Ruler' ? '#6F6' : 'none'
             }"
+            title="(Shift + 'R')"
             ng-click="doToggleRulerMode()"
+            ng-disabled="
+            modes.current.group !== 'Default' &&
+            modes.current.group !== 'Ruler'
+            "
             >
-      Use
+      Use Ruler
     </button>
-    <button ng-style="{
+    <button style="
+            width: 50px;
+            height: 50px;
+            align:center;
+            "
+            ng-style="{
             'background-color': (game.ruler.state.active) ? '#6F6' : 'none'
             }"
             ng-click="game.ruler.setActive(!game.ruler.state.active)"
             >
-      Show
+      Show Ruler
     </button>
+    <button style="
+            width: 50px;
+            height: 50px;
+            align:center;
+            "
+            ng-style="{
+            'background-color': (modes.current.group === 'LoS') ? '#6F6' : 'none'
+            }"
+            title="(Shift + 'L')"
+            ng-click="doToggleLosMode()"
+            ng-disabled="
+            modes.current.group !== 'Default' &&
+            modes.current.group !== 'LoS'
+            "
+            >
+      Use LOS
+    </button>
+    <button style="
+            width: 50px;
+            height: 50px;
+            align:center;
+            "
+            ng-click="doCreateTemplate('aoe',3)"
+            ng-disabled="modes.current.group !== 'Default'"
+            >New AoE</button>
+    <button style="
+            width: 50px;
+            height: 50px;
+            align:center;
+            "
+            ng-click="doCreateTemplate('spray',6)"
+            ng-disabled="modes.current.group !== 'Default'"
+            >New Spray</button>
+    <button style="
+            width: 60px;
+            height: 50px;
+            align:center;
+            "
+            title="(Escape)"
+            ng-click="sendKey('Escape', $event)">Default mode</button>
+  </div>
+  <div ng-show="modes.current.group === 'Ruler'">
+    Ruler Max Range :
     <input style="display:inline-block;width:5em;"
            type="number"
            ng-model="game.ruler.state.range"
@@ -24,28 +80,5 @@
            ng-keydown="stopKeyPropagation($event)"
            ng-keypress="stopKeyPropagation($event)"
            />
-  </div>
-  <div>
-    LOS :
-    <button ng-style="{
-            'background-color': (modes.current.name === 'LoS') ? '#6F6' : 'none'
-            }"
-            ng-click="doToggleLosMode()"
-            >
-      Use
-    </button>
-  </div>
-  <div>
-    <button ng-click="doCreateTemplate('aoe',3)">New AoE</button>
-    <form style="display:inline;"
-          ng-show="game.templates.active.type === 'aoe'">
-      Max Deviation : <input style="width:5em;"
-                             type="number"
-                             ng-model="aoe.max_deviation"
-                             ng-keydown="stopKeyPropagation($event)"
-                             ng-keypress="stopKeyPropagation($event)"
-                             />
-    </form><br />
-    <button ng-click="doCreateTemplate('spray',6)">New Spray</button>
   </div>
 </div>

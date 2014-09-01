@@ -64,7 +64,7 @@ angular.module('vassalApp.services')
             {
             case 'Model':
               {
-                if(event.ctrlKey || scope.force_ctrl) {
+                if(event.ctrlKey || scope.force.ctrl) {
                   if(0 <= _.indexOf(scope.game.selection, drag.target.state.id)) {
                     scope.game.newCommand(command('removeFromSelection', [drag.target.state.id]));
                   }

@@ -1,43 +1,27 @@
 <div>
-  <strong>Current Mode :</strong> {{modes.current.name}}<br />
-  <strong>Mode Group :</strong> {{modes.current.group}}<br />
-  <div style="background-color:#6CC;"
-       ng-include="'partials/modes/'+modes.current.template">
+  <!-- <strong>{{modes.current.name}}</strong> -->
+  <div ng-include="'partials/modes/'+modes.current.template">
   </div>
-  <div style="font-size:0.75em">
-    <strong>View Commands</strong>
-    <ul style="
-        margin:0px;
-        padding:0px;
-        list-style-type:none;
-        "
-        >
-      <li>Move view (Alt + Arrows)</li>
-      <li><button ng-click="sendKey('Alt Add', $event)">Zoom in</button> (Alt + '+')</li>
-      <li><button ng-click="sendKey('Alt Substract', $event)">Zoom out</button> (Alt + '-')</li>
-      <li><button ng-click="sendKey('Alt 0', $event)">Reset</button> (Alt + '0')</li>
-    </ul>
-  </div>
-  <div style="font-size:0.75em">
-    <strong>Generic Commands</strong>
-    <ul style="
-        margin:0px;
-        padding:0px;
-        list-style-type:none;
-        "
-        >
-      <li><button ng-click="sendKey('Escape', $event)">Default mode</button> (Escape)</li>
-      <li><button ng-click="sendKey('Ctrl Z', $event)">Undo</button> last command (Ctrl + 'Z')</li>
-    </ul>
-    <ul style="
-        margin:0px;
-        padding:0px;
-        list-style-type:none;
-        "
-        ng-if="modes.current.group === 'Default'">
-      <li>Select Model (Click on model)</li>
-      <li>Select Mulptiple Models (Drag-box on models)</li>
-      <li>Select Template (Click on template)</li>
-    </ul>
-  </div>
+  <!-- <div style="font-size:0.75em">
+  <strong>Generic Commands</strong>
+  <ul style="
+  margin:0px;
+  padding:0px;
+  list-style-type:none;
+  "
+  >
+  <li><button ng-click="sendKey('Escape', $event)">Default mode</button> (Escape)</li>
+  <li><button ng-click="sendKey('Ctrl Z', $event)">Undo</button> last command (Ctrl + 'Z')</li>
+  </ul>
+  <ul style="
+  margin:0px;
+  padding:0px;
+  list-style-type:none;
+  "
+  ng-if="modes.current.group === 'Default'">
+  <li>Select Model (Click on model)</li>
+  <li>Select Mulptiple Models (Drag-box on models)</li>
+  <li>Select Template (Click on template)</li>
+  </ul>
+  </div> -->
 </div>

@@ -1,49 +1,325 @@
 <div>
-  <strong>Model Selected Commands</strong>
-  <ul style="
-      margin:0px;
-      padding:0px;
-      list-style-type:none;
-      "
-      >
-    <li>Position model(s) (Drag model)</li>
-    <li>Move model(s) ([Shift +][Ctrl +] Arrows)</li>
-    <li>Select a model (Click on model)</li>
-    <li>Add a model to selection (Ctrl + Click on model)</li>
-    <li>Remove a model from selection (Ctrl + Click on selected model)</li>
-    <li><button ng-click="sendKey('Ctrl C', $event)">Copy</button> (Ctrl+'C')</li>
-    <li><button ng-click="sendKey('U', $event)">Unselect All</button> ('E')</li>
-    <li><button ng-click="sendKey('T', $event)">Set Target</button> ('T')</li>
-    <li><button ng-click="sendKey('Ctrl N', $event)">Orient North</button> (Ctrl+'N')</li>
-    <li><button ng-click="sendKey('Ctrl E', $event)">Orient East</button> (Ctrl+'E')</li>
-    <li><button ng-click="sendKey('Ctrl W', $event)">Orient West</button> (Ctrl+'W')</li>
-    <li><button ng-click="sendKey('Ctrl S', $event)">Orient South</button> (Ctrl+'S')</li>
-    <li><button ng-click="sendKey('M', $event)">Toggle Melee</button> ('M')</li>
-    <li><button ng-click="sendKey('R', $event)">Toggle Reach</button> ('R')</li>
-    <li><button ng-click="sendKey('F', $event)">Toggle Focus</button> ('F')</li>
-    <li><button ng-click="sendKey('Add', $event)">Incr. Focus</button> ('Add')</li>
-    <li><button ng-click="sendKey('Substract', $event)">Decr. Focus</button> ('Substract')</li>
-    <li><button ng-click="sendKey('I', $event)">Toggle Image</button> ('I')</li>
-    <li><button ng-click="sendKey('Shift C', $event)">Toggle Ctrl Area</button> (Shift+'C')</li>
-    <li><button ng-click="sendKey('Alt B', $event)">Toggle Blind</button> (Alt + 'B')</li>
-    <li><button ng-click="sendKey('Alt C', $event)">Toggle Corrosion</button> (Alt + 'C')</li>
-    <li><button ng-click="sendKey('Alt F', $event)">Toggle Fire</button> (Alt + 'F')</li>
-    <li><button ng-click="sendKey('Alt I', $event)">Toggle Incorporeal</button> (Alt + 'I')</li>
-    <li><button ng-click="sendKey('Alt K', $event)">Toggle KD</button> (Alt + 'K')</li>
-    <li><button ng-click="sendKey('Alt L', $event)">Toggle Leader</button> (Alt + 'L')</li>
-    <li><button ng-click="sendKey('Alt S', $event)">Toggle Stationary</button> (Alt + 'S')</li>
-    <li><button ng-click="sendKey('Ctrl 0', $event)">Aura Off</button> (Ctrl + '0')</li>
-    <li><button ng-click="sendKey('Ctrl 1', $event)">Aura Cyan</button> (Ctrl + '1')</li>
-    <li><button ng-click="sendKey('Ctrl 2', $event)">Aura Purple</button> (Ctrl + '2')</li>
-    <li><button ng-click="sendKey('Ctrl 3', $event)">Aura Yellow</button> (Ctrl + '3')</li>
-    <li><button ng-click="sendKey('Ctrl 4', $event)">Aura Blue</button> (Ctrl + '4')</li>
-    <li><button ng-click="sendKey('Ctrl 5', $event)">Aura Green</button> (Ctrl + '5')</li>
-    <li><button ng-click="sendKey('Ctrl 6', $event)">Aura Red</button> (Ctrl + '6')</li>
-    <li><button ng-click="sendKey('3', $event)">Toggle AoE 3"</button> ('0')</li>
-    <li><button ng-click="sendKey('4', $event)">Toggle AoE 4"</button> ('0')</li>
-    <li><button ng-click="sendKey('5', $event)">Toggle AoE 5"</button> ('0')</li>
-    <li>
-      <button ng-click="sendKey('Delete', $event)">Drop</button> (Delete)
+  <!-- <strong>Model Selected Commands</strong> -->
+    <!-- <li>Position model(s)
+    <span style="font-size:0.75em">(Drag model)</span>
     </li>
-  </ul>
+    <li>Move model(s)
+    <span style="font-size:0.75em">([Shift +][Ctrl +] Arrows)</span></li>
+    <li>Select a model
+    <span style="font-size:0.75em">(Click on model)</span></li>
+    <li>Add a model to selection
+    <span style="font-size:0.75em">(Ctrl + Click on model)</span></li>
+    <li>Remove a model from selection
+    <span style="font-size:0.75em">(Ctrl + Click on selected model)</span></li> -->
+  <strong>Models</strong>
+  <table style="border-collapse:collapse;">
+    <tr ng-click="command_last_click=''">
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Ctrl+'C')"
+                ng-click="sendKey('Ctrl C', $event)">Copy</button>
+      </td>
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('Delete')"
+                ng-click="sendKey('Delete', $event)">Drop</button>
+      </td>
+    </tr>
+    <tr ng-click="command_last_click=''">
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('U')"
+                ng-click="sendKey('U', $event)">Unselect All</button>
+      </td>
+      </td>
+      <td ng-if="game.models[game.selection[0]].info.focus">
+        <button title="(Shift+'C')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('Shift C', $event)">Ctrl Area</button>
+      </td>
+      <td  ng-if="
+           !game.models[game.selection[0]].info.focus &&
+           game.models[game.selection[0]].info.type === 'warrior'
+           ">
+        <button title="(Alt+'L')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('Alt L', $event)">
+          <img src="data/icons/Leader.png" />
+        </button>
+      </li>
+    </tr>
+    <tr ng-click="command_last_click=''">
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('+')"
+                ng-click="sendKey('Add', $event)">Count +</button>
+      </td>
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('-')"
+                ng-click="sendKey('Substract', $event)">Count -</button>
+      </td>
+    </tr>
+    <tr ng-click="command_last_click=''">
+      <td>
+        <button title="(Alt+'L')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey(model_selected_melee, $event)"
+                >
+          {{model_selected_melee === 'R' ? 'Reach' : 'Melee'}}
+        </button>
+      </td>
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('F')"
+                ng-click="sendKey('F', $event)">Count</button>
+      </td>
+    </tr>
+    <tr ng-click="command_last_click=''">
+      <td colspan="2">
+        <select style="
+                width:100%;
+                height:35px;
+                padding-top:5px;
+                "
+                ng-model="model_selected_melee"
+                ng-change="sendKey(model_selected_melee, $event)"
+                >
+          <option value="M">
+            Melee ('M')
+          </option>
+          <option value="R">
+            Reach ('R')
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td ng-click="command_last_click='AoE'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('{{model_selected_aoe}}')"
+                ng-click="sendKey(model_selected_aoe, $event)"
+                >
+          AoE {{model_selected_aoe}}"
+        </button>
+      </td>
+      <td ng-click="command_last_click='Target'">
+        <button title="('T')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('T', $event)">Set Target</button>
+      </td>
+    </tr>
+    <tr ng-show="command_last_click==='AoE'">
+      <td colspan="2">
+        <select style="
+                width:100%;
+                height:35px;
+                padding-top:5px;
+                "
+                ng-model="model_selected_aoe"
+                ng-change="sendKey(model_selected_aoe, $event)">
+          <option ng-repeat="value in ['3', '4', '5']"
+                  ng-value="value">
+            {{value}}" ('{{value}}')
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td ng-click="command_last_click=''">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('I')"
+                ng-click="sendKey('I', $event)">Image</button>
+      </td>
+      <td ng-click="command_last_click='Aura'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                background-color:{{auras[model_selected_aura].color}};
+                "
+                title="(Ctrl + '{{model_selected_aura}}')"
+                ng-click="sendKey('Ctrl '+model_selected_aura, $event)"
+                >
+          Aura {{auras[model_selected_aura].name}}
+        </button>
+      </td>
+    </tr>
+    <tr ng-show="command_last_click==='Aura'">
+      <td colspan="2">
+        <select style="
+                width:100%;
+                height:35px;
+                padding-top:5px;
+                "
+                ng-model="model_selected_aura"
+                ng-change="sendKey('Ctrl '+model_selected_aura, $event)"
+                >
+          <option ng-repeat="(value, aura) in auras"
+                  ng-value="value"
+                  style="background-color: {{aura.color}}">
+            {{aura.name}}
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr ng-click="command_last_click=''">
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Ctrl+'N')"
+                ng-click="sendKey('Ctrl N', $event)">&#8593;</button>
+      </td>
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Ctrl+'S')"
+                ng-click="sendKey('Ctrl S', $event)">&#8595;</button>
+      </td>
+    </tr>
+    <tr ng-click="command_last_click=''">
+      <td>
+      <button style="
+              width: 50px;
+              height: 50px;
+              align:center;
+              "
+              title="(Ctrl+'W')"
+              ng-click="sendKey('Ctrl W', $event)">&#8592;</button>
+      </td>
+      <td>
+      <button style="
+              width: 50px;
+              height: 50px;
+              align:center;
+              "
+              title="(Ctrl+'E')"
+              ng-click="sendKey('Ctrl E', $event)">&#8594;</button>
+      </td>
+    </tr>
+    <tr ng-click="command_last_click=''">
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Alt+'B')"
+                ng-click="sendKey('Alt B', $event)">
+          <img src="data/icons/Blind.png" />
+        </button>
+      </td>
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Alt+'C')"
+                ng-click="sendKey('Alt C', $event)">
+          <img src="data/icons/Corrosion.png" />
+        </button>
+      </td>
+    </tr>
+    <tr ng-click="command_last_click=''">
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Alt+'F')"
+                ng-click="sendKey('Alt F', $event)">
+          <img src="data/icons/Fire.png" />
+        </button>
+      </td>
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Alt+'K')"
+                ng-click="sendKey('Alt K', $event)">
+          <img src="data/icons/Disrupted.png" />
+        </button>
+      </td>
+    </tr>
+    <tr ng-click="command_last_click=''">
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Alt+'S')"
+                ng-click="sendKey('Alt S', $event)">
+          <img src="data/icons/Stationary.png" />
+        </button>
+      </td>
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Alt+'I')"
+                ng-click="sendKey('Alt I', $event)">Incor- poreal</button>
+      </td>
+    </tr>
+  </table>
 </div>

@@ -1,7 +1,14 @@
 <html ng-app="vassalApp">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,height=device-height">  </head>
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,height=device-height">
+    <style>
+      *, html, body {
+       margin: 0px;
+       padding: 0px;
+      }
+    </style>
+  </head>
   <body ng-controller="mainCtrl" ondragstart="return false;" ondrop="return false;">
     <div ui-view></div>
 
