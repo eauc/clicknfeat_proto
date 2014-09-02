@@ -10,6 +10,10 @@ angular.module('vassalApp.services')
       this.y = Math.min(game.board.height,
                         this.y);
     },
+    reset: function(game, x, y, rot) {
+      this.origin = null;
+      this.set(game, x, y, rot);
+    },
     set: function(game, x, y, rot) {
       this.x = x;
       this.y = y;
@@ -20,67 +24,47 @@ angular.module('vassalApp.services')
       var dl = small ? 1 : 10;
       var dx = dl * Math.sin(this.rot * Math.PI / 180);
       var dy = -dl * Math.cos(this.rot * Math.PI / 180);
-      // console.log(dx + ' ' + dy);
       this.x += dx;
       this.y += dy;
       this.refresh(game);
-      this.origin = null;
     },
     moveBack: function(game, small) {
       var dl = small ? 1 : 10;
       var dx = -dl * Math.sin(this.rot * Math.PI / 180);
       var dy = dl * Math.cos(this.rot * Math.PI / 180);
-      // console.log(dx + ' ' + dy);
       this.x += dx;
       this.y += dy;
       this.refresh(game);
-      this.origin = null;
     },
     rotateLeft: function(game, small) {
       var dr = small ? this.drot[0] : this.drot[1];
       this.rot = this.rot - dr;
-      if(this.origin) {
-        this.x = this.origin.state.x +
-               this.origin.info.r * Math.sin(this.rot*Math.PI/180);
-        this.y = this.origin.state.y -
-               this.origin.info.r * Math.cos(this.rot*Math.PI/180);
-        this.refresh(game);
-      }
+      this.refresh(game);
     },
     moveLeft: function(game, small) {
       var dl = small ? 1 : 10;
       this.x -= dl;
       this.refresh(game);
-      this.origin = null;
     },
     moveUp: function(game, small) {
       var dl = small ? 1 : 10;
       this.y -= dl;
       this.refresh(game);
-      this.origin = null;
     },
     rotateRight: function(game, small) {
       var dr = small ? this.drot[0] : this.drot[1];
       this.rot = this.rot + dr;
-      if(this.origin) {
-        this.x = this.origin.state.x +
-               this.origin.info.r * Math.sin(this.rot*Math.PI/180);
-        this.y = this.origin.state.y -
-               this.origin.info.r * Math.cos(this.rot*Math.PI/180);
-        this.refresh(game);
-      }
+      this.refresh(game);
     },
     moveRight: function(game, small) {
       var dl = small ? 1 : 10;
       this.x += dl;
       this.refresh(game);
-      this.origin = null;
     },
     moveDown: function(game, small) {
       var dl = small ? 1 : 10;
       this.y += dl;
       this.refresh(game);
-      this.origin = null;
     },
     toggleLocked: function(game) {
       this.locked = !this.locked;
@@ -91,21 +75,50 @@ angular.module('vassalApp.services')
     },
     startDraging: function(game) {
       this.startDraging.ref = _.deepCopy(this);
-      this.origin = null;
     },
     draging: function(game, dx, dy) {
       this.x = this.startDraging.ref.x + dx;
       this.y = this.startDraging.ref.y + dy;
       this.refresh(game);
-      this.origin = null;
     }
   })
   .factory('template_aoe', [
     'template_base',
     function(template_base) {
+       var aoe_base = _.defaults({
+         type: 'aoe',
+         drot: [ 10, 60 ],
+         refresh: function(game) {
+           if(this.origin) {
+             var dx = this.x - this.origin.state.x;
+             var dy = -(this.y - this.origin.state.y);
+             this.rot = Math.atan2(dx, dy) * 180 / Math.PI;
+
+             var dist = Math.sqrt(dx*dx + dy*dy);
+             this.max_deviation = (((dist / 2)*10)>>0)/100;
+           }
+           else {
+             this.max_deviation = 6;
+           }
+           template_base.refresh.apply(this, Array.prototype.slice.call(arguments));
+         },
+         reset: function(game, x, y, rot, max_dev) {
+           template_base.reset.apply(this, Array.prototype.slice.call(arguments));
+           this.max_deviation = max_dev ? max_dev : 6;
+         },
+         rotateLeft: function(game, small) {
+           this.origin = null;
+           this.max_deviation = 6;
+           template_base.rotateLeft.apply(this, Array.prototype.slice.call(arguments));
+         },
+         rotateRight: function(game, small) {
+           this.origin = null;
+           this.max_deviation = 6;
+           template_base.rotateRight.apply(this, Array.prototype.slice.call(arguments));
+         },
+       }, template_base);
       var factory = function(data) {
-        _.extend(data, template_base);
-        data.drot = [ 10, 60 ];
+        _.extend(data, aoe_base);
         if(undefined === data.stamp) {
           data.stamp = Date.now();
         }
@@ -117,9 +130,54 @@ angular.module('vassalApp.services')
   .factory('template_spray', [
     'template_base',
     function(template_base) {
+       var spray_base = _.defaults({
+         type: 'spray',
+         drot: [2, 12],
+         max_deviation: 6,
+         refresh: function(game) {
+           if(this.origin) {
+             this.x = this.origin.state.x +
+               this.origin.info.r * Math.sin(this.rot*Math.PI/180);
+             this.y = this.origin.state.y -
+               this.origin.info.r * Math.cos(this.rot*Math.PI/180);
+           }
+           template_base.refresh.apply(this, Array.prototype.slice.call(arguments));
+         },
+         moveFront: function(game, small) {
+           this.origin = null;
+           template_base.moveFront.apply(this, Array.prototype.slice.call(arguments));
+         },
+         moveBack: function(game, small) {
+           this.origin = null;
+           template_base.moveBack.apply(this, Array.prototype.slice.call(arguments));
+         },
+         moveLeft: function(game, small) {
+           this.origin = null;
+           template_base.moveLeft.apply(this, Array.prototype.slice.call(arguments));
+         },
+         moveUp: function(game, small) {
+           this.origin = null;
+           template_base.moveUp.apply(this, Array.prototype.slice.call(arguments));
+         },
+         moveRight: function(game, small) {
+           this.origin = null;
+           template_base.moveRight.apply(this, Array.prototype.slice.call(arguments));
+         },
+         moveDown: function(game, small) {
+           this.origin = null;
+           template_base.moveDown.apply(this, Array.prototype.slice.call(arguments));
+         },
+         startDraging: function(game) {
+           this.origin = null;
+           template_base.startDraging.apply(this, Array.prototype.slice.call(arguments));
+         },
+         draging: function(game, dx, dy) {
+           this.origin = null;
+           template_base.draging.apply(this, Array.prototype.slice.call(arguments));
+         }
+       }, template_base);
       var factory = function(data) {
-        _.extend(data, template_base);
-        data.drot = [2, 12];
+        _.extend(data, spray_base);
         if(undefined === data.stamp) {
           data.stamp = Date.now();
         }

@@ -291,15 +291,6 @@ angular.module('vassalApp.controllers')
             _.filter($scope.game.models, function(model) { return model.state.show_aoe > 0; }) : [];
         };
 
-        $scope.doAoEDeviation = function() {
-          var aoe = $scope.game.templates.active;
-          var deviation = $scope.game.rollDeviation($scope.aoe.max_deviation);
-          var angle = 60 * (deviation.direction-1) + aoe.rot;
-          var new_x = aoe.x + deviation.distance * Math.sin(angle*Math.PI/180);
-          var new_y = aoe.y - deviation.distance * Math.cos(angle*Math.PI/180);
-          // console.log(deviation, new_x, new_y, angle);
-          $scope.game.newCommand(command('onActiveTemplate', 'set', new_x, new_y, angle));
-        };
         $scope.templateShowLocked = function(type) {
           return $scope.game ? 
             _.filter($scope.game.templates[type],

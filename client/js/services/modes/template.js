@@ -37,23 +37,12 @@ angular.module('vassalApp.services')
             if(drag.event === 'Model') {
               var model = drag.target;
               var active = scope.game.templates.active;
+              active.origin = model;
               if(active.type === 'aoe') {
-                var x1 = model.state.x;
-                var y1 = model.state.y;
-                var x2 = active.x;
-                var y2 = active.y;
-                var angle = Math.atan2(x2-x1, y1-y2)*180/Math.PI;
-                scope.game.newCommand(command('onActiveTemplate', 'set',
-                                              active.x, active.y, angle));
+                scope.game.newCommand(command('onActiveTemplate', 'refresh'));
               }
               else {
-                active.origin = model;
-                var x = model.state.x +
-                    model.info.r * Math.sin(active.rot*Math.PI/180);
-                var y = model.state.y -
-                    model.info.r * Math.cos(active.rot*Math.PI/180);
-                scope.game.newCommand(command('onActiveTemplate', 'set',
-                                              x, y, active.rot));
+                scope.game.newCommand(command('onActiveTemplate', 'refresh'));
               }
               modes.goTo('template', scope);
             }
@@ -207,7 +196,13 @@ angular.module('vassalApp.services')
           },
           'D': function(scope) {
             if(scope.game.templates.active.type === 'aoe') {
-              scope.doAoEDeviation();
+              var aoe = scope.game.templates.active;
+              var deviation = scope.game.rollDeviation(aoe.max_deviation);
+              var angle = 60 * (deviation.direction-1) + aoe.rot;
+              var new_x = aoe.x + deviation.distance * Math.sin(angle*Math.PI/180);
+              var new_y = aoe.y - deviation.distance * Math.cos(angle*Math.PI/180);
+              scope.game.newCommand(command('onActiveTemplate', 'reset',
+                                            new_x, new_y, angle, aoe.max_deviation));
             }
           },
           'O': function(scope) {
@@ -219,11 +214,11 @@ angular.module('vassalApp.services')
                   scope.game.ruler.model_end.state.x : scope.game.ruler.state.x2;
               var y = scope.game.ruler.model_end ? 
                   scope.game.ruler.model_end.state.y : scope.game.ruler.state.y2;
-              // console.log(scope.game.ruler.state);
               var rot = Math.atan2(scope.game.ruler.state.x2-scope.game.ruler.state.x1,
                                    -(scope.game.ruler.state.y2-scope.game.ruler.state.y1)) *
                   180 / Math.PI;
-              scope.game.newCommand(command('onActiveTemplate', 'set', x, y, rot));
+              scope.game.newCommand(command('onActiveTemplate', 'reset',
+                                            x, y, rot, scope.game.ruler.state.length / 2));
             }
           },
           'T': function(scope) {
