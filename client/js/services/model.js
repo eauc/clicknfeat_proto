@@ -97,11 +97,11 @@ angular.module('vassalApp.services')
         setLabel: function(game, label) {
           this.state.label = label;
         },
-        incrementFocus: function(game) {
-          this.state.focus++;
+        incrementCounter: function(game) {
+          this.state.counter++;
         },
-        decrementFocus: function(game) {
-          this.state.focus = Math.max(0, this.state.focus-1);
+        decrementCounter: function(game) {
+          this.state.counter = Math.max(0, this.state.counter-1);
         },
         startDraging: function(game) {
           this.state_before_drag = _.extend({}, this.state);
@@ -233,13 +233,13 @@ angular.module('vassalApp.services')
             x: 240,
             y: 240,
             rot: 0,
-            focus: 0,
+            counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
             label: '',
             show_image: true,
             show_melee: false,
             show_reach: false,
             show_aoe: 0,
-            show_focus: args[1].type !== 'warrior',
+            show_counter: args[1].type !== 'warrior',
             show_fire: false,
             show_corrosion: false,
             show_stationary: false,
@@ -253,13 +253,13 @@ angular.module('vassalApp.services')
             x: 240,
             y: 240,
             rot: 0,
-            focus: 0,
+            counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
             label: '',
             show_image: true,
             show_melee: false,
             show_reach: false,
             show_aoe: 0,
-            show_focus: args[1].type !== 'warrior',
+            show_counter: args[1].type !== 'warrior',
             show_fire: false,
             show_corrosion: false,
             show_stationary: false,

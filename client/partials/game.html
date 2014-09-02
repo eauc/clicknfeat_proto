@@ -668,7 +668,7 @@
                     pointer-events: none;
                     "
                     />
-            <g ng-repeat="model in modelShow('focus')">
+            <g ng-repeat="model in modelShow('counter')">
               <rect x="{{model.state.x-4}}" y="{{model.state.y-4}}"
                     width="8" height="9"
                     style="
@@ -689,7 +689,7 @@
                     -moz-user-select:none;
                     "
                     >
-                {{model.state.focus}}
+                {{model.state.counter}}
               </text>
             </g>
             <line ng-if="game.selection.length === 1"

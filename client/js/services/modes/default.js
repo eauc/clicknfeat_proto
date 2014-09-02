@@ -143,9 +143,6 @@ angular.module('vassalApp.services')
           'Ctrl E': function(scope) {
             scope.game.newCommand(command('onSelection', 'setRotation', 90));
           },
-          'F': function(scope) {
-            scope.game.newCommand(command('onSelection', 'toggle', 'focus'));
-          },
           'Alt F': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_fire;
             scope.game.newCommand(command('onSelection', 'toggle', 'fire', new_val));
@@ -168,6 +165,9 @@ angular.module('vassalApp.services')
           'M': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_melee;
             scope.game.newCommand(command('onSelection', 'toggle', 'melee', new_val));
+          },
+          'N': function(scope) {
+            scope.game.newCommand(command('onSelection', 'toggle', 'counter'));
           },
           'Ctrl N': function(scope) {
             scope.game.newCommand(command('onSelection', 'setRotation', 0));
@@ -228,10 +228,10 @@ angular.module('vassalApp.services')
             modes.goTo('default', scope);
           },
           'Add': function(scope) {
-            scope.game.newCommand(command('onSelection', 'incrementFocus'));
+            scope.game.newCommand(command('onSelection', 'incrementCounter'));
           },
           'Substract': function(scope) {
-            scope.game.newCommand(command('onSelection', 'decrementFocus'));
+            scope.game.newCommand(command('onSelection', 'decrementCounter'));
           },
           'Left': function(scope) {
             scope.game.newCommand(command('onSelection', 'rotateLeft', false));
