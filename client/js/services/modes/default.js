@@ -176,6 +176,10 @@ angular.module('vassalApp.services')
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_reach;
             scope.game.newCommand(command('onSelection', 'toggle' ,'reach', new_val));
           },
+          'S': function(scope) {
+            var new_val = !scope.game.models[scope.game.selection[0]].state.show_strike;
+            scope.game.newCommand(command('onSelection', 'toggle' ,'strike', new_val));
+          },
           'Alt S': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_stationary;
             scope.game.newCommand(command('onSelection', 'toggle', 'stationary', new_val));

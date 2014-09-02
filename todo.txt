@@ -1,14 +1,14 @@
-- melee 4"
 - ramener les figs pas dans la zone lors de la creation (wrap around ?)
-
-- mode charge basic : shortcut to trigger then orient from starting position, orient to target, move only front/back, draw charge lane, color target when within active melee range.
 
 - bouton clean all qui enleve tous les show sur la selection
 - unit numbers.
 - select whole unit.
 - highlight all unit members.
-- tablet demo docks.
 
+- adapter la taille du canvas a la hauteur de l'ecran.
+- scenarios
+- maps
+- mode charge basic : shortcut to trigger then orient from starting position, orient to target, move only front/back, draw charge lane, color target when within active melee range.
 - mode ranged attack.
 
 - sauvegarde des models selectionnes dans un fichier pour import ulterieur ? -> avec la meme formation, et permet la save des labels, etc.
@@ -19,7 +19,6 @@
 - immovable models
 
 - models with specials ?
-
 
 - flag to disable drag preview to prevent pre-measuring
 - text no highlight
@@ -34,4 +33,3 @@ Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui 
 
 =======================================================================================
 reflechir pour chaque mode les transitions autorisees vers d'autre modes.
-

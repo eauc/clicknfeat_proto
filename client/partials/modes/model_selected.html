@@ -98,7 +98,7 @@
                 "
                 ng-click="sendKey(model_selected_melee, $event)"
                 >
-          {{model_selected_melee === 'R' ? 'Reach' : 'Melee'}}
+          {{model_selected_melee === 'S' ? 'Strike' : (model_selected_melee === 'R' ? 'Reach' : 'Melee')}}
         </button>
       </td>
       <td>
@@ -126,6 +126,9 @@
           </option>
           <option value="R">
             Reach ('R')
+          </option>
+          <option value="S">
+            Strike ('S')
           </option>
         </select>
       </td>

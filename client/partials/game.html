@@ -645,6 +645,28 @@
                   {{model.state.y}})
                   "
                   />
+            <path ng-repeat="model in modelShow('strike')"
+                  d="
+                  M{{model.state.x-40-model.info.r}},{{model.state.y}}
+                  L{{model.state.x+40+model.info.r}},{{model.state.y}}
+                  A{{40+model.info.r}},{{40+model.info.r}} 0 0,0
+                  {{model.state.x-40-model.info.r}},{{model.state.y}}
+                  M{{model.state.x}},{{model.state.y}}
+                  L{{model.state.x}},{{model.state.y-model.info.r-40}}
+                  "
+                  style="
+                  stroke:#000;
+                  stroke-width:0.5px;
+                  fill: #000;
+                  fill-opacity: 0.4;
+                  pointer-events: none;
+                  "
+                  transform="
+                  rotate({{model.state.rot}},
+                  {{model.state.x}},
+                  {{model.state.y}})
+                  "
+                  />
             <circle ng-repeat="model in modelShow('control')"
                     cx="{{model.state.x}}" cy="{{model.state.y}}"
                     r="{{model.info.r+(model.info.focus || model.info.fury)*20}}"
