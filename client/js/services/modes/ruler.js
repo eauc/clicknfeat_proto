@@ -143,6 +143,7 @@ angular.module('vassalApp.services')
             var length = Math.sqrt(dx*dx + dy*dy);
             var display_length = length;
             if(scope.game.ruler.state.range > 0) {
+              modes['ruler'].target_in_range = display_length <= (scope.game.ruler.state.range*10);
               display_length = Math.min(scope.game.ruler.state.range*10, length);
             }
             end_x = start_x + (end_x - start_x) * display_length / length;

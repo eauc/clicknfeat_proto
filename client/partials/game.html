@@ -891,10 +891,12 @@
                   r="{{modes.current.target.info.r}}"
                   style="
                   fill:none;
-                  stroke:#F09;
                   stroke-width:1px;
                   pointer-events: none;
                   "
+                  ng-style="{
+                  'stroke': modes.current.target_in_range ? '#F0C' : '#F00'
+                  }"
                   />
           <g ng-show="game.ruler.state.active"
              style="pointer-events: none"

@@ -1,4 +1,3 @@
-- colorer la cible en rouge si pas within range du ruler.
 - memoriser l'origin de l'AoE (et la colorer) pour reorient l'AoE a chaque placement (+ effacer quand on l'oriente a la main)
 - recuperer les infos origin/target de l'AoE ou du Ruler pour calculer la deviation max.
 - renomer compteur focus en Counter/Number.
