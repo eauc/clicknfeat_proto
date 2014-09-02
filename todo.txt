@@ -6,6 +6,7 @@
 
 - mode charge basic : shortcut to trigger then orient from starting position, orient to target, move only front/back, draw charge lane, color target when within active melee range.
 
+- bouton clean all qui enleve tous les show sur la selection
 - unit numbers.
 - select whole unit.
 - highlight all unit members.

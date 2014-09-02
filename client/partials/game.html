@@ -16,23 +16,27 @@
       <td valign="top">
         <div style="
              position:relative;
-             width:800px;
-             height:800px;
+             width:805px;
+             height:805px;
              ">
         <div style="
              position:absolute;
              z-index:2;
-             bottom:0;
+             bottom:15;
              left:0;
              "
              ng-include="'partials/viewControls.html'"
              >
         </div>
+        <div id="canvas-container"
+             style="
+             width:805px;
+             height:805px;
+             overflow: auto;
+             ">
         <svg style="border:1px solid black;display: inline-block;margin:0;padding:0;"
-             width="800px" height="800px"
-             viewBox="
-             {{game.board.view.x}} {{game.board.view.y}}
-             {{game.board.view.width}} {{game.board.view.height}}"
+             width="{{800*game.board.zoom.factor}}px" height="{{800*game.board.zoom.factor}}px"
+             viewBox="0 0 480 480"
              preserveAspectRatio="xMinYMin meet"
              ng-mousedown="doSelectStart($event)"
              ng-mousemove="doSelectMove($event)"
@@ -962,6 +966,7 @@
             </text>
           </g>
         </svg>
+        </div>
         </div>
       </td>
       <td valign="top">

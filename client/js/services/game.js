@@ -204,53 +204,49 @@ angular.module('vassalApp.services')
             zoom: {
               factor: 1.0,
               cx: 240,
-              cy: 240
+              cy: 240,
             },
-            view: {
-              x: 0,
-              y: 0,
-              width: 480,
-              height: 480
+            refreshZoom: function() {
+              var cont = document.getElementById('canvas-container');
+              this.zoom.cx = (cont.scrollLeft + 400) / this.zoom.factor;
+              this.zoom.cy = (cont.scrollTop + 400) / this.zoom.factor;
             },
             refreshView: function() {
-              this.view.width = this.width / this.zoom.factor;
-              this.view.height = this.height / this.zoom.factor;
-              this.view.x = this.zoom.cx - this.view.width / 2;
-              this.view.y = this.zoom.cy - this.view.height / 2;
+              var zoom = this.zoom;
+              setTimeout(function() {
+                var cont = document.getElementById('canvas-container');
+                cont.scrollLeft = (zoom.cx * zoom.factor - 400);
+                cont.scrollTop = (zoom.cy * zoom.factor - 400);
+              }, 0);
             },
             reset: function() {
               this.zoom.factor = 1.;
-              this.zoom.cx = 240;
-              this.zoom.cy = 240;
-              this.refreshView();
             },
             zoomIn: function() {
+              this.refreshZoom();
               this.zoom.factor *= 1.5;
               this.refreshView();
             },
             zoomOut: function() {
-              this.zoom.factor /= 1.5;
+              this.refreshZoom();
+              this.zoom.factor = Math.max(1.0, this.zoom.factor / 1.5);
               this.refreshView();
             },
             moveLeft: function() {
-              this.zoom.cx = Math.max(this.view.width/2,
-                                      this.zoom.cx-10);
-              this.refreshView();
+              var cont = document.getElementById('canvas-container');
+              cont.scrollLeft = (cont.scrollLeft - 50);
             },
             moveUp: function() {
-              this.zoom.cy = Math.max(this.view.height/2,
-                                      this.zoom.cy-10);
-              this.refreshView();
+              var cont = document.getElementById('canvas-container');
+              cont.scrollTop = (cont.scrollTop - 50);
             },
             moveRight: function() {
-              this.zoom.cx = Math.min(this.width - this.view.width/2,
-                                      this.zoom.cx+10);
-              this.refreshView();
+              var cont = document.getElementById('canvas-container');
+              cont.scrollLeft = (cont.scrollLeft + 50);
             },
             moveDown: function() {
-              this.zoom.cy = Math.min(this.height - this.view.height/2,
-                                      this.zoom.cy+10);
-              this.refreshView();
+              var cont = document.getElementById('canvas-container');
+              cont.scrollTop = (cont.scrollTop + 50);
             },
           },
           ruler: {
