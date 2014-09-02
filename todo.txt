@@ -1,4 +1,4 @@
-- renomer compteur focus en Counter/Number.
+- melee 4"
 - ramener les figs pas dans la zone lors de la creation (wrap around ?)
 
 - mode charge basic : shortcut to trigger then orient from starting position, orient to target, move only front/back, draw charge lane, color target when within active melee range.
