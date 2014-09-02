@@ -31,5 +31,18 @@
                 ng-click="sendKey('T', $event)">Set Target</button>
       </td>
     </tr>
+    <tr>
+      <td colspan="2">
+        Max Range
+        <input style="width:100%;"
+               type="number"
+               ng-model="game.ruler.state.range"
+               placeholder="Max Range"
+               ng-change="game.ruler.sendStateCmd()"
+               ng-keydown="stopKeyPropagation($event)"
+               ng-keypress="stopKeyPropagation($event)"
+               />
+      </td>
+    </tr>
   </table>
 </div>

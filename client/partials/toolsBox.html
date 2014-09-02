@@ -70,15 +70,4 @@
             title="(Escape)"
             ng-click="sendKey('Escape', $event)">Default mode</button>
   </div>
-  <div ng-show="modes.current.group === 'Ruler'">
-    Ruler Max Range :
-    <input style="display:inline-block;width:5em;"
-           type="number"
-           ng-model="game.ruler.state.range"
-           placeholder="Max Range"
-           ng-change="game.ruler.sendStateCmd()"
-           ng-keydown="stopKeyPropagation($event)"
-           ng-keypress="stopKeyPropagation($event)"
-           />
-  </div>
 </div>
