@@ -33,6 +33,7 @@ angular.module('vassalApp.services')
                                       y: option.y,
                                       show_leader: option.show_leader
                                     });
+              new_model.refresh(instance);
               instance.models[new_model.state.id] = new_model;
               new_models.push(new_model);
             });
