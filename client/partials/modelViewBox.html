@@ -1,5 +1,8 @@
 <div ng-controller="modelViewBoxCtrl"
      >
+  <div ng-if="game.models[game.selection[0]].info.unit">
+    <strong>Unit :</strong> {{game.models[game.selection[0]].info.unit}}
+  </div>
   <div>
     <strong>Name :</strong> {{game.models[game.selection[0]].info.name}}
   </div>

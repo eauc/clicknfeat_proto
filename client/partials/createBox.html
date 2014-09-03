@@ -6,8 +6,15 @@
     Faction :
     <select name="model_faction"
             ng-model="model.faction"
-            ng-options="id as f.name for (id, f) in factions"
-            ng-change="model.type = null"
+            ng-options="f as f.name for (id, f) in factions.list"
+            ng-change="
+            model.number=null;
+            model.size=1;
+            model.id=null;
+            model.unit_entry=null;
+            model.unit=null;
+            model.type=null;
+            "
             >
     </select>
   </div>
@@ -15,71 +22,80 @@
     Type :
     <select name="model_type"
             ng-model="model.type"
-            ng-options="id as id for (id, f) in factions[model.faction].models"
-            ng-change="model.unit = null; model.id = null;"
+            ng-options="t as id for (id, t) in model.faction.models"
+            ng-change="
+            model.number=null;
+            model.size=1;
+            model.id=null;
+            model.unit_entry=null;
+            model.unit=null;
+            "
             >
     </select>
   </div>
-  <div ng-show="model.type!=='units'">
-    Model :
-    <select name="model_id_simple"
-            ng-model="model.id"
-            ng-options="f as f.name for (id, f) in factions[model.faction].models[model.type]"
-            ng-change="model.size =  1"
+  <div>
+    Unit :
+    <select name="model_unit"
+            ng-model="model.unit"
+            ng-options="u as u.name for (id, u) in model.type"
+            ng-change="
+            model.number=null;
+            model.size=1;
+            model.id=model.unit;
+            model.unit_entry=null;
+            "
             >
     </select>
   </div>
-  <div ng-show="model.type==='units'">
+  <div ng-show="model.unit.entries">
     <div>
-      Unit :
-      <select name="model_unit"
-              ng-model="model.unit"
-              ng-options="f as f.name for (id, f) in factions[model.faction].models.units"
-              ng-change="model.unit_entry =  null; model.id = null; model.size = 1;"
-              >
-      </select>
-    </div>
-    <div>
-      Unit Entry :
-      <select name="model_unit_type"
+      Entry :
+      <select name="model_unit_entry"
               ng-model="model.unit_entry"
-              ng-options="f as id for (id, f) in model.unit.entries"
-              ng-change="model.id =  null; model.size = 1;"
+              ng-options="e as id for (id, e) in model.unit.entries"
+              ng-change="
+              model.size=1;
+              model.id=null;
+              "
               >
       </select>
     </div>
     <div>
       Model :
-      <select name="model_unit_id"
+      <select name="model_id"
               ng-model="model.id"
-              ng-options="f as f.name for (id, f) in model.unit_entry"
-              ng-change="model.size =  1;"
+              ng-options="m as m.name for (id, m) in model.unit_entry"
+              ng-change="
+              model.size=1;
+              "
               >
       </select>
     </div>
-    <div>
-      Number :
-      <input type="number"
-             name="model_unit_number"
-             ng-model="model.number"
-             />
+    <div ng-show="model.id.ranges">
+      Size :
+      <select name="model_size"
+              ng-model="model.size"
+              ng-options="s as s for s in model.id.ranges"
+              >
+      </select>
     </div>
   </div>
-  <div ng-show="model.id.ranges">
-    Size :
-    <select name="model_size"
-            ng-model="model.size"
-            ng-options="s as s for s in model.id.ranges"
-            >
-    </select>
+  <div>
+    Unit Number :
+    <input type="number"
+           name="model_unit_number"
+           ng-model="model.number"
+           ng-keydown="stopKeyPropagation($event)"
+           ng-keypress="stopKeyPropagation($event)"
+           />
   </div>
   <div>
-    <button ng-disabled="!model.id"
+    <button ng-disabled="!model.id.type"
             ng-click="doToggleCreateModel()">
       {{ modes.current.name === 'Model Create' ? 'Cancel' : 'Create' }}
     </button>
   </div>
-  <div ng-show="model.id">
+  <div ng-show="model.id.type">
     <div>
       <strong>Description</strong>
     </div>
@@ -93,9 +109,13 @@
              style="pointer-events: none"
              />
     </svg>
+    <div ng-if="model.id.unit">
+      <strong>Unit :</strong>
+      {{model.id.unit}}
+    </div>
     <div>
       <strong>Name :</strong>
-      {{model.id.name}} x{{ model.size || '1'}}
+      {{model.id.name}}
     </div>
     <div>
       <strong>Class :</strong>

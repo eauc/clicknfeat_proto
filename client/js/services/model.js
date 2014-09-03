@@ -244,7 +244,9 @@ angular.module('vassalApp.services')
             show_reach: false,
             show_strike: false,
             show_aoe: 0,
-            show_counter: args[1].type !== 'warrior',
+            show_counter: args[1].type === 'wardude' ||
+              args[1].type === 'beast' ||
+              args[1].type === 'jack',
             show_unit: false,
             show_fire: false,
             show_corrosion: false,
@@ -267,7 +269,9 @@ angular.module('vassalApp.services')
             show_reach: false,
             show_strike: false,
             show_aoe: 0,
-            show_counter: args[1].type !== 'warrior',
+            show_counter:  args[1].type === 'wardude' ||
+              args[1].type === 'beast' ||
+              args[1].type === 'jack',
             show_unit: false,
             show_fire: false,
             show_corrosion: false,

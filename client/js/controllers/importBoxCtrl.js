@@ -15,7 +15,7 @@ angular.module('vassalApp.controllers')
         var lines = data.match(/[^\r\n]+/g);
         $scope.modes['model_create'].info = [];
         // console.log(lines);
-        var i = 0;
+        var nb_created = 0;
         var global_offset_x = 0;
         var global_offset_y = 0;
         _.each(lines, function(line) {
@@ -41,54 +41,69 @@ angular.module('vassalApp.controllers')
           }                
           line = line.replace(/\s*\(.+\)\s*$/,'');
           // console.log(line);
-          if(_.isArray($scope.factions.fk_keys[line]) &&
-             $scope.factions.fk_keys[line].length > 0) {
+          if(_.isObject($scope.factions.fk_keys[line])) {
             // console.log(size);
-
-            if($scope.factions.fk_keys[line].length > 1) {
-              _.each($scope.factions.fk_keys[line], function(id) {
-                $scope.modes['model_create'].info.push({
-                  info: id,
-                  offset_x: global_offset_x + 1.25*$scope.factions.fk_keys[line][0].r,
-                  offset_y: global_offset_y
-                });
-                global_offset_x += 2.5*$scope.factions.fk_keys[line][0].r;
-                if(global_offset_x > 360) {
-                  global_offset_x = 0;
-                  global_offset_y = 55;
-                }
-                i++;
-              });
-            }
-            else {
+            var entries = $scope.factions.fk_keys[line];
+            if(entries.grunt) {
               var mid_size = Math.ceil(size/2);
-              var unit_step = 2.5*$scope.factions.fk_keys[line][0].r;
+              var unit_step = 2.5*$scope.factions.fk_keys[line]['grunt'].r;
               var max_offset_x = 0;
+              var nb_created_in_unit = 0;
+              if(entries.leader) {
+                var offset_x = unit_step/2;
+                var offset_y = global_offset_y;
+                max_offset_x = Math.max(max_offset_x, offset_x);
+                $scope.modes['model_create'].info.push({
+                  info: $scope.factions.fk_keys[line]['leader'],
+                  offset_x: global_offset_x + offset_x,
+                  offset_y: offset_y,
+                  show_leader: true,
+                });
+                nb_created_in_unit++;
+                size--;
+              }
               _.times(size, function(n) {
                 var offset_x = 0;
                 var offset_y = 0;
                 if(size <= 5) {
-                  offset_x = n*unit_step+unit_step/2;
+                  offset_x = nb_created_in_unit*unit_step+unit_step/2;
                   offset_y = global_offset_y;
                 }
                 else {
-                  offset_x = (i%mid_size)*unit_step+unit_step/2;
-                  offset_y = global_offset_y + ((n >= mid_size) ? unit_step : 0);
+                  offset_x = (nb_created_in_unit % mid_size)*unit_step+unit_step/2;
+                  offset_y = global_offset_y + ((nb_created_in_unit >= mid_size) ? unit_step : 0);
                 }
                 max_offset_x = Math.max(max_offset_x, offset_x);
                 $scope.modes['model_create'].info.push({
-                  info: $scope.factions.fk_keys[line][0],
+                  info: $scope.factions.fk_keys[line]['grunt'],
                   offset_x: global_offset_x + offset_x,
                   offset_y: offset_y,
-                  show_leader: (size > 1 && n === 0)
+                  show_leader: (size > 1 && nb_created_in_unit === 0)
                 });
-                i++;
+                nb_created_in_unit++;
               });
+              nb_created += nb_created_in_unit;
               global_offset_x += max_offset_x + unit_step/2;
               if(global_offset_x > 360) {
                 global_offset_x = 0;
                 global_offset_y = 55;
               }
+            }
+            entries = _.omit(entries, 'grunt', 'leader');
+            if(_.keys(entries).length > 0) {
+              _.each(entries, function(entry) {
+                $scope.modes['model_create'].info.push({
+                  info: entry,
+                  offset_x: global_offset_x + 1.25*entry.r,
+                  offset_y: global_offset_y
+                });
+                global_offset_x += 2.5*entry.r;
+                if(global_offset_x > 360) {
+                  global_offset_x = 0;
+                  global_offset_y = 55;
+                }
+                nb_created++;
+              });
             }
           }
           else {
@@ -96,7 +111,7 @@ angular.module('vassalApp.controllers')
           }
         });
         // console.log(modes['model_create'].info);
-        if(i > 0) $scope.modes.goTo('model_create', $scope);
+        if(nb_created > 0) $scope.modes.goTo('model_create', $scope);
       }
       $scope.readFKFile = function(file) {
         $scope.modes.goTo('default', $scope);

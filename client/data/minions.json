@@ -398,7 +398,7 @@
       "Bog Trog Ambushers": {
         "name": "Bog Trog Ambushers",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Bog Trog Ambushers",
@@ -424,7 +424,7 @@
       "Bokor and Shamblers": {
         "name": "Gatorman Bokor and Bog Trog Shamblers",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Shambler",
               "fk_name": "Gatorman Bokor and Bog Trog Shamblers",
@@ -443,7 +443,7 @@
                 "n": 1
               }
             },
-            "Bokor": {
+            "leader": {
               "name": "Bokor",
               "fk_name": "Gatorman Bokor and Bog Trog Shamblers",
               "type": "warrior",
@@ -466,7 +466,7 @@
       "Gatormen Posse": {
         "name": "Gatormen Posse",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Gatormen Posse",
@@ -492,9 +492,9 @@
       "Swamp Gobbers": {
         "name": "Swamp Gobber Bellows Crew",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Swamp Gobber Grunt",
+              "name": "Grunt",
               "fk_name": "Swamp Gobber Bellows Crew",
               "type": "warrior",
               "base": "small",
@@ -510,8 +510,8 @@
                 "n": 1
               }
             },
-            "gunner": {
-              "name": "Swamp Gobber Gunner",
+            "leader": {
+              "name": "Gunner",
               "fk_name": "Swamp Gobber Bellows Crew",
               "type": "warrior",
               "base": "small",
@@ -533,7 +533,7 @@
       "Farrow Bone Grinders": {
         "name": "Farrow Bone Grinders",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Farrow Bone Grinders",
@@ -559,9 +559,9 @@
       "Razorback Crew": {
         "name": "Farrow Razorback Crew",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Razorback Crew",
+              "name": "Crew",
               "fk_name": "Farrow Razorback Crew",
               "type": "warrior",
               "base": "small",
@@ -578,7 +578,7 @@
               }
             },
             "gunner": {
-              "name": "Razorback Gunner",
+              "name": "Gunner",
               "fk_name": "Farrow Razorback Crew",
               "type": "warrior",
               "base": "large",
@@ -600,7 +600,7 @@
       "Farrow Brigands": {
         "name": "Farrow Brigands",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Farrow Brigands",
@@ -623,10 +623,37 @@
           }
         }
       },
+      "Farrow Slaughterhousers": {
+        "name": "Farrow Slaughterhousers",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Farrow Slaughterhousers",
+              "ranges": [ 1, 6, 10 ],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/minions/units/Slaughter_grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "solos": {
       "Brun&Lug": {
         "name": "Brun Cragback & Lug",
         "entries": {
-          "grunt": {
+          "unit": {
             "Brun Cragback": {
               "name": "Brun Cragback",
               "fk_name": "Brun Cragback & Lug",
@@ -674,7 +701,7 @@
       "Dahlia&Skarath": {
         "name": "Dahlia Hallyr & Skarath",
         "entries": {
-          "grunt": {
+          "unit": {
             "Dahlia Hallyr": {
               "name": "Dahlia Hallyr",
               "fk_name": "Dahlia Hallyr & Skarath",
@@ -722,7 +749,7 @@
       "Rorsh&Brine": {
         "name": "Rorsh & Brine",
         "entries": {
-          "grunt": {
+          "unit": {
             "Rorsh": {
               "name": "Rorsh",
               "fk_name": "Rorsh & Brine",
@@ -770,7 +797,7 @@
       "WrongEye&Snapjaw": {
         "name": "Wrong Eye & Snapjaw",
         "entries": {
-          "grunt": {
+          "unit": {
             "Wrong Eye": {
               "name": "Wrong Eye",
               "fk_name": "Wrong Eye & Snapjaw",
@@ -815,33 +842,6 @@
           }
         }
       },
-      "Farrow Slaughterhousers": {
-        "name": "Farrow Slaughterhousers",
-        "entries": {
-          "grunt": {
-            "grunt": {
-              "name": "Leader and Grunts",
-              "fk_name": "Farrow Slaughterhousers",
-              "ranges": [ 1, 6, 10 ],
-              "type": "warrior",
-              "base": "small",
-              "width": 60,
-              "height": 60,
-              "img": {
-                "x": 0,
-                "y": 0,
-                "link": "data/minions/units/Slaughter_grunt.png"
-              },
-              "damage": {
-                "type": "warrior",
-                "n": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "solos": {
       "Alten Ashley": {
         "name": "Alten Ashley",
         "type": "warrior",

@@ -75,57 +75,64 @@
           "type": "warrior",
           "n": 16
 	}
-      },	
+      },
       "Makeda3": {
         "name": "Makeda3 (Makeda and the Exalted Court)",
-        "fk_name": "Makeda and the Exalted Court",
-        "type": "wardude",
-        "fury": 6,
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/skorne/locks/Makeda3.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 16
-        }
-      },
-      "Makeda3Exalted1": {
-        "name": "Makeda3 (Exalted Guardian 1)",
-        "fk_name": "Makeda and the Exalted Court",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/skorne/locks/ExaltedCourt1.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
-        }
-      },
-      "Makeda3Exalted2": {
-        "name": "Makeda3 (Exalted Guardian 2)",
-        "fk_name": "Makeda and the Exalted Court",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/skorne/locks/ExaltedCourt2.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
+        "entries": {
+          "unit": {
+            "Makeda3": {
+              "name": "Makeda3",
+              "fk_name": "Makeda and the Exalted Court",
+              "type": "wardude",
+              "fury": 6,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/skorne/locks/Makeda3.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 16
+              }
+            },
+            "Exalted1": {
+              "name": "Exalted Guardian 1",
+              "fk_name": "Makeda and the Exalted Court",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/skorne/locks/ExaltedCourt1.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "Exalted2": {
+              "name": "Exalted Guardian 2",
+              "fk_name": "Makeda and the Exalted Court",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/skorne/locks/ExaltedCourt2.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
         }
       },
       "Mordikaar1": {

@@ -14,11 +14,11 @@ angular.module('vassalApp.controllers')
         id: null,
         size: 1,
         info: [],
-        number: 0
+        number: null,
       };
       $scope.$watch('model', function(val, old) {
         if($scope.modes.current === $scope.modes['model_create']) {
-          $scope.modes.current = default_mode;
+          $scope.modes.goTo('default', $scope);
         }
       }, true);
       $scope.doToggleCreateModel = function() {

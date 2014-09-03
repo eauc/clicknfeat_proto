@@ -12,8 +12,8 @@ angular.module('vassalApp.services')
         medium: 7.874,
         small: 5.905
       };
-      var factions;
-      function updateModelInfo(model, faction) {
+      var factions = {};
+      function updateModelInfo(key, model, faction) {
         model.r = BASE_RADIUS[model.base];
         model.color = faction.color;
         function totalJackDamage(damage, keys) {
@@ -49,15 +49,15 @@ angular.module('vassalApp.services')
           }
         }
         if(_.isString(model.fk_name)) {
-          factions.fk_keys[model.fk_name] = factions.fk_keys[model.fk_name] || [];
-          factions.fk_keys[model.fk_name].push(model);
+          factions.fk_keys[model.fk_name] = factions.fk_keys[model.fk_name] || {};
+          factions.fk_keys[model.fk_name][key] = model;
         }
       }
       return $http.get('/data/factions.json')
         .then(function(response) {
-          factions = response.data;
+          factions.list = response.data;
           // console.log(factions);
-          var promises = _.map(factions, function(val) {
+          var promises = _.map(factions.list, function(val) {
             return $http.get(val);
           });
           return $q.all(promises);
@@ -67,26 +67,25 @@ angular.module('vassalApp.services')
           return $q.reject(responses);
         })
         .then(function(responses) {
-          var keys = _.invert(factions);
+          var keys = _.invert(factions.list);
           _.each(responses, function(response) {
-            factions[keys[response.config.url]] = response.data;
+            factions.list[keys[response.config.url]] = response.data;
             factions.fk_keys = {};
-            _.each(factions, function(faction) {
-              _.each(faction.models, function(type, key) {
-                if(key === 'units') {
-                  _.each(type, function(unit) {
+            _.each(factions.list, function(faction) {
+              _.each(faction.models, function(type) {
+                _.each(type, function(unit, key) {
+                  if(unit.entries) {
                     _.each(unit.entries, function(entry) {
-                      _.each(entry, function(model) {
-                        updateModelInfo(model, faction);
+                      _.each(entry, function(model, key) {
+                        updateModelInfo(key, model, faction);
+                        model.unit = unit.name;
                       });
-                    })
-                      });
-                }
-                else {
-                  _.each(type, function(model) {
-                    updateModelInfo(model, faction);
-                  });
-                }
+                    });
+                  }
+                  else {
+                    updateModelInfo(key, unit, faction);
+                  }
+                });
               });
             });
           });
