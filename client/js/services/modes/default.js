@@ -179,7 +179,8 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('onSelection', 'toggle', 'melee', new_val));
           },
           'N': function(scope) {
-            scope.game.newCommand(command('onSelection', 'toggle', 'counter'));
+            var new_val = !scope.game.models[scope.game.selection[0]].state.show_counter;
+            scope.game.newCommand(command('onSelection', 'toggle', 'counter', new_val));
           },
           'Ctrl N': function(scope) {
             scope.game.newCommand(command('onSelection', 'setRotation', 0));
