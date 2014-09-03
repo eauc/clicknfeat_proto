@@ -48,6 +48,14 @@ angular.module('vassalApp.services')
             break;
           }
         }
+        if(_.isArray(model.fk_name)) {
+          _.each(model.fk_name, function(name) {
+            if(_.isString(name)) {
+              factions.fk_keys[name] = factions.fk_keys[name] || {};
+              factions.fk_keys[name][key] = model;
+            }
+          });
+        }
         if(_.isString(model.fk_name)) {
           factions.fk_keys[model.fk_name] = factions.fk_keys[model.fk_name] || {};
           factions.fk_keys[model.fk_name][key] = model;

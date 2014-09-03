@@ -1381,7 +1381,7 @@
       },
       "martyr": {
         "name": "Spell Martyr",
-        "fk_name": "Spell Martyr",
+        "fk_name": ["Spell Martyr", "Spell Martyrs"],
         "type": "solo",
         "base": "small",
         "width": 60,
