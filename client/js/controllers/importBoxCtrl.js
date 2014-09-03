@@ -16,6 +16,12 @@ angular.module('vassalApp.controllers')
         $scope.modes['model_create'].info = [];
         // console.log(lines);
         var nb_created = 0;
+        var unit_number = _.filter($scope.game.models, function(model) {
+          return model.state.unit;
+        }).reduce(function(max, model) {
+          return Math.max(max, model.state.unit);
+        }, 0);
+        var previous_unit = null;
         var global_offset_x = 0;
         var global_offset_y = 0;
         _.each(lines, function(line) {
@@ -43,21 +49,28 @@ angular.module('vassalApp.controllers')
           // console.log(line);
           if(_.isObject($scope.factions.fk_keys[line])) {
             // console.log(size);
+            var nb_created_in_unit = 0;
             var entries = $scope.factions.fk_keys[line];
+            var nb_entries = _.keys(entries).length;
+            var is_unit = (nb_entries > 1 || size > 1);
             if(entries.grunt) {
+              if(is_unit &&
+                 previous_unit !== entries.grunt.unit) {
+                unit_number++;
+              }
               var mid_size = Math.ceil(size/2);
-              var unit_step = 2.5*$scope.factions.fk_keys[line]['grunt'].r;
+              var unit_step = 2.5*entries.grunt.r;
               var max_offset_x = 0;
-              var nb_created_in_unit = 0;
               if(entries.leader) {
                 var offset_x = unit_step/2;
                 var offset_y = global_offset_y;
                 max_offset_x = Math.max(max_offset_x, offset_x);
                 $scope.modes['model_create'].info.push({
-                  info: $scope.factions.fk_keys[line]['leader'],
+                  info: entries.leader,
                   offset_x: global_offset_x + offset_x,
                   offset_y: offset_y,
                   show_leader: true,
+                  unit: is_unit ? unit_number : undefined
                 });
                 nb_created_in_unit++;
                 size--;
@@ -75,36 +88,45 @@ angular.module('vassalApp.controllers')
                 }
                 max_offset_x = Math.max(max_offset_x, offset_x);
                 $scope.modes['model_create'].info.push({
-                  info: $scope.factions.fk_keys[line]['grunt'],
+                  info: entries.grunt,
                   offset_x: global_offset_x + offset_x,
                   offset_y: offset_y,
-                  show_leader: (size > 1 && nb_created_in_unit === 0)
+                  show_leader: (size > 1 && nb_created_in_unit === 0),
+                  unit: is_unit ? unit_number : undefined
                 });
                 nb_created_in_unit++;
               });
-              nb_created += nb_created_in_unit;
               global_offset_x += max_offset_x + unit_step/2;
               if(global_offset_x > 360) {
                 global_offset_x = 0;
                 global_offset_y = 55;
               }
+              previous_unit = entries.grunt.unit;
             }
             entries = _.omit(entries, 'grunt', 'leader');
             if(_.keys(entries).length > 0) {
               _.each(entries, function(entry) {
+                if(nb_entries > 1 &&
+                   previous_unit !== entry.unit &&
+                   nb_created_in_unit === 0) {
+                  unit_number++;
+                }
                 $scope.modes['model_create'].info.push({
                   info: entry,
                   offset_x: global_offset_x + 1.25*entry.r,
-                  offset_y: global_offset_y
+                  offset_y: global_offset_y,
+                  unit: is_unit ? unit_number : undefined
                 });
                 global_offset_x += 2.5*entry.r;
                 if(global_offset_x > 360) {
                   global_offset_x = 0;
                   global_offset_y = 55;
                 }
-                nb_created++;
+                nb_created_in_unit++;
+                previous_unit = entry.unit;
               });
             }
+            nb_created += nb_created_in_unit;
           }
           else {
             $scope.fk_read_result.push('!!! unknown model \"'+line+'\"');
