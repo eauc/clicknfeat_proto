@@ -15,6 +15,13 @@ angular.module('vassalApp.services')
               modes.goTo('model_selected', scope);
             }
           },
+          'Ctrl A': function(scope) {
+            var ids = _.map(scope.game.models, function(model) {
+              return model.state.id;
+            });
+            scope.game.newCommand(command('setSelection', ids));
+            modes.goTo('model_selected', scope);
+          },
           'Shift L': function(scope) {
             modes.goTo('los', scope);
           },

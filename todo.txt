@@ -1,4 +1,3 @@
-- select all models
 - bouton clean all qui enleve tous les show sur la selection
 
 - adapter la taille du canvas a la hauteur de l'ecran.

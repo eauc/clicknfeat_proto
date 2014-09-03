@@ -40,18 +40,32 @@
                 height: 50px;
                 align:center;
                 "
-                title="(Alt+'U')"
-                ng-click="sendKey('Alt U', $event)">Unselect All</button>
+                title="(Ctrl+'A')"
+                ng-click="sendKey('Ctrl A', $event)">Select All</button>
       </td>
-      </td>
-      <td ng-if="game.models[game.selection[0]].info.type==='wardude'">
-        <button title="(Shift+'C')"
-                style="
+      <td>
+        <button style="
                 width: 50px;
                 height: 50px;
                 align:center;
                 "
-                ng-click="sendKey('Shift C', $event)">Ctrl Area</button>
+                title="(Alt+'U')"
+                ng-click="sendKey('Alt U', $event)">Unselect All</button>
+      </td>
+    </tr>
+    <tr ng-if="
+        game.selection.length === 1 &&
+        (game.models[game.selection[0]].info.type==='wardude' ||
+         game.models[game.selection[0]].info.type==='warrior')
+        ">
+      <td ng-if="game.models[game.selection[0]].info.type==='wardude'">
+      <button title="(Shift+'C')"
+      style="
+      width: 50px;
+      height: 50px;
+      align:center;
+      "
+      ng-click="sendKey('Shift C', $event)">Ctrl Area</button>
       </td>
       <td  ng-if="
            !game.models[game.selection[0]].info.focus &&
@@ -66,7 +80,7 @@
                 ng-click="sendKey('Alt L', $event)">
           <img src="data/icons/Leader.png" />
         </button>
-      </li>
+      </td>
     </tr>
     <tr ng-click="command_last_click=''">
       <td>
