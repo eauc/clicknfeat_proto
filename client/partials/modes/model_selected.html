@@ -40,8 +40,8 @@
                 height: 50px;
                 align:center;
                 "
-                title="('U')"
-                ng-click="sendKey('U', $event)">Unselect All</button>
+                title="(Alt+'U')"
+                ng-click="sendKey('Alt U', $event)">Unselect All</button>
       </td>
       </td>
       <td ng-if="game.models[game.selection[0]].info.focus">
@@ -322,6 +322,48 @@
                 "
                 title="(Alt+'I')"
                 ng-click="sendKey('Alt I', $event)">Incor- poreal</button>
+      </td>
+    </tr>
+    <tr ng-click="command_last_click=''">
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('U')"
+                ng-click="sendKey('Shift U', $event)">
+          Show Unit
+        </button>
+      </td>
+      <td ng-show="
+          game.selection.length === 1 &&
+          game.models[game.selection[0]].state.unit
+          "
+          >
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Ctrl+'U')"
+                ng-click="sendKey('Ctrl U', $event)">
+          Select Whole Unit
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        Set Unit :
+        <form style="display:inline;margin:0px;padding:0px;"
+              ng-submit="doSetUnit()">
+          <input style="width: 100%;"
+                 type="number"
+                 ng-model="model_view.unit"
+                 ng-keydown="stopKeyPropagation($event)"
+                 ng-keypress="stopKeyPropagation($event)"
+                 />
+        </form>
       </td>
     </tr>
   </table>

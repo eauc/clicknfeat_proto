@@ -20,7 +20,8 @@ angular.module('vassalApp.services')
                 info: info.info,
                 x: user_x+info.offset_x,
                 y: user_y+info.offset_y,
-                show_leader: info.show_leader
+                show_leader: info.show_leader,
+                unit: info.unit
               });
             });
             scope.game.newCommand(command('createModel',

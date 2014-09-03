@@ -19,6 +19,17 @@
              />
     </form>
   </div>
+  <div>
+    <strong>Unit :</strong>
+    <form style="display:inline-block;margin:0px;padding:0px;"
+          ng-submit="doSetUnit()">
+      <input type="number"
+             ng-model="model_view.unit"
+             ng-keydown="stopKeyPropagation($event)"
+             ng-keypress="stopKeyPropagation($event)"
+             />
+    </form>
+  </div>
   <div ng-show="game.models[game.selection[0]].info.fury">
     <strong>Fury :</strong>
     {{game.models[game.selection[0]].info.fury}}

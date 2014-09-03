@@ -75,8 +75,11 @@ angular.module('vassalApp.services')
                 else {
                   scope.game.newCommand(command('setSelection', [drag.target.state.id]));
                 }
-                if(scope.game.selection.length > 0) {
+                scope.model_view.label = null;
+                scope.model_view.unit = null;
+                if(scope.game.selection.length === 1) {
                   scope.model_view.label = scope.game.models[scope.game.selection[0]].state.label;
+                  scope.model_view.unit = scope.game.models[scope.game.selection[0]].state.unit;
                 }
                 modes.goTo('default', scope);
                 break;
@@ -128,7 +131,9 @@ angular.module('vassalApp.services')
               modes['model_create'].info.push({
                 info: scope.game.models[id].info,
                 offset_x: offset_x,
-                offset_y: offset_y
+                offset_y: offset_y,
+                show_leader: scope.game.models[id].state.show_leader,
+                unit: scope.game.models[id].state.unit
               });
             });
             modes.goTo('model_create', scope);
@@ -191,8 +196,19 @@ angular.module('vassalApp.services')
             modes.goTo('model_target', scope);
           },
           'U': function(scope) {
+            var new_val = !scope.game.models[scope.game.selection[0]].state.show_unit;
+            scope.game.newCommand(command('onSelection', 'toggle' ,'unit', new_val));
+          },
+          'Alt U': function(scope) {
             scope.game.newCommand(command('setSelection', []));
             modes.goTo('default', scope);
+          },
+          'Ctrl U': function(scope) {
+            var unit = scope.game.models[scope.game.selection[0]].state.unit;
+            var selection = _.filter(scope.game.models, function(model) {
+              return model.state.unit === unit;
+            }).map(function(model) { return model.state.id; });
+            scope.game.newCommand(command('setSelection', selection));
           },
           'Ctrl W': function(scope) {
             scope.game.newCommand(command('onSelection', 'setRotation', 270));

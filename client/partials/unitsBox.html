@@ -1,0 +1,8 @@
+<div ng-controller="unitsBoxCtrl">
+  <div>
+    <strong>Units list :</strong>
+  </div>
+  <div ng-repeat="entry in units | orderBy:'number'">
+    {{ entry.number }} - {{ entry.id }} - {{ entry.info.name }}
+  </div>
+</div>

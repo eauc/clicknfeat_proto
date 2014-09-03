@@ -97,6 +97,9 @@ angular.module('vassalApp.services')
         setLabel: function(game, label) {
           this.state.label = label;
         },
+        setUnit: function(game, unit) {
+          this.state.unit = unit;
+        },
         incrementCounter: function(game) {
           this.state.counter++;
         },
@@ -235,12 +238,14 @@ angular.module('vassalApp.services')
             rot: 0,
             counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
             label: '',
+            unit: null,
             show_image: true,
             show_melee: false,
             show_reach: false,
             show_strike: false,
             show_aoe: 0,
             show_counter: args[1].type !== 'warrior',
+            show_unit: false,
             show_fire: false,
             show_corrosion: false,
             show_stationary: false,
@@ -256,12 +261,14 @@ angular.module('vassalApp.services')
             rot: 0,
             counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
             label: '',
+            unit: null,
             show_image: true,
             show_melee: false,
             show_reach: false,
             show_strike: false,
             show_aoe: 0,
             show_counter: args[1].type !== 'warrior',
+            show_unit: false,
             show_fire: false,
             show_corrosion: false,
             show_stationary: false,

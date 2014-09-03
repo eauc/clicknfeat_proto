@@ -41,14 +41,20 @@ angular.module('vassalApp.services')
               });
               if(event.ctrlKey || scope.force.ctrl) {
                 scope.game.newCommand(command('addToSelection', models_selected));
-                if(scope.game.selection.length > 0) {
+                scope.model_view.label = null;
+                scope.model_view.unit = null;
+                if(scope.game.selection.length === 1) {
                   scope.model_view.label = scope.game.models[scope.game.selection[0]].state.label;
+                  scope.model_view.unit = scope.game.models[scope.game.selection[0]].state.unit;
                 }
               }
               else {
                 scope.game.newCommand(command('setSelection', models_selected));
-                if(scope.game.selection.length > 0) {
+                scope.model_view.label = null;
+                scope.model_view.unit = null;
+                if(scope.game.selection.length === 1) {
                   scope.model_view.label = scope.game.models[scope.game.selection[0]].state.label;
+                  scope.model_view.unit = scope.game.models[scope.game.selection[0]].state.unit;
                 }
               }
             }

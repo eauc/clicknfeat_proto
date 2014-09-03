@@ -576,6 +576,35 @@
                     "
                     >{{model.state.label}}</text>
               </g>
+              <g ng-if="
+                 model.state.unit &&
+                 (model.state.show_unit ||
+                  menu_view === 'units' ||
+                  menu_view === 'models')
+                 ">
+                <rect x="{{model.info.width/2-model.info.r-9}}"
+                      y="{{model.info.height/2-model.info.r-4}}"
+                      width="12" height="6"
+                      style="
+                      fill:#333;
+                      fill-opacity:0.4;
+                      pointer-events: none;
+                      "
+                      />
+                <text x="{{model.info.width/2-model.info.r+2}}"
+                      y="{{model.info.height/2-model.info.r+1}}"
+                      style="
+                      fill:#0FF;
+                      text-anchor:end;
+                      font-size:6px;
+                      font-family:monospace;
+                      font-weight: bold;
+                      pointer-events: none;
+                      -webkit-user-select: none;
+                      -moz-user-select:none;
+                      "
+                      >U{{model.state.unit}}</text>
+              </g>
             </svg>
             <circle ng-repeat="id in game.update_selection"
                     cx="{{game.models[id].state.x}}"
@@ -1014,6 +1043,10 @@
                   }"
                   ng-click="menu_view = 'main'">Main</button>
           <button ng-style="{
+                  'background-color': menu_view === 'units' ? '#6F6' : 'none'
+                  }"
+                  ng-click="menu_view = 'units'">Units</button>
+          <button ng-style="{
                   'background-color': menu_view === 'models' ? '#6F6' : 'none'
                   }"
                   ng-click="menu_view = 'models'">Manage Models</button>
@@ -1037,6 +1070,11 @@
             </div>
             <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
                  ng-include="'partials/backupBox.html'">
+            </div>
+          </div>
+          <div ng-if="menu_view === 'units'">
+            <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+                 ng-include="'partials/unitsBox.html'">
             </div>
           </div>
           <div ng-show="menu_view === 'layers'">

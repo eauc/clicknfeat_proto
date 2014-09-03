@@ -14,6 +14,7 @@ angular.module('vassalApp.controllers')
         id: null,
         size: 1,
         info: [],
+        number: 0
       };
       $scope.$watch('model', function(val, old) {
         if($scope.modes.current === $scope.modes['model_create']) {
@@ -42,7 +43,8 @@ angular.module('vassalApp.controllers')
           $scope.modes['model_create'].info.push({
             info: $scope.model.id,
             offset_x: offset_x,
-            offset_y: offset_y
+            offset_y: offset_y,
+            unit: $scope.model.number
           });
         });
       };

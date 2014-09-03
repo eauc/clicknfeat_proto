@@ -31,7 +31,8 @@ angular.module('vassalApp.services')
                                     option.info, {
                                       x: option.x,
                                       y: option.y,
-                                      show_leader: option.show_leader
+                                      show_leader: option.show_leader,
+                                      unit: option.unit
                                     });
               new_model.refresh(instance);
               instance.models[new_model.state.id] = new_model;

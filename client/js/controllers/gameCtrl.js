@@ -301,6 +301,10 @@ angular.module('vassalApp.controllers')
             _.filter($scope.game.templates[type],
                      function(temp) { return !temp.locked; }) : [];
         };
+
+        $scope.doSetUnit = function() {
+          $scope.game.newCommand(command('onSelection', 'setUnit', $scope.model_view.unit));
+        };
       });
     }
   ]);
