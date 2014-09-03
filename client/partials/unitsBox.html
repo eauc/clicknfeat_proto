@@ -2,7 +2,12 @@
   <div>
     <strong>Units list :</strong>
   </div>
-  <div ng-repeat="entry in units | orderBy:'number'">
-    {{ entry.number }} - {{ entry.id }} - {{ entry.info.name }}
+  <div ng-repeat="(id, models) in units">
+    <strong>{{ id }} - {{ models[0].info.unit || 'Custom' }}</strong>
+    <ul>
+      <li ng-repeat="model in models">
+        {{ model.state.id}} - {{ model.info.name }}
+      </li>
+    </ul>
   </div>
 </div>
