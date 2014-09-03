@@ -189,6 +189,9 @@ angular.module('vassalApp.services')
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_reach;
             scope.game.newCommand(command('onSelection', 'toggle' ,'reach', new_val));
           },
+          'Alt R': function(scope) {
+            scope.game.newCommand(command('onSelection', 'resetShow'));
+          },
           'S': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_strike;
             scope.game.newCommand(command('onSelection', 'toggle' ,'strike', new_val));

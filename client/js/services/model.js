@@ -4,6 +4,15 @@ angular.module('vassalApp.services')
   .factory('model', [
     function() {
       var model_base = {
+        resetShow: function(game) {
+          this.state.show_image = true;
+          this.state.show_melee = false;
+          this.state.show_reach = false;
+          this.state.show_strike = false;
+          this.state.show_aoe = 0;
+          this.state.show_unit = false;
+          this.state.show_control = false;
+        },
         refresh: function(game) {
           this.state.x = Math.max(this.info.r, this.state.x);
           this.state.x = Math.min(game.board.width-this.info.r,

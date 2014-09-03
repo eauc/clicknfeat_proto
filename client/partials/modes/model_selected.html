@@ -53,12 +53,22 @@
                 ng-click="sendKey('Alt U', $event)">Unselect All</button>
       </td>
     </tr>
-    <tr ng-if="
-        game.selection.length === 1 &&
-        (game.models[game.selection[0]].info.type==='wardude' ||
-         game.models[game.selection[0]].info.type==='warrior')
-        ">
-      <td ng-if="game.models[game.selection[0]].info.type==='wardude'">
+    <tr>
+      <td>
+        <button title="(Alt+'R')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('Alt R', $event)">
+          Reset Show
+        </button>
+      </td>
+      <td ng-if="
+          game.selection.length === 1 &&
+          game.models[game.selection[0]].info.type==='wardude'
+          ">
       <button title="(Shift+'C')"
       style="
       width: 50px;
@@ -68,7 +78,7 @@
       ng-click="sendKey('Shift C', $event)">Ctrl Area</button>
       </td>
       <td  ng-if="
-           !game.models[game.selection[0]].info.focus &&
+           game.selection.length === 1 &&
            game.models[game.selection[0]].info.type === 'warrior'
            ">
         <button title="(Alt+'L')"
