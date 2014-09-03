@@ -130,7 +130,7 @@ angular.module('vassalApp.controllers')
           }
           $scope.modes.send(key, $scope, event)
             .then(function() {
-              event.preventDefault();
+              if(event) event.preventDefault();
               if($scope.force.ctrl !== 'lock') $scope.force.ctrl = false;
               if($scope.force.shift !== 'lock') $scope.force.shift = false;
               if($scope.force.alt !== 'lock') $scope.force.alt = false;
