@@ -38,7 +38,7 @@
         "damage": {
           "type": "warrior",
           "n": 17
-	}
+        }
       },
       "Makeda1": {
         "name": "Makeda1 (Archdomina Makeda)",
@@ -56,7 +56,7 @@
         "damage": {
           "type": "warrior",
           "n": 16
-	}
+        }
       },
       "Makeda2": {
         "name": "Makeda2 (Supreme Archdomina Makeda)",
@@ -74,12 +74,12 @@
         "damage": {
           "type": "warrior",
           "n": 16
-	}
+        }
       },
       "Makeda3": {
         "name": "Makeda3 (Makeda and the Exalted Court)",
         "entries": {
-          "unit": {
+          "lock": {
             "Makeda3": {
               "name": "Makeda3",
               "fk_name": "Makeda and the Exalted Court",
@@ -97,7 +97,9 @@
                 "type": "warrior",
                 "n": 16
               }
-            },
+            }
+          },
+          "unit": {
             "Exalted1": {
               "name": "Exalted Guardian 1",
               "fk_name": "Makeda and the Exalted Court",
@@ -151,7 +153,7 @@
         "damage": {
           "type": "warrior",
           "n": 16
-	}
+        }
       },
       "Morghoul1": {
         "name": "Morghoul1 (Master Tormentor Morghoul)",
@@ -169,7 +171,7 @@
         "damage": {
           "type": "warrior",
           "n": 15
-	}
+        }
       },
       "Morghoul2": {
         "name": "Morghoul2 (Lord Assassin Morghoul)",
@@ -187,8 +189,8 @@
         "damage": {
           "type": "warrior",
           "n": 15
-	}
-      },		
+        }
+      },                
       "Naaresh1": {
         "name": "Naaresh1 (Master Ascetic Naaresh)",
         "fk_name": "Master Ascetic Naaresh",
@@ -205,8 +207,8 @@
         "damage": {
           "type": "warrior",
           "n": 17
-	}
-      },	
+        }
+      },        
       "Rasheth1": {
         "name": "Rasheth1 (Dominar Rasheth)",
         "fk_name": "Master Tormentor Morghoul",
@@ -223,8 +225,8 @@
         "damage": {
           "type": "warrior",
           "n": 20
-	}
-      },	
+        }
+      },        
       "Xerxis1": {
         "name": "Xerxis1 (Tyrant Xerxis)",
         "fk_name": "Tyrant Xerxis",
@@ -241,42 +243,51 @@
         "damage": {
           "type": "warrior",
           "n": 19
-	}
-      },	
-      "Zaal1": {
-        "name": "Supreme Aptimus Zaal",
-        "fk_name": "Supreme Aptimus Zaal & Kovaas",
-        "type": "wardude",
-        "fury": 7,
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/skorne/locks/Zaal1.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 15
         }
-      },
-      "Zaal1Kovaas1": {
-        "name": "Supreme Aptimus Zaal (Kovaas)",
-        "fk_name": "Supreme Aptimus Zaal & Kovaas",
-        "type": "warrior",
-        "base": "medium",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/skorne/locks/Kovaas.png",
-	  "incorporeal": "data/skorne/locks/Kovaas_Incorporeal.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
+      },        
+      "Zaal1": {
+        "name": "Zaal1 (Supreme Aptimus Zaal & Kovaas)",
+        "entries": {
+          "lock": {
+            "Zaal1": {
+              "name": "Supreme Aptimus Zaal",
+              "fk_name": "Supreme Aptimus Zaal & Kovaas",
+              "type": "wardude",
+              "fury": 7,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/skorne/locks/Zaal1.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 15
+              }
+            }
+          },
+          "attachement": {
+            "Zaal1Kovaas1": {
+              "name": "Supreme Aptimus Zaal (Kovaas)",
+              "fk_name": "Supreme Aptimus Zaal & Kovaas",
+              "type": "warrior",
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/skorne/locks/Kovaas.png",
+                "incorporeal": "data/skorne/locks/Kovaas_Incorporeal.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
         }
       }
     },
@@ -302,7 +313,7 @@
           "4": [  "b",  "b",  "b",  null,  null, null ],
           "5": [  "b",  null,  null, null, null, null ],
           "6": [  "b",  "b",  "b", null,  null ]
-	}
+        }
       },
       "Archidon": {
         "name": "Archidon",
@@ -325,7 +336,7 @@
           "4": [  "b",  "b",  "b",  "b",  "b", "b" ],
           "5": [  "b",  "b",  "b", null, null, null ],
           "6": [  "b",  "b",  "b",  "b",  null, null ]
-	}
+        }
       },
       "Basilisk Drake": {
         "name": "Basilisk Drake",
@@ -348,7 +359,7 @@
           "4": [  "b",  "b",  "b",  null,  null, null ],
           "5": [  "b",  "b",  "b", null, null, null ],
           "6": [  "b",  "b",  "b",  "b",  null ]
-	}
+        }
       },
       "Basilisk Krea": {
         "name": "Basilisk Krea",
@@ -371,7 +382,7 @@
           "4": [  "b",  "b", "b",  null,  null, null ],
           "5": [  "b",  "b",  "b", "b", null, null ],
           "6": [  "b",  "b",  "b",  "b",  "b", null ]
-	}
+        }
       },
       "Cyclops Brute": {
         "name": "Cyclops Brute",
@@ -394,7 +405,7 @@
           "4": [  "b",  "b",  "b",  "b",  "b", null ],
           "5": [  "b",  "b",  "b", null, null, null ],
           "6": [  "b",  "b",  "b",  "b",  null, null ]
-	}
+        }
       },
       "Cyclops Raider": {
         "name": "Cyclops Raider",
@@ -417,7 +428,7 @@
           "4": [  "b",  "b",  "b",  "b",  "b", null ],
           "5": [  "b",  "b",  "b", null, null, null ],
           "6": [  "b",  "b",  "b",  "b",  null, null ]
-	}
+        }
       },
       "Cyclops Savage": {
         "name": "Cyclops Savage",
@@ -440,7 +451,7 @@
           "4": [  "b",  "b",  "b",  "b",  "b", null ],
           "5": [  "b",  "b",  "b", null, null, null ],
           "6": [  "b",  "b",  "b",  "b",  null, null ]
-	}
+        }
       },
       "Cyclops Shaman": {
         "name": "Cyclops Shaman",
@@ -463,7 +474,7 @@
           "4": [  "b",  "b",  "b",  "b",  null, null ],
           "5": [  "b",  "b",  "b", "b", null, null ],
           "6": [  "b",  "b",  "b",  "b",  "b", null ]
-	}
+        }
       },
       "Razor Worm": {
         "name": "Razor Worm",
@@ -486,7 +497,7 @@
           "4": [  "b",  "b",  "b", "b",  "b", null ],
           "5": [  "b",  "b",  "b", null, null, null ],
           "6": [  "b",  "b",  "b",  "b",  "b", null ]
-	}
+        }
       },
       "Despoiler": {
         "name": "Despoiler",
@@ -509,7 +520,7 @@
           "4": [  "b",  "b",  "b", "b",  "b", "b", null ],
           "5": [  "b",  "b",  "b", "b", "b", null, null ],
           "6": [  "b",  "b",  "b",  "b",  "b", "b", "b" ]
-	}
+        }
       },
       "Rhinodon": {
         "name": "Rhinodon",
@@ -532,7 +543,7 @@
           "4": [  "b",  "b",  "b", "b",  "b", "b" ],
           "5": [  "b",  "b",  "b", "b", null, null ],
           "6": [  "b",  "b",  "b",  "b",  "b", null ]
-	}
+        }
       },
       "Tiberion": {
         "name": "Tiberion",
@@ -555,7 +566,7 @@
           "4": [  "b",  "b",  "b", "b",  "b", "b" ],
           "5": [  "b",  "b",  "b", "b", null, null ],
           "6": [  "b",  "b",  "b",  "b",  "b", "b" ]
-	}
+        }
       },
       "Titan Cannoneer": {
         "name": "Titan Cannoneer",
@@ -578,7 +589,7 @@
           "4": [  "b",  "b",  "b", "b",  "b", "b" ],
           "5": [  "b",  "b",  "b", null, null, null ],
           "6": [  "b",  "b",  "b",  "b",  null, null ]
-	}
+        }
       },
       "Titan Gladiator": {
         "name": "Titan Gladiator",
@@ -601,7 +612,7 @@
           "4": [  "b",  "b",  "b", "b",  "b", "b", "b" ],
           "5": [  "b",  "b",  "b", "b", null, null, null ],
           "6": [  "b",  "b",  "b",  "b",  "b", null, null ]
-	}
+        }
       },
       "Titan Sentry": {
         "name": "Titan Sentry",
@@ -624,7 +635,7 @@
           "4": [  "b",  "b",  "b", "b",  "b", "b", "b" ],
           "5": [  "b",  "b",  "b", "b", null, null, null ],
           "6": [  "b",  "b",  "b",  "b",  "b", null, null ]
-	}
+        }
       },
       "Bronzeback Titan": {
         "name": "Bronzeback Titan",
@@ -647,7 +658,7 @@
           "4": [  "b",  "b",  "b", "b",  "b", "b", "b", "b" ],
           "5": [  "b",  "b",  "b", "b", null, null, null, null ],
           "6": [  "b",  "b",  "b",  "b",  "b", "b", null, null ]
-	}
+        }
       },
       "Molik Karn": {
         "name": "Molik Karn",
@@ -670,7 +681,7 @@
           "4": [  "b",  "b",  "b", "b",  "b", "b" ],
           "5": [  "b",  "b",  "b", "b", null, null ],
           "6": [  "b",  "b",  "b",  "b",  "b", null ]
-	}
+        }
       }, 
       "Mammoth": {
         "name": "Mammoth",
@@ -700,7 +711,7 @@
       "Paingiver Bloodrunners": {
         "name": "Paingiver Bloodrunners",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Paingiver Bloodrunners",
@@ -725,7 +736,7 @@
       "Cataphract Arcuarii": {
         "name": "Cataphract Arcuarii",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Cataphract Arcuarii",
@@ -750,7 +761,7 @@
       "Cataphract Cetrati": {
         "name": "Cataphract Cetrati",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Cataphract Cetrati",
@@ -794,7 +805,7 @@
       "Cataphract Incindiarii": {
         "name": "Cataphract Incindiarii",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Cataphract Incindiarii",
@@ -819,7 +830,7 @@
       "Immortals": {
         "name": "Immortals",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Immortals",
@@ -844,7 +855,7 @@
       "Paingiver Beast Handlers": {
         "name": "Paingiver Beast Handlers",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Paingiver Beast Handlers",
@@ -869,7 +880,7 @@
       "Praetorian Ferox": {
         "name": "Praetorian Ferox",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Praetorian Ferox",
@@ -894,7 +905,7 @@
       "Praetorian Karax": {
         "name": "Praetorian Karax",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Praetorian Karax",
@@ -919,7 +930,7 @@
       "Praetorian Swordsmen": {
         "name": "Praetorian Swordsmen",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Praetorian Swordsmen",
@@ -980,7 +991,7 @@
       "Nihilators": {
         "name": "Nihilators",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Nihilators",
@@ -1005,7 +1016,7 @@
       "Tyrant Commander & Standard": {
         "name": "Tyrant Commander & Standard Bearer",
         "entries": {
-          "grunt": {
+          "unit": {
             "Tyrant Commander": {
               "name": "Tyrant Commander",
               "fk_name": "Tyrant Commander & Standard Bearer",
@@ -1046,9 +1057,9 @@
       "Venator Catapult Crew": {
         "name": "Venator Catapult Crew",
         "entries": {
-          "grunt": {
-            "grunt1": {
-              "name": "Venator Catapult Crew 1",
+          "unit": {
+            "grunt": {
+              "name": "Crew",
               "fk_name": "Venator Catapult Crew",
               "type": "warrior",
               "base": "small",
@@ -1065,7 +1076,7 @@
               }
             },
             "leader": {
-              "name": "Leader",
+              "name": "Gunner",
               "fk_name": "Venator Catapult Crew",
               "type": "warrior",
               "base": "large",
@@ -1087,9 +1098,9 @@
       "Venator Flayer Cannon Crew": {
         "name": "Venator Flayer Cannon Crew",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt1": {
-              "name": "Venator Flayer Cannon Crew 1",
+              "name": "Crew 1",
               "fk_name": "Venator Flayer Cannon Crew",
               "type": "warrior",
               "base": "small",
@@ -1106,7 +1117,7 @@
               }
             },
             "grunt2": {
-              "name": "Venator Flayer Cannon Crew 2",
+              "name": "Crew 2",
               "fk_name": "Venator Flayer Cannon Crew",
               "type": "warrior",
               "base": "small",
@@ -1123,7 +1134,7 @@
               }
             },
             "leader": {
-              "name": "Leader",
+              "name": "Gunner",
               "fk_name": "Venator Flayer Cannon Crew",
               "type": "warrior",
               "base": "large",
@@ -1145,7 +1156,7 @@
       "Venator Reivers": {
         "name": "Venator Reivers",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Venator Reivers",
@@ -1206,7 +1217,7 @@
       "Venator Slingers": {
         "name": "Venator Slingers",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Venators Slingers",
@@ -1233,7 +1244,7 @@
       "Agonizer": {
         "name": "Agonizer",
         "fk_name": "Agonizer",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1250,8 +1261,8 @@
       "Ancestral Guardian": {
         "name": "Ancestral Guardian",
         "fk_name": "Ancestral Guardian",
-        "type": "warrior",
-	"base": "medium",
+        "type": "solo",
+        "base": "medium",
         "width": 60,
         "height": 60,
         "img": {
@@ -1267,7 +1278,7 @@
       "Paingiver Bloodrunner Master Tormentor": {
         "name": "Paingiver Bloodrunner Master Tormentor",
         "fk_name": "Paingiver Bloodrunner Master Tormentor",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1284,7 +1295,7 @@
       "Extoller Soulward": {
         "name": "Extoller Soulward",
         "fk_name": "Extoller Soulward",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1301,7 +1312,7 @@
       "Paingiver Task Master": {
         "name": "Paingiver Task Master",
         "fk_name": "Paingiver Task Master",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1318,7 +1329,7 @@
       "Void Spirit": {
         "name": "Void Spirit",
         "fk_name": "Void Spirit",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1336,7 +1347,7 @@
       "Mortitheurge Willbreaker": {
         "name": "Mortitheurge Willbreaker",
         "fk_name": "Mortitheurge Willbreaker",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1353,7 +1364,7 @@
       "Aptimus Marketh": {
         "name": "Aptimus Marketh",
         "fk_name": "Aptimus Marketh",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1370,7 +1381,7 @@
       "Hakaar the Destroyer": {
         "name": "Hakaar the Destroyer",
         "fk_name": "Hakaar the Destroyer",
-        "type": "warrior",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -1387,7 +1398,7 @@
       "Tyrant Rhadiem": {
         "name": "Tyrant Rhadiem",
         "fk_name": "Tyrant Rhadiem",
-        "type": "warrior",
+        "type": "solo",
         "base": "large",
         "width": 60,
         "height": 60,
@@ -1404,7 +1415,7 @@
       "Tyrant Rhadiem (Dismounted)": {
         "name": "Tyrant Rhadiem (Dismounted)",
         "fk_name": "Tyrant Rhadiem (Dismounted)",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1423,7 +1434,7 @@
       "Siege Animantarax": {
         "name": "Siege Animantarax",
         "fk_name": "Siege Animantarax",
-        "type": "warrior",
+        "type": "be",
         "base": "huge",
         "width": 90,
         "height": 90,

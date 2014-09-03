@@ -57,7 +57,7 @@
           "type": "warrior",
           "n": 15
         }
-      },	  
+      },          
       "constance1": {
         "name": "Constance1 (Constance Blaize, Knight of the Prophet)",
         "fk_name": "Constance Blaize, Knights of the Prophet",
@@ -204,22 +204,48 @@
       },
       "nemo3": {
         "name": "Nemo3 (Artificer General Nemo)",
-        "fk_name": "Artificier General Nemo",
-        "type": "wardude",
-        "focus": 7,
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/cygnar/casters/Nemo3.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 14
+        "entries": {
+          "caster": {
+            "nemo3": {
+              "name": "Nemo3 (Artificer General Nemo)",
+              "fk_name": "Artificier General Nemo",
+              "type": "wardude",
+              "focus": 7,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/cygnar/casters/Nemo3.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 14
+              }
+            }
+          },
+          "attachement": {
+            "finch": {     
+              "name": "Storm Chaser Adept Caitlin Finch",
+              "fk_name": "Artificer General Nemo",
+              "type": "solo",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/cygnar/solos/StormChaserAdeptFinch.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
         }
-      },
+      },                 
       "stryker1": {
         "name": "Stryker1 (Commander Coleman Stryker)",
         "fk_name": "Commander Coleman Stryker",
@@ -291,7 +317,7 @@
           "type": "warrior",
           "n": 18
         }
-      }	  
+      }   
     },
     "jacks": {
       "avenger": {
@@ -767,7 +793,7 @@
       "arcane_tempest_gun_mages": {
         "name": "Arcane Tempest Gun Mages (Leader and 5 Grunts)",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Arcane Tempest Gun Mages",
@@ -787,9 +813,9 @@
               }
             }
           },
-	  "ua": {
+          "ua": {
             "officer": {
-              "name": "Arcane Tempest Gun Mage Officer",
+              "name": "Officer",
               "fk_name": "Arcane Tempest Gun Mage Officer",
               "type": "warrior",
               "base": "small",
@@ -805,13 +831,13 @@
                 "n": 5
               }
             }
-	  }
-	}
+          }
+        }
       },
       "Black 13th Gun Mage Strike Team": {
         "name": "Black 13th Gun Mage Strike Team",
         "entries": {
-          "grunt": {
+          "unit": {
             "Ryan": {
               "name": "Ryan",
               "fk_name": "Black 13th Gun Mage Strike Team",
@@ -830,7 +856,7 @@
                 "n": 5
               }
             },
-	    "Lynch": {
+            "Lynch": {
               "name": "Lynch",
               "fk_name": "Black 13th Gun Mage Strike Team",
               "ranges": [1, 1],
@@ -848,7 +874,7 @@
                 "n": 5
               }
             },
-	    "Watts": {
+            "Watts": {
               "name": "Watts",
               "fk_name": "Black 13th Gun Mage Strike Team",
               "ranges": [1, 1],
@@ -867,13 +893,13 @@
               }
             }
           }
-	}		  
+        }                 
       },
       "fields_mechaniks": {
         "name": "Field Mechaniks",
         "entries": {
-          "grunt": {
-            "gobber": {
+          "unit": {
+            "grunt": {
               "name": "Gobber",
               "fk_name": "Field Mechaniks",
               "ranges": [1, 3, 5],
@@ -891,7 +917,7 @@
                 "n": 1
               }
             },
-	    "chief": {
+            "leader": {
               "name": "Crew Chief",
               "fk_name": "Field Mechaniks",
               "type": "warrior",
@@ -907,16 +933,16 @@
                 "type": "warrior",
                 "n": 1
               }
-	    }
+            }
           }
-	}
+        }
       },
       "long_gunner_infantry": {
         "name": "Long Gunner Infantry",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Long Gunner Infantry Leader and Grunts",
+              "name": "Leader and Grunts",
               "fk_name": "Long Gunner Infantry",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -936,7 +962,7 @@
           },
           "ua": {
             "officer": {
-              "name": "Long Gunner Infantry Officer",
+              "name": "Officer",
               "fk_name": "Long Gunner Infantry Officer & Standard",
               "type": "warrior",
               "base": "small",
@@ -953,7 +979,7 @@
               }
             },
             "standard": {
-              "name": "Long Gunner Infantry Standard Bearer",
+              "name": "Standard Bearer",
               "fk_name": "Long Gunner Infantry Officer & Standard",
               "type": "warrior",
               "base": "small",
@@ -975,9 +1001,9 @@
       "precursor_knights": {
         "name": "Precursor Knights",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Precursor Knights Leader and Grunts",
+              "name": "Leader and Grunts",
               "fk_name": "Precursor Knights",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -997,7 +1023,7 @@
           },
           "ua": {
             "officer": {
-              "name": "Precursor Knight Officer",
+              "name": "Officer",
               "fk_name": "Precursor Knight Officer & Standard",
               "type": "warrior",
               "base": "small",
@@ -1014,7 +1040,7 @@
               }
             },
             "standard": {
-              "name": "Precursor Knight Standard Bearer",
+              "name": "Standard Bearer",
               "fk_name": "Precursor Knight Officer & Standard",
               "type": "warrior",
               "base": "small",
@@ -1036,9 +1062,9 @@
       "rangers": {
         "name": "Rangers",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Rangers Leader and Grunts",
+              "name": "Leader and Grunts",
               "fk_name": "Rangers",
               "ranges": [1, 6],
               "type": "warrior",
@@ -1056,12 +1082,12 @@
               }
             }
           }
-	}
+        }
       },
       "silver_line_stormguard": {
         "name": "Silver Line Stormguard",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Silver Line Stormguard",
@@ -1081,12 +1107,12 @@
               }
             }
           }
-	}
+        }
       },
       "storm_lances": {
         "name": "Storm Lances",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Storm Lances",
@@ -1106,14 +1132,14 @@
               }
             }
           }
-	}
-      },	  
+        }
+      },          
       "strom_tower": {
-	"name": "Stormsmith Storm Tower",
+        "name": "Stormsmith Storm Tower",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Storm Tower Grunt",
+              "name": "Crew",
               "fk_name": "Storm Tower",
               "type": "warrior",
               "base": "small",
@@ -1129,8 +1155,8 @@
                 "n": 1
               }
             },
-	    "gunner": {
-              "name": "Storm Tower Leader",
+            "leader": {
+              "name": "Gunner",
               "fk_name": "Storm Tower",
               "type": "warrior",
               "base": "small",
@@ -1145,16 +1171,16 @@
                 "type": "warrior",
                 "n": 1
               }
-	    }
+            }
           }
-	}
+        }
       },
       "stormblade_infantry": {
         "name": "Stormblade Infantry",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Stormblade Infantry Leader and Grunts",
+              "name": "Leader and Grunts",
               "fk_name": "Stormblade Infantry",
               "ranges": [1, 6],
               "type": "warrior",
@@ -1175,7 +1201,7 @@
           },
           "wa": {
             "gunner": {
-              "name": "Stormblade Infantry Storm Gunner",
+              "name": "Storm Gunner",
               "fk_name": "Stormblade Infantry Storm Gunner",
               "ranges": [1, 2, 3],
               "type": "warrior",
@@ -1195,7 +1221,7 @@
           },
           "ua": {
             "officer": {
-              "name": "Stormblade Infantry Officer",
+              "name": "Officer",
               "fk_name": "Stormblade Infantry Officer & Standard",
               "type": "warrior",
               "base": "small",
@@ -1212,7 +1238,7 @@
               }
             },
             "standard": {
-              "name": "Stormblade Infantry Standard Bearer",
+              "name": "Standard Bearer",
               "fk_name": "Stormblade Infantry Officer & Standard",
               "type": "warrior",
               "base": "small",
@@ -1234,9 +1260,9 @@
       "stormguard": {
         "name": "Stormguard",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Stormguard Leader and Grunts",
+              "name": "Leader and Grunts",
               "fk_name": "Stormguard",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -1254,15 +1280,15 @@
                 "n": 1
               }
             }
-	  }
-	}
+          }
+        }
       },
       "sword_knights": {
         "name": "Sword Knights",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Sword Knights Leader and Grunts",
+              "name": "Leader and Grunts",
               "fk_name": "Sword Knights",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -1282,7 +1308,7 @@
           },
           "ua": {
             "officer": {
-              "name": "Sword Knight Officer",
+              "name": "Officer",
               "fk_name": "Sword Knight Officer & Standard",
               "type": "warrior",
               "base": "small",
@@ -1299,7 +1325,7 @@
               }
             },
             "standard": {
-              "name": "Sword Knight Standard Bearer",
+              "name": "Standard Bearer",
               "fk_name": "Sword Knight Officer & Standard",
               "type": "warrior",
               "base": "small",
@@ -1321,9 +1347,9 @@
       "tempest_blazers ": {
         "name": "Tempest Blazers ",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Tempest Blazers Leader and Grunts",
+              "name": "Leader and Grunts",
               "fk_name": "Tempest Blazers ",
               "ranges": [1, 3, 5],
               "type": "warrior",
@@ -1341,14 +1367,14 @@
               }
             }
           }
-	}
+        }
       },
       "trencher_cannon": {
         "name": "Trencher Cannon",
         "entries": {
-          "grunt": {
+          "unit": {
             "crew1": {
-              "name": "Trencher Cannon Crew1",
+              "name": "Crew1",
               "fk_name": "Trencher Cannon",
               "type": "warrior",
               "base": "small",
@@ -1364,8 +1390,8 @@
                 "n": 1
               }
             },
-	    "crew2": {
-              "name": "Trencher Cannon Crew2",
+            "crew2": {
+              "name": "Crew2",
               "fk_name": "Trencher Cannon",
               "type": "warrior",
               "base": "small",
@@ -1381,8 +1407,8 @@
                 "n": 1
               }
             },
-	    "leader": {
-              "name": "Trencher Cannon Leader",
+            "leader": {
+              "name": "Gunner",
               "fk_name": "Trencher Cannon",
               "type": "warrior",
               "base": "medium",
@@ -1397,16 +1423,16 @@
                 "type": "warrior",
                 "n": 1
               }
-	    }
+            }
           }
-	}
+        }
       },
       "trencher_chaingun_crew": {
         "name": "Trencher Chaingun Crew",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Trencher Chaingun Grunt",
+              "name": "Crew",
               "fk_name": "Trencher Chaingun Crew",
               "type": "warrior",
               "base": "small",
@@ -1422,8 +1448,8 @@
                 "n": 1
               }
             },
-	    "leader": {
-              "name": "Trencher Chaingun Leader",
+            "leader": {
+              "name": "Gunner",
               "fk_name": "Trencher Chaingun Crew",
               "ranges": 1,
               "type": "warrior",
@@ -1439,16 +1465,16 @@
                 "type": "warrior",
                 "n": 1
               }
-	    }
+            }
           }
-	}
+        }
       },
       "trencher_commandos": {
         "name": "Trencher Commandos",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Trencher Commandos Leader and Grunts",
+              "name": "Leader and Grunts",
               "fk_name": "Trencher Commandos",
               "type": "warrior",
               "ranges": [1, 6, 10],
@@ -1466,9 +1492,9 @@
               }
             }
           },
-	  "wa": {
+          "wa": {
             "scatter": {
-              "name": "Trencher Commandos Scattergunner",
+              "name": "Scattergunner",
               "fk_name": "Trencher Commandos Scattergunner",
               "ranges": [1, 2, 3],
               "type": "warrior",
@@ -1486,14 +1512,14 @@
               }
             }
           }
-	}
+        }
       },
       "trencher_infantry": {
         "name": "Trencher Infantry",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Trencher Infantry Leader and Grunts",
+              "name": "Leader and Grunts",
               "fk_name": "Trencher Infantry",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -1513,7 +1539,7 @@
           },
           "wa": {
             "grenadier": {
-              "name": "Trencher Infantry Grenadier",
+              "name": "Grenadier",
               "fk_name": "Trencher Infantry Grenadier",
               "ranges": [1, 2, 3],
               "type": "warrior",
@@ -1533,7 +1559,7 @@
           },
           "ua": {
             "officer": {
-              "name": "Trencher Infantry Officer",
+              "name": "Officer",
               "fk_name": "Trencher Infantry Officer & Sniper",
               "type": "warrior",
               "base": "small",
@@ -1550,7 +1576,7 @@
               }
             },
             "sniper": {
-              "name": "Trencher Infantry Sniper",
+              "name": "Sniper",
               "fk_name": "Trencher Infantry Officer & Sniper",
               "type": "warrior",
               "base": "small",
@@ -1573,8 +1599,8 @@
     "solos": {
       "runewood": {
         "name": "Archduke Alain Runewood(Archduke Alain Runewood,Lord of Fharin)",
-	"fk_name": "Archduke Alain Runewood",
-        "type": "warrior",
+        "fk_name": "Archduke Alain Runewood",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1590,8 +1616,8 @@
       },
       "arlan": {
         "name": "Captain Arlan Strangewayes",
-	"fk_name": "Captain Arlan Strangewayes",
-        "type": "warrior",
+        "fk_name": "Captain Arlan Strangewayes",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1607,8 +1633,8 @@
       },
       "finn": {
         "name": "Captain Maxwell Finn",
-	"fk_name": "Captain Maxwell Finn",
-        "type": "warrior",
+        "fk_name": "Captain Maxwell Finn",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1624,8 +1650,8 @@
       },
       "gun_mage_adept": {
         "name": "Gun Mage Captain Adept",
-	"fk_name": "Gun Mage Captain Adept",
-        "type": "warrior",
+        "fk_name": "Gun Mage Captain Adept",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1638,11 +1664,11 @@
           "type": "warrior",
           "n": 5
         }
-      },	  
+      },          
       "journeymanwarcaster": {
         "name": "Journeyman Warcaster",
-	"fk_name": "Journeyman Warcaster",
-        "type": "warrior",
+        "fk_name": "Journeyman Warcaster",
+        "type": "wardude",
         "focus": 4,
         "base": "small",
         "width": 60,
@@ -1651,17 +1677,17 @@
           "x": 0.2,
           "y": -0.5,
           "link": "data/cygnar/solos/JourneymanWarcaster.png",
-	  "alternate": "data/cygnar/solos/JourneymanWarcaster_Girl.png"
+          "alternate": "data/cygnar/solos/JourneymanWarcaster_Girl.png"
         },
         "damage": {
           "type": "warrior",
           "n": 5
         }
-      },	  
+      },          
       "allison": {
         "name": "Lieutnant Allison Jakes",
-	"fk_name": "Lieutnant Allison Jakes",
-        "type": "warrior",
+        "fk_name": "Lieutnant Allison Jakes",
+        "type": "wardude",
         "focus": 4,
         "base": "small",
         "width": 60,
@@ -1675,11 +1701,11 @@
           "type": "warrior",
           "n": 5
         }
-      },	  
+      },          
       "laddermore_mount": {
         "name": "Major Katherine Laddermore",
-	"fk_name": "Major Katherine Laddermore",
-        "type": "warrior",
+        "fk_name": "Major Katherine Laddermore",
+        "type": "solo",
         "base": "large",
         "width": 60,
         "height": 60,
@@ -1692,11 +1718,11 @@
           "type": "warrior",
           "n": 10
         }
-      },	  
+      },          
       "laddermore_dismount": {
         "name": "Major Katherine Laddermore dismount",
-	"fk_name": "Major Katherine Laddermore dismount",
-        "type": "warrior",
+        "fk_name": "Major Katherine Laddermore dismount",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1709,11 +1735,11 @@
           "type": "warrior",
           "n": 5
         }
-      },	  
+      },          
       "squire": {
         "name": "Squire",
-	"fk_name": "Squire",
-        "type": "warrior",
+        "fk_name": "Squire",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1726,11 +1752,11 @@
           "type": "warrior",
           "n": 5
         }
-      },	 
+      },         
       "stormbladecaptain": {
         "name": "Stormblade Captain",
-	"fk_name": "Stormblade Captain",
-        "type": "warrior",
+        "fk_name": "Stormblade Captain",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1743,11 +1769,11 @@
           "type": "warrior",
           "n": 5
         }
-      },	  
+      },          
       "stormsmithstormcaller": {
         "name": "Stormsmith Stormcaller",
-	"fk_name": "Stormsmith Stormcaller",
-        "type": "warrior",
+        "fk_name": "Stormsmith Stormcaller",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1760,11 +1786,11 @@
           "type": "warrior",
           "n": 1
         }
-      },	  
+      },          
       "trenchermastergunner": {
         "name": "Trencher Master Gunner",
-	"fk_name": "Trencher Master Gunner",
-        "type": "warrior",
+        "fk_name": "Trencher Master Gunner",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1780,8 +1806,8 @@
       },
       "halfjacks": {
         "name": "Halfjacks",
-	"fk_name": "Captain E. Dominic Darius",
-        "type": "warrior",
+        "fk_name": "Captain E. Dominic Darius",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1794,28 +1820,11 @@
           "type": "warrior",
           "n": 1
         }
-      },		  
-      "finch": {	   
-        "name": "Storm Chaser Adept Caitlin Finch",
-	"fk_name": "Artificer General Nemo",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0.2,
-          "y": -0.5,
-          "link": "data/cygnar/solos/StormChaserAdeptFinch.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
-        }
-      },		 
-      "jonas": {	   
+      },                  
+      "jonas": {           
         "name": "Captain Jonas Murdoch",
-	"fk_name": "Captain Jonas Murdoch",
-        "type": "warrior",
+        "fk_name": "Captain Jonas Murdoch",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1828,10 +1837,10 @@
           "type": "warrior",
           "n": 5
         }
-      },		 
+      },                 
       "stormwall_pod": {
         "name": "Stormwall Pod",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1850,7 +1859,7 @@
       "Storm_Strider": {
         "name": "Storm Strider",
         "fk_name": "Storm Strider",
-        "type": "warrior",
+        "type": "be",
         "base": "huge",
         "width": 90,
         "height": 90,

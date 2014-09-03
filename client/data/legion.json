@@ -1295,7 +1295,7 @@
       "mistress": {
         "name": "Beast mistress",
         "fk_name": "Beast Mistress",
-        "type": "solo",
+        "type": "wardude",
         "fury": 4,
         "base": "small",
         "width": 60,

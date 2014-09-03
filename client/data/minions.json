@@ -653,11 +653,11 @@
       "Brun&Lug": {
         "name": "Brun Cragback & Lug",
         "entries": {
-          "unit": {
+          "lock": {
             "Brun Cragback": {
               "name": "Brun Cragback",
               "fk_name": "Brun Cragback & Lug",
-              "type": "warrior",
+              "type": "wardude",
               "fury": 3,
               "base": "small",
               "width": 60,
@@ -671,7 +671,9 @@
                 "type": "warrior",
                 "n": 8
               }
-            },
+            }
+          },
+          "beast": {
             "Lug": {
               "name": "Lug",
               "fk_name": "Brun Cragback & Lug",
@@ -701,11 +703,11 @@
       "Dahlia&Skarath": {
         "name": "Dahlia Hallyr & Skarath",
         "entries": {
-          "unit": {
+          "lock": {
             "Dahlia Hallyr": {
               "name": "Dahlia Hallyr",
               "fk_name": "Dahlia Hallyr & Skarath",
-              "type": "warrior",
+              "type": "wardude",
               "fury": 4,
               "base": "small",
               "width": 60,
@@ -719,7 +721,9 @@
                 "type": "warrior",
                 "n": 8
               }
-            },
+            }
+          },
+          "beast": {
             "Skarath": {
               "name": "Skarath",
               "fk_name": "Dahlia Hallyr & Skarath",
@@ -749,11 +753,11 @@
       "Rorsh&Brine": {
         "name": "Rorsh & Brine",
         "entries": {
-          "unit": {
+          "lock": {
             "Rorsh": {
               "name": "Rorsh",
               "fk_name": "Rorsh & Brine",
-              "type": "warrior",
+              "type": "wardude",
               "fury": 3,
               "base": "small",
               "width": 60,
@@ -767,7 +771,9 @@
                 "type": "warrior",
                 "n": 8
               }
-            },
+            }
+          },
+          "beast": {
             "Brine": {
               "name": "Brine",
               "fk_name": "Rorsh & Brine",
@@ -797,11 +803,11 @@
       "WrongEye&Snapjaw": {
         "name": "Wrong Eye & Snapjaw",
         "entries": {
-          "unit": {
+          "lock": {
             "Wrong Eye": {
               "name": "Wrong Eye",
               "fk_name": "Wrong Eye & Snapjaw",
-              "type": "warrior",
+              "type": "wardude",
               "fury": 4,
               "base": "small",
               "width": 60,
@@ -815,7 +821,9 @@
                 "type": "warrior",
                 "n": 8
               }
-            },
+            }
+          },
+          "beast": {
             "Snapjaw": {
               "name": "Snapjaw",
               "fk_name": "Wrong Eye & Snapjaw",
@@ -844,7 +852,7 @@
       },
       "Alten Ashley": {
         "name": "Alten Ashley",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -861,7 +869,7 @@
       "Croak Hunter": {
         "name": "Croak Hunter",
         "fk_name": "Croak Hunter",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -878,7 +886,7 @@
       "Feralgeist": {
         "name": "Feralgeist",
         "fk_name": "Feralgeist",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -895,7 +903,7 @@
       "Witch Doctor": {
         "name": "Gatorman Witch Doctor",
         "fk_name": "Gatorman Witch Doctor",
-        "type": "warrior",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -912,7 +920,7 @@
       "Gobber Tinker": {
         "name": "Gobber Tinker",
         "fk_name": "Goblin Tinker",
-        "type": "warrior",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -929,7 +937,7 @@
       "Gudrun": {
         "name": "Gudrun the Wanderer",
         "fk_name": "Gudrun the Wanderer",
-        "type": "warrior",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -946,7 +954,7 @@
       "Lanyssa": {
         "name": "Lanyssa Ryssyll, Nyss Sorceress",
         "fk_name": "Lanyssa Ryssyll, Nyss Sorceress",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -963,7 +971,7 @@
       "Saxon": {
         "name": "Saxon Orrik",
         "fk_name": "Saxon Orrik",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -980,7 +988,7 @@
       "Pendrake": {
         "name": "Victor Pendrake",
         "fk_name": "Professor Victor Pendrake",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -997,7 +1005,7 @@
       "Targ": {
         "name": "Targ",
         "fk_name": "Targ",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1014,7 +1022,7 @@
       "Thrullg": {
         "name": "Thrullg",
         "fk_name": "Thrullg",
-        "type": "warrior",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -1031,7 +1039,7 @@
       "Totem Hunter": {
         "name": "Totem Hunter",
         "fk_name": "Totem Hunter",
-        "type": "warrior",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,

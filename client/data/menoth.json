@@ -1,1629 +1,1629 @@
 {
-    "name" : "Menoth",
-    "color" : "#ecc76d",
-    "icon": "data/icons/menoth_50.png",
-    "models": {
-        "casters": {
-            "amon1": {
-                "name": "Amon1 (High Allegiant Amon Ad-Raza)",
-                "fk_name": "High Allegiant Amon Ad-Raza",
-                "type": "wardude",
-                "focus": 6,
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/casters/Amon1.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 17
-                }
-            },
-            "feora1": {
-                "name": "Feora1 (Feora, Priestess of the Flame)",
-                "fk_name": "Feora, Priestess of the Flame",
-                "type": "wardude",
-                "focus": 6,
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/casters/Feora1.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 16
-                }
-            },
-            "feora2": {
-                "name": "Feora2 (Feora, Protector of the Flame)",
-                "fk_name": "Feora, Protector of the Flame",
-                "type": "wardude",
-                "focus": 6,
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/casters/Feora2.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 16
-                }
-            },
-            "harbinger1": {
-                "name": "Harbinger1 (Harbinger of Menoth)",
-                "fk_name": "Harbinger of Menoth",
-                "type": "wardude",
-                "focus": 10,
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/casters/Harbinger1.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 17
-                }
-            },
-            "reclaimer1": {
-                "name": "Reclaimer1 (The High Reclaimer)",
-                "fk_name": "The High Reclaimer",
-                "type": "wardude",
-                "focus": 5,
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/casters/Reclaimer1.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 18
-                }
-            },
-            "testament1": {
-                "name": "Testament1 (Testament of Menoth)",
-                "fk_name": "Testament of Menoth",
-                "type": "wardude",
-                "focus": 5,
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/casters/Testament1.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 18
-                }
-            },
-            "reznik1": {
-                "name": "Reznik1 (High Executioner Servath Reznik)",
-                "fk_name": "High Executioner Servath Reznik",
-                "type": "wardude",
-                "focus": 6,
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/casters/Reznik1.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 17
-                }
-            },
-            "reznik2": {
-                "name": "Reznik2 (Servath Reznik, Wrath of Ages)",
-                "fk_name": "Servath Reznik, Wrath of Ages",
-                "type": "wardude",
-                "focus": 7,
-                "base": "huge",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": ""
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 20
-                }
-            },
-            "kreoss1": {
-                "name": "Kreoss1 (High Exemplar Kreoss)",
-                "fk_name": "High Exemplar Kreoss",
-                "type": "wardude",
-                "focus": 7,
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/casters/Kreoss1.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 18
-                }
-            },
-            "kreoss2": {
-                "name": "Kreoss2 (Grand Exemplar Kreoss)",
-                "fk_name": "Grand Exemplar Kreoss",
-                "type": "wardude",
-                "focus": 7,
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/casters/Kreoss2.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 18
-                }
-            },
-            "kreoss3": {
-                "name": "Kreoss3 (Intercessor Kreoss)",
-                "fk_name": "Intercessor Kreoss",
-                "type": "wardude",
-                "focus": 7,
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/casters/Kreoss3.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 18
-                }
-            },
-            "severius1": {
-                "name": "Severius1 (Grand Scrutator Severius)",
-                "fk_name": "Grand Scrutator Severius",
-                "type": "wardude",
-                "focus": 8,
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/casters/Severius1.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 16
-                }
-            },
-            "severius2": {
-                "name": "Severius2 (Hierarch Severius)",
-                "fk_name": "Hierarch Severius",
-                "type": "wardude",
-                "focus": 8,
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/casters/Severius2.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 16
-                }
-            },
-            "thyra1": {
-                "name": "Thyra1 (Thyra, Flame of Sorrow)",
-                "fk_name": "Thyra, Flame of Sorrow",
-                "type": "wardude",
-                "focus": 6,
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/casters/Thyra1.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 15
-                }
-            },
-            "vindictus1": {
-                "name": "Vindictus1 (Vice Scrutator Vindictus)",
-                "fk_name": "Vice Scrutator Vindictus",
-                "type": "wardude",
-                "focus": 6,
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/casters/Vindictus1.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 16
-                }
-            }
+  "name" : "Menoth",
+  "color" : "#ecc76d",
+  "icon": "data/icons/menoth_50.png",
+  "models": {
+    "casters": {
+      "amon1": {
+        "name": "Amon1 (High Allegiant Amon Ad-Raza)",
+        "fk_name": "High Allegiant Amon Ad-Raza",
+        "type": "wardude",
+        "focus": 6,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/casters/Amon1.png"
         },
-        "jacks": {
-            "dervish": {
-                "name": "Dervish",
-                "fk_name": "Dervish",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/Dervish.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, null,  "b",  "b",  "r", null ]
-                }
-            },
-            "devout": {
-                "name": "Devout",
-                "fk_name": "Devout",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/Devout.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, null,  "b",  "b",  "r", null ]
-                }
-            },
-            "redeemer": {
-                "name": "Redeemer",
-                "fk_name": "Redeemer",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/Redeemer.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, null,  "b",  "b",  "r", null ]
-                }
-            },
-            "repenter": {
-                "name": "Repenter",
-                "fk_name": "Repenter",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/Repenter.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, null,  "b",  "b",  "r", null ]
-                }
-            },
-            "revenger": {
-                "name": "Revenger",
-                "fk_name": "Revenger",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/Revenger.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [  "b",  "b",  "b",  "a",  "m", "m"  ],
-                    "4": [  "b",  "b",  "b",  "a",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, null,  "b",  "b",  "r", null ]
-                }
-            },
-            "vigilant": {
-                "name": "Vigilant",
-                "fk_name": "Vigilant",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/Vigilant.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
-                    "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, null,  "b",  "b",  "r", null ]
-                }
-            },
-            "blessingOfVengeance": {
-                "name": "Blessing of Vengeance",
-                "fk_name": "Blessing of Vengeance",
-                "type": "jack",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/BlessingOfVengeance.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, null,  "b",  "b",  "l", null ],
-                    "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
-                    "3": [  "b",  "b",  "b",  "a",  "m", "m"  ],
-                    "4": [  "b",  "b",  "b",  "a",  "c", "c"  ],
-                    "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, null,  "b",  "b",  "r", null ]
-                }
-            },
-            "castigator": {
-                "name": "Castigator",
-                "fk_name": "Castigator",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/Castigator.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
-                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
-                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
-                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            },
-            "crusader": {
-                "name": "Crusader",
-                "fk_name": "Crusader",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/Crusader.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
-                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
-                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
-                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            },
-            "guardian": {
-                "name": "Guardian",
-                "fk_name": "Guardian",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/Guardian.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [  "b", "b",  "b",  "b",  "l", null ],
-                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
-                    "3": [  "b", "b",  "b",  "a",  "m", "m"  ],
-                    "4": [  "b", "b",  "b",  "a",  "c", "c"  ],
-                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
-                    "6": [  "b", "b",  "b",  "b",  "r", null ]
-                }
-            },
-            "reckoner": {
-                "name": "Reckoner",
-                "fk_name": "Reckoner",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/Reckoner.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
-                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
-                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
-                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            },
-            "templar": {
-                "name": "Templar",
-                "fk_name": "Templar",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/Templar.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
-                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
-                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
-                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            },
-            "vanquisher": {
-                "name": "Vanquisher",
-                "fk_name": "Vanquisher",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/Vanquisher.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
-                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
-                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
-                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            },
-            "avatar": {
-                "name": "Avatar of Menoth",
-                "fk_name": "Avatar of Menoth",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/Avatar.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [  "b", "b",  "b",  "b",  "l", "l"  ],
-                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
-                    "4": [  "b", "b",  "b",  "b",  "b", "m"  ],
-                    "5": [  "b", "b",  "b",  "b",  "r", "r"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            },
-            "fireOfSalvation": {
-                "name": "Fire of Salvation",
-                "fk_name": "Fire of Salvation",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/FireOfSalvation.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
-                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
-                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
-                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            },
-            "sanctifier": {
-                "name": "Sanctifier",
-                "fk_name": "Sanctifier",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/Sanctifier.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
-                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
-                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
-                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            },
-            "bloodOfMartyrs": {
-                "name": "Blood of Martyrs",
-                "fk_name": "Blood of Martyrs",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/BloodOfMartyrs.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
-                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
-                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
-                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            },
-            "scourgeOfHeresy": {
-                "name": "Scourge of Heresy",
-                "fk_name": "Scourge of Heresy",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": "data/menoth/jacks/ScourgeOfHeresy.png"
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
-                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
-                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
-                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            },
-            "judicator": {
-                "name": "Judicator",
-                "fk_name": "Judicator",
-                "type": "jack",
-                "base": "huge",
-                "width": 116.667,
-                "height": 116.667,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/jacks/Judicator.png"
-                },
-                "damage": {
-                    "type": "colossal",
-                    "L1": [ null, null, "b", "b", "l", "l" ],
-                    "L2": [ null, null, "b", "b", "l", "c" ],
-                    "L3": [ null,  "b", "b", "l", "c", "m" ],
-                    "L4": [ null,  "b", "b", "l", "c", "m" ],
-                    "L5": [  "b",  "b", "s", "s", "c", "m" ],
-                    "L6": [  "b",  "b", "s", "c", "c", "m" ],
-                    "R1": [  "b",  "b", "s", "c", "c", "m" ],
-                    "R2": [  "b",  "b", "s", "s", "c", "m" ],
-                    "R3": [ null,  "b", "b", "r", "c", "m" ],
-                    "R4": [ null,  "b", "b", "r", "c", "m" ],
-                    "R5": [ null, null, "b", "b", "r", "c" ],
-                    "R6": [ null, null, "b", "b", "r", "r" ]
-                }
-            },
-            "indictor": {
-                "name": "Indictor",
-                "fk_name": "Indictor",
-                "type": "jack",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.2,
-                    "link": ""
-                },
-                "damage": {
-                    "type": "jack",
-                    "1": [ null, "b",  "b",  "b",  "l", null ],
-                    "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
-                    "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
-                    "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
-                    "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
-                    "6": [ null, "b",  "b",  "b",  "r", null ]
-                }
-            }
-        },
-        "units": {
-            "choir": {
-                "name": "Choir of Menoth",
-                "entries": {
-                    "grunt": {
-                        "grunt": {
-                            "name": "Leader and Grunts",
-                            "fk_name": "Choir of Menoth",
-                            "ranges": [1, 4, 6],
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Choir_Grunt.png",
-                                "leader": "data/menoth/units/Choir_Priest.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        }
-                    }
-                }
-            },
-            "daughtersOfTheFlame": {
-                "name": "Daughters of the Flame",
-                "entries": {
-                    "grunt": {
-                        "grunt": {
-                            "name": "Leader and Grunts",
-                            "fk_name": "Daughters of the Flame",
-                            "ranges": [1, 6],
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Daughters_Grunt.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        }
-                    }
-                }
-            },
-            "deliverers": {
-                "name": "Deliverers",
-                "entries": {
-                    "grunt": {
-                        "grunt": {
-                            "name": "Leader and Grunts",
-                            "fk_name": "Deliverers",
-                            "ranges": [1, 6, 10],
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Delivers_Grunt.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        }
-                    }
-                }
-            },
-            "delivererSunburstCrew": {
-                "name": "Deliverer Sunburst Crew",
-                "entries": {
-                    "grunt": {
-                        "grunt1": {
-                            "name": "Sunburst Crew 1",
-                            "fk_name": "Deliverer Sunburst Crew",
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/SunburstCrew1.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        },
-                        "grunt2": {
-                            "name": "Sunburst Crew 2",
-                            "fk_name": "Deliverer Sunburst Crew",
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/SunburstCrew2.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        },
-                        "leader": {
-                            "name": "Leader",
-                            "fk_name": "Deliverer Sunburst Crew",
-                            "type": "warrior",
-                            "base": "large",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Sunburst.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        }
-                    }
-                }
-            },
-            "bastions": {
-                "name": "Exemplar Bastions",
-                "entries": {
-                    "grunt": {
-                        "grunt": {
-                            "name": "Leader and Grunts",
-                            "fk_name": "Exemplar Bastions",
-                            "ranges": [1, 3, 5],
-                            "type": "warrior",
-                            "base": "medium",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Bastions_Grunt.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 8
-                            }
-                        }
-                    }
-                }
-            },
-            "cinerators": {
-                "name": "Exemplar Cinerators",
-                "entries": {
-                    "grunt": {
-                        "grunt": {
-                            "name": "Leader and 5 Grunts",
-                            "fk_name": "Exemplar Cinerators",
-                            "ranges": [1, 3, 5],
-                            "type": "warrior",
-                            "base": "medium",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Cinerators_Grunt.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 8
-                            }
-                        }
-                    }
-                }
-            },
-            "vengers": {
-                "name": "Exemplar Vengers",
-                "entries": {
-                    "grunt": {
-                        "grunt": {
-                            "name": "Leader and Grunts",
-                            "fk_name": "Exemplar Vengers",
-                            "ranges": [1, 3, 5],
-                            "type": "warrior",
-                            "base": "large",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Vengers_Grunt.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 5
-                            }
-                        }
-                    }
-                }
-            },
-            "errants": {
-                "name": "Exemplar Errants",
-                "entries": {
-                    "grunt": {
-                        "grunt": {
-                            "name": "Leader and Grunts",
-                            "fk_name": "Exemplar Errants",
-                            "ranges": [1, 6, 10],
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Errant_Grunt.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        }
-                    },
-                    "ua": {
-                        "officer": {
-                            "name": "Officer",
-                            "fk_name": "Exemplar Errant Officer & Standard Bearer",
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Errant_Officer.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 5
-                            }
-                        },
-                        "bearer": {
-                            "name": "Standard Bearer",
-                            "fk_name": "Exemplar Errant Officer & Standard Bearer",
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Errant_StandardBearer.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        }
-                    }
-                }
-            },
-            "cleansers": {
-                "name": "Flameguard Cleansers",
-                "entries": {
-                    "grunt": {
-                        "grunt": {
-                            "name": "Leader and Grunts",
-                            "fk_name": "Flameguard Cleansers",
-                            "ranges": [1, 6, 10],
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Cleansers_Grunt.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        }
-                    },
-                    "ua": {
-                        "officer": {
-                            "name": "Officer",
-                            "fk_name": "Flameguard Cleanser Officer",
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Cleanser_Officer.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 5
-                            }
-                        }
-                    }
-                }
-            },
-            "knights": {
-                "name": "Knights Exemplar",
-                "entries": {
-                    "grunt": {
-                        "grunt": {
-                            "name": "Leader and Grunts",
-                            "fk_name": "Knights Exemplar",
-                            "ranges": [1, 6],
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Knights_Grunt.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        }
-                    }
-                }
-            },
-            "zealots": {
-                "name": "Holy Zealots",
-                "entries": {
-                    "grunt": {
-                        "grunt": {
-                            "name": "Leader and Grunts",
-                            "fk_name": "Holy Zealots",
-                            "ranges": [1, 6, 10],
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Zealots_Grunt.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        }
-                    },
-                    "ua": {
-                        "officer": {
-                            "name": "Monolith Bearer",
-                            "fk_name": "Holy Zealot Monolith Bearer",
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Zealots_Monolith.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 5
-                            }
-                        }
-                    }
-                }
-            },
-            "idrianSkirmisher": {
-                "name": "Idrian Skirmishers",
-                "entries": {
-                    "grunt": {
-                        "grunt": {
-                            "name": "Leader and Grunts",
-                            "fk_name": "Idrian Skirmishers",
-                            "ranges": [1, 6, 10],
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Idrians_Grunt.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        }
-                    },
-                    "ua": {
-                        "chieftain": {
-                            "name": "Chieftain",
-                            "fk_name": "Idrian Skirmishers Chieftain & Guide",
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Idrians_Chieftain.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 5
-                            }
-                        },
-                        "guide": {
-                            "name": "Guide",
-                            "fk_name": "Idrian Skirmishers Chieftain & Guide",
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Idrians_Guide.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 5
-                            }
-                        }
-                    }
-                }
-            },
-            "templeFlameguard": {
-                "name": "Temple Flameguard",
-                "entries": {
-                    "grunt": {
-                        "grunt": {
-                            "name": "Leader and Grunts",
-                            "fk_name": "Temple Flameguard",
-                            "ranges": [1, 6, 10],
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/TempleFlameguard_Grunt.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        }
-                    },
-                    "ua": {
-                        "officer": {
-                            "name": "Officer",
-                            "fk_name": "Temple Flameguard Officer & Standard",
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/TempleFlameguard_Officer.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 5
-                            }
-                        },
-                        "standard": {
-                            "name": "Standard Bearer",
-                            "fk_name": "Temple Flameguard Officer & Standard",
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/TempleFlameguard_StandardBearer.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 1
-                            }
-                        }
-                    }
-                }
-            },
-            "visigoth": {
-                "name": "Visgoth Juviah Rhoven & 2 Honor Guard",
-                "entries": {
-                    "grunt": {
-                        "rhoven": {
-                            "name": "Visgoth Juviah Rhoven",
-                            "fk_name": "Visgoth Juviah Rhoven & 2 Honor Guard",
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Visigoth_Rhoven.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 5
-                            }
-                        },
-                        "guis": {
-                            "name": "Guis",
-                            "fk_name": "Visgoth Juviah Rhoven & 2 Honor Guard",
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Visigoth_Guis.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 5
-                            }
-                        },
-                        "cassian": {
-                            "name": "Cassian",
-                            "fk_name": "Visgoth Juviah Rhoven & 2 Honor Guard",
-                            "type": "warrior",
-                            "base": "small",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": "data/menoth/units/Visigoth_Cassian.png"
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 5
-                            }
-                        }
-                    }
-                }
-            },
-            "flamebringers": {
-                "name": "Flamebringers",
-                "entries": {
-                    "grunt": {
-                        "grunt": {
-                            "name": "Leader and Grunts",
-                            "fk_name": "Flamebringers",
-                            "ranges": [1, 3, 5],
-                            "type": "warrior",
-                            "base": "large",
-                            "width": 60,
-                            "height": 60,
-                            "img": {
-                                "x": 0.2,
-                                "y": -0.5,
-                                "link": ""
-                            },
-                            "damage": {
-                                "type": "warrior",
-                                "n": 5
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "solos": {
-            "attendant": {
-                "name": "Attendant Priest",
-                "fk_name": "Attendant Priest",
-                "type": "warrior",
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/units/AttendantPriest.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 5
-                }
-            },
-            "allegiant": {
-                "name": "Allegiant of the Order of the Fist",
-                "fk_name" : "Allegiant of the Order of the Fist",
-                "type": "warrior",
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/Allegiant.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 5
-                }
-            },
-            "convenant": {
-                "name": "The Covenant of Menoth",
-                "fk_name" : "The Covenant of Menoth",
-                "type": "warrior",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/Covenant.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 5
-                }
-            },
-            "errantSeneschal": {
-                "name": "Exemplar Errant Seneschal",
-                "fk_name" : "Exemplar Errant Seneschal",
-                "type": "warrior",
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/ErrantSeneschal.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 5
-                }
-            },
-            "hierophant": {
-                "name": "Hierophant",
-                "fk_name" : "Hierophant",
-                "type": "warrior",
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/Hierophant.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 5
-                }
-            },
-            "knightSeneshal": {
-                "name": "Knight Exemplar Seneschal",
-                "fk_name" : "Knight Exemplar Seneschal",
-                "type": "warrior",
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/KnightSeneschal.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 5
-                }
-            },
-            "paladin": {
-                "name": "Paladin of the Order of the Wall",
-                "fk_name" : "Paladin of the Order of the Wall",
-                "type": "warrior",
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/Paladin.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 5
-                }
-            },
-            "reclaimer": {
-                "name": "Reclaimer",
-                "fk_name" : "Reclaimer",
-                "type": "warrior",
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/Reclaimer.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 5
-                }
-            },
-            "vassalMechanik": {
-                "name": "Vassal Mechanik",
-                "fk_name" : "Vassal Mechanik",
-                "type": "warrior",
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/Mechanik.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 5
-                }
-            },
-            "vassalMenoth": {
-                "name": "Vassal of Menoth",
-                "fk_name" : "Vassal of Menoth",
-                "type": "warrior",
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/Vassal.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 5
-                }
-            },
-            "wrack": {
-                "name": "The Wrack",
-                "fk_name" : "The Wrack",
-                "ranges": [1, 3],
-                "type": "warrior",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/Wrack.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 1
-                }
-            },
-            "gravus": {
-                "name": "High Exemplar Gravus",
-                "fk_name" : "High Exemplar Gravus",
-                "type": "warrior",
-                "base": "large",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/Gravus.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 10
-                }
-            },
-            "gravusDismount": {
-                "name": "High Exemplar Gravus (Dismounted)",
-                "fk_name" : "High Exemplar Gravus (Dismounted)",
-                "type": "warrior",
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/GravusDismount.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 5
-                }
-            },
-            "vilmon": {
-                "name": "High Paladin Dartan Vilmon",
-                "fk_name" : "High Paladin Dartan Vilmon",
-                "type": "warrior",
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/Vilmon.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 5
-                }
-            },
-            "nicia": {
-                "name": "Nicia, Tear of Vengeance",
-                "fk_name" : "Nicia, Tear of Vengeance",
-                "type": "warrior",
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/Nicia.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 5
-                }
-            },
-            "bastionSeneschal": {
-                "name": "Exemplar Bastion Seneschal",
-                "fk_name" : "Exemplar Bastion Seneschal",
-                "type": "warrior",
-                "base": "medium",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0.2,
-                    "y": -0.5,
-                    "link": "data/menoth/solos/BastionSeneschal.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 8
-                }
-            },
-            "tristan": {
-                "name": "Initiate Tristan Durant",
-                "fk_name": "Initiate Tristan Durant",
-                "type": "warrior",
-                "focus": 4,
-                "base": "small",
-                "width": 60,
-                "height": 60,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": ""
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 5
-                }
-            }
-        },
-        "battle_engines": {
-            "vessel_of_judgement": {
-                "name": "Vessel of Judgement",
-                "fk_name": "Vessel of Judgement",
-                "type": "warrior",
-                "base": "huge",
-                "width": 90,
-                "height": 90,
-                "img": {
-                    "x": 0,
-                    "y": 0,
-                    "link": "data/menoth/bes/VesselOfJudgement.png"
-                },
-                "damage": {
-                    "type": "warrior",
-                    "n": 24
-                }
-            }
+        "damage": {
+          "type": "warrior",
+          "n": 17
         }
+      },
+      "feora1": {
+        "name": "Feora1 (Feora, Priestess of the Flame)",
+        "fk_name": "Feora, Priestess of the Flame",
+        "type": "wardude",
+        "focus": 6,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/casters/Feora1.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 16
+        }
+      },
+      "feora2": {
+        "name": "Feora2 (Feora, Protector of the Flame)",
+        "fk_name": "Feora, Protector of the Flame",
+        "type": "wardude",
+        "focus": 6,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/casters/Feora2.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 16
+        }
+      },
+      "harbinger1": {
+        "name": "Harbinger1 (Harbinger of Menoth)",
+        "fk_name": "Harbinger of Menoth",
+        "type": "wardude",
+        "focus": 10,
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/casters/Harbinger1.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 17
+        }
+      },
+      "reclaimer1": {
+        "name": "Reclaimer1 (The High Reclaimer)",
+        "fk_name": "The High Reclaimer",
+        "type": "wardude",
+        "focus": 5,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/casters/Reclaimer1.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 18
+        }
+      },
+      "reclaimer2": {
+        "name": "Reclaimer2 (Testament of Menoth)",
+        "fk_name": "Testament of Menoth",
+        "type": "wardude",
+        "focus": 5,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/casters/Testament1.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 18
+        }
+      },
+      "reznik1": {
+        "name": "Reznik1 (High Executioner Servath Reznik)",
+        "fk_name": "High Executioner Servath Reznik",
+        "type": "wardude",
+        "focus": 6,
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/casters/Reznik1.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 17
+        }
+      },
+      "reznik2": {
+        "name": "Reznik2 (Servath Reznik, Wrath of Ages)",
+        "fk_name": "Servath Reznik, Wrath of Ages",
+        "type": "wardude",
+        "focus": 7,
+        "base": "huge",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 20
+        }
+      },
+      "kreoss1": {
+        "name": "Kreoss1 (High Exemplar Kreoss)",
+        "fk_name": "High Exemplar Kreoss",
+        "type": "wardude",
+        "focus": 7,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/casters/Kreoss1.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 18
+        }
+      },
+      "kreoss2": {
+        "name": "Kreoss2 (Grand Exemplar Kreoss)",
+        "fk_name": "Grand Exemplar Kreoss",
+        "type": "wardude",
+        "focus": 7,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/casters/Kreoss2.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 18
+        }
+      },
+      "kreoss3": {
+        "name": "Kreoss3 (Intercessor Kreoss)",
+        "fk_name": "Intercessor Kreoss",
+        "type": "wardude",
+        "focus": 7,
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/casters/Kreoss3.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 18
+        }
+      },
+      "severius1": {
+        "name": "Severius1 (Grand Scrutator Severius)",
+        "fk_name": "Grand Scrutator Severius",
+        "type": "wardude",
+        "focus": 8,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/casters/Severius1.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 16
+        }
+      },
+      "severius2": {
+        "name": "Severius2 (Hierarch Severius)",
+        "fk_name": "Hierarch Severius",
+        "type": "wardude",
+        "focus": 8,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/casters/Severius2.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 16
+        }
+      },
+      "thyra1": {
+        "name": "Thyra1 (Thyra, Flame of Sorrow)",
+        "fk_name": "Thyra, Flame of Sorrow",
+        "type": "wardude",
+        "focus": 6,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/casters/Thyra1.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 15
+        }
+      },
+      "vindictus1": {
+        "name": "Vindictus1 (Vice Scrutator Vindictus)",
+        "fk_name": "Vice Scrutator Vindictus",
+        "type": "wardude",
+        "focus": 6,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/casters/Vindictus1.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 16
+        }
+      }
+    },
+    "jacks": {
+      "dervish": {
+        "name": "Dervish",
+        "fk_name": "Dervish",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/Dervish.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "devout": {
+        "name": "Devout",
+        "fk_name": "Devout",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/Devout.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "redeemer": {
+        "name": "Redeemer",
+        "fk_name": "Redeemer",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/Redeemer.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "repenter": {
+        "name": "Repenter",
+        "fk_name": "Repenter",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/Repenter.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "revenger": {
+        "name": "Revenger",
+        "fk_name": "Revenger",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/Revenger.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [  "b",  "b",  "b",  "a",  "m", "m"  ],
+          "4": [  "b",  "b",  "b",  "a",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "vigilant": {
+        "name": "Vigilant",
+        "fk_name": "Vigilant",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/Vigilant.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "blessingOfVengeance": {
+        "name": "Blessing of Vengeance",
+        "fk_name": "Blessing of Vengeance",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/BlessingOfVengeance.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [  "b",  "b",  "b",  "a",  "m", "m"  ],
+          "4": [  "b",  "b",  "b",  "a",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "castigator": {
+        "name": "Castigator",
+        "fk_name": "Castigator",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/Castigator.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+          "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+          "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+          "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "crusader": {
+        "name": "Crusader",
+        "fk_name": "Crusader",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/Crusader.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+          "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+          "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+          "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "guardian": {
+        "name": "Guardian",
+        "fk_name": "Guardian",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/Guardian.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [  "b", "b",  "b",  "b",  "l", null ],
+          "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+          "3": [  "b", "b",  "b",  "a",  "m", "m"  ],
+          "4": [  "b", "b",  "b",  "a",  "c", "c"  ],
+          "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+          "6": [  "b", "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "reckoner": {
+        "name": "Reckoner",
+        "fk_name": "Reckoner",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/Reckoner.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+          "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+          "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+          "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "templar": {
+        "name": "Templar",
+        "fk_name": "Templar",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/Templar.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+          "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+          "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+          "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "vanquisher": {
+        "name": "Vanquisher",
+        "fk_name": "Vanquisher",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/Vanquisher.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+          "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+          "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+          "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "avatar": {
+        "name": "Avatar of Menoth",
+        "fk_name": "Avatar of Menoth",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/Avatar.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [  "b", "b",  "b",  "b",  "l", "l"  ],
+          "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+          "4": [  "b", "b",  "b",  "b",  "b", "m"  ],
+          "5": [  "b", "b",  "b",  "b",  "r", "r"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "fireOfSalvation": {
+        "name": "Fire of Salvation",
+        "fk_name": "Fire of Salvation",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/FireOfSalvation.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+          "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+          "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+          "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "sanctifier": {
+        "name": "Sanctifier",
+        "fk_name": "Sanctifier",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/Sanctifier.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+          "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+          "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+          "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "bloodOfMartyrs": {
+        "name": "Blood of Martyrs",
+        "fk_name": "Blood of Martyrs",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/BloodOfMartyrs.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+          "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+          "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+          "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "scourgeOfHeresy": {
+        "name": "Scourge of Heresy",
+        "fk_name": "Scourge of Heresy",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": "data/menoth/jacks/ScourgeOfHeresy.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+          "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+          "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+          "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "judicator": {
+        "name": "Judicator",
+        "fk_name": "Judicator",
+        "type": "jack",
+        "base": "huge",
+        "width": 116.667,
+        "height": 116.667,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/jacks/Judicator.png"
+        },
+        "damage": {
+          "type": "colossal",
+          "L1": [ null, null, "b", "b", "l", "l" ],
+          "L2": [ null, null, "b", "b", "l", "c" ],
+          "L3": [ null,  "b", "b", "l", "c", "m" ],
+          "L4": [ null,  "b", "b", "l", "c", "m" ],
+          "L5": [  "b",  "b", "s", "s", "c", "m" ],
+          "L6": [  "b",  "b", "s", "c", "c", "m" ],
+          "R1": [  "b",  "b", "s", "c", "c", "m" ],
+          "R2": [  "b",  "b", "s", "s", "c", "m" ],
+          "R3": [ null,  "b", "b", "r", "c", "m" ],
+          "R4": [ null,  "b", "b", "r", "c", "m" ],
+          "R5": [ null, null, "b", "b", "r", "c" ],
+          "R6": [ null, null, "b", "b", "r", "r" ]
+        }
+      },
+      "indictor": {
+        "name": "Indictor",
+        "fk_name": "Indictor",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.2,
+          "link": ""
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+          "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+          "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+          "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      }
+    },
+    "units": {
+      "choir": {
+        "name": "Choir of Menoth",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Choir of Menoth",
+              "ranges": [1, 4, 6],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Choir_Grunt.png",
+                "leader": "data/menoth/units/Choir_Priest.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      },
+      "daughtersOfTheFlame": {
+        "name": "Daughters of the Flame",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Daughters of the Flame",
+              "ranges": [1, 6],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Daughters_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      },
+      "deliverers": {
+        "name": "Deliverers",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Deliverers",
+              "ranges": [1, 6, 10],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Delivers_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      },
+      "delivererSunburstCrew": {
+        "name": "Deliverer Sunburst Crew",
+        "entries": {
+          "unit": {
+            "grunt1": {
+              "name": "Crew 1",
+              "fk_name": "Deliverer Sunburst Crew",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/SunburstCrew1.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            },
+            "grunt2": {
+              "name": "Crew 2",
+              "fk_name": "Deliverer Sunburst Crew",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/SunburstCrew2.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            },
+            "leader": {
+              "name": "Gunner",
+              "fk_name": "Deliverer Sunburst Crew",
+              "type": "warrior",
+              "base": "large",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Sunburst.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      },
+      "bastions": {
+        "name": "Exemplar Bastions",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Exemplar Bastions",
+              "ranges": [1, 3, 5],
+              "type": "warrior",
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Bastions_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 8
+              }
+            }
+          }
+        }
+      },
+      "cinerators": {
+        "name": "Exemplar Cinerators",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Exemplar Cinerators",
+              "ranges": [1, 3, 5],
+              "type": "warrior",
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Cinerators_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 8
+              }
+            }
+          }
+        }
+      },
+      "vengers": {
+        "name": "Exemplar Vengers",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Exemplar Vengers",
+              "ranges": [1, 3, 5],
+              "type": "warrior",
+              "base": "large",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Vengers_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
+        }
+      },
+      "errants": {
+        "name": "Exemplar Errants",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Exemplar Errants",
+              "ranges": [1, 6, 10],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Errant_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          },
+          "ua": {
+            "officer": {
+              "name": "Officer",
+              "fk_name": "Exemplar Errant Officer & Standard Bearer",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Errant_Officer.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "bearer": {
+              "name": "Standard Bearer",
+              "fk_name": "Exemplar Errant Officer & Standard Bearer",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Errant_StandardBearer.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      },
+      "cleansers": {
+        "name": "Flameguard Cleansers",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Flameguard Cleansers",
+              "ranges": [1, 6, 10],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Cleansers_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          },
+          "ua": {
+            "officer": {
+              "name": "Officer",
+              "fk_name": "Flameguard Cleanser Officer",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Cleanser_Officer.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
+        }
+      },
+      "knights": {
+        "name": "Knights Exemplar",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Knights Exemplar",
+              "ranges": [1, 6],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Knights_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      },
+      "zealots": {
+        "name": "Holy Zealots",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Holy Zealots",
+              "ranges": [1, 6, 10],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Zealots_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          },
+          "ua": {
+            "officer": {
+              "name": "Monolith Bearer",
+              "fk_name": "Holy Zealot Monolith Bearer",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Zealots_Monolith.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
+        }
+      },
+      "idrianSkirmisher": {
+        "name": "Idrian Skirmishers",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Idrian Skirmishers",
+              "ranges": [1, 6, 10],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Idrians_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          },
+          "ua": {
+            "chieftain": {
+              "name": "Chieftain",
+              "fk_name": "Idrian Skirmishers Chieftain & Guide",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Idrians_Chieftain.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "guide": {
+              "name": "Guide",
+              "fk_name": "Idrian Skirmishers Chieftain & Guide",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Idrians_Guide.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
+        }
+      },
+      "templeFlameguard": {
+        "name": "Temple Flameguard",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Temple Flameguard",
+              "ranges": [1, 6, 10],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/TempleFlameguard_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          },
+          "ua": {
+            "officer": {
+              "name": "Officer",
+              "fk_name": "Temple Flameguard Officer & Standard",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/TempleFlameguard_Officer.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "standard": {
+              "name": "Standard Bearer",
+              "fk_name": "Temple Flameguard Officer & Standard",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/TempleFlameguard_StandardBearer.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      },
+      "visigoth": {
+        "name": "Visgoth Juviah Rhoven & 2 Honor Guard",
+        "entries": {
+          "unit": {
+            "rhoven": {
+              "name": "Visgoth Juviah Rhoven",
+              "fk_name": "Visgoth Juviah Rhoven & 2 Honor Guard",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Visigoth_Rhoven.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "guis": {
+              "name": "Guis",
+              "fk_name": "Visgoth Juviah Rhoven & 2 Honor Guard",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Visigoth_Guis.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "cassian": {
+              "name": "Cassian",
+              "fk_name": "Visgoth Juviah Rhoven & 2 Honor Guard",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/menoth/units/Visigoth_Cassian.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
+        }
+      },
+      "flamebringers": {
+        "name": "Flamebringers",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Flamebringers",
+              "ranges": [1, 3, 5],
+              "type": "warrior",
+              "base": "large",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    "solos": {
+      "attendant": {
+        "name": "Attendant Priest",
+        "fk_name": "Attendant Priest",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/units/AttendantPriest.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "allegiant": {
+        "name": "Allegiant of the Order of the Fist",
+        "fk_name" : "Allegiant of the Order of the Fist",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/Allegiant.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "convenant": {
+        "name": "The Covenant of Menoth",
+        "fk_name" : "The Covenant of Menoth",
+        "type": "solo",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/Covenant.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "errantSeneschal": {
+        "name": "Exemplar Errant Seneschal",
+        "fk_name" : "Exemplar Errant Seneschal",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/ErrantSeneschal.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "hierophant": {
+        "name": "Hierophant",
+        "fk_name" : "Hierophant",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/Hierophant.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "knightSeneshal": {
+        "name": "Knight Exemplar Seneschal",
+        "fk_name" : "Knight Exemplar Seneschal",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/KnightSeneschal.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "paladin": {
+        "name": "Paladin of the Order of the Wall",
+        "fk_name" : "Paladin of the Order of the Wall",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/Paladin.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "reclaimer": {
+        "name": "Reclaimer",
+        "fk_name" : "Reclaimer",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/Reclaimer.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "vassalMechanik": {
+        "name": "Vassal Mechanik",
+        "fk_name" : "Vassal Mechanik",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/Mechanik.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "vassalMenoth": {
+        "name": "Vassal of Menoth",
+        "fk_name" : "Vassal of Menoth",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/Vassal.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "wrack": {
+        "name": "The Wrack",
+        "fk_name" : "The Wrack",
+        "ranges": [1, 3],
+        "type": "solo",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/Wrack.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 1
+        }
+      },
+      "gravus": {
+        "name": "High Exemplar Gravus",
+        "fk_name" : "High Exemplar Gravus",
+        "type": "solo",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/Gravus.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 10
+        }
+      },
+      "gravusDismount": {
+        "name": "High Exemplar Gravus (Dismounted)",
+        "fk_name" : "High Exemplar Gravus (Dismounted)",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/GravusDismount.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "vilmon": {
+        "name": "High Paladin Dartan Vilmon",
+        "fk_name" : "High Paladin Dartan Vilmon",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/Vilmon.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "nicia": {
+        "name": "Nicia, Tear of Vengeance",
+        "fk_name" : "Nicia, Tear of Vengeance",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/Nicia.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "bastionSeneschal": {
+        "name": "Exemplar Bastion Seneschal",
+        "fk_name" : "Exemplar Bastion Seneschal",
+        "type": "solo",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/menoth/solos/BastionSeneschal.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 8
+        }
+      },
+      "tristan": {
+        "name": "Initiate Tristan Durant",
+        "fk_name": "Initiate Tristan Durant",
+        "type": "wardude",
+        "focus": 4,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      }
+    },
+    "battle_engines": {
+      "vessel_of_judgement": {
+        "name": "Vessel of Judgement",
+        "fk_name": "Vessel of Judgement",
+        "type": "be",
+        "base": "huge",
+        "width": 90,
+        "height": 90,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/menoth/bes/VesselOfJudgement.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 24
+        }
+      }
     }
+  }
 }

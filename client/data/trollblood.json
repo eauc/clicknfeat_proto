@@ -6,22 +6,48 @@
     "locks": {
       "borka1": {
         "name": "Borka Kegslayer",
-        "fk_name": "Borka Kegslayer",
-        "type": "wardude",
-        "fury": 5,
-        "base": "medium",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/trollbloods/locks/Borka1.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 18
+        "entries": {
+          "lock": {
+            "borka1": {
+              "name": "Borka Kegslayer",
+              "fk_name": "Borka Kegslayer",
+              "type": "wardude",
+              "fury": 5,
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/trollbloods/locks/Borka1.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 18
+              }
+            }
+          },
+          "attachement": {
+            "keg_carrier": {
+              "name": "Pig Keg Carrier",
+              "fk_name": "Borka Kegslayer",
+              "type": "solo",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/trollbloods/solos/Pig_Keg_Carrier.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
         }
-      },
+      },        
       "borka2": {
         "name": "Borka, Vengeance of the Rimeshaws",
         "fk_name": "Borka, Vengeance of the Rimeshaws",
@@ -96,20 +122,63 @@
       }, 
       "grim2": {
         "name": "Hunters Grim",
-        "fk_name": "Hunters Grim",
-        "type": "wardude",
-        "fury": 6,
-        "base": "medium",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/trollbloods/locks/Grim2.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 17
+        "entries": {
+          "lock": {
+            "grim2": {
+              "name": "Grim",
+              "fk_name": "Hunters Grim",
+              "type": "wardude",
+              "fury": 6,
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/trollbloods/locks/Grim2.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 17
+              }
+            }
+          },
+          "unit": {
+            "muggs": {
+              "name": "Muggs",
+              "fk_name": "Hunters Grim",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/trollbloods/solos/Muggs.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },        
+            "krump": {
+              "name": "Krump",
+              "fk_name": "Hunters Grim",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/trollbloods/solos/Krump.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
         }
       },
       "grissel1": {
@@ -244,7 +313,7 @@
         "name": "Dire Troll Blitzer",
         "fk_name": "Dire Troll Blitzer",
         "type": "beast",
-	"fury": 4,
+        "fury": 4,
         "base": "large",
         "width": 60,
         "height": 60,
@@ -267,7 +336,7 @@
         "name": "Dire Troll Bomber",
         "fk_name": "Dire Troll Bomber",
         "type": "beast",
-	"fury": 4,	
+        "fury": 4,      
         "base": "large",
         "width": 60,
         "height": 60,
@@ -290,7 +359,7 @@
         "name": "Dire Troll Mauler",
         "fk_name": "Dire Troll Mauler",
         "type": "beast",
-	"fury": 5,	
+        "fury": 5,      
         "base": "large",
         "width": 60,
         "height": 60,
@@ -313,7 +382,7 @@
         "name": "Earthborn Dire Troll",
         "fk_name": "Earthborn Dire Troll",
         "type": "beast",
-	"fury": 5,
+        "fury": 5,
         "base": "large",
         "width": 60,
         "height": 60,
@@ -336,7 +405,7 @@
         "name": "Mountain King",
         "fk_name": "Mountain King",
         "type": "beast",
-	"fury": 5,
+        "fury": 5,
         "base": "huge",
         "width": 116.667,
         "height": 116.667,
@@ -359,7 +428,7 @@
         "name": "Mulg the Ancient",
         "fk_name": "Mulg the Ancient",
         "type": "beast",
-	"fury": 5,		
+        "fury": 5,              
         "base": "large",
         "width": 60,
         "height": 60,
@@ -382,7 +451,7 @@
         "name": "Night Troll",
         "fk_name": "Night Troll",
         "type": "beast",
-	"fury": 3,
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -391,7 +460,7 @@
           "y": -0.2,
           "link": "data/trollbloods/beasts/Night_Troll.png"
         },
-	"damage": {
+        "damage": {
           "type": "beast",
           "1": [  "b",  "b", null, null, null ],
           "2": [  "b",  "b",  "b",  "b",  "b" ],
@@ -405,7 +474,7 @@
         "name": "Pyre Troll",
         "fk_name": "Pyre Troll",
         "type": "beast",
-	"fury": 3,
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -414,7 +483,7 @@
           "y": -0.2,
           "link": "data/trollbloods/beasts/Pyre.png"
         },
-	"damage": {
+        "damage": {
           "type": "beast",
           "1": [  "b",  "b", null, null, null ],
           "2": [  "b",  "b",  "b",  "b",  "b" ],
@@ -428,7 +497,7 @@
         "name": "Rök ",
         "fk_name": "Ršk",
         "type": "beast",
-	"fury": 5,
+        "fury": 5,
         "base": "large",
         "width": 60,
         "height": 60,
@@ -437,7 +506,7 @@
           "y": -0.2,
           "link": "data/trollbloods/beasts/Rok.png"
         },
-	"damage": {
+        "damage": {
           "type": "beast",
           "1": [  "b",  "b",  "b", null, null, null ],
           "2": [  "b",  "b",  "b",  "b",  "b",  "b" ],
@@ -451,7 +520,7 @@
         "name": "Slag Troll",
         "fk_name": "Slag Troll",
         "type": "beast",
-	"fury": 3,
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -460,7 +529,7 @@
           "y": -0.2,
           "link": "data/trollbloods/beasts/Slag.png"
         },
-	"damage": {
+        "damage": {
           "type": "beast",
           "1": [  "b",  "b", null, null, null ],
           "2": [  "b",  "b",  "b",  "b",  "b" ],
@@ -474,7 +543,7 @@
         "name": "Storm Troll",
         "fk_name": "Storm Troll",
         "type": "beast",
-	"fury": 3,
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -483,7 +552,7 @@
           "y": -0.2,
           "link": "data/trollbloods/beasts/Stormtroll.png"
         },
-	"damage": {
+        "damage": {
           "type": "beast",
           "1": [  "b",  "b", null, null, null ],
           "2": [  "b",  "b",  "b",  "b",  "b" ],
@@ -497,7 +566,7 @@
         "name": "Swamp Troll",
         "fk_name": "Swamp Troll",
         "type": "beast",
-	"fury": 3,
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -506,7 +575,7 @@
           "y": -0.2,
           "link": "data/trollbloods/beasts/Swamp_Troll.png"
         },
-	"damage": {
+        "damage": {
           "type": "beast",
           "1": [  "b",  "b", null, null, null ],
           "2": [  "b",  "b",  "b",  "b",  "b" ],
@@ -520,7 +589,7 @@
         "name": "Troll Axer",
         "fk_name": "Troll Axer",
         "type": "beast",
-	"fury": 3,
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -529,7 +598,7 @@
           "y": -0.2,
           "link": "data/trollbloods/beasts/Axer.png"
         },
-	"damage": {
+        "damage": {
           "type": "beast",
           "1": [  "b",  "b", null, null, null ],
           "2": [  "b",  "b",  "b",  "b",  "b" ],
@@ -543,7 +612,7 @@
         "name": "Troll Bouncer",
         "fk_name": "Troll Bouncer",
         "type": "beast",
-	"fury": 3,
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -552,7 +621,7 @@
           "y": -0.2,
           "link": "data/trollbloods/beasts/Bouncer.png"
         },
-	"damage": {
+        "damage": {
           "type": "beast",
           "1": [  "b",  "b", null, null, null ],
           "2": [  "b",  "b",  "b",  "b",  "b" ],
@@ -566,7 +635,7 @@
         "name": "Troll Impaler",
         "fk_name": "Troll Impaler",
         "type": "beast",
-	"fury": 3,
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -575,7 +644,7 @@
           "y": -0.2,
           "link": "data/trollbloods/beasts/Impaler.png"
         },
-	"damage": {
+        "damage": {
           "type": "beast",
           "1": [  "b",  "b", null, null, null ],
           "2": [  "b",  "b",  "b",  "b",  "b" ],
@@ -589,7 +658,7 @@
         "name": "Winter Troll",
         "fk_name": "Winter Troll",
         "type": "beast",
-	"fury": 3,
+        "fury": 3,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -598,7 +667,7 @@
           "y": -0.2,
           "link": "data/trollbloods/beasts/Winter.png"
         },
-	"damage": {
+        "damage": {
           "type": "beast",
           "1": [  "b",  "b", null, null, null ],
           "2": [  "b",  "b",  "b",  "b",  "b" ],
@@ -613,9 +682,9 @@
       "kriel_warriors": {
         "name": "Kriel Warriors",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Kriel Warriors Leader & Grunts",
+              "name": "Leader & Grunts",
               "fk_name": "Kriel Warriors",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -631,11 +700,11 @@
                 "type": "warrior",
                 "n": 1
               }
-	    }
+            }
           },
           "wa": {
             "cabberthrower": {
-              "name": "Kriel Warrior Caber Thrower",
+              "name": "Caber Thrower",
               "fk_name": "Kriel Warrior Caber Thrower",
               "ranges": [1, 2, 3],
               "type": "warrior",
@@ -655,7 +724,7 @@
           },
           "ua": {
             "piper": {
-              "name": "Kriel Warrior Piper",
+              "name": "Piper",
               "fk_name": "Kriel Warrior Standard Bearer & Piper",
               "type": "warrior",
               "base": "medium",
@@ -672,7 +741,7 @@
               }
             },
             "standard": {
-              "name": "Kriel Warrior Standard Bearer",
+              "name": "Standard Bearer",
               "fk_name": "Kriel Warrior Standard Bearer & Piper",
               "type": "warrior",
               "base": "medium",
@@ -694,11 +763,11 @@
       "krielstone_bearer": {
         "name": "Krielstone Bearer and Stone Scribes",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Bearer and Scribes",
+              "name": "Stone Scribe",
               "fk_name": "Krielstone Bearer and Stone Scribes",
-              "ranges": [1, 4, 6],
+              "ranges": [1, 3, 5],
               "type": "warrior",
               "base": "medium",
               "width": 60,
@@ -706,18 +775,34 @@
               "img": {
                 "x": 0.2,
                 "y": -0.5,
-                "link": "data/trollbloods/units/Stone_Scribe.png",
-                "leader": "data/trollbloods/units/Krielstone_Bearer.png"
+                "link": "data/trollbloods/units/Stone_Scribe.png"
               },
               "damage": {
                 "type": "warrior",
                 "n": 1
               }
-	    }
+            },
+            "leader": {
+              "name": "Krielstone Bearer",
+              "fk_name": "Krielstone Bearer and Stone Scribes",
+              "type": "warrior",
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/trollbloods/units/Krielstone_Bearer.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
           },
           "ua": {
             "elder": {
-              "name": "Krielstone Stone Scribe Elder",
+              "name": "Scribe Elder",
               "fk_name": "Krielstone Stone Scribe Elder",
               "type": "warrior",
               "base": "medium",
@@ -739,9 +824,9 @@
       "pyg_burrowers": {
         "name": "Pyg Burrowers",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Pyg Burrowers",
+              "name": "Leader and Grunts",
               "fk_name": "Pyg Burrowers",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -757,16 +842,16 @@
                 "type": "warrior",
                 "n": 1
               }
-	    }
-	  }
-	} 
+            }
+          }
+        } 
       },
       "long_riders": {
         "name": "Trollkin Long Riders",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Trollkin Long Riders",
+              "name": "Leader and Grunts",
               "fk_name": "Trollkin Long Riders",
               "ranges": [1, 3, 5],
               "type": "warrior",
@@ -782,16 +867,16 @@
                 "type": "warrior",
                 "n": 8
               }
-	    }
-	  }
-	} 
+            }
+          }
+        } 
       },
       "pyg_bushwackers ": {
         "name": "Pyg Bushwackers",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Pyg Bushwackers",
+              "name": "Leader and Grunts",
               "fk_name": "Pyg Bushwackers",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -807,16 +892,16 @@
                 "type": "warrior",
                 "n": 1
               }
-	    }
-	  }
-	} 
+            }
+          }
+        } 
       },
       "scattergunners ": {
         "name": "Trollkin Scattergunners",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Trollkin Scattergunners",
+              "name": "Leader and Grunts",
               "fk_name": "Trollkin Scattergunners",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -832,11 +917,11 @@
                 "type": "warrior",
                 "n": 1
               }
-	    }
-	  },
-	  "ua": {
+            }
+          },
+          "ua": {
             "officer": {
-              "name": "Trollkin Scattergunner Officer",
+              "name": "Officer",
               "fk_name": "Trollkin Scattergunner Officer & Drummer",
               "type": "warrior",
               "base": "medium",
@@ -853,7 +938,7 @@
               }
             },
             "standard": {
-              "name": "Trollkin Scattergunner Drummer",
+              "name": "Drummer",
               "fk_name": "Trollkin Scattergunner Officer & Standard",
               "type": "warrior",
               "base": "medium",
@@ -871,11 +956,11 @@
             }
           }
         }
-      },		
+      },                
       "sons_of_bragg": {
         "name": "Sons of Bragg",
         "entries": {
-          "grunt": {
+          "unit": {
             "wrathar": {
               "name": "Wrathar",
               "fk_name": "Sons of Bragg",
@@ -892,8 +977,8 @@
                 "type": "warrior",
                 "n": 8
               }
-	    },
-	    "tor": {
+            },
+            "tor": {
               "name": "Tor",
               "fk_name": "Sons of Bragg",
               "type": "warrior",
@@ -909,8 +994,8 @@
                 "type": "warrior",
                 "n": 8
               }
-	    },
-	    "rhudd": {
+            },
+            "rhudd": {
               "name": "Wrathar",
               "fk_name": "Sons of Bragg",
               "type": "warrior",
@@ -926,16 +1011,16 @@
                 "type": "warrior",
                 "n": 8
               }
-	    }
-	  }
-	} 
+            }
+          }
+        } 
       },
       "Thumpercrew ": {
         "name": "Thumpercrew ",
         "entries": {
-          "grunt": {
+          "unit": {
             "leader": {
-              "name": "Thumpercrew Thumper",
+              "name": "Thumper",
               "fk_name": "Thumpercrew",
               "type": "warrior",
               "base": "medium",
@@ -950,13 +1035,13 @@
                 "type": "warrior",
                 "n": 1
               }
-	    },
-	    "crew": {
-              "name": "Thumpercrew Grunts",
+            },
+            "crew": {
+              "name": "Crew",
               "fk_name": "Thumpercrew",
               "type": "warrior",
               "base": "medium",
-	      "range":[1, 2],
+              "range":[1, 2],
               "width": 60,
               "height": 60,
               "img": {
@@ -968,16 +1053,16 @@
                 "type": "warrior",
                 "n": 1
               }
-	    }
-	  }
-	} 
+            }
+          }
+        } 
       },
       "trollkin_champions ": {
         "name": "Trollkin Champions",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Trollkin Champions",
+              "name": "Leader and Grunts",
               "fk_name": "Trollkin Champions",
               "ranges": [1, 3, 5],
               "type": "warrior",
@@ -993,9 +1078,9 @@
                 "type": "warrior",
                 "n": 8
               }
-	    }
-	  },
-	  "ua": {
+            }
+          },
+          "ua": {
             "skaldi_bonehammer": {
               "name": "Skaldi Bonehammer",
               "fk_name": "Skaldi Bonehammer",
@@ -1015,13 +1100,13 @@
             }
           }
         }
-      },	
+      },        
       "trollkin_fennblades ": {
         "name": "Trollkin Fennblades",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Trollkin Fennblades",
+              "name": "Leader and Grunts",
               "fk_name": "Trollkin Fennblades",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -1037,11 +1122,11 @@
                 "type": "warrior",
                 "n": 1
               }
-	    }
-	  },
-	  "ua": {
+            }
+          },
+          "ua": {
             "officer": {
-              "name": "Trollkin Fennblade Officer",
+              "name": "Officer",
               "fk_name": "Trollkin Fennblade Officer & Drummer",
               "type": "warrior",
               "base": "medium",
@@ -1058,7 +1143,7 @@
               }
             },
             "drummer": {
-              "name": "Trollkin Fennblade Drummer",
+              "name": "Drummer",
               "fk_name": "Trollkin Fennblade Officer & Drummer",
               "type": "warrior",
               "base": "medium",
@@ -1076,13 +1161,13 @@
             }
           }
         }
-      },	
+      },        
       "trollkin_runeshapers": {
         "name": "Trollkin Runeshapers",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Trollkin Runeshapers",
+              "name": "Leader and Grunts",
               "fk_name": "Trollkin Runeshapers",
               "ranges": [1, 3],
               "type": "warrior",
@@ -1098,16 +1183,16 @@
                 "type": "warrior",
                 "n": 5
               }
-	    }
-	  }
-	} 
+            }
+          }
+        } 
       },
       "trollkin_scouts": {
         "name": "Trollkin Scouts",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Trollkin Scouts",
+              "name": "Leader and Grunts",
               "fk_name": "Trollkin Scouts",
               "ranges": [1, 6],
               "type": "warrior",
@@ -1123,16 +1208,16 @@
                 "type": "warrior",
                 "n": 1
               }
-	    }
-	  }
-	} 
+            }
+          }
+        } 
       },
       "trollkin_sluggers": {
         "name": "Trollkin Sluggers",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Trollkin Sluggers",
+              "name": "Leader and Grunts",
               "fk_name": "Trollkin Sluggers",
               "ranges": [1, 3, 5],
               "type": "warrior",
@@ -1148,16 +1233,16 @@
                 "type": "warrior",
                 "n": 5
               }
-	    }
-	  }
-	} 
+            }
+          }
+        } 
       },
       "trollkin_warders": {
         "name": "Trollkin Warders",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Trollkin Warders",
+              "name": "Leader and Grunts",
               "fk_name": "Trollkin Warders",
               "ranges": [1, 3, 5],
               "type": "warrior",
@@ -1173,16 +1258,16 @@
                 "type": "warrior",
                 "n": 8
               }
-	    }
-	  }
-	} 
+            }
+          }
+        } 
       }
     },
     "solos": {
       "fell_caller_hero": {
         "name": "Fell Caller Hero",
-	"fk_name": "Fell Caller Hero",
-        "type": "warrior",
+        "fk_name": "Fell Caller Hero",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -1198,8 +1283,8 @@
       },
       "fennblade_kithkar": {
         "name": "Fennblade Kithkar",
-	"fk_name": "Fennblade Kithkar",
-        "type": "warrior",
+        "fk_name": "Fennblade Kithkar",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -1215,9 +1300,9 @@
       },
       "horgle_ironstrike": {
         "name": "Horgle Ironstrike",
-	"fk_name": "Horgle Ironstrike",
-        "type": "warrior",
-	"fury": 4,
+        "fk_name": "Horgle Ironstrike",
+        "type": "wardude",
+        "fury": 4,
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -1233,8 +1318,8 @@
       },
       "horthol": {
         "name": "Horthol, Long Rider Hero",
-	"fk_name": "Horthol, Long Rider Hero",
-        "type": "warrior",
+        "fk_name": "Horthol, Long Rider Hero",
+        "type": "solo",
         "base": "large",
         "width": 60,
         "height": 60,
@@ -1250,8 +1335,8 @@
       },
       "horthol_dismount": {
         "name": "Horthol, Long Rider Hero Dismount",
-	"fk_name": "Horthol, Long Rider Hero Dismount",
-        "type": "warrior",
+        "fk_name": "Horthol, Long Rider Hero Dismount",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -1267,8 +1352,8 @@
       },
       "janissa_stonetide": {
         "name": "Janissa Stonetide",
-	"fk_name": "Janissa Stonetide",
-        "type": "warrior",
+        "fk_name": "Janissa Stonetide",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -1284,8 +1369,8 @@
       },
       "stone_scribe_chronicler": {
         "name": "Stone Scribe Chronicler",
-	"fk_name": "Stone Scribe Chronicler",
-        "type": "warrior",
+        "fk_name": "Stone Scribe Chronicler",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -1301,8 +1386,8 @@
       },
       "whelps": {
         "name": "Troll Whelps",
-	"fk_name": "Troll Whelps",
-        "type": "warrior",
+        "fk_name": "Troll Whelps",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1318,8 +1403,8 @@
       },
       "trollblood_skinner": {
         "name": "Trollblood Skinner",
-	"fk_name": "Trollblood Skinner",
-        "type": "warrior",
+        "fk_name": "Trollblood Skinner",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -1335,8 +1420,8 @@
       },
       "trollkin_champion_hero": {
         "name": "Trollkin Champion Hero",
-	"fk_name": "Trollkin Champion Hero",
-        "type": "warrior",
+        "fk_name": "Trollkin Champion Hero",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -1352,8 +1437,8 @@
       },
       "trollkin_sorcerer": {
         "name": "Trollkin Sorcerer",
-	"fk_name": "Trollkin Sorcerer",
-        "type": "warrior",
+        "fk_name": "Trollkin Sorcerer",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -1369,8 +1454,8 @@
       },
       "trollkin_runebearer": {
         "name": "Trollkin Runebearer",
-	"fk_name": "Trollkin Runebearer",
-        "type": "warrior",
+        "fk_name": "Trollkin Runebearer",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,
@@ -1383,64 +1468,13 @@
           "type": "warrior",
           "n": 5
         }
-      },
-      "keg_carrier": {
-        "name": "Pig Keg Carrier",
-	"fk_name": "Borka Kegslayer",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0.2,
-          "y": -0.5,
-          "link": "data/trollbloods/solos/Pig_Keg_Carrier.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
-        }
-      },	
-      "muggs": {
-        "name": "Muggs",
-	"fk_name": "Hunters Grim",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0.2,
-          "y": -0.5,
-          "link": "data/trollbloods/solos/Muggs.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
-        }
-      },	
-      "krump": {
-        "name": "Krump",
-	"fk_name": "Hunters Grim",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0.2,
-          "y": -0.5,
-          "link": "data/trollbloods/solos/Krump.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
-        }
       }
     },
     "battle_engines": {
       "war_wagon": {
         "name": "War Wagon",
         "fk_name": "War Wagon",
-        "type": "warrior",
+        "type": "be",
         "base": "huge",
         "width": 90,
         "height": 90,

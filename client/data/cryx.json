@@ -42,37 +42,46 @@
       },
       "Asphyxious3": {
         "name": "Asphyxious3 (Asphyxious the Hellbringer)",
-        "fk_name": "Asphyxious the Hellbringer",
-        "type": "wardude",
-        "focus": 7,
-        "base": "medium",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/cryx/casters/Asphyxious3.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 18
-        }
-      },
-      "Vociferon": {
-        "name": "Asphyxious3 (Vociferon)",
-        "fk_name": "Asphyxious the Hellbringer",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/cryx/casters/Vociferon.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
+        "entries": {
+          "caster": {
+            "Asphyxious3": {
+              "name": "Asphyxious3 (Asphyxious the Hellbringer)",
+              "fk_name": "Asphyxious the Hellbringer",
+              "type": "wardude",
+              "focus": 7,
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/cryx/casters/Asphyxious3.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 18
+              }
+            }
+          },
+          "attachement": {
+            "Vociferon": {
+              "name": "Vociferon",
+              "fk_name": "Asphyxious the Hellbringer",
+              "type": "solo",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/cryx/casters/Vociferon.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
         }
       },
       "Deneghra1": {
@@ -114,37 +123,46 @@
       },                
       "Goreshade1": {
         "name": "Goreshade1 (Goreshade the Bastard & Deathwalker)",
-        "fk_name": "Goreshade the Bastard",
-        "type": "wardude",
-        "focus": 7,
-        "base": "medium",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/cryx/casters/Goreshade1.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 17
-        }
-      },
-      "Deathwalker": {
-        "name": "Goreshade1 (Deathwalker)",
-        "fk_name": "Goreshade the Bastard",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/cryx/casters/Deathwalker.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
+        "entries": {
+          "caster": {
+            "Goreshade1": {
+              "name": "Goreshade1 (Goreshade the Bastard)",
+              "fk_name": "Goreshade the Bastard",
+              "type": "wardude",
+              "focus": 7,
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/cryx/casters/Goreshade1.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 17
+              }
+            }
+          },
+          "solo": {
+            "Deathwalker": {
+              "name": "Deathwalker",
+              "fk_name": "Goreshade the Bastard",
+              "type": "solo",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/cryx/casters/Deathwalker.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
         }
       },          
       "Goreshade2": {
@@ -185,39 +203,48 @@
       },                
       "Mortenebra1": {
         "name": "Mortenebra1 (Master Necrotech Mortenebra & Deryliss)",
-        "fk_name": "Master Necrotech Mortenebra",
-        "type": "wardude",
-        "focus": 7,
-        "base": "medium",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/cryx/casters/Mortenebra1.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 16
+        "entries": {
+          "caster": {
+            "Mortenebra1": {
+              "name": "Mortenebra1 (Master Necrotech Mortenebra)",
+              "fk_name": "Master Necrotech Mortenebra",
+              "type": "wardude",
+              "focus": 7,
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/cryx/casters/Mortenebra1.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 16
+              }
+            }
+          },
+          "attachement": {
+            "Deryliss": {
+              "name": "Deryliss",
+              "fk_name": "Master Necrotech Mortenebra",
+              "type": "solo",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/cryx/casters/Deryliss.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
         }
-      },
-      "Deryliss": {
-        "name": "Mortenebra1 (Deryliss)",
-        "fk_name": "Master Necrotech Mortenebra",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/cryx/casters/Deryliss.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
-        }
-      },        
+      }, 
       "Scaverous1": {
         "name": "Scaverous1 (Lord Exhumator Scaverous)",
         "fk_name": "Lord Exhumator Scaverous",
@@ -308,73 +335,82 @@
           "n": 18
         }
       },
-      "Egregore": {
-        "name": "Coven1 (Egregore)",
-        "fk_name": "The Witch Coven of Garlghast",
-        "type": "wardude",
-        "focus": 9,
-        "base": "medium",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/cryx/casters/Coven_Egregore.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 0
-        }
-      },
-      "Helena": {
-        "name": "Coven1 (Heleana)",
-        "fk_name": "The Witch Coven of Garlghast",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/cryx/casters/Coven_Heleana.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
-        }
-      },
-      "Morgaen": {
-        "name": "Coven1 (Morgaen)",
-        "fk_name": "The Witch Coven of Garlghast",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/cryx/casters/Coven_Morgaen.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
-        }
-      },
-      "Selene": {
-        "name": "Coven1 (Selene)",
-        "fk_name": "The Witch Coven of Garlghast",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/cryx/casters/Coven_Selene.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
+      "Coven1": {
+        "name": "Coven1 (The Witch Coven of Garlghast)",
+        "entries": {
+          "caster": {
+            "Egregore": {
+              "name": "Egregore",
+              "fk_name": "The Witch Coven of Garlghast",
+              "type": "wardude",
+              "focus": 9,
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/cryx/casters/Coven_Egregore.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 0
+              }
+            }
+          },
+          "solo": {
+            "Helena": {
+              "name": "Heleana",
+              "fk_name": "The Witch Coven of Garlghast",
+              "type": "solo",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/cryx/casters/Coven_Heleana.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "Morgaen": {
+              "name": "Morgaen",
+              "fk_name": "The Witch Coven of Garlghast",
+              "type": "solo",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/cryx/casters/Coven_Morgaen.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "Selene": {
+              "name": "Selene",
+              "fk_name": "The Witch Coven of Garlghast",
+              "type": "solo",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/cryx/casters/Coven_Selene.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
         }
       }
     },
