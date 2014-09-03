@@ -1,4 +1,3 @@
-- adapter la taille du canvas a la hauteur de l'ecran.
 - scenarios
 - maps
 

@@ -201,24 +201,29 @@ angular.module('vassalApp.services')
             templates: true
           },
           board: {
+            window: {
+              width: 800,
+              height: 800
+            },
             width: 480,
             height: 480,
             zoom: {
               factor: 1.0,
-              cx: 240,
-              cy: 240,
+              cx: 0,
+              cy: 0,
             },
             refreshZoom: function() {
               var cont = document.getElementById('canvas-container');
-              this.zoom.cx = (cont.scrollLeft + 400) / this.zoom.factor;
-              this.zoom.cy = (cont.scrollTop + 400) / this.zoom.factor;
+              this.zoom.cx = (cont.scrollLeft + this.window.width/2) / this.zoom.factor;
+              this.zoom.cy = (cont.scrollTop + this.window.height/2) / this.zoom.factor;
             },
             refreshView: function() {
               var zoom = this.zoom;
+              var window = this.window;
               setTimeout(function() {
                 var cont = document.getElementById('canvas-container');
-                cont.scrollLeft = (zoom.cx * zoom.factor - 400);
-                cont.scrollTop = (zoom.cy * zoom.factor - 400);
+                cont.scrollLeft = (zoom.cx * zoom.factor - window.width/2);
+                cont.scrollTop = (zoom.cy * zoom.factor - window.height/2);
               }, 0);
             },
             reset: function() {

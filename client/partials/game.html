@@ -7,7 +7,7 @@
     <tr>
       <td valign="top">
         <div style="
-             height: 800px;
+             height: {{game.board.window.height}}px;
              vertical-align: top;
              "
              ng-include="'partials/dock.html'">
@@ -16,8 +16,8 @@
       <td valign="top">
         <div style="
              position:relative;
-             width:805px;
-             height:805px;
+             width:{{game.board.window.width+5}}px;
+             height:{{game.board.window.height+5}}px;
              ">
         <div style="
              position:absolute;
@@ -30,12 +30,13 @@
         </div>
         <div id="canvas-container"
              style="
-             width:805px;
-             height:805px;
+             width:{{game.board.window.width+5}}px;
+             height:{{game.board.window.height+5}}px;
              overflow: auto;
              ">
         <svg style="border:1px solid black;display: inline-block;margin:0;padding:0;"
-             width="{{800*game.board.zoom.factor}}px" height="{{800*game.board.zoom.factor}}px"
+             width="{{game.board.window.width*game.board.zoom.factor}}px"
+             height="{{game.board.window.height*game.board.zoom.factor}}px"
              viewBox="0 0 480 480"
              preserveAspectRatio="xMinYMin meet"
              ng-mousedown="doSelectStart($event)"
@@ -1025,8 +1026,8 @@
       <td valign="top">
         <div style="
              border:1px solid black;
-             height:800px;
-             max-height:800px;
+             height:{{game.board.window.height}}px;
+             max-height:{{game.board.window.height}}px;
              width:100px;
              max-width:125px;
              text-align:center;

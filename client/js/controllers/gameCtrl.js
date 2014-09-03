@@ -88,6 +88,14 @@ angular.module('vassalApp.controllers')
         return $q.reject();
       }).then(function() {
 
+        $scope.game.board.window.width = window.innerHeight-5;
+        $scope.game.board.window.height = window.innerHeight-5;
+        window.onresize = function() {
+          $scope.game.board.window.width = window.innerHeight-5;
+          $scope.game.board.window.height = window.innerHeight-5;
+          $scope.$apply();
+        };
+        console.log($scope.game.board);
         var canvas = document.getElementById('canvas');
         // console.log(canvas_rect);
         $scope.show_ruler = $scope.game.ruler.state.active;
@@ -185,8 +193,10 @@ angular.module('vassalApp.controllers')
           // console.log('mmd');
           // console.log(event);
           var elem_rect = canvas.getBoundingClientRect();
-          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
-          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
+          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor
+              *480/$scope.game.board.window.width;
+          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
+              *480/$scope.game.board.window.height;
 
           $scope.drag.state = 'starting';
           $scope.drag.start_x = user_x;
@@ -199,8 +209,10 @@ angular.module('vassalApp.controllers')
           // console.log('tmd');
           // console.log(event);
           var elem_rect = canvas.getBoundingClientRect();
-          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
-          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
+          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor
+              *480/$scope.game.board.window.width;
+          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
+              *480/$scope.game.board.window.height;
 
           $scope.drag.state = 'starting';
           $scope.drag.start_x = user_x;
@@ -222,8 +234,10 @@ angular.module('vassalApp.controllers')
           // console.log('md');
           // console.log(event);
           var elem_rect = canvas.getBoundingClientRect();
-          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
-          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
+          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor
+              *480/$scope.game.board.window.width;
+          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
+              *480/$scope.game.board.window.height;
           $scope.drag.state = 'starting';
           $scope.drag.start_x = user_x;
           $scope.drag.start_y = user_y;
@@ -233,8 +247,10 @@ angular.module('vassalApp.controllers')
           // console.log('mm');
           // console.log(event);
           var elem_rect = canvas.getBoundingClientRect();
-          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
-          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
+          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor
+              *480/$scope.game.board.window.width;
+          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
+              *480/$scope.game.board.window.height;
 
           if($scope.drag.state === 'draging' ||
              $scope.drag.state === 'starting') {
@@ -263,8 +279,10 @@ angular.module('vassalApp.controllers')
           // console.log('mu');
           // console.log(event);
           var elem_rect = canvas.getBoundingClientRect();
-          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*480/800;
-          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*480/800;
+          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor
+              *480/$scope.game.board.window.width;
+          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
+              *480/$scope.game.board.window.height;
 
           var drag_state = $scope.drag.state;
           $scope.drag.state = null;
