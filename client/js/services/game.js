@@ -202,6 +202,7 @@ angular.module('vassalApp.services')
             templates: true
           },
           board: {
+            info: null,
             window: {
               width: 800,
               height: 800

@@ -95,46 +95,47 @@
           </defs>
           <image id="canvas"
                  x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-                 xlink:href="data/board/Board.png"
+                 xlink:href="{{game.board.info.img}}"
                  style="display: {{game.layers.board ? 'inline' : 'none'}}"
                  />
-          <svg x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-               style="display: {{game.layers.terrain ? 'inline' : 'none'}}"
-               >
-            <rect x="120" y="136" width="60" height="43"
-                  style="
-                  fill:#00F;
-                  fill-opacity:0.2;
-                  "
-                  transform="rotate(40, 150, 155)"
-                  />
-            <rect x="295" y="308" width="85" height="64"
-                  style="
-                  fill:#00F;
-                  fill-opacity:0.2;
-                  "
-                  transform="rotate(40, 338, 340)"
-                  />
-            <rect x="205" y="242" width="70" height="7"
-                  style="
-                  fill:#F00;
-                  fill-opacity:0.2;
-                  "
-                  transform="rotate(84, 240, 245)"
-                  />
-            <circle cx="90" cy="242" r="29"
-                    style="
-                    fill:#0F0;
-                    fill-opacity:0.2;
-                    "
-                    />
-            <circle cx="390" cy="242" r="29"
-                    style="
-                    fill:#0F0;
-                    fill-opacity:0.2;
-                    "
-                    />
-          </svg>
+          <!-- <svg id="terrain-canvas"
+          x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
+          style="display: {{game.layers.terrain ? 'inline' : 'none'}}"
+          >
+          <rect x="120" y="136" width="60" height="43"
+          style="
+          fill:#00F;
+          fill-opacity:0.2;
+          "
+          transform="rotate(40, 150, 155)"
+          />
+          <rect x="295" y="308" width="85" height="64"
+          style="
+          fill:#00F;
+          fill-opacity:0.2;
+          "
+          transform="rotate(40, 338, 340)"
+          />
+          <rect x="205" y="242" width="70" height="7"
+          style="
+          fill:#F00;
+          fill-opacity:0.2;
+          "
+          transform="rotate(84, 240, 245)"
+          />
+          <circle cx="90" cy="242" r="29"
+          style="
+          fill:#0F0;
+          fill-opacity:0.2;
+          "
+          />
+          <circle cx="390" cy="242" r="29"
+          style="
+          fill:#0F0;
+          fill-opacity:0.2;
+          "
+          />
+          </svg> -->
           <svg x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
                style="display: {{game.layers.deployment ? 'inline' : 'none'}}"
                >
@@ -340,7 +341,7 @@
                style="display: {{game.layers.scenario ? 'inline' : 'none'}}"
                >
             <rect ng-if="
-                  menu_view === 'scenarios' &&
+                  menu_view === 'setup' &&
                   game.scenario.killbox
                   "
                   x="{{game.scenario.killbox}}"
@@ -387,7 +388,7 @@
                     "
                     />
             <circle ng-if="
-                    menu_view === 'scenarios'
+                    menu_view === 'setup'
                     "
                     ng-repeat="o in game.scenario.objectives"
                     cx="{{o.x}}" cy="{{o.y}}"
@@ -409,7 +410,7 @@
                     "
                     />
             <circle ng-if="
-                    menu_view === 'scenarios'
+                    menu_view === 'setup'
                     "
                     ng-repeat="f in game.scenario.flags"
                     cx="{{f.x}}" cy="{{f.y}}"
@@ -1151,9 +1152,9 @@
                   }"
                   ng-click="menu_view = 'models'">Manage Models</button>
           <button ng-style="{
-                  'background-color': menu_view === 'scenarios' ? '#6F6' : 'none'
+                  'background-color': menu_view === 'setup' ? '#6F6' : 'none'
                   }"
-                  ng-click="menu_view = 'scenarios'">Scenarios</button>
+                  ng-click="menu_view = 'setup'">Setup</button>
           <button ng-style="{
                   'background-color': menu_view === 'layers' ? '#6F6' : 'none'
                   }"
@@ -1181,8 +1182,11 @@
                  ng-include="'partials/unitsBox.html'">
             </div>
           </div>
-          <div ng-if="menu_view === 'scenarios'">
-            <div style="border:1px solid black;max-height:400px;overflow-y:scroll;"
+          <div ng-if="menu_view === 'setup'">
+            <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+                 ng-include="'partials/boardsBox.html'">
+            </div>
+            <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
                  ng-include="'partials/scenariosBox.html'">
             </div>
           </div>

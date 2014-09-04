@@ -7,17 +7,22 @@ angular.module('vassalApp.controllers')
     '$http',
     'factions',
     'scenarios',
+    'boards',
     function($scope,
              $rootScope,
              $http,
              factions,
-             scenarios) {
+             scenarios,
+             boards) {
       console.log('init mainCtrl');
       factions.then(function(list) {
         $rootScope.factions = list;
       });
       scenarios.then(function(list) {
         $rootScope.scenarios = list;
+      });
+      boards.then(function(list) {
+        $rootScope.boards = list;
       });
       $scope.range = function(n) {
         var ret = [];

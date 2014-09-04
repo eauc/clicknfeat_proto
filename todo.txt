@@ -1,6 +1,3 @@
-- scenarios : show effect range of objectives/flags
-- maps
-
 - commands non logables (setSelection)
 - commands replay
 
