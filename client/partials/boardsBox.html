@@ -6,7 +6,8 @@
           ng-change="doSetBoard()"
           >
   </select>
-  <button ng-click="game.board.zoom.flipped = !game.board.zoom.flipped">
+  <button title="(Ctrl+'F')"
+          ng-click="sendKey('Ctrl F', $event)">
     Flip Board
   </button>
 </div>
