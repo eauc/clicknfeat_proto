@@ -41,7 +41,9 @@
              padding:0;
              "
              ng-style="{
-             '-moz-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : ''
+             '-moz-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+             '-webkit-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+             'transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : ''
              }"
              width="{{game.board.window.width*game.board.zoom.factor}}px"
              height="{{game.board.window.height*game.board.zoom.factor}}px"
