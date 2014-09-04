@@ -335,17 +335,26 @@
                   "
                   />
           </svg>
-          <svg x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
+          <svg id="scenario-canvas"
+               x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
                style="display: {{game.layers.scenario ? 'inline' : 'none'}}"
                >
-            <rect x="140" y="140" width="200" height="200"
+            <rect ng-if="game.scenario.killbox"
+                  x="{{game.scenario.killbox}}"
+                  y="{{game.scenario.killbox}}"
+                  width="{{480-2*game.scenario.killbox}}"
+                  height="{{480-2*game.scenario.killbox}}"
                   style="
                   fill:none;
                   stroke:#990;
                   stroke-width:0.5px;
                   "
                   />
-            <rect x="180" y="210" width="120" height="60"
+            <rect ng-repeat="r in game.scenario.rect"
+                  x="{{r.x-r.width/2}}"
+                  y="{{r.y-r.height/2}}"
+                  width="{{r.width}}"
+                  height="{{r.height}}"
                   style="
                   fill:#CC0;
                   fill-opacity:0.3;
@@ -353,7 +362,19 @@
                   stroke-width:0.5px;
                   "
                   />
-            <circle cx="180" cy="270" r="9.842"
+            <circle ng-repeat="c in game.scenario.circle"
+                  cx="{{c.x}}"
+                  cy="{{c.y}}"
+                  r="{{c.r}}"
+                  style="
+                  fill:#CC0;
+                  fill-opacity:0.3;
+                  stroke:#990;
+                  stroke-width:0.5px;
+                  "
+                  />
+            <circle ng-repeat="o in game.scenario.objectives"
+                    cx="{{o.x}}" cy="{{o.y}}" r="{{o.r}}"
                     style="
                     fill:#CC0;
                     fill-opacity:0.8;
@@ -361,7 +382,8 @@
                     stroke-width:0.5px;
                     "
                     />
-            <circle cx="300" cy="210" r="9.842"
+            <circle ng-repeat="f in game.scenario.flags"
+                    cx="{{f.x}}" cy="{{f.y}}" r="{{f.r}}"
                     style="
                     fill:#CC0;
                     fill-opacity:0.8;
@@ -1084,6 +1106,10 @@
                   }"
                   ng-click="menu_view = 'models'">Manage Models</button>
           <button ng-style="{
+                  'background-color': menu_view === 'scenarios' ? '#6F6' : 'none'
+                  }"
+                  ng-click="menu_view = 'scenarios'">Scenarios</button>
+          <button ng-style="{
                   'background-color': menu_view === 'layers' ? '#6F6' : 'none'
                   }"
                   ng-click="menu_view = 'layers'">Layers</button>
@@ -1108,6 +1134,11 @@
           <div ng-if="menu_view === 'units'">
             <div style="border:1px solid black;max-height:700px;overflow-y:scroll;"
                  ng-include="'partials/unitsBox.html'">
+            </div>
+          </div>
+          <div ng-show="menu_view === 'scenarios'">
+            <div style="border:1px solid black;max-height:400px;overflow-y:scroll;"
+                 ng-include="'partials/scenariosBox.html'">
             </div>
           </div>
           <div ng-show="menu_view === 'layers'">

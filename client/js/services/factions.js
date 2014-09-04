@@ -72,7 +72,7 @@ angular.module('vassalApp.services')
         }, function(response) {
           console.log('get factions list error');
           console.log(response);
-          return $q.reject(responses);
+          return $q.reject(response);
         })
         .then(function(responses) {
           var keys = _.invert(factions.list);
