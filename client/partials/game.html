@@ -34,7 +34,15 @@
              height:{{game.board.window.height+5}}px;
              overflow: auto;
              ">
-        <svg style="border:1px solid black;display: inline-block;margin:0;padding:0;"
+        <svg style="
+             border:1px solid black;
+             display: inline-block;
+             margin:0;
+             padding:0;
+             "
+             ng-style="{
+             '-moz-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : ''
+             }"
              width="{{game.board.window.width*game.board.zoom.factor}}px"
              height="{{game.board.window.height*game.board.zoom.factor}}px"
              viewBox="0 0 480 480"
@@ -589,10 +597,15 @@
                            style="pointer-events:none;"
                            />
               </g>
-              <g ng-if="model.state.label.length != 0">
+              <g ng-if="model.state.label.length != 0"
+                 transform="rotate(
+                 {{game.board.zoom.flipped ? 180 : 0}},
+                 {{model.info.width/2}},
+                 {{model.info.height/2}})"
+                 >
                 <rect x="{{model.info.width/2-model.state.label.length*3.5/2-2}}"
                       y="{{
-                  model.info.height/2+(((model.state.rot%360) > 90 && (model.state.rot%360) < 270) ? (model.info.r) : (-model.info.r-7))
+                  model.info.height/2+(((model.state.rot%360) > 90 && (model.state.rot%360) < 270) ? (game.board.zoom.flipped ? -model.info.r-7 : model.info.r) : (game.board.zoom.flipped ? model.info.r : -model.info.r-7))
                   }}"
                   width="{{model.state.label.length*3.5+4}}" height="6"
                   style="
@@ -603,7 +616,7 @@
                   />
                   <text x="{{model.info.width/2}}"
                         y="{{
-                    model.info.height/2+(((model.state.rot%360) > 90 && (model.state.rot%360) < 270) ? (model.info.r+6) : (-model.info.r-2))
+                    model.info.height/2+(((model.state.rot%360) > 90 && (model.state.rot%360) < 270) ? (game.board.zoom.flipped ? -model.info.r-2 : model.info.r+6) : (game.board.zoom.flipped ? model.info.r+6 : -model.info.r-2))
                     }}"
                     style="
                     fill:white;
@@ -621,7 +634,13 @@
                  (model.state.show_unit ||
                   menu_view === 'units' ||
                   menu_view === 'models')
-                 ">
+                 "
+                 transform="rotate(
+                 {{game.board.zoom.flipped ? 180 : 0}},
+                 {{model.info.width/2}},
+                 {{model.info.height/2}}
+                 )"
+                 >
                 <rect x="{{model.info.width/2-model.info.r-9}}"
                       y="{{model.info.height/2-model.info.r-4}}"
                       width="12" height="6"
@@ -759,7 +778,13 @@
                     pointer-events: none;
                     "
                     />
-            <g ng-repeat="model in modelShow('counter')">
+            <g ng-repeat="model in modelShow('counter')"
+               transform="rotate(
+               {{game.board.zoom.flipped ? 180 : 0}},
+               {{model.state.x}},
+               {{model.state.y}}
+               )"
+               >
               <rect x="{{model.state.x-4}}" y="{{model.state.y-4}}"
                     width="8" height="9"
                     style="
@@ -1059,12 +1084,23 @@
                   stroke:#000;
                   stroke-width:0.5px;
                   "
+                  transform="rotate(
+                  {{game.board.zoom.flipped ? 180 : 0}},
+                  {{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1}},
+                  {{(game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1+4}}
+                  )"
                   />
             <text x="{{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1}}"
                   y="{{(game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1+4}}"
                   style="
                   font-size:8px;
-                  ">
+                  "
+                  transform="rotate(
+                  {{game.board.zoom.flipped ? 180 : 0}},
+                  {{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1}},
+                  {{(game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1+4}}
+                  )"
+                  >
               {{game.ruler.state.length}}"
             </text>
           </g>
@@ -1097,12 +1133,23 @@
                   stroke:#000;
                   stroke-width:0.5px;
                   "
+                  transform="rotate(
+                  {{game.board.zoom.flipped ? 180 : 0}},
+                  {{(modes.current.end_x-modes.current.start_x)/2+modes.current.start_x}},
+                  {{(modes.current.end_y-modes.current.start_y)/2+modes.current.start_y+4}}
+                  )"
                   />
             <text x="{{(modes.current.end_x-modes.current.start_x)/2+modes.current.start_x}}"
                   y="{{(modes.current.end_y-modes.current.start_y)/2+modes.current.start_y+4}}"
                   style="
                   font-size:8px;
-                  ">
+                  "
+                  transform="rotate(
+                  {{game.board.zoom.flipped ? 180 : 0}},
+                  {{(modes.current.end_x-modes.current.start_x)/2+modes.current.start_x}},
+                  {{(modes.current.end_y-modes.current.start_y)/2+modes.current.start_y+4}}
+                  )"
+                  >
               {{modes.current.length}}"
             </text>
           </g>

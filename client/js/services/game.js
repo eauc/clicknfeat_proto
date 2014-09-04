@@ -213,6 +213,7 @@ angular.module('vassalApp.services')
               factor: 1.0,
               cx: 0,
               cy: 0,
+              flipped: true,
             },
             refreshZoom: function() {
               var cont = document.getElementById('canvas-container');

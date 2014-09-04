@@ -197,6 +197,10 @@ angular.module('vassalApp.controllers')
               *480/$scope.game.board.window.width;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
               *480/$scope.game.board.window.height;
+          if($scope.game.board.zoom.flipped) {
+            user_x = 480 - user_x;
+            user_y = 480 - user_y;
+          }
 
           $scope.drag.state = 'starting';
           $scope.drag.start_x = user_x;
@@ -213,6 +217,10 @@ angular.module('vassalApp.controllers')
               *480/$scope.game.board.window.width;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
               *480/$scope.game.board.window.height;
+          if($scope.game.board.zoom.flipped) {
+            user_x = 480 - user_x;
+            user_y = 480 - user_y;
+          }
 
           $scope.drag.state = 'starting';
           $scope.drag.start_x = user_x;
@@ -238,6 +246,10 @@ angular.module('vassalApp.controllers')
               *480/$scope.game.board.window.width;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
               *480/$scope.game.board.window.height;
+          if($scope.game.board.zoom.flipped) {
+            user_x = 480 - user_x;
+            user_y = 480 - user_y;
+          }
           $scope.drag.state = 'starting';
           $scope.drag.start_x = user_x;
           $scope.drag.start_y = user_y;
@@ -251,6 +263,10 @@ angular.module('vassalApp.controllers')
               *480/$scope.game.board.window.width;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
               *480/$scope.game.board.window.height;
+          if($scope.game.board.zoom.flipped) {
+            user_x = 480 - user_x;
+            user_y = 480 - user_y;
+          }
 
           if($scope.drag.state === 'draging' ||
              $scope.drag.state === 'starting') {
@@ -283,6 +299,10 @@ angular.module('vassalApp.controllers')
               *480/$scope.game.board.window.width;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
               *480/$scope.game.board.window.height;
+          if($scope.game.board.zoom.flipped) {
+            user_x = 480 - user_x;
+            user_y = 480 - user_y;
+          }
 
           var drag_state = $scope.drag.state;
           $scope.drag.state = null;

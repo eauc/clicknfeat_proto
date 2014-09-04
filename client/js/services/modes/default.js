@@ -153,7 +153,8 @@ angular.module('vassalApp.services')
             }
           },
           'Ctrl E': function(scope) {
-            scope.game.newCommand(command('onSelection', 'setRotation', 90));
+            scope.game.newCommand(command('onSelection', 'setRotation',
+                                          scope.game.board.zoom.flipped ? 270 : 90));
           },
           'Alt F': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_fire;
@@ -183,7 +184,8 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('onSelection', 'toggle', 'counter', new_val));
           },
           'Ctrl N': function(scope) {
-            scope.game.newCommand(command('onSelection', 'setRotation', 0));
+            scope.game.newCommand(command('onSelection', 'setRotation', 
+                                          scope.game.board.zoom.flipped ? 180 : 0));
           },
           'R': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_reach;
@@ -201,7 +203,8 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('onSelection', 'toggle', 'stationary', new_val));
           },
           'Ctrl S': function(scope) {
-            scope.game.newCommand(command('onSelection', 'setRotation', 180));
+            scope.game.newCommand(command('onSelection', 'setRotation', 
+                                          scope.game.board.zoom.flipped ? 0 : 180));
           },
           'T': function(scope) {
             modes.goTo('model_target', scope);
@@ -222,7 +225,8 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('setSelection', selection));
           },
           'Ctrl W': function(scope) {
-            scope.game.newCommand(command('onSelection', 'setRotation', 270));
+            scope.game.newCommand(command('onSelection', 'setRotation', 
+                                          scope.game.board.zoom.flipped ? 90 : 270));
           },
           'Ctrl 0': function(scope) {
             scope.game.newCommand(command('onSelection', 'toggle', 'color', false));
@@ -271,10 +275,14 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('onSelection', 'rotateLeft', true));
           },
           'Ctrl Left': function(scope) {
-            scope.game.newCommand(command('onSelection', 'moveLeft', false));
+            scope.game.newCommand(command('onSelection', 
+                                          scope.game.board.zoom.flipped ? 'moveRight' : 'moveLeft',
+                                          false));
           },
           'Ctrl Shift Left': function(scope) {
-            scope.game.newCommand(command('onSelection', 'moveLeft', true));
+            scope.game.newCommand(command('onSelection', 
+                                          scope.game.board.zoom.flipped ? 'moveRight' : 'moveLeft',
+                                          true));
           },
           'Down': function(scope) {
             scope.game.newCommand(command('onSelection', 'moveBack', false));
@@ -283,10 +291,14 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('onSelection', 'moveBack', true));
           },
           'Ctrl Down': function(scope) {
-            scope.game.newCommand(command('onSelection', 'moveDown', false));
+            scope.game.newCommand(command('onSelection', 
+                                          scope.game.board.zoom.flipped ? 'moveUp' : 'moveDown',
+                                          false));
           },
           'Ctrl Shift Down': function(scope) {
-            scope.game.newCommand(command('onSelection', 'moveDown', true));
+            scope.game.newCommand(command('onSelection', 
+                                          scope.game.board.zoom.flipped ? 'moveUp' : 'moveDown',
+                                          true));
           },
           'Right': function(scope) {
             scope.game.newCommand(command('onSelection', 'rotateRight', false));
@@ -295,10 +307,14 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('onSelection', 'rotateRight', true));
           },
           'Ctrl Right': function(scope) {
-            scope.game.newCommand(command('onSelection', 'moveRight', false));
+            scope.game.newCommand(command('onSelection', 
+                                          scope.game.board.zoom.flipped ? 'moveLeft' : 'moveRight',
+                                          false));
           },
           'Ctrl Shift Right': function(scope) {
-            scope.game.newCommand(command('onSelection', 'moveRight', true));
+            scope.game.newCommand(command('onSelection', 
+                                          scope.game.board.zoom.flipped ? 'moveLeft' : 'moveRight',
+                                          true));
           },
           'Up': function(scope) {
             scope.game.newCommand(command('onSelection', 'moveFront', false));
@@ -307,10 +323,14 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('onSelection', 'moveFront', true));
           },
           'Ctrl Up': function(scope) {
-            scope.game.newCommand(command('onSelection', 'moveUp', false));
+            scope.game.newCommand(command('onSelection', 
+                                          scope.game.board.zoom.flipped ? 'moveDown' : 'moveUp',
+                                          false));
           },
           'Ctrl Shift Up': function(scope) {
-            scope.game.newCommand(command('onSelection', 'moveUp', true));
+            scope.game.newCommand(command('onSelection', 
+                                          scope.game.board.zoom.flipped ? 'moveDown' : 'moveUp',
+                                          true));
           },
         });
         return model_selected_mode;
