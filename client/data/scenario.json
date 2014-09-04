@@ -4,6 +4,107 @@
   "icon": "",
   "models": {
     "objectives": {
+      "sr14ac": {
+        "name": "SR14 Ammunition Cache",
+        "fk_name": null,
+        "type": "objective",
+        "base": "large",
+        "width": 30,
+        "height": 30,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 15
+        },
+        "desc": {
+          "Firepower": "While this objective is not contested by an enemy model, the ranged weapons of friendly models with Light Artillery within 4 ̋ of this model gain boosted damage rolls."
+        }
+      },
+      "sr14ca": {
+        "name": "SR14 Critical Asset",
+        "fk_name": null,
+        "type": "objective",
+        "base": "large",
+        "width": 30,
+        "height": 30,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 15
+        },
+        "desc": {
+          "Asset Protection": "If this model is disabled, you can choose a non-disabled friendly model that you own within 4 ̋ to be destroyed. If another model is destroyed as a result of Asset Protection remove 1 damage from this model."
+        }
+      },
+      "sr14ef": {
+        "name": "SR14 Effigy",
+        "fk_name": null,
+        "type": "objective",
+        "base": "large",
+        "width": 30,
+        "height": 30,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 15
+        },
+        "desc": {
+          "Valor": "While this objective is not contested by an enemy model, friendly Faction solos within 4 ̋ of this model gain Inspiration[faction] for one round."
+        }
+      },
+      "sr14ml": {
+        "name": "SR14 Monolith",
+        "fk_name": null,
+        "type": "objective",
+        "base": "large",
+        "width": 30,
+        "height": 30,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 15
+        },
+        "desc": {
+          "Inexorable": "This model cannot be placed, is immune to continuous effects, and cannot be chosen as a Prey target.",
+          "Linked": "When another Monolith is damaged this model cannot be damaged for one turn."
+        }
+      },
+      "sr14sc": {
+        "name": "SR14 Supply Cache",
+        "fk_name": null,
+        "type": "objective",
+        "base": "large",
+        "width": 30,
+        "height": 30,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 15
+        },
+        "desc": {
+          "Fuel": "While this objective is not contested by an enemy model, friendly models beginning their activation within 4 ̋ of this model can run or charge without being forced or spending focus."
+        }
+      },
       "sr14obj": {
         "name": "SR14 Objective",
         "fk_name": null,

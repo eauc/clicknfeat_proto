@@ -5,4 +5,8 @@
           ng-change="doSetScenario()"
           >
   </select>
+  <button ng-show="game.scenario"
+          ng-click="doGenerateObjectives()">
+    Generate Objectives
+  </button>
 </div>

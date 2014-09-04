@@ -374,7 +374,8 @@
                   "
                   />
             <circle ng-repeat="o in game.scenario.objectives"
-                    cx="{{o.x}}" cy="{{o.y}}" r="{{o.r}}"
+                    cx="{{o.x}}" cy="{{o.y}}"
+                    r="{{factions.list.scenario.models.objectives[o.type].r}}"
                     style="
                     fill:#CC0;
                     fill-opacity:0.8;
@@ -383,7 +384,8 @@
                     "
                     />
             <circle ng-repeat="f in game.scenario.flags"
-                    cx="{{f.x}}" cy="{{f.y}}" r="{{f.r}}"
+                    cx="{{f.x}}" cy="{{f.y}}"
+                    r="{{factions.list.scenario.models.flags[f.type].r}}"
                     style="
                     fill:#CC0;
                     fill-opacity:0.8;

@@ -16,14 +16,6 @@ angular.module('vassalApp.services')
       return $http.get('/data/scenarios.json')
         .then(function(response) {
           scenarios.list = response.data;
-          _.each(scenarios.list, function(scenar) {
-            _.each(scenar.objectives, function(obj) {
-              obj.r = BASE_RADIUS[obj.base];
-            });
-            _.each(scenar.flags, function(flag) {
-              flag.r = BASE_RADIUS[flag.base];
-            });
-          });
           console.log('scenarios', scenarios);
           return scenarios;
         }, function(response) {

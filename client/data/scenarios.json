@@ -4,16 +4,12 @@
     "killbox": 140,
     "objectives": [
       {
-        "name": "Critical Asset",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14ca",
         "x": 300,
         "y": 210
       },
       {
-        "name": "Critical Asset",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14ca",
         "x": 180,
         "y": 270
       }
@@ -32,16 +28,12 @@
     "killbox": 140,
     "objectives": [
       {
-        "name": "Supply Cache",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14sc",
         "x": 300,
         "y": 180
       },
       {
-        "name": "Supply Cache",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14sc",
         "x": 180,
         "y": 300
       }
@@ -58,12 +50,12 @@
     "name": "SR14 Balance of Powers",
     "flags": [
       {
-        "base": "medium",
+        "type": "sr14flag",
         "x": 180,
         "y": 150
       },
       {
-        "base": "medium",
+        "type": "sr14flag",
         "x": 300,
         "y": 330
       }
@@ -82,16 +74,12 @@
     "killbox": 140,
     "objectives": [
       {
-        "name": "Monolith",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14ml",
         "x": 170,
         "y": 240
       },
       {
-        "name": "Monolith",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14ml",
         "x": 310,
         "y": 240
       }
@@ -116,12 +104,12 @@
     "killbox": 140,
     "flags": [
       {
-        "base": "medium",
+        "type": "sr14flag",
         "x": 180,
         "y": 210
       },
       {
-        "base": "medium",
+        "type": "sr14flag",
         "x": 300,
         "y": 270
       }
@@ -131,16 +119,12 @@
     "name": "SR14 Two Fronts",
     "objectives": [
       {
-        "name": "Supply Cache",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14sc",
         "x": 240,
         "y": 180
       },
       {
-        "name": "Supply Cache",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14sc",
         "x": 240,
         "y": 300
       }
@@ -164,16 +148,12 @@
     "name": "SR14 Incoming",
     "objectives": [
       {
-        "name": "Ammunition Cache",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14ac",
         "x": 240,
         "y": 160
       },
       {
-        "name": "Ammunition Cache",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14ac",
         "x": 240,
         "y": 320
       }
@@ -197,16 +177,12 @@
     "name": "SR14 Rally Point",
     "objectives": [
       {
-        "name": "Effigy",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14ef",
         "x": 240,
         "y": 160
       },
       {
-        "name": "Effigy",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14ef",
         "x": 240,
         "y": 320
       }
@@ -228,17 +204,17 @@
     "name": "SR14 Incursion",
     "flags": [
       {
-        "base": "medium",
+        "type": "sr14flag",
         "x": 90,
         "y": 240
       },
       {
-        "base": "medium",
+        "type": "sr14flag",
         "x": 240,
         "y": 240
       },
       {
-        "base": "medium",
+        "type": "sr14flag",
         "x": 390,
         "y": 240
       }
@@ -263,23 +239,19 @@
     "name": "SR14 Into the Breach",
     "flags": [
       {
-        "base": "medium",
+        "type": "sr14flag",
         "x": 320,
         "y": 240
       }
     ],
     "objectives": [
       {
-        "name": "Effigy",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14ef",
         "x": 240,
         "y": 180
       },
       {
-        "name": "Effigy",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14ef",
         "x": 240,
         "y": 300
       }
@@ -297,28 +269,24 @@
     "killbox": 140,
     "flags": [
       {
-        "base": "medium",
+        "type": "sr14flag",
         "x": 160,
         "y": 240
       },
       {
-        "base": "medium",
+        "type": "sr14flag",
         "x": 320,
         "y": 240
       }
     ],
     "objectives": [
       {
-        "name": "Ammunition Cache",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14ac",
         "x": 160,
         "y": 290
       },
       {
-        "name": "Ammuniction Cache",
-        "damage": 15,
-        "base": "large",
+        "type": "sr14ac",
         "x": 320,
         "y": 190
       }

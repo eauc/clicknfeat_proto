@@ -41,6 +41,13 @@
     <strong>Focus :</strong>
     {{game.models[game.selection[0]].info.focus}}
   </div>
+  <div ng-if="game.models[game.selection[0]].info.desc">
+    <strong>Desc :</strong>
+    <ul style="padding-left:2em">
+      <li ng-repeat="(name, desc) in game.models[game.selection[0]].info.desc"
+          ><strong>{{ name }}</strong> - {{ desc }}</li>
+    </ul>
+  </div>
   <div>
     <strong>Damages :</strong>
     {{game.models[game.selection[0]].state.damage.total}} /
