@@ -98,44 +98,31 @@
                  xlink:href="{{game.board.info.img}}"
                  style="display: {{game.layers.board ? 'inline' : 'none'}}"
                  />
-          <!-- <svg id="terrain-canvas"
-          x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-          style="display: {{game.layers.terrain ? 'inline' : 'none'}}"
-          >
-          <rect x="120" y="136" width="60" height="43"
-          style="
-          fill:#00F;
-          fill-opacity:0.2;
-          "
-          transform="rotate(40, 150, 155)"
-          />
-          <rect x="295" y="308" width="85" height="64"
-          style="
-          fill:#00F;
-          fill-opacity:0.2;
-          "
-          transform="rotate(40, 338, 340)"
-          />
-          <rect x="205" y="242" width="70" height="7"
-          style="
-          fill:#F00;
-          fill-opacity:0.2;
-          "
-          transform="rotate(84, 240, 245)"
-          />
-          <circle cx="90" cy="242" r="29"
-          style="
-          fill:#0F0;
-          fill-opacity:0.2;
-          "
-          />
-          <circle cx="390" cy="242" r="29"
-          style="
-          fill:#0F0;
-          fill-opacity:0.2;
-          "
-          />
-          </svg> -->
+          <svg id="terrain-canvas"
+               x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
+               style="display: {{game.layers.terrain ? 'inline' : 'none'}}"
+               >
+            <rect ng-repeat="r in game.board.info.terrain.rect"
+                  x="{{r.x-r.width/2}}" y="{{r.y-r.height/2}}"
+                  width="{{r.width}}" height="{{r.height}}"
+                  transform="rotate({{r.rotate}}, {{r.x}}, {{r.y}})"
+                  style="
+                  fill-opacity:0.2;
+                  "
+                  ng-style="{
+                  fill: r.type === 'obstruction' ? '#00F' : (r.type === 'linear' ? '#F00' : (r.type === 'forest' ? '#0F0' : (r.type === 'elevation' ? '#0FF' : '#CCC')))
+                  }"
+                  />
+            <circle ng-repeat="c in game.board.info.terrain.circle"
+                    cx="{{c.x}}" cy="{{c.y}}" r="{{c.r}}"
+                    style="
+                    fill-opacity:0.2;
+                    "
+                    ng-style="{
+                    fill: c.type === 'obstruction' ? '#00F' : (c.type === 'linear' ? '#F00' : (c.type === 'forest' ? '#0F0' : (c.type === 'elevation' ? '#0FF' : '#CCC')))
+                    }"
+                    />
+          </svg>
           <svg x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
                style="display: {{game.layers.deployment ? 'inline' : 'none'}}"
                >
