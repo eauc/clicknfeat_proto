@@ -260,12 +260,12 @@ angular.module('vassalApp.controllers')
                (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1)) {
               // console.log('starting -> draging');
               $scope.drag.state = 'draging';
-              console.log('DragStart', $scope.drag);
+              // console.log('DragStart', $scope.drag);
               $scope.modes.send('DragStart', $scope, event, $scope.drag, dx, dy);
             }
             else if($scope.drag.state === 'draging') {
               // console.log('draging');
-              console.log('Drag', $scope.drag);
+              // console.log('Drag', $scope.drag);
               $scope.modes.send('Drag', $scope, event, $scope.drag,
                                 user_x, user_y,
                                 dx, dy);
@@ -289,12 +289,12 @@ angular.module('vassalApp.controllers')
           if(drag_state === 'draging') {
             var dx = user_x - $scope.drag.start_x;
             var dy = user_y - $scope.drag.start_y;
-            console.log('DragEnd', $scope.drag);
+            // console.log('DragEnd', $scope.drag);
             $scope.modes.send('DragEnd', $scope, event, $scope.drag,
                               user_x, user_y, dx, dy);
           }
           else {
-            console.log('Click', $scope.drag);
+            // console.log('Click', $scope.drag);
             $scope.modes.send('Click', $scope, event, $scope.drag,
                               user_x, user_y);
           }

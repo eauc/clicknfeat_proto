@@ -413,62 +413,75 @@ angular.module('vassalApp.services')
           instance.updateCommand(command(cmd));
         });
 
-        instance.cmd_source = new EventSource('/api/games/'+instance.id+
-                                              '/commands/subscribe');
-        instance.cmd_source.onmessage = function(e) {
-          // console.log('cmd event');
-          // console.log(e);
-          var data = JSON.parse(e.data);
-          // console.log(data);
-          var cmd = command(data);
-          // console.log(cmd);
-          if(cmd) instance.updateCommand(cmd);
-          $rootScope.$apply();
-        };
-        instance.cmd_source.addEventListener('undo', function(e) {
-          // console.log('cmd undo event');
-          // console.log(e);
-          var data = JSON.parse(e.data);
-          // console.log(data);
-          // var cmd = command(data);
-          // console.log(cmd);
-          if(data.stamp === _.last(instance.commands).stamp) {
-            instance.commands.pop().undo(instance);
-          }
-          $rootScope.$apply();
-        });
-        instance.cmd_source.onerror = function(e) {
-          console.log('cmd source error');
-          console.log(e);
-        };
+        function openCmdSource() {
 
-        instance.msg_source = new EventSource('/api/games/'+instance.id+
-                                              '/messages/subscribe');
-        instance.msg_source.onmessage = function(e) {
-          // console.log('msg event');
-          // console.log(e);
-          var data = JSON.parse(e.data);
-          // console.log(data);
-          var msg = message(data);
-          // console.log(msg);
-          if(msg) instance.updateMessage(msg);
-          $rootScope.$apply();
-        };
-        instance.msg_source.onerror = function(e) {
-          console.log('msg source error');
-          console.log(e);
-        };
-        // _.each(selected_model, function(model) {
-        //   console.log(model.state);
-        //   $http.put('/api/games/'+$scope.game.id+
-        //             '/models/'+model.state.id,
-        //             model.state)
-        //     .then(function(response) {
-        //       console.log('put model '+model.state.id+' success')
-        //     }, function(response) {
-        //       console.log('put model '+model.state.id+' error '+response.status)
-        //     });
-        // });
+          var url = '/api/games/'+instance.id+'/commands/subscribe';
+          if(instance.commands.length > 0) {
+              url += '?last=' + _.last(instance.commands).stamp;
+          }
+          console.log('open cmd source', url);
+          instance.cmd_source = new EventSource(url);
+          instance.cmd_source.onmessage = function(e) {
+            // console.log('cmd event');
+            // console.log(e);
+            var data = JSON.parse(e.data);
+            // console.log(data);
+            var cmd = command(data);
+            // console.log(cmd);
+            if(cmd) instance.updateCommand(cmd);
+            $rootScope.$apply();
+          };
+          instance.cmd_source.addEventListener('undo', function(e) {
+            // console.log('cmd undo event');
+            // console.log(e);
+            var data = JSON.parse(e.data);
+            // console.log(data);
+            // var cmd = command(data);
+            // console.log(cmd);
+            if(data.stamp === _.last(instance.commands).stamp) {
+              instance.commands.pop().undo(instance);
+            }
+            $rootScope.$apply();
+          });
+          instance.cmd_source.onerror = function(e) {
+            if(e.target.readyState === e.target.CLOSED) {
+              console.log('cmd source error', e);
+            }
+            instance.cmd_source.close();
+            openCmdSource();
+          };
+
+        }
+        openCmdSource();
+
+        function openMsgSource() {
+
+          var url = '/api/games/'+instance.id+'/messages/subscribe';
+          if(instance.messages.length > 0) {
+              url += '?last=' + _.last(instance.messages).stamp;
+          }
+          console.log('open msg source', url);
+          instance.msg_source = new EventSource(url);
+          instance.msg_source.onmessage = function(e) {
+            // console.log('msg event');
+            // console.log(e);
+            var data = JSON.parse(e.data);
+            // console.log(data);
+            var msg = message(data);
+            // console.log(msg);
+            if(msg) instance.updateMessage(msg);
+            $rootScope.$apply();
+          };
+          instance.msg_source.onerror = function(e) {
+            if(e.target.readyState === e.target.CLOSED) {
+              console.log('msg source error', e);
+            }
+            instance.msg_source.close();
+            openMsgSource();
+          };
+
+        }
+        openMsgSource();
 
         return instance;
       };

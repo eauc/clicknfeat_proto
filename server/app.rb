@@ -42,10 +42,17 @@ class VassalApp < Sinatra::Base
     return status 404 unless @games.exist? game_id
     game = @games[game_id]
 
+    # puts params.inspect
+    last = if params.key? 'last'
+             params['last'].to_i
+           else
+             nil
+           end
+    # puts last.inspect
     stream(:keep_open) do |out| 
       # out.callback { @models.removeConnection out }
       out << "retry:100\n\n"
-      game.commands.addConnection out
+      game.commands.addConnection out, last
     end
   end
 
@@ -77,10 +84,17 @@ class VassalApp < Sinatra::Base
     return status 404 unless @games.exist? game_id
     game = @games[game_id]
 
+    # puts params.inspect
+    last = if params.key? 'last'
+             params['last'].to_i
+           else
+             nil
+           end
+    # puts last.inspect
     stream(:keep_open) do |out| 
       # out.callback { @models.removeConnection out }
       out << "retry:100\n\n"
-      game.messages.addConnection out
+      game.messages.addConnection out, last
     end
   end
 
