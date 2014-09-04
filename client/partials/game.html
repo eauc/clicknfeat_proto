@@ -744,6 +744,38 @@
                 {{model.state.counter}}
               </text>
             </g>
+            <line ng-if="game.update_selection.length === 1"
+                  x1="{{game.models[game.update_selection[0]].state.x}}"
+                  y1="{{game.models[game.update_selection[0]].state.y}}"
+                  x2="{{game.models[game.update_selection[0]].state.x}}"
+                  y2="{{game.models[game.update_selection[0]].state.y-700}}"
+                  transform="
+                  rotate({{game.models[game.update_selection[0]].state.rot}},
+                  {{game.models[game.update_selection[0]].state.x}},
+                  {{game.models[game.update_selection[0]].state.y}})
+                  "
+                  style="
+                  stroke: white;
+                  stroke-width: 0.5px;
+                  pointer-events: none;
+                  "
+                  />
+            <line ng-if="game.update_selection.length === 1"
+                  x1="{{game.models[game.update_selection[0]].state.x-700}}"
+                  y1="{{game.models[game.update_selection[0]].state.y}}"
+                  x2="{{game.models[game.update_selection[0]].state.x+700}}"
+                  y2="{{game.models[game.update_selection[0]].state.y}}"
+                  transform="
+                  rotate({{game.models[game.update_selection[0]].state.rot}},
+                  {{game.models[game.update_selection[0]].state.x}},
+                  {{game.models[game.update_selection[0]].state.y}})
+                  "
+                  style="
+                  stroke: white;
+                  stroke-width: 0.5px;
+                  pointer-events: none;
+                  "
+                  />
             <line ng-if="game.selection.length === 1"
                   x1="{{game.models[game.selection[0]].state.x}}"
                   y1="{{game.models[game.selection[0]].state.y}}"

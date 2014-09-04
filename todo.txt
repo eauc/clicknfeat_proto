@@ -1,4 +1,3 @@
-- afficher les los du update selection
 - scenarios
 - maps
 
