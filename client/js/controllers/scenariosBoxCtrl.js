@@ -7,7 +7,11 @@ angular.module('vassalApp.controllers')
     function($scope,
              command) {
       console.log('init scenariosBoxCtrl');
+      $scope.new_scenario = $scope.game.scenario ? _.find($scope.scenarios.list, function(sce) {
+        return sce.name === $scope.game.scenario.name;
+      }) : null;
       $scope.doSetScenario = function() {
+        $scope.game.newCommand(command('setScenario', $scope.new_scenario));
       };
       $scope.doGenerateObjectives = function() {
         if(!$scope.game.scenario) return;
@@ -38,7 +42,7 @@ angular.module('vassalApp.controllers')
           });
         });
         var create_cmd = command('createModel', info);
-        create_cmd.stamp++;
+        create_cmd.stamp += 2;
         $scope.game.newCommand(create_cmd);
       };
     }

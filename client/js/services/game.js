@@ -22,6 +22,7 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         
         var instance = {
+          scenario: null,
           new_model_id: 0,
           models: {},
           createModel: function(options) {

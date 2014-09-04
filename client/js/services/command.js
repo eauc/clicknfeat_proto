@@ -1,6 +1,42 @@
 'use strict';
 
 angular.module('vassalApp.services')
+  .factory('command_setScenario', [
+    'template',
+    function(template) {
+      var factory = function(data) {
+        var instance = {
+          type: 'setScenario',
+          stamp: Date.now(),
+          arg: null,
+          before: null,
+          after: null,
+          execute: function(game) {
+            this.before = game.scenario ? _.deepCopy(game.scenario) : null;
+            game.scenario = this.arg;
+            this.after = _.deepCopy(game.scenario);
+          },
+          redo: function(game) {
+            game.scenario = _.deepCopy(this.after);
+          },
+          undo: function(game) {
+            game.scenario = _.deepCopy(this.before);
+          },
+          desc: function(game) {
+            return this.type+'('+this.arg.name+')';
+          }
+        };
+        if(_.isNumber(data.stamp)) {
+          _.extend(instance, data);
+        }
+        else {
+          instance.arg = data;
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
   .factory('command_createTemplate', [
     'template',
     function(template) {
@@ -597,6 +633,7 @@ angular.module('vassalApp.services')
     }
   ])
   .factory('command', [
+    'command_setScenario',
     'command_createTemplate',
     'command_deleteActiveTemplate',
     'command_onActiveTemplate',
@@ -612,7 +649,8 @@ angular.module('vassalApp.services')
     'command_setSelection',
     'command_addToSelection',
     'command_removeFromSelection',
-    function(command_createTemplate,
+    function(command_setScenario,
+             command_createTemplate,
              command_deleteActiveTemplate,
              command_onActiveTemplate,
              command_dragActiveTemplate,
@@ -629,6 +667,7 @@ angular.module('vassalApp.services')
              command_removeFromSelection
             ) {
       var factories = {
+        setScenario: command_setScenario,
         createTemplate: command_createTemplate,
         deleteActiveTemplate: command_deleteActiveTemplate,
         onActiveTemplate: command_onActiveTemplate,

@@ -1,6 +1,6 @@
 <div ng-controller="scenariosBoxCtrl">
   <select name="scenario"
-          ng-model="game.scenario"
+          ng-model="new_scenario"
           ng-options="s as s.name for s in scenarios.list"
           ng-change="doSetScenario()"
           >
