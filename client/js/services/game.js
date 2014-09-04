@@ -127,14 +127,18 @@ angular.module('vassalApp.services')
             var find_cmd = _.findWhere(this.new_commands, { stamp: new_cmd.stamp });
             if(find_cmd) {
               var index = _.indexOf(this.new_commands, find_cmd);
-              this.commands.push(find_cmd);
+              if(!find_cmd.do_not_log) {
+                this.commands.push(find_cmd);
+              }
               this.new_commands.splice(index, 1);
               // console.log('cmd udpate : validate new command');
               return;
             }
             // console.log('cmd udpate : execute new command');
             new_cmd.redo(this);
-            this.commands.push(new_cmd);
+            if(!new_cmd.do_not_log) {
+              this.commands.push(new_cmd);
+            }
           },
           new_messages: [],
           messages: [],

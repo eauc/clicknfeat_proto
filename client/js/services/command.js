@@ -569,6 +569,7 @@ angular.module('vassalApp.services')
           model_ids: [],
           before: null,
           after: null,
+          do_not_log: true,
           execute: function(game) {
             this.before = [].concat(game.selection);
             game.setSelection(this.model_ids);
@@ -607,6 +608,7 @@ angular.module('vassalApp.services')
           model_ids: [],
           before: null,
           after: null,
+          do_not_log: true,
           execute: function(game) {
             this.before = [].concat(game.selection);
             game.addToSelection(this.model_ids);
@@ -642,6 +644,7 @@ angular.module('vassalApp.services')
           model_ids: [],
           before: null,
           after: null,
+          do_not_log: true,
           execute: function(game) {
             this.before = [].concat(game.selection);
             game.removeFromSelection(this.model_ids);
