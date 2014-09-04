@@ -795,7 +795,11 @@
                 {{model.state.counter}}
               </text>
             </g>
-            <line ng-if="game.update_selection.length === 1"
+            <line ng-if="
+                  game.update_selection.length === 1 &&
+                  game.models[game.update_selection[0]].info.type !== 'objective' &&
+                  game.models[game.update_selection[0]].info.type !== 'flag'
+                  "
                   x1="{{game.models[game.update_selection[0]].state.x}}"
                   y1="{{game.models[game.update_selection[0]].state.y}}"
                   x2="{{game.models[game.update_selection[0]].state.x}}"
@@ -811,7 +815,11 @@
                   pointer-events: none;
                   "
                   />
-            <line ng-if="game.update_selection.length === 1"
+            <line ng-if="
+                  game.update_selection.length === 1 &&
+                  game.models[game.update_selection[0]].info.type !== 'objective' &&
+                  game.models[game.update_selection[0]].info.type !== 'flag'
+                  "
                   x1="{{game.models[game.update_selection[0]].state.x-700}}"
                   y1="{{game.models[game.update_selection[0]].state.y}}"
                   x2="{{game.models[game.update_selection[0]].state.x+700}}"
@@ -827,7 +835,11 @@
                   pointer-events: none;
                   "
                   />
-            <line ng-if="game.selection.length === 1"
+            <line ng-if="
+                  game.selection.length === 1 &&
+                  game.models[game.selection[0]].info.type !== 'objective' &&
+                  game.models[game.selection[0]].info.type !== 'flag'
+                  "
                   x1="{{game.models[game.selection[0]].state.x}}"
                   y1="{{game.models[game.selection[0]].state.y}}"
                   x2="{{game.models[game.selection[0]].state.x}}"
@@ -843,7 +855,11 @@
                   pointer-events: none;
                   "
                   />
-            <line ng-if="game.selection.length === 1"
+            <line ng-if="
+                  game.selection.length === 1 &&
+                  game.models[game.selection[0]].info.type !== 'objective' &&
+                  game.models[game.selection[0]].info.type !== 'flag'
+                  "
                   x1="{{game.models[game.selection[0]].state.x-700}}"
                   y1="{{game.models[game.selection[0]].state.y}}"
                   x2="{{game.models[game.selection[0]].state.x+700}}"
