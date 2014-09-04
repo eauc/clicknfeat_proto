@@ -1,11 +1,11 @@
 - scenarios : show effect range of objectives/flags
 - maps
 
-- sauvegarde des models selectionnes dans un fichier pour import ulterieur ? -> avec la meme formation, et permet la save des labels, etc.
-- gestion des joueurs
-
 - commands non logables (setSelection)
 - commands replay
+
+- sauvegarde des models selectionnes dans un fichier pour import ulterieur ? -> avec la meme formation, et permet la save des labels, etc.
+- gestion des joueurs
 
 - inversion de la map
 - mode charge basic : shortcut to trigger then orient from starting position, orient to target, move only front/back, draw charge lane, color target when within active melee range.

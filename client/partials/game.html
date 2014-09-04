@@ -339,7 +339,10 @@
                x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
                style="display: {{game.layers.scenario ? 'inline' : 'none'}}"
                >
-            <rect ng-if="game.scenario.killbox"
+            <rect ng-if="
+                  menu_view === 'scenarios' &&
+                  game.scenario.killbox
+                  "
                   x="{{game.scenario.killbox}}"
                   y="{{game.scenario.killbox}}"
                   width="{{480-2*game.scenario.killbox}}"
