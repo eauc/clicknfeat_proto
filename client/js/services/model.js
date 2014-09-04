@@ -22,10 +22,12 @@ angular.module('vassalApp.services')
                                   this.state.y);
         },
         alignWith: function(game, x, y) {
+          if(this.info.immovable) return;
           var angle = Math.atan2(x - this.state.x, this.state.y - y) * 180 / Math.PI;
           this.state.rot = angle;
         },
         moveFront: function(game, small) {
+          if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           var dx = dl * Math.sin(this.state.rot * Math.PI / 180);
           var dy = -dl * Math.cos(this.state.rot * Math.PI / 180);
@@ -35,6 +37,7 @@ angular.module('vassalApp.services')
           this.refresh(game);
         },
         moveBack: function(game, small) {
+          if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           var dx = -dl * Math.sin(this.state.rot * Math.PI / 180);
           var dy = dl * Math.cos(this.state.rot * Math.PI / 180);
@@ -44,32 +47,39 @@ angular.module('vassalApp.services')
           this.refresh(game);
         },
         setRotation: function(game, angle) {
+          if(this.info.immovable) return;
           this.state.rot = angle;
         },
         rotateLeft: function(game, small) {
+          if(this.info.immovable) return;
           var dr = small ? 5 : 30;
           this.state.rot = this.state.rot - dr;
         },
         moveLeft: function(game, small) {
+          if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.x -= dl;
           this.refresh(game);
         },
         moveUp: function(game, small) {
+          if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.y -= dl;
           this.refresh(game);
         },
         rotateRight: function(game, small) {
+          if(this.info.immovable) return;
           var dr = small ? 5 : 30;
           this.state.rot = this.state.rot + dr;
         },
         moveRight: function(game, small) {
+          if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.x += dl;
           this.refresh(game);
         },
         moveDown: function(game, small) {
+          if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.y += dl;
           this.refresh(game);
@@ -119,11 +129,13 @@ angular.module('vassalApp.services')
           this.state_before_drag = _.extend({}, this.state);
         },
         draging: function(game, dx, dy) {
+          if(this.info.immovable) return;
           this.state.x = this.state_before_drag.x + dx;
           this.state.y = this.state_before_drag.y + dy;
           this.refresh(game);
         },
         endDraging: function(game, dx, dy) {
+          if(this.info.immovable) return;
           this.state.x = this.state_before_drag.x + dx;
           this.state.y = this.state_before_drag.y + dy;
           this.refresh(game);

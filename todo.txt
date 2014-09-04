@@ -1,4 +1,4 @@
-- scenarios
+- scenarios : show effect range of objectives/flags
 - maps
 
 - sauvegarde des models selectionnes dans un fichier pour import ulterieur ? -> avec la meme formation, et permet la save des labels, etc.
@@ -14,7 +14,6 @@
 - auto-slam model
 - place model to ruler end
 - split factions files in subfiles
-- immovable models
 
 - models with specials ?
 

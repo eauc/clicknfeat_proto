@@ -9,6 +9,7 @@
         "fk_name": null,
         "type": "objective",
         "base": "large",
+        "immovable": true,
         "width": 30,
         "height": 30,
         "img": {
@@ -29,6 +30,7 @@
         "fk_name": null,
         "type": "objective",
         "base": "large",
+        "immovable": true,
         "width": 30,
         "height": 30,
         "img": {
@@ -49,6 +51,7 @@
         "fk_name": null,
         "type": "objective",
         "base": "large",
+        "immovable": true,
         "width": 30,
         "height": 30,
         "img": {
@@ -69,6 +72,7 @@
         "fk_name": null,
         "type": "objective",
         "base": "large",
+        "immovable": true,
         "width": 30,
         "height": 30,
         "img": {
@@ -90,6 +94,7 @@
         "fk_name": null,
         "type": "objective",
         "base": "large",
+        "immovable": true,
         "width": 30,
         "height": 30,
         "img": {
@@ -110,6 +115,7 @@
         "fk_name": null,
         "type": "objective",
         "base": "large",
+        "immovable": true,
         "width": 30,
         "height": 30,
         "img": {
@@ -129,6 +135,7 @@
         "fk_name": null,
         "type": "flag",
         "base": "medium",
+        "immovable": true,
         "width": 20,
         "height": 20,
         "img": {
