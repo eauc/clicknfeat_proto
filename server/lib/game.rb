@@ -21,6 +21,19 @@ class Game
     # @layers = data.key?('layers') ? data['layers'] : nil
   end
 
+  def undoCommand stamp
+    cmd = @commands.undo stamp
+    if cmd
+      @replay_commands << cmd
+    end
+    cmd
+  end
+
+  def addCommand data
+    @replay_commands.delete_if { |cmd| cmd['stamp'] === data['stamp'] }
+    @commands.add data
+  end
+
   def to_json
     @new_model_id += 10000
     "{ \"id\": #{@id}, \"new_model_id\": #{@new_model_id}, \"commands\": #{@commands.to_json}, \"messages\": #{@messages.to_json}, \"replay_commands\": #{@replay_commands.to_json} }"

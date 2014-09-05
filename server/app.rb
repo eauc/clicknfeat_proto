@@ -62,7 +62,8 @@ class VassalApp < Sinatra::Base
     game = @games[game_id]
 
     data = JSON.parse request.body.read
-    if game.commands.undo data['stamp']
+    cmd = game.undoCommand data['stamp']
+    if cmd
       status 200
     else
       status 400
@@ -75,7 +76,7 @@ class VassalApp < Sinatra::Base
     game = @games[game_id]
 
     data = JSON.parse request.body.read
-    game.commands.add data
+    game.addCommand data
     status 200
   end
 

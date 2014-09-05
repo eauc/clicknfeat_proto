@@ -11,7 +11,7 @@ class CommandCollection
   end
 
   def undo stamp
-    return false if @commands.empty? or @commands[-1]['stamp'] != stamp
+    return nil if @commands.empty? or @commands[-1]['stamp'] != stamp
     cmd = @commands.pop
     
     data = cmd.to_json
@@ -19,6 +19,7 @@ class CommandCollection
       out << "retry:100\nevent:undo\ndata:#{data}\n\n"
       # out.close
     end
+    cmd
   end
     
   def connections
