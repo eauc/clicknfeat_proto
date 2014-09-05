@@ -3,10 +3,10 @@
     <strong>Commands :</strong>
     <button title="(Ctrl + 'Z')"
             ng-disabled="game.commands.length===0"
-            ng-click="game.undoLastCommand()">Undo</button>
+            ng-click="sendKey('Ctrl Z', $event)">Undo</button>
     <button title="(Ctrl + 'Y')"
             ng-disabled="game.replay_commands.length===0"
-            ng-click="game.replayNextCommand()">Replay</button>
+            ng-click="sendKey('Ctrl Y', $event)">Replay</button>
   </div>
   <div id="replay-commands"
        style="max-height:75px;overflow-y:scroll;">

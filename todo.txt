@@ -1,4 +1,4 @@
-- commands replay
+- commands replay : undo/replay all, undo/replay up to X
 
 - sauvegarde des models selectionnes dans un fichier pour import ulterieur ? -> avec la meme formation, et permet la save des labels, etc.
 - gestion des joueurs
