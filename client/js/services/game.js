@@ -172,8 +172,9 @@ angular.module('vassalApp.services')
           },
           _replayCommandUpTo: function(stamp, left) {
             if(this.replay_commands.length <= 0) return;
+            var stop = (this.replay_commands[left-1].stamp === stamp);
             this.replayCommand(left-1).then(function() {
-              if(instance.replay_commands[left-1].stamp === stamp) return;
+              if(stop) return;
               left--;
               instance._replayCommandUpTo(stamp, left);
             });
