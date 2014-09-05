@@ -8,6 +8,46 @@ angular.module('vassalApp.controllers')
              $window) {
       console.log('init importBoxCtrl');
 
+      $scope.readModelFile = function(file) {
+        $scope.modes.goTo('default', $scope);
+        $scope.read_result = [];
+        var reader = new $window.FileReader();
+        reader.onload = function(e) {
+          $scope.read_result.push('loaded file');
+          try {
+            var data = JSON.parse(e.target.result);
+          }
+          catch(err) {
+            $scope.read_result.push('invalid file format');
+          }
+          $scope.modes['model_create'].info = data;
+          $scope.modes.goTo('model_create', $scope);
+          $scope.$apply();
+        };
+        reader.onerror = function(e) {
+          $scope.read_result = ['error reading file'];
+          $scope.$apply();
+        };
+        reader.onabort = function(e) {
+          $scope.read_result = ['abort reading file'];
+          $scope.$apply();
+        };
+        reader.readAsText(file);
+      };
+
+      var file_input = document.getElementById('import-model-file');
+      file_input.onchange = function() {
+        $scope.readModelFile(file_input.files[0]);
+      };
+    }
+  ])
+  .controller('importFKBoxCtrl', [
+    '$scope',
+    '$window',
+    function($scope,
+             $window) {
+      console.log('init importFKBoxCtrl');
+
       $scope.fk_read_result = [];
       $scope.fk_read_string = '';
       function importFKList(data) {

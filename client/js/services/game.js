@@ -28,13 +28,9 @@ angular.module('vassalApp.services')
           createModel: function(options) {
             var new_models = []
             _.each(options, function(option) {
+              var state = _.omit(option, 'info');
               var new_model = model(instance.new_model_id++,
-                                    option.info, {
-                                      x: option.x,
-                                      y: option.y,
-                                      show_leader: option.show_leader,
-                                      unit: option.unit
-                                    });
+                                    option.info, state);
               new_model.refresh(instance);
               instance.models[new_model.state.id] = new_model;
               new_models.push(new_model);

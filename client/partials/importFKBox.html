@@ -1,0 +1,30 @@
+<div ng-controller="importFKBoxCtrl">
+  <div>
+    <strong>Import models from FK army list :</strong>
+  </div>
+  <div>
+    From file : <input id="import-fk-file"
+                       type="file"
+                       />
+    <div>or from string :</div>
+    <div>
+      <textarea ng-model="fk_read_string"
+                placeholder="FK army list in text format"
+                style="
+                width:10em;
+                height:10em;
+                "
+                ng-keydown="stopKeyPropagation($event)"
+                ng-keypress="stopKeyPropagation($event)"
+                >
+      </textarea>
+      <button style="vertical-align:top"
+              ng-click="readFKString()">Import</button>
+    </div>
+    <div>
+      <div ng-repeat="line in fk_read_result">
+        {{line}}
+      </div>
+    </div>
+  </div>
+</div>

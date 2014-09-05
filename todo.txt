@@ -1,6 +1,7 @@
+- load game : search next valid new_model_id
+- commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
 
-- sauvegarde des models selectionnes dans un fichier pour import ulterieur ? -> avec la meme formation, et permet la save des labels, etc.
 - gestion des joueurs
 
 - mode charge basic : shortcut to trigger then orient from starting position, orient to target, move only front/back, draw charge lane, color target when within active melee range.

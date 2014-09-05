@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="backupBoxCtrl">
   <div>
     <button ng-click="game.generateBackup()">Save Game</button>
   </div>
@@ -7,6 +7,19 @@
     <a ng-href="{{game.save_url}}"
        download="{{game.save_name}}">
       {{game.save_name}}
+    </a>
+  </div>
+  <div ng-if="game.selection.length !== 0">
+    <button ng-click="generateSelectionBackup()">Save Model Selection</button>
+  </div>
+  <div ng-show="
+       game.selection.length !== 0 &&
+       selection_save_url !== null
+       ">
+    Download the backup file :
+    <a ng-href="{{selection_save_url}}"
+       download="{{selection_save_name}}">
+      {{selection_save_name}}
     </a>
   </div>
 </div>

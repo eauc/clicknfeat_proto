@@ -16,13 +16,11 @@ angular.module('vassalApp.services')
           'Click': function(scope, event, drag, user_x, user_y) {
             var create_options = [];
             _.each(model_create_mode.info, function(info) {
-              create_options.push({
-                info: info.info,
+              var state = _.omit(info, 'offset_x', 'offset_y');
+              create_options.push(_.extend(state, {
                 x: user_x+info.offset_x,
                 y: user_y+info.offset_y,
-                show_leader: info.show_leader,
-                unit: info.unit
-              });
+              }));
             });
             scope.game.newCommand(command('createModel',
                                           create_options));
