@@ -1,13 +1,31 @@
-<div>
+<div ng-controller="commandBoxCtrl">
   <div>
     <strong>Commands :</strong>
     <button title="(Ctrl + 'Z')"
+            ng-disabled="game.commands.length===0"
             ng-click="game.undoLastCommand()">Undo</button>
+    <button title="(Ctrl + 'Y')"
+            ng-disabled="game.replay_commands.length===0"
+            ng-click="game.replayNextCommand()">Replay</button>
   </div>
-  <div ng-repeat="cmd in game.new_commands.slice().reverse()">
-    {{cmd.desc()}} - {{cmd.stamp}}
+  <div id="replay-commands"
+       style="max-height:75px;overflow-y:scroll;">
+    <div ng-repeat="cmd in game.replay_commands"
+         style="color: #AAA;">
+      {{cmd.desc()}} - {{cmd.stamp}}
+    </div>
   </div>
-  <div ng-repeat="cmd in game.commands.slice().reverse()">
-    &#8594; {{cmd.desc()}} - {{cmd.stamp}}
+  <div style="max-height:100px;overflow-y:scroll;">
+    <div ng-repeat="cmd in game.new_commands.slice().reverse()">
+      {{cmd.desc()}} - {{cmd.stamp}}
+    </div>
+  </div>
+  <div style="max-height:100px;overflow-y:scroll;">
+    <div ng-repeat="cmd in game.commands.slice().reverse()"
+         ng-style="{
+         'background-color': $index === 0 ? '#0F0' : 'white'
+         }">
+      &#8594; {{cmd.desc()}} - {{cmd.stamp}}
+    </div>
   </div>
 </div>

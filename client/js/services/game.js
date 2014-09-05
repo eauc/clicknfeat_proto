@@ -95,6 +95,7 @@ angular.module('vassalApp.services')
             this.templates.active = temp;
             return temp;
           },
+          replay_commands: [],
           new_commands: [],
           commands: [],
           newCommand: function(new_cmd) {
@@ -119,9 +120,19 @@ angular.module('vassalApp.services')
                 console.log(response);
               });
           },
+          replayNextCommand: function() {
+            var replay = _.last(this.replay_commands);
+            $http.post('/api/games/'+instance.id+'/commands', replay)
+              .then(function(response) {
+                console.log('send replay cmd success');
+              }, function(response) {
+                console.log('send replay cmd error');
+                console.log(response);
+              });
+          },
           updateCommand: function(new_cmd) {
             if( _.find(this.commands, function(cmd) { return cmd.stamp === new_cmd.stamp; })) {
-              // console.log('cmd udpate : already in commands queue');
+              console.log('cmd udpate : already in commands queue');
               return;
             }
             var find_cmd = _.findWhere(this.new_commands, { stamp: new_cmd.stamp });
@@ -131,10 +142,19 @@ angular.module('vassalApp.services')
                 this.commands.push(find_cmd);
               }
               this.new_commands.splice(index, 1);
-              // console.log('cmd udpate : validate new command');
+              console.log('cmd udpate : validate new command');
               return;
             }
-            // console.log('cmd udpate : execute new command');
+            find_cmd = _.findWhere(this.replay_commands, { stamp: new_cmd.stamp });
+            if(find_cmd) {
+              find_cmd.redo(this);
+              index = _.indexOf(this.replay_commands, find_cmd);
+              this.commands.push(find_cmd);
+              this.replay_commands.splice(index, 1);
+              console.log('cmd udpate : validate replay command');
+              return;
+            }
+            console.log('cmd udpate : execute new command');
             new_cmd.redo(this);
             if(!new_cmd.do_not_log) {
               this.commands.push(new_cmd);
@@ -217,7 +237,7 @@ angular.module('vassalApp.services')
               factor: 1.0,
               cx: 0,
               cy: 0,
-              flipped: true,
+              flipped: false,
             },
             refreshZoom: function() {
               var cont = document.getElementById('canvas-container');
@@ -382,37 +402,6 @@ angular.module('vassalApp.services')
         _.each(instance.models, function(mod) {
           model(mod);
         });
-        // var new_model;
-        // if(_.keys(instance.models).length === 0) {
-        //   _.times(20, function(i) {
-        //     new_model = model(3*i,
-        //                       $rootScope.factions.cygnar.models.jacks.hammersmith,
-        //                       {
-        //                         x: 200,
-        //                         y: 20+20*i,
-        //                         rot: -30,
-        //                         show_reach: true,
-        //                       });
-        //     instance.models[new_model.state.id] = new_model;
-        //     new_model = model(3*i+1,
-        //                       $rootScope.factions.cygnar.models.jacks.grenadier,
-        //                       {
-        //                         x: 240,
-        //                         y: 20+20*i,
-        //                         rot: 0
-        //                       });
-        //     instance.models[new_model.state.id] = new_model;
-        //     new_model = model(3*i+2,
-        //                       $rootScope.factions.cygnar.models.solos.stormwall_pod,
-        //                       {
-        //                         x: 280,
-        //                         y: 20+20*i,
-        //                         rot: 30,
-        //                         show_melee: true,
-        //                       });
-        //     instance.models[new_model.state.id] = new_model;
-        //   });
-        // }
 
         var cmds = instance.commands;
         instance.commands = [];
@@ -446,7 +435,9 @@ angular.module('vassalApp.services')
             // var cmd = command(data);
             // console.log(cmd);
             if(data.stamp === _.last(instance.commands).stamp) {
-              instance.commands.pop().undo(instance);
+              var cmd = instance.commands.pop();
+              cmd.undo(instance);
+              instance.replay_commands.push(cmd);
             }
             $rootScope.$apply();
           });
