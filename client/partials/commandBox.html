@@ -4,12 +4,16 @@
     <button title="(Ctrl+'Z')"
             ng-disabled="game.commands.length===0"
             ng-click="sendKey('Ctrl Z', $event)">Undo</button>
+    <button ng-if="selected.type==='undo'"
+            ng-click="doUndoUpTo()">Undo up to</button>
     <button title="(Ctrl+Shift+'Z')"
             ng-disabled="game.commands.length===0"
             ng-click="sendKey('Ctrl Shift Z', $event)">Undo All</button>
     <button title="(Ctrl+'Y')"
             ng-disabled="game.replay_commands.length===0"
             ng-click="sendKey('Ctrl Y', $event)">Replay</button>
+    <button ng-if="selected.type==='replay'"
+            ng-click="doReplayUpTo()">Replay up to</button>
     <button title="(Ctrl+Shift+'Y')"
             ng-disabled="game.replay_commands.length===0"
             ng-click="sendKey('Ctrl Shift Y', $event)">Replay All</button>
@@ -18,7 +22,12 @@
        ng-show="game.replay_commands.length !== 0"
        style="max-height:75px;overflow-y:auto;">
     <div ng-repeat="cmd in game.replay_commands track by cmd.stamp"
-         style="color: #AAA;">
+         ng-click="selected.type = 'replay';selected.stamp = cmd.stamp;"
+         style="color: #AAA;"
+         ng-style="{
+         'background-color': (cmd.stamp === selected.stamp) ? '#DDD' : 'white'
+         }"
+         >
       {{cmd.desc()}} - {{cmd.stamp}}
     </div>
   </div>
@@ -31,9 +40,11 @@
   <div ng-if="game.commands.length !== 0"
        style="max-height:100px;overflow-y:auto;">
     <div ng-repeat="cmd in game.commands.slice().reverse() track by cmd.stamp"
+         ng-click="selected.type = 'undo';selected.stamp = cmd.stamp;"
          ng-style="{
-         'background-color': $index === 0 ? '#0F0' : 'white'
-         }">
+         'background-color': (cmd.stamp === selected.stamp) ? '#DDD' : ($index === 0 ? '#0F0' : 'white')
+         }"
+         >
       &#8594; {{cmd.desc()}} - {{cmd.stamp}}
     </div>
   </div>

@@ -136,6 +136,21 @@ angular.module('vassalApp.services')
               instance.undoAllCommands(left);
             });
           },
+          _undoCommandUpTo: function(stamp, left) {
+            if(this.commands.length <= 0) return;
+            if(this.commands[left-1].stamp === stamp) return;
+            this.undoCommand(left-1).then(function() {
+              left--;
+              instance._undoCommandUpTo(stamp, left);
+            });
+          },
+          undoCommandUpTo: function(stamp) {
+            var cmd = _.find(this.commands, function(cmd) {
+              return cmd.stamp === stamp;
+            });
+            if(!cmd) return;
+            this._undoCommandUpTo(stamp, this.commands.length);
+          },
           replayCommand: function(index) {
             if(index >= this.replay_commands.length) return;
             var replay = this.replay_commands[index];
@@ -160,6 +175,21 @@ angular.module('vassalApp.services')
               left--;
               instance.replayAllCommands(left);
             });
+          },
+          _replayCommandUpTo: function(stamp, left) {
+            if(this.replay_commands.length <= 0) return;
+            this.replayCommand(left-1).then(function() {
+              if(instance.replay_commands[left-1].stamp === stamp) return;
+              left--;
+              instance._replayCommandUpTo(stamp, left);
+            });
+          },
+          replayCommandUpTo: function(stamp) {
+            var cmd = _.find(this.replay_commands, function(cmd) {
+              return cmd.stamp === stamp;
+            });
+            if(!cmd) return;
+            this._replayCommandUpTo(stamp, this.replay_commands.length);
           },
           updateCommand: function(new_cmd) {
             if( _.find(this.commands, function(cmd) { return cmd.stamp === new_cmd.stamp; })) {
