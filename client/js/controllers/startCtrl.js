@@ -41,6 +41,7 @@ angular.module('vassalApp.controllers')
             // success_cbk_(data);
             // console.log(data);
             var game_data = _.pick(data,
+                                   'models',
                                    'commands',
                                    'replay_commands');
             // console.log(data);

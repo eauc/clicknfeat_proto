@@ -7,6 +7,11 @@ class Game
   def initialize i, data
     @id = i
     @new_model_id = 0
+    if data.key?('models')
+      max_id = data['models'].keys.max
+      puts max_id.inspect
+      @new_model_id = 10000*((max_id.to_i/10000).floor)
+    end
     @commands = CommandCollection.new(data.key?('commands') ? data['commands'] : nil)
     
     @replay_commands = data.key?('replay_commands') ? data['replay_commands'] : []

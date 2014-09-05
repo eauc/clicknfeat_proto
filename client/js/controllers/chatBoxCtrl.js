@@ -16,7 +16,7 @@ angular.module('vassalApp.controllers')
         $scope.chat_msg = '';
       };
       $scope.showMsgCommands = function(list) {
-        console.log('showMsgCommands', list);
+        // console.log('showMsgCommands', list);
         var msg = _.filter(list, function(cmd) {
           return cmd.type === 'sendMsg';
         });
