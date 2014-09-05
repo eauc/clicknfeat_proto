@@ -1,13 +1,55 @@
 'use strict';
 
+var last_stamp;
+function createNewStamp() {
+  var new_stamp = Date.now();
+  if(new_stamp === last_stamp) {
+    new_stamp++;
+  }
+  last_stamp = new_stamp;
+  return new_stamp;
+}
+
 angular.module('vassalApp.services')
+  .factory('command_sendMsg', [
+    'template',
+    function(template) {
+      var factory = function(data) {
+        var instance = {
+          type: 'sendMsg',
+          stamp: createNewStamp(),
+          msg_type: null,
+          msg_text: null,
+          execute: function(game) {
+          },
+          redo: function(game) {
+          },
+          undo: function(game) {
+          },
+          desc: function(game) {
+            return this.type+'('+this.msg_type+')';
+          }
+        };
+        var args = Array.prototype.slice.call(arguments);
+        if(args.length === 1) {
+          _.extend(instance, data);
+        }
+        else {
+          instance.msg_type = args[0];
+          instance.msg_text = args[1];
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
   .factory('command_setBoard', [
     'template',
     function(template) {
       var factory = function(data) {
         var instance = {
           type: 'setBoard',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           arg: null,
           before: null,
           after: null,
@@ -43,7 +85,7 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         var instance = {
           type: 'setScenario',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           arg: null,
           before: null,
           after: null,
@@ -79,7 +121,7 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         var instance = {
           type: 'createTemplate',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           options: null,
           after: null,
           execute: function(game) {
@@ -120,7 +162,7 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         var instance = {
           type: 'deleteActiveTemplate',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           before: null,
           execute: function(game) {
             this.before = _.deepCopy(game.templates.active);
@@ -157,7 +199,7 @@ angular.module('vassalApp.services')
       var factory = function() {
         var instance = {
           type: 'onActiveTemplate',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           method: null,
           args: null,
           before: null,
@@ -201,7 +243,7 @@ angular.module('vassalApp.services')
       var factory = function() {
         var instance = {
           type: 'dragActiveTemplate',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           args: null,
           before: null,
           after: null,
@@ -244,7 +286,7 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         var instance = {
           type: 'createModel',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           args: null,
           before: null,
           after: null,
@@ -291,7 +333,7 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         var instance = {
           type: 'setLayer',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           arg: null,
           before: null,
           after: null,
@@ -328,7 +370,7 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         var instance = {
           type: 'setRuler',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           before: null,
           after: null,
           execute: function(game) {
@@ -362,7 +404,7 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         var instance = {
           type: 'onLos',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           method: null,
           args: null,
           before: null,
@@ -400,7 +442,7 @@ angular.module('vassalApp.services')
       var factory = function() {
         var instance = {
           type: 'onSelection',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           args: null,
           before: null,
           after: null,
@@ -450,7 +492,7 @@ angular.module('vassalApp.services')
       var factory = function() {
         var instance = {
           type: 'endDragingSelection',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           args: null,
           before: null,
           after: null,
@@ -500,7 +542,7 @@ angular.module('vassalApp.services')
       var factory = function() {
         var instance = {
           type: 'dropSelection',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           before: null,
           execute: function(game) {
             this.before = [].concat(game.selection);
@@ -532,7 +574,7 @@ angular.module('vassalApp.services')
       var factory = function() {
         var instance = {
           type: 'restoreFromDropBin',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           args: null,
           execute: function(game) {
             game.restoreFromDropBin(this.args);
@@ -565,7 +607,7 @@ angular.module('vassalApp.services')
       var factory = function(options) {
         var instance = {
           type: 'setSelection',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           model_ids: [],
           before: null,
           after: null,
@@ -604,7 +646,7 @@ angular.module('vassalApp.services')
       var factory = function(options) {
         var instance = {
           type: 'addToSelection',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           model_ids: [],
           before: null,
           after: null,
@@ -640,7 +682,7 @@ angular.module('vassalApp.services')
       var factory = function(options) {
         var instance = {
           type: 'removeFromSelection',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           model_ids: [],
           before: null,
           after: null,
@@ -672,6 +714,7 @@ angular.module('vassalApp.services')
     }
   ])
   .factory('command', [
+    'command_sendMsg',
     'command_setBoard',
     'command_setScenario',
     'command_createTemplate',
@@ -689,7 +732,8 @@ angular.module('vassalApp.services')
     'command_setSelection',
     'command_addToSelection',
     'command_removeFromSelection',
-    function(command_setBoard,
+    function(command_sendMsg,
+             command_setBoard,
              command_setScenario,
              command_createTemplate,
              command_deleteActiveTemplate,
@@ -708,6 +752,7 @@ angular.module('vassalApp.services')
              command_removeFromSelection
             ) {
       var factories = {
+        sendMsg: command_sendMsg,
         setBoard: command_setBoard,
         setScenario: command_setScenario,
         createTemplate: command_createTemplate,

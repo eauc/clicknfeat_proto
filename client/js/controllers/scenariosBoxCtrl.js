@@ -22,9 +22,7 @@ angular.module('vassalApp.controllers')
         }).map(function(mod) { return mod.state.id; });
         if(objs_ids.length > 0) {
           $scope.game.newCommand(command('setSelection', objs_ids));
-          var drop_cmd = command('dropSelection');
-          drop_cmd.stamp++;
-          $scope.game.newCommand(drop_cmd);
+          $scope.game.newCommand(command('dropSelection'));
         }
         var info = [];
         _.each($scope.game.scenario.objectives, function(obj) {
@@ -41,9 +39,7 @@ angular.module('vassalApp.controllers')
             y: flag.y
           });
         });
-        var create_cmd = command('createModel', info);
-        create_cmd.stamp += 2;
-        $scope.game.newCommand(create_cmd);
+        $scope.game.newCommand(command('createModel', info));
       };
     }
   ]);

@@ -9,15 +9,13 @@ angular.module('vassalApp.services')
     'model',
     'template',
     'command',
-    'message',
     function($rootScope,
              $http,
              $window,
              $q,
              model,
              template,
-             command,
-             message) {
+             command) {
 
       var model_base = model({});
 
@@ -129,7 +127,7 @@ angular.module('vassalApp.services')
             this.undoCommand(this.commands.length-1);
           },
           undoAllCommands: function(left) {
-            if(undefined === left) this.undoAllCommands(this.commands.length);
+            if(undefined === left) return this.undoAllCommands(this.commands.length);
             if(left <= 0) return;
             this.undoCommand(left-1).then(function() {
               left--;
@@ -169,7 +167,7 @@ angular.module('vassalApp.services')
             this.replayCommand(this.replay_commands.length-1);
           },
           replayAllCommands: function(left) {
-            if(undefined === left) this.replayAllCommands(this.replay_commands.length);
+            if(undefined === left) return this.replayAllCommands(this.replay_commands.length);
             if(left <= 0) return;
             this.replayCommand(left-1).then(function() {
               left--;
@@ -221,34 +219,6 @@ angular.module('vassalApp.services')
               this.commands.push(new_cmd);
             }
           },
-          new_messages: [],
-          messages: [],
-          newMessage: function(new_msg) {
-            this.new_messages.push(new_msg);
-            $http.post('/api/games/'+instance.id+'/messages', new_msg)
-              .then(function(response) {
-                // console.log('send msg success');
-              }, function(response) {
-                console.log('send msg error');
-                console.log(response);
-              });
-          },
-          updateMessage: function(new_msg) {
-            if( _.find(this.messages, function(msg) { return msg.stamp === new_msg.stamp; })) {
-              // console.log('msg udpate : already in messages queue');
-              return;
-            }
-            var find_msg = _.findWhere(this.new_messages, { stamp: new_msg.stamp });
-            if(find_msg) {
-              var index = _.indexOf(this.new_messages, find_msg);
-              this.messages.push(find_msg);
-              this.new_messages.splice(index, 1);
-              // console.log('msg udpate : validate new message');
-              return;
-            }
-            // console.log('msg udpate : add new message');
-            this.messages.push(new_msg);
-          },
           rollDie: function(sides) {
             var n = sides || 6;
             var rand = Math.random();
@@ -264,15 +234,13 @@ angular.module('vassalApp.services')
               text += die + ' ';
             });
             text += '('+total+')';
-            var msg = message('dice', text);
-            this.newMessage(msg);
+            this.newCommand(command('sendMsg', 'dice', text));
           },
           rollDeviation: function(dist_max) {
             var direction = instance.rollDie();
             var distance = Math.min(instance.rollDie(), dist_max ? dist_max : 6);
-            var msg = message('dice', 'AoE deviation : direction '+direction+
-                              ', distance '+distance+'"');
-            this.newMessage(msg);
+            var text = 'AoE deviation : direction '+direction+', distance '+distance+'"';
+            this.newCommand(command('sendMsg', 'dice', text));
             return {
               direction: direction,
               distance: distance*10,
@@ -511,35 +479,6 @@ angular.module('vassalApp.services')
 
         }
         openCmdSource();
-
-        function openMsgSource() {
-
-          var url = '/api/games/'+instance.id+'/messages/subscribe';
-          if(instance.messages.length > 0) {
-              url += '?last=' + _.last(instance.messages).stamp;
-          }
-          console.log('open msg source', url);
-          instance.msg_source = new EventSource(url);
-          instance.msg_source.onmessage = function(e) {
-            // console.log('msg event');
-            // console.log(e);
-            var data = JSON.parse(e.data);
-            // console.log(data);
-            var msg = message(data);
-            // console.log(msg);
-            if(msg) instance.updateMessage(msg);
-            $rootScope.$apply();
-          };
-          instance.msg_source.onerror = function(e) {
-            if(e.target.readyState === e.target.CLOSED) {
-              console.log('msg source error', e);
-            }
-            instance.msg_source.close();
-            openMsgSource();
-          };
-
-        }
-        openMsgSource();
 
         return instance;
       };

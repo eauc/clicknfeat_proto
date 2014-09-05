@@ -3,8 +3,7 @@
 angular.module('vassalApp.controllers')
   .controller('commandBoxCtrl', [
     '$scope',
-    function($scope,
-             message) {
+    function($scope) {
       console.log('init commandBoxCtrl');
 
       $scope.selected = {};

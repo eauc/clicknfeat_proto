@@ -10,7 +10,6 @@ angular.module('vassalApp.controllers')
     '$window',
     'game',
     'command',
-    'message',
     'factions',
     'modes',
     function($scope,
@@ -21,7 +20,6 @@ angular.module('vassalApp.controllers')
              $window,
              game,
              command,
-             message,
              factions,
              modes) {
       console.log('init gameCtrl');

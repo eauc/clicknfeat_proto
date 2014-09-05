@@ -43,13 +43,13 @@
   <!-- <div>
   <strong>New Messages :</strong>
   </div> -->
-  <div ng-repeat="msg in game.new_messages.slice().reverse()">
-    {{msg.type}} - {{msg.text}}
+  <div ng-repeat="cmd in showMsgCommands(game.new_commands).reverse()">
+    {{cmd.msg_type}} - {{cmd.msg_text}}
   </div>
   <!-- <div>
   <strong>Messages :</strong>
   </div> -->
-  <div ng-repeat="msg in game.messages.slice().reverse()">
-    &#8594; {{msg.type}} - {{msg.text}}
+  <div ng-repeat="cmd in showMsgCommands(game.commands).reverse()">
+    &#8594; {{cmd.msg_type}} - {{cmd.msg_text}}
   </div>
 </div>
