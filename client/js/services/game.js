@@ -5,6 +5,7 @@ angular.module('vassalApp.services')
     '$rootScope',
     '$http',
     '$window',
+    '$q',
     'model',
     'template',
     'command',
@@ -12,6 +13,7 @@ angular.module('vassalApp.services')
     function($rootScope,
              $http,
              $window,
+             $q,
              model,
              template,
              command,
@@ -109,26 +111,55 @@ angular.module('vassalApp.services')
                 console.log(response);
               });
           },
-          undoLastCommand: function() {
-            if(this.commands.length <= 0) return;
-            $http.put('/api/games/'+this.id+'/commands/undo',
-                      { stamp: _.last(this.commands).stamp })
+          undoCommand: function(index) {
+            if(index >= this.commands.length) return;
+            return $http.put('/api/games/'+this.id+'/commands/undo',
+                             { stamp: this.commands[index].stamp })
               .then(function(response) {
                 // console.log('send undo cmd success');
+                return response;
               }, function(response) {
                 console.log('send undo cmd error');
                 console.log(response);
+                return $q.reject(response);
               });
           },
-          replayNextCommand: function() {
-            var replay = _.last(this.replay_commands);
-            $http.post('/api/games/'+instance.id+'/commands', replay)
+          undoLastCommand: function() {
+            if(this.commands.length <= 0) return;
+            this.undoCommand(this.commands.length-1);
+          },
+          undoAllCommands: function(left) {
+            if(undefined === left) this.undoAllCommands(this.commands.length);
+            if(left <= 0) return;
+            this.undoCommand(left-1).then(function() {
+              left--;
+              instance.undoAllCommands(left);
+            });
+          },
+          replayCommand: function(index) {
+            if(index >= this.replay_commands.length) return;
+            var replay = this.replay_commands[index];
+            return $http.post('/api/games/'+instance.id+'/commands', replay)
               .then(function(response) {
                 console.log('send replay cmd success');
+                return response;
               }, function(response) {
                 console.log('send replay cmd error');
                 console.log(response);
+                return $q.reject(response);
               });
+          },
+          replayNextCommand: function() {
+            if(0 >= this.replay_commands.length) return;
+            this.replayCommand(this.replay_commands.length-1);
+          },
+          replayAllCommands: function(left) {
+            if(undefined === left) this.replayAllCommands(this.replay_commands.length);
+            if(left <= 0) return;
+            this.replayCommand(left-1).then(function() {
+              left--;
+              instance.replayAllCommands(left);
+            });
           },
           updateCommand: function(new_cmd) {
             if( _.find(this.commands, function(cmd) { return cmd.stamp === new_cmd.stamp; })) {
@@ -399,13 +430,13 @@ angular.module('vassalApp.services')
           model(mod);
         });
 
+        instance.replay_commands = _.map(instance.replay_commands, function(cmd) {
+          return command(cmd);
+        });
         var cmds = instance.commands;
         instance.commands = [];
         _.each(cmds, function(cmd) {
           instance.updateCommand(command(cmd));
-        });
-        instance.replay_commands = _.map(instance.replay_commands, function(cmd) {
-          return command(cmd);
         });
 
         function openCmdSource() {

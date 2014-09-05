@@ -16,9 +16,17 @@ angular.module('vassalApp.services')
             scope.game.undoLastCommand();
             modes.goTo('default', scope);
           },
+          'Ctrl Shift Z': function(scope) {
+            modes.goTo('default', scope);
+            scope.game.undoAllCommands();
+          },
           'Ctrl Y': function(scope) {
             scope.game.replayNextCommand();
             modes.goTo('default', scope);
+          },
+          'Ctrl Shift Y': function(scope) {
+            modes.goTo('default', scope);
+            scope.game.replayAllCommands();
           },
           'Alt 0': function(scope) {
             scope.game.board.reset();

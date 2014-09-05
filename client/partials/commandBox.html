@@ -1,27 +1,35 @@
 <div ng-controller="commandBoxCtrl">
   <div>
     <strong>Commands :</strong>
-    <button title="(Ctrl + 'Z')"
+    <button title="(Ctrl+'Z')"
             ng-disabled="game.commands.length===0"
             ng-click="sendKey('Ctrl Z', $event)">Undo</button>
-    <button title="(Ctrl + 'Y')"
+    <button title="(Ctrl+Shift+'Z')"
+            ng-disabled="game.commands.length===0"
+            ng-click="sendKey('Ctrl Shift Z', $event)">Undo All</button>
+    <button title="(Ctrl+'Y')"
             ng-disabled="game.replay_commands.length===0"
             ng-click="sendKey('Ctrl Y', $event)">Replay</button>
+    <button title="(Ctrl+Shift+'Y')"
+            ng-disabled="game.replay_commands.length===0"
+            ng-click="sendKey('Ctrl Shift Y', $event)">Replay All</button>
   </div>
   <div id="replay-commands"
-       style="max-height:75px;overflow-y:scroll;">
+       ng-show="game.replay_commands.length !== 0"
+       style="max-height:75px;overflow-y:auto;">
     <div ng-repeat="cmd in game.replay_commands track by cmd.stamp"
          style="color: #AAA;">
       {{cmd.desc()}} - {{cmd.stamp}}
     </div>
   </div>
   <div ng-if="game.new_commands.length !== 0"
-       style="max-height:100px;overflow-y:scroll;">
+       style="max-height:100px;overflow-y:auto;">
     <div ng-repeat="cmd in game.new_commands.slice().reverse() track by cmd.stamp">
       {{cmd.desc()}} - {{cmd.stamp}}
     </div>
   </div>
-  <div style="max-height:100px;overflow-y:scroll;">
+  <div ng-if="game.commands.length !== 0"
+       style="max-height:100px;overflow-y:auto;">
     <div ng-repeat="cmd in game.commands.slice().reverse() track by cmd.stamp"
          ng-style="{
          'background-color': $index === 0 ? '#0F0' : 'white'
