@@ -10,18 +10,19 @@
   </div>
   <div id="replay-commands"
        style="max-height:75px;overflow-y:scroll;">
-    <div ng-repeat="cmd in game.replay_commands"
+    <div ng-repeat="cmd in game.replay_commands track by cmd.stamp"
          style="color: #AAA;">
       {{cmd.desc()}} - {{cmd.stamp}}
     </div>
   </div>
-  <div style="max-height:100px;overflow-y:scroll;">
-    <div ng-repeat="cmd in game.new_commands.slice().reverse()">
+  <div ng-if="game.new_commands.length !== 0"
+       style="max-height:100px;overflow-y:scroll;">
+    <div ng-repeat="cmd in game.new_commands.slice().reverse() track by cmd.stamp">
       {{cmd.desc()}} - {{cmd.stamp}}
     </div>
   </div>
   <div style="max-height:100px;overflow-y:scroll;">
-    <div ng-repeat="cmd in game.commands.slice().reverse()"
+    <div ng-repeat="cmd in game.commands.slice().reverse() track by cmd.stamp"
          ng-style="{
          'background-color': $index === 0 ? '#0F0' : 'white'
          }">

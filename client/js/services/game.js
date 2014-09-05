@@ -389,11 +389,7 @@ angular.module('vassalApp.services')
           },
         };
 
-        instance.id = data.id
-        instance.new_model_id = data.new_model_id
-        instance.models = data.models
-        instance.commands = data.commands
-        instance.messages = data.messages
+        _.deepExtend(instance, data);
 
         if(data.ruler) instance.ruler.state = data.ruler.state;
         if(data.selections) instance.selection = data.selection;
@@ -407,6 +403,9 @@ angular.module('vassalApp.services')
         instance.commands = [];
         _.each(cmds, function(cmd) {
           instance.updateCommand(command(cmd));
+        });
+        instance.replay_commands = _.map(instance.replay_commands, function(cmd) {
+          return command(cmd);
         });
 
         function openCmdSource() {

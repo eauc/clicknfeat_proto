@@ -43,10 +43,7 @@ angular.module('vassalApp.controllers')
             var game_data = _.pick(data,
                                    'messages',
                                    'commands',
-                                   'models',
-                                   'ruler',
-                                   'selection',
-                                   'layers');
+                                   'replay_commands');
             // console.log(data);
             $http.post('/api/games', game_data)
               .then(function(response) {
