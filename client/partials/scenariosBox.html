@@ -6,6 +6,9 @@
           ng-change="doSetScenario()"
           >
   </select>
+  <button ng-click="doSetRandomScenario()">
+    Set Random
+  </button>
   <button ng-show="game.scenario"
           ng-click="doGenerateObjectives()">
     Generate Objectives

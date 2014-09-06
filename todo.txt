@@ -1,4 +1,3 @@
-- load game : search next valid new_model_id
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
 
@@ -15,6 +14,12 @@
 
 - flag to disable drag preview to prevent pre-measuring
 - text no highlight
+
+=======================================================================================
+- autre raccourcis pour l'orientation
+- suggestion labels precedents
+- button/shortcut clear label
+- bug multi-select restore box
 
 =======================================================================================
 - des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).

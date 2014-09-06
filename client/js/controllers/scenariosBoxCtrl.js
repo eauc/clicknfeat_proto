@@ -13,6 +13,11 @@ angular.module('vassalApp.controllers')
       $scope.doSetScenario = function() {
         $scope.game.newCommand(command('setScenario', $scope.new_scenario));
       };
+      $scope.doSetRandomScenario = function() {
+        var index = Math.floor(Math.random() * $scope.scenarios.list.length);
+        $scope.new_scenario = $scope.scenarios.list[index];
+        $scope.doSetScenario();
+      };
       $scope.doGenerateObjectives = function() {
         if(!$scope.game.scenario) return;
 
