@@ -510,8 +510,8 @@
                        style="pointer-events: none"
                        />
                 <line ng-show="model.info.damage.total > 1"
-                  x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2+model.info.r}}"
-                  x2="{{model.info.width/2+model.info.r}}" y2="{{model.info.height/2+model.info.r}}"
+                  x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2+model.info.r+1}}"
+                  x2="{{model.info.width/2+model.info.r}}" y2="{{model.info.height/2+model.info.r+1}}"
                   style="
                   stroke:#0F0;
                   stroke-width:1px;
@@ -519,9 +519,9 @@
                   "
                   />
                   <line ng-show="model.info.damage.total > 1"
-                    x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2+model.info.r}}"
+                    x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2+model.info.r+1}}"
                     x2="{{model.info.width/2-model.info.r+model.info.r*2*model.state.damage.total/model.info.damage.total}}"
-                    y2="{{model.info.height/2+model.info.r}}"
+                    y2="{{model.info.height/2+model.info.r+1}}"
                     style="
                     stroke:#F00;
                     stroke-width:1px;

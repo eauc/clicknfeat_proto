@@ -7,6 +7,7 @@
 - chevauchement barre PVs - cercles de selection
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
+- fleeing/disrupt/stall effects
 
 - mode charge basic : shortcut to trigger then orient from starting position, orient to target, move only front/back, draw charge lane, color target when within active melee range.
 - mode ranged attack.
