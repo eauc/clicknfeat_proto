@@ -227,15 +227,11 @@ angular.module('vassalApp.services')
             return die_float >> 0;
           },
           rollDice: function(nb_dice, sides) {
-            var text = '';
-            var total = 0;
+            var dice = [];
             _.times(nb_dice, function() {
-              var die = instance.rollDie(sides);
-              total += die;
-              text += die + ' ';
+              dice.push(instance.rollDie(sides));
             });
-            text += '('+total+')';
-            this.newCommand(command('sendMsg', 'dice', text));
+            this.newCommand(command('sendMsg', 'dice', dice));
           },
           rollDeviation: function(dist_max) {
             var direction = instance.rollDie();

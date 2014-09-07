@@ -1,11 +1,13 @@
 
 - button/shortcut clear label
-- couleur chat msgs (dice result)
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
+- effects : button + drop box
 - fleeing/disrupt/stall effects
+- align effects icons incrementaly
 - echap pour unselect all
 
+- reorder command menus
 - mode charge basic : shortcut to trigger then orient from starting position, orient to target, move only front/back, draw charge lane, color target when within active melee range.
 - mode ranged attack.
 - auto deviate model (max distance?, origin?)
