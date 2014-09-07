@@ -93,7 +93,14 @@ angular.module('vassalApp.controllers')
           }                
           line = line.replace(/\s*\(.+\)\s*$/,'');
           // console.log(line);
-          if(_.isObject($scope.factions.fk_keys[line])) {
+          var known_entry = _.isObject($scope.factions.fk_keys[line]);
+          match = line.match(/Krielstone Bearer and (\d+) Stone Scribes/i);
+          if(match) {
+            known_entry = true;
+            size = (match[1] >> 0) + 1;
+            line = "Krielstone Bearer and Stone Scribes";
+          }
+          if(known_entry) {
             // console.log(size);
             _.times(repeat, function() {
               var nb_created_in_unit = 0;

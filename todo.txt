@@ -1,8 +1,15 @@
+
+- associer les models au user qui les cree + afficher createur dans modelView/drop bin
+- select all -> selectionne les models du joueur
+
+- bug multi-select restore box
+- Alt+<n> -> affiche une area de N"
+- autre raccourcis pour l'orientation -> uniquement rot 180 et Ctrl+F comme raccourci
+- button/shortcut clear label
+- couleur chat msgs (dice result)
+- chevauchement barre PVs - cercles de selection
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
-
-- associer les models au user qui les cree
-- select all -> selectionne les models du joueur
 
 - mode charge basic : shortcut to trigger then orient from starting position, orient to target, move only front/back, draw charge lane, color target when within active melee range.
 - mode ranged attack.
@@ -11,22 +18,15 @@
 - place model to ruler end
 - split factions files in subfiles
 
-- models with specials ?
-
-- flag to disable drag preview to prevent pre-measuring
 - text no highlight
 
 =======================================================================================
-- autre raccourcis pour l'orientation -> uniquement rot 180 et Ctrl+F comme raccourci
 - suggestion labels precedents
-- button/shortcut clear label
 - multi-labels
-- bug multi-select restore box
-- Alt+<n> -> affiche une area de N"
 - corpse/ames
 - highlight models sous AoE/spray/charge
 - shortcut pour marquer les damages des warriors
-- chevauchement barre PVs - cercles de selection
+
 =======================================================================================
 - des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
 Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui reviennent très souvent dans les règles spéciales, genre les lignes de 3" et de 5".
