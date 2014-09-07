@@ -6,6 +6,10 @@
   <div>
     <strong>Name :</strong> {{game.models[game.selection[0]].info.name}}
   </div>
+  <div ng-if="game.models[game.selection[0]].state.user">
+    <strong>Created By :</strong>
+    {{game.models[game.selection[0]].state.user}}
+  </div>
   <div>
     <strong>Class :</strong>
     {{game.models[game.selection[0]].info.type}} -

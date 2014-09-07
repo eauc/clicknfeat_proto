@@ -16,7 +16,9 @@ angular.module('vassalApp.services')
             }
           },
           'Ctrl A': function(scope) {
-            var ids = _.map(scope.game.models, function(model) {
+            var ids = _.filter(scope.game.models, function(model) {
+              return model.state.user === scope.user.name;
+            }).map(function(model) {
               return model.state.id;
             });
             scope.game.newCommand(command('setSelection', ids));

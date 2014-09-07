@@ -22,6 +22,7 @@ angular.module('vassalApp.services')
               create_options.push(_.extend(state, {
                 x: user_x+info.offset_x,
                 y: user_y+info.offset_y,
+                user: scope.user.name
               }));
             });
             scope.game.newCommand(command('createModel',
