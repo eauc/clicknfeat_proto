@@ -1,9 +1,6 @@
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
 
-- gestion des joueurs
-- cacher les box du watcher
-- filtrer les commandes des modes de watcher
 - associer les models au user qui les cree
 - select all -> selectionne les models du joueur
 
@@ -20,14 +17,16 @@
 - text no highlight
 
 =======================================================================================
-- autre raccourcis pour l'orientation
+- autre raccourcis pour l'orientation -> uniquement rot 180 et Ctrl+F comme raccourci
 - suggestion labels precedents
 - button/shortcut clear label
+- multi-labels
 - bug multi-select restore box
 - Alt+<n> -> affiche une area de N"
 - corpse/ames
 - highlight models sous AoE/spray/charge
-
+- shortcut pour marquer les damages des warriors
+- chevauchement barre PVs - cercles de selection
 =======================================================================================
 - des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
 Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui reviennent très souvent dans les règles spéciales, genre les lignes de 3" et de 5".

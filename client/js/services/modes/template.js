@@ -11,9 +11,11 @@ angular.module('vassalApp.services')
           group: 'Template',
           template: 'template.html',
           'Drag': function(scope, event, drag, user_x, user_y, dx, dy) {
+            if(!scope.game.id) return;
             scope.game.templates.active.draging(scope.game, dx, dy);
           },
           'DragEnd': function(scope, event, drag, user_x, user_y, dx, dy) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('dragActiveTemplate', dx, dy));
 
             scope.game.templates.active = drag.target;
@@ -34,6 +36,7 @@ angular.module('vassalApp.services')
           group: 'Template',
           template: 'template_origin.html',
           'Click': function(scope, event, drag) {
+            if(!scope.game.id) return;
             if(drag.event === 'Model') {
               var model = drag.target;
               var active = scope.game.templates.active;
@@ -62,6 +65,7 @@ angular.module('vassalApp.services')
           group: 'Template',
           template: 'template_target.html',
           'Click': function(scope, event, drag) {
+            if(!scope.game.id) return;
             if(drag.event === 'Model') {
               var model = drag.target;
               var active = scope.game.templates.active;
@@ -104,10 +108,12 @@ angular.module('vassalApp.services')
           name: 'Template Create',
           template: 'template_create.html',
           'MouseMove': function(scope, event, user_x, user_y) {
+            if(!scope.game.id) return;
             template_create_mode.x = user_x;
             template_create_mode.y = user_y;
           },
           'Click': function(scope, event, click, user_x, user_y) {
+            if(!scope.game.id) return;
             template_create_mode.x = user_x;
             template_create_mode.y = user_y;
             template_create_mode.rot = 0;
@@ -135,15 +141,18 @@ angular.module('vassalApp.services')
             }
           },
           'L': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 'toggleLocked'));
             modes.goTo('template', scope);
           },
           'Delete': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('deleteActiveTemplate'));
             modes.goTo('default', scope);
           },
           // ------------------------------------------------------------------
           'DragStart': function(scope, event, drag, dx, dy) {
+            if(!scope.game.id) return;
             if(drag.event === 'Template') {
               scope.game.templates.active = drag.target;
               drag.target.startDraging();
@@ -195,6 +204,7 @@ angular.module('vassalApp.services')
             }
           },
           'D': function(scope) {
+            if(!scope.game.id) return;
             if(scope.game.templates.active.type === 'aoe') {
               var aoe = scope.game.templates.active;
               var deviation = scope.game.rollDeviation(aoe.max_deviation);
@@ -206,9 +216,11 @@ angular.module('vassalApp.services')
             }
           },
           'O': function(scope) {
+            if(!scope.game.id) return;
             modes.goTo('template_origin', scope);
           },
           'R': function(scope) {
+            if(!scope.game.id) return;
             if(scope.game.ruler.state.active) {
               var x = scope.game.ruler.model_end ? 
                   scope.game.ruler.model_end.state.x : scope.game.ruler.state.x2;
@@ -222,98 +234,121 @@ angular.module('vassalApp.services')
             }
           },
           'T': function(scope) {
+            if(!scope.game.id) return;
             modes.goTo('template_target', scope);
           },
           '0': function(scope) {
+            if(!scope.game.id) return;
             if(scope.game.templates.active.type === 'spray') {
               scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 10));
             }
           },
           '3': function(scope) {
+            if(!scope.game.id) return;
             if(scope.game.templates.active.type === 'aoe') {
               scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 3));
             }
           },
           '4': function(scope) {
+            if(!scope.game.id) return;
             if(scope.game.templates.active.type === 'aoe') {
               scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 4));
             }
           },
           '5': function(scope) {
+            if(!scope.game.id) return;
             if(scope.game.templates.active.type === 'aoe') {
               scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 5));
             }
           },
           '6': function(scope) {
+            if(!scope.game.id) return;
             if(scope.game.templates.active.type === 'spray') {
               scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 6));
             }
           },
           '8': function(scope) {
+            if(!scope.game.id) return;
             if(scope.game.templates.active.type === 'spray') {
               scope.game.newCommand(command('onActiveTemplate', 'toggleSize', 8));
             }
           },
           'Up': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 'moveFront', false));
           },
           'Shift Up': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 'moveFront', true));
           },
           'Ctrl Up': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 
                                           scope.game.board.zoom.flipped ? 'moveDown' : 'moveUp',
                                           false));
           },
           'Ctrl Shift Up': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 
                                           scope.game.board.zoom.flipped ? 'moveDown' : 'moveUp',
                                           true));
           },
           'Left': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 'rotateLeft', false));
           },
           'Shift Left': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 'rotateLeft', true));
           },
           'Ctrl Left': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 
                                           scope.game.board.zoom.flipped ? 'moveRight' : 'moveLeft',
                                           false));
           },
           'Ctrl Shift Left': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 
                                           scope.game.board.zoom.flipped ? 'moveRight' : 'moveLeft',
                                           true));
           },
           'Right': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 'rotateRight', false));
           },
           'Shift Right': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 'rotateRight', true));
           },
           'Ctrl Right': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 
                                           scope.game.board.zoom.flipped ? 'moveLeft' : 'moveRight',
                                           false));
           },
           'Ctrl Shift Right': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 
                                           scope.game.board.zoom.flipped ? 'moveLeft' : 'moveRight',
                                           true));
           },
           'Down': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 'moveBack', false));
           },
           'Shift Down': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 'moveBack', true));
           },
           'Ctrl Down': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 
                                           scope.game.board.zoom.flipped ? 'moveUp' : 'moveDown',
                                           false));
           },
           'Ctrl Shift Down': function(scope) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('onActiveTemplate', 
                                           scope.game.board.zoom.flipped ? 'moveUp' : 'moveDown',
                                           true));

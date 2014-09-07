@@ -99,6 +99,7 @@ angular.module('vassalApp.services')
           newCommand: function(new_cmd) {
             new_cmd.user = user;
             new_cmd.execute(this);
+            if(!instance.id) return;
             this.new_commands.push(new_cmd);
             $http.post('/api/games/'+instance.id+'/commands', new_cmd)
               .then(function(response) {

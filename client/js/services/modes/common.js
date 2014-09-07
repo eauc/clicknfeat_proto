@@ -13,18 +13,22 @@ angular.module('vassalApp.services')
             scope.game.board.zoom.flipped = !scope.game.board.zoom.flipped;
           },
           'Ctrl Z': function(scope) {
+            if(!scope.game.id) return;
             scope.game.undoLastCommand();
             modes.goTo('default', scope);
           },
           'Ctrl Shift Z': function(scope) {
+            if(!scope.game.id) return;
             modes.goTo('default', scope);
             scope.game.undoAllCommands();
           },
           'Ctrl Y': function(scope) {
+            if(!scope.game.id) return;
             scope.game.replayNextCommand();
             modes.goTo('default', scope);
           },
           'Ctrl Shift Y': function(scope) {
+            if(!scope.game.id) return;
             modes.goTo('default', scope);
             scope.game.replayAllCommands();
           },

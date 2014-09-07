@@ -10,10 +10,12 @@ angular.module('vassalApp.services')
           name: 'Model Create',
           template: 'model_create.html',
           'MouseMove': function(scope, event, user_x, user_y) {
+            if(!scope.game.id) return;
             model_create_mode.x = user_x;
             model_create_mode.y = user_y;
           },
           'Click': function(scope, event, drag, user_x, user_y) {
+            if(!scope.game.id) return;
             var create_options = [];
             _.each(model_create_mode.info, function(info) {
               var state = _.omit(info, 'offset_x', 'offset_y');
@@ -41,12 +43,14 @@ angular.module('vassalApp.services')
           name: 'Model Drag',
           template: 'model_selected.html',
           'Drag': function(scope, event, drag, user_x, user_y, dx, dy) {
+            if(!scope.game.id) return;
             scope.game.onSelection('draging', dx, dy);
             this.end_x = this.start_x + dx;
             this.end_y = this.start_y + dy;
             this.length = ((Math.sqrt(dx*dx+dy*dy) * 10) >> 0) / 100;
           },
           'DragEnd': function(scope, event, drag, user_x, user_y, dx, dy) {
+            if(!scope.game.id) return;
             scope.game.newCommand(command('endDragingSelection', dx, dy));
 
             modes.goTo('default', scope);
@@ -65,6 +69,7 @@ angular.module('vassalApp.services')
           name: 'Model Target',
           template: 'model_target.html',
           'Click': function(scope, event, drag) {
+            if(!scope.game.id) return;
             if(drag.event === 'Model' &&
                0 > _.indexOf(scope.game.selection, drag.target.state.id)) {
               scope.game.newCommand(command('onSelection', 'alignWith',

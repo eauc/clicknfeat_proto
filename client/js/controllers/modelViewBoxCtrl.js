@@ -28,6 +28,7 @@ angular.module('vassalApp.controllers')
         $scope.game.newCommand(command('onSelection', 'setLabel', $scope.model_view.label));
       };
       $scope.doModelDamage = function(model, col, line) {
+        if(!$scope.game.id) return;
         $scope.game.newCommand(command('onSelection', 'toggleDamage', col, line));
       };
       $scope.doResetAllModelDamage = function() {
