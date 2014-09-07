@@ -1159,7 +1159,8 @@
         </div>
         </div>
       </td>
-      <td valign="top">
+      <td ng-if="game.id"
+          valign="top">
         <div style="
              border:1px solid black;
              height:{{game.board.window.height}}px;
@@ -1185,7 +1186,8 @@
                   'background-color': menu_view === 'units' ? '#6F6' : 'none'
                   }"
                   ng-click="menu_view = 'units'">Units</button>
-          <button ng-style="{
+          <button ng-show="game.id"
+                  ng-style="{
                   'background-color': menu_view === 'models' ? '#6F6' : 'none'
                   }"
                   ng-click="menu_view = 'models'">Manage Models</button>
@@ -1213,7 +1215,8 @@
                  ng-show="game.selection.length === 1"
                  ng-include="'partials/modelViewBox.html'">
             </div>
-            <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+            <div ng-if="game.id"
+                 style="border:1px solid black;max-height:200px;overflow-y:scroll;"
                  ng-include="'partials/commandBox.html'">
             </div>
             <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
@@ -1238,7 +1241,8 @@
                  ng-include="'partials/layersBox.html'">
             </div>
           </div>
-          <div ng-show="menu_view === 'models'">
+          <div ng-if="game.id"
+               ng-show="menu_view === 'models'">
             <div style="border:1px solid black;max-height:600px;overflow-y:scroll;"
                  ng-include="'partials/createBox.html'">
             </div>

@@ -13,7 +13,8 @@
   </div>
   <div>
     <strong>Label :</strong>
-    <form style="display:inline-block;margin:0px;padding:0px;"
+    <form ng-if="game.id"
+          style="display:inline-block;margin:0px;padding:0px;"
           ng-submit="doSetLabel()">
       <input type="text"
              ng-model="model_view.label"
@@ -21,10 +22,12 @@
              ng-keypress="stopKeyPropagation($event)"
              />
     </form>
+    <span ng-if="!game.id">{{model_view.label}}</span>
   </div>
   <div>
     <strong>Unit :</strong>
-    <form style="display:inline-block;margin:0px;padding:0px;"
+    <form ng-if="game.id"
+          style="display:inline-block;margin:0px;padding:0px;"
           ng-submit="doSetUnit()">
       <input type="number"
              ng-model="model_view.unit"
@@ -32,6 +35,7 @@
              ng-keypress="stopKeyPropagation($event)"
              />
     </form>
+    <span ng-if="!game.id">{{model_view.unit}}</span>
   </div>
   <div ng-show="game.models[game.selection[0]].info.fury">
     <strong>Fury :</strong>
@@ -57,7 +61,8 @@
       {{game.models[game.selection[0]].state.damage.field}} /
       {{game.models[game.selection[0]].info.damage.field}}
     </span>          
-    <button ng-click="doResetAllModelDamage()">Reset</button>
+    <button ng-if="game.id"
+            ng-click="doResetAllModelDamage()">Reset</button>
     <div ng-show="game.models[game.selection[0]].info.damage.type == 'warrior'">
       <div ng-repeat="i in range(game.models[game.selection[0]].info.damage.n).reverse()"
            style="width:20px;height:20px;border:1px solid black;display:inline-block;text-align:center;"
@@ -137,7 +142,8 @@
         </td>
       </tr>
     </table>
-    <div style="font-size:0.75em;">
+    <div ng-if="game.id"
+         style="font-size:0.75em;">
       Click on boxes to mark/clear damage.
       <ul style="margin:0px;padding:1.5em;">
         <li>for warriors : damage will be marked up to the clicked box.
