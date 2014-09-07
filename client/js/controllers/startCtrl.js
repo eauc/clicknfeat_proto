@@ -75,9 +75,5 @@ angular.module('vassalApp.controllers')
       $scope.doCreateUser = function() {
         $scope.user.create();
       };
-      $scope.watch_game = {};
-      $scope.doWatchGame = function() {
-        $state.go('game', { visibility: 'public', id: $scope.watch_game.id });
-      };
     }
   ]);

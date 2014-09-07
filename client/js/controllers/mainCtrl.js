@@ -4,6 +4,7 @@ angular.module('vassalApp.controllers')
   .controller('mainCtrl', [
     '$scope',
     '$rootScope',
+    '$state',
     '$http',
     'factions',
     'scenarios',
@@ -11,6 +12,7 @@ angular.module('vassalApp.controllers')
     'user',
     function($scope,
              $rootScope,
+             $state,
              $http,
              factions,
              scenarios,
@@ -62,5 +64,9 @@ angular.module('vassalApp.controllers')
           });
       }
       refreshGames();
+
+      $scope.doGoHome = function() {
+        $state.go('start');
+      };
     }
   ]);

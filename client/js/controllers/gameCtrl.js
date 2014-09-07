@@ -68,11 +68,12 @@ angular.module('vassalApp.controllers')
       $scope.aoe = {
         max_deviation: 6
       };
-      $scope.menu_view = 'main';
 
       if(!$stateParams.id || $stateParams.id.length <= 0) $state.go('start');
       if($stateParams.visibility !== 'private' &&
          $stateParams.visibility !== 'public') $state.go('start');
+
+      $scope.menu_view = $stateParams.visibility === 'public' ? 'games' : 'main';
 
       factions.then(function() {
         return $http.get('/api/games/'
