@@ -1,6 +1,10 @@
 <div ng-controller="dropBinBoxCtrl">
   <div>
     <strong>Drop Bin :</strong>
+    <button ng-click="doEmptySelection()"
+            ng-disabled="isRestoreSelectionEmpty()">
+      Unselect All
+    </button>
     <button ng-click="doRestoreSelection()"
             ng-disabled="isRestoreSelectionEmpty()">
       Restore

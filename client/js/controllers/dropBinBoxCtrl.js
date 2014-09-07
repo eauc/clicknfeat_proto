@@ -20,6 +20,9 @@ angular.module('vassalApp.controllers')
           $scope.restore_selection[id] = true;
         }
       };
+      $scope.doEmptySelection = function() {
+        $scope.restore_selection = {};
+      };
       $scope.doRestoreSelection = function() {
         $scope.game.newCommand(command('restoreFromDropBin', _.keys($scope.restore_selection)));
       };
