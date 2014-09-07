@@ -244,6 +244,17 @@ angular.module('vassalApp.services')
               break;
             }
           }
+        },
+        effects: function() {
+          var effects = [];
+          if(this.state.show_blind) effects.push('B');
+          if(this.state.show_corrosion) effects.push('C');
+          if(this.state.show_disrupt) effects.push('D');
+          if(this.state.show_fire) effects.push('F');
+          if(this.state.show_kd) effects.push('K');
+          if(this.state.show_stationary) effects.push('S');
+          // console.log(effects);
+          return effects;
         }
       };
       var factory = function() {
@@ -272,12 +283,14 @@ angular.module('vassalApp.services')
               args[1].type === 'jack',
             show_unit: false,
             show_fire: false,
+            show_disrupt: false,
             show_corrosion: false,
             show_stationary: false,
             show_blind: false,
             show_kd: false,
             show_leader: false,
             show_incorporeal: false,
+            show_fleeing: false,
             show_color: false,
           } : _.extend({
             id: args[0],
@@ -298,12 +311,14 @@ angular.module('vassalApp.services')
               args[1].type === 'jack',
             show_unit: false,
             show_fire: false,
+            show_disrupt: false,
             show_corrosion: false,
             show_stationary: false,
             show_blind: false,
             show_kd: false,
             show_leader: false,
             show_incorporeal: false,
+            show_fleeing: false,
             show_color: false,
           }, args[2])
         };

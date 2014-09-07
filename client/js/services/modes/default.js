@@ -158,6 +158,11 @@ angular.module('vassalApp.services')
               scope.game.newCommand(command('onSelection', 'toggleControl'));
             }
           },
+          'Alt D': function(scope) {
+            if(!scope.game.id) return;
+            var new_val = !scope.game.models[scope.game.selection[0]].state.show_disrupt;
+            scope.game.newCommand(command('onSelection', 'toggle', 'disrupt', new_val));
+          },
           'Alt F': function(scope) {
             if(!scope.game.id) return;
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_fire;
@@ -208,6 +213,11 @@ angular.module('vassalApp.services')
           'T': function(scope) {
             if(!scope.game.id) return;
             modes.goTo('model_target', scope);
+          },
+          'Alt T': function(scope) {
+            if(!scope.game.id) return;
+            var new_val = !scope.game.models[scope.game.selection[0]].state.show_fleeing;
+            scope.game.newCommand(command('onSelection', 'toggle', 'fleeing', new_val));
           },
           'U': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_unit;

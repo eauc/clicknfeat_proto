@@ -56,6 +56,32 @@ angular.module('vassalApp.controllers')
           name: 'Red',
         },
       };
+      $scope.effects = {
+        'B': {
+          icon: '/data/icons/Blind.png',
+          name: 'Blind'
+        },
+        'C': {
+          icon: '/data/icons/Corrosion.png',
+          name: 'Corrosion'
+        },
+        'D': {
+          icon: '/data/icons/BoltBlue.png',
+          name: 'Disrupt'
+        },
+        'F': {
+          icon: '/data/icons/Fire.png',
+          name: 'Fire'
+        },
+        'K': {
+          icon: '/data/icons/KD.png',
+          name: 'KD'
+        },
+        'S': {
+          icon: '/data/icons/Stationary.png',
+          name: 'Stationary'
+        },
+      };
       $scope.model_selected_aura = '0';
       $scope.model_selected_aoe = '3';
       $scope.model_selected_melee = 'M';

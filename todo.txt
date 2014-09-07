@@ -3,8 +3,6 @@
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
 - effects : button + drop box
-- fleeing/disrupt/stall effects
-- align effects icons incrementaly
 - echap pour unselect all
 
 - reorder command menus
