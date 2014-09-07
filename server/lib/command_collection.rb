@@ -63,7 +63,7 @@ class CommandCollection
   end
 
   def signalGameUpdate data
-    data = data.to_json
+    data = data.to_json false
     connections.each do |out|
       out << "retry:100\nevent:game\ndata:#{data}\n\n"
       # out.close
