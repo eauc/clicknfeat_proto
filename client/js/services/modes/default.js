@@ -121,6 +121,10 @@ angular.module('vassalApp.services')
               modes.goTo('default', scope);
             }
           },
+          'Escape': function(scope) {
+            scope.game.newCommand(command('setSelection', []));
+            scope.modes.goTo('default', scope);
+          },
           'Alt B': function(scope) {
             if(!scope.game.id) return;
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_blind;
@@ -222,10 +226,6 @@ angular.module('vassalApp.services')
           'U': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_unit;
             scope.game.newCommand(command('onSelection', 'toggle' ,'unit', new_val));
-          },
-          'Alt U': function(scope) {
-            scope.game.newCommand(command('setSelection', []));
-            modes.goTo('default', scope);
           },
           'Ctrl U': function(scope) {
             var unit = scope.game.models[scope.game.selection[0]].state.unit;

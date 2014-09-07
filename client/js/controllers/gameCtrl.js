@@ -187,12 +187,6 @@ angular.module('vassalApp.controllers')
           222: 'SingleQuote',
         };
         function keyHandler(key, event) {
-          if('Escape' === key) {
-            console.log(key+' -> Reset mode');
-            event.preventDefault();
-            $scope.modes.goTo('default', $scope);
-            return;
-          }
           $scope.modes.send(key, $scope, event)
             .then(function() {
               if(event) event.preventDefault();

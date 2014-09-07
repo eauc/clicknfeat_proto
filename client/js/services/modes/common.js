@@ -9,6 +9,9 @@ angular.module('vassalApp.services')
           name: 'Common',
           enter: function() {},
           leave: function() {},
+          'Escape': function(scope) {
+            scope.modes.goTo('default', scope);
+          },
           'Ctrl F': function(scope) {
             scope.game.board.zoom.flipped = !scope.game.board.zoom.flipped;
           },
