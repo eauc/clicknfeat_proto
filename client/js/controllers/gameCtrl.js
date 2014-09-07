@@ -59,6 +59,7 @@ angular.module('vassalApp.controllers')
       $scope.model_selected_aura = '0';
       $scope.model_selected_aoe = '3';
       $scope.model_selected_melee = 'M';
+      $scope.model_selected_area = 5;
       $scope.force = {};
 
       $scope.drag = {
@@ -348,6 +349,10 @@ angular.module('vassalApp.controllers')
         $scope.showCenteredAoE = function() {
           return $scope.game ? 
             _.filter($scope.game.models, function(model) { return model.state.show_aoe > 0; }) : [];
+        };
+        $scope.showArea = function() {
+          return $scope.game ? 
+            _.filter($scope.game.models, function(model) { return model.state.show_area > 0; }) : [];
         };
 
         $scope.templateShowLocked = function(type) {

@@ -112,8 +112,8 @@
                 ng-click="sendKey('Substract', $event)">Count -</button>
       </td>
     </tr>
-    <tr ng-click="command_last_click=''">
-      <td>
+    <tr>
+      <td ng-click="command_last_click='melee'">
         <button title="{{model_selected_melee}}"
                 style="
                 width: 50px;
@@ -125,7 +125,7 @@
           {{model_selected_melee === 'S' ? 'Strike' : (model_selected_melee === 'R' ? 'Reach' : 'Melee')}}
         </button>
       </td>
-      <td>
+      <td ng-click="command_last_click=''">
         <button style="
                 width: 50px;
                 height: 50px;
@@ -135,7 +135,7 @@
                 ng-click="sendKey('F', $event)">Count</button>
       </td>
     </tr>
-    <tr ng-click="command_last_click=''">
+    <tr ng-show="command_last_click==='melee'">
       <td colspan="2">
         <select style="
                 width:100%;
@@ -348,7 +348,7 @@
                 ng-click="sendKey('Alt I', $event)">Incor- poreal</button>
       </td>
     </tr>
-    <tr ng-click="command_last_click=''">
+    <tr ng-click="command_last_click='unit'">
       <td>
         <button style="
                 width: 50px;
@@ -376,7 +376,7 @@
         </button>
       </td>
     </tr>
-    <tr>
+    <tr ng-show="command_last_click==='unit'">
       <td colspan="2">
         Set Unit :
         <form style="display:inline;margin:0px;padding:0px;"
@@ -386,6 +386,33 @@
                  ng-model="model_view.unit"
                  ng-keydown="stopKeyPropagation($event)"
                  ng-keypress="stopKeyPropagation($event)"
+                 />
+        </form>
+      </td>
+    </tr>
+    <tr>
+      <td ng-click="command_last_click='area'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Alt + {{model_selected_area>9 ? 'Shift + ' : ''}}'{{model_selected_area%10}}')"
+                ng-click="sendKey('Alt '+(model_selected_area>9 ? 'Shift ':'')+(model_selected_area%10), $event)">
+          {{model_selected_area}}" Area
+        </button>
+      </td>
+    </tr>
+    <tr ng-show="command_last_click==='area'">
+      <td colspan="2">
+        <form style="display:inline;margin:0px;padding:0px;"
+              ng-submit="sendKey('Alt '+(model_selected_area>9 ? 'Shift ':'')+(model_selected_area%10), $event)">
+          <input style="width: 100%;"
+                 type="number"
+                 ng-model="model_selected_area"
+                 ng-keydown="stopKeyPropagation($event)"
+                 ng-keypress="stopKeyPropagation($event)"
+                 required="required"
                  />
         </form>
       </td>

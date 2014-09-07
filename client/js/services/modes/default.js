@@ -242,13 +242,37 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('onSelection', 'setRotation', 
                                           scope.game.board.zoom.flipped ? 90 : 270));
           },
+          'Alt 0': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 10 ? 0 : 10;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
+          'Alt Shift 0': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 20 ? 0 : 20;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
           'Ctrl 0': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 'toggle', 'color', false));
           },
+          'Alt 1': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 1 ? 0 : 1;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
+          'Alt Shift 1': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 11 ? 0 : 11;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
           'Ctrl 1': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 'toggle', 'color', '#0FF'));
+          },
+          'Alt 2': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 2 ? 0 : 2;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
+          'Alt Shift 2': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 12 ? 0 : 12;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
           },
           'Ctrl 2': function(scope) {
             if(!scope.game.id) return;
@@ -257,12 +281,28 @@ angular.module('vassalApp.services')
           '3': function(scope) {
             scope.game.newCommand(command('onSelection', 'toggleAoe', 3));
           },
+          'Alt 3': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 3 ? 0 : 3;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
+          'Alt Shift 3': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 13 ? 0 : 13;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
           'Ctrl 3': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 'toggle', 'color', '#FF0'));
           },
           '4': function(scope) {
             scope.game.newCommand(command('onSelection', 'toggleAoe', 4));
+          },
+          'Alt 4': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 4 ? 0 : 4;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
+          'Alt Shift 4': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 14 ? 0 : 14;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
           },
           'Ctrl 4': function(scope) {
             if(!scope.game.id) return;
@@ -271,13 +311,53 @@ angular.module('vassalApp.services')
           '5': function(scope) {
             scope.game.newCommand(command('onSelection', 'toggleAoe', 5));
           },
+          'Alt 5': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 5 ? 0 : 5;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
+          'Alt Shift 5': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 15 ? 0 : 15;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
           'Ctrl 5': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 'toggle', 'color', '#0F0'));
           },
+          'Alt 6': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 6 ? 0 : 6;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
+          'Alt Shift 6': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 16 ? 0 : 16;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
           'Ctrl 6': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 'toggle', 'color', '#F00'));
+          },
+          'Alt 7': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 7 ? 0 : 7;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
+          'Alt Shift 7': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 17 ? 0 : 17;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
+          'Alt 8': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 8 ? 0 : 8;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
+          'Alt Shift 8': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 18 ? 0 : 18;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
+          'Alt 9': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 9 ? 0 : 9;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
+          },
+          'Alt Shift 9': function(scope) {
+            var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 19 ? 0 : 19;
+            scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
           },
           'Delete': function(scope) {
             if(!scope.game.id) return;

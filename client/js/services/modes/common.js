@@ -32,7 +32,7 @@ angular.module('vassalApp.services')
             modes.goTo('default', scope);
             scope.game.replayAllCommands();
           },
-          'Alt 0': function(scope) {
+          'Alt Z': function(scope) {
             scope.game.board.reset();
           },
           'Alt Add': function(scope) {

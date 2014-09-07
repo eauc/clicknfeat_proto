@@ -10,6 +10,7 @@ angular.module('vassalApp.services')
           this.state.show_reach = false;
           this.state.show_strike = false;
           this.state.show_aoe = 0;
+          this.state.show_area = 0;
           this.state.show_unit = false;
           this.state.show_control = false;
         },
@@ -265,6 +266,7 @@ angular.module('vassalApp.services')
             show_reach: false,
             show_strike: false,
             show_aoe: 0,
+            show_area: 0,
             show_counter: args[1].type === 'wardude' ||
               args[1].type === 'beast' ||
               args[1].type === 'jack',
@@ -282,6 +284,7 @@ angular.module('vassalApp.services')
             x: 240,
             y: 240,
             rot: 0,
+            show_area: 0,
             counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
             label: '',
             unit: null,

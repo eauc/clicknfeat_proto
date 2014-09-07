@@ -780,6 +780,18 @@
                     pointer-events: none;
                     "
                     />
+            <circle ng-repeat="model in showArea()"
+                    cx="{{model.state.x}}"
+                    cy="{{model.state.y}}"
+                    r="{{model.info.r+model.state.show_area*10}}"
+                    style="
+                    fill:#9F9;
+                    fill-opacity:0.2;
+                    stroke:#6F6;
+                    stroke-width:0.5px;
+                    pointer-events: none;
+                    "
+                    />
             <g ng-repeat="model in modelShow('counter')"
                transform="rotate(
                {{game.board.zoom.flipped ? 180 : 0}},
