@@ -9,13 +9,15 @@ angular.module('vassalApp.services')
     'model',
     'template',
     'command',
+    'user',
     function($rootScope,
              $http,
              $window,
              $q,
              model,
              template,
-             command) {
+             command,
+             user) {
 
       var model_base = model({});
 
@@ -95,6 +97,7 @@ angular.module('vassalApp.services')
           new_commands: [],
           commands: [],
           newCommand: function(new_cmd) {
+            new_cmd.user = user;
             new_cmd.execute(this);
             this.new_commands.push(new_cmd);
             $http.post('/api/games/'+instance.id+'/commands', new_cmd)

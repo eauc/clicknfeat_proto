@@ -1,19 +1,60 @@
 <div>
-  <button ng-click="doCreateGame()">Create Game</button><br />
-  <form ng-submit="doSearchGame()">
-    <input ng-model="search_id" placeholder="Id..." />
-    <button ng-click="doSearchGame()">Search Game</button>
-  </form>
+  <div style="
+       margin-top: 50px;
+       ">
+    <div>
+      User Id : {{user.id}}
+    </div>
+    <div>
+      User Stamp : {{user.stamp}}
+    </div>
+    <form name="user-create"
+          ng-submit="doCreateUser()">
+      <label for="user-name">User Name :</label>
+      <input id="user-name"
+             type="text"
+             placeholder="Name..."
+             required="required"
+             ng-model="user.name" />
+      <button type="submit">{{ user.id ? 'Change' : 'Create' }}</button>
+    </form>
+    <div>
+      <strong>Users online :</strong>
+      <ul style="padding-left: 2em;">
+        <li ng-repeat="user in users">
+          {{user.id}} - {{user.name}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div style="
+       margin-top: 50px;
+       "
+       ng-show="user.id">
+    <button ng-click="doCreateGame()">Create Game</button><br />
+    <form ng-submit="doSearchGame()">
+      <input ng-model="search_id" placeholder="Id..." />
+      <button ng-click="doSearchGame()">Search Game</button>
+    </form>
+    <div>
+      <span>Open game file :</span>
+      <input id="import-file"
+             type="file"
+             onchange="angular.element(this).scope().readBackup(this.files[0])" />
+      ---
+      <span ng-class="{
+            'text-success': backup.read_result === 'loaded file',
+            'text-danger': backup.read_result !== 'loaded file'
+            }">{{read_result}}</strong>
+      </span>
+    </div>
+  </div>
   <div>
-    <span>Open game file :</span>
-    <input id="import-file"
-           type="file"
-           onchange="angular.element(this).scope().readBackup(this.files[0])" />
-    ---
-    <span ng-class="{
-          'text-success': backup.read_result === 'loaded file',
-          'text-danger': backup.read_result !== 'loaded file'
-          }">{{read_result}}</strong>
-    </span>
+    <strong>Games online :</strong>
+    <ul style="padding-left: 2em;">
+      <li ng-repeat="game in games">
+        {{game}}
+      </li>
+    </ul>
   </div>
 </div>

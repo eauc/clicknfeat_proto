@@ -44,12 +44,12 @@
   <strong>New Messages :</strong>
   </div> -->
   <div ng-repeat="cmd in showMsgCommands(game.new_commands).reverse()">
-    {{cmd.msg_type}} - {{cmd.msg_text}}
+    {{cmd.user.name}}[{{cmd.msg_type}}] {{cmd.msg_text}}
   </div>
   <!-- <div>
   <strong>Messages :</strong>
   </div> -->
   <div ng-repeat="cmd in showMsgCommands(game.commands).reverse()">
-    &#8594; {{cmd.msg_type}} - {{cmd.msg_text}}
+    &#8594; {{cmd.user.name}}[{{cmd.msg_type}}] {{cmd.msg_text}}
   </div>
 </div>

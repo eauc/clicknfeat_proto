@@ -71,5 +71,8 @@ angular.module('vassalApp.controllers')
         reader.readAsText(file);
       };
 
+      $scope.doCreateUser = function() {
+        $scope.user.create();
+      };
     }
   ]);

@@ -2,12 +2,14 @@ require 'sinatra/base'
 require 'json'
 
 require_relative './lib/game_collection'
+require_relative './lib/user_collection'
 
 class VassalApp < Sinatra::Base
 
   def initialize
     super
     @games = GameCollection.new
+    @users = UserCollection.new
   end
 
   set :server, :thin
@@ -80,32 +82,23 @@ class VassalApp < Sinatra::Base
     status 200
   end
 
-  get "/api/games/:game_id/messages/subscribe", :provides => 'text/event-stream' do
-    game_id = params[:game_id].to_i
-    return status 404 unless @games.exist? game_id
-    game = @games[game_id]
-
-    # puts params.inspect
-    last = if params.key? 'last'
-             params['last'].to_i
-           else
-             nil
-           end
-    # puts last.inspect
-    stream(:keep_open) do |out| 
-      # out.callback { @models.removeConnection out }
-      out << "retry:100\n\n"
-      game.messages.addConnection out, last
-    end
+  get "/api/users" do
+    content_type 'text/json'
+    @users.list.to_json
   end
 
-  post "/api/games/:game_id/messages" do
-    game_id = params[:game_id].to_i
-    return status 404 unless @games.exist? game_id
-    game = @games[game_id]
-
+  post "/api/users" do
+    content_type 'text/json'
     data = JSON.parse request.body.read
-    game.messages.add data
-    status 200
+    @users.create(data).to_json
   end
+
+  get "/api/users/:user_id" do
+    user_id = params[:user_id].to_i
+    return status 404 unless @users.exist? user_id
+
+    content_type 'text/json'
+    @users[user_id].to_json
+  end
+
 end
