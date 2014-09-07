@@ -73,6 +73,10 @@ angular.module('vassalApp.controllers')
           icon: '/data/icons/Fire.png',
           name: 'Fire'
         },
+        'I': {
+          desc: 'Incor- poreal',
+          name: 'Incorporeal'
+        },
         'K': {
           icon: '/data/icons/KD.png',
           name: 'KD'
@@ -81,11 +85,16 @@ angular.module('vassalApp.controllers')
           icon: '/data/icons/Stationary.png',
           name: 'Stationary'
         },
+        'T': {
+          icon: '/data/icons/BoltYellow.png',
+          name: 'Fleeing'
+        },
       };
       $scope.model_selected_aura = '0';
       $scope.model_selected_aoe = '3';
       $scope.model_selected_melee = 'M';
       $scope.model_selected_area = 5;
+      $scope.model_selected_effect = 'F';
       $scope.force = {};
 
       $scope.drag = {

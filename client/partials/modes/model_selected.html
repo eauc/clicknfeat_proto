@@ -258,74 +258,60 @@
                 ng-click="sendKey('PageDown', $event)">&#8595;</button>
       </td>
     </tr>
-    <tr ng-click="command_last_click=''">
-      <td>
+    <tr>
+      <td ng-click="command_last_click='effect'">
         <button style="
                 width: 50px;
                 height: 50px;
                 align:center;
                 "
-                title="(Alt+'B')"
-                ng-click="sendKey('Alt B', $event)">
-          <img src="data/icons/Blind.png" />
+                title="(Alt+'{{model_selected_effect}}')"
+                ng-click="sendKey('Alt '+model_selected_effect, $event)">
+          <img ng-if="effects[model_selected_effect].icon"
+               src="{{effects[model_selected_effect].icon}}" />
+          <span ng-if="!effects[model_selected_effect].icon">
+            {{effects[model_selected_effect].desc}}
+          </span>
         </button>
       </td>
-      <td>
+      <td ng-click="command_last_click='area'">
         <button style="
                 width: 50px;
                 height: 50px;
                 align:center;
                 "
-                title="(Alt+'C')"
-                ng-click="sendKey('Alt C', $event)">
-          <img src="data/icons/Corrosion.png" />
-        </button>
-      </td>
-    </tr>
-    <tr ng-click="command_last_click=''">
-      <td>
-        <button style="
-                width: 50px;
-                height: 50px;
-                align:center;
-                "
-                title="(Alt+'F')"
-                ng-click="sendKey('Alt F', $event)">
-          <img src="data/icons/Fire.png" />
-        </button>
-      </td>
-      <td>
-        <button style="
-                width: 50px;
-                height: 50px;
-                align:center;
-                "
-                title="(Alt+'K')"
-                ng-click="sendKey('Alt K', $event)">
-          <img src="data/icons/Disrupted.png" />
+                title="(Alt + {{model_selected_area>9 ? 'Shift + ' : ''}}'{{model_selected_area%10}}')"
+                ng-click="sendKey('Alt '+(model_selected_area>9 ? 'Shift ':'')+(model_selected_area%10), $event)">
+          {{model_selected_area}}" Area
         </button>
       </td>
     </tr>
-    <tr ng-click="command_last_click=''">
-      <td>
-        <button style="
-                width: 50px;
-                height: 50px;
-                align:center;
+    <tr ng-show="command_last_click==='effect'">
+      <td colspan="2">
+        <select style="
+                width:100%;
+                height:35px;
+                padding-top:5px;
                 "
-                title="(Alt+'S')"
-                ng-click="sendKey('Alt S', $event)">
-          <img src="data/icons/Stationary.png" />
-        </button>
+                ng-model="model_selected_effect"
+                ng-change="sendKey('Alt '+model_selected_effect, $event)"
+                ng-options="id as e.name for (id,e) in effects"
+                >
+        </select>
       </td>
-      <td>
-        <button style="
-                width: 50px;
-                height: 50px;
-                align:center;
-                "
-                title="(Alt+'I')"
-                ng-click="sendKey('Alt I', $event)">Incor- poreal</button>
+    </tr>
+    <tr ng-show="command_last_click==='area'">
+      <td colspan="2">
+        <form style="display:inline;margin:0px;padding:0px;"
+              ng-submit="sendKey('Alt '+(model_selected_area>9 ? 'Shift ':'')+(model_selected_area%10), $event)">
+          <input style="width: 100%;"
+                 type="number"
+                 ng-model="model_selected_area"
+                 ng-keydown="stopKeyPropagation($event)"
+                 ng-keypress="stopKeyPropagation($event)"
+                 required="required"
+                 />
+        </form>
       </td>
     </tr>
     <tr ng-click="command_last_click='unit'">
@@ -366,33 +352,6 @@
                  ng-model="model_view.unit"
                  ng-keydown="stopKeyPropagation($event)"
                  ng-keypress="stopKeyPropagation($event)"
-                 />
-        </form>
-      </td>
-    </tr>
-    <tr>
-      <td ng-click="command_last_click='area'">
-        <button style="
-                width: 50px;
-                height: 50px;
-                align:center;
-                "
-                title="(Alt + {{model_selected_area>9 ? 'Shift + ' : ''}}'{{model_selected_area%10}}')"
-                ng-click="sendKey('Alt '+(model_selected_area>9 ? 'Shift ':'')+(model_selected_area%10), $event)">
-          {{model_selected_area}}" Area
-        </button>
-      </td>
-    </tr>
-    <tr ng-show="command_last_click==='area'">
-      <td colspan="2">
-        <form style="display:inline;margin:0px;padding:0px;"
-              ng-submit="sendKey('Alt '+(model_selected_area>9 ? 'Shift ':'')+(model_selected_area%10), $event)">
-          <input style="width: 100%;"
-                 type="number"
-                 ng-model="model_selected_area"
-                 ng-keydown="stopKeyPropagation($event)"
-                 ng-keypress="stopKeyPropagation($event)"
-                 required="required"
                  />
         </form>
       </td>
