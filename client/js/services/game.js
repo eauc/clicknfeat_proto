@@ -420,9 +420,9 @@ angular.module('vassalApp.services')
 
         _.deepExtend(instance, data);
 
-        if(data.ruler) instance.ruler.state = data.ruler.state;
-        if(data.selections) instance.selection = data.selection;
-        if(data.layers) instance.layers = data.layers;
+        // if(data.ruler) instance.ruler.state = data.ruler.state;
+        // if(data.selections) instance.selection = data.selection;
+        // if(data.layers) instance.layers = data.layers;
 
         _.each(instance.models, function(mod) {
           model(mod);
@@ -439,7 +439,10 @@ angular.module('vassalApp.services')
 
         function openCmdSource() {
 
-          var url = '/api/games/'+instance.id+'/commands/subscribe';
+          var url = '/api/games/'+
+              (!instance.id ? 'public/' : '')+
+              (!instance.id ? instance.public_id : instance.id)+
+              '/commands/subscribe';
           if(instance.commands.length > 0) {
               url += '?last=' + _.last(instance.commands).stamp;
           }
@@ -467,6 +470,13 @@ angular.module('vassalApp.services')
               cmd.undo(instance);
               instance.replay_commands.push(cmd);
             }
+            $rootScope.$apply();
+          });
+          instance.cmd_source.addEventListener('game', function(e) {
+            console.log('cmd game event',e);
+            var data = JSON.parse(e.data);
+            instance.player1 = data.player1;
+            instance.player2 = data.player2;
             $rootScope.$apply();
           });
           instance.cmd_source.onerror = function(e) {

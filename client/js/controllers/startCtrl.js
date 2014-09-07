@@ -13,20 +13,21 @@ angular.module('vassalApp.controllers')
       console.log('init startCtrl');
 
       $scope.doCreateGame = function() {
-        $http.post('/api/games', {}).then(function(response) {
-          // console.log('create game success');
-          // $scope.game = response.data;
-          // console.log($scope.game);
-
-          $state.go('game', { id: response.data.id });
-        }, function(response) {
-          console.log('create game error');
-          console.log(response);
-        });
+        $http.post('/api/games', { player1: $scope.user })
+          .then(function(response) {
+            // console.log('create game success');
+            // $scope.game = response.data;
+            // console.log($scope.game);
+            
+            $state.go('game', { visibility: 'private', id: response.data.id });
+          }, function(response) {
+            console.log('create game error');
+            console.log(response);
+          });
       };
 
       $scope.doSearchGame = function() {
-        $state.go('game', { id: $scope.search_id });
+        $state.go('game', { visibility: 'private', id: $scope.search_id });
       };
       
       $scope.read_result = '';
@@ -49,7 +50,7 @@ angular.module('vassalApp.controllers')
               .then(function(response) {
                 // console.log('upload game success');
                 // console.log(response.data);
-                $state.go('game', { id: response.data.id });
+                $state.go('game', { visibility: 'private', id: response.data.id });
               }, function(response) {
                 console.log('upload game error');
                 console.log(response);
@@ -73,6 +74,10 @@ angular.module('vassalApp.controllers')
 
       $scope.doCreateUser = function() {
         $scope.user.create();
+      };
+      $scope.watch_game = {};
+      $scope.doWatchGame = function() {
+        $state.go('game', { visibility: 'public', id: $scope.watch_game.id });
       };
     }
   ]);

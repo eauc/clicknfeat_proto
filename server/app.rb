@@ -28,7 +28,7 @@ class VassalApp < Sinatra::Base
   post "/api/games" do
     content_type 'text/json'
     data = JSON.parse request.body.read
-    @games.create(data).to_json
+    @games.create(data).to_json true
   end
 
   get "/api/games/:game_id" do
@@ -36,13 +36,50 @@ class VassalApp < Sinatra::Base
     return status 404 unless @games.exist? game_id
 
     content_type 'text/json'
-    @games[game_id].to_json
+    @games[game_id].to_json true
+  end
+
+  get "/api/games/public/:game_id" do
+    game_id = params[:game_id].to_i
+    return status 404 unless @games.public_exist? game_id
+
+    content_type 'text/json'
+    @games.public(game_id).to_json false
+  end
+
+  put "/api/games/:game_id/player2" do
+    game_id = params[:game_id].to_i
+    return status 404 unless @games.exist? game_id
+    game = @games[game_id]
+
+    data = JSON.parse request.body.read
+    game.player2=data
+    game.to_json true
   end
 
   get "/api/games/:game_id/commands/subscribe", :provides => 'text/event-stream' do
     game_id = params[:game_id].to_i
     return status 404 unless @games.exist? game_id
     game = @games[game_id]
+
+    # puts params.inspect
+    last = if params.key? 'last'
+             params['last'].to_i
+           else
+             nil
+           end
+    # puts last.inspect
+    stream(:keep_open) do |out| 
+      # out.callback { @models.removeConnection out }
+      out << "retry:100\n\n"
+      game.commands.addConnection out, last
+    end
+  end
+
+  get "/api/games/public/:game_id/commands/subscribe", :provides => 'text/event-stream' do
+    game_id = params[:game_id].to_i
+    return status 404 unless @games.public_exist? game_id
+    game = @games.public(game_id)
 
     # puts params.inspect
     last = if params.key? 'last'

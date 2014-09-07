@@ -20,6 +20,9 @@
 - suggestion labels precedents
 - button/shortcut clear label
 - bug multi-select restore box
+- Alt+<n> -> affiche une area de N"
+- corpse/ames
+- highlight models sous AoE/spray/charge
 
 =======================================================================================
 - des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).

@@ -62,7 +62,15 @@ class CommandCollection
     end
   end
 
-  def to_json
-    @commands.to_json
+  def signalGameUpdate data
+    data = data.to_json
+    connections.each do |out|
+      out << "retry:100\nevent:game\ndata:#{data}\n\n"
+      # out.close
+    end
+  end
+
+  def to_json *a
+    @commands.to_json *a
   end
 end

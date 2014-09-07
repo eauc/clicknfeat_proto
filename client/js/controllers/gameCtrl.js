@@ -71,19 +71,41 @@ angular.module('vassalApp.controllers')
       $scope.menu_view = 'main';
 
       if(!$stateParams.id || $stateParams.id.length <= 0) $state.go('start');
+      if($stateParams.visibility !== 'private' &&
+         $stateParams.visibility !== 'public') $state.go('start');
 
-      $http.get('/api/games/'+$stateParams.id).then(function(response) {
-        // console.log('search game success');
-        return factions.then(function() {
-          $scope.game = game(response.data);
-          console.log($scope.game);
-        });
-        // console.log($scope.game);
-      }, function(response) {
-        console.log('search game error');
-        console.log(response);
+      factions.then(function() {
+        return $http.get('/api/games/'
+                         +($stateParams.visibility === 'public' ? 'public/' : '')
+                         +$stateParams.id)
+          .then(function(response) {
+            $scope.game = game(response.data);
+            console.log($scope.game);
+          }, function(response) {
+            console.log('search game error', response);
+            $state.go('start');
+            return $q.reject();
+          });
+      }, function() {
         $state.go('start');
         return $q.reject();
+      }).then(function() {
+        var defer = $q.defer();
+        var promise = defer.promise;
+        if($scope.game.player1.id !== $scope.user.id &&
+           !$scope.game.player2.id) {
+          promise = $http.put('/api/games/'+$scope.game.id+'/player2',
+                              $scope.user)
+            .then(function(response) {
+              console.log('update game player2 success', response);
+              $scope.game.player2 = response.data.player2;
+            }, function(response) {
+              console.log('update game player2 error', response);
+              return $q.reject();
+            });;
+        }
+        defer.resolve();
+        return promise;
       }).then(function() {
 
         $scope.game.board.window.width = window.innerHeight-5;

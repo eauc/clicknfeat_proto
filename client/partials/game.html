@@ -1174,7 +1174,9 @@
       </td>
       <td valign="top">
         <div style="vertical-align:top;">
-          <strong>Game Id : {{game.id}}</strong> <br />
+          <strong>Game Id :</strong> {{game.id ? game.id : game.public_id}}
+          <strong>Player1 :</strong> {{game.player1.name}}
+          <strong>Player2 :</strong> {{game.player2.name}}<br />
           <button ng-style="{
                   'background-color': menu_view === 'main' ? '#6F6' : 'none'
                   }"

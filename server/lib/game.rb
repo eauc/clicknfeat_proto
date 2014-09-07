@@ -3,9 +3,14 @@ require_relative './command_collection'
 class Game
   
   attr_reader :commands
+  attr_reader :id
+  attr_reader :public_id
+  attr_reader :player1
+  attr_reader :player2
 
-  def initialize i, data
-    @id = i
+  def initialize id, data
+    @id = id[:private]
+    @public_id = id[:public]
     @new_model_id = 0
     if data.key?('models')
       max_id = data['models'].keys.max
@@ -15,6 +20,8 @@ class Game
     @commands = CommandCollection.new(data.key?('commands') ? data['commands'] : nil)
     
     @replay_commands = data.key?('replay_commands') ? data['replay_commands'] : []
+    @player1 = data.key?('player1') ? data['player1'] : {}
+    @player2 = { name: 'John Doe'}
   end
 
   def undoCommand stamp
@@ -30,8 +37,23 @@ class Game
     @commands.add data
   end
 
-  def to_json
-    @new_model_id += 10000
-    "{ \"id\": #{@id}, \"new_model_id\": #{@new_model_id}, \"commands\": #{@commands.to_json}, \"replay_commands\": #{@replay_commands.to_json} }"
+  def player2= data
+    return nil if @player2.key?('id')
+    @player2 = data
+    @commands.signalGameUpdate self
+  end
+
+  def to_json priv, *a
+    @new_model_id += 10000 if priv
+    view = {
+      public_id: @public_id,
+      new_model_id: @new_model_id,
+      commands: @commands,
+      replay_commands: @replay_commands,
+      player1: @player1,
+      player2: @player2
+    }
+    view[:id] = @id if priv
+    view.to_json *a
   end
 end
