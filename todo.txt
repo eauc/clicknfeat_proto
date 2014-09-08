@@ -1,8 +1,6 @@
 
-- button/shortcut clear label
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
-- mode charge : color target when within active melee range.
 - eventSource online
 
 - reorder command menus

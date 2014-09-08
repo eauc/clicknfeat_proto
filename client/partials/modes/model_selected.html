@@ -356,5 +356,18 @@
         </form>
       </td>
     </tr>
+    <tr ng-click="command_last_click=''">
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Ctrl + 'L')"
+                ng-click="sendKey('Ctrl L', $event)">
+          Clear Label
+        </button>
+      </td>
+    </tr>
   </table>
 </div>

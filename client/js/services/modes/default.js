@@ -194,6 +194,10 @@ angular.module('vassalApp.services')
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_leader;
             scope.game.newCommand(command('onSelection', 'toggle', 'leader', new_val));
           },
+          'Ctrl L': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 'setLabel', null));
+          },
           'M': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_melee;
             scope.game.newCommand(command('onSelection', 'toggle', 'melee', new_val));

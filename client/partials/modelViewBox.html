@@ -25,6 +25,10 @@
              ng-keydown="stopKeyPropagation($event)"
              ng-keypress="stopKeyPropagation($event)"
              />
+      <!-- <button type="button"
+      ng-click="sendKey('Ctrl L', $event)">
+      Clear
+      </button> -->
     </form>
     <span ng-if="!game.id">{{model_view.label}}</span>
   </div>
