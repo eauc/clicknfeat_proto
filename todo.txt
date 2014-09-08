@@ -3,7 +3,6 @@
 - commands replay : prevent undo drop on eventSource refresh
 - eventSource online
 
-- reorder command menus
 - mode ranged attack.
 - auto deviate model (max distance?, origin?)
 - auto-slam model
