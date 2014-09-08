@@ -199,6 +199,13 @@ angular.module('vassalApp.services')
         displayChargeLength: function() {
           return Math.round(this.state.charge_length*10)/100;
         },
+        chargeTargetInRange: function(target) {
+          var dx = target.state.x - this.state.x;
+          var dy = target.state.y - this.state.y;
+          var dist = Math.sqrt(dx*dx+dy*dy) - target.info.r - this.info.r;
+          var melee_range = this.state.show_strike ? 40 : (this.state.show_reach ? 20 : (this.state.show_melee ? 5 : 0));
+          return dist <= melee_range;
+        },
         endCharge: function(game) {
           this.state.charge_length = 0;
           this.state.show_charge = false;

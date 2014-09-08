@@ -694,10 +694,12 @@
                     r="{{modes.current.target.info.r}}"
                     style="
                     fill:none;
-                    stroke: #F0F;
                     stroke-width:1px;
                     pointer-events: none;
                     "
+                    ng-style="{
+                    'stroke': game.models[game.selection[0]].chargeTargetInRange(modes.current.target) ? '#0FF' : '#F00'
+                    }"
                     />
             <path ng-repeat="model in modelShow('melee')"
                   d="
