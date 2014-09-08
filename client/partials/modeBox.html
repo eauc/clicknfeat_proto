@@ -1,27 +1,13 @@
 <div>
-  <!-- <strong>{{modes.current.name}}</strong> -->
+  <button style="
+          width: 100%;
+          height: 50px;
+          align:center;
+          "
+          title="(Escape)"
+          ng-click="sendKey('Escape', $event)">
+    Back to Default
+  </button>
   <div ng-include="'partials/modes/'+modes.current.template">
   </div>
-  <!-- <div style="font-size:0.75em">
-  <strong>Generic Commands</strong>
-  <ul style="
-  margin:0px;
-  padding:0px;
-  list-style-type:none;
-  "
-  >
-  <li><button ng-click="sendKey('Escape', $event)">Default mode</button> (Escape)</li>
-  <li><button ng-click="sendKey('Ctrl Z', $event)">Undo</button> last command (Ctrl + 'Z')</li>
-  </ul>
-  <ul style="
-  margin:0px;
-  padding:0px;
-  list-style-type:none;
-  "
-  ng-if="modes.current.group === 'Default'">
-  <li>Select Model (Click on model)</li>
-  <li>Select Mulptiple Models (Drag-box on models)</li>
-  <li>Select Template (Click on template)</li>
-  </ul>
-  </div> -->
 </div>

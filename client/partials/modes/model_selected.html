@@ -1,99 +1,212 @@
 <div>
-  <!-- <strong>Model Selected Commands</strong> -->
-    <!-- <li>Position model(s)
-    <span style="font-size:0.75em">(Drag model)</span>
-    </li>
-    <li>Move model(s)
-    <span style="font-size:0.75em">([Shift +][Ctrl +] Arrows)</span></li>
-    <li>Select a model
-    <span style="font-size:0.75em">(Click on model)</span></li>
-    <li>Add a model to selection
-    <span style="font-size:0.75em">(Ctrl + Click on model)</span></li>
-    <li>Remove a model from selection
-    <span style="font-size:0.75em">(Ctrl + Click on selected model)</span></li> -->
   <strong>Models</strong>
   <table style="border-collapse:collapse;">
-    <tr ng-click="command_last_click=''">
-      <td>
-        <button style="
-                width: 50px;
-                height: 50px;
-                align:center;
-                "
-                title="(Ctrl+'C')"
-                ng-click="sendKey('Ctrl C', $event)">Copy</button>
-      </td>
-      <td>
-        <button style="
-                width: 50px;
-                height: 50px;
-                align:center;
-                "
-                title="('Delete')"
-                ng-click="sendKey('Delete', $event)">Drop</button>
-      </td>
-    </tr>
-    <tr ng-click="command_last_click=''">
-      <td>
-        <button style="
-                width: 50px;
-                height: 50px;
-                align:center;
-                "
-                title="(Ctrl+'A')"
-                ng-click="sendKey('Ctrl A', $event)">Select All</button>
-      </td>
-      <td>
-        <button style="
-                width: 50px;
-                height: 50px;
-                align:center;
-                "
-                title="(Escape)"
-                ng-click="sendKey('Escape', $event)">Unselect All</button>
-      </td>
-    </tr>
     <tr>
-      <td>
-        <button title="(Alt+'R')"
-                style="
+      <td ng-click="command_sub='aoe'">
+        <button style="
                 width: 50px;
                 height: 50px;
                 align:center;
                 "
-                ng-click="sendKey('Alt R', $event)">
-          Reset Show
+                ng-style="{
+                'background-color': command_sub==='aoe' ? '#0F0' : none
+                }"
+                >AoE<br />&#8594;</button>
+      </td>
+      <td ng-show="command_sub==='aoe'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('3')"
+                ng-click="sendKey('3', $event)"
+                >
+          AoE 3"
         </button>
       </td>
-      <td ng-if="
+      <td ng-show="
+          command_sub==='area' &&
           game.selection.length === 1 &&
           game.models[game.selection[0]].info.type==='wardude'
           ">
-      <button title="(Shift+'C')"
-      style="
-      width: 50px;
-      height: 50px;
-      align:center;
-      "
-      ng-click="sendKey('Shift C', $event)">Ctrl Area</button>
-      </td>
-      <td  ng-if="
-           game.selection.length === 1 &&
-           game.models[game.selection[0]].info.type === 'warrior'
-           ">
-        <button title="(Alt+'L')"
+        <button title="(Shift+'C')"
                 style="
                 width: 50px;
                 height: 50px;
                 align:center;
                 "
-                ng-click="sendKey('Alt L', $event)">
-          <img src="data/icons/Leader.png" />
+                ng-click="sendKey('Shift C', $event)">Ctrl Area</button>
+      </td>
+      <td ng-show="command_sub==='aura'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                background-color:{{auras['0'].color}};
+                "
+                title="(Ctrl + '0')"
+                ng-click="sendKey('Ctrl 0', $event)"
+                >
+          Aura {{auras['0'].name}}
         </button>
       </td>
     </tr>
-    <tr ng-click="command_last_click=''">
-      <td>
+    <tr>
+      <td ng-click="command_sub='area'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-style="{
+                'background-color': command_sub==='area' ? '#0F0' : none
+                }"
+                >Area<br />&#8594;</button>
+      </td>
+      <td ng-show="command_sub==='aoe'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('4')"
+                ng-click="sendKey('4', $event)"
+                >
+          AoE 4"
+        </button>
+      </td>
+      <td ng-show="command_sub==='area'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Alt + {{model_selected_area>9 ? 'Shift + ' : ''}}'{{model_selected_area%10}}')"
+          ng-click="sendKey('Alt '+(model_selected_area>9 ? 'Shift ':'')+(model_selected_area%10), $event)">
+          {{model_selected_area}}" Area
+        </button>
+      </td>
+      <td ng-show="command_sub==='aura'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                background-color:{{auras['1'].color}};
+                "
+                title="(Ctrl + '1')"
+                ng-click="sendKey('Ctrl 1', $event)"
+                >
+          Aura {{auras['1'].name}}
+        </button>
+      </td>
+    </tr>
+    <tr ng-show="command_sub==='area'">
+      <td colspan="2">
+        Area Size :
+        <form style="display:inline;margin:0px;padding:0px;"
+              ng-submit="sendKey('Alt '+(model_selected_area>9 ? 'Shift ':'')+(model_selected_area%10), $event)">
+          <input style="
+                 width: 100%;
+                 height: 35px;
+                 "
+                 type="number"
+                 ng-model="model_selected_area"
+                 ng-keydown="stopKeyPropagation($event)"
+                 ng-keypress="stopKeyPropagation($event)"
+                 required="required"
+                 />
+        </form>
+      </td>
+    </tr>
+    <tr>
+      <td ng-click="command_sub='aura'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-style="{
+                'background-color': command_sub==='aura' ? '#0F0' : none
+                }"
+                >Aura<br />&#8594;</button>
+      </td>
+      <td ng-show="command_sub==='aoe'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('5')"
+                ng-click="sendKey('5', $event)"
+                >
+          AoE 5"
+        </button>
+      </td>
+      <td ng-show="command_sub==='aura'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                background-color:{{auras['2'].color}};
+                "
+                title="(Ctrl + '2')"
+                ng-click="sendKey('Ctrl 2', $event)"
+                >
+          Aura {{auras['2'].name}}
+        </button>
+      </td>
+      <td ng-show="command_sub==='count'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('N')"
+                ng-click="sendKey('N', $event)">Show Count</button>
+      </td>
+      <td ng-show="command_sub==='effect'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="{{effects['B'].name}} (Alt + 'B')"
+                ng-click="sendKey('Alt B', $event)">
+          <img ng-if="effects['B'].icon"
+               src="{{effects['B'].icon}}" />
+          <span ng-if="!effects['B'].icon">
+            {{effects['B'].desc}}
+          </span>
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td ng-click="command_sub='count'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-style="{
+                'background-color': command_sub==='count' ? '#0F0' : none
+                }"
+                >Count<br />&#8594;</button>
+      </td>
+      <td ng-show="command_sub==='aura'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                background-color:{{auras['3'].color}};
+                "
+                title="(Ctrl + '3')"
+                ng-click="sendKey('Ctrl 3', $event)"
+                >
+          Aura {{auras['3'].name}}
+        </button>
+      </td>
+      <td ng-show="command_sub==='count'">
         <button style="
                 width: 50px;
                 height: 50px;
@@ -102,7 +215,57 @@
                 title="('+')"
                 ng-click="sendKey('Add', $event)">Count +</button>
       </td>
-      <td>
+      <td ng-show="command_sub==='edit'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Ctrl+'A')"
+                ng-click="sendKey('Ctrl A', $event)">Select All</button>
+      </td>
+      <td ng-show="command_sub==='effect'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="{{effects['C'].name}} (Alt + 'C')"
+                ng-click="sendKey('Alt C', $event)">
+          <img ng-if="effects['C'].icon"
+               src="{{effects['C'].icon}}" />
+          <span ng-if="!effects['C'].icon">
+            {{effects['C'].desc}}
+          </span>
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td ng-click="command_sub='edit'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-style="{
+                'background-color': command_sub==='edit' ? '#0F0' : none
+                }"
+                >Edit<br />&#8594;</button>
+      </td>
+      <td ng-show="command_sub==='aura'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                background-color:{{auras['4'].color}};
+                "
+                title="(Ctrl + '4')"
+                ng-click="sendKey('Ctrl 4', $event)"
+                >
+          Aura {{auras['4'].name}}
+        </button>
+      </td>
+      <td ng-show="command_sub==='count'">
         <button style="
                 width: 50px;
                 height: 50px;
@@ -111,135 +274,209 @@
                 title="('-')"
                 ng-click="sendKey('Substract', $event)">Count -</button>
       </td>
-    </tr>
-    <tr>
-      <td ng-click="command_last_click='melee'">
-        <button title="{{model_selected_melee}}"
-                style="
-                width: 50px;
-                height: 50px;
-                align:center;
-                "
-                ng-click="sendKey(model_selected_melee, $event)"
-                >
-          {{model_selected_melee === 'S' ? 'Strike' : (model_selected_melee === 'R' ? 'Reach' : 'Melee')}}
-        </button>
-      </td>
-      <td ng-click="command_last_click=''">
+      <td ng-show="command_sub==='edit'">
         <button style="
                 width: 50px;
                 height: 50px;
                 align:center;
                 "
-                title="('N')"
-                ng-click="sendKey('F', $event)">Count</button>
+                title="(Escape)"
+                ng-click="sendKey('Escape', $event)">Unselect All</button>
       </td>
-    </tr>
-    <tr ng-show="command_last_click==='melee'">
-      <td colspan="2">
-        <select style="
-                width:100%;
-                height:35px;
-                padding-top:5px;
-                "
-                ng-model="model_selected_melee"
-                ng-change="sendKey(model_selected_melee, $event)"
-                >
-          <option value="M">
-            Melee ('M')
-          </option>
-          <option value="R">
-            Reach ('R')
-          </option>
-          <option value="S">
-            Strike ('S')
-          </option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td ng-click="command_last_click='AoE'">
+      <td ng-show="command_sub==='effect'">
         <button style="
                 width: 50px;
                 height: 50px;
                 align:center;
                 "
-                title="('{{model_selected_aoe}}')"
-                ng-click="sendKey(model_selected_aoe, $event)"
-                >
-          AoE {{model_selected_aoe}}"
+                title="{{effects['D'].name}} (Alt + 'D')"
+                ng-click="sendKey('Alt D', $event)">
+          <img ng-if="effects['D'].icon"
+               src="{{effects['D'].icon}}" />
+          <span ng-if="!effects['D'].icon">
+            {{effects['D'].desc}}
+          </span>
         </button>
       </td>
-      <td ng-click="command_last_click='Target'">
-        <button title="('T')"
-                style="
+    </tr>
+    <tr>
+      <td ng-click="command_sub='effect'">
+        <button style="
                 width: 50px;
                 height: 50px;
                 align:center;
                 "
-                ng-click="sendKey('T', $event)">Set Target</button>
+                ng-style="{
+                'background-color': command_sub==='effect' ? '#0F0' : none
+                }"
+                >Effect<br />&#8594;</button>
       </td>
-    </tr>
-    <tr ng-show="command_last_click==='AoE'">
-      <td colspan="2">
-        <select style="
-                width:100%;
-                height:35px;
-                padding-top:5px;
+      <td ng-show="command_sub==='aura'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                background-color:{{auras['5'].color}};
                 "
-                ng-model="model_selected_aoe"
-                ng-change="sendKey(model_selected_aoe, $event)">
-          <option ng-repeat="value in ['3', '4', '5']"
-                  ng-value="value">
-            {{value}}" ('{{value}}')
-          </option>
-        </select>
+                title="(Ctrl + '5')"
+                ng-click="sendKey('Ctrl 5', $event)"
+                >
+          Aura {{auras['5'].name}}
+        </button>
+      </td>
+      <td ng-show="command_sub==='edit'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Ctrl+'C')"
+                ng-click="sendKey('Ctrl C', $event)">Copy</button>
+      </td>
+      <td ng-show="command_sub==='effect'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="{{effects['F'].name}} (Alt + 'F')"
+                ng-click="sendKey('Alt F', $event)">
+          <img ng-if="effects['F'].icon"
+               src="{{effects['F'].icon}}" />
+          <span ng-if="!effects['F'].icon">
+            {{effects['F'].desc}}
+          </span>
+        </button>
       </td>
     </tr>
     <tr>
-      <td ng-click="command_last_click=''">
+      <td ng-click="command_sub=''">
         <button style="
                 width: 50px;
                 height: 50px;
                 align:center;
                 "
                 title="('I')"
-                ng-click="sendKey('I', $event)">Image</button>
+                ng-click="sendKey('I', $event)">Show Image</button>
       </td>
-      <td ng-click="command_last_click='Aura'">
+      <td ng-show="command_sub==='aura'">
         <button style="
                 width: 50px;
                 height: 50px;
                 align:center;
-                background-color:{{auras[model_selected_aura].color}};
+                background-color:{{auras['6'].color}};
                 "
-                title="(Ctrl + '{{model_selected_aura}}')"
-                ng-click="sendKey('Ctrl '+model_selected_aura, $event)"
+                title="(Ctrl + '6')"
+                ng-click="sendKey('Ctrl 6', $event)"
                 >
-          Aura {{auras[model_selected_aura].name}}
+          Aura {{auras['6'].name}}
+        </button>
+      </td>
+      <td ng-show="command_sub==='edit'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('Delete')"
+                ng-click="sendKey('Delete', $event)">Drop</button>
+      </td>
+      <td ng-show="command_sub==='effect'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="{{effects['I'].name}} (Alt + 'I')"
+                ng-click="sendKey('Alt I', $event)">
+          <img ng-if="effects['I'].icon"
+               src="{{effects['I'].icon}}" />
+          <span ng-if="!effects['I'].icon">
+            {{effects['I'].desc}}
+          </span>
         </button>
       </td>
     </tr>
-    <tr ng-show="command_last_click==='Aura'">
-      <td colspan="2">
-        <select style="
-                width:100%;
-                height:35px;
-                padding-top:5px;
+    <tr>
+      <td ng-click="command_sub=''">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
                 "
-                ng-model="model_selected_aura"
-                ng-change="sendKey('Ctrl '+model_selected_aura, $event)"
+                title="(Ctrl + 'L')"
+                ng-click="sendKey('Ctrl L', $event)">
+          Clear Label
+        </button>
+      </td>
+      <td ng-show="command_sub==='effect'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="{{effects['K'].name}} (Alt + 'K')"
+                ng-click="sendKey('Alt K', $event)">
+          <img ng-if="effects['K'].icon"
+               src="{{effects['K'].icon}}" />
+          <span ng-if="!effects['K'].icon">
+            {{effects['K'].desc}}
+          </span>
+        </button>
+      </td>
+      <td ng-show="command_sub==='melee'">
+        <button title="('M')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('M', $event)"
                 >
-          <option ng-repeat="(value, aura) in auras"
-                  ng-value="value"
-                  style="background-color: {{aura.color}}">
-            {{aura.name}}
-          </option>
-        </select>
+          0.5" Melee
+        </button>
       </td>
     </tr>
-    <tr ng-click="command_last_click=''">
-      <td>
+    <tr>
+      <td ng-click="command_sub='melee'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-style="{
+                'background-color': command_sub==='melee' ? '#0F0' : none
+                }"
+                >Melee<br />&#8594;</button>
+      </td>
+      <td ng-show="command_sub==='effect'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="{{effects['S'].name}} (Alt + 'S')"
+                ng-click="sendKey('Alt S', $event)">
+          <img ng-if="effects['S'].icon"
+               src="{{effects['S'].icon}}" />
+          <span ng-if="!effects['S'].icon">
+            {{effects['S'].desc}}
+          </span>
+        </button>
+      </td>
+      <td ng-show="command_sub==='melee'">
+        <button title="('R')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('R', $event)"
+                >
+          2" Reach
+        </button>
+      </td>
+      <td ng-show="command_sub==='orient'">
         <button style="
                 width: 50px;
                 height: 50px;
@@ -248,7 +485,47 @@
                 title="(PageUp)"
                 ng-click="sendKey('PageUp', $event)">&#8593;</button>
       </td>
-      <td>
+    </tr>
+    <tr>
+      <td ng-click="command_sub='orient'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-style="{
+                'background-color': command_sub==='orient' ? '#0F0' : none
+                }"
+                >Orient.<br />&#8594;</button>
+      </td>
+      <td ng-show="command_sub==='effect'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="{{effects['T'].name}} (Alt + 'T')"
+                ng-click="sendKey('Alt T', $event)">
+          <img ng-if="effects['T'].icon"
+               src="{{effects['T'].icon}}" />
+          <span ng-if="!effects['T'].icon">
+            {{effects['T'].desc}}
+          </span>
+        </button>
+      </td>
+      <td ng-show="command_sub==='melee'">
+        <button title="('S')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('S', $event)"
+                >
+          4" Strike
+        </button>
+      </td>
+      <td ng-show="command_sub==='orient'">
         <button style="
                 width: 50px;
                 height: 50px;
@@ -259,74 +536,30 @@
       </td>
     </tr>
     <tr>
-      <td ng-click="command_last_click='effect'">
-        <button style="
+      <td ng-click="command_sub=''">
+        <button title="(Alt+'R')"
+                style="
                 width: 50px;
                 height: 50px;
                 align:center;
                 "
-                title="(Alt+'{{model_selected_effect}}')"
-                ng-click="sendKey('Alt '+model_selected_effect, $event)">
-          <img ng-if="effects[model_selected_effect].icon"
-               src="{{effects[model_selected_effect].icon}}" />
-          <span ng-if="!effects[model_selected_effect].icon">
-            {{effects[model_selected_effect].desc}}
-          </span>
+                ng-click="sendKey('Alt R', $event)">
+          Reset Show
         </button>
       </td>
-      <td ng-click="command_last_click='area'">
-        <button style="
+    </tr>
+    <tr>
+      <td ng-click="command_sub=''">
+        <button title="('T')"
+                style="
                 width: 50px;
                 height: 50px;
                 align:center;
                 "
-                title="(Alt + {{model_selected_area>9 ? 'Shift + ' : ''}}'{{model_selected_area%10}}')"
-                ng-click="sendKey('Alt '+(model_selected_area>9 ? 'Shift ':'')+(model_selected_area%10), $event)">
-          {{model_selected_area}}" Area
-        </button>
-      </td>
-    </tr>
-    <tr ng-show="command_last_click==='effect'">
-      <td colspan="2">
-        <select style="
-                width:100%;
-                height:35px;
-                padding-top:5px;
-                "
-                ng-model="model_selected_effect"
-                ng-change="sendKey('Alt '+model_selected_effect, $event)"
-                ng-options="id as e.name for (id,e) in effects"
-                >
-        </select>
-      </td>
-    </tr>
-    <tr ng-show="command_last_click==='area'">
-      <td colspan="2">
-        <form style="display:inline;margin:0px;padding:0px;"
-              ng-submit="sendKey('Alt '+(model_selected_area>9 ? 'Shift ':'')+(model_selected_area%10), $event)">
-          <input style="width: 100%;"
-                 type="number"
-                 ng-model="model_selected_area"
-                 ng-keydown="stopKeyPropagation($event)"
-                 ng-keypress="stopKeyPropagation($event)"
-                 required="required"
-                 />
-        </form>
-      </td>
-    </tr>
-    <tr ng-click="command_last_click='unit'">
-      <td>
-        <button style="
-                width: 50px;
-                height: 50px;
-                align:center;
-                "
-                title="('U')"
-                ng-click="sendKey('Shift U', $event)">
-          Show Unit
-        </button>
+                ng-click="sendKey('T', $event)">Set Target</button>
       </td>
       <td ng-show="
+          command_sub==='unit' &&
           game.selection.length === 1 &&
           game.models[game.selection[0]].state.unit
           "
@@ -342,12 +575,39 @@
         </button>
       </td>
     </tr>
-    <tr ng-show="command_last_click==='unit'">
+    <tr>
+      <td ng-click="command_sub='unit'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-style="{
+                'background-color': command_sub==='unit' ? '#0F0' : none
+                }"
+                >Unit<br />&#8594;</button>
+      </td>
+      <td ng-show="command_sub==='unit'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('U')"
+                ng-click="sendKey('U', $event)">
+          Show Unit
+        </button>
+      </td>
+    </tr>
+    <tr ng-show="command_sub==='unit'">
       <td colspan="2">
         Set Unit :
         <form style="display:inline;margin:0px;padding:0px;"
               ng-submit="doSetUnit()">
-          <input style="width: 100%;"
+          <input style="
+                 width: 100%;
+                 height: 35px;
+                 "
                  type="number"
                  ng-model="model_view.unit"
                  ng-keydown="stopKeyPropagation($event)"
@@ -356,16 +616,21 @@
         </form>
       </td>
     </tr>
-    <tr ng-click="command_last_click=''">
-      <td>
-        <button style="
+    <tr>
+      <td></td>
+      <td  ng-if="
+           command_sub==='unit' &&
+           game.selection.length === 1 &&
+           game.models[game.selection[0]].info.type === 'warrior'
+           ">
+        <button title="(Alt+'L')"
+                style="
                 width: 50px;
                 height: 50px;
                 align:center;
                 "
-                title="(Ctrl + 'L')"
-                ng-click="sendKey('Ctrl L', $event)">
-          Clear Label
+                ng-click="sendKey('Alt L', $event)">
+          <img src="data/icons/Leader.png" />
         </button>
       </td>
     </tr>

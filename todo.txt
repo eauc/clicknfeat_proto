@@ -11,6 +11,7 @@
 - split factions files in subfiles
 
 - text no highlight
+- aoe/spray create -> click on model -> set as origin/target
 
 =======================================================================================
 - suggestion labels precedents
