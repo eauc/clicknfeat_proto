@@ -130,6 +130,10 @@ angular.module('vassalApp.services')
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_blind;
             scope.game.newCommand(command('onSelection', 'toggle', 'blind', new_val));
           },
+          'C': function(scope) {
+            if(!scope.game.id || 1 !== scope.game.selection.length) return;
+            modes.goTo('model_charge', scope);
+          },
           'Alt C': function(scope) {
             if(!scope.game.id) return;
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_corrosion;

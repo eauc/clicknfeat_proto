@@ -1,0 +1,116 @@
+<div>
+  <strong>Model Charge<br /></strong>
+  <table style="border-collapse:collapse;">
+    <tr>
+      <td colspan="2">
+        Max Dist. :
+        <input style="
+               width:100%;
+               height:35px;
+               "
+               type="number"
+               ng-model="game.models[game.selection[0]].state.charge_max"
+               ng-keydown="stopKeyPropagation($event)"
+               ng-keypress="stopKeyPropagation($event)"
+               />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button title="(Alt+'R')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('Alt R', $event)">
+          Reset Show
+        </button>
+      </td>
+      <td ng-click="command_last_click='melee'">
+        <button title="{{model_selected_melee}}"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey(model_selected_melee, $event)"
+                >
+          {{model_selected_melee === 'S' ? 'Strike' : (model_selected_melee === 'R' ? 'Reach' : 'Melee')}}
+        </button>
+      </td>
+    </tr>
+    <tr ng-show="command_last_click==='melee'">
+      <td colspan="2">
+        <select style="
+                width:100%;
+                height:35px;
+                padding-top:5px;
+                "
+                ng-model="model_selected_melee"
+                ng-change="sendKey(model_selected_melee, $event)"
+                >
+          <option value="M">
+            Melee ('M')
+          </option>
+          <option value="R">
+            Reach ('R')
+          </option>
+          <option value="S">
+            Strike ('S')
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td ng-click="command_last_click=''">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('I')"
+                ng-click="sendKey('I', $event)">Image</button>
+      </td>
+      <td ng-click="command_last_click='area'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Alt + {{model_selected_area>9 ? 'Shift + ' : ''}}'{{model_selected_area%10}}')"
+                ng-click="sendKey('Alt '+(model_selected_area>9 ? 'Shift ':'')+(model_selected_area%10), $event)">
+          {{model_selected_area}}" Area
+        </button>
+      </td>
+    </tr>
+    <tr ng-show="command_last_click==='effect'">
+      <td colspan="2">
+        <select style="
+                width:100%;
+                height:35px;
+                padding-top:5px;
+                "
+                ng-model="model_selected_effect"
+                ng-change="sendKey('Alt '+model_selected_effect, $event)"
+                ng-options="id as e.name for (id,e) in effects"
+                >
+        </select>
+      </td>
+      <tr>
+        <td ng-if="
+            game.selection.length === 1 &&
+            game.models[game.selection[0]].info.type==='wardude'
+            ">
+          <button title="(Shift+'C')"
+                  style="
+                  width: 50px;
+                  height: 50px;
+                  align:center;
+                  "
+                  ng-click="sendKey('Shift C', $event)">Ctrl Area</button>
+        </td>
+      </tr>
+    </tr>
+  </table>
+</div>

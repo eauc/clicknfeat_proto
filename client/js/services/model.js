@@ -15,6 +15,21 @@ angular.module('vassalApp.services')
           this.state.show_control = false;
         },
         refresh: function(game) {
+          if(this.state.show_charge) {
+            var dx = this.state.x - this.state.charge_x;
+            var dy = this.state.y - this.state.charge_y;
+            this.state.charge_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
+            this.state.charge_length = Math.sqrt(dx*dx+dy*dy);
+            if(this.state.charge_max &&
+               this.state.charge_max > 0 &&
+               this.state.charge_length > this.state.charge_max*10) {
+              dx = dx * this.state.charge_max*10 / this.state.charge_length;
+              dy = dy * this.state.charge_max*10 / this.state.charge_length;
+              this.state.x = this.state.charge_x + dx;
+              this.state.y = this.state.charge_y + dy;
+              this.state.charge_length = this.state.charge_max*10;
+            }
+          }
           this.state.x = Math.max(this.info.r, this.state.x);
           this.state.x = Math.min(game.board.width-this.info.r,
                                   this.state.x);
@@ -27,7 +42,7 @@ angular.module('vassalApp.services')
           var angle = Math.atan2(x - this.state.x, this.state.y - y) * 180 / Math.PI;
           this.state.rot = angle;
         },
-        moveFront: function(game, small) {
+        moveFront: function(game, small, target) {
           if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           var dx = dl * Math.sin(this.state.rot * Math.PI / 180);
@@ -36,8 +51,9 @@ angular.module('vassalApp.services')
           this.state.x += dx;
           this.state.y += dy;
           this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
         },
-        moveBack: function(game, small) {
+        moveBack: function(game, small, target) {
           if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           var dx = -dl * Math.sin(this.state.rot * Math.PI / 180);
@@ -46,6 +62,7 @@ angular.module('vassalApp.services')
           this.state.x += dx;
           this.state.y += dy;
           this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
         },
         setRotation: function(game, angle) {
           if(this.info.immovable) return;
@@ -56,34 +73,38 @@ angular.module('vassalApp.services')
           var dr = small ? 5 : 30;
           this.state.rot = this.state.rot - dr;
         },
-        moveLeft: function(game, small) {
+        moveLeft: function(game, small, target) {
           if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.x -= dl;
           this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
         },
-        moveUp: function(game, small) {
+        moveUp: function(game, small, target) {
           if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.y -= dl;
           this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
         },
         rotateRight: function(game, small) {
           if(this.info.immovable) return;
           var dr = small ? 5 : 30;
           this.state.rot = this.state.rot + dr;
         },
-        moveRight: function(game, small) {
+        moveRight: function(game, small, target) {
           if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.x += dl;
           this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
         },
-        moveDown: function(game, small) {
+        moveDown: function(game, small, target) {
           if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.y += dl;
           this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
         },
         toggle: function(game, type, val) {
           var new_val = (val === undefined) ? !this.state['show_'+type] : val;
@@ -125,6 +146,62 @@ angular.module('vassalApp.services')
         },
         decrementCounter: function(game) {
           this.state.counter = Math.max(0, this.state.counter-1);
+        },
+        startCharge: function(game, target) {
+          if(target) this.alignWith(game, target.state.x, target.state.y);
+          this.state.charge_x = this.state.x;
+          this.state.charge_y = this.state.y;
+          this.state.charge_length = 0;
+          this.state.charge_rot = this.state.rot;
+          this.state.show_charge = true;
+        },
+        moveChargeFront: function(game, small, target) {
+          if(this.info.immovable) return;
+          var dl = small ? 1 : 10;
+          var dx =  dl * Math.sin(this.state.charge_rot * Math.PI / 180);
+          var dy = -dl * Math.cos(this.state.charge_rot * Math.PI / 180);
+          this.state.x += dx;
+          this.state.y += dy;
+          this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
+        },
+        moveChargeBack: function(game, small, target) {
+          if(this.info.immovable) return;
+          var dl = small ? 1 : 10;
+          var dx = -dl * Math.sin(this.state.charge_rot * Math.PI / 180);
+          var dy = dl * Math.cos(this.state.charge_rot * Math.PI / 180);
+          // console.log(dx + ' ' + dy);
+          this.state.x += dx;
+          this.state.y += dy;
+          this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
+        },
+        rotateChargeLeft: function(game, small, target) {
+          var dr = small ? 1 : 10;
+          this.state.charge_rot -= dr;
+          this.state.x = this.state.charge_x
+            + Math.sin(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
+          this.state.y = this.state.charge_y
+            - Math.cos(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
+          this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
+        },
+        rotateChargeRight: function(game, small, target) {
+          var dr = small ? 1 : 10;
+          this.state.charge_rot += dr;
+          this.state.x = this.state.charge_x
+            + Math.sin(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
+          this.state.y = this.state.charge_y
+            - Math.cos(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
+          this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
+        },
+        displayChargeLength: function() {
+          return Math.round(this.state.charge_length*10)/100;
+        },
+        endCharge: function(game) {
+          this.state.charge_length = 0;
+          this.state.show_charge = false;
         },
         startDraging: function(game) {
           this.state_before_drag = _.extend({}, this.state);
@@ -269,6 +346,11 @@ angular.module('vassalApp.services')
             x: 240,
             y: 240,
             rot: 0,
+            charge_x: 0,
+            charge_y: 0,
+            charge_rot: 0,
+            charge_length: 0,
+            charge_max: 0,
             counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
             label: '',
             unit: null,
@@ -292,12 +374,17 @@ angular.module('vassalApp.services')
             show_incorporeal: false,
             show_fleeing: false,
             show_color: false,
+            show_charge: false,
           } : _.extend({
             id: args[0],
             x: 240,
             y: 240,
             rot: 0,
-            show_area: 0,
+            charge_x: 0,
+            charge_y: 0,
+            charge_rot: 0,
+            charge_length: 0,
+            charge_max: 0,
             counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
             label: '',
             unit: null,
@@ -306,6 +393,7 @@ angular.module('vassalApp.services')
             show_reach: false,
             show_strike: false,
             show_aoe: 0,
+            show_area: 0,
             show_counter:  args[1].type === 'wardude' ||
               args[1].type === 'beast' ||
               args[1].type === 'jack',
@@ -320,6 +408,7 @@ angular.module('vassalApp.services')
             show_incorporeal: false,
             show_fleeing: false,
             show_color: false,
+            show_charge: false,
           }, args[2])
         };
         switch(instance.info.damage.type) {

@@ -474,6 +474,24 @@
                     filter: url(#aura-filter);
                     "
                     />
+            <g ng-repeat="model in modelShow('charge')">
+              <rect x="{{(model.state.x+model.state.charge_x)/2-model.info.r}}"
+                    y="{{(model.state.y+model.state.charge_y)/2-model.state.charge_length/2}}"
+                    width="{{model.info.r*2}}" height="{{model.state.charge_length}}"
+                    transform="rotate(
+                    {{model.state.charge_rot}},
+                    {{(model.state.x+model.state.charge_x)/2}},
+                    {{(model.state.y+model.state.charge_y)/2}}
+                    )"
+                    style="
+                    fill: #999;
+                    fill-opacity: 0.5;
+                    stroke: #333;
+                    stroke-width: 0.5px;
+                    pointer-events: none;
+                    "
+                    />
+            </g>
             <svg ng-repeat="model in game.models"
                  x="{{model.state.x - model.info.width/2}}" y="{{model.state.y - model.info.height/2}}">
               <g transform="rotate({{model.state.rot}}, {{model.info.width/2}}, {{model.info.height/2}})">
@@ -667,6 +685,20 @@
                     'stroke': game.templates.active ? none : (modes.current.name === 'Model Target' ? '#00F' : '#0F0')
                     }"
                     />
+            <circle ng-if="
+                    modes.current.name === 'Model Charge' &&
+                    modes.current.target
+                    "
+                    cx="{{modes.current.target.state.x}}"
+                    cy="{{modes.current.target.state.y}}"
+                    r="{{modes.current.target.info.r}}"
+                    style="
+                    fill:none;
+                    stroke: #F0F;
+                    stroke-width:1px;
+                    pointer-events: none;
+                    "
+                    />
             <path ng-repeat="model in modelShow('melee')"
                   d="
                   M{{model.state.x-5-model.info.r}},{{model.state.y}}
@@ -680,7 +712,7 @@
                   stroke:#000;
                   stroke-width:0.5px;
                   fill: #000;
-                  fill-opacity: 0.4;
+                  fill-opacity: 0.3;
                   pointer-events: none;
                   "
                   transform="
@@ -702,7 +734,7 @@
                   stroke:#000;
                   stroke-width:0.5px;
                   fill: #000;
-                  fill-opacity: 0.4;
+                  fill-opacity: 0.3;
                   pointer-events: none;
                   "
                   transform="
@@ -724,7 +756,7 @@
                   stroke:#000;
                   stroke-width:0.5px;
                   fill: #000;
-                  fill-opacity: 0.4;
+                  fill-opacity: 0.3;
                   pointer-events: none;
                   "
                   transform="
@@ -796,6 +828,45 @@
                     "
                     >
                 {{model.state.counter}}
+              </text>
+            </g>
+            <g ng-repeat="model in modelShow('charge')">
+              <line x1="{{model.state.charge_x}}" y1="{{model.state.charge_y}}"
+                    x2="{{model.state.x}}" y2="{{model.state.y}}"
+                    style="
+                    stroke: #0F0;
+                    stroke-width: 0.5px;
+                    pointer-events: none;
+                    "
+                    />
+              <rect x="{{model.state.charge_x-1}}"
+                    y="{{model.state.charge_y-8}}"
+                    width="30" height="10"
+                    style="
+                    fill:#FFC;
+                    stroke:#000;
+                    stroke-width:0.5px;
+                    pointer-events: none;
+                    "
+                    transform="rotate(
+                    {{game.board.zoom.flipped ? 180 : 0}},
+                    {{model.state.charge_x}},
+                    {{model.state.charge_y}}
+                    )"
+                    />
+              <text x="{{model.state.charge_x}}"
+                    y="{{model.state.charge_y}}"
+                    style="
+                    font-size:8px;
+                    pointer-events: none;
+                    "
+                    transform="rotate(
+                    {{game.board.zoom.flipped ? 180 : 0}},
+                    {{model.state.charge_x}},
+                    {{model.state.charge_y}}
+                    )"
+                    >
+                {{model.displayChargeLength()}}"
               </text>
             </g>
             <line ng-if="

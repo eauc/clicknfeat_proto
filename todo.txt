@@ -2,9 +2,10 @@
 - button/shortcut clear label
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
+- mode charge : color target when within active melee range.
+- eventSource online
 
 - reorder command menus
-- mode charge basic : shortcut to trigger then orient from starting position, orient to target, move only front/back, draw charge lane, color target when within active melee range.
 - mode ranged attack.
 - auto deviate model (max distance?, origin?)
 - auto-slam model
