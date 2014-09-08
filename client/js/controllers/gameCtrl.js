@@ -129,7 +129,8 @@ angular.module('vassalApp.controllers')
       }).then(function() {
         var defer = $q.defer();
         var promise = defer.promise;
-        if($scope.game.player1.id !== $scope.user.id &&
+        if($stateParams.visibility === 'private' &&
+           $scope.game.player1.id !== $scope.user.id &&
            !$scope.game.player2.id) {
           promise = $http.put('/api/games/'+$scope.game.id+'/player2',
                               $scope.user)
