@@ -11,6 +11,8 @@
                 title="('L')"
                 ng-click="sendKey('L', $event)">Lock</button>
       </td>
+    </tr>
+    <tr>
       <td>
         <button style="
                 width: 50px;
@@ -20,9 +22,7 @@
                 title="(Delete)"
                 ng-click="sendKey('Delete', $event)">Delete</button>
       </td>
-    </tr>
-    <tr>
-      <td>
+      <td ng-show="command_sub==='set'">
         <button style="
                 width: 50px;
                 height: 50px;
@@ -31,7 +31,20 @@
                 title="('O')"
                 ng-click="sendKey('O', $event)">Set Origin</button>
       </td>
-      <td>
+    </tr>
+    <tr>
+      <td ng-click="command_sub='set'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-style="{
+                'background-color': command_sub==='set' ? '#0F0' : none
+                }"
+                >Set<br />&#8594;</button>
+      </td>
+      <td ng-show="command_sub==='set'">
         <button style="
                 width: 50px;
                 height: 50px;
@@ -40,44 +53,10 @@
                 title="('T')"
                 ng-click="sendKey('T', $event)">Set Target</button>
       </td>
-    </tr>
-    <tr>
-      <td>
-        <button style="
-                width: 50px;
-                height: 50px;
-                align:center;
-                "
-                title="('R')"
-                ng-click="sendKey('R', $event)">End of Ruler</button>
-      </td>
-      <td ng-if="game.templates.active.type === 'aoe'">
-        <button style="
-                width: 50px;
-                height: 50px;
-                align:center;
-                "
-                title="('L')"
-                ng-click="sendKey('D', $event)">Deviate</button>
-      </td>
-    </tr>
-    <tr ng-if="game.templates.active.type === 'aoe'">
-      <td colspan="2">
-        <form style="display:inline;"
-              ng-show="game.templates.active.type === 'aoe'">
-          Max Dev. : <input style="
-                            width:100%;
-                            height:35px;
-                            "
-                            type="number"
-                            ng-model="game.templates.active.max_deviation"
-                            ng-keydown="stopKeyPropagation($event)"
-                            ng-keypress="stopKeyPropagation($event)"
-                            />
-        </form>
-    </tr>
-    <tr ng-click="command_last_click=''">
-      <td ng-if="game.templates.active.type === 'aoe'">
+      <td ng-show="
+          command_sub==='size' &&
+          game.templates.active.type === 'aoe'
+          ">
         <button style="
                 width: 50px;
                 height: 50px;
@@ -86,7 +65,10 @@
                 title="('3')"
                 ng-click="sendKey('3', $event)">AoE 3"</button>
       </td>
-      <td ng-if="game.templates.active.type === 'spray'">
+      <td ng-show="
+          command_sub==='size' &&
+          game.templates.active.type === 'spray'
+          ">
         <button style="
                 width: 50px;
                 height: 50px;
@@ -95,7 +77,32 @@
                 title="('6')"
                 ng-click="sendKey('6', $event)">Spray 6"</button>
       </td>
-      <td ng-if="game.templates.active.type === 'aoe'">
+    </tr>
+    <tr>
+      <td ng-click="command_sub='size'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-style="{
+                'background-color': command_sub==='size' ? '#0F0' : none
+                }"
+                >Size<br />&#8594;</button>
+      </td>
+      <td ng-show="command_sub==='set'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('R')"
+                ng-click="sendKey('R', $event)">End of Ruler</button>
+      </td>
+      <td ng-show="
+          command_sub==='size' &&
+          game.templates.active.type === 'aoe'
+          ">
         <button style="
                 width: 50px;
                 height: 50px;
@@ -104,7 +111,10 @@
                 title="('4')"
                 ng-click="sendKey('4', $event)">AoE 4"</button>
       </td>
-      <td ng-if="game.templates.active.type === 'spray'">
+      <td ng-show="
+          command_sub==='size' &&
+          game.templates.active.type === 'spray'
+          ">
         <button style="
                 width: 50px;
                 height: 50px;
@@ -114,8 +124,21 @@
                 ng-click="sendKey('8', $event)">Spray 8"</button>
       </td>
     </tr>
-    <tr>
-      <td ng-if="game.templates.active.type === 'aoe'">
+    <tr ng-click="command_last_click=''">
+      <td>
+        <button ng-if="game.templates.active.type === 'aoe'"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('L')"
+                ng-click="sendKey('D', $event)">Deviate</button>
+      </td>
+      <td ng-show="
+          command_sub==='size' &&
+          game.templates.active.type === 'aoe'
+          ">
         <button style="
                 width: 50px;
                 height: 50px;
@@ -124,7 +147,10 @@
                 title="('5')"
                 ng-click="sendKey('5', $event)">AoE 5"</button>
       </td>
-      <td ng-if="game.templates.active.type === 'spray'">
+      <td ng-show="
+          command_sub==='size' &&
+          game.templates.active.type === 'spray'
+          ">
         <button style="
                 width: 50px;
                 height: 50px;
@@ -134,16 +160,21 @@
                 ng-click="sendKey('0', $event)">Spray 10"</button>
       </td>
     </tr>
+    <tr ng-if="game.templates.active.type === 'aoe'">
+      <td colspan="2">
+        <form style="display:inline;"
+              ng-show="game.templates.active.type === 'aoe'">
+          Max Dev. :
+          <input style="
+                 width:100%;
+                 height:35px;
+                 "
+                 type="number"
+                 ng-model="game.templates.active.max_deviation"
+                 ng-keydown="stopKeyPropagation($event)"
+                 ng-keypress="stopKeyPropagation($event)"
+                 />
+        </form>
+    </tr>
   </table>
-    <!-- <ul style="
-    margin:0px;
-    padding:0px;
-    list-style-type:none;
-    "
-    >
-    <li>Position template (Drag template)</li>
-    <li>Move template ([Shift +][Ctrl +] Arrows)</li>
-    <li>Select Template (Click on inactive template)</li>
-    <li>Exit (Click on active template/on model)</li>
-    </ul> -->
 </div>

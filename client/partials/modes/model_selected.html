@@ -182,6 +182,19 @@
       </td>
     </tr>
     <tr>
+      <td ng-show="game.selection.length === 1"
+          ng-click="command_sub=''">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('C')"
+                ng-click="sendKey('C', $event)"
+                >Charge</button>
+      </td>
+    </tr>
+    <tr>
       <td ng-click="command_sub='count'">
         <button style="
                 width: 50px;

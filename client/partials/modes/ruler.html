@@ -1,17 +1,23 @@
 <div>
-  <!-- <strong>Ruler Commands</strong>
-  <ul style="
-  margin:0px;
-  padding:0px;
-  list-style-type:none;
-  "
-  >
-  <li>Measure distance (Drag on board)</li>
-  <li><button ng-click="sendKey('Shift R', $event)">Exit</button> (Shift + 'R')</li>
-  </ul> -->
   <strong>Ruler</strong>
   <table style="border-collapse:collapse;">
-    <tr ng-click="command_last_click=''">
+    <tr>
+      <td colspan="2">
+        Max Range
+        <input style="
+               width:100%;
+               height:35px;
+               "
+               type="number"
+               ng-model="game.ruler.state.range"
+               placeholder="Max Range"
+               ng-change="game.ruler.sendStateCmd()"
+               ng-keydown="stopKeyPropagation($event)"
+               ng-keypress="stopKeyPropagation($event)"
+               />
+      </td>
+    </tr>
+    <tr>
       <td>
         <button style="
                 width: 50px;
@@ -21,6 +27,8 @@
                 title="('O')"
                 ng-click="sendKey('O', $event)">Set Origin</button>
       </td>
+    </tr>
+    <tr>
       <td>
         <button style="
                 width: 50px;
@@ -29,19 +37,6 @@
                 "
                 title="('T')"
                 ng-click="sendKey('T', $event)">Set Target</button>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        Max Range
-        <input style="width:100%;"
-               type="number"
-               ng-model="game.ruler.state.range"
-               placeholder="Max Range"
-               ng-change="game.ruler.sendStateCmd()"
-               ng-keydown="stopKeyPropagation($event)"
-               ng-keypress="stopKeyPropagation($event)"
-               />
       </td>
     </tr>
   </table>

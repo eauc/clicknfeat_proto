@@ -1,16 +1,5 @@
 <div>
   <strong>Template Locked</strong>
-  <!-- <ul style="
-  margin:0px;
-  padding:0px;
-  list-style-type:none;
-  "
-  >
-  <li><button ng-click="sendKey('L', $event)">Unlock</button> ('L')</li>
-  <li><button ng-click="sendKey('Delete', $event)">Delete</button> (Delete)</li>
-  <li>Select Template (Click on inactive template)</li>
-  <li>Exit (Click on active template/on model)</li>
-  </ul> -->
   <table style="border-collapse:collapse;">
     <tr ng-click="command_last_click=''">
       <td>
@@ -22,6 +11,8 @@
                 title="('L')"
                 ng-click="sendKey('L', $event)">Unlock</button>
       </td>
+    </tr>
+    <tr>
       <td>
         <button style="
                 width: 50px;
