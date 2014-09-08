@@ -205,7 +205,8 @@ angular.module('vassalApp.services')
                                           true, this.target));
           },
           'Click': function(scope, event, drag, user_x, user_y) {
-            if(drag.event === 'Model') {
+            if(drag.event === 'Model' &&
+               drag.target.state.id !== scope.game.selection[0]) {
               this.target = drag.target;
               if(scope.game.models[scope.game.selection[0]].state.charge_length === 0) {
                 scope.game.newCommand(command('onSelection', 'startCharge', this.target));
