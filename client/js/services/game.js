@@ -237,7 +237,7 @@ angular.module('vassalApp.services')
             var direction = instance.rollDie();
             var distance = Math.min(instance.rollDie(), dist_max ? dist_max : 6);
             var text = 'AoE deviation : direction '+direction+', distance '+distance+'"';
-            this.newCommand(command('sendMsg', 'dice', text));
+            this.newCommand(command('sendMsg', 'dev', text));
             return {
               direction: direction,
               distance: distance*10,
