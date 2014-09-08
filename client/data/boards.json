@@ -1,5 +1,41 @@
 [
   {
+    "name": "Arid Coast",
+    "img": "/data/board/arid_coast.png"
+  },
+  {
+    "name": "Badlands Necrotite Mine",
+    "img": "/data/board/badlands_necrotite_mine.png"
+  },
+  {
+    "name": "Crag Outskirts",
+    "img": "/data/board/crag_outskirts.png"
+  },
+  {
+    "name": "Dustbowl",
+    "img": "/data/board/dustbowl.png"
+  },
+  {
+    "name": "Fire and Ice",
+    "img": "/data/board/fire_and_ice.png"
+  },
+  {
+    "name": "Lumberyard",
+    "img": "/data/board/lumberyard.png"
+  },
+  {
+    "name": "Mud Village",
+    "img": "/data/board/mud_village.png"
+  },
+  {
+    "name": "Orgoth Excavation",
+    "img": "/data/board/orgoth_excavation.png"
+  },
+  {
+    "name": "Snow Drift",
+    "img": "/data/board/snow_drift.png"
+  },
+  {
     "name": "Vive la resistance",
     "img": "/data/board/vive_la_resistance.png",
     "terrain": {
@@ -44,9 +80,5 @@
         }
       ]
     }
-  },
-  {
-    "name": "Arid Coast",
-    "img": "/data/board/arid_coast.png"
   }
 ]

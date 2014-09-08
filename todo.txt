@@ -1,16 +1,16 @@
+- aoe/spray create -> click on model -> set as origin/target, move to target mode
 
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
 - eventSource online
 
-- mode ranged attack.
+- mode ranged attack : change to ruler mode, set selected model as origin for ruler/aoe/spray, click on model set target, if ruler too short move AoE to EnfOfRuler.
 - auto deviate model (max distance?, origin?)
 - auto-slam model
 - place model to ruler end
 - split factions files in subfiles
 
 - text no highlight
-- aoe/spray create -> click on model -> set as origin/target
 
 =======================================================================================
 - suggestion labels precedents
