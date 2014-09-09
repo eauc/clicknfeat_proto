@@ -1377,4 +1377,17 @@
       </td>
     </tr>
   </table>
+  <div style="
+       position:absolute;
+       right: 0;
+       bottom: 0;
+       border: 1px solid black;
+       background-color: #CCF;
+       padding: 2px 3em;
+       "
+       ng-show="user.last_chat"
+       >
+      {{users.list[user.last_chat.from].name}} &#8594;
+      {{user.last_chat.text}}
+  </div>
 </div>

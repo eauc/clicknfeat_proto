@@ -8,6 +8,7 @@ angular.module('vassalApp.services')
              $rootScope) {
       var user = {
         chat: [],
+        last_chat: null,
         create: function() {
           this.id = null;
           this.stamp = Date.now();
@@ -23,6 +24,7 @@ angular.module('vassalApp.services')
         }
       };
       var user_source;
+      var last_chat_timeout;
       function openSource() {
         if(user_source) user_source.close();
         var url = '/api/users/'+user.id+'/subscribe';
@@ -35,6 +37,15 @@ angular.module('vassalApp.services')
           console.log('user chat event',e);
           var data = JSON.parse(e.data);
           user.chat.push(data);
+          if(data.from !== user.id) {
+            user.last_chat = data;
+            if(last_chat_timeout) clearTimeout(last_chat_timeout);
+            last_chat_timeout = setTimeout(function() {
+              user.last_chat = null;
+              last_chat_timeout = null;
+              $rootScope.$apply();
+            }, 2000);
+          }
           $rootScope.$apply();
         });
         user_source.onerror = function(e) {
