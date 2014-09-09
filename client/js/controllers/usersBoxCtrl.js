@@ -38,7 +38,7 @@ angular.module('vassalApp.controllers')
         $http.post('/api/users/chat', msg)
           .then(function(response) {
             console.log('chat send success', response);
-            // $scope.chat_msg = '';
+            $scope.chat_msg = '';
           }, function(response) {
             console.log('chat send error', response);
           });
