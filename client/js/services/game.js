@@ -479,6 +479,9 @@ angular.module('vassalApp.services')
           instance.cmd_source.onerror = function(e) {
             if(e.target.readyState === e.target.CLOSED) {
               console.log('cmd source error', e);
+              alert('The connection with the server is lost\n'+
+                    'Save your game, then try to reload the page.\n');
+              return;
             }
             instance.cmd_source.close();
             openCmdSource();
