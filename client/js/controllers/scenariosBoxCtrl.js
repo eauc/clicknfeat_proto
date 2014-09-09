@@ -7,9 +7,14 @@ angular.module('vassalApp.controllers')
     function($scope,
              command) {
       console.log('init scenariosBoxCtrl');
-      $scope.new_scenario = $scope.game.scenario ? _.find($scope.scenarios.list, function(sce) {
-        return sce.name === $scope.game.scenario.name;
-      }) : null;
+      function updateScope() {
+        $scope.new_scenario = $scope.game.scenario ? _.find($scope.scenarios.list, function(sce) {
+          return sce.name === $scope.game.scenario.name;
+        }) : null;
+      }
+      $scope.$watch('game.scenario', updateScope);
+      updateScope();
+
       $scope.doSetScenario = function() {
         $scope.game.newCommand(command('setScenario', $scope.new_scenario));
       };

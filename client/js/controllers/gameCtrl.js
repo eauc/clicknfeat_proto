@@ -399,6 +399,16 @@ angular.module('vassalApp.controllers')
         $scope.doSetUnit = function() {
           $scope.game.newCommand(command('onSelection', 'setUnit', $scope.model_view.unit));
         };
+
+        $scope.doSetRandomSetup = function() {
+          var index = Math.floor(Math.random() * $scope.scenarios.list.length);
+          var new_scenario = $scope.scenarios.list[index];
+          $scope.game.newCommand(command('setScenario', new_scenario));
+
+          index = Math.floor(Math.random() * $scope.boards.list.length);
+          var new_board = $scope.boards.list[index];
+          $scope.game.newCommand(command('setBoard', new_board));
+        };
       });
     }
   ]);

@@ -1336,6 +1336,13 @@
             </div>
           </div>
           <div ng-if="menu_view === 'setup'">
+            <button style="
+                    margin-top:10px;
+                    height:35px;
+                    "
+                    ng-click="doSetRandomSetup()">
+              Random Setup
+            </button>
             <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
                  ng-include="'partials/boardsBox.html'">
             </div>
