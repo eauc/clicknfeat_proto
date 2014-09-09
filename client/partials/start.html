@@ -7,13 +7,68 @@
     </div>
     <form name="user-create"
           ng-submit="doCreateUser()">
-      <label for="user-name">User Name :</label>
-      <input id="user-name"
-             type="text"
-             placeholder="Name..."
-             required="required"
-             ng-model="user.name" />
-      <button type="submit">{{ user.id ? 'Change' : 'Create' }}</button>
+      <fieldset style="
+                max-width:400px;
+                "
+                >
+        <div>
+          <label for="user-name">User Name :</label>
+          <input id="user-name"
+                 type="text"
+                 placeholder="Name..."
+                 required="required"
+                 ng-model="user.name" />
+        </div>
+        <div>
+          <label for="user-lang"
+                 style="vertical-align:top;">Lang. :</label>
+          <input id="user-lang"
+                 type="text"
+                 placeholder="FR, US..."
+                 ng-model="user.lang" />
+        </div>
+        <div>
+          <label for="user-speak"
+                 style="vertical-align:top;">Chat :</label>
+          <select id="user-speak"
+                  ng-model="user.speak"
+                  multiple="multiple">
+            <option value="Skype">Skype</option>
+            <option value="Text">Text</option>
+          </select>
+        </div>
+        <div>
+          <label for="user-factions"
+                 style="vertical-align:top;">Faction(s) :</label>
+          <select id="user-factions"
+                  ng-model="user.factions"
+                  ng-options="id as f.name for (id, f) in factions.list"
+                  multiple="multiple">
+          </select>
+        </div>
+        <div>
+          <label for="user-points"
+                 style="vertical-align:top;">Points :</label>
+          <input id="user-points"
+                 type="text"
+                 placeholder="50, 35..."
+                 ng-model="user.points" />
+        </div>
+        <div>
+          <label for="user-positions"
+                 style="vertical-align:top;">Favorites KillCaster Positions :</label>
+          <select id="user-positions"
+                  ng-model="user.positions"
+                  multiple="multiple">
+            <option value="Missionary">Missionary</option>
+            <option value="69">69</option>
+            <option value="47">47</option>
+            <option value="71">71</option>
+            <option value="WTF?">WTF?</option>
+          </select>
+        </div>
+        <button type="submit">{{ user.id ? 'Change' : 'Create' }}</button>
+      </fieldset>
     </form>
     <div ng-include="'/partials/usersBox.html'">
     </div>

@@ -145,12 +145,28 @@ class VassalApp < Sinatra::Base
     @users.create(data).to_json
   end
 
+  post "/api/users/chat" do
+    data = JSON.parse request.body.read
+    @users.chatMsg data
+    status 200
+  end
+
   get "/api/users/:user_id" do
     user_id = params[:user_id].to_i
     return status 404 unless @users.exist? user_id
 
     content_type 'text/json'
     @users[user_id].to_json
+  end
+
+  get "/api/users/:user_id/subscribe", :provides => 'text/event-stream' do
+    user_id = params[:user_id].to_i
+    return status 404 unless @users.exist? user_id
+
+    stream(:keep_open) do |out|
+      out << "retry:100\n\n"
+      @users.addUserConnection user_id, out
+    end
   end
 
 end

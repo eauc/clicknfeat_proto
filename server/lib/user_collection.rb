@@ -21,6 +21,8 @@ class UserCollection
   def create data
     i = generate_id
     data['id'] = i
+    data['chat'] = []
+    data['connections'] = []
     @users[i] = data
 
     self.signalConnections
@@ -56,6 +58,40 @@ class UserCollection
     data = self.list.to_json
     connections.each do |out|
       out << "retry:100\ndata:#{data}\n\n"
+    end
+  end
+
+  def chatMsg data
+    if self.exist? data['from']
+      @users[data['from']]['chat'] << data
+      self.signalUserConnections data['from'], data
+    end
+    data['to'].each do |to|
+      if self.exist? to
+        @users[to]['chat'] << data
+        self.signalUserConnections to, data
+      end
+    end
+  end
+    
+  def userConnections id
+    @users[id]['connections'].reject!(&:closed?)
+    @users[id]['connections']
+  end
+
+  def addUserConnection id, out
+    userConnections(id) << out
+
+    # @users[id]['chat'].each do |msg|
+    #   data = msg.to_json
+    #   out << "retry:100\nevent:chat\ndata:#{data}\n\n"
+    # end
+  end
+
+  def signalUserConnections id, msg
+    data = msg.to_json
+    @users[id]['connections'].each do |out|
+      out << "retry:100\nevent:chat\ndata:#{data}\n\n"
     end
   end
 end
