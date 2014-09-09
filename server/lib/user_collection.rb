@@ -6,6 +6,7 @@ class UserCollection
 
   def initialize
     @users = {}
+    @connections = []
   end
 
   def generate_id
@@ -21,6 +22,10 @@ class UserCollection
     i = generate_id
     data['id'] = i
     @users[i] = data
+
+    self.signalConnections
+
+    @users[i]
   end
 
   def exist? i
@@ -33,5 +38,24 @@ class UserCollection
 
   def list
     @users
+  end
+    
+  def connections
+    @connections.reject!(&:closed?)
+    @connections
+  end
+
+  def addConnection out
+    connections << out
+    
+    data = self.list.to_json
+    out << "retry:100\ndata:#{data}\n\n"
+  end
+
+  def signalConnections
+    data = self.list.to_json
+    connections.each do |out|
+      out << "retry:100\ndata:#{data}\n\n"
+    end
   end
 end

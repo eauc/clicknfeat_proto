@@ -132,6 +132,13 @@ class VassalApp < Sinatra::Base
     @users.list.to_json
   end
 
+  get "/api/users/subscribe", :provides => 'text/event-stream' do
+    stream(:keep_open) do |out| 
+      out << "retry:100\n\n"
+      @users.addConnection out
+    end
+  end
+
   post "/api/users" do
     content_type 'text/json'
     data = JSON.parse request.body.read
