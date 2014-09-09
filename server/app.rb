@@ -25,6 +25,13 @@ class VassalApp < Sinatra::Base
     @games.list.to_json
   end
 
+  get "/api/games/subscribe", :provides => 'text/event-stream' do
+    stream(:keep_open) do |out| 
+      out << "retry:100\n\n"
+      @games.addConnection out
+    end
+  end
+
   post "/api/games" do
     content_type 'text/json'
     data = JSON.parse request.body.read
@@ -54,6 +61,7 @@ class VassalApp < Sinatra::Base
 
     data = JSON.parse request.body.read
     game.player2=data
+    @games.signalConnections
     game.to_json true
   end
 

@@ -9,6 +9,7 @@ class GameCollection
     @ids = {}
     @games = {}
     @public_games = {}
+    @connections = []
   end
 
   def generate_id
@@ -28,6 +29,10 @@ class GameCollection
     }
     @games[id[:private]] = Game.new id, data
     @public_games[id[:public]] = @games[id[:private]]
+
+    self.signalConnections
+
+    @games[id[:private]]
   end
 
   def exist? i
@@ -53,4 +58,24 @@ class GameCollection
       }
     end
   end
+    
+  def connections
+    @connections.reject!(&:closed?)
+    @connections
+  end
+
+  def addConnection out
+    connections << out
+    
+    data = self.list.to_json
+    out << "retry:100\ndata:#{data}\n\n"
+  end
+
+  def signalConnections
+    data = self.list.to_json
+    connections.each do |out|
+      out << "retry:100\ndata:#{data}\n\n"
+    end
+  end
+
 end

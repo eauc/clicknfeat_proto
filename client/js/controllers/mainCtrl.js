@@ -9,6 +9,7 @@ angular.module('vassalApp.controllers')
     'factions',
     'scenarios',
     'boards',
+    'games',
     'user',
     function($scope,
              $rootScope,
@@ -17,6 +18,7 @@ angular.module('vassalApp.controllers')
              factions,
              scenarios,
              boards,
+             games,
              user) {
       console.log('init mainCtrl');
       factions.then(function(list) {
@@ -43,7 +45,7 @@ angular.module('vassalApp.controllers')
           .then(function(response) {
             console.log('refresh users success', response);
             $scope.users = response.data;
-          }, function(reponse) {
+          }, function(response) {
             console.log('refresh users error', response);
           }).then(function() {
             setTimeout(refreshUsers, 10000);
@@ -51,19 +53,7 @@ angular.module('vassalApp.controllers')
       }
       refreshUsers();
 
-      $scope.games = [];
-      function refreshGames() {
-        $http.get('/api/games')
-          .then(function(response) {
-            console.log('refresh game success', response);
-            $scope.games = response.data;
-          }, function(reponse) {
-            console.log('refresh games error', response);
-          }).then(function() {
-            setTimeout(refreshGames, 10000);
-          });
-      }
-      refreshGames();
+      $scope.games = games;
 
       $scope.doGoHome = function() {
         $state.go('start');

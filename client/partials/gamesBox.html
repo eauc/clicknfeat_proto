@@ -1,7 +1,7 @@
 <div ng-controller="gamesBoxCtrl">
   <strong>Games online :</strong>
   <ul style="padding-left: 2em;">
-    <li ng-repeat="g in games"
+    <li ng-repeat="g in games.list"
         ng-style="{
         'background-color': g.public_id === game.public_id ? '#0F0' : (watch_game.id === g.public_id ? '#CCC' : 'white')
         }"
