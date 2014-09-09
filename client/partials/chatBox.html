@@ -1,5 +1,5 @@
 <div ng-controller="chatBoxCtrl">
-  <div ng-if="game.id">
+  <div ng-show="game.id">
     <button style="
             width: 50px;
             height: 2em;
@@ -43,8 +43,12 @@
     </form>
   </div>
   <div ng-repeat="cmd in showMsgCommands(game.new_commands).reverse()">
-    <span style="color:#00f;">{{cmd.user.name}}</span>
-    <span style="color:#f0f;">[{{cmd.msg_type}}]</span>
+    <span style="color:#00f;"
+          ng-style="{
+          color: cmd.user.id === user.id ? '#33F' : '#F3F'
+          }"
+          >{{cmd.user.name}}</span>
+    <span style="color:#0ff;">[{{cmd.msg_type}}]</span>
     {{cmd.msg_text}}
     <span style="color:#00f;"
           ng-if="cmd.msg_type === 'dice'">
@@ -53,8 +57,12 @@
   </div>
   <div ng-repeat="cmd in showMsgCommands(game.commands).reverse()">
     &#8594;
-    <span style="color:#00f;">{{cmd.user.name}}</span>
-    <span style="color:#f0f;">[{{cmd.msg_type}}]</span>
+    <span style="color:#00f;"
+          ng-style="{
+          color: cmd.user.id === user.id ? '#33F' : '#F3F'
+          }"
+          >[{{cmd.user.name}}]</span>
+    <span style="color:#0AA;">({{cmd.msg_type}})</span>
     {{cmd.msg_text}}
     <span ng-if="cmd.msg_type === 'dice'">
       = {{cmd.msg_total}}

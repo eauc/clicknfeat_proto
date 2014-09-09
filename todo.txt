@@ -2,7 +2,6 @@
 
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
-- eventSource online
 
 - mode ranged attack : change to ruler mode, set selected model as origin for ruler/aoe/spray, click on model set target, if ruler too short move AoE to EnfOfRuler.
 - auto deviate model (max distance?, origin?)
@@ -15,9 +14,7 @@
 =======================================================================================
 - suggestion labels precedents
 - multi-labels
-- corpse/ames
 - highlight models sous AoE/spray/charge
-- shortcut pour marquer les damages des warriors
 
 =======================================================================================
 - des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
