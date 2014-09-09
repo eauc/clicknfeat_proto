@@ -28,12 +28,18 @@
          'background-color': (cmd.stamp === selected.stamp) ? '#DDD' : 'white'
          }"
          >
+      <span ng-style="{
+            color: cmd.user.id === user.id ? '#33A' : '#A3A'
+            }">[{{cmd.user.name}}]</span>
       {{cmd.desc()}} - {{cmd.stamp}}
     </div>
   </div>
   <div ng-if="game.new_commands.length !== 0"
        style="max-height:100px;overflow-y:auto;">
     <div ng-repeat="cmd in game.new_commands.slice().reverse() track by cmd.stamp">
+      <span ng-style="{
+            color: cmd.user.id === user.id ? '#33F' : '#F3F'
+            }">[{{cmd.user.name}}]</span>
       {{cmd.desc()}} - {{cmd.stamp}}
     </div>
   </div>
@@ -45,6 +51,9 @@
          'background-color': (cmd.stamp === selected.stamp) ? '#DDD' : ($index === 0 ? '#0F0' : 'white')
          }"
          >
+      <span ng-style="{
+            color: cmd.user.id === user.id ? '#33F' : '#F3F'
+            }">[{{cmd.user.name}}]</span>
       &#8594; {{cmd.desc()}} - {{cmd.stamp}}
     </div>
   </div>
