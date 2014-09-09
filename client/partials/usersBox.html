@@ -16,6 +16,10 @@
       - {{u.positions.join(',')}}
     </li>
   </ul>
+  <div ng-show="users.source.readyState === users.source.CLOSED"
+       style="color:#F33">
+    Connection with server is down.
+  </div>
   <div ng-show="users.list.length !== 0">
     <div>
       <strong>Chat with selected players :</strong>

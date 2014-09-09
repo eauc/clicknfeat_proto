@@ -1,5 +1,9 @@
 <div ng-controller="gamesBoxCtrl">
   <strong>Games online :</strong>
+  <div ng-show="games.source.readyState === games.source.CLOSED"
+       style="color:#F33">
+    Connection with server is down.
+  </div>
   <ul style="padding-left: 2em;">
     <li ng-repeat="g in games.list"
         ng-style="{

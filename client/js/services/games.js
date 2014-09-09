@@ -24,7 +24,9 @@ angular.module('vassalApp.services')
         games.source.onerror = function(e) {
           if(e.target.readyState === e.target.CLOSED) {
             console.log('games source error', e);
+            games.list = [];
             setTimeout(openSource, 5000);
+            $rootScope.$apply();
             return;
           }
         };

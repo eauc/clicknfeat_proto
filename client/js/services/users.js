@@ -24,7 +24,9 @@ angular.module('vassalApp.services')
         users.source.onerror = function(e) {
           if(e.target.readyState === e.target.CLOSED) {
             console.log('users source error', e);
+            users.list = [];
             setTimeout(openSource, 5000);
+            $rootScope.$apply();
             return;
           }
         };
