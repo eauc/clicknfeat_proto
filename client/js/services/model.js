@@ -149,6 +149,12 @@ angular.module('vassalApp.services')
         decrementCounter: function(game) {
           this.state.counter = Math.max(0, this.state.counter-1);
         },
+        incrementSouls: function(game) {
+          this.state.souls++;
+        },
+        decrementSouls: function(game) {
+          this.state.souls = Math.max(0, this.state.souls-1);
+        },
         startCharge: function(game, target) {
           if(target) this.alignWith(game, target.state.x, target.state.y);
           this.state.charge_x = this.state.x;
@@ -366,6 +372,7 @@ angular.module('vassalApp.services')
             charge_length: 0,
             charge_max: 0,
             counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
+            souls: 0,
             label: '',
             unit: null,
             show_image: true,
@@ -377,6 +384,7 @@ angular.module('vassalApp.services')
             show_counter: args[1].type === 'wardude' ||
               args[1].type === 'beast' ||
               args[1].type === 'jack',
+            show_souls: false,
             show_unit: false,
             show_fire: false,
             show_disrupt: false,
@@ -400,6 +408,7 @@ angular.module('vassalApp.services')
             charge_length: 0,
             charge_max: 0,
             counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
+            souls: 0,
             label: '',
             unit: null,
             show_image: true,
@@ -411,6 +420,7 @@ angular.module('vassalApp.services')
             show_counter:  args[1].type === 'wardude' ||
               args[1].type === 'beast' ||
               args[1].type === 'jack',
+            show_souls: false,
             show_unit: false,
             show_fire: false,
             show_disrupt: false,

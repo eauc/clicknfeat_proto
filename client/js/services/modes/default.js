@@ -222,6 +222,10 @@ angular.module('vassalApp.services')
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_stationary;
             scope.game.newCommand(command('onSelection', 'toggle', 'stationary', new_val));
           },
+          'Shift S': function(scope) {
+            var new_val = !scope.game.models[scope.game.selection[0]].state.show_souls;
+            scope.game.newCommand(command('onSelection', 'toggle', 'souls', new_val));
+          },
           'T': function(scope) {
             if(!scope.game.id) return;
             modes.goTo('model_target', scope);
@@ -368,9 +372,17 @@ angular.module('vassalApp.services')
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 'incrementCounter'));
           },
+          'Shift Add': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 'incrementSouls'));
+          },
           'Substract': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 'decrementCounter'));
+          },
+          'Shift Substract': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 'decrementSouls'));
           },
           'PageUp': function(scope) {
             if(!scope.game.id) return;

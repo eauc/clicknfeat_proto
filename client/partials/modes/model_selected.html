@@ -165,21 +165,6 @@
                 title="('N')"
                 ng-click="sendKey('N', $event)">Show Count</button>
       </td>
-      <td ng-show="command_sub==='effect'">
-        <button style="
-                width: 50px;
-                height: 50px;
-                align:center;
-                "
-                title="{{effects['B'].name}} (Alt + 'B')"
-                ng-click="sendKey('Alt B', $event)">
-          <img ng-if="effects['B'].icon"
-               src="{{effects['B'].icon}}" />
-          <span ng-if="!effects['B'].icon">
-            {{effects['B'].desc}}
-          </span>
-        </button>
-      </td>
     </tr>
     <tr>
       <td ng-show="game.selection.length === 1"
@@ -192,19 +177,6 @@
                 title="('C')"
                 ng-click="sendKey('C', $event)"
                 >Charge</button>
-      </td>
-    </tr>
-    <tr>
-      <td ng-click="command_sub='count'">
-        <button style="
-                width: 50px;
-                height: 50px;
-                align:center;
-                "
-                ng-style="{
-                'background-color': command_sub==='count' ? '#0F0' : none
-                }"
-                >Count<br />&#8594;</button>
       </td>
       <td ng-show="command_sub==='aura'">
         <button style="
@@ -227,6 +199,56 @@
                 "
                 title="('+')"
                 ng-click="sendKey('Add', $event)">Count +</button>
+      </td>
+      <td ng-show="command_sub==='effect'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="{{effects['B'].name}} (Alt + 'B')"
+                ng-click="sendKey('Alt B', $event)">
+          <img ng-if="effects['B'].icon"
+               src="{{effects['B'].icon}}" />
+          <span ng-if="!effects['B'].icon">
+            {{effects['B'].desc}}
+          </span>
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td ng-click="command_sub='count'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-style="{
+                'background-color': command_sub==='count' ? '#0F0' : none
+                }"
+                >Counts<br />&#8594;</button>
+      </td>
+      <td ng-show="command_sub==='aura'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                background-color:{{auras['4'].color}};
+                "
+                title="(Ctrl + '4')"
+                ng-click="sendKey('Ctrl 4', $event)"
+                >
+          Aura {{auras['4'].name}}
+        </button>
+      </td>
+      <td ng-show="command_sub==='count'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('-')"
+                ng-click="sendKey('Substract', $event)">Count -</button>
       </td>
       <td ng-show="command_sub==='edit'">
         <button style="
@@ -270,12 +292,12 @@
                 width: 50px;
                 height: 50px;
                 align:center;
-                background-color:{{auras['4'].color}};
+                background-color:{{auras['5'].color}};
                 "
-                title="(Ctrl + '4')"
-                ng-click="sendKey('Ctrl 4', $event)"
+                title="(Ctrl + '5')"
+                ng-click="sendKey('Ctrl 5', $event)"
                 >
-          Aura {{auras['4'].name}}
+          Aura {{auras['5'].name}}
         </button>
       </td>
       <td ng-show="command_sub==='count'">
@@ -284,8 +306,8 @@
                 height: 50px;
                 align:center;
                 "
-                title="('-')"
-                ng-click="sendKey('Substract', $event)">Count -</button>
+                title="(Shift + 'S')"
+                ng-click="sendKey('Shift S', $event)">Show Souls</button>
       </td>
       <td ng-show="command_sub==='edit'">
         <button style="
@@ -329,13 +351,22 @@
                 width: 50px;
                 height: 50px;
                 align:center;
-                background-color:{{auras['5'].color}};
+                background-color:{{auras['6'].color}};
                 "
-                title="(Ctrl + '5')"
-                ng-click="sendKey('Ctrl 5', $event)"
+                title="(Ctrl + '6')"
+                ng-click="sendKey('Ctrl 6', $event)"
                 >
-          Aura {{auras['5'].name}}
+          Aura {{auras['6'].name}}
         </button>
+      </td>
+      <td ng-show="command_sub==='count'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="(Shift + '+')"
+                ng-click="sendKey('Shift Add', $event)">Souls +</button>
       </td>
       <td ng-show="command_sub==='edit'">
         <button style="
@@ -372,18 +403,14 @@
                 title="('I')"
                 ng-click="sendKey('I', $event)">Show Image</button>
       </td>
-      <td ng-show="command_sub==='aura'">
+      <td ng-show="command_sub==='count'">
         <button style="
                 width: 50px;
                 height: 50px;
                 align:center;
-                background-color:{{auras['6'].color}};
                 "
-                title="(Ctrl + '6')"
-                ng-click="sendKey('Ctrl 6', $event)"
-                >
-          Aura {{auras['6'].name}}
-        </button>
+                title="(Shift + '-')"
+                ng-click="sendKey('Shift Substract', $event)">Souls -</button>
       </td>
       <td ng-show="command_sub==='edit'">
         <button style="

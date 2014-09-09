@@ -832,6 +832,52 @@
                 {{model.state.counter}}
               </text>
             </g>
+            <g ng-repeat="model in modelShow('souls')"
+               transform="rotate(
+               {{model.state.rot}},
+               {{model.state.x}},
+               {{model.state.y}}
+               )"
+               >
+              <rect x="{{model.state.x+model.info.r-1}}"
+                    y="{{model.state.y-model.info.r-8}}"
+                    width="10" height="10"
+                    style="
+                    fill:#333;
+                    fill-opacity:0.7;
+                    pointer-events: none;
+                    "
+                    />
+              <image x="{{model.state.x+model.info.r-6}}"
+                     y="{{model.state.y-model.info.r-10}}"
+                     width="20"
+                     height="20"
+                     xlink:href="/data/icons/Soul.png"
+                     style="
+                     pointer-events: none;
+                     "
+                   />
+              <text x="{{model.state.x+model.info.r+4}}"
+                    y="{{model.state.y-model.info.r-1}}"
+                    style="
+                    fill:white;
+                    text-anchor:middle;
+                    font-size:8px;
+                    font-weight:bold;
+                    font-family:Verdana, sans-serif;
+                    pointer-events: none;
+                    -webkit-user-select: none;
+                    -moz-user-select:none;
+                    "
+                    transform="rotate(
+                    {{(game.board.zoom.flipped ? 180 : 0)-model.state.rot}},
+                    {{model.state.x+model.info.r+5}},
+                    {{model.state.y-model.info.r-3}}
+                    )"
+                    >
+                {{model.state.souls}}
+              </text>
+            </g>
             <g ng-repeat="model in modelShow('charge')">
               <line x1="{{model.state.charge_x}}" y1="{{model.state.charge_y}}"
                     x2="{{model.state.x}}" y2="{{model.state.y}}"
