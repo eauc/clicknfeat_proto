@@ -372,6 +372,16 @@ angular.module('vassalApp.services')
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 'incrementCounter'));
           },
+          'Ctrl Add': function(scope) {
+            if(!scope.game.id) return;
+            if(scope.game.selection.length !== 1) return;
+            var model = scope.game.models[scope.game.selection[0]];
+            if(model.info.damage.type !== 'warrior') return;
+            var n = model.state.damage.n;
+            var new_n = Math.min(n+1, model.info.damage.n);
+            if(new_n === n) return;
+            scope.game.newCommand(command('onSelection', 'toggleDamage', new_n));
+          },
           'Shift Add': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 'incrementSouls'));
@@ -379,6 +389,16 @@ angular.module('vassalApp.services')
           'Substract': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 'decrementCounter'));
+          },
+          'Ctrl Substract': function(scope) {
+            if(!scope.game.id) return;
+            if(scope.game.selection.length !== 1) return;
+            var model = scope.game.models[scope.game.selection[0]];
+            if(model.info.damage.type !== 'warrior') return;
+            var n = model.state.damage.n;
+            var new_n = Math.max(n-1, 0);
+            if(new_n === n) return;
+            scope.game.newCommand(command('onSelection', 'toggleDamage', new_n));
           },
           'Shift Substract': function(scope) {
             if(!scope.game.id) return;
