@@ -37,6 +37,10 @@ class UserCollection
   def [] i
     @users[i]
   end
+  def []= i, data
+    @users[i] = data
+    self.signalConnections
+  end
 
   def list
     @users

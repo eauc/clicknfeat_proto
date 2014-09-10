@@ -21,8 +21,40 @@ angular.module('vassalApp.services')
             }, function(response) {
               console.log('create user error', response);
             });
+        },
+        refresh: function() {
+          if(!this.id) return;
+          $http.put('/api/users/'+this.id, this)
+            .then(function(response) {
+              console.log('update user success', response);
+              localStorage.setItem('vassal_user', JSON.stringify(user));
+            }, function(response) {
+              console.log('update user error', response);
+            });
+        },
+        validate: function() {
+          if(this.id) {
+            $http.get('/api/users/'+this.id)
+              .then(function(response) {
+                console.log('get stored user success', response);
+                if(response.data.stamp === stored_user.stamp) {
+                  console.log('stored user validated !');
+                  _.extend(user, response.data);
+                  localStorage.setItem('vassal_user', JSON.stringify(user));
+                  openSource();
+                }
+                else {
+                  console.log('stored user invalid', response);
+                  user.create();
+                }
+              }, function(response) {
+                console.log('get stored user error', response);
+                user.create();
+              });
+          }
         }
       };
+
       var user_source;
       var last_chat_timeout;
       function openSource() {
@@ -51,7 +83,8 @@ angular.module('vassalApp.services')
         user_source.onerror = function(e) {
           if(e.target.readyState === e.target.CLOSED) {
             console.log('user source error', e);
-            setTimeout(openSource, 5000);
+            user.id = null;
+            $rootScope.$apply();
             return;
           }
         };
@@ -60,32 +93,13 @@ angular.module('vassalApp.services')
       var stored_user = null;
       try {
         stored_user = JSON.parse(localStorage.getItem('vassal_user'));
+        _.extend(user, stored_user);
       }
       catch(err) {
         console.log('no stored user');
       }
-      if(stored_user && stored_user.id) {
-        $http.get('/api/users/'+stored_user.id)
-          .then(function(response) {
-            console.log('get stored user success', response);
-            if(response.data.stamp === stored_user.stamp) {
-              console.log('stored user validated !');
-              _.extend(user, response.data);
-              localStorage.setItem('vassal_user', JSON.stringify(user));
-              openSource();
-            }
-            else {
-              console.log('stored user invalid', response);
-              localStorage.setItem('vassal_user', '');
-            }
-          }, function(response) {
-            console.log('get stored user error', response);
-            localStorage.setItem('vassal_user', '');
-            if(response.status !== 404) return;
-            _.extend(user, stored_user);
-            user.create();
-          });
-      }
+      user.validate();
+
       return user;
     }
   ]);

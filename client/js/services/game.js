@@ -20,6 +20,7 @@ angular.module('vassalApp.services')
              user) {
 
       var model_base = model({});
+      var game_source = null;
 
       var factory = function(data) {
         
@@ -444,8 +445,9 @@ angular.module('vassalApp.services')
               url += '?last=' + _.last(instance.commands).stamp;
           }
           console.log('open cmd source', url);
-          instance.cmd_source = new EventSource(url);
-          instance.cmd_source.onmessage = function(e) {
+          if(game_source) game_source.close();
+          game_source = new EventSource(url);
+          game_source.onmessage = function(e) {
             // console.log('cmd event');
             // console.log(e);
             var data = JSON.parse(e.data);
@@ -455,7 +457,7 @@ angular.module('vassalApp.services')
             if(cmd) instance.updateCommand(cmd);
             $rootScope.$apply();
           };
-          instance.cmd_source.addEventListener('undo', function(e) {
+          game_source.addEventListener('undo', function(e) {
             // console.log('cmd undo event');
             // console.log(e);
             var data = JSON.parse(e.data);
@@ -469,21 +471,21 @@ angular.module('vassalApp.services')
             }
             $rootScope.$apply();
           });
-          instance.cmd_source.addEventListener('game', function(e) {
+          game_source.addEventListener('game', function(e) {
             console.log('cmd game event',e);
             var data = JSON.parse(e.data);
             instance.player1 = data.player1;
             instance.player2 = data.player2;
             $rootScope.$apply();
           });
-          instance.cmd_source.onerror = function(e) {
+          game_source.onerror = function(e) {
             if(e.target.readyState === e.target.CLOSED) {
               console.log('cmd source error', e);
               alert('The connection with the server is lost\n'+
                     'Save your game, then try to reload the page.\n');
               return;
             }
-            instance.cmd_source.close();
+            game_source.close();
             openCmdSource();
           };
 

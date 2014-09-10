@@ -159,6 +159,15 @@ class VassalApp < Sinatra::Base
     @users[user_id].to_json
   end
 
+  put "/api/users/:user_id" do
+    user_id = params[:user_id].to_i
+    return status 404 unless @users.exist? user_id
+    data = JSON.parse request.body.read
+    return status 400 unless data['stamp'] == @users[user_id]['stamp']
+    @users[user_id] = data
+    status 200
+  end
+
   get "/api/users/:user_id/subscribe", :provides => 'text/event-stream' do
     user_id = params[:user_id].to_i
     return status 404 unless @users.exist? user_id

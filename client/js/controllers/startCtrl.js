@@ -73,7 +73,12 @@ angular.module('vassalApp.controllers')
       };
 
       $scope.doCreateUser = function() {
-        $scope.user.create();
+        if(!$scope.user.id) {
+          $scope.user.create();
+        }
+        else {
+          $scope.user.refresh();
+        }
       };
     }
   ]);
