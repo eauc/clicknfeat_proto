@@ -114,6 +114,11 @@
           </defs>
           <image id="canvas"
                  x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
+                 xlink:href="{{game.board.info.preview}}"
+                 style="display: {{game.layers.board ? 'inline' : 'none'}}"
+                 />
+          <image id="canvas"
+                 x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
                  xlink:href="{{game.board.info.img}}"
                  style="display: {{game.layers.board ? 'inline' : 'none'}}"
                  />

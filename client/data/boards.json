@@ -32,8 +32,17 @@
     "img": "/data/board/orgoth_excavation.png"
   },
   {
+    "name": "Rail Blockade",
+    "img": "/data/board/rail_blockade.png"
+  },
+  {
+    "name": "Rocky Clearing",
+    "img": "/data/board/rocky_clearing.png"
+  },
+  {
     "name": "Snow Drift",
-    "img": "/data/board/snow_drift.png"
+    "img": "/data/board/snow_drift.png",
+    "preview": "/data/board/snow_drift_low.png"
   },
   {
     "name": "Vive la resistance",
