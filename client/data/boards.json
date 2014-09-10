@@ -1,43 +1,53 @@
 [
   {
     "name": "Arid Coast",
-    "img": "/data/board/arid_coast.png"
+    "img": "/data/board/arid_coast.png",
+    "preview": "/data/board/arid_coast_low.png"
   },
   {
     "name": "Badlands Necrotite Mine",
-    "img": "/data/board/badlands_necrotite_mine.png"
+    "img": "/data/board/badlands_necrotite_mine.png",
+    "preview": "/data/board/badlands_necrotite_mine_low.png"
   },
   {
     "name": "Crag Outskirts",
-    "img": "/data/board/crag_outskirts.png"
+    "img": "/data/board/crag_outskirts.png",
+    "preview": "/data/board/crag_outskirts_low.png"
   },
   {
     "name": "Dustbowl",
-    "img": "/data/board/dustbowl.png"
+    "img": "/data/board/dustbowl.png",
+    "preview": "/data/board/dustbowl_low.png"
   },
   {
     "name": "Fire and Ice",
-    "img": "/data/board/fire_and_ice.png"
+    "img": "/data/board/fire_and_ice.png",
+    "preview": "/data/board/fire_and_ice_low.png"
   },
   {
     "name": "Lumberyard",
-    "img": "/data/board/lumberyard.png"
+    "img": "/data/board/lumberyard.png",
+    "preview": "/data/board/lumberyard_low.png"
   },
   {
     "name": "Mud Village",
-    "img": "/data/board/mud_village.png"
+    "img": "/data/board/mud_village.png",
+    "preview": "/data/board/mud_village_low.png"
   },
   {
     "name": "Orgoth Excavation",
-    "img": "/data/board/orgoth_excavation.png"
+    "img": "/data/board/orgoth_excavation.png",
+    "preview": "/data/board/orgoth_excavation_low.png"
   },
   {
     "name": "Rail Blockade",
-    "img": "/data/board/rail_blockade.png"
+    "img": "/data/board/rail_blockade.png",
+    "preview": "/data/board/rail_blockade_low.png"
   },
   {
     "name": "Rocky Clearing",
-    "img": "/data/board/rocky_clearing.png"
+    "img": "/data/board/rocky_clearing.png",
+    "preview": "/data/board/rocky_clearing_low.png"
   },
   {
     "name": "Snow Drift",
@@ -47,6 +57,7 @@
   {
     "name": "Vive la resistance",
     "img": "/data/board/vive_la_resistance.png",
+    "preview": "/data/board/vive_la_resistance_low.png",
     "terrain": {
       "rect": [
         {
