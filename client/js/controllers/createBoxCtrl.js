@@ -22,9 +22,11 @@ angular.module('vassalApp.controllers')
         }
       }, true);
       $scope.doToggleCreateModel = function() {
-        $scope.modes.current = ($scope.modes.current === $scope.modes['model_create']) ?
-          default_mode : $scope.modes['model_create'];
-        if($scope.modes.current !== $scope.modes['model_create']) return;
+        if($scope.modes.current === $scope.modes['model_create']) {
+          $scope.modes.goTo('default');
+          return;
+        }
+        $scope.modes.goTo('model_create');
 
         $scope.modes['model_create'].info = [];
         var mid_size = Math.ceil($scope.model.size/2);
