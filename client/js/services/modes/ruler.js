@@ -27,29 +27,31 @@ angular.module('vassalApp.services')
           'Click': function(scope, event, drag) {
             if(drag.event !== 'Model') return;
             var model = drag.target;
-            if(!this.origin) {
-              modes['ruler'].origin = model;
+            if(!scope.game.ruler.state.origin) {
+              scope.game.ruler.state.origin = model.state.id;
               scope.game.ruler.setStart(model.state.x, model.state.y);
               scope.game.ruler.state.active = false;
-              modes['ruler'].target = null;
+              scope.game.ruler.state.target = null;
               scope.game.ruler.sendStateCmd();
               return;
             }
-            if(modes['ruler'].origin === model) return;
-            modes['ruler'].target = model;
+            if(scope.game.ruler.state.origin === model.state.id) return;
+            scope.game.ruler.state.target = model.state.id;
             var ruler = scope.game.ruler;
             var start_x = ruler.state.x1;
             var start_y = ruler.state.y1;
             var end_x = model.state.x;
             var end_y = model.state.y;
-            if(modes['ruler'].origin) {
-              start_x = modes['ruler'].origin.state.x;
-              start_y = modes['ruler'].origin.state.y;
+            var origin;
+            if(scope.game.ruler.state.origin) {
+              origin = scope.game.models[scope.game.ruler.state.origin];
+              start_x = origin.state.x;
+              start_y = origin.state.y;
             }
             var angle = Math.atan2(end_x-start_x, start_y-end_y);
-            if(modes['ruler'].origin) {
-              start_x += modes['ruler'].origin.info.r * Math.sin(angle);
-              start_y -= modes['ruler'].origin.info.r * Math.cos(angle);
+            if(origin) {
+              start_x += origin.info.r * Math.sin(angle);
+              start_y -= origin.info.r * Math.cos(angle);
             }
             end_x -= model.info.r * Math.sin(angle);
             end_y += model.info.r * Math.cos(angle);
@@ -58,7 +60,8 @@ angular.module('vassalApp.services')
             var length = Math.sqrt(dx*dx + dy*dy);
             var display_length = length;
             if(scope.game.ruler.state.range > 0) {
-              modes['ruler'].target_in_range = display_length <= (scope.game.ruler.state.range*10);
+              scope.game.ruler.state.target_in_range =
+                display_length <= (scope.game.ruler.state.range*10);
               display_length = Math.min(scope.game.ruler.state.range*10, length);
             }
             end_x = start_x + (end_x - start_x) * display_length / length;
@@ -84,8 +87,8 @@ angular.module('vassalApp.services')
           group: 'Ruler',
           template: 'ruler.html',
           enter: function(scope) {
-            modes['ruler'].origin = null;
-            modes['ruler'].target = null;
+            scope.game.ruler.state.origin = null;
+            scope.game.ruler.state.target = null;
           },
           'Drag': function(scope, event, drag, user_x, user_y, dx, dy) {
             var length = Math.sqrt(dx*dx + dy*dy);
@@ -127,17 +130,13 @@ angular.module('vassalApp.services')
           name: 'Ruler Origin',
           group: 'Ruler',
           template: 'ruler_origin.html',
-          enter: function(scope) {
-            modes['ruler_origin'].origin = modes['ruler'].origin;
-            modes['ruler_origin'].target = modes['ruler'].target;
-          },
           'Click': function(scope, event, drag) {
             if(drag.event !== 'Model') return;
             var model = drag.target;
-            modes['ruler'].origin = model;
+            scope.game.ruler.state.origin = model.state.id;
             scope.game.ruler.setStart(model.state.x, model.state.y);
             scope.game.ruler.state.active = false;
-            modes['ruler'].target = null;
+            scope.game.ruler.state.target = null;
             scope.game.ruler.sendStateCmd();
 
             modes.goTo('ruler', scope);
@@ -156,30 +155,28 @@ angular.module('vassalApp.services')
           name: 'Ruler Target',
           group: 'Ruler',
           template: 'ruler_target.html',
-          enter: function(scope) {
-            modes['ruler_target'].origin = modes['ruler'].origin;
-            modes['ruler_target'].target = modes['ruler'].target;
-          },
           'Click': function(scope, event, drag) {
             if(drag.event !== 'Model') return;
             var model = drag.target;
 
-            if(modes['ruler'].origin === model) return;
+            if(scope.game.ruler.state.origin === model.state.id) return;
 
-            modes['ruler'].target = model;
+            scope.game.ruler.state.target = model.state.id;
             var ruler = scope.game.ruler;
             var start_x = ruler.state.x1;
             var start_y = ruler.state.y1;
             var end_x = model.state.x;
             var end_y = model.state.y;
-            if(modes['ruler'].origin) {
-              start_x = modes['ruler'].origin.state.x;
-              start_y = modes['ruler'].origin.state.y;
+            var origin;
+            if(ruler.state.origin) {
+              origin = scope.game.models[ruler.state.origin];
+              start_x = origin.state.x;
+              start_y = origin.state.y;
             }
             var angle = Math.atan2(end_x-start_x, start_y-end_y);
-            if(modes['ruler'].origin) {
-              start_x += modes['ruler'].origin.info.r * Math.sin(angle);
-              start_y -= modes['ruler'].origin.info.r * Math.cos(angle);
+            if(origin) {
+              start_x += origin.info.r * Math.sin(angle);
+              start_y -= origin.info.r * Math.cos(angle);
             }
             end_x -= model.info.r * Math.sin(angle);
             end_y += model.info.r * Math.cos(angle);
@@ -188,7 +185,8 @@ angular.module('vassalApp.services')
             var length = Math.sqrt(dx*dx + dy*dy);
             var display_length = length;
             if(scope.game.ruler.state.range > 0) {
-              modes['ruler'].target_in_range = display_length <= (scope.game.ruler.state.range*10);
+              scope.game.ruler.state.target_in_range =
+                display_length <= (scope.game.ruler.state.range*10);
               display_length = Math.min(scope.game.ruler.state.range*10, length);
             }
             end_x = start_x + (end_x - start_x) * display_length / length;

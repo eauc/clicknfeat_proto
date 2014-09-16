@@ -1224,12 +1224,13 @@
                 stroke-width:0.5px;
                 " />
           <circle ng-show="
-                  modes.current.group === 'Ruler' &&
-                  modes.current.origin !== null
+                  (modes.current.group === 'Ruler' ||
+                   game.ruler.state.active) &&
+                  game.ruler.state.origin !== null
                   "
-                  cx="{{modes.current.origin.state.x}}"
-                  cy="{{modes.current.origin.state.y}}"
-                  r="{{modes.current.origin.info.r}}"
+                  cx="{{game.models[game.ruler.state.origin].state.x}}"
+                  cy="{{game.models[game.ruler.state.origin].state.y}}"
+                  r="{{game.models[game.ruler.state.origin].info.r}}"
                   style="
                   fill:none;
                   stroke:#F90;
@@ -1238,19 +1239,20 @@
                   "
                   />
           <circle ng-show="
-                  modes.current.group === 'Ruler' &&
-                  modes.current.target !== null
+                  (modes.current.group === 'Ruler' ||
+                   game.ruler.state.active) &&
+                  game.ruler.state.target !== null
                   "
-                  cx="{{modes.current.target.state.x}}"
-                  cy="{{modes.current.target.state.y}}"
-                  r="{{modes.current.target.info.r}}"
+                  cx="{{game.models[game.ruler.state.target].state.x}}"
+                  cy="{{game.models[game.ruler.state.target].state.y}}"
+                  r="{{game.models[game.ruler.state.target].info.r}}"
                   style="
                   fill:none;
                   stroke-width:1px;
                   pointer-events: none;
                   "
                   ng-style="{
-                  'stroke': modes.current.target_in_range ? '#F0C' : '#F00'
+                  'stroke': game.ruler.state.target_in_range ? '#F0C' : '#F00'
                   }"
                   />
           <g ng-show="game.ruler.state.active"
