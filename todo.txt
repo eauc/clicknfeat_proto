@@ -19,6 +19,13 @@
 - whelps (FK + ranges)
 - couleur faction troll
 - sortie du mode de charge laisse le couloir
+- mouvement 0.5" terrain diff
+- burrowers burrow
+- feldun ne voit pas la couleur
+- ruler target reste en jeu quand target model deleted
+- chat derniere ligne background vert
+- memoriser distance charge max pour unites
+- sensibilite clavier
 =======================================================================================
 - des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
 Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui reviennent très souvent dans les règles spéciales, genre les lignes de 3" et de 5".
