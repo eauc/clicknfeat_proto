@@ -1,6 +1,6 @@
 <div ng-controller="scenariosBoxCtrl">
   <strong>Scenario :</strong><br />
-  <select ng-if="game.id"
+  <select ng-show="game.id"
           name="scenario"
           ng-model="new_scenario"
           ng-options="s as s.name for s in scenarios.list"
