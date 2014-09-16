@@ -151,15 +151,6 @@ angular.module('vassalApp.services')
             modes.goTo('default', scope);
           },
           // ------------------------------------------------------------------
-          'DragStart': function(scope, event, drag, dx, dy) {
-            if(!scope.game.id) return;
-            if(drag.event === 'Template') {
-              scope.game.templates.active = drag.target;
-              drag.target.startDraging();
-
-              modes.goTo('template_drag', scope);
-            }
-          },
           'Click': function(scope, event, drag, dx, dy) {
             switch(drag.event)
             {
@@ -352,6 +343,16 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('onActiveTemplate', 
                                           scope.game.board.zoom.flipped ? 'moveUp' : 'moveDown',
                                           true));
+          },
+          // ------------------------------------------------------------------
+          'DragStart': function(scope, event, drag, dx, dy) {
+            if(!scope.game.id) return;
+            if(drag.event === 'Template') {
+              scope.game.templates.active = drag.target;
+              drag.target.startDraging();
+
+              modes.goTo('template_drag', scope);
+            }
           },
         });
         return template_mode;
