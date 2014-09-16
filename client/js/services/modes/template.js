@@ -165,7 +165,7 @@ angular.module('vassalApp.services')
                   scope.game.templates.active = drag.target;
                   modes.goTo('template', scope);
                 }
-                break;
+                return;
               }
             case 'Model':
               {
@@ -173,6 +173,13 @@ angular.module('vassalApp.services')
                 modes['default']['Click'].apply(modes['default'],
                                             Array.prototype.slice.call(arguments));
                 modes.goTo('default', scope);
+                return;
+              }
+            case 'Board': 
+              {
+                scope.game.templates.active = null;
+                modes.goTo('default', scope);
+                return;
               }
             }
           },
@@ -372,7 +379,7 @@ angular.module('vassalApp.services')
                   scope.game.templates.active = drag.target;
                   modes.goTo('template', scope);
                 }
-                break;
+                return;
               }
             case 'Model': 
               {
@@ -413,6 +420,13 @@ angular.module('vassalApp.services')
                   active.origin.info.r * Math.cos(angle*Math.PI/180);
                 scope.game.newCommand(command('onActiveTemplate', 'set',
                                               x, y, angle));
+                return;
+              }
+            case 'Board': 
+              {
+                scope.game.templates.active = null;
+                modes.goTo('default', scope);
+                return;
               }
             }
           },
