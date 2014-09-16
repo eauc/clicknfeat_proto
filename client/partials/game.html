@@ -479,6 +479,26 @@
                      }"
                      ng-mousedown="onTemplateMouseDown($event, sp)"
                      />
+            <rect ng-repeat="wa in templateShowLocked('wall')"
+                  x="{{wa.x-5}}" y="{{wa.y-20}}"
+                  width="10" height="40"
+                  style="
+                  fill:#CCC;
+                  fill-opacity:1.0;
+                  stroke-width:0.5px;
+                  "
+                  transform="
+                  rotate(
+                  {{wa.rot}},
+                  {{wa.x}},
+                  {{wa.y}}
+                  )
+                  "
+                  ng-style="{
+                  'stroke': wa === game.templates.active ? '#0F0' : '#666',
+                  }"
+                  ng-mousedown="onTemplateMouseDown($event, wa)"
+                  />
           </svg>
           <svg id="model-canvas"
                x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
@@ -1076,7 +1096,31 @@
                      ng-click="onTemplateClick($event, sp)"
                      ng-mousedown="onTemplateMouseDown($event, sp)"
                      />
-            <circle ng-show="game.templates.active !== null && game.templates.active.origin !== null"
+            <rect ng-repeat="wa in templateShowUnlocked('wall')"
+                  x="{{wa.x-5}}" y="{{wa.y-20}}"
+                  width="10" height="40"
+                  style="
+                  fill:#CCC;
+                  fill-opacity:0.6;
+                  stroke-width:0.5px;
+                  "
+                  transform="
+                  rotate(
+                  {{wa.rot}},
+                  {{wa.x}},
+                  {{wa.y}}
+                  )
+                  "
+                  ng-style="{
+                  'stroke': wa === game.templates.active ? '#0F0' : '#666',
+                  }"
+                  ng-click="onTemplateClick($event, wa)"
+                  ng-mousedown="onTemplateMouseDown($event, wa)"
+                  />
+            <circle ng-show="
+                    game.templates.active !== null &&
+                    game.templates.active.origin !== null
+                    "
                     cx="{{game.templates.active.origin.state.x}}"
                     cy="{{game.templates.active.origin.state.y}}"
                     r="{{game.templates.active.origin.info.r}}"
@@ -1129,6 +1173,26 @@
                    rotate({{modes.current.rot-180}}, 10, 0)
                    "
                    />
+            <rect ng-show="
+                  modes.current.name === 'Template Create' &&
+                  modes.current.type === 'wall'
+                  "
+                  x="{{modes.current.x-5}}" y="{{modes.current.y-20}}"
+                  width="10" height="40"
+                  style="
+                  fill:#CCC;
+                  fill-opacity:1.0;
+                  stroke: #666;
+                  stroke-width:0.5px;
+                  "
+                  transform="
+                  rotate(
+                  {{modes.current.rot}},
+                  {{modes.current.x}},
+                  {{modes.current.y}}
+                  )
+                  "
+                  />
           <svg ng-show="modes.current.name === 'Model Create'"
                ng-repeat="(i,model) in modes.current.info"
                x="{{modes.current.x + model.offset_x - model.info.width/2}}"

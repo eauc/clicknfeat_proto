@@ -186,14 +186,34 @@ angular.module('vassalApp.services')
       return factory;
     }
   ])
+  .factory('template_wall', [
+    'template_base',
+    function(template_base) {
+       var wall_base = _.defaults({
+         type: 'wall',
+         drot: [2, 12]
+       }, template_base);
+      var factory = function(data) {
+        _.extend(data, wall_base);
+        if(undefined === data.stamp) {
+          data.stamp = Date.now();
+        }
+        return data;
+      };
+      return factory;
+    }
+  ])
   .factory('template', [
     'template_aoe',
     'template_spray',
+    'template_wall',
     function(template_aoe,
-             template_spray) {
+             template_spray,
+             template_wall) {
       var factories = {
         aoe: template_aoe,
         spray: template_spray,
+        wall: template_wall,
       };
       var factory = function(options) {
         if(_.isFunction(factories[options.type])) {
