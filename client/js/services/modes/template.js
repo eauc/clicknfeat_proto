@@ -208,10 +208,12 @@ angular.module('vassalApp.services')
           },
           'O': function(scope) {
             if(!scope.game.id) return;
+            if(scope.game.templates.active.type === 'wall') return;
             modes.goTo('template_origin', scope);
           },
           'R': function(scope) {
             if(!scope.game.id) return;
+            if(scope.game.templates.active.type === 'wall') return;
             if(scope.game.ruler.state.active) {
               var x = scope.game.ruler.model_end ? 
                   scope.game.ruler.model_end.state.x : scope.game.ruler.state.x2;
@@ -226,6 +228,7 @@ angular.module('vassalApp.services')
           },
           'T': function(scope) {
             if(!scope.game.id) return;
+            if(scope.game.templates.active.type === 'wall') return;
             modes.goTo('template_target', scope);
           },
           '0': function(scope) {
