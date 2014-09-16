@@ -45,18 +45,18 @@ angular.module('vassalApp.services')
               }
             case 'Model':
               {
-                // si la selection est vide, ajouter le model a la selection
-                if(0 <= _.indexOf(scope.game.selection, drag.target.state.id)) {
-                  scope.game.onSelection('startDraging');
-                  modes['model_drag'].length = 0;
-
-                  modes['model_drag'].start_x = drag.target.state.x;
-                  modes['model_drag'].start_y = drag.target.state.y;
-                  modes['model_drag'].end_x = drag.target.state.x;
-                  modes['model_drag'].end_y = drag.target.state.y;
-                  modes['model_drag'].length = '';
-                  modes.goTo('model_drag', scope);
+                if(0 > _.indexOf(scope.game.selection, drag.target.state.id)) {
+                  scope.game.newCommand(command('setSelection', [drag.target.state.id]));
                 }
+                scope.game.onSelection('startDraging');
+                modes['model_drag'].length = 0;
+
+                modes['model_drag'].start_x = drag.target.state.x;
+                modes['model_drag'].start_y = drag.target.state.y;
+                modes['model_drag'].end_x = drag.target.state.x;
+                modes['model_drag'].end_y = drag.target.state.y;
+                modes['model_drag'].length = '';
+                modes.goTo('model_drag', scope);
                 break;
               }
             case 'Board':

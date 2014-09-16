@@ -17,8 +17,6 @@
 - highlight models sous AoE/spray/charge
 
 - whelps (FK + ranges)
-- inverse le deploiement
-- click puis drag model
 - couleur faction troll
 - wall template 4"x1"
 - sortie du mode de charge laisse le couloir
