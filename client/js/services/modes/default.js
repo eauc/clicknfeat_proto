@@ -241,8 +241,10 @@ angular.module('vassalApp.services')
           },
           'Ctrl U': function(scope) {
             var unit = scope.game.models[scope.game.selection[0]].state.unit;
+            var user = scope.game.models[scope.game.selection[0]].state.user;
             var selection = _.filter(scope.game.models, function(model) {
-              return model.state.unit === unit;
+              return (model.state.unit === unit &&
+                      model.state.user === user);
             }).map(function(model) { return model.state.id; });
             scope.game.newCommand(command('setSelection', selection));
           },

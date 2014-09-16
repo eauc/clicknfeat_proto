@@ -17,9 +17,6 @@
 - highlight models sous AoE/spray/charge
 
 - whelps (FK + ranges)
-- chat user prevent default
-- bug set scenario ?
-- select whole unit use player name
 - inverse le deploiement
 - click puis drag model
 - couleur faction troll
