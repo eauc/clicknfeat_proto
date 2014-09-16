@@ -16,6 +16,16 @@
 - multi-labels
 - highlight models sous AoE/spray/charge
 
+- whelps (FK + ranges)
+- chat user prevent default
+- bug set scenario ?
+- select whole unit use player name
+- inverse le deploiement
+- click puis drag model
+- couleur faction troll
+- wall template 4"x1"
+- sortie du mode de charge laisse le couloir
+- augment drag sensitivity
 =======================================================================================
 - des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
 Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui reviennent très souvent dans les règles spéciales, genre les lignes de 3" et de 5".

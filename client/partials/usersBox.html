@@ -41,6 +41,8 @@
              ng_disabled="selection_length === 0"
              ng-model="chat_msg"
              placeholder="Msg..."
+             ng-keydown="stopKeyPropagation($event)"
+             ng-keypress="stopKeyPropagation($event)"
              />
     </form>
     <div ng-repeat="c in user.chat.slice().reverse()"
