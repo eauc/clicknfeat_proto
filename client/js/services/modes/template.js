@@ -78,7 +78,8 @@ angular.module('vassalApp.services')
                                               x, y, scope.game.templates.active.rot));
               }
               else {
-                if(active.origin === model) return;
+                if(active.origin &&
+                   active.origin.state.id === model.state.id) return;
                 var x1 = active.origin ? active.origin.state.x : active.x;
                 var y1 = active.origin ? active.origin.state.y : active.y;
                 var x2 = model.state.x;
@@ -355,6 +356,57 @@ angular.module('vassalApp.services')
               drag.target.startDraging();
 
               modes.goTo('template_drag', scope);
+            }
+          },
+          'Click': function(scope, event, drag) {
+            if(!scope.game.id) return;
+            switch(drag.event)
+            {
+            case 'Template': 
+              {
+                if(scope.game.templates.active === drag.target) {
+                  scope.game.templates.active = null;
+                  modes.goTo('default', scope);
+                }
+                else {
+                  scope.game.templates.active = drag.target;
+                  modes.goTo('template', scope);
+                }
+                break;
+              }
+            case 'Model': 
+              {
+                if(scope.game.templates.active.type === 'wall') return;
+                var model = drag.target;
+                var active = scope.game.templates.active;
+                if(active.type === 'aoe') {
+                  x = model.state.x;
+                  y = model.state.y;
+                  scope.game.newCommand(command('onActiveTemplate', 'set',
+                                                x, y, scope.game.templates.active.rot));
+                  return;
+                }
+                // spray
+                if(!active.origin) {
+                  active.origin = model;
+                  scope.game.newCommand(command('onActiveTemplate', 'refresh'));
+                  return;
+                }
+                var x;
+                var y;
+                if(active.origin.state.id === model.state.id) return;
+                var x1 = active.origin ? active.origin.state.x : active.x;
+                var y1 = active.origin ? active.origin.state.y : active.y;
+                var x2 = model.state.x;
+                var y2 = model.state.y;
+                var angle = Math.atan2(x2-x1, y1-y2)*180/Math.PI;
+                x = active.origin === null ? active.x : active.origin.state.x +
+                  active.origin.info.r * Math.sin(angle*Math.PI/180);
+                y = active.origin === null ? active.y : active.origin.state.y -
+                  active.origin.info.r * Math.cos(angle*Math.PI/180);
+                scope.game.newCommand(command('onActiveTemplate', 'set',
+                                              x, y, angle));
+              }
             }
           },
         });
