@@ -10,6 +10,11 @@ angular.module('vassalApp.services')
           name: 'Ruler',
           group: 'Ruler',
           template: 'ruler.html',
+          enter: function(scope) {
+            scope.game.ruler.state.origin = null;
+            scope.game.ruler.state.target = null;
+            scope.game.ruler.sendStateCmd();
+          },
           'O': function(scope) {
             modes.goTo('ruler_origin', scope);
           },
