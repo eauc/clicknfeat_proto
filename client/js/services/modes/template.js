@@ -376,6 +376,13 @@ angular.module('vassalApp.services')
               }
             case 'Model': 
               {
+                if(!event.ctrlKey) {
+                  scope.game.templates.active = null;
+                  modes['default']['Click'].apply(modes['default'],
+                                                  Array.prototype.slice.call(arguments));
+                  modes.goTo('default', scope);
+                  return;
+                }
                 if(scope.game.templates.active.type === 'wall') return;
                 var model = drag.target;
                 var active = scope.game.templates.active;
