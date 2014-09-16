@@ -325,7 +325,7 @@ angular.module('vassalApp.controllers')
             var dx = user_x - $scope.drag.start_x;
             var dy = user_y - $scope.drag.start_y;
             if($scope.drag.state === 'starting' &&
-               (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1)) {
+               (Math.abs(dx) > 0.2 || Math.abs(dy) > 0.2)) {
               // console.log('starting -> draging');
               $scope.drag.state = 'draging';
               // console.log('DragStart', $scope.drag);
