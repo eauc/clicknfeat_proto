@@ -113,13 +113,28 @@ angular.module('vassalApp.services')
             template_create_mode.x = user_x;
             template_create_mode.y = user_y;
           },
-          'Click': function(scope, event, click, user_x, user_y) {
+          'Click': function(scope, event, drag, user_x, user_y) {
             if(!scope.game.id) return;
             template_create_mode.x = user_x;
             template_create_mode.y = user_y;
             template_create_mode.rot = 0;
             scope.game.newCommand(command('createTemplate', template_create_mode));
-
+            switch(drag.event) {
+            case 'Model':
+              {
+                var model = drag.target;
+                var active = scope.game.templates.active;
+                if(active.type === 'aoe') {
+                  scope.game.newCommand(command('onActiveTemplate', 'set',
+                                                model.state.x, model.state.y, active.rot));
+                }
+                if(active.type === 'spray') {
+                  active.origin = model;
+                  scope.game.newCommand(command('onActiveTemplate', 'refresh'));
+                }
+                break;
+              }
+            }
             modes.goTo('template', scope);
           },
         });
