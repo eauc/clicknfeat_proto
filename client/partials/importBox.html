@@ -1,0 +1,15 @@
+<div ng-controller="importBoxCtrl">
+  <div>
+    <strong>Import models from file :</strong>
+  </div>
+  <div>
+    From file : <input id="import-model-file"
+                       type="file"
+                       />
+  </div>
+  <div>
+    <div ng-repeat="line in read_result">
+      {{line}}
+    </div>
+  </div>
+</div>

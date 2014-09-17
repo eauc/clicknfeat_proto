@@ -5,33 +5,36 @@ angular.module('vassalApp.services')
     '$rootScope',
     '$http',
     '$window',
+    '$q',
     'model',
     'template',
     'command',
-    'message',
+    'user',
     function($rootScope,
              $http,
              $window,
+             $q,
              model,
              template,
              command,
-             message) {
+             user) {
 
       var model_base = model({});
+      var game_source = null;
 
       var factory = function(data) {
         
         var instance = {
+          scenario: null,
           new_model_id: 0,
           models: {},
           createModel: function(options) {
             var new_models = []
             _.each(options, function(option) {
+              var state = _.omit(option, 'info');
               var new_model = model(instance.new_model_id++,
-                                    option.info, {
-                                      x: option.x,
-                                      y: option.y
-                                    });
+                                    option.info, state);
+              new_model.refresh(instance);
               instance.models[new_model.state.id] = new_model;
               new_models.push(new_model);
             });
@@ -83,6 +86,7 @@ angular.module('vassalApp.services')
           templates: {
             aoe: {},
             spray: {},
+            wall: {},
             active: null,
           },
           createTemplate: function(options) {
@@ -91,10 +95,13 @@ angular.module('vassalApp.services')
             this.templates.active = temp;
             return temp;
           },
+          replay_commands: [],
           new_commands: [],
           commands: [],
           newCommand: function(new_cmd) {
+            new_cmd.user = user;
             new_cmd.execute(this);
+            if(!instance.id) return;
             this.new_commands.push(new_cmd);
             $http.post('/api/games/'+instance.id+'/commands', new_cmd)
               .then(function(response) {
@@ -104,61 +111,116 @@ angular.module('vassalApp.services')
                 console.log(response);
               });
           },
-          undoLastCommand: function() {
-            if(this.commands.length <= 0) return;
-            $http.put('/api/games/'+this.id+'/commands/undo',
-                      { stamp: _.last(this.commands).stamp })
+          undoCommand: function(index) {
+            if(index >= this.commands.length) return;
+            return $http.put('/api/games/'+this.id+'/commands/undo',
+                             { stamp: this.commands[index].stamp })
               .then(function(response) {
                 // console.log('send undo cmd success');
+                return response;
               }, function(response) {
                 console.log('send undo cmd error');
                 console.log(response);
+                return $q.reject(response);
               });
+          },
+          undoLastCommand: function() {
+            if(this.commands.length <= 0) return;
+            this.undoCommand(this.commands.length-1);
+          },
+          undoAllCommands: function(left) {
+            if(undefined === left) return this.undoAllCommands(this.commands.length);
+            if(left <= 0) return;
+            this.undoCommand(left-1).then(function() {
+              left--;
+              instance.undoAllCommands(left);
+            });
+          },
+          _undoCommandUpTo: function(stamp, left) {
+            if(this.commands.length <= 0) return;
+            if(this.commands[left-1].stamp === stamp) return;
+            this.undoCommand(left-1).then(function() {
+              left--;
+              instance._undoCommandUpTo(stamp, left);
+            });
+          },
+          undoCommandUpTo: function(stamp) {
+            var cmd = _.find(this.commands, function(cmd) {
+              return cmd.stamp === stamp;
+            });
+            if(!cmd) return;
+            this._undoCommandUpTo(stamp, this.commands.length);
+          },
+          replayCommand: function(index) {
+            if(index >= this.replay_commands.length) return;
+            var replay = this.replay_commands[index];
+            return $http.post('/api/games/'+instance.id+'/commands', replay)
+              .then(function(response) {
+                console.log('send replay cmd success');
+                return response;
+              }, function(response) {
+                console.log('send replay cmd error');
+                console.log(response);
+                return $q.reject(response);
+              });
+          },
+          replayNextCommand: function() {
+            if(0 >= this.replay_commands.length) return;
+            this.replayCommand(this.replay_commands.length-1);
+          },
+          replayAllCommands: function(left) {
+            if(undefined === left) return this.replayAllCommands(this.replay_commands.length);
+            if(left <= 0) return;
+            this.replayCommand(left-1).then(function() {
+              left--;
+              instance.replayAllCommands(left);
+            });
+          },
+          _replayCommandUpTo: function(stamp, left) {
+            if(this.replay_commands.length <= 0) return;
+            var stop = (this.replay_commands[left-1].stamp === stamp);
+            this.replayCommand(left-1).then(function() {
+              if(stop) return;
+              left--;
+              instance._replayCommandUpTo(stamp, left);
+            });
+          },
+          replayCommandUpTo: function(stamp) {
+            var cmd = _.find(this.replay_commands, function(cmd) {
+              return cmd.stamp === stamp;
+            });
+            if(!cmd) return;
+            this._replayCommandUpTo(stamp, this.replay_commands.length);
           },
           updateCommand: function(new_cmd) {
             if( _.find(this.commands, function(cmd) { return cmd.stamp === new_cmd.stamp; })) {
-              // console.log('cmd udpate : already in commands queue');
+              console.log('cmd udpate : already in commands queue');
               return;
             }
             var find_cmd = _.findWhere(this.new_commands, { stamp: new_cmd.stamp });
             if(find_cmd) {
               var index = _.indexOf(this.new_commands, find_cmd);
-              this.commands.push(find_cmd);
+              if(!find_cmd.do_not_log) {
+                this.commands.push(find_cmd);
+              }
               this.new_commands.splice(index, 1);
-              // console.log('cmd udpate : validate new command');
+              console.log('cmd udpate : validate new command');
               return;
             }
-            // console.log('cmd udpate : execute new command');
+            find_cmd = _.findWhere(this.replay_commands, { stamp: new_cmd.stamp });
+            if(find_cmd) {
+              find_cmd.redo(this);
+              index = _.indexOf(this.replay_commands, find_cmd);
+              this.commands.push(find_cmd);
+              this.replay_commands.splice(index, 1);
+              console.log('cmd udpate : validate replay command');
+              return;
+            }
+            console.log('cmd udpate : execute new command');
             new_cmd.redo(this);
-            this.commands.push(new_cmd);
-          },
-          new_messages: [],
-          messages: [],
-          newMessage: function(new_msg) {
-            this.new_messages.push(new_msg);
-            $http.post('/api/games/'+instance.id+'/messages', new_msg)
-              .then(function(response) {
-                // console.log('send msg success');
-              }, function(response) {
-                console.log('send msg error');
-                console.log(response);
-              });
-          },
-          updateMessage: function(new_msg) {
-            if( _.find(this.messages, function(msg) { return msg.stamp === new_msg.stamp; })) {
-              // console.log('msg udpate : already in messages queue');
-              return;
+            if(!new_cmd.do_not_log) {
+              this.commands.push(new_cmd);
             }
-            var find_msg = _.findWhere(this.new_messages, { stamp: new_msg.stamp });
-            if(find_msg) {
-              var index = _.indexOf(this.new_messages, find_msg);
-              this.messages.push(find_msg);
-              this.new_messages.splice(index, 1);
-              // console.log('msg udpate : validate new message');
-              return;
-            }
-            // console.log('msg udpate : add new message');
-            this.messages.push(new_msg);
           },
           rollDie: function(sides) {
             var n = sides || 6;
@@ -167,23 +229,17 @@ angular.module('vassalApp.services')
             return die_float >> 0;
           },
           rollDice: function(nb_dice, sides) {
-            var text = '';
-            var total = 0;
+            var dice = [];
             _.times(nb_dice, function() {
-              var die = instance.rollDie(sides);
-              total += die;
-              text += die + ' ';
+              dice.push(instance.rollDie(sides));
             });
-            text += '('+total+')';
-            var msg = message('dice', text);
-            this.newMessage(msg);
+            this.newCommand(command('sendMsg', 'dice', dice));
           },
           rollDeviation: function(dist_max) {
             var direction = instance.rollDie();
             var distance = Math.min(instance.rollDie(), dist_max ? dist_max : 6);
-            var msg = message('dice', 'AoE deviation : direction '+direction+
-                              ', distance '+distance+'"');
-            this.newMessage(msg);
+            var text = 'AoE deviation : direction '+direction+', distance '+distance+'"';
+            this.newCommand(command('sendMsg', 'dev', text));
             return {
               direction: direction,
               distance: distance*10,
@@ -198,52 +254,61 @@ angular.module('vassalApp.services')
             templates: true
           },
           board: {
+            info: null,
+            window: {
+              width: 800,
+              height: 800
+            },
             width: 480,
             height: 480,
             zoom: {
               factor: 1.0,
-              cx: 240,
-              cy: 240
+              cx: 0,
+              cy: 0,
+              flipped: false,
             },
-            view: {
-              x: 0,
-              y: 0,
-              width: 480,
-              height: 480
+            refreshZoom: function() {
+              var cont = document.getElementById('canvas-container');
+              this.zoom.cx = (cont.scrollLeft + this.window.width/2) / this.zoom.factor;
+              this.zoom.cy = (cont.scrollTop + this.window.height/2) / this.zoom.factor;
             },
             refreshView: function() {
-              this.view.width = this.width / this.zoom.factor;
-              this.view.height = this.height / this.zoom.factor;
-              this.view.x = this.zoom.cx - this.view.width / 2;
-              this.view.y = this.zoom.cy - this.view.height / 2;
+              var zoom = this.zoom;
+              var window = this.window;
+              setTimeout(function() {
+                var cont = document.getElementById('canvas-container');
+                cont.scrollLeft = (zoom.cx * zoom.factor - window.width/2);
+                cont.scrollTop = (zoom.cy * zoom.factor - window.height/2);
+              }, 0);
+            },
+            reset: function() {
+              this.zoom.factor = 1.;
             },
             zoomIn: function() {
+              this.refreshZoom();
               this.zoom.factor *= 1.5;
               this.refreshView();
             },
             zoomOut: function() {
-              this.zoom.factor /= 1.5;
+              this.refreshZoom();
+              this.zoom.factor = Math.max(1.0, this.zoom.factor / 1.5);
               this.refreshView();
             },
             moveLeft: function() {
-              this.zoom.cx = Math.max(this.view.width/2,
-                                      this.zoom.cx-10);
-              this.refreshView();
+              var cont = document.getElementById('canvas-container');
+              cont.scrollLeft = (cont.scrollLeft - 50);
             },
             moveUp: function() {
-              this.zoom.cy = Math.max(this.view.height/2,
-                                      this.zoom.cy-10);
-              this.refreshView();
+              var cont = document.getElementById('canvas-container');
+              cont.scrollTop = (cont.scrollTop - 50);
             },
             moveRight: function() {
-              this.zoom.cx = Math.min(this.width - this.view.width/2,
-                                      this.zoom.cx+10);
-              this.refreshView();
+              var cont = document.getElementById('canvas-container');
+              cont.scrollLeft = (cont.scrollLeft + 50);
             },
             moveDown: function() {
-              this.zoom.cy = Math.min(this.height - this.view.height/2,
-                                      this.zoom.cy+10);
-              this.refreshView();
+              var cont = document.getElementById('canvas-container');
+              cont.scrollTop = (cont.scrollTop + 50);
             },
           },
           ruler: {
@@ -352,113 +417,81 @@ angular.module('vassalApp.services')
           },
         };
 
-        instance.id = data.id
-        instance.new_model_id = data.new_model_id
-        instance.models = data.models
-        instance.commands = data.commands
-        instance.messages = data.messages
+        _.deepExtend(instance, data);
 
-        if(data.ruler) instance.ruler.state = data.ruler.state;
-        if(data.selections) instance.selection = data.selection;
-        if(data.layers) instance.layers = data.layers;
+        // if(data.ruler) instance.ruler.state = data.ruler.state;
+        // if(data.selections) instance.selection = data.selection;
+        // if(data.layers) instance.layers = data.layers;
 
         _.each(instance.models, function(mod) {
           model(mod);
         });
-        // var new_model;
-        // if(_.keys(instance.models).length === 0) {
-        //   _.times(20, function(i) {
-        //     new_model = model(3*i,
-        //                       $rootScope.factions.cygnar.models.jacks.hammersmith,
-        //                       {
-        //                         x: 200,
-        //                         y: 20+20*i,
-        //                         rot: -30,
-        //                         show_reach: true,
-        //                       });
-        //     instance.models[new_model.state.id] = new_model;
-        //     new_model = model(3*i+1,
-        //                       $rootScope.factions.cygnar.models.jacks.grenadier,
-        //                       {
-        //                         x: 240,
-        //                         y: 20+20*i,
-        //                         rot: 0
-        //                       });
-        //     instance.models[new_model.state.id] = new_model;
-        //     new_model = model(3*i+2,
-        //                       $rootScope.factions.cygnar.models.solos.stormwall_pod,
-        //                       {
-        //                         x: 280,
-        //                         y: 20+20*i,
-        //                         rot: 30,
-        //                         show_melee: true,
-        //                       });
-        //     instance.models[new_model.state.id] = new_model;
-        //   });
-        // }
 
+        instance.replay_commands = _.map(instance.replay_commands, function(cmd) {
+          return command(cmd);
+        });
         var cmds = instance.commands;
         instance.commands = [];
         _.each(cmds, function(cmd) {
           instance.updateCommand(command(cmd));
         });
 
-        instance.cmd_source = new EventSource('/api/games/'+instance.id+
-                                              '/commands/subscribe');
-        instance.cmd_source.onmessage = function(e) {
-          // console.log('cmd event');
-          // console.log(e);
-          var data = JSON.parse(e.data);
-          // console.log(data);
-          var cmd = command(data);
-          // console.log(cmd);
-          if(cmd) instance.updateCommand(cmd);
-          $rootScope.$apply();
-        };
-        instance.cmd_source.addEventListener('undo', function(e) {
-          // console.log('cmd undo event');
-          // console.log(e);
-          var data = JSON.parse(e.data);
-          // console.log(data);
-          // var cmd = command(data);
-          // console.log(cmd);
-          if(data.stamp === _.last(instance.commands).stamp) {
-            instance.commands.pop().undo(instance);
-          }
-          $rootScope.$apply();
-        });
-        instance.cmd_source.onerror = function(e) {
-          console.log('cmd source error');
-          console.log(e);
-        };
+        function openCmdSource() {
 
-        instance.msg_source = new EventSource('/api/games/'+instance.id+
-                                              '/messages/subscribe');
-        instance.msg_source.onmessage = function(e) {
-          // console.log('msg event');
-          // console.log(e);
-          var data = JSON.parse(e.data);
-          // console.log(data);
-          var msg = message(data);
-          // console.log(msg);
-          if(msg) instance.updateMessage(msg);
-          $rootScope.$apply();
-        };
-        instance.msg_source.onerror = function(e) {
-          console.log('msg source error');
-          console.log(e);
-        };
-        // _.each(selected_model, function(model) {
-        //   console.log(model.state);
-        //   $http.put('/api/games/'+$scope.game.id+
-        //             '/models/'+model.state.id,
-        //             model.state)
-        //     .then(function(response) {
-        //       console.log('put model '+model.state.id+' success')
-        //     }, function(response) {
-        //       console.log('put model '+model.state.id+' error '+response.status)
-        //     });
-        // });
+          var url = '/api/games/'+
+              (!instance.id ? 'public/' : '')+
+              (!instance.id ? instance.public_id : instance.id)+
+              '/commands/subscribe';
+          if(instance.commands.length > 0) {
+              url += '?last=' + _.last(instance.commands).stamp;
+          }
+          console.log('open cmd source', url);
+          if(game_source) game_source.close();
+          game_source = new EventSource(url);
+          game_source.onmessage = function(e) {
+            // console.log('cmd event');
+            // console.log(e);
+            var data = JSON.parse(e.data);
+            // console.log(data);
+            var cmd = command(data);
+            // console.log(cmd);
+            if(cmd) instance.updateCommand(cmd);
+            $rootScope.$apply();
+          };
+          game_source.addEventListener('undo', function(e) {
+            // console.log('cmd undo event');
+            // console.log(e);
+            var data = JSON.parse(e.data);
+            // console.log(data);
+            // var cmd = command(data);
+            // console.log(cmd);
+            if(data.stamp === _.last(instance.commands).stamp) {
+              var cmd = instance.commands.pop();
+              cmd.undo(instance);
+              instance.replay_commands.push(cmd);
+            }
+            $rootScope.$apply();
+          });
+          game_source.addEventListener('game', function(e) {
+            console.log('cmd game event',e);
+            var data = JSON.parse(e.data);
+            instance.player1 = data.player1;
+            instance.player2 = data.player2;
+            $rootScope.$apply();
+          });
+          game_source.onerror = function(e) {
+            if(e.target.readyState === e.target.CLOSED) {
+              console.log('cmd source error', e);
+              alert('The connection with the server is lost\n'+
+                    'Save your game, then try to reload the page.\n');
+              return;
+            }
+            game_source.close();
+            openCmdSource();
+          };
+
+        }
+        openCmdSource();
 
         return instance;
       };

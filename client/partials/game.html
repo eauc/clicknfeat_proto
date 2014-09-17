@@ -1,1449 +1,1486 @@
-<div style="vertical-align:top">
-  <div style="display: inline-block;margin:0;padding:0;"
-       ng-keydown="onKeyDown($event)"
-       ng-keypress="onKeyPress($event)"
-       tabindex="0"
-       >
-    <strong>Game Id : {{game.id}}</strong><br />
-    <svg style="border:1px solid black;display: inline-block;margin:0;padding:0;"
-         width="800px" height="800px"
-         viewBox="
-         {{game.board.view.x}} {{game.board.view.y}}
-         {{game.board.view.width}} {{game.board.view.height}}"
-         preserveAspectRatio="xMinYMin meet"
-         ng-mousedown="doSelectStart($event)"
-         ng-mousemove="doSelectMove($event)"
-         ng-mouseup="doSelectStop($event)">
-      <defs>
-        <filter id="aura-filter"
-                x="-50%" y="-50%"
-                width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic"
-                          stdDeviation="2"/>
-        </filter>
-        <marker id="ruler-start"
-                markerWidth="6" markerHeight="8"
-                refx="0" refy="4"
-                orient="auto">
-          <polygon points="6,8 0,4 6,0"
-                   style="
-                   fill:#0CC;
-                   "
-                   />
-          <line x1="0" y1="1" x2="0" y2="7"
-                style="
-                stroke:#0CC;
-                stroke-width:2px;
-                "
-                />
-        </marker>
-        <marker id="ruler-end"
-                markerWidth="6" markerHeight="8"
-                refx="6" refy="4"
-                orient="auto">
-          <polygon points="0,8 6,4 0,0"
-                   style="
-                   fill:#0CC;
-                   "
-                   />
-          <line x1="6" y1="1" x2="6" y2="7"
-                style="
-                stroke:#0CC;
-                stroke-width:2px;
-                "
-                />
-        </marker>
-        <marker id="aoe-direction-end"
-                markerWidth="6" markerHeight="8"
-                refx="6" refy="4"
-                orient="auto">
-          <polygon points="0,8 6,4 0,0"
-                   style="
-                   fill:#0F0;
-                   "
-                   />
-        </marker>
-      </defs>
-      <image id="canvas"
-             x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-             xlink:href="data/board/Board.png"
-             style="display: {{game.layers.board ? 'inline' : 'none'}}"
-             />
-      <svg x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-           style="display: {{game.layers.terrain ? 'inline' : 'none'}}"
-           >
-        <rect x="120" y="136" width="60" height="43"
-              style="
-              fill:#00F;
-              fill-opacity:0.2;
-              "
-              transform="rotate(40, 150, 155)"
-              />
-        <rect x="295" y="308" width="85" height="64"
-              style="
-              fill:#00F;
-              fill-opacity:0.2;
-              "
-              transform="rotate(40, 338, 340)"
-              />
-        <rect x="205" y="242" width="70" height="7"
-              style="
-              fill:#F00;
-              fill-opacity:0.2;
-              "
-              transform="rotate(84, 240, 245)"
-              />
-        <circle cx="90" cy="242" r="29"
-                style="
-                fill:#0F0;
-                fill-opacity:0.2;
-                "
-                />
-        <circle cx="390" cy="242" r="29"
-                style="
-                fill:#0F0;
-                fill-opacity:0.2;
-                "
-                />
-      </svg>
-      <svg x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-           style="display: {{game.layers.deployment ? 'inline' : 'none'}}"
-           >
-        <line x1="0" y1="70"
-              x2="480" y2="70"
-              style="
-              stroke:#000;
-              stroke-width:1px;
-              "
-              />
-        <rect x="0" y="58"
-              width="20" height="12"
-              style="
-              fill:#ffc;
-              fill-opacity:0.5;
-              stroke:none;
-              "
-              />
-        <text x="0" y="69"
-              style="
-              font-size:12px;
-              "
-              >7"</text>
-        <line x1="0" y1="130"
-              x2="480" y2="130"
-              style="
-              stroke:#000;
-              stroke-width:0.5px;
-              "
-              />
-        <rect x="0" y="122"
-              width="15" height="8"
-              style="
-              fill:#ffc;
-              fill-opacity:0.5;
-              stroke:none;
-              "
-              />
-        <text x="0" y="129"
-              style="
-              font-size:8px;
-              "
-              >13"</text>
-
-        <line x1="0" y1="100"
-              x2="480" y2="100"
-              style="
-              stroke:#000;
-              stroke-width:1px;
-              "
-              />
-        <rect x="0" y="88"
-              width="20" height="12"
-              style="
-              fill:#ffc;
-              fill-opacity:0.5;
-              stroke:none;
-              "
-              />
-        <text x="0" y="99"
-              style="
-              font-size:12px;
-              "
-              >10"</text>
-        <line x1="0" y1="160"
-              x2="480" y2="160"
-              style="
-              stroke:#000;
-              stroke-width:0.5px;
-              "
-              />
-        <rect x="0" y="152"
-              width="15" height="8"
-              style="
-              fill:#ffc;
-              fill-opacity:0.5;
-              stroke:none;
-              "
-              />
-        <text x="0" y="159"
-              style="
-              font-size:8px;
-              "
-              >16"</text>
-
-        <line x1="0" y1="380"
-              x2="480" y2="380"
-              style="
-              stroke:#000;
-              stroke-width:1px;
-              "
-              />
-        <rect x="0" y="368"
-              width="20" height="12"
-              style="
-              fill:#ffc;
-              fill-opacity:0.5;
-              stroke:none;
-              "
-              />
-        <text x="0" y="379"
-              style="
-              font-size:12px;
-              "
-              >10"</text>
-        <line x1="0" y1="320"
-              x2="480" y2="320"
-              style="
-              stroke:#000;
-              stroke-width:0.5px;
-              "
-              />
-        <rect x="0" y="312"
-              width="15" height="8"
-              style="
-              fill:#ffc;
-              fill-opacity:0.5;
-              stroke:none;
-              "
-              />
-        <text x="0" y="319"
-              style="
-              font-size:8px;
-              "
-              >16"</text>
-
-        <line x1="0" y1="410"
-              x2="480" y2="410"
-              style="
-              stroke:#000;
-              stroke-width:1px;
-              "
-              />
-        <rect x="0" y="398"
-              width="20" height="12"
-              style="
-              fill:#ffc;
-              fill-opacity:0.5;
-              stroke:none;
-              "
-              />
-        <text x="0" y="409"
-              style="
-              font-size:12px;
-              "
-              >7"</text>
-        <line x1="0" y1="350"
-              x2="480" y2="350"
-              style="
-              stroke:#000;
-              stroke-width:0.5px;
-              "
-              />
-        <rect x="0" y="342"
-              width="15" height="8"
-              style="
-              fill:#ffc;
-              fill-opacity:0.5;
-              stroke:none;
-              "
-              />
-        <text x="0" y="349"
-              style="
-              font-size:8px;
-              "
-              >13"</text>
-
-        <line x1="0" y1="30"
-              x2="480" y2="30"
-              style="
-              stroke:#000;
-              stroke-width:1px;
-              stroke-dasharray: 5 5;
-              "
-              />
-        <line x1="30" y1="0"
-              x2="30" y2="480"
-              style="
-              stroke:#000;
-              stroke-width:1px;
-              stroke-dasharray: 5 5;
-              "
-              />
-        <line x1="0" y1="450"
-              x2="480" y2="450"
-              style="
-              stroke:#000;
-              stroke-width:1px;
-              stroke-dasharray: 5 5;
-              "
-              />
-        <line x1="450" y1="0"
-              x2="450" y2="480"
-              style="
-              stroke:#000;
-              stroke-width:1px;
-              stroke-dasharray: 5 5;
-              "
-              />
-      </svg>
-      <svg x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-           style="display: {{game.layers.scenario ? 'inline' : 'none'}}"
-           >
-        <rect x="140" y="140" width="200" height="200"
-              style="
-              fill:none;
-              stroke:#990;
-              stroke-width:0.5px;
-              "
-              />
-        <rect x="180" y="210" width="120" height="60"
-              style="
-              fill:#CC0;
-              fill-opacity:0.3;
-              stroke:#990;
-              stroke-width:0.5px;
-              "
-              />
-        <circle cx="180" cy="270" r="9.842"
-                style="
-                fill:#CC0;
-                fill-opacity:0.8;
-                stroke:#C90;
-                stroke-width:0.5px;
-                "
-                />
-        <!-- <circle cx="180" cy="270" r="49.842"
-        style="
-        fill:#C60;
-        fill-opacity:0.1;
-        stroke:#C90;
-        stroke-width:0.5px;
-        "
-        /> -->
-        <circle cx="300" cy="210" r="9.842"
-                style="
-                fill:#CC0;
-                fill-opacity:0.8;
-                stroke:#C90;
-                stroke-width:0.5px;
-                "
-                />
-        <!-- <circle cx="300" cy="210" r="49.842"
-        style="
-        fill:#C60;
-        fill-opacity:0.1;
-        stroke:#C90;
-        stroke-width:0.5px;
-        "
-        /> -->
-      </svg>
-      <svg id="locked-template-canvas"
-           x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-           style="display: {{game.layers.templates ? 'inline' : 'none'}}"
-           >
-        <circle ng-repeat="aoe in templateShowLocked('aoe')"
-                cx="{{aoe.x}}"
-                cy="{{aoe.y}}"
-                r="{{aoe.size*5}}"
-                style="
-                fill:#F90;
-                fill-opacity:0.2;
-                stroke-width:0.5px;
-                "
-                ng-style="{
-                 'stroke': aoe === game.templates.active ? (mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')) : '#C60',
-                }"
-                ng-click="game.templates.active = (aoe === game.templates.active) ? null : aoe"
-                />
-        <polygon ng-repeat="sp in templateShowLocked('spray')"
-                 points="
-                 8.75,0
-                 {{
-                 (10-8.125*sp.size/10) + ','  + (98.34*sp.size/10) +
-                 ' 10,' + (100*sp.size/10) +
-                 ' ' + (10+8.125*sp.size/10) + ',' + (98.34*sp.size/10)
-                 }}
-                 11.25,0
-                 "
-                 style="
-                 fill:#F90;
-                 fill-opacity:0.2;
-                 stroke-width:0.5px;
-                 "
-                 transform="
-                 translate({{sp.x-10}},{{sp.y}})
-                 rotate({{sp.rot-180}}, 10, 0)
-                 "
-                 ng-style="{
-                 'stroke': sp === game.templates.active ? (mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')) : '#C60',
-                 }"
-                 ng-click="game.templates.active = (sp === game.templates.active) ? null : sp"
-                 />
-      </svg>
-      <svg id="model-canvas"
-           x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-           style="display: {{game.layers.models ? 'inline' : 'none'}}"
-           >
-        <circle ng-repeat="model in modelShow('color')"
-                cx="{{model.state.x}}" cy="{{model.state.y}}"
-                r="{{model.info.r+2}}"
-                style="
-                fill:{{model.state.show_color}};
-                filter: url(#aura-filter);
-                "
-                />
-        <svg ng-repeat="model in game.models"
-             x="{{model.state.x - model.info.width/2}}" y="{{model.state.y - model.info.height/2}}">
-          <g transform="rotate({{model.state.rot}}, {{model.info.width/2}}, {{model.info.height/2}})">
-            <circle ng-mousedown="onModelMouseDown($event, model)"
-                    ng-click="onModelClick($event, model)"
-                    cx="{{model.info.width/2}}" cy="{{model.info.height/2}}" r="{{model.info.r}}"
+<div style="vertical-align:top"
+     ng-keydown="onKeyDown($event)"
+     ng-keypress="onKeyPress($event)"
+     tabindex="0"
+     >
+  <table style="border-collapse:collapse;">
+    <tr>
+      <td valign="top">
+        <div style="
+             height: {{game.board.window.height}}px;
+             vertical-align: top;
+             "
+             ng-include="'partials/dock.html'">
+        </div>
+      </td>
+      <td valign="top">
+        <div style="
+             position:relative;
+             width:{{game.board.window.width+5}}px;
+             height:{{game.board.window.height+5}}px;
+             ">
+        <div style="
+             position:absolute;
+             z-index:2;
+             bottom:15;
+             left:0;
+             "
+             ng-include="'partials/viewControls.html'"
+             >
+        </div>
+        <div style="
+             position:absolute;
+             z-index:2;
+             top:5;
+             left:5;
+             "
+             ng-include="'partials/viewScale.html'"
+             >
+        </div>
+        <div id="canvas-container"
+             style="
+             width:{{game.board.window.width+5}}px;
+             height:{{game.board.window.height+5}}px;
+             overflow: auto;
+             ">
+        <svg style="
+             border:1px solid black;
+             display: inline-block;
+             margin:0;
+             padding:0;
+             "
+             ng-style="{
+             '-moz-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+             '-webkit-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+             'transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : ''
+             }"
+             width="{{game.board.window.width*game.board.zoom.factor}}px"
+             height="{{game.board.window.height*game.board.zoom.factor}}px"
+             viewBox="0 0 480 480"
+             preserveAspectRatio="xMinYMin meet"
+             ng-mousedown="doSelectStart($event)"
+             ng-mousemove="doSelectMove($event)"
+             ng-mouseup="doSelectStop($event)"
+             >
+          <defs>
+            <filter id="aura-filter"
+                    x="-50%" y="-50%"
+                    width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic"
+                              stdDeviation="2"/>
+            </filter>
+            <marker id="ruler-start"
+                    markerWidth="6" markerHeight="8"
+                    refx="0" refy="4"
+                    orient="auto">
+              <polygon points="6,8 0,4 6,0"
+                       style="
+                       fill:#0CC;
+                       "
+                       />
+              <line x1="0" y1="1" x2="0" y2="7"
                     style="
-                    fill:{{model.info.color}};
-                    fill-opacity:1.0;
-                    stroke:black;
-                    stroke-width:0.5px;
-                    "
-                    /> 
-            <line x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2}}"
-                  x2="{{model.info.width/2+model.info.r}}" y2="{{model.info.height/2}}"
-                  style="
-                  stroke:black;
-                  stroke-width:0.5px;
-                  pointer-events: none;
-                  "
-                  />
-            <line x1="{{model.info.width/2}}" y1="{{model.info.height/2}}"
-                  x2="{{model.info.width/2}}" y2="{{model.info.height/2-model.info.r}}"
-                  style="
-                  stroke:black;
-                  stroke-width:0.5px;
-                  pointer-events: none;
-                  "
-                  />
-            <image ng-show="model.state.show_image"
-                   x="{{model.info.img.x}}" y="{{model.info.img.y}}"
-                   width="{{model.info.width}}" height="{{model.info.height}}"
-                   xlink:href="{{(model.state.show_incorporeal && model.info.img.incorporeal) ? model.info.img.incorporeal : model.info.img.link}}"
-                   style="pointer-events: none"
-                   />
-            <line ng-show="model.info.damage.total > 1"
-              x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2+model.info.r}}"
-              x2="{{model.info.width/2+model.info.r}}" y2="{{model.info.height/2+model.info.r}}"
-              style="
-              stroke:#0F0;
-              stroke-width:1px;
-              pointer-events: none;
-              "
-              />
-            <line ng-show="model.info.damage.total > 1"
-              x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2+model.info.r}}"
-              x2="{{model.info.width/2-model.info.r+model.info.r*2*model.state.damage.total/model.info.damage.total}}"
-              y2="{{model.info.height/2+model.info.r}}"
-              style="
-              stroke:#F00;
-              stroke-width:1px;
-              pointer-events: none;
-              "
-              />
-            <g ng-if="model.info.damage.field">
-              <line x1="{{model.info.width/2-model.info.r}}"
-                    y1="{{model.info.height/2+model.info.r+1}}"
-                    x2="{{model.info.width/2+model.info.r}}"
-                    y2="{{model.info.height/2+model.info.r+1}}"
-                    style="
-                    stroke:#0FF;
-                    stroke-width:1px;
-                    pointer-events: none;
+                    stroke:#0CC;
+                    stroke-width:2px;
                     "
                     />
-              <line x1="{{model.info.width/2-model.info.r}}"
-                    y1="{{model.info.height/2+model.info.r+1}}"
-                    x2="{{model.info.width/2-model.info.r+model.info.r*2*model.state.damage.field/model.info.damage.field}}"
-                    y2="{{model.info.height/2+model.info.r+1}}"
+            </marker>
+            <marker id="ruler-end"
+                    markerWidth="6" markerHeight="8"
+                    refx="6" refy="4"
+                    orient="auto">
+              <polygon points="0,8 6,4 0,0"
+                       style="
+                       fill:#0CC;
+                       "
+                       />
+              <line x1="6" y1="1" x2="6" y2="7"
                     style="
-                    stroke:#066;
-                    stroke-width:1px;
+                    stroke:#0CC;
+                    stroke-width:2px;
+                    "
+                    />
+            </marker>
+            <marker id="aoe-direction-end"
+                    markerWidth="6" markerHeight="8"
+                    refx="6" refy="4"
+                    orient="auto">
+              <polygon points="0,8 6,4 0,0"
+                       style="
+                       fill:#0F0;
+                       "
+                       />
+            </marker>
+          </defs>
+          <image id="canvas"
+                 x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
+                 xlink:href="{{game.board.info.preview}}"
+                 style="display: {{game.layers.board ? 'inline' : 'none'}}"
+                 />
+          <image id="canvas"
+                 x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
+                 xlink:href="{{game.board.info.img}}"
+                 style="display: {{game.layers.board ? 'inline' : 'none'}}"
+                 />
+          <svg id="terrain-canvas"
+               x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
+               style="display: {{game.layers.terrain ? 'inline' : 'none'}}"
+               >
+            <rect ng-repeat="r in game.board.info.terrain.rect"
+                  x="{{r.x-r.width/2}}" y="{{r.y-r.height/2}}"
+                  width="{{r.width}}" height="{{r.height}}"
+                  transform="rotate({{r.rotate}}, {{r.x}}, {{r.y}})"
+                  style="
+                  fill-opacity:0.2;
+                  "
+                  ng-style="{
+                  fill: r.type === 'obstruction' ? '#00F' : (r.type === 'linear' ? '#F00' : (r.type === 'forest' ? '#0F0' : (r.type === 'elevation' ? '#0FF' : '#CCC')))
+                  }"
+                  />
+            <circle ng-repeat="c in game.board.info.terrain.circle"
+                    cx="{{c.x}}" cy="{{c.y}}" r="{{c.r}}"
+                    style="
+                    fill-opacity:0.2;
+                    "
+                    ng-style="{
+                    fill: c.type === 'obstruction' ? '#00F' : (c.type === 'linear' ? '#F00' : (c.type === 'forest' ? '#0F0' : (c.type === 'elevation' ? '#0FF' : '#CCC')))
+                    }"
+                    />
+          </svg>
+          <svg id="deploiement-canvas"
+               x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
+               style="display: {{game.layers.deployment ? 'inline' : 'none'}}"
+               >
+            <line x1="0" y1="70"
+                  x2="480" y2="70"
+                  style="
+                  stroke:#000;
+                  stroke-width:1px;
+                  "
+                  />
+            <line x1="0" y1="130"
+                  x2="480" y2="130"
+                  style="
+                  stroke:#000;
+                  stroke-width:0.5px;
+                  "
+                  />
+            <line x1="0" y1="100"
+                  x2="480" y2="100"
+                  style="
+                  stroke:#000;
+                  stroke-width:1px;
+                  "
+                  />
+            <line x1="0" y1="160"
+                  x2="480" y2="160"
+                  style="
+                  stroke:#000;
+                  stroke-width:0.5px;
+                  "
+                  />
+            <line x1="0" y1="380"
+                  x2="480" y2="380"
+                  style="
+                  stroke:#000;
+                  stroke-width:1px;
+                  "
+                  />
+            <line x1="0" y1="320"
+                  x2="480" y2="320"
+                  style="
+                  stroke:#000;
+                  stroke-width:0.5px;
+                  "
+                  />
+            <line x1="0" y1="410"
+                  x2="480" y2="410"
+                  style="
+                  stroke:#000;
+                  stroke-width:1px;
+                  "
+                  />
+            <line x1="0" y1="350"
+                  x2="480" y2="350"
+                  style="
+                  stroke:#000;
+                  stroke-width:0.5px;
+                  "
+                  />
+            <line x1="0" y1="30"
+                  x2="480" y2="30"
+                  style="
+                  stroke:#000;
+                  stroke-width:1px;
+                  stroke-dasharray: 5 5;
+                  "
+                  />
+            <line x1="30" y1="0"
+                  x2="30" y2="480"
+                  style="
+                  stroke:#000;
+                  stroke-width:1px;
+                  stroke-dasharray: 5 5;
+                  "
+                  />
+            <line x1="0" y1="450"
+                  x2="480" y2="450"
+                  style="
+                  stroke:#000;
+                  stroke-width:1px;
+                  stroke-dasharray: 5 5;
+                  "
+                  />
+            <line x1="450" y1="0"
+                  x2="450" y2="480"
+                  style="
+                  stroke:#000;
+                  stroke-width:1px;
+                  stroke-dasharray: 5 5;
+                  "
+                  />
+
+            <g transform="rotate(
+               {{game.board.zoom.flipped ? 180 : 0}},
+               240, 240
+               )"
+               >
+              <rect x="0" y="58"
+                    width="20" height="12"
+                    style="
+                    fill:#ffc;
+                    fill-opacity:0.5;
+                    stroke:none;
+                    "
+                    />
+              <text x="0" y="69"
+                    style="
+                    font-size:12px;
+                    "
+                    >7"</text>
+              <rect x="0" y="122"
+                    width="15" height="8"
+                    style="
+                    fill:#ffc;
+                    fill-opacity:0.5;
+                    stroke:none;
+                    "
+                    />
+              <text x="0" y="129"
+                    style="
+                    font-size:8px;
+                    "
+                    >13"</text>
+              <rect x="0" y="88"
+                    width="20" height="12"
+                    style="
+                    fill:#ffc;
+                    fill-opacity:0.5;
+                    stroke:none;
+                    "
+                    />
+              <text x="0" y="99"
+                    style="
+                    font-size:12px;
+                    "
+                    >10"</text>
+              <rect x="0" y="152"
+                    width="15" height="8"
+                    style="
+                    fill:#ffc;
+                    fill-opacity:0.5;
+                    stroke:none;
+                    "
+                    />
+              <text x="0" y="159"
+                    style="
+                    font-size:8px;
+                    "
+                    >16"</text>
+              <rect x="0" y="368"
+                    width="20" height="12"
+                    style="
+                    fill:#ffc;
+                    fill-opacity:0.5;
+                    stroke:none;
+                    "
+                    />
+              <text x="0" y="379"
+                    style="
+                    font-size:12px;
+                    "
+                    >10"</text>
+              <rect x="0" y="312"
+                    width="15" height="8"
+                    style="
+                    fill:#ffc;
+                    fill-opacity:0.5;
+                    stroke:none;
+                    "
+                    />
+              <text x="0" y="319"
+                    style="
+                    font-size:8px;
+                    "
+                    >16"</text>
+              <rect x="0" y="398"
+                    width="20" height="12"
+                    style="
+                    fill:#ffc;
+                    fill-opacity:0.5;
+                    stroke:none;
+                    "
+                    />
+              <text x="0" y="409"
+                    style="
+                    font-size:12px;
+                    "
+                    >7"</text>
+              <rect x="0" y="342"
+                    width="15" height="8"
+                    style="
+                    fill:#ffc;
+                    fill-opacity:0.5;
+                    stroke:none;
+                    "
+                    />
+              <text x="0" y="349"
+                    style="
+                    font-size:8px;
+                    "
+                    >13"</text>
+            </g>
+          </svg>
+          <svg id="scenario-canvas"
+               x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
+               style="display: {{game.layers.scenario ? 'inline' : 'none'}}"
+               >
+            <rect ng-if="
+                  menu_view === 'setup' &&
+                  game.scenario.killbox
+                  "
+                  x="{{game.scenario.killbox}}"
+                  y="{{game.scenario.killbox}}"
+                  width="{{480-2*game.scenario.killbox}}"
+                  height="{{480-2*game.scenario.killbox}}"
+                  style="
+                  fill:none;
+                  stroke:#990;
+                  stroke-width:0.5px;
+                  "
+                  />
+            <rect ng-repeat="r in game.scenario.rect"
+                  x="{{r.x-r.width/2}}"
+                  y="{{r.y-r.height/2}}"
+                  width="{{r.width}}"
+                  height="{{r.height}}"
+                  style="
+                  fill:#CC0;
+                  fill-opacity:0.3;
+                  stroke:#990;
+                  stroke-width:0.5px;
+                  "
+                  />
+            <circle ng-repeat="c in game.scenario.circle"
+                  cx="{{c.x}}"
+                  cy="{{c.y}}"
+                  r="{{c.r}}"
+                  style="
+                  fill:#CC0;
+                  fill-opacity:0.3;
+                  stroke:#990;
+                  stroke-width:0.5px;
+                  "
+                  />
+            <circle ng-repeat="o in game.scenario.objectives"
+                    cx="{{o.x}}" cy="{{o.y}}"
+                    r="{{factions.list.scenario.models.objectives[o.type].r}}"
+                    style="
+                    fill:#CC0;
+                    fill-opacity:0.8;
+                    stroke:#C90;
+                    stroke-width:0.5px;
+                    "
+                    />
+            <circle ng-if="
+                    menu_view === 'setup'
+                    "
+                    ng-repeat="o in game.scenario.objectives"
+                    cx="{{o.x}}" cy="{{o.y}}"
+                    r="{{40+factions.list.scenario.models.objectives[o.type].r}}"
+                    style="
+                    fill:none;
+                    stroke:#C90;
+                    stroke-width:0.5px;
+                    "
+                    />
+            <circle ng-repeat="f in game.scenario.flags"
+                    cx="{{f.x}}" cy="{{f.y}}"
+                    r="{{factions.list.scenario.models.flags[f.type].r}}"
+                    style="
+                    fill:#CC0;
+                    fill-opacity:0.8;
+                    stroke:#C90;
+                    stroke-width:0.5px;
+                    "
+                    />
+            <circle ng-if="
+                    menu_view === 'setup'
+                    "
+                    ng-repeat="f in game.scenario.flags"
+                    cx="{{f.x}}" cy="{{f.y}}"
+                    r="{{40+factions.list.scenario.models.flags[f.type].r}}"
+                    style="
+                    fill:none;
+                    stroke:#C90;
+                    stroke-width:0.5px;
+                    "
+                    />
+          </svg>
+          <svg id="locked-template-canvas"
+               x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
+               style="display: {{game.layers.templates ? 'inline' : 'none'}}"
+               >
+            <circle ng-repeat="aoe in templateShowLocked('aoe')"
+                    cx="{{aoe.x}}"
+                    cy="{{aoe.y}}"
+                    r="{{aoe.size*5}}"
+                    style="
+                    fill:#F90;
+                    fill-opacity:0.2;
+                    stroke-width:0.5px;
+                    "
+                    ng-style="{
+                    'stroke': aoe === game.templates.active ? '#0F0' : '#C60',
+                    }"
+                    ng-mousedown="onTemplateMouseDown($event, aoe)"
+                    />
+            <polygon ng-repeat="sp in templateShowLocked('spray')"
+                     points="
+                     8.75,0
+                     {{
+                     (10-8.125*sp.size/10) + ','  + (98.34*sp.size/10) +
+                     ' 10,' + (100*sp.size/10) +
+                     ' ' + (10+8.125*sp.size/10) + ',' + (98.34*sp.size/10)
+                     }}
+                     11.25,0
+                     "
+                     style="
+                     fill:#F90;
+                     fill-opacity:0.2;
+                     stroke-width:0.5px;
+                     "
+                     transform="
+                     translate({{sp.x-10}},{{sp.y}})
+                     rotate({{sp.rot-180}}, 10, 0)
+                     "
+                     ng-style="{
+                     'stroke': sp === game.templates.active ? '#0F0' : '#C60',
+                     }"
+                     ng-mousedown="onTemplateMouseDown($event, sp)"
+                     />
+            <rect ng-repeat="wa in templateShowLocked('wall')"
+                  x="{{wa.x-5}}" y="{{wa.y-20}}"
+                  width="10" height="40"
+                  style="
+                  fill:#CCC;
+                  fill-opacity:1.0;
+                  stroke-width:0.5px;
+                  "
+                  transform="
+                  rotate(
+                  {{wa.rot}},
+                  {{wa.x}},
+                  {{wa.y}}
+                  )
+                  "
+                  ng-style="{
+                  'stroke': wa === game.templates.active ? '#0F0' : '#666',
+                  }"
+                  ng-mousedown="onTemplateMouseDown($event, wa)"
+                  />
+          </svg>
+          <svg id="model-canvas"
+               x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
+               style="display: {{game.layers.models ? 'inline' : 'none'}}"
+               >
+            <circle ng-repeat="model in modelShow('color')"
+                    cx="{{model.state.x}}" cy="{{model.state.y}}"
+                    r="{{model.info.r+2}}"
+                    style="
+                    fill:{{model.state.show_color}};
+                    filter: url(#aura-filter);
+                    "
+                    />
+            <g ng-repeat="model in modelShow('charge')">
+              <rect x="{{(model.state.x+model.state.charge_x)/2-model.info.r}}"
+                    y="{{(model.state.y+model.state.charge_y)/2-model.state.charge_length/2}}"
+                    width="{{model.info.r*2}}" height="{{model.state.charge_length}}"
+                    transform="rotate(
+                    {{model.state.charge_rot}},
+                    {{(model.state.x+model.state.charge_x)/2}},
+                    {{(model.state.y+model.state.charge_y)/2}}
+                    )"
+                    style="
+                    fill: #999;
+                    fill-opacity: 0.5;
+                    stroke: #333;
+                    stroke-width: 0.5px;
                     pointer-events: none;
                     "
                     />
             </g>
-            <g ng-if="model.state.label.length != 0">
-              <rect x="{{model.info.width/2-model.state.label.length*3.5/2-2}}"
-                    y="{{model.info.height/2+model.info.r+1}}"
-                    width="{{model.state.label.length*3.5+4}}" height="6"
+            <svg ng-repeat="model in game.models"
+                 x="{{model.state.x - model.info.width/2}}" y="{{model.state.y - model.info.height/2}}">
+              <g transform="rotate({{model.state.rot}}, {{model.info.width/2}}, {{model.info.height/2}})">
+                <circle ng-mousedown="onModelMouseDown($event, model)"
+                        ng-click="onModelClick($event, model)"
+                        cx="{{model.info.width/2}}" cy="{{model.info.height/2}}" r="{{model.info.r}}"
+                        style="
+                        fill:{{model.info.color}};
+                        fill-opacity:1.0;
+                        stroke:black;
+                        stroke-width:0.5px;
+                        "
+                        /> 
+                <line x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2}}"
+                      x2="{{model.info.width/2+model.info.r}}" y2="{{model.info.height/2}}"
+                      style="
+                      stroke:black;
+                      stroke-width:0.5px;
+                      pointer-events: none;
+                      "
+                      />
+                <line x1="{{model.info.width/2}}" y1="{{model.info.height/2}}"
+                      x2="{{model.info.width/2}}" y2="{{model.info.height/2-model.info.r}}"
+                      style="
+                      stroke:black;
+                      stroke-width:0.5px;
+                      pointer-events: none;
+                      "
+                      />
+                <image ng-show="model.state.show_image"
+                       x="{{model.info.img.x}}" y="{{model.info.img.y}}"
+                       width="{{model.info.width}}" height="{{model.info.height}}"
+                       xlink:href="{{(model.state.show_incorporeal && model.info.img.incorporeal) ? model.info.img.incorporeal : ((model.state.show_leader && model.info.img.leader) ? model.info.img.leader : model.info.img.link)}}"
+                       style="pointer-events: none"
+                       />
+                <line ng-show="model.info.damage.total > 1"
+                  x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2+model.info.r+1}}"
+                  x2="{{model.info.width/2+model.info.r}}" y2="{{model.info.height/2+model.info.r+1}}"
+                  style="
+                  stroke:#0F0;
+                  stroke-width:1px;
+                  pointer-events: none;
+                  "
+                  />
+                  <line ng-show="model.info.damage.total > 1"
+                    x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2+model.info.r+1}}"
+                    x2="{{model.info.width/2-model.info.r+model.info.r*2*model.state.damage.total/model.info.damage.total}}"
+                    y2="{{model.info.height/2+model.info.r+1}}"
                     style="
-                    fill:#FFD;
+                    stroke:#F00;
+                    stroke-width:1px;
+                    pointer-events: none;
                     "
                     />
-              <text x="{{model.info.width/2}}"
-                    y="{{model.info.height/2+model.info.r+6}}"
+                    <g ng-if="model.info.damage.field">
+                      <line x1="{{model.info.width/2-model.info.r}}"
+                            y1="{{model.info.height/2+model.info.r+1}}"
+                            x2="{{model.info.width/2+model.info.r}}"
+                            y2="{{model.info.height/2+model.info.r+1}}"
+                            style="
+                            stroke:#0FF;
+                            stroke-width:1px;
+                            pointer-events: none;
+                            "
+                            />
+                      <line x1="{{model.info.width/2-model.info.r}}"
+                            y1="{{model.info.height/2+model.info.r+1}}"
+                            x2="{{model.info.width/2-model.info.r+model.info.r*2*model.state.damage.field/model.info.damage.field}}"
+                            y2="{{model.info.height/2+model.info.r+1}}"
+                            style="
+                            stroke:#066;
+                            stroke-width:1px;
+                            pointer-events: none;
+                            "
+                            />
+                    </g>
+                    <image ng-repeat="e in model.effects()"
+                           x="{{model.info.width/2+$index*8-8*model.effects().length/2}}"
+                           y="{{model.info.height/2+model.info.r}}"
+                           width="10"
+                           height="10"
+                           xlink:href="{{effects[e].icon}}"
+                           style="pointer-events:none;"
+                           />
+                    <image ng-if="model.state.show_fleeing"
+                           x="{{model.info.width/2-5+model.info.r*0.8}}"
+                           y="{{model.info.height/2-5-model.info.r*0.8-1}}"
+                           width="10"
+                           height="10"
+                           xlink:href="data/icons/BoltYellow.png"
+                           style="pointer-events:none;"
+                           />
+                    <image ng-if="model.state.show_leader"
+                           x="{{model.info.width/2-5+model.info.r*0.7}}"
+                           y="{{model.info.height/2-5+model.info.r*0.7-1}}"
+                           width="10"
+                           height="10"
+                           xlink:href="data/icons/Leader.png"
+                           style="pointer-events:none;"
+                           />
+              </g>
+              <g ng-if="model.state.label.length != 0"
+                 transform="rotate(
+                 {{game.board.zoom.flipped ? 180 : 0}},
+                 {{model.info.width/2}},
+                 {{model.info.height/2}})"
+                 >
+                <rect x="{{model.info.width/2-model.state.label.length*3.5/2-2}}"
+                      y="{{
+                  model.info.height/2+(((model.state.rot%360) > 90 && (model.state.rot%360) < 270) ? (game.board.zoom.flipped ? -model.info.r-7 : model.info.r) : (game.board.zoom.flipped ? model.info.r : -model.info.r-7))
+                  }}"
+                  width="{{model.state.label.length*3.5+4}}" height="6"
+                  style="
+                  fill:#333;
+                  fill-opacity:0.4;
+                  pointer-events: none;
+                  "
+                  />
+                  <text x="{{model.info.width/2}}"
+                        y="{{
+                    model.info.height/2+(((model.state.rot%360) > 90 && (model.state.rot%360) < 270) ? (game.board.zoom.flipped ? -model.info.r-2 : model.info.r+6) : (game.board.zoom.flipped ? model.info.r+6 : -model.info.r-2))
+                    }}"
                     style="
+                    fill:white;
                     text-anchor:middle;
                     font-size:6px;
                     font-family:monospace;
+                    pointer-events: none;
+                    -webkit-user-select: none;
+                    -moz-user-select:none;
                     "
                     >{{model.state.label}}</text>
-            </g>
-            <image ng-if="model.state.show_fire"
-                   x="{{model.info.width/2-4}}"
-                   y="{{model.info.height/2+model.info.r-1}}"
-                   width="10"
-                   height="10"
-                   xlink:href="data/icons/Fire.png"
-                   style="pointer-events:none;"
-                   />
-            <image ng-if="model.state.show_corrosion"
-                   x="{{model.info.width/2-11}}"
-                   y="{{model.info.height/2+model.info.r+1}}"
-                   width="10"
-                   height="10"
-                   xlink:href="data/icons/Corrosion.png"
-                   style="pointer-events:none;"
-                   />
-            <image ng-if="model.state.show_stationary"
-                   x="{{model.info.width/2+2}}"
-                   y="{{model.info.height/2+model.info.r}}"
-                   width="10"
-                   height="10"
-                   xlink:href="data/icons/Stationary.png"
-                   style="pointer-events:none;"
-                   />
-            <image ng-if="model.state.show_blind"
-                   x="{{model.info.width/2-18}}"
-                   y="{{model.info.height/2+model.info.r-1}}"
-                   width="10"
-                   height="10"
-                   xlink:href="data/icons/Blind.png"
-                   style="pointer-events:none;"
-                   />
-            <image ng-if="model.state.show_kd"
-                   x="{{model.info.width/2+9}}"
-                   y="{{model.info.height/2+model.info.r}}"
-                   width="10"
-                   height="10"
-                   xlink:href="data/icons/Disrupted.png"
-                   style="pointer-events:none;"
-                   />
-            <image ng-if="model.state.show_leader"
-                   x="{{model.info.width/2-5+model.info.r*0.7}}"
-                   y="{{model.info.height/2-5+model.info.r*0.7-1}}"
-                   width="10"
-                   height="10"
-                   xlink:href="data/icons/Leader.png"
-                   style="pointer-events:none;"
-                   />
-          </g>
-        </svg>
-        <circle ng-repeat="id in game.update_selection"
-                cx="{{game.models[id].state.x}}"
-                cy="{{game.models[id].state.y}}"
-                r="{{game.models[id].info.r}}"
-                style="
-                fill:none;
-                stroke: #0FF;
-                stroke-width:0.5px;
-                pointer-events: none;
-                "
-                />
-        <circle ng-repeat="id in game.selection"
-                cx="{{game.models[id].state.x}}"
-                cy="{{game.models[id].state.y}}"
-                r="{{game.models[id].info.r}}"
-                style="
-                fill:none;
-                stroke-width:1px;
-                pointer-events: none;
-                "
-                ng-style="{
-                'stroke': game.templates.active ? '#090' : (mode_model_target ? '#00F' : '#0F0')
-                }"
-                />
-      </svg>
-      <path ng-repeat="model in modelShow('melee')"
-            d="
-            M{{model.state.x-5-model.info.r}},{{model.state.y}}
-            L{{model.state.x+5+model.info.r}},{{model.state.y}}
-            A{{5+model.info.r}},{{5+model.info.r}} 0 0,0
-            {{model.state.x-5-model.info.r}},{{model.state.y}}
-            M{{model.state.x}},{{model.state.y}}
-            L{{model.state.x}},{{model.state.y-model.info.r-5}}
-            "
-            style="
-            stroke:#000;
-            stroke-width:0.5px;
-            fill: #000;
-            fill-opacity: 0.4;
-            pointer-events: none;
-            "
-            transform="
-            rotate({{model.state.rot}},
-            {{model.state.x}},
-            {{model.state.y}})
-            "
-            />
-      <path ng-repeat="model in modelShow('reach')"
-            d="
-            M{{model.state.x-20-model.info.r}},{{model.state.y}}
-            L{{model.state.x+20+model.info.r}},{{model.state.y}}
-            A{{20+model.info.r}},{{20+model.info.r}} 0 0,0
-            {{model.state.x-20-model.info.r}},{{model.state.y}}
-            M{{model.state.x}},{{model.state.y}}
-            L{{model.state.x}},{{model.state.y-model.info.r-20}}
-            "
-            style="
-            stroke:#000;
-            stroke-width:0.5px;
-            fill: #000;
-            fill-opacity: 0.4;
-            pointer-events: none;
-            "
-            transform="
-            rotate({{model.state.rot}},
-            {{model.state.x}},
-            {{model.state.y}})
-            "
-            />
-      <circle ng-repeat="model in modelShow('control')"
-              cx="{{model.state.x}}" cy="{{model.state.y}}"
-              r="{{model.info.r+(model.info.focus || model.info.fury)*20}}"
-              style="
-              fill: #0FF;
-              fill-opacity: 0.3;
-              stroke: #099;
-              stroke-width: 1px;
-              pointer-events: none;
-              "
-              />
-      <circle ng-repeat="model in showCenteredAoE()"
-              cx="{{model.state.x}}"
-              cy="{{model.state.y}}"
-              r="{{model.state.show_aoe}}"
-              style="
-              fill:#F90;
-              fill-opacity:0.2;
-              stroke:#C60;
-              stroke-width:0.5px;
-              pointer-events: none;
-              "
-              />
-      <text ng-repeat="model in modelShow('focus')"
-            x="{{model.state.x}}" y="{{model.state.y+4}}"
-            style="
-            fill:white;
-            stroke:black;
-            stroke-width:0.25px;
-            text-anchor:middle;
-            font-size:9px;
-            font-weight:bold;
-            pointer-events: none;
-            -webkit-user-select: none;
-            -moz-user-select:none;
-            "
-            >
-        {{model.state.focus}}
-      </text>
-      <svg id="template-canvas"
-           x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
-           style="display: {{game.layers.templates ? 'inline' : 'none'}}"
-           >
-        <circle ng-repeat="aoe in templateShowUnlocked('aoe')"
-                cx="{{aoe.x}}"
-                cy="{{aoe.y}}"
-                r="{{aoe.size*5}}"
-                style="
-                fill:#F90;
-                fill-opacity:0.5;
-                stroke-width:0.5px;
-                "
-                ng-style="{
-                 'stroke': aoe === game.templates.active ? (mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')) : '#C60',
-                }"
-                ng-click="onTemplateClick($event, aoe)"
-                ng-mousedown="onTemplateMouseDown($event, aoe)"
-                />
-        <line ng-show="game.templates.active.type == 'aoe' && !game.templates.active.locked"
-              x1="{{game.templates.active.x}}" y1="{{game.templates.active.y}}"
-              x2="{{game.templates.active.x}}" y2="{{game.templates.active.y-game.templates.active.size*5}}"
-              style="
-              stroke-width:0.75px;
-              marker-end:url(#aoe-direction-end);
-              "
-              ng-style="{
-              'stroke': mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')
-              }"
-              transform="
-              rotate({{game.templates.active.rot}},
-              {{game.templates.active.x}},
-              {{game.templates.active.y}})
-              "
-              />
-        <polygon ng-repeat="sp in templateShowUnlocked('spray')"
-                 points="
-                 8.75,0
-                 {{
-                 (10-8.125*sp.size/10) + ','  + (98.34*sp.size/10) +
-                 ' 10,' + (100*sp.size/10) +
-                 ' ' + (10+8.125*sp.size/10) + ',' + (98.34*sp.size/10)
-                 }}
-                 11.25,0
+              </g>
+              <g ng-if="
+                 model.state.unit &&
+                 (model.state.show_unit ||
+                  menu_view === 'units' ||
+                  menu_view === 'models')
                  "
-                 style="
-                 fill:#F90;
-                 fill-opacity:0.5;
-                 stroke-width:0.5px;
-                 "
-                 transform="
-                 translate({{sp.x-10}},{{sp.y}})
-                 rotate({{sp.rot-180}}, 10, 0)
-                 "
-                 ng-style="{
-                 'stroke': sp === game.templates.active ? (mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')) : '#C60',
-                 }"
-                 ng-click="onTemplateClick($event, sp)"
-                 ng-mousedown="onTemplateMouseDown($event, sp)"
-                 />
-        <circle ng-show="game.templates.active !== null && game.templates.active.origin !== null"
-                cx="{{game.templates.active.origin.state.x}}"
-                cy="{{game.templates.active.origin.state.y}}"
-                r="{{game.templates.active.origin.info.r}}"
-                style="
-                fill:none;
-                stroke:#FF0;
-                stroke-width:1px;
-                pointer-events: none;
-                "
-                />
-      </svg>
-      <circle ng-show="create_template_mode && create_template_preview.type === 'aoe'"
-              cx="{{create_template_preview.x}}"
-              cy="{{create_template_preview.y}}"
-              r="{{create_template_preview.size*5}}"
-              style="
-              fill:#F90;
-              fill-opacity:0.5;
-              stroke-width:0.5px;
-              pointer-events: none;
-              stroke: #C60;
-              "
-              />
-      <polygon ng-show="create_template_mode && create_template_preview.type === 'spray'"
-               points="
-               8.75,0
-               {{
-               (10-8.125*create_template_preview.size/10) +
-               ','  + (98.34*create_template_preview.size/10) +
-               ' 10,' + (100*create_template_preview.size/10) +
-               ' ' + (10+8.125*create_template_preview.size/10) +
-               ',' + (98.34*create_template_preview.size/10)
-               }}
-               11.25,0
-               "
-               style="
-               fill:#F90;
-               fill-opacity:0.5;
-               stroke:#C60,
-               stroke-width:0.5px;
-               "
-               transform="
-               translate({{create_template_preview.x-10}},{{create_template_preview.y}})
-               rotate({{create_template_preview.rot-180}}, 10, 0)
-               "
-               />
-      <svg ng-show="create_mode"
-           ng-repeat="(i,model) in create_preview.info"
-           x="{{create_preview.x + model.offset_x - model.info.width/2}}"
-           y="{{create_preview.y + model.offset_y - model.info.height/2}}"
-           style="pointer-events: none"
-           >
-        <image x="{{model.info.img.x}}"
-               y="{{model.info.img.y}}"
-               width="{{model.info.width}}"
-               height="{{model.info.height}}"
-               xlink:href="{{model.info.img.link}}"
-               />
-        <circle cx="{{model.info.width/2}}"
-                cy="{{model.info.height/2}}"
-                r="{{model.info.r}}"
-                style="
-                fill:#F00;
-                fill-opacity:0.5;
-                stroke-width:1px;
-                "
-                />
-      </svg>
-      <rect x="{{selection.x}}" y="{{selection.y}}"
-            width="{{selection.width}}" height="{{selection.height}}"
-            style="
-            fill: none;
-            stroke:#00F;
-            stroke-width:0.5px;
-            " />
-      <g ng-show="game.ruler.state.active"
-         style="pointer-events: none"
-         >
-        <line x1="{{game.ruler.state.x1}}" y1="{{game.ruler.state.y1}}"
-              x2="{{game.ruler.state.x2}}" y2="{{game.ruler.state.y2}}"
-              style="
-              stroke-width:1px;
-              marker-start:url(#ruler-start);
-              marker-end:url(#ruler-end);
-              "
-              ng-style="{
-              'stroke': ruler_drag.active ? (mode_ruler_target ? '#F09' : (mode_ruler_origin ? '#F90' : '#0FF')) : '#0FF'
-              }"
-              />
-        <rect x="{{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1-2.5}}"
-              y="{{(game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1-4}}"
-              width="30" height="10"
-              style="
-              fill:#FFC;
-              stroke:#000;
-              stroke-width:0.5px;
-              "
-              />
-        <text x="{{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1}}"
-              y="{{(game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1+4}}"
-              style="
-              font-size:8px;
-              ">
-          {{game.ruler.state.length}}"
-        </text>
-      </g>
-      <line ng-show="game.los.state.active"
-            x1="{{game.los.state.x1}}" y1="{{game.los.state.y1}}"
-            x2="{{game.los.state.x2}}" y2="{{game.los.state.y2}}"
-            style="
-            stroke: #0F0;
-            stroke-width:0.5px;
-            pointer-events: none;
-            "
-            />
-      <circle ng-show="ruler_drag.active && ruler_drag.origin !== null"
-              cx="{{ruler_drag.origin.state.x}}"
-              cy="{{ruler_drag.origin.state.y}}"
-              r="{{ruler_drag.origin.info.r}}"
-              style="
-              fill:none;
-              stroke:#F90;
-              stroke-width:1px;
-              pointer-events: none;
-              "
-              />
-      <circle ng-show="ruler_drag.active && ruler_drag_drag.target !== null"
-              cx="{{ruler_drag.target.state.x}}"
-              cy="{{ruler_drag.target.state.y}}"
-              r="{{ruler_drag.target.info.r}}"
-              style="
-              fill:none;
-              stroke:#F09;
-              stroke-width:1px;
-              pointer-events: none;
-              "
-              />
-      <g ng-show="model_drag.active"
-         style="pointer-events: none"
-         >
-        <line x1="{{model_drag.start.x}}" y1="{{model_drag.start.y}}"
-              x2="{{model_drag.end.x}}" y2="{{model_drag.end.y}}"
-              style="
-              stroke:#0FF;
-              stroke-width:1px;
-              marker-start:url(#ruler-start);
-              marker-end:url(#ruler-end);
-              "
-              />
-        <rect x="{{(model_drag.end.x-model_drag.start.x)/2+model_drag.start.x-2.5}}"
-              y="{{(model_drag.end.y-model_drag.start.y)/2+model_drag.start.y-4}}"
-              width="30" height="10"
-              style="
-              fill:#FFC;
-              stroke:#000;
-              stroke-width:0.5px;
-              "
-              />
-        <text x="{{(model_drag.end.x-model_drag.start.x)/2+model_drag.start.x}}"
-              y="{{(model_drag.end.y-model_drag.start.y)/2+model_drag.start.y+4}}"
-              style="
-              font-size:8px;
-              ">
-          {{model_drag.length}}"
-        </text>
-      </g>
-    </svg>
-  </div>
-  <div style="display:inline-block;vertical-align:top;width:350px">
-    <div ng-show="game.selection.length === 1"
-         style="border:1px solid black;max-height:300px;overflow-y:scroll;">
-      <div>
-        <strong>Name :</strong> {{game.models[game.selection[0]].info.name}}
-      </div>
-      <div>
-        <strong>Class :</strong>
-        {{game.models[game.selection[0]].info.type}} -
-        {{game.models[game.selection[0]].info.base}}
-      </div>
-      <div>
-        <strong>Label :</strong>
-        <form style="display:inline-block;margin:0px;padding:0px;"
-              ng-submit="doSetLabel()">
-          <input type="text"
-                 ng-model="model_label" />
-        </form>
-      </div>
-      <div ng-show="game.models[game.selection[0]].info.fury">
-        <strong>Fury :</strong>
-        {{game.models[game.selection[0]].info.fury}}
-      </div>
-      <div ng-show="game.models[game.selection[0]].info.focus">
-        <strong>Focus :</strong>
-        {{game.models[game.selection[0]].info.focus}}
-      </div>
-      <div>
-        <strong>Damages :</strong>
-        {{game.models[game.selection[0]].state.damage.total}} /
-        {{game.models[game.selection[0]].info.damage.total}}
-        <span ng-if="game.models[game.selection[0]].info.damage.field">
-          +
-          {{game.models[game.selection[0]].state.damage.field}} /
-          {{game.models[game.selection[0]].info.damage.field}}
-        </span>          
-        <button ng-click="doResetAllModelDamage()">Reset</button>
-        <div ng-show="game.models[game.selection[0]].info.damage.type == 'warrior'">
-          <div ng-repeat="i in range(game.models[game.selection[0]].info.damage.n).reverse()"
-               style="width:20px;height:20px;border:1px solid black;display:inline-block;text-align:center;"
-               ng-style="{
-            'border-right': (i%5 == 0)?'5px solid black':'1px solid black',
-            'background-color': (i>=game.models[game.selection[0]].info.damage.n-game.models[game.selection[0]].state.damage.n) ? '#999' : 'white'
-            }"
-            ng-click="doModelDamage(game.models[game.selection[0]],game.models[game.selection[0]].info.damage.n-i)"
-            ></div>
-        </div>
-        <table style="border-collapse:collapse;"
-               ng-if="game.models[game.selection[0]].info.damage.field">
-          <tr ng-repeat="line in [0, 1]">
-            <td ng-repeat="col in range(game.models[game.selection[0]].info.damage.field/2)"
-                style="width:20px;height:20px;border:1px solid black;text-align:center;"
-                ng-style="{
-                'background-color': (col+(line*game.models[game.selection[0]].info.damage.field/2)) < game.models[game.selection[0]].state.damage.field ? '#999' : 'white'
-                }"
-                ng-click="doModelDamage(game.models[game.selection[0]], 'field', col+(line*game.models[game.selection[0]].info.damage.field/2)+1)"
-            >F</td>
-          </tr>
-        </table>
-        <table ng-show="
-               game.models[game.selection[0]].info.damage.type === 'jack' ||
-               game.models[game.selection[0]].info.damage.type === 'gargantuan' ||
-               game.models[game.selection[0]].info.damage.type === 'beast'
-               "
-               style="border-collapse:collapse;text-align:center;">
-          <tr>
-            <td ng-repeat="col in ['1','2','3','4','5','6']"
-                style="width:20px;height:20px;"
-                ng-click="doModelDamage(game.models[game.selection[0]],col)"
-                >
-              {{col}}
-            </td>
-          </tr>
-          <tr ng-repeat="line in range(game.models[game.selection[0]].info.damage.depth)">
-            <td ng-repeat="col in ['1','2','3','4','5','6']"
-                style="width:20px;height:20px;border:1px solid black;"
-                ng-style="{
-                'background-color':
-                (game.models[game.selection[0]].info.damage[col][line]) ? (
-                (game.models[game.selection[0]].state.damage[col][line] === 1) ? '#999' : 'white'
-                ) : 'black'
-                }"
-                ng-click="doModelDamage(game.models[game.selection[0]], col, line)"
-                >
-              {{ (game.models[game.selection[0]].info.damage[col][line] === 'b') ? ' ' : 
-              game.models[game.selection[0]].info.damage[col][line].toUpperCase() }}
-            </td>
-          </tr>
-        </table>
-        <table ng-show="game.models[game.selection[0]].info.damage.type == 'colossal'"
-               style="border-collapse:collapse;text-align:center;">
-          <tr>
-            <td ng-repeat="col in ['L1','L2','L3','L4','L5','L6','R1','R2','R3','R4','R5','R6']"
-                style="width:20px;height:20px;"
-                ng-click="doModelDamage(game.models[game.selection[0]],col)"
-                >
-              {{col}}
-            </td>
-          </tr>
-          <tr ng-repeat="line in [0,1,2,3,4,5]">
-            <td ng-repeat="col in ['L1','L2','L3','L4','L5','L6','R1','R2','R3','R4','R5','R6']"
-                style="width:20px;height:20px;border:1px solid black;"
-                ng-style="{
-                'background-color':
-                (game.models[game.selection[0]].info.damage[col][line]) ? (
-                (game.models[game.selection[0]].state.damage[col][line] === 1) ? '#999' : 'white'
-                ) : 'black',
-                'border-right': col === 'L6' ? '4px solid black':'1px solid black'
-                }"
-                ng-click="doModelDamage(game.models[game.selection[0]], col, line)"
-                >
-              {{ (game.models[game.selection[0]].info.damage[col][line] === 'b') ? ' ' : 
-              game.models[game.selection[0]].info.damage[col][line].toUpperCase() }}
-            </td>
-          </tr>
-        </table>
-        <div>
-          Click on boxes to mark/clear damage.
-          <ul>
-            <li>for warriors : damage will be marked up to the clicked box.
-              To clear damages, re-click on the same box.</li>
-            <li>for jacks : you can mark/clear whole colons by clicking on colon numbers.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div style="border:1px solid black;max-height:600px;overflow-y:scroll;">
-      <div>
-        <strong>Create Model :</strong>
-      </div>
-      <div>
-        Faction :
-        <select name="model_faction"
-                ng-model="model.faction"
-                ng-options="id as f.name for (id, f) in factions"
-                ng-change="model.type = null"
-                >
-        </select>
-      </div>
-      <div>
-        Type :
-        <select name="model_type"
-                ng-model="model.type"
-                ng-options="id as id for (id, f) in factions[model.faction].models"
-                ng-change="model.unit = null; model.id = null;"
-                >
-        </select>
-      </div>
-      <div ng-show="model.type!=='units'">
-        Model :
-        <select name="model_id_simple"
-                ng-model="model.id"
-                ng-options="f as f.name for (id, f) in factions[model.faction].models[model.type]"
-                ng-change="model.size =  1"
-                >
-        </select>
-      </div>
-      <div ng-show="model.type==='units'">
-        <div>
-          Unit :
-          <select name="model_unit"
-                  ng-model="model.unit"
-                  ng-options="f as f.name for (id, f) in factions[model.faction].models.units"
-                  ng-change="model.unit_entry =  null"
-                  >
-          </select>
-        </div>
-        <div>
-          Unit Entry :
-          <select name="model_unit_type"
-                  ng-model="model.unit_entry"
-                  ng-options="f as id for (id, f) in model.unit.entries"
-                  ng-change="model.id =  null"
-                  >
-          </select>
-        </div>
-        <div>
-          Model :
-          <select name="model_unit_id"
-                  ng-model="model.id"
-                  ng-options="f as f.name for (id, f) in model.unit_entry"
-                  ng-change="model.size =  1"
-                  >
-          </select>
-        </div>
-      </div>
-      <div ng-show="model.id.ranges">
-        Size :
-        <select name="model_size"
-                ng-model="model.size"
-                ng-options="s as s for s in model.id.ranges"
-                >
-        </select>
-      </div>
-      <div>
-        <button ng-disabled="!model.id"
-                ng-click="doToggleCreateModel()">
-          {{ create_mode ? 'Cancel' : 'Create' }}
-        </button>
-        <p ng-show="create_mode">
-          Move your cursor over the board and click to create the new model under the cursor position.
-          <br />To cancel, press Esc.
-        </p>
-      </div>
-      <div ng-show="model.id">
-        <div>
-          <strong>Description</strong>
-        </div>
-        <svg width="{{model.id.r*10}}px" height="{{model.id.r*10}}px"
-             viewBox="0 0 {{model.id.r*4}} {{model.id.r*4}}"
-             >
-          <image x="{{model.id.r*2+model.id.img.x-model.id.width/2}}"
-                 y="{{model.id.r*2+model.id.img.y-model.id.height/2}}"
-                 width="{{model.id.width}}" height="{{model.id.height}}"
-                 xlink:href="{{model.id.img.link}}"
-                 style="pointer-events: none"
-                 />
-        </svg>
-        <div>
-          <strong>Name :</strong>
-          {{model.id.name}} x{{ model.size || '1'}}
-        </div>
-        <div>
-          <strong>Class :</strong>
-          {{model.id.type}} - {{model.id.base}}
-        </div>
-        <div ng-show="model.id.focus">
-          <strong>Focus :</strong>
-          {{model.id.focus}}
-        </div>
-        <div ng-show="model.id.fury">
-          <strong>Fury :</strong>
-          {{model.id.fury}}
-        </div>
-        <div ng-show="model.id.damage.field">
-          <strong>Field :</strong>
-          {{model.id.damage.field}}
-        </div>
-        <div>
-          <strong>Damages :</strong>
-          {{model.id.damage.total}}
-          <span ng-if="model.id.damage.field">
-            +
-            {{model.id.damage.field}}
-          </span>          
-          <div ng-show="model.id.damage.type == 'warrior'">
-            <div style="width:20px;height:20px;border:1px solid black;display:inline-block"
-                 ng-style="{ 'border-right': (i%5 == 0)?'5px solid black':'1px solid black' }"
-                 ng-repeat="i in range(model.id.damage.n).reverse()"></div>
-          </div>
-          
-          <table ng-show="
-                 model.id.damage.type === 'jack' ||
-                 model.id.damage.type === 'beast' ||
-                 model.id.damage.type === 'gargantuan'
-                 "
-                 style="border-collapse:collapse;text-align:center;">
-            <tr>
-              <td ng-repeat="col in ['1','2','3','4','5','6']"
-                  style="width:20px;height:20px;"
-                  >
-                {{col}}
-              </td>
-            </tr>
-            <tr ng-repeat="line in range(model.id.damage.depth)">
-              <td ng-repeat="col in ['1','2','3','4','5','6']"
-                  style="width:20px;height:20px;border:1px solid black;"
-                  ng-style="
-                  { 'background-color': (model.id.damage[col][line])?'white':'black'}
-                  "
-                  >
-                {{(model.id.damage[col][line] === 'b')?' ':model.id.damage[col][line].toUpperCase()}}
-              </td>
-            </tr>
-          </table>
-          <table ng-show="model.id.damage.type == 'colossal'"
-                 style="border-collapse:collapse;text-align:center;">
-            <tr>
-              <td ng-repeat="col in ['L1','L2','L3','L4','L5','L6','R1','R2','R3','R4','R5','R6']"
-                  style="width:20px;height:20px;"
-                  ng-click="doModelDamage(model,col)"
-                  >
-                {{col}}
-              </td>
-            </tr>
-            <tr ng-repeat="line in [0,1,2,3,4,5]">
-              <td ng-repeat="col in ['L1','L2','L3','L4','L5','L6','R1','R2','R3','R4','R5','R6']"
-                  style="width:20px;height:20px;border:1px solid black;"
-                  ng-style="{
-                  'background-color':
-                  (model.id.damage[col][line]) ? 'white' : 'black',
-                  'border-right': col === 'L6' ? '4px solid black':'1px solid black'
-                  }"
-                  ng-click="doModelDamage(model, col, line)"
-                  >
-                {{ (model.id.damage[col][line] === 'b') ? ' ' : 
-                model.id.damage[col][line].toUpperCase() }}
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
-      <div>
-        <strong>Import models from FK army list :</strong>
-      </div>
-      <div>
-        From file : <input id="import-fk-file"
-                           type="file"
-                           onchange="angular.element(this).scope().readFKFile(this.files[0])" />
-        <div>or from string :</div>
-        <div>
-          <textarea ng-model="fk_read_string"
-                    placeholder="FK army list in text format"
+                 transform="rotate(
+                 {{game.board.zoom.flipped ? 180 : 0}},
+                 {{model.info.width/2}},
+                 {{model.info.height/2}}
+                 )"
+                 >
+                <rect x="{{model.info.width/2-model.info.r-9}}"
+                      y="{{model.info.height/2-model.info.r-4}}"
+                      width="12" height="6"
+                      style="
+                      fill:#333;
+                      fill-opacity:0.4;
+                      pointer-events: none;
+                      "
+                      />
+                <text x="{{model.info.width/2-model.info.r+2}}"
+                      y="{{model.info.height/2-model.info.r+1}}"
+                      style="
+                      fill:#0FF;
+                      text-anchor:end;
+                      font-size:6px;
+                      font-family:monospace;
+                      font-weight: bold;
+                      pointer-events: none;
+                      -webkit-user-select: none;
+                      -moz-user-select:none;
+                      "
+                      >U{{model.state.unit}}</text>
+              </g>
+            </svg>
+            <circle ng-repeat="id in game.update_selection"
+                    cx="{{game.models[id].state.x}}"
+                    cy="{{game.models[id].state.y}}"
+                    r="{{game.models[id].info.r}}"
                     style="
-                    width:10em;
-                    height:10em;
+                    fill:none;
+                    stroke: #FFF;
+                    stroke-width:0.75px;
+                    pointer-events: none;
+                    "
+                    />
+            <circle ng-repeat="id in game.selection"
+                    cx="{{game.models[id].state.x}}"
+                    cy="{{game.models[id].state.y}}"
+                    r="{{game.models[id].info.r}}"
+                    style="
+                    fill:none;
+                    stroke-width:1px;
+                    pointer-events: none;
+                    "
+                    ng-style="{
+                    'stroke': game.templates.active ? none : (modes.current.name === 'Model Target' ? '#00F' : '#0F0')
+                    }"
+                    />
+            <circle ng-if="
+                    modes.current.name === 'Model Charge' &&
+                    modes.current.target
+                    "
+                    cx="{{modes.current.target.state.x}}"
+                    cy="{{modes.current.target.state.y}}"
+                    r="{{modes.current.target.info.r}}"
+                    style="
+                    fill:none;
+                    stroke-width:1px;
+                    pointer-events: none;
+                    "
+                    ng-style="{
+                    'stroke': game.models[game.selection[0]].chargeTargetInRange(modes.current.target) ? '#0FF' : '#F00'
+                    }"
+                    />
+            <path ng-repeat="model in modelShow('melee')"
+                  d="
+                  M{{model.state.x-5-model.info.r}},{{model.state.y}}
+                  L{{model.state.x+5+model.info.r}},{{model.state.y}}
+                  A{{5+model.info.r}},{{5+model.info.r}} 0 0,0
+                  {{model.state.x-5-model.info.r}},{{model.state.y}}
+                  M{{model.state.x}},{{model.state.y}}
+                  L{{model.state.x}},{{model.state.y-model.info.r-5}}
+                  "
+                  style="
+                  stroke:#000;
+                  stroke-width:0.5px;
+                  fill: #000;
+                  fill-opacity: 0.3;
+                  pointer-events: none;
+                  "
+                  transform="
+                  rotate({{model.state.rot}},
+                  {{model.state.x}},
+                  {{model.state.y}})
+                  "
+                  />
+            <path ng-repeat="model in modelShow('reach')"
+                  d="
+                  M{{model.state.x-20-model.info.r}},{{model.state.y}}
+                  L{{model.state.x+20+model.info.r}},{{model.state.y}}
+                  A{{20+model.info.r}},{{20+model.info.r}} 0 0,0
+                  {{model.state.x-20-model.info.r}},{{model.state.y}}
+                  M{{model.state.x}},{{model.state.y}}
+                  L{{model.state.x}},{{model.state.y-model.info.r-20}}
+                  "
+                  style="
+                  stroke:#000;
+                  stroke-width:0.5px;
+                  fill: #000;
+                  fill-opacity: 0.3;
+                  pointer-events: none;
+                  "
+                  transform="
+                  rotate({{model.state.rot}},
+                  {{model.state.x}},
+                  {{model.state.y}})
+                  "
+                  />
+            <path ng-repeat="model in modelShow('strike')"
+                  d="
+                  M{{model.state.x-40-model.info.r}},{{model.state.y}}
+                  L{{model.state.x+40+model.info.r}},{{model.state.y}}
+                  A{{40+model.info.r}},{{40+model.info.r}} 0 0,0
+                  {{model.state.x-40-model.info.r}},{{model.state.y}}
+                  M{{model.state.x}},{{model.state.y}}
+                  L{{model.state.x}},{{model.state.y-model.info.r-40}}
+                  "
+                  style="
+                  stroke:#000;
+                  stroke-width:0.5px;
+                  fill: #000;
+                  fill-opacity: 0.3;
+                  pointer-events: none;
+                  "
+                  transform="
+                  rotate({{model.state.rot}},
+                  {{model.state.x}},
+                  {{model.state.y}})
+                  "
+                  />
+            <circle ng-repeat="model in modelShow('control')"
+                    cx="{{model.state.x}}" cy="{{model.state.y}}"
+                    r="{{model.info.r+(model.info.focus || model.info.fury)*20}}"
+                    style="
+                    fill: #0FF;
+                    fill-opacity: 0.3;
+                    stroke: #099;
+                    stroke-width: 1px;
+                    pointer-events: none;
+                    "
+                    />
+            <circle ng-repeat="model in showCenteredAoE()"
+                    cx="{{model.state.x}}"
+                    cy="{{model.state.y}}"
+                    r="{{model.state.show_aoe}}"
+                    style="
+                    fill:#F90;
+                    fill-opacity:0.2;
+                    stroke:#C60;
+                    stroke-width:0.5px;
+                    pointer-events: none;
+                    "
+                    />
+            <circle ng-repeat="model in showArea()"
+                    cx="{{model.state.x}}"
+                    cy="{{model.state.y}}"
+                    r="{{model.info.r+model.state.show_area*10}}"
+                    style="
+                    fill:#9F9;
+                    fill-opacity:0.2;
+                    stroke:#6F6;
+                    stroke-width:0.5px;
+                    pointer-events: none;
+                    "
+                    />
+            <g ng-repeat="model in modelShow('counter')"
+               transform="rotate(
+               {{game.board.zoom.flipped ? 180 : 0}},
+               {{model.state.x}},
+               {{model.state.y}}
+               )"
+               >
+              <rect x="{{model.state.x-4}}" y="{{model.state.y-4}}"
+                    width="8" height="9"
+                    style="
+                    fill:#333;
+                    fill-opacity:0.7;
+                    pointer-events: none;
+                    "
+                    />
+              <text x="{{model.state.x}}" y="{{model.state.y+4}}"
+                    style="
+                    fill:white;
+                    text-anchor:middle;
+                    font-size:9px;
+                    font-weight:bold;
+                    font-family:Verdana, sans-serif;
+                    pointer-events: none;
+                    -webkit-user-select: none;
+                    -moz-user-select:none;
                     "
                     >
-          </textarea>
-          <button style="vertical-align:top"
-                  ng-click="readFKString()">Import</button>
+                {{model.state.counter}}
+              </text>
+            </g>
+            <g ng-repeat="model in modelShow('souls')"
+               transform="rotate(
+               {{model.state.rot}},
+               {{model.state.x}},
+               {{model.state.y}}
+               )"
+               >
+              <rect x="{{model.state.x+model.info.r-1}}"
+                    y="{{model.state.y-model.info.r-8}}"
+                    width="10" height="10"
+                    style="
+                    fill:#333;
+                    fill-opacity:0.7;
+                    pointer-events: none;
+                    "
+                    />
+              <image x="{{model.state.x+model.info.r-6}}"
+                     y="{{model.state.y-model.info.r-10}}"
+                     width="20"
+                     height="20"
+                     xlink:href="/data/icons/Soul.png"
+                     style="
+                     pointer-events: none;
+                     "
+                   />
+              <text x="{{model.state.x+model.info.r+4}}"
+                    y="{{model.state.y-model.info.r-1}}"
+                    style="
+                    fill:white;
+                    text-anchor:middle;
+                    font-size:8px;
+                    font-weight:bold;
+                    font-family:Verdana, sans-serif;
+                    pointer-events: none;
+                    -webkit-user-select: none;
+                    -moz-user-select:none;
+                    "
+                    transform="rotate(
+                    {{(game.board.zoom.flipped ? 180 : 0)-model.state.rot}},
+                    {{model.state.x+model.info.r+5}},
+                    {{model.state.y-model.info.r-3}}
+                    )"
+                    >
+                {{model.state.souls}}
+              </text>
+            </g>
+            <g ng-repeat="model in modelShow('charge')">
+              <line x1="{{model.state.charge_x}}" y1="{{model.state.charge_y}}"
+                    x2="{{model.state.x}}" y2="{{model.state.y}}"
+                    style="
+                    stroke: #0F0;
+                    stroke-width: 0.5px;
+                    pointer-events: none;
+                    "
+                    />
+              <rect x="{{model.state.charge_x-1}}"
+                    y="{{model.state.charge_y-8}}"
+                    width="30" height="10"
+                    style="
+                    fill:#FFC;
+                    stroke:#000;
+                    stroke-width:0.5px;
+                    pointer-events: none;
+                    "
+                    transform="rotate(
+                    {{game.board.zoom.flipped ? 180 : 0}},
+                    {{model.state.charge_x}},
+                    {{model.state.charge_y}}
+                    )"
+                    />
+              <text x="{{model.state.charge_x}}"
+                    y="{{model.state.charge_y}}"
+                    style="
+                    font-size:8px;
+                    pointer-events: none;
+                    "
+                    transform="rotate(
+                    {{game.board.zoom.flipped ? 180 : 0}},
+                    {{model.state.charge_x}},
+                    {{model.state.charge_y}}
+                    )"
+                    >
+                {{model.displayChargeLength()}}"
+              </text>
+            </g>
+            <line ng-if="
+                  game.update_selection.length === 1 &&
+                  game.models[game.update_selection[0]].info.type !== 'objective' &&
+                  game.models[game.update_selection[0]].info.type !== 'flag'
+                  "
+                  x1="{{game.models[game.update_selection[0]].state.x}}"
+                  y1="{{game.models[game.update_selection[0]].state.y}}"
+                  x2="{{game.models[game.update_selection[0]].state.x}}"
+                  y2="{{game.models[game.update_selection[0]].state.y-700}}"
+                  transform="
+                  rotate({{game.models[game.update_selection[0]].state.rot}},
+                  {{game.models[game.update_selection[0]].state.x}},
+                  {{game.models[game.update_selection[0]].state.y}})
+                  "
+                  style="
+                  stroke: white;
+                  stroke-width: 0.5px;
+                  pointer-events: none;
+                  "
+                  />
+            <line ng-if="
+                  game.update_selection.length === 1 &&
+                  game.models[game.update_selection[0]].info.type !== 'objective' &&
+                  game.models[game.update_selection[0]].info.type !== 'flag'
+                  "
+                  x1="{{game.models[game.update_selection[0]].state.x-700}}"
+                  y1="{{game.models[game.update_selection[0]].state.y}}"
+                  x2="{{game.models[game.update_selection[0]].state.x+700}}"
+                  y2="{{game.models[game.update_selection[0]].state.y}}"
+                  transform="
+                  rotate({{game.models[game.update_selection[0]].state.rot}},
+                  {{game.models[game.update_selection[0]].state.x}},
+                  {{game.models[game.update_selection[0]].state.y}})
+                  "
+                  style="
+                  stroke: white;
+                  stroke-width: 0.5px;
+                  pointer-events: none;
+                  "
+                  />
+            <line ng-if="
+                  game.selection.length === 1 &&
+                  game.models[game.selection[0]].info.type !== 'objective' &&
+                  game.models[game.selection[0]].info.type !== 'flag'
+                  "
+                  x1="{{game.models[game.selection[0]].state.x}}"
+                  y1="{{game.models[game.selection[0]].state.y}}"
+                  x2="{{game.models[game.selection[0]].state.x}}"
+                  y2="{{game.models[game.selection[0]].state.y-700}}"
+                  transform="
+                  rotate({{game.models[game.selection[0]].state.rot}},
+                  {{game.models[game.selection[0]].state.x}},
+                  {{game.models[game.selection[0]].state.y}})
+                  "
+                  style="
+                  stroke: #0F0;
+                  stroke-width: 0.5px;
+                  pointer-events: none;
+                  "
+                  />
+            <line ng-if="
+                  game.selection.length === 1 &&
+                  game.models[game.selection[0]].info.type !== 'objective' &&
+                  game.models[game.selection[0]].info.type !== 'flag'
+                  "
+                  x1="{{game.models[game.selection[0]].state.x-700}}"
+                  y1="{{game.models[game.selection[0]].state.y}}"
+                  x2="{{game.models[game.selection[0]].state.x+700}}"
+                  y2="{{game.models[game.selection[0]].state.y}}"
+                  transform="
+                  rotate({{game.models[game.selection[0]].state.rot}},
+                  {{game.models[game.selection[0]].state.x}},
+                  {{game.models[game.selection[0]].state.y}})
+                  "
+                  style="
+                  stroke: #0F0;
+                  stroke-width: 0.5px;
+                  pointer-events: none;
+                  "
+                  />
+          </svg>
+          <svg id="template-canvas"
+               x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
+               style="display: {{game.layers.templates ? 'inline' : 'none'}}"
+               >
+            <circle ng-repeat="aoe in templateShowUnlocked('aoe')"
+                    cx="{{aoe.x}}"
+                    cy="{{aoe.y}}"
+                    r="{{aoe.size*5}}"
+                    style="
+                    fill:#F90;
+                    fill-opacity:0.5;
+                    stroke-width:0.5px;
+                    "
+                    ng-style="{
+                    'stroke': aoe === game.templates.active ? (modes.current.name === 'Template Origin' ? '#FF0' : (modes.current.name === 'Template Target' ? '#0FF' : '#0F0')) : '#C60',
+                    }"
+                    ng-click="onTemplateClick($event, aoe)"
+                    ng-mousedown="onTemplateMouseDown($event, aoe)"
+                    />
+            <line ng-show="game.templates.active.type == 'aoe' && !game.templates.active.locked"
+                  x1="{{game.templates.active.x}}" y1="{{game.templates.active.y}}"
+                  x2="{{game.templates.active.x}}" y2="{{game.templates.active.y-game.templates.active.size*5}}"
+                  style="
+                  stroke-width:0.75px;
+                  marker-end:url(#aoe-direction-end);
+                  "
+                  ng-style="{
+                  'stroke': mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')
+                  }"
+                  transform="
+                  rotate({{game.templates.active.rot}},
+                  {{game.templates.active.x}},
+                  {{game.templates.active.y}})
+                  "
+                  />
+            <polygon ng-repeat="sp in templateShowUnlocked('spray')"
+                     points="
+                     8.75,0
+                     {{
+                     (10-8.125*sp.size/10) + ','  + (98.34*sp.size/10) +
+                     ' 10,' + (100*sp.size/10) +
+                     ' ' + (10+8.125*sp.size/10) + ',' + (98.34*sp.size/10)
+                     }}
+                     11.25,0
+                     "
+                     style="
+                     fill:#F90;
+                     fill-opacity:0.5;
+                     stroke-width:0.5px;
+                     "
+                     transform="
+                     translate({{sp.x-10}},{{sp.y}})
+                     rotate({{sp.rot-180}}, 10, 0)
+                     "
+                     ng-style="{
+                     'stroke': sp === game.templates.active ? (modes.current.name === 'Template Origin' ? '#FF0' : (modes.current.name === 'Template Target' ? '#0FF' : '#0F0')) : '#C60',
+                     }"
+                     ng-click="onTemplateClick($event, sp)"
+                     ng-mousedown="onTemplateMouseDown($event, sp)"
+                     />
+            <rect ng-repeat="wa in templateShowUnlocked('wall')"
+                  x="{{wa.x-5}}" y="{{wa.y-20}}"
+                  width="10" height="40"
+                  style="
+                  fill:#CCC;
+                  fill-opacity:0.6;
+                  stroke-width:0.5px;
+                  "
+                  transform="
+                  rotate(
+                  {{wa.rot}},
+                  {{wa.x}},
+                  {{wa.y}}
+                  )
+                  "
+                  ng-style="{
+                  'stroke': wa === game.templates.active ? '#0F0' : '#666',
+                  }"
+                  ng-click="onTemplateClick($event, wa)"
+                  ng-mousedown="onTemplateMouseDown($event, wa)"
+                  />
+            <circle ng-show="
+                    game.templates.active !== null &&
+                    game.templates.active.origin !== null
+                    "
+                    cx="{{game.templates.active.origin.state.x}}"
+                    cy="{{game.templates.active.origin.state.y}}"
+                    r="{{game.templates.active.origin.info.r}}"
+                    style="
+                    fill:none;
+                    stroke:#FF0;
+                    stroke-width:1px;
+                    pointer-events: none;
+                    "
+                    />
+          </svg>
+          <circle ng-show="
+                  modes.current.name === 'Template Create' &&
+                  modes.current.type === 'aoe'
+                  "
+                  cx="{{modes.current.x}}"
+                  cy="{{modes.current.y}}"
+                  r="{{modes.current.size*5}}"
+                  style="
+                  fill:#F90;
+                  fill-opacity:0.5;
+                  stroke-width:0.5px;
+                  pointer-events: none;
+                  stroke: #C60;
+                  "
+                  />
+          <polygon ng-show="
+                   modes.current.name === 'Template Create' &&
+                   modes.current.type === 'spray'
+                   "
+                   points="
+                   8.75,0
+                   {{
+                   (10-8.125*modes.current.size/10) +
+                   ','  + (98.34*modes.current.size/10) +
+                   ' 10,' + (100*modes.current.size/10) +
+                   ' ' + (10+8.125*modes.current.size/10) +
+                   ',' + (98.34*modes.current.size/10)
+                   }}
+                   11.25,0
+                   "
+                   style="
+                   fill:#F90;
+                   fill-opacity:0.5;
+                   stroke:#C60,
+                   stroke-width:0.5px;
+                   pointer-events: none;
+                   "
+                   transform="
+                   translate({{modes.current.x-10}},{{modes.current.y}})
+                   rotate({{modes.current.rot-180}}, 10, 0)
+                   "
+                   />
+            <rect ng-show="
+                  modes.current.name === 'Template Create' &&
+                  modes.current.type === 'wall'
+                  "
+                  x="{{modes.current.x-5}}" y="{{modes.current.y-20}}"
+                  width="10" height="40"
+                  style="
+                  fill:#CCC;
+                  fill-opacity:1.0;
+                  stroke: #666;
+                  stroke-width:0.5px;
+                  pointer-events: none;
+                  "
+                  transform="
+                  rotate(
+                  {{modes.current.rot}},
+                  {{modes.current.x}},
+                  {{modes.current.y}}
+                  )
+                  "
+                  />
+          <svg ng-show="modes.current.name === 'Model Create'"
+               ng-repeat="(i,model) in modes.current.info"
+               x="{{modes.current.x + model.offset_x - model.info.width/2}}"
+               y="{{modes.current.y + model.offset_y - model.info.height/2}}"
+               style="pointer-events: none"
+               >
+            <image x="{{model.info.img.x}}"
+                   y="{{model.info.img.y}}"
+                   width="{{model.info.width}}"
+                   height="{{model.info.height}}"
+                   xlink:href="{{model.info.img.link}}"
+                   />
+            <circle cx="{{model.info.width/2}}"
+                    cy="{{model.info.height/2}}"
+                    r="{{model.info.r}}"
+                    style="
+                    fill:#F00;
+                    fill-opacity:0.5;
+                    stroke-width:1px;
+                    "
+                    />
+          </svg>
+          <rect ng-if="modes.current.name === 'Selection Drag'"
+                x="{{modes.current.x}}" y="{{modes.current.y}}"
+                width="{{modes.current.width}}" height="{{modes.current.height}}"
+                style="
+                fill: none;
+                stroke:#00F;
+                stroke-width:0.5px;
+                " />
+          <circle ng-show="
+                  (modes.current.group === 'Ruler' ||
+                   game.ruler.state.active) &&
+                  game.ruler.state.origin !== null
+                  "
+                  cx="{{game.models[game.ruler.state.origin].state.x}}"
+                  cy="{{game.models[game.ruler.state.origin].state.y}}"
+                  r="{{game.models[game.ruler.state.origin].info.r}}"
+                  style="
+                  fill:none;
+                  stroke:#F90;
+                  stroke-width:1px;
+                  pointer-events: none;
+                  "
+                  />
+          <circle ng-show="
+                  (modes.current.group === 'Ruler' ||
+                   game.ruler.state.active) &&
+                  game.ruler.state.target !== null
+                  "
+                  cx="{{game.models[game.ruler.state.target].state.x}}"
+                  cy="{{game.models[game.ruler.state.target].state.y}}"
+                  r="{{game.models[game.ruler.state.target].info.r}}"
+                  style="
+                  fill:none;
+                  stroke-width:1px;
+                  pointer-events: none;
+                  "
+                  ng-style="{
+                  'stroke': game.ruler.state.target_in_range ? '#F0C' : '#F00'
+                  }"
+                  />
+          <g ng-show="game.ruler.state.active"
+             style="pointer-events: none"
+             >
+            <line x1="{{game.ruler.state.x1}}" y1="{{game.ruler.state.y1}}"
+                  x2="{{game.ruler.state.x2}}" y2="{{game.ruler.state.y2}}"
+                  style="
+                  stroke-width:1px;
+                  marker-start:url(#ruler-start);
+                  marker-end:url(#ruler-end);
+                  "
+                  ng-style="{
+                  'stroke': (modes.current.name === 'Ruler Target') ? '#F09' : (modes.current.name === 'Ruler Origin' ? '#F90' : '#0FF')
+                  }"
+                  />
+            <rect x="{{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1-2.5}}"
+                  y="{{(game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1-4}}"
+                  width="30" height="10"
+                  style="
+                  fill:#FFC;
+                  stroke:#000;
+                  stroke-width:0.5px;
+                  "
+                  transform="rotate(
+                  {{game.board.zoom.flipped ? 180 : 0}},
+                  {{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1}},
+                  {{(game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1+4}}
+                  )"
+                  />
+            <text x="{{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1}}"
+                  y="{{(game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1+4}}"
+                  style="
+                  font-size:8px;
+                  "
+                  transform="rotate(
+                  {{game.board.zoom.flipped ? 180 : 0}},
+                  {{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1}},
+                  {{(game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1+4}}
+                  )"
+                  >
+              {{game.ruler.state.length}}"
+            </text>
+          </g>
+          <line ng-show="game.los.state.active"
+                x1="{{game.los.state.x1}}" y1="{{game.los.state.y1}}"
+                x2="{{game.los.state.x2}}" y2="{{game.los.state.y2}}"
+                style="
+                stroke: #0F0;
+                stroke-width:0.5px;
+                pointer-events: none;
+                "
+                />
+          <g ng-show="modes.current.name === 'Model Drag'"
+             style="pointer-events: none"
+             >
+            <line x1="{{modes.current.start_x}}" y1="{{modes.current.start_y}}"
+                  x2="{{modes.current.end_x}}" y2="{{modes.current.end_y}}"
+                  style="
+                  stroke:#0FF;
+                  stroke-width:1px;
+                  marker-start:url(#ruler-start);
+                  marker-end:url(#ruler-end);
+                  "
+                  />
+            <rect x="{{(modes.current.end_x-modes.current.start_x)/2+modes.current.start_x-2.5}}"
+                  y="{{(modes.current.end_y-modes.current.start_y)/2+modes.current.start_y-4}}"
+                  width="30" height="10"
+                  style="
+                  fill:#FFC;
+                  stroke:#000;
+                  stroke-width:0.5px;
+                  "
+                  transform="rotate(
+                  {{game.board.zoom.flipped ? 180 : 0}},
+                  {{(modes.current.end_x-modes.current.start_x)/2+modes.current.start_x}},
+                  {{(modes.current.end_y-modes.current.start_y)/2+modes.current.start_y+4}}
+                  )"
+                  />
+            <text x="{{(modes.current.end_x-modes.current.start_x)/2+modes.current.start_x}}"
+                  y="{{(modes.current.end_y-modes.current.start_y)/2+modes.current.start_y+4}}"
+                  style="
+                  font-size:8px;
+                  "
+                  transform="rotate(
+                  {{game.board.zoom.flipped ? 180 : 0}},
+                  {{(modes.current.end_x-modes.current.start_x)/2+modes.current.start_x}},
+                  {{(modes.current.end_y-modes.current.start_y)/2+modes.current.start_y+4}}
+                  )"
+                  >
+              {{modes.current.length}}"
+            </text>
+          </g>
+        </svg>
         </div>
-        <div>
-          <div ng-repeat="line in fk_read_result">
-            {{line}}
+        </div>
+      </td>
+      <td ng-show="game.id"
+          valign="top">
+        <div style="
+             border:1px solid black;
+             height:{{game.board.window.height}}px;
+             max-height:{{game.board.window.height}}px;
+             width:100px;
+             max-width:125px;
+             text-align:center;
+             margin-right:5px;
+             "
+             ng-include="'partials/modeBox.html'">
+        </div>
+      </td>
+      <td valign="top">
+        <div style="vertical-align:top;">
+          <strong>Game Id :</strong> {{game.id ? game.id : game.public_id}}
+          <strong>Player1 :</strong> {{game.player1.name}}
+          <strong>Player2 :</strong> {{game.player2.name}}<br />
+          <button ng-style="{
+                  'background-color': menu_view === 'main' ? '#6F6' : 'none'
+                  }"
+                  ng-click="menu_view = 'main'">Main</button>
+          <button ng-style="{
+                  'background-color': menu_view === 'units' ? '#6F6' : 'none'
+                  }"
+                  ng-click="menu_view = 'units'">Units</button>
+          <button ng-show="game.id"
+                  ng-style="{
+                  'background-color': menu_view === 'models' ? '#6F6' : 'none'
+                  }"
+                  ng-click="menu_view = 'models'">Manage Models</button>
+          <button ng-style="{
+                  'background-color': menu_view === 'setup' ? '#6F6' : 'none'
+                  }"
+                  ng-click="menu_view = 'setup'">Setup</button>
+          <button ng-style="{
+                  'background-color': menu_view === 'layers' ? '#6F6' : 'none'
+                  }"
+                  ng-click="menu_view = 'layers'">Layers</button>
+          <button ng-style="{
+                  'background-color': menu_view === 'games' ? '#6F6' : 'none'
+                  }"
+                  ng-click="menu_view = 'games'">Online</button>
+          <button ng-click="doGoHome()">Home</button>
+          <div ng-show="menu_view === 'main'">
+            <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+                 ng-include="'partials/toolsBox.html'">
+            </div>
+            <div style="border:1px solid black;max-height:125px;overflow-y:scroll;"
+                 ng-include="'partials/chatBox.html'">
+            </div>
+            <div style="border:1px solid black;overflow-y:scroll;"
+                 ng-show="game.selection.length === 1"
+                 ng-include="'partials/modelViewBox.html'">
+            </div>
+            <div ng-if="game.id"
+                 style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+                 ng-include="'partials/commandBox.html'">
+            </div>
+            <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+                 ng-include="'partials/backupBox.html'">
+            </div>
+          </div>
+          <div ng-if="menu_view === 'units'">
+            <div style="border:1px solid black;max-height:700px;overflow-y:scroll;"
+                 ng-include="'partials/unitsBox.html'">
+            </div>
+          </div>
+          <div ng-if="menu_view === 'setup'">
+            <button style="
+                    margin-top:10px;
+                    height:35px;
+                    "
+                    ng-click="doSetRandomSetup()">
+              Random Setup
+            </button>
+            <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+                 ng-include="'partials/boardsBox.html'">
+            </div>
+            <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+                 ng-include="'partials/scenariosBox.html'">
+            </div>
+          </div>
+          <div ng-show="menu_view === 'layers'">
+            <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+                 ng-include="'partials/layersBox.html'">
+            </div>
+          </div>
+          <div ng-if="game.id"
+               ng-show="menu_view === 'models'">
+            <div style="border:1px solid black;max-height:600px;overflow-y:scroll;"
+                 ng-include="'partials/createBox.html'">
+            </div>
+            <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+                 ng-include="'partials/importBox.html'">
+            </div>
+            <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+                 ng-include="'partials/importFKBox.html'">
+            </div>
+            <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+                 ng-include="'partials/dropBinBox.html'">
+            </div>
+          </div>
+          <div ng-show="menu_view === 'games'">
+            <strong>User Id :</strong> {{user.id}}
+            <strong>User Name :</strong> {{user.name}}
+            <div style="border:1px solid black;max-height:600px;overflow-y:scroll;"
+                 ng-include="'partials/usersBox.html'">
+            </div>
+            <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
+                 ng-include="'partials/gamesBox.html'">
+            </div>
           </div>
         </div>
-        <p ng-show="fk_read_result[0] === 'loaded file' && create_mode">
-          Move your cursor over the board and click to create the new models under the cursor position.
-        </p>
-        </span>
-      </div>
-    </div>
-    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
-      <div>
-        <strong>Drop Bin :</strong>
-        <button ng-click="doRestoreSelection()"
-                ng-disabled="isRestoreSelectionEmpty()">
-          Restore
-        </button>
-        <button ng-click="doRestoreAll()">
-          Restore All
-        </button>
-      </div>
-      <table>
-        <tr ng-repeat="model in game.drop_bin">
-          <td ng-click="doToggleRestoreSelection(model.state.id)"
-              ng_style="{
-              'background-color': restore_selection[model.state.id] ? '#999' : 'white'
-              }"
-              >
-            {{ model.info.name }} - {{ model.state.id }}
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
-  <div style="display:inline-block;vertical-align:top;width:350px">
-    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
-      <div><strong>Tools :</strong></div>
-      <div>
-        Ruler:
-        <input id="tools-ruler-use-check"
-               type="checkbox"
-               ng-model="ruler_drag.active"
-               ng-change="(mode_ruler_origin = false) || (mode_ruler_target = false)"
-               />
-        <label for="tools-ruler-use-check">use</label>
-        <input id="tools-ruler-show-check"
-               type="checkbox"
-               ng-model="show_ruler"
-               ng-change="game.ruler.setActive(show_ruler)"
-               />
-        <label for="tools-ruler-show-check">show</label>
-        <input style="display:inline-block;width:5em;"
-               type="number"
-               ng-model="game.ruler.state.range"
-               placeholder="Max Range"
-               ng-change="game.ruler.sendStateCmd()"
-               />
-      </div>
-      <div>
-        LOS :
-        <input id="tools-los-use-check"
-               type="checkbox"
-               ng-model="los_drag.active"
-               ng-change="hideLos()"
-               />
-        <label for="tools-los-use-check">use</label>
-      </div>
-      <div>
-        <button ng-click="doCreateTemplate('aoe',3)">New AoE</button>
-        <form style="display:inline;"
-              ng-show="game.templates.active.type === 'aoe'">
-          Max Deviation : <input style="width:5em;"
-                                 type="number"
-                                 ng-model="aoe_max_deviation"
-                                 />
-        </form><br />
-        <button ng-click="doCreateTemplate('spray',6)">New Spray</button>
-        <p ng-show="create_template_mode">
-          - use your mouse to position the template over the board, then click to place it.
-          - use t/o+click-on-model to select a template's target/origin model.
-          - use l to lock a template.
-          - use Suppr to remove a template.
-        </p>
-      </div>
-    </div>
-    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
-      <div><strong>Layers :</strong></div>
-      <div style="display:inline-box">
-        <input id="layer-board-check"
-               type="checkbox"
-               ng-model="game.layers.board"
-               ng-change="onLayerChange('board')" />
-        <label for="layer-board-check">Board</label>
-      </div>
-      <div style="display:inline-box">
-        <input id="layer-terrain-check"
-               type="checkbox"
-               ng-model="game.layers.terrain"
-               ng-change="onLayerChange('terrain')" />
-        <label for="layer-terrain-check">Terrain</label>
-      </div>
-      <div style="display:inline-box">
-        <input id="layer-deployment-check"
-               type="checkbox"
-               ng-model="game.layers.deployment"
-               ng-change="onLayerChange('deployment')" />
-        <label for="layer-deployment-check">Deployment</label>
-      </div>
-      <div style="display:inline-box">
-        <input id="layer-scenario-check"
-               type="checkbox"
-               ng-model="game.layers.scenario"
-               ng-change="onLayerChange('scenario')" />
-        <label for="layer-scenario-check">Scenario</label>
-      </div>
-      <div style="display:inline-box">
-        <input id="layer-models-check"
-               type="checkbox"
-               ng-model="game.layers.models"
-               ng-change="onLayerChange('models')" />
-        <label for="layer-models-check">Models</label>
-      </div>
-      <div style="display:inline-box">
-        <input id="layer-templates-check"
-               type="checkbox"
-               ng-model="game.layers.templates"
-               ng-change="onLayerChange('templates')" />
-        <label for="layer-templates-check">Templates</label>
-      </div>
-    </div>
-    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
-      <button ng-click="game.rollDice(1)">1d6</button>
-      <button ng-click="game.rollDice(2)">2d6</button>
-      <button ng-click="game.rollDice(3)">3d6</button>
-      <button ng-click="game.rollDice(4)">4d6</button>
-      <button ng-click="game.rollDice(5)">5d6</button>
-      <button ng-click="game.rollDice(1, 3)">1d3</button>
-      <form style="margin:0;"
-            ng-submit="doSendMessage()">
-        <input style="width:100%;"
-               ng-model="chat_msg"
-               placeholder="Chat msg..." />
-      </form>
-      <div>
-        <strong>New Messages :</strong>
-      </div>
-      <div ng-repeat="msg in game.new_messages.slice().reverse()">
-        {{msg.type}} - {{msg.text}}
-      </div>
-      <div>
-        <strong>Messages :</strong>
-      </div>
-      <div ng-repeat="msg in game.messages.slice().reverse()">
-        {{msg.type}} - {{msg.text}}
-      </div>
-    </div>
-    <div style="border:1px solid black;max-height:200px;overflow-y:scroll;">
-      <div>
-        <strong>New Commands :</strong>
-        <button ng-click="game.undoLastCommand()">Undo</button>
-      </div>
-      <div ng-repeat="cmd in game.new_commands.slice().reverse()">
-        {{cmd.desc()}} - {{cmd.stamp}}
-      </div>
-      <div>
-        <strong>Commands :</strong>
-        <button ng-click="game.undoLastCommand()">Undo</button>
-      </div>
-      <div ng-repeat="cmd in game.commands.slice().reverse()">
-        {{cmd.desc()}} - {{cmd.stamp}}
-      </div>
-    </div>
-    <div>
-      <div>
-        <button ng-click="game.generateBackup()">Save Game</button>
-      </div>
-      <div ng-show="game.save_url !== null">
-        Download the backup file :
-        <a ng-href="{{game.save_url}}"
-           download="{{game.save_name}}">
-          {{game.save_name}}
-        </a>
-      </div>
-    </div>
-  </div>
-  <div>
-    Mouse Actions :
-    <ul>
-      <li>click on model : select the model</li> 
-      <li>Ctrl + click on models : select multiple models</li>
-      <li>Drag-Box (Ruler mode off) : select multiple models</li>
-      <li>Drag (Ruler mode on) : mesure distance</li>
-      <li>Drag on a selected model : drag all selected models</li>
-    </ul>
-    Keyboard shortcuts :
-    <ul>
-      <li>Esc : exit sub-modes</li>
-      <li>Alt + +/- (Numeric Kbd only) : Zoom in/out</li>
-      <li>Alt + Directionnal Arrows : move view</li>
-      <li>(Shift + )Up/Down Arrows : (small) advance selected model/template</li>
-      <li>(Shift + )Right/Left Arrows : (small) rotate selected model/template</li>
-      <li>(Shift + )Ctrl + Directionnal Arrows : (small) move selected model/template</li>
-      <li>Ctrl+z : undo last command.</li>
-      <li>Ctrl+c : copy selected models (move mouse to place new models, then click to create).</li>
-      <li>Shift+c : toggle warnouns Control Zone.</li>
-      <li>Suppr (AoE selected) : delete selected template.</li>
-      <li>Suppr (model selected) : move selected models to drop bin.</li>
-      <li>d (AoE selected): auto-deviate AoE</li>
-      <li>f : toggle focus/counter of selected model</li>
-      <li>i : toggle image of selected model</li>
-      <li>l : lock selected template (place it under models and prevent drag)</li>
-      <li>L (Shift+l): toggle LOS mode</li>
-      <li>m : toggle melee range of selected model</li>
-      <li>r (AoE selected & ruler active) : place the selected AoE at the end of the ruler.</li>
-      <li>r (model selected) : toggle reach range of selected model</li>
-      <li>R (Shift+r): toggle Ruler mode</li>
-      <li>o (template selected/ruler mode) : trigger template/ruler's origin selection mode</li>
-      <li>t (template selected/ruler mode/model selected) : trigger template/ruler/model's target selection mode</li>
-      <li>u : unselect all models.</li>
-      <li>+/- (Numeric Kbd only) : increment/decrement focus/counter of selected model.</li>
-      <li>Ctrl + 1/2/3/4/5/6/0 : set selected model aura color (0 = Off)</li>
-      <li>3/4/5 (AoE selected) : change AoE size to 3/4/5"</li>
-      <li>3/4/5 (model selected) : toggle AOE 3/4/5" centered on selected model</li>
-      <li>6/8/0 (Spray selected) : change spray size to 6/8/10"</li>
-      <li>Alt + b/c/f/k/s (model selected) : toggle Blind/Corrosion/Fire/KD/Stationary marker.</li>
-      <li>Alt + i (model selected) : toggle incorporeal (if it exists) for selected model.</li>
-      <li>Alt + p (model selected) : toggle promote (leader marker) for selected model.</li>
-    </ul>
+      </td>
+    </tr>
+  </table>
+  <div style="
+       position:absolute;
+       right: 0;
+       bottom: 0;
+       border: 1px solid black;
+       background-color: #CCF;
+       padding: 2px 3em;
+       "
+       ng-show="user.last_chat"
+       >
+      {{users.list[user.last_chat.from].name}} &#8594;
+      {{user.last_chat.text}}
   </div>
 </div>

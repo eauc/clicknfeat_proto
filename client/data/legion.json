@@ -728,7 +728,7 @@
       "bfs": {
         "name": "Blackfrost Shard",
         "entries": {
-          "grunt": {
+          "unit": {
             "Sevryn": {
               "name": "Sevryn",
               "fk_name": "Blackfrost Shard",
@@ -786,9 +786,9 @@
       "archers": {
         "name": "Blighted Nyss Archers",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Archer Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Nyss Archers",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -847,9 +847,9 @@
       "grotesques": {
         "name": "Blighted Nyss Grotesques",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Grotesque Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Nyss Grotesques",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -872,9 +872,9 @@
       "hex_hunters": {
         "name": "Blighted Nyss Hex hunters",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Hex Hunter Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Nyss Hex Hunters",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -916,9 +916,9 @@
       "legionnaires": {
         "name": "Blighted Nyss Legionnaires",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Legionnaire Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Nyss Legionnaires",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -977,9 +977,9 @@
       "raptors": {
         "name": "Blighted Nyss Raptors",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Raptor Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Nyss Raptors",
               "ranges": [ 1, 3, 5 ],
               "type": "warrior",
@@ -1002,27 +1002,11 @@
       "scather_crew": {
         "name": "Blighted Nyss Scather Crew",
         "entries": {
-          "grunt": {
-            "grunt1": {
-              "name": "Scather crew grunt 1",
+          "unit": {
+            "grunt": {
+              "name": "Crew",
               "fk_name": "Blighted Nyss Scather Crew",
-              "type": "warrior",
-              "base": "small",
-              "width": 60,
-              "height": 60,
-              "img": {
-                "x": 0,
-                "y": 0,
-                "link": "data/legion/units/Scather_Grunt.png"
-              },
-              "damage": {
-                "type": "warrior",
-                "n": 1
-              }
-            },
-            "grunt2": {
-              "name": "Scather crew grunt 2",
-              "fk_name": "Blighted Nyss Scather Crew",
+              "ranges": [ 1, 2 ],
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -1038,7 +1022,7 @@
               }
             },
             "leader": {
-              "name": "Scather Catapult",
+              "name": "Catapult",
               "fk_name": "Blighted Nyss Scather Crew",
               "type": "warrior",
               "base": "large",
@@ -1060,9 +1044,9 @@
       "swordsmen": {
         "name": "Blighted Nyss Swordsmen",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Swordmen Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Nyss Swordsmen",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
@@ -1082,7 +1066,7 @@
           },
           "ua": {
             "abbot": {
-              "name": "Swordsman Abbot",
+              "name": "Abbot",
               "fk_name": "Blighted Nyss Swordsmen Abbot & Champion",
               "type": "warrior",
               "base": "small",
@@ -1099,7 +1083,7 @@
               }
             },
             "champion": {
-              "name": "Swordsman Champion",
+              "name": "Champion",
               "fk_name": "Blighted Nyss Swordsmen Abbot & Champion",
               "type": "warrior",
               "base": "small",
@@ -1121,9 +1105,9 @@
       "warmongers": {
         "name": "Blighted Ogrun Warmongers",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Warmonger Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Ogrun Warmongers",
               "ranges": [ 1, 3, 5 ],
               "type": "warrior",
@@ -1146,9 +1130,9 @@
       "warspears": {
         "name": "Blighted Ogrun Warspears",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Warspear Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Ogrun Warspears",
               "ranges": [ 1, 3, 5 ],
               "type": "warrior",
@@ -1168,8 +1152,8 @@
           },
           "ua": {
             "chieftain": {
-              "name": "Warspear Chieftan",
-              "fk_name": "Warspear Chieftan",
+              "name": "Chieftain",
+              "fk_name": "Warspear Chieftain",
               "type": "warrior",
               "base": "medium",
               "width": 60,
@@ -1190,9 +1174,9 @@
       "spawning_vessel": {
         "name": "Spawning Vessel",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Spawning Vessel Acolyth",
+              "name": "Acolyth",
               "fk_name": "Spawning Vessel",
               "ranges": [ 4, 6 ],
               "type": "warrior",
@@ -1210,7 +1194,8 @@
               }
             },
             "vessel": {
-              "name": "Spawning Vessel",
+              "name": "Vessel",
+              "fk_name": "Spawning Vessel",
               "type": "warrior",
               "base": "large",
               "width": 60,
@@ -1231,9 +1216,9 @@
       "rangers": {
         "name": "Strider Rangers",
         "entries": {
-          "grunt": {
+          "unit": {
             "grunt": {
-              "name": "Strider Ranger Grunt",
+              "name": "Leader and Grunts",
               "fk_name": "Blighted Nyss Striders",
               "ranges": [ 1, 6 ],
               "type": "warrior",
@@ -1253,7 +1238,7 @@
           },
           "ua": {
             "officer": {
-              "name": "Strider Ranger Officer",
+              "name": "Officer",
               "fk_name": "Blighted Nyss Striders Officer & Musician",
               "type": "warrior",
               "base": "small",
@@ -1270,7 +1255,7 @@
               }
             },
             "musician": {
-              "name": "Strider Ranger Musician",
+              "name": "Musician",
               "fk_name": "Blighted Nyss Striders Officer & Musician",
               "type": "warrior",
               "base": "small",
@@ -1293,7 +1278,7 @@
     "solos": {
       "annyssa": {
         "name": "Annyssa Ryvaal",
-        "type": "warrior",
+        "type": "solo",
         "base": "large",
         "width": 60,
         "height": 60,
@@ -1310,7 +1295,7 @@
       "mistress": {
         "name": "Beast mistress",
         "fk_name": "Beast Mistress",
-        "type": "warrior",
+        "type": "wardude",
         "fury": 4,
         "base": "small",
         "width": 60,
@@ -1328,7 +1313,7 @@
       "shepherd": {
         "name": "Blighted Nyss Shepherd",
         "fk_name": "Blighted Nyss Shepherd",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1345,7 +1330,7 @@
       "hellion": {
         "name": "Blighted Nyss Sorceress and Hellion",
         "fk_name": "Blighted Nyss Sorceress and Hellion",
-        "type": "warrior",
+        "type": "solo",
         "base": "large",
         "width": 60,
         "height": 60,
@@ -1362,7 +1347,7 @@
       "fyanna": {
         "name": "Fyanna the Lash",
         "fk_name": "Fyanna the Lash",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1380,7 +1365,7 @@
         "name": "Incubus",
         "fk_name": "Incubus",
         "ranges": [ 1, 5 ],
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1396,8 +1381,8 @@
       },
       "martyr": {
         "name": "Spell Martyr",
-        "fk_name": "Spell Martyr",
-        "type": "warrior",
+        "fk_name": ["Spell Martyr", "Spell Martyrs"],
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1414,7 +1399,7 @@
       "deathstalker": {
         "name": "Strider Deathstalker",
         "fk_name": "Strider Deathstalker",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1431,7 +1416,7 @@
       "Succubus": {
         "name": "Succubus",
         "fk_name": "Succubus",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1448,7 +1433,7 @@
       "Forsaken": {
         "name": "The Forsaken",
         "fk_name": "The Forsaken",
-        "type": "warrior",
+        "type": "solo",
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1465,7 +1450,7 @@
       "WarChief": {
         "name": "Warmonger War Chief",
         "fk_name": "Warmonger War Chief",
-        "type": "warrior",
+        "type": "solo",
         "base": "medium",
         "width": 60,
         "height": 60,

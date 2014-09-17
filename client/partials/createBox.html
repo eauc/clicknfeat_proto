@@ -1,0 +1,200 @@
+<div ng-controller="createBoxCtrl">
+  <div>
+    <strong>Create Model :</strong>
+  </div>
+  <div>
+    Faction :
+    <select name="model_faction"
+            ng-model="model.faction"
+            ng-options="f as f.name for (id, f) in factions.list"
+            ng-change="
+            model.number=null;
+            model.size=1;
+            model.id=null;
+            model.unit_entry=null;
+            model.unit=null;
+            model.type=null;
+            "
+            >
+    </select>
+  </div>
+  <div>
+    Type :
+    <select name="model_type"
+            ng-model="model.type"
+            ng-options="t as id for (id, t) in model.faction.models"
+            ng-change="
+            model.number=null;
+            model.size=1;
+            model.id=null;
+            model.unit_entry=null;
+            model.unit=null;
+            "
+            >
+    </select>
+  </div>
+  <div>
+    Unit :
+    <select name="model_unit"
+            ng-model="model.unit"
+            ng-options="u as u.name for (id, u) in model.type"
+            ng-change="
+            model.number=null;
+            model.size=1;
+            model.id=model.unit;
+            model.unit_entry=null;
+            "
+            >
+    </select>
+  </div>
+  <div ng-show="model.unit.entries">
+    <div>
+      Entry :
+      <select name="model_unit_entry"
+              ng-model="model.unit_entry"
+              ng-options="e as id for (id, e) in model.unit.entries"
+              ng-change="
+              model.size=1;
+              model.id=null;
+              "
+              >
+      </select>
+    </div>
+    <div>
+      Model :
+      <select name="model_id"
+              ng-model="model.id"
+              ng-options="m as m.name for (id, m) in model.unit_entry"
+              ng-change="
+              model.size=1;
+              "
+              >
+      </select>
+    </div>
+    <div ng-show="model.id.ranges">
+      Size :
+      <select name="model_size"
+              ng-model="model.size"
+              ng-options="s as s for s in model.id.ranges"
+              >
+      </select>
+    </div>
+  </div>
+  <div>
+    Unit Number :
+    <input type="number"
+           name="model_unit_number"
+           ng-model="model.number"
+           ng-keydown="stopKeyPropagation($event)"
+           ng-keypress="stopKeyPropagation($event)"
+           />
+  </div>
+  <div>
+    <button ng-disabled="!model.id.type"
+            ng-click="doToggleCreateModel()">
+      {{ modes.current.name === 'Model Create' ? 'Cancel' : 'Create' }}
+    </button>
+  </div>
+  <div ng-show="model.id.type">
+    <div>
+      <strong>Description</strong>
+    </div>
+    <svg width="{{model.id.r*10}}px" height="{{model.id.r*10}}px"
+         viewBox="0 0 {{model.id.r*4}} {{model.id.r*4}}"
+         >
+      <image x="{{model.id.r*2+model.id.img.x-model.id.width/2}}"
+             y="{{model.id.r*2+model.id.img.y-model.id.height/2}}"
+             width="{{model.id.width}}" height="{{model.id.height}}"
+             xlink:href="{{model.id.img.link}}"
+             style="pointer-events: none"
+             />
+    </svg>
+    <div ng-if="model.id.unit">
+      <strong>Unit :</strong>
+      {{model.id.unit}}
+    </div>
+    <div>
+      <strong>Name :</strong>
+      {{model.id.name}}
+    </div>
+    <div>
+      <strong>Class :</strong>
+      {{model.id.type}} - {{model.id.base}}
+    </div>
+    <div ng-show="model.id.focus">
+      <strong>Focus :</strong>
+      {{model.id.focus}}
+    </div>
+    <div ng-show="model.id.fury">
+      <strong>Fury :</strong>
+      {{model.id.fury}}
+    </div>
+    <div ng-show="model.id.damage.field">
+      <strong>Field :</strong>
+      {{model.id.damage.field}}
+    </div>
+    <div>
+      <strong>Damages :</strong>
+      {{model.id.damage.total}}
+      <span ng-if="model.id.damage.field">
+        +
+        {{model.id.damage.field}}
+      </span>          
+      <div ng-show="model.id.damage.type == 'warrior'">
+        <div style="width:20px;height:20px;border:1px solid black;display:inline-block"
+             ng-style="{ 'border-right': (i%5 == 0)?'5px solid black':'1px solid black' }"
+             ng-repeat="i in range(model.id.damage.n).reverse()"></div>
+      </div>
+      
+      <table ng-show="
+             model.id.damage.type === 'jack' ||
+             model.id.damage.type === 'beast' ||
+             model.id.damage.type === 'gargantuan'
+             "
+             style="border-collapse:collapse;text-align:center;">
+        <tr>
+          <td ng-repeat="col in ['1','2','3','4','5','6']"
+              style="width:20px;height:20px;"
+              >
+            {{col}}
+          </td>
+        </tr>
+        <tr ng-repeat="line in range(model.id.damage.depth)">
+          <td ng-repeat="col in ['1','2','3','4','5','6']"
+              style="width:20px;height:20px;border:1px solid black;"
+              ng-style="
+              { 'background-color': (model.id.damage[col][line])?'white':'black'}
+              "
+              >
+            {{(model.id.damage[col][line] === 'b')?' ':model.id.damage[col][line].toUpperCase()}}
+          </td>
+        </tr>
+      </table>
+      <table ng-show="model.id.damage.type == 'colossal'"
+             style="border-collapse:collapse;text-align:center;">
+        <tr>
+          <td ng-repeat="col in ['L1','L2','L3','L4','L5','L6','R1','R2','R3','R4','R5','R6']"
+              style="width:20px;height:20px;"
+              ng-click="doModelDamage(model,col)"
+              >
+            {{col}}
+          </td>
+        </tr>
+        <tr ng-repeat="line in [0,1,2,3,4,5]">
+          <td ng-repeat="col in ['L1','L2','L3','L4','L5','L6','R1','R2','R3','R4','R5','R6']"
+              style="width:20px;height:20px;border:1px solid black;"
+              ng-style="{
+              'background-color':
+              (model.id.damage[col][line]) ? 'white' : 'black',
+              'border-right': col === 'L6' ? '4px solid black':'1px solid black'
+              }"
+              ng-click="doModelDamage(model, col, line)"
+              >
+            {{ (model.id.damage[col][line] === 'b') ? ' ' : 
+            model.id.damage[col][line].toUpperCase() }}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

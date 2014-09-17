@@ -1,0 +1,21 @@
+<div ng-controller="gamesBoxCtrl">
+  <strong>Games online :</strong>
+  <div ng-show="games.source.readyState === games.source.CLOSED"
+       style="color:#F33">
+    Connection with server is down.
+  </div>
+  <ul style="padding-left: 2em;">
+    <li ng-repeat="g in games.list"
+        ng-style="{
+        'background-color': g.public_id === game.public_id ? '#0F0' : (watch_game.id === g.public_id ? '#CCC' : 'white')
+        }"
+        ng-click="watch_game.id = g.public_id"
+        >
+      {{g.public_id}} - {{g.player1.name}} vs {{g.player2.name}}
+    </li>
+  </ul>
+  <button ng-disabled="!watch_game.id || watch_game.id === game.public_id"
+          ng-click="doWatchGame()">
+    Watch
+  </button>
+</div>

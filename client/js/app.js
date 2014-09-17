@@ -24,7 +24,7 @@ angular.module('vassalApp', [
         data: {}
       })
       .state('game', {
-        url: '/game/:id',
+        url: '/game/:visibility/:id',
         templateUrl: 'partials/game.html',
         controller: 'gameCtrl',
         data: {}

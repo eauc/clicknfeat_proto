@@ -1,27 +1,59 @@
-require_relative './model_collection'
 require_relative './command_collection'
-require_relative './message_collection'
 
 class Game
   
-  attr_reader :models
   attr_reader :commands
-  attr_reader :messages
+  attr_reader :id
+  attr_reader :public_id
+  attr_reader :player1
+  attr_reader :player2
 
-  def initialize i, data
-    @id = i
+  def initialize id, data
+    @id = id[:private]
+    @public_id = id[:public]
     @new_model_id = 0
-    @models = ModelCollection.new(data.key?('models') ? data['models'] : nil)
+    if data.key?('models')
+      max_id = data['models'].keys.max
+      puts max_id.inspect
+      @new_model_id = 10000*((max_id.to_i/10000).floor)
+    end
     @commands = CommandCollection.new(data.key?('commands') ? data['commands'] : nil)
-    @messages = MessageCollection.new(data.key?('messages') ? data['messages'] : nil)
     
-    @ruler = data.key?('ruler') ? data['ruler'] : nil
-    @selection = data.key?('selection') ? data['selection'] : nil
-    @layers = data.key?('layers') ? data['layers'] : nil
+    @replay_commands = data.key?('replay_commands') ? data['replay_commands'] : []
+    @player1 = data.key?('player1') ? data['player1'] : {}
+    @player2 = { name: 'John Doe'}
   end
 
-  def to_json
-    @new_model_id += 10000
-    "{ \"id\": #{@id}, \"new_model_id\": #{@new_model_id}, \"ruler\": #{@ruler.to_json}, \"selection\": #{@selection.to_json}, \"layers\": #{@layers.to_json}, \"models\": #{@models.to_json}, \"commands\": #{@commands.to_json}, \"messages\": #{@messages.to_json} }"
+  def undoCommand stamp
+    cmd = @commands.undo stamp
+    if cmd
+      @replay_commands << cmd
+    end
+    cmd
+  end
+
+  def addCommand data
+    @replay_commands.delete_if { |cmd| cmd['stamp'] === data['stamp'] }
+    @commands.add data
+  end
+
+  def player2= data
+    return nil if @player2.key?('id')
+    @player2 = data
+    @commands.signalGameUpdate self
+  end
+
+  def to_json priv, *a
+    @new_model_id += 10000 if priv
+    view = {
+      public_id: @public_id,
+      new_model_id: @new_model_id,
+      commands: @commands,
+      replay_commands: @replay_commands,
+      player1: @player1,
+      player2: @player2
+    }
+    view[:id] = @id if priv
+    view.to_json *a
   end
 end

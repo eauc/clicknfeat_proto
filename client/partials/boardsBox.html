@@ -1,0 +1,15 @@
+<div ng-controller="boardsBoxCtrl">
+  <strong>Board :</strong><br />
+  <select ng-show="game.id"
+          name="board"
+          ng-model="new_board"
+          ng-options="b as b.name for b in boards.list"
+          ng-change="doSetBoard()"
+          >
+  </select>
+  <span ng-if="!game.id">{{game.board.info.name}}</span>
+  <button title="(Ctrl+'F')"
+          ng-click="sendKey('Ctrl F', $event)">
+    Flip Board
+  </button>
+</div>

@@ -1,0 +1,58 @@
+<div ng-controller="usersBoxCtrl">
+  <strong>Users online :</strong>
+  <ul style="padding-left: 2em;">
+    <li ng-repeat="u in users.list"
+        ng-click="toggleSelection(u.id)"
+        style="
+        max-width:400px;
+        "
+        ng-style="{
+        'background-color': u.id === user.id ? '#0F0' : (selection[u.id] ? '#99F' : 'white')
+        }"
+        >
+      {{u.id}}
+      - {{u.name}}[{{u.lang}} {{u.speak.join(',')}}]
+      - {{u.factions.join(',')}}[{{u.points}}]
+      - {{u.positions.join(',')}}
+    </li>
+  </ul>
+  <div ng-show="users.source.readyState === users.source.CLOSED"
+       style="color:#F33">
+    Connection with server is down.
+  </div>
+  <div ng-show="users.list.length !== 0">
+    <div>
+      <strong>Chat with selected players :</strong>
+    </div>
+    <div ng-hide="selection_length > 0"
+      style="color:#999">
+      Please select players first.
+    </div>
+    <div ng-show="selection_length > 0"
+      style="color:#33F">
+      To : <span ng-repeat="(i,n) in selection">{{users.list[i].name}} </span>
+    </div>
+    <form ng-submit="doSendChatMsg()">
+      <input type="text"
+             style="
+             width:100%;
+             max-width:400px;
+             "
+             ng_disabled="selection_length === 0"
+             ng-model="chat_msg"
+             placeholder="Msg..."
+             ng-keydown="stopKeyPropagation($event)"
+             ng-keypress="stopKeyPropagation($event)"
+             />
+    </form>
+    <div ng-repeat="c in user.chat.slice().reverse()"
+         ng-style="{
+         color: c.from === user.id ? '#00F' : '#F0F'
+         }"
+         ng-click="doSelectionFromMsg(c)">
+      {{users.list[c.from].name}} &#8594;
+      <span ng-repeat="i in c.to">{{users.list[i].name}} </span>:
+      {{c.text}}
+    </div>
+  </div>
+</div>

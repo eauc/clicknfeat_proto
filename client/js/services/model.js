@@ -4,7 +4,34 @@ angular.module('vassalApp.services')
   .factory('model', [
     function() {
       var model_base = {
+        resetShow: function(game) {
+          this.state.show_image = true;
+          this.state.show_melee = false;
+          this.state.show_reach = false;
+          this.state.show_strike = false;
+          this.state.show_aoe = 0;
+          this.state.show_area = 0;
+          this.state.show_unit = false;
+          this.state.show_control = false;
+        },
         refresh: function(game) {
+          if(this.state.show_charge) {
+            var dx = this.state.x - this.state.charge_x;
+            var dy = this.state.y - this.state.charge_y;
+            if(dx > 0 || dy > 0) {
+              this.state.charge_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
+            }
+            this.state.charge_length = Math.sqrt(dx*dx+dy*dy);
+            if(this.state.charge_max &&
+               this.state.charge_max > 0 &&
+               this.state.charge_length > this.state.charge_max*10) {
+              dx = dx * this.state.charge_max*10 / this.state.charge_length;
+              dy = dy * this.state.charge_max*10 / this.state.charge_length;
+              this.state.x = this.state.charge_x + dx;
+              this.state.y = this.state.charge_y + dy;
+              this.state.charge_length = this.state.charge_max*10;
+            }
+          }
           this.state.x = Math.max(this.info.r, this.state.x);
           this.state.x = Math.min(game.board.width-this.info.r,
                                   this.state.x);
@@ -13,10 +40,12 @@ angular.module('vassalApp.services')
                                   this.state.y);
         },
         alignWith: function(game, x, y) {
+          if(this.info.immovable) return;
           var angle = Math.atan2(x - this.state.x, this.state.y - y) * 180 / Math.PI;
           this.state.rot = angle;
         },
-        moveFront: function(game, small) {
+        moveFront: function(game, small, target) {
+          if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           var dx = dl * Math.sin(this.state.rot * Math.PI / 180);
           var dy = -dl * Math.cos(this.state.rot * Math.PI / 180);
@@ -24,8 +53,10 @@ angular.module('vassalApp.services')
           this.state.x += dx;
           this.state.y += dy;
           this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
         },
-        moveBack: function(game, small) {
+        moveBack: function(game, small, target) {
+          if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           var dx = -dl * Math.sin(this.state.rot * Math.PI / 180);
           var dy = dl * Math.cos(this.state.rot * Math.PI / 180);
@@ -33,34 +64,49 @@ angular.module('vassalApp.services')
           this.state.x += dx;
           this.state.y += dy;
           this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
+        },
+        setRotation: function(game, angle) {
+          if(this.info.immovable) return;
+          this.state.rot = angle;
         },
         rotateLeft: function(game, small) {
+          if(this.info.immovable) return;
           var dr = small ? 5 : 30;
           this.state.rot = this.state.rot - dr;
         },
-        moveLeft: function(game, small) {
+        moveLeft: function(game, small, target) {
+          if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.x -= dl;
           this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
         },
-        moveUp: function(game, small) {
+        moveUp: function(game, small, target) {
+          if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.y -= dl;
           this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
         },
         rotateRight: function(game, small) {
+          if(this.info.immovable) return;
           var dr = small ? 5 : 30;
           this.state.rot = this.state.rot + dr;
         },
-        moveRight: function(game, small) {
+        moveRight: function(game, small, target) {
+          if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.x += dl;
           this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
         },
-        moveDown: function(game, small) {
+        moveDown: function(game, small, target) {
+          if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.y += dl;
           this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
         },
         toggle: function(game, type, val) {
           var new_val = (val === undefined) ? !this.state['show_'+type] : val;
@@ -94,21 +140,100 @@ angular.module('vassalApp.services')
         setLabel: function(game, label) {
           this.state.label = label;
         },
-        incrementFocus: function(game) {
-          this.state.focus++;
+        setUnit: function(game, unit) {
+          this.state.unit = unit;
         },
-        decrementFocus: function(game) {
-          this.state.focus = Math.max(0, this.state.focus-1);
+        incrementCounter: function(game) {
+          this.state.counter++;
+        },
+        decrementCounter: function(game) {
+          this.state.counter = Math.max(0, this.state.counter-1);
+        },
+        incrementSouls: function(game) {
+          this.state.souls++;
+        },
+        decrementSouls: function(game) {
+          this.state.souls = Math.max(0, this.state.souls-1);
+        },
+        startCharge: function(game, target) {
+          if(target) this.alignWith(game, target.state.x, target.state.y);
+          this.state.charge_x = this.state.x;
+          this.state.charge_y = this.state.y;
+          this.state.charge_length = 0;
+          this.state.charge_rot = this.state.rot;
+          this.state.show_charge = true;
+        },
+        moveChargeFront: function(game, small, target) {
+          if(this.info.immovable) return;
+          var dl = small ? 1 : 10;
+          var dx =  dl * Math.sin(this.state.charge_rot * Math.PI / 180);
+          var dy = -dl * Math.cos(this.state.charge_rot * Math.PI / 180);
+          this.state.x += dx;
+          this.state.y += dy;
+          this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
+        },
+        moveChargeBack: function(game, small, target) {
+          if(this.info.immovable) return;
+          var dl = small ? 1 : 10;
+          if(this.state.charge_length - dl < 0) {
+            this.state.x = this.state.charge_x;
+            this.state.y = this.state.charge_y;
+          }
+          else {
+            var dx = -dl * Math.sin(this.state.charge_rot * Math.PI / 180);
+            var dy = dl * Math.cos(this.state.charge_rot * Math.PI / 180);
+            this.state.x += dx;
+            this.state.y += dy;
+          }
+          this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
+        },
+        rotateChargeLeft: function(game, small, target) {
+          var dr = small ? 1 : 10;
+          this.state.charge_rot -= dr;
+          this.state.x = this.state.charge_x
+            + Math.sin(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
+          this.state.y = this.state.charge_y
+            - Math.cos(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
+          this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
+        },
+        rotateChargeRight: function(game, small, target) {
+          var dr = small ? 1 : 10;
+          this.state.charge_rot += dr;
+          this.state.x = this.state.charge_x
+            + Math.sin(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
+          this.state.y = this.state.charge_y
+            - Math.cos(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
+          this.refresh(game);
+          if(target) this.alignWith(game, target.state.x, target.state.y);
+        },
+        displayChargeLength: function() {
+          return Math.round(this.state.charge_length*10)/100;
+        },
+        chargeTargetInRange: function(target) {
+          var dx = target.state.x - this.state.x;
+          var dy = target.state.y - this.state.y;
+          var dist = Math.sqrt(dx*dx+dy*dy) - target.info.r - this.info.r;
+          var melee_range = this.state.show_strike ? 40 : (this.state.show_reach ? 20 : (this.state.show_melee ? 5 : 0));
+          return dist <= melee_range;
+        },
+        endCharge: function(game) {
+          this.state.charge_length = 0;
+          this.state.show_charge = false;
         },
         startDraging: function(game) {
           this.state_before_drag = _.extend({}, this.state);
         },
         draging: function(game, dx, dy) {
+          if(this.info.immovable) return;
           this.state.x = this.state_before_drag.x + dx;
           this.state.y = this.state_before_drag.y + dy;
           this.refresh(game);
         },
         endDraging: function(game, dx, dy) {
+          if(this.info.immovable) return;
           this.state.x = this.state_before_drag.x + dx;
           this.state.y = this.state_before_drag.y + dy;
           this.refresh(game);
@@ -216,6 +341,17 @@ angular.module('vassalApp.services')
               break;
             }
           }
+        },
+        effects: function() {
+          var effects = [];
+          if(this.state.show_blind) effects.push('B');
+          if(this.state.show_corrosion) effects.push('C');
+          if(this.state.show_disrupt) effects.push('D');
+          if(this.state.show_fire) effects.push('F');
+          if(this.state.show_kd) effects.push('K');
+          if(this.state.show_stationary) effects.push('S');
+          // console.log(effects);
+          return effects;
         }
       };
       var factory = function() {
@@ -230,41 +366,73 @@ angular.module('vassalApp.services')
             x: 240,
             y: 240,
             rot: 0,
-            focus: 0,
+            charge_x: 0,
+            charge_y: 0,
+            charge_rot: 0,
+            charge_length: 0,
+            charge_max: 0,
+            counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
+            souls: 0,
             label: '',
+            unit: null,
             show_image: true,
             show_melee: false,
             show_reach: false,
+            show_strike: false,
             show_aoe: 0,
-            show_focus: args[1].type !== 'warrior',
+            show_area: 0,
+            show_counter: args[1].type === 'wardude' ||
+              args[1].type === 'beast' ||
+              args[1].type === 'jack',
+            show_souls: false,
+            show_unit: false,
             show_fire: false,
+            show_disrupt: false,
             show_corrosion: false,
             show_stationary: false,
             show_blind: false,
             show_kd: false,
             show_leader: false,
             show_incorporeal: false,
+            show_fleeing: false,
             show_color: false,
+            show_charge: false,
           } : _.extend({
             id: args[0],
             x: 240,
             y: 240,
             rot: 0,
-            focus: 0,
+            charge_x: 0,
+            charge_y: 0,
+            charge_rot: 0,
+            charge_length: 0,
+            charge_max: 0,
+            counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
+            souls: 0,
             label: '',
+            unit: null,
             show_image: true,
             show_melee: false,
             show_reach: false,
+            show_strike: false,
             show_aoe: 0,
-            show_focus: args[1].type !== 'warrior',
+            show_area: 0,
+            show_counter:  args[1].type === 'wardude' ||
+              args[1].type === 'beast' ||
+              args[1].type === 'jack',
+            show_souls: false,
+            show_unit: false,
             show_fire: false,
+            show_disrupt: false,
             show_corrosion: false,
             show_stationary: false,
             show_blind: false,
             show_kd: false,
             show_leader: false,
             show_incorporeal: false,
+            show_fleeing: false,
             show_color: false,
+            show_charge: false,
           }, args[2])
         };
         switch(instance.info.damage.type) {

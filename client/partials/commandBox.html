@@ -1,0 +1,60 @@
+<div ng-controller="commandBoxCtrl">
+  <div>
+    <strong>Commands :</strong>
+    <button title="(Ctrl+'Z')"
+            ng-disabled="game.commands.length===0"
+            ng-click="sendKey('Ctrl Z', $event)">Undo</button>
+    <button ng-if="selected.type==='undo'"
+            ng-click="doUndoUpTo()">Undo up to</button>
+    <button title="(Ctrl+Shift+'Z')"
+            ng-disabled="game.commands.length===0"
+            ng-click="sendKey('Ctrl Shift Z', $event)">Undo All</button>
+    <button title="(Ctrl+'Y')"
+            ng-disabled="game.replay_commands.length===0"
+            ng-click="sendKey('Ctrl Y', $event)">Replay</button>
+    <button ng-if="selected.type==='replay'"
+            ng-click="doReplayUpTo()">Replay up to</button>
+    <button title="(Ctrl+Shift+'Y')"
+            ng-disabled="game.replay_commands.length===0"
+            ng-click="sendKey('Ctrl Shift Y', $event)">Replay All</button>
+  </div>
+  <div id="replay-commands"
+       ng-show="game.replay_commands.length !== 0"
+       style="max-height:75px;overflow-y:auto;">
+    <div ng-repeat="cmd in game.replay_commands track by cmd.stamp"
+         ng-click="selected.type = 'replay';selected.stamp = cmd.stamp;"
+         style="color: #AAA;"
+         ng-style="{
+         'background-color': (cmd.stamp === selected.stamp) ? '#DDD' : 'white'
+         }"
+         >
+      <span ng-style="{
+            color: cmd.user.id === user.id ? '#33A' : '#A3A'
+            }">[{{cmd.user.name}}]</span>
+      {{cmd.desc()}} - {{cmd.stamp}}
+    </div>
+  </div>
+  <div ng-if="game.new_commands.length !== 0"
+       style="max-height:100px;overflow-y:auto;">
+    <div ng-repeat="cmd in game.new_commands.slice().reverse() track by cmd.stamp">
+      <span ng-style="{
+            color: cmd.user.id === user.id ? '#33F' : '#F3F'
+            }">[{{cmd.user.name}}]</span>
+      {{cmd.desc()}} - {{cmd.stamp}}
+    </div>
+  </div>
+  <div ng-if="game.commands.length !== 0"
+       style="max-height:100px;overflow-y:auto;">
+    <div ng-repeat="cmd in game.commands.slice().reverse() track by cmd.stamp"
+         ng-click="selected.type = 'undo';selected.stamp = cmd.stamp;"
+         ng-style="{
+         'background-color': (cmd.stamp === selected.stamp) ? '#DDD' : ($index === 0 ? '#0F0' : 'white')
+         }"
+         >
+      <span ng-style="{
+            color: cmd.user.id === user.id ? '#33F' : '#F3F'
+            }">[{{cmd.user.name}}]</span>
+      &#8594; {{cmd.desc()}} - {{cmd.stamp}}
+    </div>
+  </div>
+</div>
