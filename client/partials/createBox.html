@@ -71,14 +71,14 @@
               >
       </select>
     </div>
-    <div ng-show="model.id.ranges">
-      Size :
-      <select name="model_size"
-              ng-model="model.size"
-              ng-options="s as s for s in model.id.ranges"
-              >
-      </select>
-    </div>
+  </div>
+  <div ng-show="model.id.ranges">
+    Size :
+    <select name="model_size"
+            ng-model="model.size"
+            ng-options="s as s for s in model.id.ranges"
+            >
+    </select>
   </div>
   <div>
     Unit Number :

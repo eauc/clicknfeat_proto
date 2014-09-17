@@ -100,6 +100,10 @@ angular.module('vassalApp.controllers')
             size = (match[1] >> 0) + 1;
             line = "Krielstone Bearer and Stone Scribes";
           }
+          match = line.match(/Troll Whelps/i);
+          if(match) {
+            repeat = 5;
+          }
           if(known_entry) {
             // console.log(size);
             _.times(repeat, function() {

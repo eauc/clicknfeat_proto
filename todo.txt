@@ -16,11 +16,10 @@
 - multi-labels
 - highlight models sous AoE/spray/charge
 
-- whelps (FK + ranges)
 - sortie du mode de charge laisse le couloir
 - mouvement 0.5" terrain diff
 - burrowers burrow
-- feldun ne voit pas la couleur
+- feldun ne voit pas la couleur - chrome/windows
 - ruler target reste en jeu quand target model deleted
 - memoriser distance charge max pour unites
 - sensibilite click souris

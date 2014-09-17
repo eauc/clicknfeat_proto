@@ -1387,6 +1387,7 @@
       "whelps": {
         "name": "Troll Whelps",
         "fk_name": "Troll Whelps",
+        "ranges": [1, 5],
         "type": "solo",
         "base": "small",
         "width": 60,
