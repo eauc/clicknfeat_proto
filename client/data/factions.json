@@ -10,5 +10,6 @@
   "scyrah" : "/data/scyrah.json",
   "scenario" : "/data/scenario.json",
   "skorne" : "/data/skorne.json",
-  "trolls" : "/data/trollblood.json"
+  "trolls" : "/data/trollblood.json",
+  "cyriss" : "/data/cyriss.json"
 }

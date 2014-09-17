@@ -1,0 +1,718 @@
+{
+    "name": "Convergence of Cyriss",
+    "color": "#00b8c2",
+    "icon": "",
+    "models": {
+        "casters": {
+            "Aurora1": {
+                "name": "Aurora1 (Numen of Aerogenesis)",
+                "fk_name": "Aurora, Numen of Aerogenesis",
+                "type": "wardude",
+                "focus": 7,
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 16
+                }
+            },
+            "Axis1": {
+                "name": "Axis1 (Harmonic Enforcer)",
+                "fk_name": "Axis, the Harmonic Enforcer",
+                "type": "wardude",
+                "focus": 6,
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 18
+                }
+            },
+            "Mother1": {
+                "name": "Mother1 (Numen of Aerogenesis)",
+                "fk_name": "Iron Mother Directrix & Exponent Servitors",
+                "type": "wardude",
+                "focus": 8,
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 18
+                }
+            },
+            "Lucant1": {
+                "name": "Lucant1 (Divinity Architect)",
+                "fk_name": "Father Lucant, Divinity Architect",
+                "type": "wardude",
+                "focus": 7,
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 21
+                }
+            },
+            "Syntherion1": {
+                "name": "Syntherion1 (Forge Master)",
+                "fk_name": "Forge Master Syntherion",
+                "type": "wardude",
+                "focus": 6,
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 20
+                }
+            }
+        },
+        "jacks": {
+            "Corollary": {
+                "name": "Corollary",
+                "fk_name": "Corollary",
+                "type": "jack",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null, null, "m", null, null ],
+                    "2": [ null, null,  "b", "b",  "m", null ],
+                    "3": [ null,  "b",  "b", "b",  "h", "i"  ],
+                    "4": [ null,  "b",  "b", "b",  "h", "i"  ],
+                    "5": [ null, null,  "b", "b",  "m", null ],
+                    "6": [ null, null, null, "m", null, null ]
+                }
+            },
+            "Diffuser": {
+                "name": "Diffuser",
+                "fk_name": "Diffuser",
+                "type": "jack",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null, null, null, null, "m" ],
+                    "2": [ null, null, null, "b",  "h",  "m" ],
+                    "3": [  "b",  "b",  "b", "b",  "h",  "i" ],
+                    "4": [  "b",  "b",  "b", "b",  "h",  "i" ],
+                    "5": [ null, null, null, "b",  "h",  "m" ],
+                    "6": [ null, null, null, null, null, "m" ]
+                }
+            },
+            "Galvanizer": {
+                "name": "Galvanizer",
+                "fk_name": "Galvanizer",
+                "type": "jack",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null, null, null, null, "m" ],
+                    "2": [ null, null, null, "b",  "h",  "m" ],
+                    "3": [  "b",  "b",  "b", "b",  "h",  "i" ],
+                    "4": [  "b",  "b",  "b", "b",  "h",  "i" ],
+                    "5": [ null, null, null, "b",  "h",  "m" ],
+                    "6": [ null, null, null, null, null, "m" ]
+                }
+            },
+            "Mitigator": {
+                "name": "Mitigator",
+                "fk_name": "Mitigator",
+                "type": "jack",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null, null, null, null, "m" ],
+                    "2": [ null, null, null, "b",  "h",  "m" ],
+                    "3": [  "b",  "b",  "b", "b",  "h",  "i" ],
+                    "4": [  "b",  "b",  "b", "b",  "h",  "i" ],
+                    "5": [ null, null, null, "b",  "h",  "m" ],
+                    "6": [ null, null, null, null, null, "m" ]
+                }
+            },
+            "Assimilator": {
+                "name": "Assimilator",
+                "fk_name": "Assimilator",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null, "b", "b", "m", null ],
+                    "2": [ null,  "b", "b", "b", "l",  "m" ],
+                    "3": [  "b",  "b", "b", "l", "l",  "i" ],
+                    "4": [  "b",  "b", "b", "r", "r",  "i" ],
+                    "5": [ null,  "b", "b", "b", "r",  "m" ],
+                    "6": [ null, null, "b", "b", "m", null ]
+                }
+            },
+            "Conservator": {
+                "name": "Conservator",
+                "fk_name": "Conservator",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null, "b", "b", "m", null ],
+                    "2": [ null,  "b", "b", "b", "l",  "m" ],
+                    "3": [  "b",  "b", "b", "l", "l",  "i" ],
+                    "4": [  "b",  "b", "b", "r", "r",  "i" ],
+                    "5": [ null,  "b", "b", "b", "r",  "m" ],
+                    "6": [ null, null, "b", "b", "m", null ]
+                }
+            },
+            "Modulator": {
+                "name": "Modulator",
+                "fk_name": "Modulator",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null, "b", "b", "m", null ],
+                    "2": [ null,  "b", "b", "b", "l",  "m" ],
+                    "3": [  "b",  "b", "b", "l", "l",  "i" ],
+                    "4": [  "b",  "b", "b", "r", "r",  "i" ],
+                    "5": [ null,  "b", "b", "b", "r",  "m" ],
+                    "6": [ null, null, "b", "b", "m", null ]
+                }
+            },
+            "Cipher": {
+                "name": "Cipher",
+                "fk_name": "Cipher",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null, "b", "b", "b", "m" ],
+                    "2": [  "b",  "b", "b", "b", "l", "m" ],
+                    "3": [  "b",  "b", "b", "l", "l", "i" ],
+                    "4": [  "b",  "b", "b", "r", "r", "i" ],
+                    "5": [  "b",  "b", "b", "b", "r", "m" ],
+                    "6": [ null, null, "b", "b", "b", "m" ]
+                }
+            },
+            "Inverter": {
+                "name": "Inverter",
+                "fk_name": "Inverter",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null, "b", "b", "b", "m" ],
+                    "2": [  "b",  "b", "b", "b", "l", "m" ],
+                    "3": [  "b",  "b", "b", "l", "l", "i" ],
+                    "4": [  "b",  "b", "b", "r", "r", "i" ],
+                    "5": [  "b",  "b", "b", "b", "r", "m" ],
+                    "6": [ null, null, "b", "b", "b", "m" ]
+                }
+            },
+            "Monitor": {
+                "name": "Monitor",
+                "fk_name": "Monitor",
+                "type": "jack",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "jack",
+                    "1": [ null, null, "b", "b", "b", "m" ],
+                    "2": [  "b",  "b", "b", "b", "l", "m" ],
+                    "3": [  "b",  "b", "b", "l", "l", "i" ],
+                    "4": [  "b",  "b", "b", "r", "r", "i" ],
+                    "5": [  "b",  "b", "b", "b", "r", "m" ],
+                    "6": [ null, null, "b", "b", "b", "m" ]
+                }
+            },
+            "Axiom": {
+                "name": "Axiom",
+                "fk_name": "Axiom",
+                "type": "jack",
+                "base": "huge",
+                "width": 116.667,
+                "height": 116.667,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "colossal",
+                    "L1": [ null, null, null, null, "l", "m" ],
+                    "L2": [ null, null, null,  "b", "l", "m" ],
+                    "L3": [  "b",  "b",  "b",  "l", "i", "m" ],
+                    "L4": [  "b",  "b",  "b",  "l", "i", "m" ],
+                    "L5": [  "b",  "b",  "s",  "s", "i", "m" ],
+                    "L6": [  "b",  "b",  "s",  "i", "i", "i" ],
+                    "R1": [  "b",  "b",  "s",  "i", "i", "i" ],
+                    "R2": [  "b",  "b",  "s",  "s", "i", "m" ],
+                    "R3": [  "b",  "b",  "b",  "r", "i", "m" ],
+                    "R4": [  "b",  "b",  "b",  "r", "i", "m" ],
+                    "R5": [ null, null, null,  "b", "r", "m" ],
+                    "R6": [ null, null, null, null, "r", "m" ]
+                }
+            }
+
+        },
+        "units": {
+            "ClockWork": {
+                "name": "Clockwork Angels",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Clockwork Angels",
+                            "fk_name": "Clockwork Angels",
+                            "ranges": [1, 3],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": ""
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    }
+                }
+            },
+            "Eradicators": {
+                "name": "Eradicators",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Eradicators",
+                            "fk_name": "Eradicators",
+                            "ranges": [1, 3, 5],
+                            "type": "warrior",
+                            "base": "medium",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": ""
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 8
+                            }
+                        }
+                    }
+                }
+            },
+            "Reciprocators": {
+                "name": "Reciprocators",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Reciprocators",
+                            "fk_name": "Reciprocators",
+                            "ranges": [1, 3, 5],
+                            "type": "warrior",
+                            "base": "medium",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": ""
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 8
+                            }
+                        }
+                    }
+                }
+            },
+            "Perforators": {
+                "name": "Perforators",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Perforators",
+                            "fk_name": "Perforators",
+                            "ranges": [1, 3, 5],
+                            "type": "warrior",
+                            "base": "medium",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": ""
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 8
+                            }
+                        }
+                    }
+                }
+            },
+            "Reductors": {
+                "name": "Reductors",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Reductors",
+                            "fk_name": "Reductors",
+                            "ranges": [1, 6, 10],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": ""
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    }
+                }
+            },
+            "Obstructors": {
+                "name": "Obstructors",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Obstructors",
+                            "fk_name": "Obstructors",
+                            "ranges": [1, 6, 10],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": ""
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    }
+                }
+            },
+            "OptifexDirective": {
+                "name": "Optifex Directive",
+                "entries": {
+                    "grunt": {
+                        "grunt": {
+                            "name": "Optifex Directive",
+                            "fk_name": "Optifex Directive",
+                            "ranges": [1, 3],
+                            "type": "warrior",
+                            "base": "small",
+                            "width": 60,
+                            "height": 60,
+                            "img": {
+                                "x": 0.2,
+                                "y": -0.5,
+                                "link": ""
+                            },
+                            "damage": {
+                                "type": "warrior",
+                                "n": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "solos": {
+            "TransverseEnumerator": {
+                "name": "Transverse Enumerator",
+                "fk_name": "Transverse Enumerator",
+                "type": "solo",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
+            "AccretionServitors": {
+                "name": "Accretion Servitors",
+                "fk_name": "Accretion Servitors",
+                "type": "solo",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 1
+                }
+            },
+            "AttunementServitors": {
+                "name": "Attunement Servitors",
+                "fk_name": "Attunement Servitors",
+                "type": "solo",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 1
+                }
+            },
+            "EliminationServitors": {
+                "name": "Elimination Servitors",
+                "fk_name": "Elimination Servitors",
+                "type": "solo",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 1
+                }
+            },
+            "ReflexServitor": {
+                "name": "Reflex Servitor",
+                "fk_name": "Reflex Servitor",
+                "type": "solo",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 1
+                }
+            },
+            "ExponentServitors": {
+                "name": "Exponent Servitors",
+                "fk_name": "",
+                "type": "solo",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 1
+                }
+            },
+            "PermutationServitors": {
+                "name": "Permutation Servitors",
+                "fk_name": "",
+                "type": "solo",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 1
+                }
+            },
+            "AlgorithmicDispersionOptifex": {
+                "name": "Algorithmic Dispersion Optifex",
+                "fk_name": "Algorithmic Dispersion Optifex",
+                "type": "solo",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 5
+                }
+            },
+            "EnigmaFoundry": {
+                "name": "Enigma Foundry",
+                "fk_name": "Enigma Foundry",
+                "type": "solo",
+                "base": "large",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 10
+                }
+            },
+            "SteelsoulProtector": {
+                "name": "Steelsoul Protector",
+                "fk_name": "Steelsoul Protector",
+                "type": "solo",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                    "x": 0.2,
+                    "y": -0.5,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 8
+                }
+            }
+        },
+        "battle_engines": {
+            "TransinfiniteEmergenceProjector": {
+                "name": "Transinfinite Emergence Projector",
+                "fk_name": "Transinfinite Emergence Projector",
+                "type": "be",
+                "base": "huge",
+                "width": 90,
+                "height": 90,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": ""
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 20
+                }
+            }
+        }
+    }
+}
