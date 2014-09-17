@@ -47,7 +47,8 @@
     </form>
     <div ng-repeat="c in user.chat.slice().reverse()"
          ng-style="{
-         color: c.from === user.id ? '#00F' : '#F0F'
+         color: c.from === user.id ? '#00F' : '#F0F',
+         'background-color': $index === 0 ? '#0F0' : 'none'
          }"
          ng-click="doSelectionFromMsg(c)">
       {{users.list[c.from].name}} &#8594;

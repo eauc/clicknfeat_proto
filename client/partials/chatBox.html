@@ -55,11 +55,15 @@
       = {{cmd.msg_total}}
     </span>
   </div>
-  <div ng-repeat="cmd in showMsgCommands(game.commands).reverse()">
+  <div ng-repeat="cmd in showMsgCommands(game.commands).reverse()"
+       ng-style="{
+       'background-color': $index === 0 ? '#0F0' : 'none'
+       }"
+       >
     &#8594;
     <span style="color:#00f;"
           ng-style="{
-          color: cmd.user.id === user.id ? '#33F' : '#F3F'
+          color: cmd.user.id === user.id ? '#33F' : '#F3F',
           }"
           >[{{cmd.user.name}}]</span>
     <span style="color:#0AA;">({{cmd.msg_type}})</span>
