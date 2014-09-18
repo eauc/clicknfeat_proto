@@ -48,7 +48,6 @@ class Game
     view = {
       public_id: @public_id,
       new_model_id: @new_model_id,
-      commands: @commands,
       replay_commands: @replay_commands,
       player1: @player1,
       player2: @player2
