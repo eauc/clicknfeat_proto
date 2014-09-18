@@ -1345,12 +1345,12 @@
         }
       },
       "tempest_blazers ": {
-        "name": "Tempest Blazers ",
+        "name": "Tempest Blazers",
         "entries": {
           "unit": {
             "grunt": {
               "name": "Leader and Grunts",
-              "fk_name": "Tempest Blazers ",
+              "fk_name": "Tempest Blazers",
               "ranges": [1, 3, 5],
               "type": "warrior",
               "base": "medium",

@@ -1,5 +1,3 @@
-- aoe/spray create -> click on model -> set as origin/target, move to target mode
-
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
 

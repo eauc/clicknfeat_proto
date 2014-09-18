@@ -104,6 +104,10 @@ angular.module('vassalApp.controllers')
           if(match) {
             repeat = 5;
           }
+          match = line.match(/Rangers/i);
+          if(match) {
+            size = 6;
+          }
           if(known_entry) {
             // console.log(size);
             _.times(repeat, function() {
