@@ -1118,7 +1118,7 @@
               "fk_name": "Storm Lances",
               "ranges": [1, 3, 5],
               "type": "warrior",
-              "base": "medium",
+              "base": "large",
               "width": 60,
               "height": 60,
               "img": {
@@ -1134,7 +1134,7 @@
           }
         }
       },          
-      "strom_tower": {
+      "storm_tower": {
         "name": "Stormsmith Storm Tower",
         "entries": {
           "unit": {
@@ -1159,7 +1159,7 @@
               "name": "Gunner",
               "fk_name": "Storm Tower",
               "type": "warrior",
-              "base": "small",
+              "base": "large",
               "width": 60,
               "height": 60,
               "img": {

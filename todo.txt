@@ -21,6 +21,7 @@
 - ruler target reste en jeu quand target model deleted
 - memoriser distance charge max pour unites
 - sensibilite click souris
+- synchro charge target
 =======================================================================================
 - des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
 Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui reviennent très souvent dans les règles spéciales, genre les lignes de 3" et de 5".
