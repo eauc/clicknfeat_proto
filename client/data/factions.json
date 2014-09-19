@@ -6,6 +6,7 @@
   "khador": "/data/khador.json",
   "legion" : "/data/legion.json",
   "menoth" : "/data/menoth.json",
+  "mercenaries" : "/data/mercenaries.json",
   "minions" : "/data/minions.json",
   "oroboros" : "/data/oroboros.json",
   "scyrah" : "/data/scyrah.json",
