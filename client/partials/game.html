@@ -480,8 +480,8 @@
                      ng-mousedown="onTemplateMouseDown($event, sp)"
                      />
             <rect ng-repeat="wa in templateShowLocked('wall')"
-                  x="{{wa.x-5}}" y="{{wa.y-20}}"
-                  width="10" height="40"
+                  x="{{wa.x-3.75}}" y="{{wa.y-20}}"
+                  width="7.5" height="40"
                   style="
                   fill:#CCC;
                   fill-opacity:1.0;
@@ -1097,8 +1097,8 @@
                      ng-mousedown="onTemplateMouseDown($event, sp)"
                      />
             <rect ng-repeat="wa in templateShowUnlocked('wall')"
-                  x="{{wa.x-5}}" y="{{wa.y-20}}"
-                  width="10" height="40"
+                  x="{{wa.x-3.75}}" y="{{wa.y-20}}"
+                  width="7.5" height="40"
                   style="
                   fill:#CCC;
                   fill-opacity:0.6;
@@ -1178,8 +1178,8 @@
                   modes.current.name === 'Template Create' &&
                   modes.current.type === 'wall'
                   "
-                  x="{{modes.current.x-5}}" y="{{modes.current.y-20}}"
-                  width="10" height="40"
+                  x="{{modes.current.x-3.75}}" y="{{modes.current.y-20}}"
+                  width="7.5" height="40"
                   style="
                   fill:#CCC;
                   fill-opacity:1.0;
