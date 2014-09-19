@@ -1,13 +1,132 @@
 'use strict';
 
+var last_stamp;
+function createNewStamp() {
+  var new_stamp = Date.now();
+  if(new_stamp === last_stamp) {
+    new_stamp++;
+  }
+  last_stamp = new_stamp;
+  return new_stamp;
+}
+
 angular.module('vassalApp.services')
+  .factory('command_sendMsg', [
+    'template',
+    function(template) {
+      var factory = function(data) {
+        var instance = {
+          type: 'sendMsg',
+          stamp: createNewStamp(),
+          msg_type: null,
+          msg_text: null,
+          execute: function(game) {
+            if(this.msg_type === 'dice') {
+              this.msg_total = _.reduce(this.msg_text, function(t, d) {
+                return t+d;
+              }, 0);
+            }
+          },
+          redo: function(game) {
+          },
+          undo: function(game) {
+          },
+          desc: function(game) {
+            return this.type+'('+this.msg_type+')';
+          }
+        };
+        var args = Array.prototype.slice.call(arguments);
+        if(args.length === 1) {
+          _.extend(instance, data);
+        }
+        else {
+          instance.msg_type = args[0];
+          instance.msg_text = args[1];
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
+  .factory('command_setBoard', [
+    'template',
+    function(template) {
+      var factory = function(data) {
+        var instance = {
+          type: 'setBoard',
+          stamp: createNewStamp(),
+          arg: null,
+          before: null,
+          after: null,
+          execute: function(game) {
+            this.before = game.board.info ? _.deepCopy(game.board.info) : null;
+            game.board.info = this.arg;
+            this.after = _.deepCopy(game.board.info);
+          },
+          redo: function(game) {
+            game.board.info = _.deepCopy(this.after);
+          },
+          undo: function(game) {
+            game.board.info = _.deepCopy(this.before);
+          },
+          desc: function(game) {
+            return this.type+'('+this.arg.name+')';
+          }
+        };
+        if(_.isNumber(data.stamp)) {
+          _.extend(instance, data);
+        }
+        else {
+          instance.arg = data;
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
+  .factory('command_setScenario', [
+    'template',
+    function(template) {
+      var factory = function(data) {
+        var instance = {
+          type: 'setScenario',
+          stamp: createNewStamp(),
+          arg: null,
+          before: null,
+          after: null,
+          execute: function(game) {
+            this.before = game.scenario ? _.deepCopy(game.scenario) : null;
+            game.scenario = this.arg;
+            this.after = _.deepCopy(game.scenario);
+          },
+          redo: function(game) {
+            game.scenario = _.deepCopy(this.after);
+          },
+          undo: function(game) {
+            game.scenario = _.deepCopy(this.before);
+          },
+          desc: function(game) {
+            return this.type+'('+this.arg.name+')';
+          }
+        };
+        if(_.isNumber(data.stamp)) {
+          _.extend(instance, data);
+        }
+        else {
+          instance.arg = data;
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
   .factory('command_createTemplate', [
     'template',
     function(template) {
       var factory = function(data) {
         var instance = {
           type: 'createTemplate',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           options: null,
           after: null,
           execute: function(game) {
@@ -18,7 +137,7 @@ angular.module('vassalApp.services')
           },
           redo: function(game) {
             game.templates[this.after.type][this.after.stamp] = _.deepCopy(this.after);
-            game.templates.active = game.templates[this.after.type][this.after.stamp];
+            // game.templates.active = game.templates[this.after.type][this.after.stamp];
           },
           undo: function(game) {
             if(game.templates.active === game.templates[this.after.type][this.after.stamp]) {
@@ -48,7 +167,7 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         var instance = {
           type: 'deleteActiveTemplate',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           before: null,
           execute: function(game) {
             this.before = _.deepCopy(game.templates.active);
@@ -65,7 +184,7 @@ angular.module('vassalApp.services')
           },
           undo: function(game) {
             game.templates[this.before.type][this.before.stamp] = _.deepCopy(this.before);
-            game.templates.active = game.templates[this.before.type][this.before.stamp];
+            // game.templates.active = game.templates[this.before.type][this.before.stamp];
           },
           desc: function(game) {
             return this.type+'('+this.before.type+')';
@@ -85,7 +204,7 @@ angular.module('vassalApp.services')
       var factory = function() {
         var instance = {
           type: 'onActiveTemplate',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           method: null,
           args: null,
           before: null,
@@ -100,11 +219,11 @@ angular.module('vassalApp.services')
           },
           redo: function(game) {
             _.deepExtend(game.templates[this.after.type][this.after.stamp], this.after);
-            game.templates.active = game.templates[this.after.type][this.after.stamp];
+            // game.templates.active = game.templates[this.after.type][this.after.stamp];
           },
           undo: function(game) {
             _.deepExtend(game.templates[this.before.type][this.before.stamp], this.before);
-            game.templates.active = game.templates[this.after.type][this.after.stamp];
+            // game.templates.active = game.templates[this.after.type][this.after.stamp];
           },
           desc: function(game) {
             return this.type+'('+this.method+')';
@@ -129,7 +248,7 @@ angular.module('vassalApp.services')
       var factory = function() {
         var instance = {
           type: 'dragActiveTemplate',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           args: null,
           before: null,
           after: null,
@@ -143,11 +262,11 @@ angular.module('vassalApp.services')
           },
           redo: function(game) {
             _.deepExtend(game.templates[this.after.type][this.after.stamp], this.after);
-            game.templates.active = game.templates[this.after.type][this.after.stamp];
+            // game.templates.active = game.templates[this.after.type][this.after.stamp];
           },
           undo: function(game) {
             _.deepExtend(game.templates[this.before.type][this.before.stamp], this.before);
-            game.templates.active = game.templates[this.after.type][this.after.stamp];
+            // game.templates.active = game.templates[this.after.type][this.after.stamp];
           },
           desc: function(game) {
             return this.type+'('+this.method+')';
@@ -172,7 +291,7 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         var instance = {
           type: 'createModel',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           args: null,
           before: null,
           after: null,
@@ -186,9 +305,13 @@ angular.module('vassalApp.services')
             _.each(this.after, function(new_mod) {
               game.models[new_mod.state.id] = new_mod;
             });
+            game.update_selection = _.map(this.after, function(mod) { return mod.state.id; });
           },
           undo: function(game) {
-            _.each(this.after, function(new_mod) {
+            var ids = _.map(this.after, function(mod) { return mod.state.id; });
+            game.selection = _.without.apply(_, [game.selection].concat(ids));
+            game.update_selection = _.without.apply(_, [game.update_selection].concat(ids));
+            _.each(this.after, function(new_mod) { 
               delete game.models[new_mod.state.id];
             });
           },
@@ -215,7 +338,7 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         var instance = {
           type: 'setLayer',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           arg: null,
           before: null,
           after: null,
@@ -252,7 +375,7 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         var instance = {
           type: 'setRuler',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           before: null,
           after: null,
           execute: function(game) {
@@ -281,12 +404,50 @@ angular.module('vassalApp.services')
       return factory;
     }
   ])
+  .factory('command_onLos', [
+    function() {
+      var factory = function(data) {
+        var instance = {
+          type: 'onLos',
+          stamp: createNewStamp(),
+          method: null,
+          args: null,
+          before: null,
+          after: null,
+          execute: function(game) {
+            this.before = _.deepCopy(game.los.state);
+            game.los[this.method].apply(game.los, this.args);
+            this.after = _.deepCopy(game.los.state);
+          },
+          redo: function(game) {
+            _.extend(game.los.state, this.after);
+          },
+          undo: function(game) {
+            _.extend(game.los.state, this.before);
+          },
+          desc: function(game) {
+            return this.type+'('+this.method+')';
+          }
+        };
+        if(_.isNumber(data.stamp)) {
+          _.extend(instance, data);
+        }
+        else {
+          var args = Array.prototype.slice.call(arguments, 1);
+          instance.method = data;
+          instance.args = args;
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
   .factory('command_onSelection', [
     function() {
       var factory = function() {
         var instance = {
           type: 'onSelection',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           args: null,
           before: null,
           after: null,
@@ -305,12 +466,14 @@ angular.module('vassalApp.services')
             _.each(this.after, function(state) {
               game.models[state.id].state = _.deepCopy(state);
             });
+            game.update_selection = _.map(this.after, function(st) { return st.id; });
           },
           undo: function(game) {
             // console.log(this.before);
             _.each(this.before, function(state) {
               game.models[state.id].state = _.deepCopy(state);
             });
+            game.update_selection = _.map(this.before, function(st) { return st.id; });
           },
           desc: function(game) {
             return this.type+'('+this.args[0]+')';
@@ -334,7 +497,7 @@ angular.module('vassalApp.services')
       var factory = function() {
         var instance = {
           type: 'endDragingSelection',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           args: null,
           before: null,
           after: null,
@@ -353,12 +516,14 @@ angular.module('vassalApp.services')
             _.each(this.after, function(state) {
               game.models[state.id].state = _.deepCopy(state);
             });
+            game.update_selection = _.map(this.after, function(st) { return st.id; });
           },
           undo: function(game) {
             // console.log(this.before);
             _.each(this.before, function(state) {
               game.models[state.id].state = _.deepCopy(state);
             });
+            game.update_selection = _.map(this.before, function(st) { return st.id; });
           },
           desc: function(game) {
             return this.type;
@@ -382,20 +547,19 @@ angular.module('vassalApp.services')
       var factory = function() {
         var instance = {
           type: 'dropSelection',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           before: null,
           execute: function(game) {
             this.before = [].concat(game.selection);
-            game.dropSelection();
+            game.dropModels(this.before);
           },
           redo: function(game) {
-            game.setSelection(this.before);
-            game.dropSelection();
+            game.dropModels(this.before);
           },
           undo: function(game) {
             // console.log(this.before);
             game.restoreFromDropBin(this.before);
-            game.setSelection(this.before);
+            game.update_selection = this.before;
           },
           desc: function(game) {
             return this.type;
@@ -415,13 +579,14 @@ angular.module('vassalApp.services')
       var factory = function() {
         var instance = {
           type: 'restoreFromDropBin',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           args: null,
           execute: function(game) {
             game.restoreFromDropBin(this.args);
           },
           redo: function(game) {
             game.restoreFromDropBin(this.args);
+            game.update_selection = this.args;
           },
           undo: function(game) {
             game.dropModels(this.args);
@@ -447,10 +612,11 @@ angular.module('vassalApp.services')
       var factory = function(options) {
         var instance = {
           type: 'setSelection',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           model_ids: [],
           before: null,
           after: null,
+          do_not_log: true,
           execute: function(game) {
             this.before = [].concat(game.selection);
             game.setSelection(this.model_ids);
@@ -459,11 +625,11 @@ angular.module('vassalApp.services')
             // console.log(this.after);
           },
           redo: function(game) {
-            game.setSelection(this.after);
+            game.update_selection = this.after;
           },
           undo: function(game) {
             // console.log(this.before);
-            game.setSelection(this.before);
+            game.update_selection = this.before;
           },
           desc: function(game) {
             return this.type;
@@ -485,20 +651,21 @@ angular.module('vassalApp.services')
       var factory = function(options) {
         var instance = {
           type: 'addToSelection',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           model_ids: [],
           before: null,
           after: null,
+          do_not_log: true,
           execute: function(game) {
             this.before = [].concat(game.selection);
             game.addToSelection(this.model_ids);
             this.after = [].concat(game.selection);
           },
           redo: function(game) {
-            game.setSelection(this.after);
+            game.update_selection = this.after;
           },
           undo: function(game) {
-            game.setSelection(this.before);
+            game.update_selection = this.before;
           },
           desc: function(game) {
             return this.type;
@@ -520,20 +687,21 @@ angular.module('vassalApp.services')
       var factory = function(options) {
         var instance = {
           type: 'removeFromSelection',
-          stamp: Date.now(),
+          stamp: createNewStamp(),
           model_ids: [],
           before: null,
           after: null,
+          do_not_log: true,
           execute: function(game) {
             this.before = [].concat(game.selection);
             game.removeFromSelection(this.model_ids);
             this.after = [].concat(game.selection);
           },
           redo: function(game) {
-            game.setSelection(this.after);
+            game.update_selection = this.after;
           },
           undo: function(game) {
-            game.setSelection(this.before);
+            game.update_selection = this.before;
           },
           desc: function(game) {
             return this.type;
@@ -551,6 +719,9 @@ angular.module('vassalApp.services')
     }
   ])
   .factory('command', [
+    'command_sendMsg',
+    'command_setBoard',
+    'command_setScenario',
     'command_createTemplate',
     'command_deleteActiveTemplate',
     'command_onActiveTemplate',
@@ -558,6 +729,7 @@ angular.module('vassalApp.services')
     'command_createModel',
     'command_setLayer',
     'command_setRuler',
+    'command_onLos',
     'command_onSelection',
     'command_endDragingSelection',
     'command_dropSelection',
@@ -565,21 +737,29 @@ angular.module('vassalApp.services')
     'command_setSelection',
     'command_addToSelection',
     'command_removeFromSelection',
-    function(command_createTemplate,
+    function(command_sendMsg,
+             command_setBoard,
+             command_setScenario,
+             command_createTemplate,
              command_deleteActiveTemplate,
              command_onActiveTemplate,
              command_dragActiveTemplate,
              command_createModel,
              command_setLayer,
              command_setRuler,
+             command_onLos,
              command_onSelection,
              command_endDragingSelection,
              command_dropSelection,
              command_restoreFromDropBin,
              command_setSelection,
              command_addToSelection,
-             command_removeFromSelection) {
+             command_removeFromSelection
+            ) {
       var factories = {
+        sendMsg: command_sendMsg,
+        setBoard: command_setBoard,
+        setScenario: command_setScenario,
         createTemplate: command_createTemplate,
         deleteActiveTemplate: command_deleteActiveTemplate,
         onActiveTemplate: command_onActiveTemplate,
@@ -587,6 +767,7 @@ angular.module('vassalApp.services')
         createModel: command_createModel,
         setLayer: command_setLayer,
         setRuler: command_setRuler,
+        onLos: command_onLos,
         onSelection: command_onSelection,
         endDragingSelection: command_endDragingSelection,
         dropSelection: command_dropSelection,

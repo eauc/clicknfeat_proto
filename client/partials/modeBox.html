@@ -1,0 +1,13 @@
+<div>
+  <button style="
+          width: 100%;
+          height: 50px;
+          align:center;
+          "
+          title="(Escape)"
+          ng-click="sendKey('Escape', $event)">
+    Back to Default
+  </button>
+  <div ng-include="'partials/modes/'+modes.current.template">
+  </div>
+</div>

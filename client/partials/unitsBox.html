@@ -1,0 +1,13 @@
+<div ng-controller="unitsBoxCtrl">
+  <div>
+    <strong>Units list :</strong>
+  </div>
+  <div ng-repeat="(id, models) in units">
+    <strong>{{ id }} - {{ models[0].info.unit || 'Custom' }}</strong>
+    <ul>
+      <li ng-repeat="model in models">
+        {{ model.state.id}} - {{ model.info.name }}
+      </li>
+    </ul>
+  </div>
+</div>

@@ -6,12 +6,12 @@ class CommandCollection
   end
 
   def add data
-    @commands << data
-    signalConnections @commands.length-1
+    @commands << data unless data.key?('do_not_log') and data['do_not_log']
+    signalConnections data
   end
 
   def undo stamp
-    return false if @commands.empty? or @commands[-1]['stamp'] != stamp
+    return nil if @commands.empty? or @commands[-1]['stamp'] != stamp
     cmd = @commands.pop
     
     data = cmd.to_json
@@ -19,6 +19,7 @@ class CommandCollection
       out << "retry:100\nevent:undo\ndata:#{data}\n\n"
       # out.close
     end
+    cmd
   end
     
   def connections
@@ -26,8 +27,20 @@ class CommandCollection
     @connections
   end
 
-  def addConnection out
+  def addConnection out, last
     connections << out
+    first = @commands.index do |c|
+      c['stamp'] == last
+    end
+    first = first || -1
+    # puts first.inspect
+    @commands.each_with_index do |command, index|
+      if index > first
+        # puts command.inspect
+        data = command.to_json
+        out << "retry:100\ndata:#{data}\n\n"
+      end
+    end
   end
 
   def removeConnection out
@@ -41,15 +54,23 @@ class CommandCollection
     @connections = []
   end
 
-  def signalConnections i
-    data = @commands[i].to_json
+  def signalConnections data
+    data = data.to_json
     connections.each do |out|
       out << "retry:100\ndata:#{data}\n\n"
       # out.close
     end
   end
 
-  def to_json
-    @commands.to_json
+  def signalGameUpdate data
+    data = data.to_json false
+    connections.each do |out|
+      out << "retry:100\nevent:game\ndata:#{data}\n\n"
+      # out.close
+    end
+  end
+
+  def to_json *a
+    @commands.to_json *a
   end
 end

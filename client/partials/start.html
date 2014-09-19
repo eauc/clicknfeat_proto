@@ -1,19 +1,100 @@
 <div>
-  <button ng-click="doCreateGame()">Create Game</button><br />
-  <form ng-submit="doSearchGame()">
-    <input ng-model="search_id" placeholder="Id..." />
-    <button ng-click="doSearchGame()">Search Game</button>
-  </form>
-  <div>
-    <span>Open game file :</span>
-    <input id="import-file"
-           type="file"
-           onchange="angular.element(this).scope().readBackup(this.files[0])" />
-    ---
-    <span ng-class="{
-          'text-success': backup.read_result === 'loaded file',
-          'text-danger': backup.read_result !== 'loaded file'
-          }">{{read_result}}</strong>
-    </span>
+  <div style="
+       margin-top: 50px;
+       ">
+    <div>
+      User Id : {{user.id}}
+    </div>
+    <form name="user-create"
+          ng-submit="doCreateUser()">
+      <fieldset style="
+                max-width:400px;
+                "
+                >
+        <div>
+          <label for="user-name">User Name :</label>
+          <input id="user-name"
+                 type="text"
+                 placeholder="Name..."
+                 required="required"
+                 ng-model="user.name" />
+        </div>
+        <div>
+          <label for="user-lang"
+                 style="vertical-align:top;">Lang. :</label>
+          <input id="user-lang"
+                 type="text"
+                 placeholder="FR, US..."
+                 ng-model="user.lang" />
+        </div>
+        <div>
+          <label for="user-speak"
+                 style="vertical-align:top;">Chat :</label>
+          <select id="user-speak"
+                  ng-model="user.speak"
+                  multiple="multiple">
+            <option value="Skype">Skype</option>
+            <option value="Text">Text</option>
+          </select>
+        </div>
+        <div>
+          <label for="user-factions"
+                 style="vertical-align:top;">Faction(s) :</label>
+          <select id="user-factions"
+                  ng-model="user.factions"
+                  ng-options="id as f.name for (id, f) in factions.list"
+                  multiple="multiple">
+          </select>
+        </div>
+        <div>
+          <label for="user-points"
+                 style="vertical-align:top;">Points :</label>
+          <input id="user-points"
+                 type="text"
+                 placeholder="50, 35..."
+                 ng-model="user.points" />
+        </div>
+        <div>
+          <label for="user-positions"
+                 style="vertical-align:top;">Favorites KillCaster Positions :</label>
+          <select id="user-positions"
+                  ng-model="user.positions"
+                  multiple="multiple">
+            <option value="Missionary">Missionary</option>
+            <option value="69">69</option>
+            <option value="47">47</option>
+            <option value="71">71</option>
+            <option value="WTF?">WTF?</option>
+          </select>
+        </div>
+        <button type="submit">{{ user.id ? 'Change' : 'Create' }}</button>
+      </fieldset>
+    </form>
+    <div ng-include="'/partials/usersBox.html'">
+    </div>
+  </div>
+  <div style="
+       margin-top: 50px;
+       "
+       ng-show="user.id">
+    <button ng-click="doCreateGame()">Create Game</button><br />
+    <form ng-submit="doSearchGame()">
+      <input ng-model="search_id" placeholder="Game Id..." />
+      <button ng-click="doSearchGame()">Log into game</button>
+    </form>
+    <div>
+      <span>Open game file :</span>
+      <input id="import-file"
+             type="file"
+             onchange="angular.element(this).scope().readBackup(this.files[0])" />
+      ---
+      <span ng-class="{
+            'text-success': backup.read_result === 'loaded file',
+            'text-danger': backup.read_result !== 'loaded file'
+            }">{{read_result}}</strong>
+      </span>
+    </div>
+  </div>
+  <div ng-include="'/partials/gamesBox.html'">
   </div>
 </div>

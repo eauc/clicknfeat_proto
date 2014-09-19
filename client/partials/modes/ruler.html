@@ -1,0 +1,43 @@
+<div>
+  <strong>Ruler</strong>
+  <table style="border-collapse:collapse;">
+    <tr>
+      <td colspan="2">
+        Max Range
+        <input style="
+               width:100%;
+               height:35px;
+               "
+               type="number"
+               ng-model="game.ruler.state.range"
+               placeholder="Max Range"
+               ng-change="game.ruler.sendStateCmd()"
+               ng-keydown="stopKeyPropagation($event)"
+               ng-keypress="stopKeyPropagation($event)"
+               />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('O')"
+                ng-click="sendKey('O', $event)">Set Origin</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('T')"
+                ng-click="sendKey('T', $event)">Set Target</button>
+      </td>
+    </tr>
+  </table>
+</div>

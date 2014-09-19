@@ -1,25 +1,31 @@
-- immovable models
+- commands replay : button to clean replay list ?
+- commands replay : prevent undo drop on eventSource refresh
 
-- model unit number
-- shortcut pour reset model rot/tourner de 180
-- mode charge.
-- mode ranged attack.
-- sauvegarde des models selectionnes dans un fichier pour import ulterieur ?
-
-- command range/formation for units
-- zoom 1.5
-- zoom/view reset
-
-- key/mouse control states
-- key event to msgs strings
-
-- flag to disable drag preview to prevent pre-measuring
-- text no highlight
-
+- mode ranged attack : change to ruler mode, set selected model as origin for ruler/aoe/spray, click on model set target, if ruler too short move AoE to EnfOfRuler.
+- auto deviate model (max distance?, origin?)
+- auto-slam model
+- place model to ruler end
 - split factions files in subfiles
 
+- text no highlight
+
+=======================================================================================
+- suggestion labels precedents
+- multi-labels
+- highlight models sous AoE/spray/charge
+
+- sortie du mode de charge laisse le couloir
+- mouvement 0.5" terrain diff
+- burrowers burrow
+- feldun ne voit pas la couleur - chrome/windows
+- ruler target reste en jeu quand target model deleted
+- memoriser distance charge max pour unites
+- sensibilite click souris
+- synchro charge target
 =======================================================================================
 - des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
 Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui reviennent très souvent dans les règles spéciales, genre les lignes de 3" et de 5".
+- limiter distance drag model comme ruler
 
-- Est ce que tu penses que ça serait possible de faire une option "toggle incorporeal". Tous les modèles incorporeal ont une version de leur image qui est incorporeal et l'autre non. Je pense que dans vassal, tu génères les deux et tu les intervertis pour rigoler à la main. Ca pourrait être pas mal de permettre le changement d'une image à l'autre par un raccourcis !
+=======================================================================================
+reflechir pour chaque mode les transitions autorisees vers d'autre modes.

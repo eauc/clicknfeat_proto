@@ -13,20 +13,21 @@ angular.module('vassalApp.controllers')
       console.log('init startCtrl');
 
       $scope.doCreateGame = function() {
-        $http.post('/api/games', {}).then(function(response) {
-          // console.log('create game success');
-          // $scope.game = response.data;
-          // console.log($scope.game);
-
-          $state.go('game', { id: response.data.id });
-        }, function(response) {
-          console.log('create game error');
-          console.log(response);
-        });
+        $http.post('/api/games', { player1: $scope.user })
+          .then(function(response) {
+            // console.log('create game success');
+            // $scope.game = response.data;
+            // console.log($scope.game);
+            
+            $state.go('game', { visibility: 'private', id: response.data.id });
+          }, function(response) {
+            console.log('create game error');
+            console.log(response);
+          });
       };
 
       $scope.doSearchGame = function() {
-        $state.go('game', { id: $scope.search_id });
+        $state.go('game', { visibility: 'private', id: $scope.search_id });
       };
       
       $scope.read_result = '';
@@ -41,18 +42,15 @@ angular.module('vassalApp.controllers')
             // success_cbk_(data);
             // console.log(data);
             var game_data = _.pick(data,
-                                   'messages',
-                                   'commands',
                                    'models',
-                                   'ruler',
-                                   'selection',
-                                   'layers');
+                                   'commands',
+                                   'replay_commands');
             // console.log(data);
             $http.post('/api/games', game_data)
               .then(function(response) {
                 // console.log('upload game success');
                 // console.log(response.data);
-                $state.go('game', { id: response.data.id });
+                $state.go('game', { visibility: 'private', id: response.data.id });
               }, function(response) {
                 console.log('upload game error');
                 console.log(response);
@@ -74,5 +72,13 @@ angular.module('vassalApp.controllers')
         reader.readAsText(file);
       };
 
+      $scope.doCreateUser = function() {
+        if(!$scope.user.id) {
+          $scope.user.create();
+        }
+        else {
+          $scope.user.refresh();
+        }
+      };
     }
   ]);

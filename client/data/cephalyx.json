@@ -1,0 +1,278 @@
+{
+  "name": "Cephalyx",
+  "color": "#909",
+  "icon": "",
+  "models": {
+    "casters": {
+      "Thexus1": {
+        "name": "Exulon Thexus",
+        "fk_name": "",
+        "type": "wardude",
+        "fury": 8,
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 15
+        }
+      }
+    },
+    "jacks": {
+      "Subduer": {
+        "name": "Subduer",
+        "fk_name": "",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ "b", "b", "b", "b", "l", "l" ],
+          "2": [ "b", "b", "b", "b", "l", "m" ],
+          "3": [ "b", "b", "b", "b", "m", "m" ],
+          "4": [ "b", "b", "b", "b", "B", "B" ],
+          "5": [ "b", "b", "b", "b", "B", "r" ],
+          "6": [ "b", "b", "b", "b", "r", "r" ]
+        }
+      },
+      "Warden": {
+        "name": "Warden",
+        "fk_name": "",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ "b", "b", "b", "b", "l", "l" ],
+          "2": [ "b", "b", "b", "b", "l", "m" ],
+          "3": [ "b", "b", "b", "b", "m", "m" ],
+          "4": [ "b", "b", "b", "b", "B", "B" ],
+          "5": [ "b", "b", "b", "b", "B", "r" ],
+          "6": [ "b", "b", "b", "b", "r", "r" ]
+        }
+      },
+      "Wrecker": {
+        "name": "Wrecker",
+        "fk_name": "",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ "b", "b", "b", "b", "l", "l" ],
+          "2": [ "b", "b", "b", "b", "l", "m" ],
+          "3": [ "b", "b", "b", "b", "m", "m" ],
+          "4": [ "b", "b", "b", "b", "B", "B" ],
+          "5": [ "b", "b", "b", "b", "B", "r" ],
+          "6": [ "b", "b", "b", "b", "r", "r" ]
+        }
+      }
+    },
+    "units": {
+      "Cephalyx Overlords": {
+	"name": "Cephalyx Overlords",
+	"entries": {
+	  "grunt": {
+	    "grunt": {
+	      "name": "Cephalyx Overlords",
+	      "fk_name": "Cephalyx Overlords",
+	      "ranges": [1, 3],
+	      "type": "warrior",
+	      "base": "small",
+	      "width": 60,
+	      "height": 60,
+	      "img": {
+		"x": 0.2,
+		"y": -0.5,
+		"link": "data/cryx/units/CephalyxOverlord.png"
+	      },
+	      "damage": {
+		"type": "warrior",
+		"n": 5
+	      }
+	    }
+	  }
+	}
+      },
+      "Cephalyx Mind Slaver & Drudges": {
+        "name": "Cephalyx Mind Slaver & Drudges",
+        "entries": {
+          "unit": {
+	    "leader": {
+              "name": "Mind Slaver",
+              "fk_name": "Cephalyx Mind Slaver & Drudges",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/cryx/units/CephalyxSlaver.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "grunt": {
+              "name": "Grunts",
+              "fk_name": "Cephalyx Mind Slaver & Drudges",
+              "ranges": [ 1, 6, 10 ],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/cryx/units/DrudgeMindSlave.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      },
+      "Cephalyx Mind Bender & Drudges": {
+        "name": "Cephalyx Mind Bender & Drudges",
+        "entries": {
+          "unit": {
+	    "leader": {
+              "name": "Mind Bender",
+              "fk_name": "",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": "data/cryx/units/CephalyxSlaver.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "grunt": {
+              "name": "Grunts",
+              "fk_name": "",
+              "ranges": [ 1, 6, 10 ],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/cryx/units/DrudgeMindSlave.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "solos": {
+      "Bloat Thrall": {
+        "name": "Bloat Thrall",
+        "fk_name": "Bloat Thrall",
+        "type": "solo",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/cryx/solos/BloatThrall.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 8
+        }
+      },
+      "Pistol Wraith": {
+        "name": "Pistol Wraith",
+        "fk_name": "Pistol Wraith",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/cryx/solos/PistolWraith.png",
+	  "incorporeal": "data/cryx/solos/PistolWraith_Incorporeal.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "Machine Wraith": {
+        "name": "Machine Wraith",
+        "fk_name": "Machine Wraith",
+        "type": "solo",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": "data/cryx/solos/MachineWraith.png",
+	  "incorporeal": "data/cryx/solos/MachineWraith_Incorporeal.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 1
+        }
+      },
+      "Cephalyx Agitator": {
+        "name": "Cephalyx Agitator",
+        "fk_name": "",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0.2,
+          "y": -0.5,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      }
+    }
+  }
+}

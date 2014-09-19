@@ -1,0 +1,20 @@
+<div ng-controller="scenariosBoxCtrl">
+  <strong>Scenario :</strong><br />
+  <select ng-show="game.id"
+          name="scenario"
+          ng-model="new_scenario"
+          ng-options="s as s.name for s in scenarios.list"
+          ng-change="doSetScenario()"
+          >
+  </select>
+  <span ng-if="!game.id">{{game.scenario.name}}</span>
+  <button ng-if="game.id"
+          ng-click="doSetRandomScenario()">
+    Set Random
+  </button>
+  <button ng-if="game.id"
+          ng-show="game.scenario"
+          ng-click="doGenerateObjectives()">
+    Generate Objectives
+  </button>
+</div>

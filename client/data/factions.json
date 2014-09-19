@@ -1,7 +1,15 @@
 {
+  "cephalyx": "/data/cephalyx.json",
+  "cryx": "/data/cryx.json",
   "cygnar": "/data/cygnar.json",
+  "cyriss": "/data/cyriss.json",
+  "khador": "/data/khador.json",
+  "legion" : "/data/legion.json",
   "menoth" : "/data/menoth.json",
+  "minions" : "/data/minions.json",
   "oroboros" : "/data/oroboros.json",
   "scyrah" : "/data/scyrah.json",
-  "scenario" : "/data/scenario.json"
+  "scenario" : "/data/scenario.json",
+  "skorne" : "/data/skorne.json",
+  "trolls" : "/data/trollblood.json"
 }

@@ -1,6 +1,13 @@
 <html ng-app="vassalApp">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,height=device-height">
+    <style>
+      *, html, body {
+       margin: 0px;
+       padding: 0px;
+      }
+    </style>
   </head>
   <body ng-controller="mainCtrl" ondragstart="return false;" ondrop="return false;">
     <div ui-view></div>
@@ -14,11 +21,37 @@
     <script src="js/controllers/mainCtrl.js"></script>
     <script src="js/controllers/startCtrl.js"></script>
     <script src="js/controllers/gameCtrl.js"></script>
+    <script src="js/controllers/backupBoxCtrl.js"></script>
+    <script src="js/controllers/boardsBoxCtrl.js"></script>
+    <script src="js/controllers/chatBoxCtrl.js"></script>
+    <script src="js/controllers/commandBoxCtrl.js"></script>
+    <script src="js/controllers/createBoxCtrl.js"></script>
+    <script src="js/controllers/dropBinBoxCtrl.js"></script>
+    <script src="js/controllers/gamesBoxCtrl.js"></script>
+    <script src="js/controllers/importBoxCtrl.js"></script>
+    <script src="js/controllers/layersBoxCtrl.js"></script>
+    <script src="js/controllers/modelViewBoxCtrl.js"></script>
+    <script src="js/controllers/scenariosBoxCtrl.js"></script>
+    <script src="js/controllers/toolsBoxCtrl.js"></script>
+    <script src="js/controllers/unitsBoxCtrl.js"></script>
+    <script src="js/controllers/usersBoxCtrl.js"></script>
     <script src="js/services/factions.js"></script>
+    <script src="js/services/scenarios.js"></script>
+    <script src="js/services/boards.js"></script>
     <script src="js/services/game.js"></script>
+    <script src="js/services/games.js"></script>
     <script src="js/services/model.js"></script>
     <script src="js/services/template.js"></script>
     <script src="js/services/command.js"></script>
-    <script src="js/services/message.js"></script>
+    <script src="js/services/user.js"></script>
+    <script src="js/services/users.js"></script>
+    <script src="js/services/modes.js"></script>
+    <script src="js/services/modes/common.js"></script>
+    <script src="js/services/modes/default.js"></script>
+    <script src="js/services/modes/los.js"></script>
+    <script src="js/services/modes/model.js"></script>
+    <script src="js/services/modes/ruler.js"></script>
+    <script src="js/services/modes/selection.js"></script>
+    <script src="js/services/modes/template.js"></script>
   </body>
 </html>
