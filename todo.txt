@@ -18,7 +18,6 @@
 
 =======================================================================================
 - sortie du mode de charge laisse le couloir
-- mouvement 0.5" terrain diff
 - burrowers burrow
 - feldun ne voit pas la couleur - chrome/windows
 - ruler target reste en jeu quand target model deleted
@@ -32,6 +31,5 @@
 - des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
 Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui reviennent très souvent dans les règles spéciales, genre les lignes de 3" et de 5".
 - limiter distance drag model comme ruler
-
 =======================================================================================
 reflechir pour chaque mode les transitions autorisees vers d'autre modes.
