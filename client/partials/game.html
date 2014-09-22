@@ -513,6 +513,22 @@
                     "
                     />
             <g ng-repeat="model in modelShow('charge')">
+              <rect x="{{model.state.x-model.info.r}}"
+                    y="{{model.state.y-700}}"
+                    width="{{model.info.r*2}}" height="{{700}}"
+                    transform="rotate(
+                    {{model.state.charge_rot}},
+                    {{model.state.x}},
+                    {{model.state.y}}
+                    )"
+                    style="
+                    fill: #CCC;
+                    fill-opacity: 0.3;
+                    stroke: #666;
+                    stroke-width: 0.5px;
+                    pointer-events: none;
+                    "
+                    />
               <rect x="{{(model.state.x+model.state.charge_x)/2-model.info.r}}"
                     y="{{(model.state.y+model.state.charge_y)/2-model.state.charge_length/2}}"
                     width="{{model.info.r*2}}" height="{{model.state.charge_length}}"
