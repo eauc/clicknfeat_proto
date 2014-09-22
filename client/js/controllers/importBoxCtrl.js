@@ -87,38 +87,29 @@ angular.module('vassalApp.controllers')
             repeat = (match[1] >> 0);
           }                
           var size = 1;
-          match = line.match(/\(leader and (\d+) grunts?\)/i);
+          match = line.match(/(?:[\w]+) and (\d+) (?:[\w]+)/i);
           if(match) {
-            size = (match[1] >> 0) + 1;
+            size = match[1] ? (match[1] >> 0) + 1 : 2;
           }                
+          match = line.match(/leader and grunts?/i);
+          if(match) {
+            size = 2;
+          }
           line = line.replace(/\s*\(.+\)\s*$/,'');
           // console.log(line);
           var known_entry = _.isObject($scope.factions.fk_keys[line]);
-          match = line.match(/Krielstone Bearer and (\d+) Stone Scribes/i);
-          if(match) {
-            known_entry = true;
-            size = (match[1] >> 0) + 1;
-            line = "Krielstone Bearer and Stone Scribes";
-          }
-          match = line.match(/Troll Whelps/i);
-          if(match) {
-            repeat = 5;
-          }
-          match = line.match(/Rangers/i);
-          if(match) {
-            size = 6;
-          }
           if(known_entry) {
+            var entries = $scope.factions.fk_keys[line];
             // console.log(size);
             _.times(repeat, function() {
               var nb_created_in_unit = 0;
-              var entries = $scope.factions.fk_keys[line];
               var nb_entries = _.keys(entries).length;
-              var is_unit = (nb_entries > 1 || size > 1);
               if(entries.grunt) {
-                if(is_unit &&
-                   reset_unit) {
+                if(reset_unit) {
                   unit_number++;
+                }
+                if(entries.grunt.fk_size) {
+                  size = entries.grunt.fk_size;
                 }
                 var mid_size = Math.ceil(size/2);
                 var unit_step = 2.5*entries.grunt.r;
@@ -132,7 +123,7 @@ angular.module('vassalApp.controllers')
                     offset_x: global_offset_x + offset_x,
                     offset_y: offset_y,
                     show_leader: true,
-                    unit: is_unit ? unit_number : undefined
+                    unit: unit_number
                   });
                   nb_created_in_unit++;
                   size--;
@@ -154,7 +145,7 @@ angular.module('vassalApp.controllers')
                     offset_x: global_offset_x + offset_x,
                     offset_y: offset_y,
                     show_leader: (size > 1 && nb_created_in_unit === 0),
-                    unit: is_unit ? unit_number : undefined
+                    unit: unit_number
                   });
                   nb_created_in_unit++;
                 });
@@ -168,23 +159,26 @@ angular.module('vassalApp.controllers')
               entries = _.omit(entries, 'grunt', 'leader');
               if(_.keys(entries).length > 0) {
                 _.each(entries, function(entry) {
-                  if((is_unit || entry.unit) &&
+                  if(entry.unit &&
                      reset_unit &&
                      nb_created_in_unit === 0) {
                     unit_number++;
                   }
-                  $scope.modes['model_create'].info.push({
-                    info: entry,
-                    offset_x: global_offset_x + 1.25*entry.r,
-                    offset_y: global_offset_y,
-                    unit: (is_unit || entry.unit) ? unit_number : undefined
+                  var fk_repeat = entry.fk_repeat || 1;
+                  _.times(fk_repeat, function() {
+                    $scope.modes['model_create'].info.push({
+                      info: entry,
+                      offset_x: global_offset_x + 1.25*entry.r,
+                      offset_y: global_offset_y,
+                      unit: entry.unit ? unit_number : undefined
+                    });
+                    global_offset_x += 2.5*entry.r;
+                    if(global_offset_x > 360) {
+                      global_offset_x = 0;
+                      global_offset_y = 55;
+                    }
+                    nb_created_in_unit++;
                   });
-                  global_offset_x += 2.5*entry.r;
-                  if(global_offset_x > 360) {
-                    global_offset_x = 0;
-                    global_offset_y = 55;
-                  }
-                  nb_created_in_unit++;
                   previous_unit = entry.unit;
                 });
               }

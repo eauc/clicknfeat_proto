@@ -1,5 +1,12 @@
+- clock
+
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
+
+- suggestion labels precedents
+- multi-labels
+
+- highlight models sous AoE/spray/charge
 
 - mode ranged attack : change to ruler mode, set selected model as origin for ruler/aoe/spray, click on model set target, if ruler too short move AoE to EnfOfRuler.
 - auto deviate model (max distance?, origin?)
@@ -10,13 +17,6 @@
 - text no highlight
 
 =======================================================================================
-- FK incubi
-- FK alexia & co
-
-- suggestion labels precedents
-- multi-labels
-- highlight models sous AoE/spray/charge
-
 - sortie du mode de charge laisse le couloir
 - mouvement 0.5" terrain diff
 - burrowers burrow
@@ -25,7 +25,7 @@
 - memoriser distance charge max pour unites
 - sensibilite click souris
 - synchro charge target
-- optimize model state size
+- optimize model state size in log
 - view control en layer
 - FK import unit pas d'espace entre models
 =======================================================================================
