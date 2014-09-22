@@ -1066,6 +1066,7 @@
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Rangers",
+              "fk_size": 6,
               "ranges": [1, 6],
               "type": "warrior",
               "base": "small",

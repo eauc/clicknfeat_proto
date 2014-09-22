@@ -1364,6 +1364,7 @@
       "incubus": {
         "name": "Incubus",
         "fk_name": "Incubus",
+        "fk_repeat": 5,
         "ranges": [ 1, 5 ],
         "type": "solo",
         "base": "small",

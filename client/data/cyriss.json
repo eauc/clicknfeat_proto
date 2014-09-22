@@ -41,21 +41,49 @@
         }
       },
       "Mother1": {
-        "name": "Mother1 (Numen of Aerogenesis)",
-        "fk_name": "Iron Mother Directrix & Exponent Servitors",
-        "type": "wardude",
-        "focus": 8,
-        "base": "medium",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": ""
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 18
+        "name": "Mother1 (Iron Mother Directrix)",
+        "entries": {
+          "caster": {
+            "Mother1": {
+              "name": "Iron Mother Directrix",
+              "fk_name": "Iron Mother Directrix & Exponent Servitors",
+              "type": "wardude",
+              "focus": 8,
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 18
+              }
+            }
+          },
+          "servitors": {
+            "ExponentServitors": {
+              "name": "Exponent Servitor",
+              "fk_name": "Iron Mother Directrix & Exponent Servitors",
+              "fk_repeat": 2,
+              "ranges": [1, 2],
+              "type": "solo",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
         }
       },
       "Lucant1": {
@@ -352,7 +380,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Clockwork Angels",
+              "name": "Leader and Grunts",
               "fk_name": "Clockwork Angels",
               "ranges": [1, 3],
               "type": "warrior",
@@ -377,7 +405,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Eradicators",
+              "name": "Leader and Grunts",
               "fk_name": "Eradicators",
               "ranges": [1, 3, 5],
               "type": "warrior",
@@ -402,7 +430,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Reciprocators",
+              "name": "Leader and Grunts",
               "fk_name": "Reciprocators",
               "ranges": [1, 3, 5],
               "type": "warrior",
@@ -427,7 +455,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Perforators",
+              "name": "Leader and Grunts",
               "fk_name": "Perforators",
               "ranges": [1, 3, 5],
               "type": "warrior",
@@ -452,7 +480,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Reductors",
+              "name": "Leader and Grunts",
               "fk_name": "Reductors",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -477,7 +505,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Obstructors",
+              "name": "Leader and Grunts",
               "fk_name": "Obstructors",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -502,7 +530,7 @@
         "entries": {
           "grunt": {
             "grunt": {
-              "name": "Optifex Directive",
+              "name": "Leader and Grunts",
               "fk_name": "Optifex Directive",
               "ranges": [1, 3],
               "type": "warrior",
@@ -542,8 +570,10 @@
         }
       },
       "AccretionServitors": {
-        "name": "Accretion Servitors",
+        "name": "Accretion Servitor",
         "fk_name": "Accretion Servitors",
+        "fk_repeat": 3,
+        "ranges": [1, 3],
         "type": "solo",
         "base": "small",
         "width": 60,
@@ -559,8 +589,10 @@
         }
       },
       "AttunementServitors": {
-        "name": "Attunement Servitors",
+        "name": "Attunement Servitor",
         "fk_name": "Attunement Servitors",
+        "fk_repeat": 3,
+        "ranges": [1, 3],
         "type": "solo",
         "base": "small",
         "width": 60,
@@ -576,8 +608,10 @@
         }
       },
       "EliminationServitors": {
-        "name": "Elimination Servitors",
+        "name": "Elimination Servitor",
         "fk_name": "Elimination Servitors",
+        "fk_repeat": 3,
+        "ranges": [1, 3],
         "type": "solo",
         "base": "small",
         "width": 60,
@@ -594,41 +628,9 @@
       },
       "ReflexServitor": {
         "name": "Reflex Servitor",
-        "fk_name": "Reflex Servitor",
-        "type": "solo",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0.2,
-          "y": -0.5,
-          "link": ""
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 1
-        }
-      },
-      "ExponentServitors": {
-        "name": "Exponent Servitors",
-        "fk_name": "",
-        "type": "solo",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0.2,
-          "y": -0.5,
-          "link": ""
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 1
-        }
-      },
-      "PermutationServitors": {
-        "name": "Permutation Servitors",
-        "fk_name": "",
+        "fk_name": "Reflex Servitors",
+        "fk_repeat": 3,
+        "ranges": [1, 3],
         "type": "solo",
         "base": "small",
         "width": 60,
@@ -698,19 +700,47 @@
     "battle_engines": {
       "TransinfiniteEmergenceProjector": {
         "name": "Transinfinite Emergence Projector",
-        "fk_name": "Transinfinite Emergence Projector",
-        "type": "be",
-        "base": "huge",
-        "width": 90,
-        "height": 90,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": ""
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 20
+        "entries": {
+          "engine": {
+            "TransinfiniteEmergenceProjector": {
+              "name": "Transinfinite Emergence Projector",
+              "fk_name": "Transinfinite Emergence Projector",
+              "type": "be",
+              "base": "huge",
+              "width": 90,
+              "height": 90,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 20
+              }
+            }
+          },
+          "servitors": {
+            "PermutationServitors": {
+              "name": "Permutation Servitors",
+              "fk_name": "Transinfinite Emergence Projector",
+              "fk_repeat": 3,
+              "ranges": [1, 3],
+              "type": "solo",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0.2,
+                "y": -0.5,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
         }
       }
     }

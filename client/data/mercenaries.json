@@ -58,7 +58,7 @@
           "type": "warrior",
           "n": 16
         }
-      },	  
+      },    
       "shae1": {
         "name": "Captain Phinneus Shae",
         "fk_name": "Captain Phinneus Shae",
@@ -238,7 +238,7 @@
           "type": "warrior",
           "n": 17
         }
-      }	  
+      }   
     },
     "jacks": {
       "buccaneer": {
@@ -785,7 +785,7 @@
             "grunt": {
               "name": "Risen",
               "fk_name": "Alexia Ciannor & the Risen",
-	      "ranges": [1, 9],
+              "ranges": [1, 9],
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -802,7 +802,7 @@
             },
             "thrall": {
               "name": "Thrall Warrior",
-              "fk_name": "",
+              "fk_name": "Alexia Ciannor & the Risen",
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -843,7 +843,7 @@
               }
             }
           },
-	  "ua": {
+          "ua": {
             "officer": {
               "name": "Arcane Tempest Gun Mage Officer",
               "fk_name": "Arcane Tempest Gun Mage Officer",
@@ -861,8 +861,8 @@
                 "n": 5
               }
             }
-	  }
-	}
+          }
+        }
       },
       "hammerfall_high_shield_gun_corps": {
         "name": "Hammerfall High Shield Gun Corps",
@@ -886,8 +886,8 @@
                 "n": 1
               }
             }
-	  },
-	  "ua": {
+          },
+          "ua": {
             "officer": {
               "name": "Hammerfall High Shield Gun Corps Officer",
               "fk_name": "Hammerfall High Shield Gun Corps Officer & Standard",
@@ -946,7 +946,7 @@
                 "n": 5
               }
             },
-	    "grunt": {
+            "grunt": {
               "name": "Devil Dogs",
               "fk_name": "Captain Sam MacHorne & the Devil Dogs",
               "ranges": [1, 5, 9],
@@ -965,7 +965,7 @@
               }
             }
           }
-	}
+        }
       },
       "long_gunner_infantry": {
         "name": "Long Gunner Infantry",
@@ -1110,7 +1110,7 @@
                 "n": 5
               }
             },
-	    "grunt": {
+            "grunt": {
               "name": "Drudges",
               "fk_name": null,
               "ranges": [1, 5, 9],
@@ -1129,7 +1129,7 @@
               }
             }
           }
-	}
+        }
       },
       "cephalyxmindslaver_drudges": {
         "name": "Cephalyx Mind Slaver & Drudges",
@@ -1152,7 +1152,7 @@
                 "n": 5
               }
             },
-	    "grunt": {
+            "grunt": {
               "name": "Drudges",
               "fk_name": null,
               "ranges": [1, 5, 9],
@@ -1171,7 +1171,7 @@
               }
             }
           }
-	}
+        }
       },
       "cephalyxoverlords": {
         "name": "Cephalyx Overlords",
@@ -1196,7 +1196,7 @@
               }
             }
           }
-	}
+        }
       },
       "cylenaraefyll_nysshunters": {
         "name": "Cylena Raefyll & Nyss Hunters",
@@ -1222,7 +1222,7 @@
             "grunt": {
               "name": "Nyss Hunters",
               "fk_name": "Cylena Raefyll & Nyss Hunters",
-	      "ranges": [1, 9],
+              "ranges": [1, 9],
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -1237,8 +1237,8 @@
                 "n": 1
               }
             }
-	  }
-	}
+          }
+        }
       },
       "croescutthroats": {
         "name": "Croe's Cutthroats",
@@ -1264,7 +1264,7 @@
             "grunt": {
               "name": "Cutthroats",
               "fk_name": "Croe's Cutthroats",
-	      "ranges": [1, 9],
+              "ranges": [1, 9],
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -1279,8 +1279,8 @@
                 "n": 1
               }
             }
-	  }
-	}
+          }
+        }
       },
       "dannonblythebull": {
         "name": "Dannon Blythe & Bull",
@@ -1320,8 +1320,8 @@
                 "n": 8
               }
             }
-	  }
-	}
+          }
+        }
       },
       "greygoreboomhowlerco": {
         "name": "Greygore Boomhowler & Co.",
@@ -1347,7 +1347,7 @@
             "grunt": {
               "name": "Boomhowler",
               "fk_name": "Greygore Boomhowler & Co.",
-	      "ranges": [1, 5, 9],
+              "ranges": [1, 5, 9],
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -1362,8 +1362,8 @@
                 "n": 1
               }
             }
-	  }
-	}
+          }
+        }
       },
       "hernejonne": {
         "name": "Herne & Jonne",
@@ -1403,8 +1403,8 @@
                 "n": 8
               }
             }
-	  }
-	}
+          }
+        }
       },
       "horgenholdartillerycorps ": {
         "name": "Horgenhold Artillery Corps ",
@@ -1444,7 +1444,7 @@
                 "n": 1
               }
             },
-	    "shell": {
+            "shell": {
               "name": "Horgenhold Artillery Corps Shell",
               "fk_name": "Horgenhold Artillery Corps ",
               "type": "warrior",
@@ -1461,8 +1461,8 @@
                 "n": 1
               }
             }
-	  }
-	}
+          }
+        }
       },
       "horgenholdforgeguard": {
         "name": "Horgenhold Forge Guard",
@@ -1487,7 +1487,7 @@
               }
             }
           }
-	}
+        }
       },
       "idrianskirmishers": {
         "name": "Idrian Skirmishers",
@@ -1512,7 +1512,7 @@
               }
             }
           },
-	  "ua": {
+          "ua": {
             "chieftain": {
               "name": "Idrian Skirmishers Chieftain",
               "fk_name": "Idrian Skirmishers Chieftain & Guide",
@@ -1530,7 +1530,7 @@
                 "n": 5
               }
             },
-	    "guide": {
+            "guide": {
               "name": "Idrian Skirmishers Guide",
               "fk_name": "Idrian Skirmishers Chieftain & Guide",
               "type": "warrior",
@@ -1547,8 +1547,8 @@
                 "n": 5
               }
             }
-	  }
-	}
+          }
+        }
       },
       "kayazyassassins": {
         "name": "Kayazy Assassins",
@@ -1573,7 +1573,7 @@
               }
             }
           },
-	  "ua": {
+          "ua": {
             "underboss": {
               "name": "Kayazy Assassin Underboss",
               "fk_name": "Kayazy Assassin Underboss",
@@ -1591,17 +1591,16 @@
                 "n": 5
               }
             }
-	  }
-	}
+          }
+        }
       },
       "kayazyeliminators": {
         "name": "Kayazy Eliminators",
         "entries": {
           "grunt": {
-            "leader": {
-              "name": "Leader",
+            "grunt": {
+              "name": "Grunt",
               "fk_name": "Kayazy Eliminators",
-              "ranges": [1, 2],
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -1616,10 +1615,9 @@
                 "n": 5
               }
             },
-            "grunt": {
-              "name": "Grunt",
+            "leader": {
+              "name": "Leader",
               "fk_name": "Kayazy Eliminators",
-              "ranges": [1, 2],
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -1635,8 +1633,8 @@
               }
             }
           }
-	}
-      },	
+        }
+      },  
       "lady_aiyana_master_holt": {
         "name": "Lady Aiyana & Master Holt",
         "entries": {
@@ -1658,7 +1656,7 @@
                 "n": 5
               }
             },
-	    "holt": {
+            "holt": {
               "name": "Master Holt",
               "fk_name": "Lady Aiyana & Master Holt",
               "type": "warrior",
@@ -1676,7 +1674,7 @@
               }
             }
           }
-	}
+        }
       },
       "ogrunassaultcorps": {
         "name": "Ogrun Assault Corps",
@@ -1701,7 +1699,7 @@
               }
             }
           }
-	}
+        }
       },
       "pressgangers": {
         "name": "Press Gangers",
@@ -1724,10 +1722,10 @@
                 "n": 1
               }
             },
-	    "grunt": {
+            "grunt": {
               "name": "Press Gangers",
               "fk_name": "Press Gangers",
-	      "range" :[1, 5, 9],
+              "range" :[1, 5, 9],
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -1743,7 +1741,7 @@
               }
             }
           }
-	}
+        }
       },
       "rangers": {
         "name": "Rangers",
@@ -1752,6 +1750,7 @@
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Rangers",
+              "fk_size": 6,
               "ranges": [1, 6],
               "type": "warrior",
               "base": "small",
@@ -1900,7 +1899,7 @@
               }
             }
           }
-	}
+        }
       },
       "steelheadheavycavalry": {
         "name": "Steelhead Heavy Cavalry",
@@ -1925,8 +1924,8 @@
               }
             }
           }
-	}
-      },	  
+        }
+      },    
       "steelheadriflemen": {
         "name": "Steelhead Riflemen",
         "entries": {
@@ -1950,7 +1949,7 @@
               }
             }
           }
-	}
+        }
       },
       "sword_knights": {
         "name": "Sword Knights",
@@ -2036,7 +2035,7 @@
               }
             }
           }
-	}
+        }
       },
       "Commodore Cannon & Crew": {
         "name": "Commodore Cannon & Crew",
@@ -2076,7 +2075,7 @@
                 "n": 1
               }
             },
-	    "crew3": {
+            "crew3": {
               "name": "Crew3",
               "fk_name": "Commodore Cannon & Crew",
               "type": "warrior",
