@@ -339,7 +339,7 @@
         "name": "Zerkova1 (Koldun Kommander Aleksandra Zerkova)",
         "fk_name": "Koldun Kommander Aleksandra Zerkova",
         "type": "wardude",
-        "focus": 6,
+        "focus": 7,
         "base": "small",
         "width": 60,
         "height": 60,
@@ -1216,8 +1216,8 @@
         "name": "Kayazy Eliminators",
         "entries": {
           "unit": {
-            "grunt1": {
-              "name": "Leader",
+            "grunt": {
+              "name": "Grunt",
               "fk_name": "Kayazy Eliminators",
               "type": "warrior",
               "base": "small",
@@ -1230,11 +1230,11 @@
               },
               "damage": {
                 "type": "warrior",
-                "n": 1
+                "n": 5
               }
             },
-            "grunt2": {
-              "name": "Grunt",
+            "leader": {
+              "name": "Leader",
               "fk_name": "Kayazy Eliminators",
               "type": "warrior",
               "base": "small",
@@ -1247,7 +1247,7 @@
               },
               "damage": {
                 "type": "warrior",
-                "n": 1
+                "n": 5
               }
             }
           }

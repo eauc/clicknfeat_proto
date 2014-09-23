@@ -480,8 +480,8 @@
                      ng-mousedown="onTemplateMouseDown($event, sp)"
                      />
             <rect ng-repeat="wa in templateShowLocked('wall')"
-                  x="{{wa.x-5}}" y="{{wa.y-20}}"
-                  width="10" height="40"
+                  x="{{wa.x-3.75}}" y="{{wa.y-20}}"
+                  width="7.5" height="40"
                   style="
                   fill:#CCC;
                   fill-opacity:1.0;
@@ -513,6 +513,22 @@
                     "
                     />
             <g ng-repeat="model in modelShow('charge')">
+              <rect x="{{model.state.x-model.info.r}}"
+                    y="{{model.state.y-700}}"
+                    width="{{model.info.r*2}}" height="{{700}}"
+                    transform="rotate(
+                    {{model.state.charge_rot}},
+                    {{model.state.x}},
+                    {{model.state.y}}
+                    )"
+                    style="
+                    fill: #CCC;
+                    fill-opacity: 0.3;
+                    stroke: #666;
+                    stroke-width: 0.5px;
+                    pointer-events: none;
+                    "
+                    />
               <rect x="{{(model.state.x+model.state.charge_x)/2-model.info.r}}"
                     y="{{(model.state.y+model.state.charge_y)/2-model.state.charge_length/2}}"
                     width="{{model.info.r*2}}" height="{{model.state.charge_length}}"
@@ -1097,8 +1113,8 @@
                      ng-mousedown="onTemplateMouseDown($event, sp)"
                      />
             <rect ng-repeat="wa in templateShowUnlocked('wall')"
-                  x="{{wa.x-5}}" y="{{wa.y-20}}"
-                  width="10" height="40"
+                  x="{{wa.x-3.75}}" y="{{wa.y-20}}"
+                  width="7.5" height="40"
                   style="
                   fill:#CCC;
                   fill-opacity:0.6;
@@ -1178,8 +1194,8 @@
                   modes.current.name === 'Template Create' &&
                   modes.current.type === 'wall'
                   "
-                  x="{{modes.current.x-5}}" y="{{modes.current.y-20}}"
-                  width="10" height="40"
+                  x="{{modes.current.x-3.75}}" y="{{modes.current.y-20}}"
+                  width="7.5" height="40"
                   style="
                   fill:#CCC;
                   fill-opacity:1.0;

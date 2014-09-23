@@ -428,12 +428,6 @@ angular.module('vassalApp.services')
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 
                                           scope.game.board.zoom.flipped ? 'moveRight' : 'moveLeft',
-                                          false));
-          },
-          'Ctrl Shift Left': function(scope) {
-            if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 
-                                          scope.game.board.zoom.flipped ? 'moveRight' : 'moveLeft',
                                           true));
           },
           'Down': function(scope) {
@@ -445,12 +439,6 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('onSelection', 'moveBack', true));
           },
           'Ctrl Down': function(scope) {
-            if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 
-                                          scope.game.board.zoom.flipped ? 'moveUp' : 'moveDown',
-                                          false));
-          },
-          'Ctrl Shift Down': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 
                                           scope.game.board.zoom.flipped ? 'moveUp' : 'moveDown',
@@ -468,12 +456,6 @@ angular.module('vassalApp.services')
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 
                                           scope.game.board.zoom.flipped ? 'moveLeft' : 'moveRight',
-                                          false));
-          },
-          'Ctrl Shift Right': function(scope) {
-            if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 
-                                          scope.game.board.zoom.flipped ? 'moveLeft' : 'moveRight',
                                           true));
           },
           'Up': function(scope) {
@@ -485,12 +467,6 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('onSelection', 'moveFront', true));
           },
           'Ctrl Up': function(scope) {
-            if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 
-                                          scope.game.board.zoom.flipped ? 'moveDown' : 'moveUp',
-                                          false));
-          },
-          'Ctrl Shift Up': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 
                                           scope.game.board.zoom.flipped ? 'moveDown' : 'moveUp',

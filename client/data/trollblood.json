@@ -766,7 +766,10 @@
           "unit": {
             "grunt": {
               "name": "Stone Scribe",
-              "fk_name": "Krielstone Bearer and Stone Scribes",
+              "fk_name": [
+                "Krielstone Bearer and 3 Stone Scribes",
+                "Krielstone Bearer and 5 Stone Scribes"
+              ],
               "ranges": [1, 3, 5],
               "type": "warrior",
               "base": "medium",
@@ -784,7 +787,10 @@
             },
             "leader": {
               "name": "Krielstone Bearer",
-              "fk_name": "Krielstone Bearer and Stone Scribes",
+              "fk_name": [
+                "Krielstone Bearer and 3 Stone Scribes",
+                "Krielstone Bearer and 5 Stone Scribes"
+              ],
               "type": "warrior",
               "base": "medium",
               "width": 60,
@@ -1387,6 +1393,7 @@
       "whelps": {
         "name": "Troll Whelps",
         "fk_name": "Troll Whelps",
+        "fk_repeat": 5,
         "ranges": [1, 5],
         "type": "solo",
         "base": "small",
