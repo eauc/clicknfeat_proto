@@ -45,6 +45,7 @@ angular.module('vassalApp.controllers')
                                    'models',
                                    'commands',
                                    'replay_commands');
+            game_data.player1 = $scope.user;
             // console.log(data);
             $http.post('/api/games', game_data)
               .then(function(response) {
