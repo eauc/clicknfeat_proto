@@ -10,6 +10,7 @@ angular.module('vassalApp.services')
     'template',
     'command',
     'user',
+    'twoPlayerClock',
     function($rootScope,
              $http,
              $window,
@@ -17,7 +18,8 @@ angular.module('vassalApp.services')
              model,
              template,
              command,
-             user) {
+             user,
+             twoPlayerClock) {
 
       var model_base = model({});
       var game_source = null;
@@ -25,6 +27,7 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         
         var instance = {
+          clock: null,
           scenario: null,
           new_model_id: 0,
           models: {},
@@ -418,7 +421,7 @@ angular.module('vassalApp.services')
         };
 
         _.deepExtend(instance, data);
-
+        instance.clock = twoPlayerClock(instance.clock);
         // if(data.ruler) instance.ruler.state = data.ruler.state;
         // if(data.selections) instance.selection = data.selection;
         // if(data.layers) instance.layers = data.layers;

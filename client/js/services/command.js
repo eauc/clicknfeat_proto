@@ -11,6 +11,46 @@ function createNewStamp() {
 }
 
 angular.module('vassalApp.services')
+  .factory('command_onClock', [
+    function() {
+      var factory = function() {
+        var instance = {
+          type: 'onClock',
+          stamp: createNewStamp(),
+          args: null,
+          before: null,
+          after: null,
+          do_not_log: true,
+          execute: function(game) {
+            this.before = _.deepCopy(game.clock);
+            game.clock[this.args[0]].apply(game.clock, this.args.slice(1));
+            this.after = _.deepCopy(game.clock);
+            // console.log(this.before);
+            // console.log(this.after);
+          },
+          redo: function(game) {
+            game.clock.checkForUpdate(this.after);
+          },
+          undo: function(game) {
+            // console.log(this.before);
+          },
+          desc: function(game) {
+            return this.type+'('+this.args[0]+')';
+          }
+        };
+        var args = Array.prototype.slice.call(arguments, 0);
+        if(args.length === 1 &&
+           _.isObject(args[0])) {
+          _.extend(instance, args[0]);
+        }
+        else {
+          instance.args = args;
+        }
+        return instance;
+      };
+      return factory;
+    }
+  ])
   .factory('command_sendMsg', [
     'template',
     function(template) {
@@ -719,6 +759,7 @@ angular.module('vassalApp.services')
     }
   ])
   .factory('command', [
+    'command_onClock',
     'command_sendMsg',
     'command_setBoard',
     'command_setScenario',
@@ -737,7 +778,8 @@ angular.module('vassalApp.services')
     'command_setSelection',
     'command_addToSelection',
     'command_removeFromSelection',
-    function(command_sendMsg,
+    function(command_onClock,
+             command_sendMsg,
              command_setBoard,
              command_setScenario,
              command_createTemplate,
@@ -757,6 +799,7 @@ angular.module('vassalApp.services')
              command_removeFromSelection
             ) {
       var factories = {
+        onClock: command_onClock,
         sendMsg: command_sendMsg,
         setBoard: command_setBoard,
         setScenario: command_setScenario,

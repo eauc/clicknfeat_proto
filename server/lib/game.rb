@@ -22,6 +22,7 @@ class Game
     @replay_commands = data.key?('replay_commands') ? data['replay_commands'] : []
     @player1 = data.key?('player1') ? data['player1'] : {}
     @player2 = { name: 'John Doe'}
+    @clock = data.key?('clock') ? data['clock'] : {}
   end
 
   def undoCommand stamp
@@ -34,6 +35,9 @@ class Game
 
   def addCommand data
     @replay_commands.delete_if { |cmd| cmd['stamp'] === data['stamp'] }
+    if data['type'] == 'onClock'
+      @clock = data['after']
+    end
     @commands.add data
   end
 
@@ -50,7 +54,8 @@ class Game
       new_model_id: @new_model_id,
       replay_commands: @replay_commands,
       player1: @player1,
-      player2: @player2
+      player2: @player2,
+      clock: @clock
     }
     view[:id] = @id if priv
     view.to_json *a

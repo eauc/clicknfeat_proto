@@ -1,0 +1,117 @@
+<div ng-controller="clockBoxCtrl">
+  <div>
+    <strong>Clock :</strong>
+  </div>
+  <table style="text-align:center;"
+         >
+    <tr>
+      <td colspan="5"
+          ng-style="{
+          'background-color': game.clock.active_player === 'player1' ? '#6F6' : 'none'
+          }"
+          >
+        {{game.player1.name}}
+      </td>
+      <td>
+        <button ng-click="doSwitchPlayer()">
+          SwitchPlayer
+        </button>
+      </td>
+      <td colspan="5"
+          ng-style="{
+          'background-color': game.clock.active_player === 'player2' ? '#6F6' : 'none'
+          }"
+          >
+        {{game.player2.name}}
+      </td>
+    </tr>
+    <tr ng-show="game.clock.state==='stopped'">
+      <td style="width:80px;"
+          >
+        <input type="number"
+               ng-model="game.clock.clocks.player1.reserve.hour"
+               style="width:80px;"
+               />
+      </td>
+      <td>:</td>
+      <td style="width:80px;"
+          >
+        <input type="number"
+               ng-model="game.clock.clocks.player1.reserve.minute"
+               style="width:80px;"
+               />
+      </td>
+      <td>:</td>
+      <td style="width:80px;"
+          >
+        <input type="number"
+               ng-model="game.clock.clocks.player1.reserve.second"
+               style="width:80px;"
+               />
+      </td>
+      <td>
+        <button ng-click="doStart()">
+          Start
+        </button>
+      </td>
+      <td style="width:80px;"
+          >
+        <input type="number"
+               ng-model="game.clock.clocks.player2.reserve.hour"
+               style="width:80px;"
+               />
+      </td>
+      <td>:</td>
+      <td style="width:80px;"
+          >
+        <input type="number"
+               ng-model="game.clock.clocks.player2.reserve.minute"
+               style="width:80px;"
+               />
+      </td>
+      <td>:</td>
+      <td style="width:80px;"
+          >
+        <input type="number"
+               ng-model="game.clock.clocks.player2.reserve.second"
+               style="width:80px;"
+               />
+      </td>
+    </tr>
+    <tr ng-show="game.clock.state==='running'">
+      <td style="width:80px;"
+          >
+        {{game.clock.clocks.player1.left.hour}}
+      </td>
+      <td>:</td>
+      <td style="width:80px;"
+          >
+        {{game.clock.clocks.player1.left.minute}}
+      </td>
+      <td>:</td>
+      <td style="width:80px;"
+          >
+        {{game.clock.clocks.player1.left.second}}
+      </td>
+      <td>
+        <button ng-click="doStop()">
+          Stop
+        </button>
+      </td>
+      <td style="width:80px;"
+          >
+        {{game.clock.clocks.player2.left.hour}}
+      </td>
+      <td>:</td>
+      <td style="width:80px;"
+          >
+        {{game.clock.clocks.player2.left.minute}}
+      </td>
+      <td>:</td>
+      <td style="width:80px;"
+          >
+        {{game.clock.clocks.player2.left.second}}
+      </td>
+    </tr>
+  </table>
+</div>

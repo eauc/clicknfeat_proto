@@ -42,9 +42,13 @@ angular.module('vassalApp.controllers')
             // success_cbk_(data);
             // console.log(data);
             var game_data = _.pick(data,
+                                   'clock',
                                    'models',
                                    'commands',
                                    'replay_commands');
+            _.extend(game_data.clock, {
+              state: 'stopped'
+            });
             game_data.player1 = $scope.user;
             // console.log(data);
             $http.post('/api/games', game_data)

@@ -17,9 +17,9 @@
 - text no highlight
 
 =======================================================================================
-- sortie du mode de charge laisse le couloir
+- sortie du mode de charge laisse le couloir ?
+- feldun ne voit pas la couleur - chrome/windows ?
 - burrowers burrow
-- feldun ne voit pas la couleur - chrome/windows
 - ruler target reste en jeu quand target model deleted
 - memoriser distance charge max pour unites
 - sensibilite click souris
