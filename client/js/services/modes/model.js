@@ -10,7 +10,6 @@ angular.module('vassalApp.services')
           name: 'Model Charge',
           template: 'model_charge.html',
           enter: function(scope) {
-            this.target = null;
             scope.game.newCommand(command('onSelection', 'startCharge'));
           },
           leave: function(scope) {
@@ -126,67 +125,64 @@ angular.module('vassalApp.services')
           },
           'Left': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'rotateChargeLeft', false, this.target));
+            scope.game.newCommand(command('onSelection', 'rotateChargeLeft', false));
           },
           'Shift Left': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'rotateChargeLeft', true, this.target));
+            scope.game.newCommand(command('onSelection', 'rotateChargeLeft', true));
           },
           'Ctrl Left': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 
                                           scope.game.board.zoom.flipped ? 'moveRight' : 'moveLeft',
-                                          true, this.target));
+                                          true));
           },
           'Down': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'moveChargeBack', false, this.target));
+            scope.game.newCommand(command('onSelection', 'moveChargeBack', false));
           },
           'Shift Down': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'moveChargeBack', true, this.target));
+            scope.game.newCommand(command('onSelection', 'moveChargeBack', true));
           },
           'Ctrl Down': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 
                                           scope.game.board.zoom.flipped ? 'moveUp' : 'moveDown',
-                                          true, this.target));
+                                          true));
           },
           'Right': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'rotateChargeRight', false, this.target));
+            scope.game.newCommand(command('onSelection', 'rotateChargeRight', false));
           },
           'Shift Right': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'rotateChargeRight', true, this.target));
+            scope.game.newCommand(command('onSelection', 'rotateChargeRight', true));
           },
           'Ctrl Right': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 
                                           scope.game.board.zoom.flipped ? 'moveLeft' : 'moveRight',
-                                          true, this.target));
+                                          true));
           },
           'Up': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'moveChargeFront', false, this.target));
+            scope.game.newCommand(command('onSelection', 'moveChargeFront', false));
           },
           'Shift Up': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'moveChargeFront', true, this.target));
+            scope.game.newCommand(command('onSelection', 'moveChargeFront', true));
           },
           'Ctrl Up': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 
                                           scope.game.board.zoom.flipped ? 'moveDown' : 'moveUp',
-                                          true, this.target));
+                                          true));
           },
           'Click': function(scope, event, drag, user_x, user_y) {
             if(drag.event === 'Model' &&
                drag.target.state.id !== scope.game.selection[0]) {
-              this.target = drag.target;
-              if(scope.game.models[scope.game.selection[0]].state.charge_length === 0) {
-                scope.game.newCommand(command('onSelection', 'startCharge', this.target));
-              }
+              scope.game.newCommand(command('onSelection', 'setChargeTarget', drag.target));
             }
           },
         });

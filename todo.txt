@@ -1,7 +1,17 @@
-- clock
+- ruler target reste en jeu quand target model deleted
+- synchro charge target
+- charge oriente when click on target
+- go to charge mode when clicking on charging model
+- optimize model state size in log
+- optimize user in commands log
+- view control en layer
+- view location indicator
+- FK import unit pas d'espace entre models
 
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
+
+- memoriser distance charge max pour unites
 
 - suggestion labels precedents
 - multi-labels
@@ -13,20 +23,13 @@
 - auto-slam model
 - place model to ruler end
 - split factions files in subfiles
+- burrowers burrow
 
 - text no highlight
-
 =======================================================================================
 - sortie du mode de charge laisse le couloir ?
 - feldun ne voit pas la couleur - chrome/windows ?
-- burrowers burrow
-- ruler target reste en jeu quand target model deleted
-- memoriser distance charge max pour unites
-- sensibilite click souris
-- synchro charge target
-- optimize model state size in log
-- view control en layer
-- FK import unit pas d'espace entre models
+- sensibilite click souris ?
 =======================================================================================
 - des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
 Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui reviennent très souvent dans les règles spéciales, genre les lignes de 3" et de 5".

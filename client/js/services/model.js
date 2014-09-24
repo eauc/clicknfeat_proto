@@ -72,7 +72,7 @@ angular.module('vassalApp.services')
           var dr = small ? 5 : 10;
           this.state.rot = this.state.rot - dr;
         },
-        moveLeft: function(game, small, target) {
+        moveLeft: function(game, small) {
           if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.x -= dl;
@@ -84,9 +84,9 @@ angular.module('vassalApp.services')
             }
           }
           this.refresh(game);
-          if(target) this.alignWith(game, target.state.x, target.state.y);
+          this.alignWithChargeTarget(game);
         },
-        moveUp: function(game, small, target) {
+        moveUp: function(game, small) {
           if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.y -= dl;
@@ -98,14 +98,14 @@ angular.module('vassalApp.services')
             }
           }
           this.refresh(game);
-          if(target) this.alignWith(game, target.state.x, target.state.y);
+          this.alignWithChargeTarget(game);
         },
         rotateRight: function(game, small) {
           if(this.info.immovable) return;
           var dr = small ? 5 : 10;
           this.state.rot = this.state.rot + dr;
         },
-        moveRight: function(game, small, target) {
+        moveRight: function(game, small) {
           if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.x += dl;
@@ -117,9 +117,9 @@ angular.module('vassalApp.services')
             }
           }
           this.refresh(game);
-          if(target) this.alignWith(game, target.state.x, target.state.y);
+          this.alignWithChargeTarget(game);
         },
-        moveDown: function(game, small, target) {
+        moveDown: function(game, small) {
           if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.y += dl;
@@ -131,7 +131,7 @@ angular.module('vassalApp.services')
             }
           }
           this.refresh(game);
-          if(target) this.alignWith(game, target.state.x, target.state.y);
+          this.alignWithChargeTarget(game);
         },
         toggle: function(game, type, val) {
           var new_val = (val === undefined) ? !this.state['show_'+type] : val;
@@ -181,14 +181,33 @@ angular.module('vassalApp.services')
           this.state.souls = Math.max(0, this.state.souls-1);
         },
         startCharge: function(game, target) {
-          if(target) this.alignWith(game, target.state.x, target.state.y);
+          this.setChargeTarget(target);
           this.state.charge_x = this.state.x;
           this.state.charge_y = this.state.y;
           this.state.charge_length = 0;
           this.state.charge_rot = this.state.rot;
           this.state.show_charge = true;
         },
-        moveChargeFront: function(game, small, target) {
+        setChargeTarget: function(game, target) {
+          this.state.charge_target = target ? target.state.id : null;
+          this.alignWithChargeTarget(game);
+          if(this.state.charge_length === 0) {
+            this.state.charge_rot = this.state.rot;
+          }
+        },
+        alignWithChargeTarget: function(game) {
+          if(!this.state.show_charge) return;
+          if(this.state.charge_target &&
+             game.models[this.state.charge_target]) {
+            this.alignWith(game,
+                           game.models[this.state.charge_target].state.x,
+                           game.models[this.state.charge_target].state.y);
+          }
+          else {
+            this.state.rot = this.state.charge_rot;
+          }
+        },
+        moveChargeFront: function(game, small) {
           if(this.info.immovable) return;
           var dl = small ? 5 : 10;
           var dx =  dl * Math.sin(this.state.charge_rot * Math.PI / 180);
@@ -196,7 +215,7 @@ angular.module('vassalApp.services')
           this.state.x += dx;
           this.state.y += dy;
           this.refresh(game);
-          if(target) this.alignWith(game, target.state.x, target.state.y);
+          this.alignWithChargeTarget(game);
         },
         moveChargeBack: function(game, small, target) {
           if(this.info.immovable) return;
@@ -212,7 +231,7 @@ angular.module('vassalApp.services')
             this.state.y += dy;
           }
           this.refresh(game);
-          if(target) this.alignWith(game, target.state.x, target.state.y);
+          this.alignWithChargeTarget(game);
         },
         rotateChargeLeft: function(game, small, target) {
           var dr = small ? 1 : 5;
@@ -222,7 +241,7 @@ angular.module('vassalApp.services')
           this.state.y = this.state.charge_y
             - Math.cos(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
           this.refresh(game);
-          if(target) this.alignWith(game, target.state.x, target.state.y);
+          this.alignWithChargeTarget(game);
         },
         rotateChargeRight: function(game, small, target) {
           var dr = small ? 1 : 5;
@@ -232,12 +251,15 @@ angular.module('vassalApp.services')
           this.state.y = this.state.charge_y
             - Math.cos(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
           this.refresh(game);
-          if(target) this.alignWith(game, target.state.x, target.state.y);
+          this.alignWithChargeTarget(game);
         },
         displayChargeLength: function() {
           return Math.round(this.state.charge_length*10)/100;
         },
-        chargeTargetInRange: function(target) {
+        chargeTargetInRange: function(game) {
+          if(!this.state.charge_target ||
+             !game.models[this.state.charge_target]) return false;
+          var target = game.models[this.state.charge_target];
           var dx = target.state.x - this.state.x;
           var dy = target.state.y - this.state.y;
           var dist = Math.sqrt(dx*dx+dy*dy) - target.info.r - this.info.r;
