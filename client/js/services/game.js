@@ -102,7 +102,7 @@ angular.module('vassalApp.services')
           new_commands: [],
           commands: [],
           newCommand: function(new_cmd) {
-            new_cmd.user = user;
+            new_cmd.user = user.name;
             new_cmd.execute(this);
             if(!instance.id) return;
             this.new_commands.push(new_cmd);

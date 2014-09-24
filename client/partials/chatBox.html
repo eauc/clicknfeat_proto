@@ -47,7 +47,7 @@
           ng-style="{
           color: cmd.user.id === user.id ? '#33F' : '#F3F'
           }"
-          >{{cmd.user.name}}</span>
+          >{{cmd.user}}</span>
     <span style="color:#0ff;">[{{cmd.msg_type}}]</span>
     {{cmd.msg_text}}
     <span style="color:#00f;"
@@ -65,7 +65,7 @@
           ng-style="{
           color: cmd.user.id === user.id ? '#33F' : '#F3F',
           }"
-          >[{{cmd.user.name}}]</span>
+          >[{{cmd.user}}]</span>
     <span style="color:#0AA;">({{cmd.msg_type}})</span>
     {{cmd.msg_text}}
     <span ng-if="cmd.msg_type === 'dice'">
