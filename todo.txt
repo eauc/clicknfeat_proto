@@ -1,7 +1,4 @@
 - ruler target reste en jeu quand target model deleted
-- synchro charge target
-- charge oriente when click on target
-- go to charge mode when clicking on charging model
 - optimize model state size in log
 - optimize user in commands log
 - view control en layer

@@ -46,7 +46,10 @@ angular.module('vassalApp.services')
             case 'Model':
               {
                 if(0 > _.indexOf(scope.game.selection, drag.target.state.id)) {
+                  if(drag.target.state.show_charge) break;
                   scope.game.newCommand(command('setSelection', [drag.target.state.id]));
+                  scope.model_view.label = scope.game.models[scope.game.selection[0]].state.label;
+                  scope.model_view.unit = scope.game.models[scope.game.selection[0]].state.unit;
                 }
                 scope.game.onSelection('startDraging');
                 modes['model_drag'].length = 0;
@@ -90,6 +93,10 @@ angular.module('vassalApp.services')
                 if(scope.game.selection.length === 1) {
                   scope.model_view.label = scope.game.models[scope.game.selection[0]].state.label;
                   scope.model_view.unit = scope.game.models[scope.game.selection[0]].state.unit;
+                  if(scope.game.models[scope.game.selection[0]].state.show_charge) {
+                    modes.goTo('model_charge', scope);
+                    break;
+                  }
                 }
                 modes.goTo('default', scope);
                 break;
@@ -132,6 +139,7 @@ angular.module('vassalApp.services')
           },
           'C': function(scope) {
             if(!scope.game.id || 1 !== scope.game.selection.length) return;
+            scope.game.newCommand(command('onSelection', 'startCharge'));
             modes.goTo('model_charge', scope);
           },
           'Alt C': function(scope) {

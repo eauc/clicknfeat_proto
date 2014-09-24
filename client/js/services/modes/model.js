@@ -10,7 +10,6 @@ angular.module('vassalApp.services')
           name: 'Model Charge',
           template: 'model_charge.html',
           enter: function(scope) {
-            scope.game.newCommand(command('onSelection', 'startCharge'));
           },
           leave: function(scope) {
             scope.game.newCommand(command('onSelection', 'endCharge'));
