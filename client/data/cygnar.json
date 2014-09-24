@@ -1520,7 +1520,7 @@
         "entries": {
           "unit": {
             "grunt": {
-              "name": "Leader and Grunts",
+              "name": "Trencher Infantry Leader and Grunts",
               "fk_name": "Trencher Infantry",
               "ranges": [1, 6, 10],
               "type": "warrior",
@@ -1875,5 +1875,24 @@
         }
       }
     }
+	"battle_engines": {
+            "Storm_Strider": {
+                "name": "Storm Strider",
+                "fk_name": "Storm Strider",
+                "type": "warrior",
+                "base": "huge",
+                "width": 90,
+                "height": 90,
+                "img": {
+                    "x": 0,
+                    "y": 0,
+                    "link": "data/menoth/bes/StormStrider.png"
+                },
+                "damage": {
+                    "type": "warrior",
+                    "n": 22
+                }
+			}
+		}
   }
 }
