@@ -6,13 +6,13 @@ angular.module('vassalApp.services')
       var model_base = {
         resetShow: function(game) {
           this.state.show_image = true;
-          this.state.show_melee = false;
-          this.state.show_reach = false;
-          this.state.show_strike = false;
-          this.state.show_aoe = 0;
-          this.state.show_area = 0;
-          this.state.show_unit = false;
-          this.state.show_control = false;
+          delete this.state.show_melee;
+          delete this.state.show_reach;
+          delete this.state.show_strike;
+          delete this.state.show_aoe;
+          delete this.state.show_area;
+          delete this.state.show_unit;
+          delete this.state.show_control;
         },
         refresh: function(game) {
           if(this.state.show_charge) {
@@ -135,7 +135,12 @@ angular.module('vassalApp.services')
         },
         toggle: function(game, type, val) {
           var new_val = (val === undefined) ? !this.state['show_'+type] : val;
-          this.state['show_'+type] = new_val;
+          if(new_val) {
+            this.state['show_'+type] = new_val;
+          }
+          else {
+            delete this.state['show_'+type];
+          }
         },
         toggleAoe: function(game, size) {
           switch(size) {
@@ -413,73 +418,27 @@ angular.module('vassalApp.services')
             x: 240,
             y: 240,
             rot: 0,
-            charge_x: 0,
-            charge_y: 0,
-            charge_rot: 0,
-            charge_length: 0,
-            charge_max: 0,
             counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
             souls: 0,
             label: '',
             unit: null,
             show_image: true,
-            show_melee: false,
-            show_reach: false,
-            show_strike: false,
-            show_aoe: 0,
-            show_area: 0,
             show_counter: args[1].type === 'wardude' ||
               args[1].type === 'beast' ||
               args[1].type === 'jack',
-            show_souls: false,
-            show_unit: false,
-            show_fire: false,
-            show_disrupt: false,
-            show_corrosion: false,
-            show_stationary: false,
-            show_blind: false,
-            show_kd: false,
-            show_leader: false,
-            show_incorporeal: false,
-            show_fleeing: false,
-            show_color: false,
-            show_charge: false,
           } : _.extend({
             id: args[0],
             x: 240,
             y: 240,
             rot: 0,
-            charge_x: 0,
-            charge_y: 0,
-            charge_rot: 0,
-            charge_length: 0,
-            charge_max: 0,
             counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
             souls: 0,
             label: '',
             unit: null,
             show_image: true,
-            show_melee: false,
-            show_reach: false,
-            show_strike: false,
-            show_aoe: 0,
-            show_area: 0,
             show_counter:  args[1].type === 'wardude' ||
               args[1].type === 'beast' ||
               args[1].type === 'jack',
-            show_souls: false,
-            show_unit: false,
-            show_fire: false,
-            show_disrupt: false,
-            show_corrosion: false,
-            show_stationary: false,
-            show_blind: false,
-            show_kd: false,
-            show_leader: false,
-            show_incorporeal: false,
-            show_fleeing: false,
-            show_color: false,
-            show_charge: false,
           }, args[2])
         };
         switch(instance.info.damage.type) {
