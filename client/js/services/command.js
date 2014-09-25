@@ -14,16 +14,17 @@ angular.module('vassalApp.services')
   .factory('command_onClock', [
     function() {
       var factory = function() {
+        var args = Array.prototype.slice.call(arguments, 0);
         var instance = {
           type: 'onClock',
           stamp: createNewStamp(),
-          args: null,
+          method: null,
           before: null,
           after: null,
           do_not_log: true,
           execute: function(game) {
             this.before = _.deepCopy(game.clock);
-            game.clock[this.args[0]].apply(game.clock, this.args.slice(1));
+            game.clock[this.method].apply(game.clock, args.slice(1));
             this.after = _.deepCopy(game.clock);
             // console.log(this.before);
             // console.log(this.after);
@@ -35,16 +36,15 @@ angular.module('vassalApp.services')
             // console.log(this.before);
           },
           desc: function(game) {
-            return this.type+'('+this.args[0]+')';
+            return this.type+'('+this.method+')';
           }
         };
-        var args = Array.prototype.slice.call(arguments, 0);
         if(args.length === 1 &&
            _.isObject(args[0])) {
           _.extend(instance, args[0]);
         }
         else {
-          instance.args = args;
+          instance.method = args[0];
         }
         return instance;
       };
@@ -55,6 +55,7 @@ angular.module('vassalApp.services')
     'template',
     function(template) {
       var factory = function(data) {
+        var args = Array.prototype.slice.call(arguments);
         var instance = {
           type: 'sendMsg',
           stamp: createNewStamp(),
@@ -75,7 +76,6 @@ angular.module('vassalApp.services')
             return this.type+'('+this.msg_type+')';
           }
         };
-        var args = Array.prototype.slice.call(arguments);
         if(args.length === 1) {
           _.extend(instance, data);
         }
@@ -95,12 +95,11 @@ angular.module('vassalApp.services')
         var instance = {
           type: 'setBoard',
           stamp: createNewStamp(),
-          arg: null,
           before: null,
           after: null,
           execute: function(game) {
             this.before = game.board.info ? _.deepCopy(game.board.info) : null;
-            game.board.info = this.arg;
+            game.board.info = data;
             this.after = _.deepCopy(game.board.info);
           },
           redo: function(game) {
@@ -110,14 +109,11 @@ angular.module('vassalApp.services')
             game.board.info = _.deepCopy(this.before);
           },
           desc: function(game) {
-            return this.type+'('+this.arg.name+')';
+            return this.type+'('+this.after.name+')';
           }
         };
         if(_.isNumber(data.stamp)) {
           _.extend(instance, data);
-        }
-        else {
-          instance.arg = data;
         }
         return instance;
       };
@@ -131,12 +127,11 @@ angular.module('vassalApp.services')
         var instance = {
           type: 'setScenario',
           stamp: createNewStamp(),
-          arg: null,
           before: null,
           after: null,
           execute: function(game) {
             this.before = game.scenario ? _.deepCopy(game.scenario) : null;
-            game.scenario = this.arg;
+            game.scenario = data;
             this.after = _.deepCopy(game.scenario);
           },
           redo: function(game) {
@@ -146,14 +141,11 @@ angular.module('vassalApp.services')
             game.scenario = _.deepCopy(this.before);
           },
           desc: function(game) {
-            return this.type+'('+this.arg.name+')';
+            return this.type+'('+this.after.name+')';
           }
         };
         if(_.isNumber(data.stamp)) {
           _.extend(instance, data);
-        }
-        else {
-          instance.arg = data;
         }
         return instance;
       };
@@ -242,17 +234,17 @@ angular.module('vassalApp.services')
   .factory('command_onActiveTemplate', [
     function() {
       var factory = function() {
+        var args = Array.prototype.slice.call(arguments, 0);
         var instance = {
           type: 'onActiveTemplate',
           stamp: createNewStamp(),
           method: null,
-          args: null,
           before: null,
           after: null,
           execute: function(game) {
-            var args = [game].concat(this.args);
+            var forward_args = [game].concat(args.slice(1));
             this.before = _.deepCopy(game.templates.active);
-            game.templates.active[this.method].apply(game.templates.active, args);
+            game.templates.active[this.method].apply(game.templates.active, forward_args);
             this.after = _.deepCopy(game.templates.active);
             // console.log(this.before);
             // console.log(this.after);
@@ -269,14 +261,12 @@ angular.module('vassalApp.services')
             return this.type+'('+this.method+')';
           }
         };
-        var args = Array.prototype.slice.call(arguments, 0);
         if(args.length == 1 &&
            _.isObject(args[0])) {
           _.extend(instance, args[0]);
         }
         else {
           instance.method = args[0];
-          instance.args = args.slice(1);
         }
         return instance;
       };
@@ -286,16 +276,16 @@ angular.module('vassalApp.services')
   .factory('command_dragActiveTemplate', [
     function() {
       var factory = function() {
+        var args = Array.prototype.slice.call(arguments, 0);
         var instance = {
           type: 'dragActiveTemplate',
           stamp: createNewStamp(),
-          args: null,
           before: null,
           after: null,
           execute: function(game) {
-            var args = [game].concat(this.args);
+            var forward_args = [game].concat(args);
             this.before = _.deepCopy(game.templates.active.startDraging.ref);
-            game.templates.active.draging.apply(game.templates.active, args);
+            game.templates.active.draging.apply(game.templates.active, forward_args);
             this.after = _.deepCopy(game.templates.active);
             // console.log(this.before);
             // console.log(this.after);
@@ -309,16 +299,12 @@ angular.module('vassalApp.services')
             // game.templates.active = game.templates[this.after.type][this.after.stamp];
           },
           desc: function(game) {
-            return this.type+'('+this.method+')';
+            return this.type;
           }
         };
-        var args = Array.prototype.slice.call(arguments, 0);
         if(args.length == 1 &&
            _.isObject(args[0])) {
           _.extend(instance, args[0]);
-        }
-        else {
-          instance.args = args;
         }
         return instance;
       };
@@ -332,11 +318,10 @@ angular.module('vassalApp.services')
         var instance = {
           type: 'createModel',
           stamp: createNewStamp(),
-          args: null,
           before: null,
           after: null,
           execute: function(game) {
-            var new_models = game.createModel(this.args);
+            var new_models = game.createModel(data);
             this.after = new_models;
             // console.log(this.before);
             // console.log(this.after);
@@ -364,9 +349,6 @@ angular.module('vassalApp.services')
           _.each(instance.after, function(new_mod) {
               model(new_mod);
           });
-        }
-        else {
-          instance.args = data;
         }
         return instance;
       };
@@ -447,16 +429,16 @@ angular.module('vassalApp.services')
   .factory('command_onLos', [
     function() {
       var factory = function(data) {
+        var args = Array.prototype.slice.call(arguments, 0);
         var instance = {
           type: 'onLos',
           stamp: createNewStamp(),
           method: null,
-          args: null,
           before: null,
           after: null,
           execute: function(game) {
             this.before = _.deepCopy(game.los.state);
-            game.los[this.method].apply(game.los, this.args);
+            game.los[this.method].apply(game.los, args.slice(1));
             this.after = _.deepCopy(game.los.state);
           },
           redo: function(game) {
@@ -473,9 +455,7 @@ angular.module('vassalApp.services')
           _.extend(instance, data);
         }
         else {
-          var args = Array.prototype.slice.call(arguments, 1);
           instance.method = data;
-          instance.args = args;
         }
         return instance;
       };
@@ -485,17 +465,18 @@ angular.module('vassalApp.services')
   .factory('command_onSelection', [
     function() {
       var factory = function() {
+        var args = Array.prototype.slice.call(arguments, 0);
         var instance = {
           type: 'onSelection',
           stamp: createNewStamp(),
-          args: null,
+          method: null,
           before: null,
           after: null,
           execute: function(game) {
             this.before = _.map(game.selection, function(id) {
               return _.deepCopy(game.models[id].state);
             });
-            game.onSelection.apply(game, this.args);
+            game.onSelection.apply(game, args);
             this.after = _.map(game.selection, function(id) {
               return _.deepCopy(game.models[id].state);
             });
@@ -516,16 +497,15 @@ angular.module('vassalApp.services')
             game.update_selection = _.map(this.before, function(st) { return st.id; });
           },
           desc: function(game) {
-            return this.type+'('+this.args[0]+')';
+            return this.type+'('+this.method+')';
           }
         };
-        var args = Array.prototype.slice.call(arguments, 0);
         if(args.length == 1 &&
            _.isObject(args[0])) {
           _.extend(instance, args[0]);
         }
         else {
-          instance.args = args;
+          instance.method = args[0];
         }
         return instance;
       };
@@ -535,17 +515,17 @@ angular.module('vassalApp.services')
   .factory('command_endDragingSelection', [
     function() {
       var factory = function() {
+        var args = Array.prototype.slice.call(arguments, 0);
         var instance = {
           type: 'endDragingSelection',
           stamp: createNewStamp(),
-          args: null,
           before: null,
           after: null,
           execute: function(game) {
             this.before = _.map(game.selection, function(id) {
               return _.deepCopy(game.models[id].state_before_drag);
             });
-            game.onSelection.apply(game, ['endDraging'].concat(this.args));
+            game.onSelection.apply(game, ['endDraging'].concat(args));
             this.after = _.map(game.selection, function(id) {
               return _.deepCopy(game.models[id].state);
             });
@@ -569,13 +549,9 @@ angular.module('vassalApp.services')
             return this.type;
           }
         };
-        var args = Array.prototype.slice.call(arguments, 0);
         if(args.length == 1 &&
            _.isObject(args[0])) {
           _.extend(instance, args[0]);
-        }
-        else {
-          instance.args = args;
         }
         return instance;
       };
@@ -653,13 +629,12 @@ angular.module('vassalApp.services')
         var instance = {
           type: 'setSelection',
           stamp: createNewStamp(),
-          model_ids: [],
           before: null,
           after: null,
           do_not_log: true,
           execute: function(game) {
             this.before = [].concat(game.selection);
-            game.setSelection(this.model_ids);
+            game.setSelection(options);
             this.after = [].concat(game.selection);
             // console.log(this.before);
             // console.log(this.after);
@@ -675,10 +650,7 @@ angular.module('vassalApp.services')
             return this.type;
           }
         };
-        if(_.isArray(options)) {
-          instance.model_ids = options;
-        }
-        else {
+        if(!_.isArray(options)) {
           _.extend(instance, options);
         }
         return instance;
@@ -692,13 +664,12 @@ angular.module('vassalApp.services')
         var instance = {
           type: 'addToSelection',
           stamp: createNewStamp(),
-          model_ids: [],
           before: null,
           after: null,
           do_not_log: true,
           execute: function(game) {
             this.before = [].concat(game.selection);
-            game.addToSelection(this.model_ids);
+            game.addToSelection(options);
             this.after = [].concat(game.selection);
           },
           redo: function(game) {
@@ -711,10 +682,7 @@ angular.module('vassalApp.services')
             return this.type;
           }
         };
-        if(_.isArray(options)) {
-          instance.model_ids = options;
-        }
-        else {
+        if(!_.isArray(options)) {
           _.extend(instance, options);
         }
         return instance;
@@ -728,13 +696,12 @@ angular.module('vassalApp.services')
         var instance = {
           type: 'removeFromSelection',
           stamp: createNewStamp(),
-          model_ids: [],
           before: null,
           after: null,
           do_not_log: true,
           execute: function(game) {
             this.before = [].concat(game.selection);
-            game.removeFromSelection(this.model_ids);
+            game.removeFromSelection(options);
             this.after = [].concat(game.selection);
           },
           redo: function(game) {
@@ -747,10 +714,7 @@ angular.module('vassalApp.services')
             return this.type;
           }
         };
-        if(_.isArray(options)) {
-          instance.model_ids = options;
-        }
-        else {
+        if(!_.isArray(options)) {
           _.extend(instance, options);
         }
         return instance;
