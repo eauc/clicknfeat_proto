@@ -89,9 +89,11 @@ angular.module('vassalApp.services')
          type: 'aoe',
          drot: [ 10, 60 ],
          refresh: function(game) {
-           if(this.origin) {
-             var dx = this.x - this.origin.state.x;
-             var dy = -(this.y - this.origin.state.y);
+           if(this.origin &&
+             game.models[this.origin]) {
+             var origin_model = game.models[this.origin];
+             var dx = this.x - origin_model.state.x;
+             var dy = -(this.y - origin_model.state.y);
              this.rot = Math.atan2(dx, dy) * 180 / Math.PI;
 
              var dist = Math.sqrt(dx*dx + dy*dy);
@@ -135,11 +137,13 @@ angular.module('vassalApp.services')
          drot: [2, 12],
          max_deviation: 6,
          refresh: function(game) {
-           if(this.origin) {
-             this.x = this.origin.state.x +
-               this.origin.info.r * Math.sin(this.rot*Math.PI/180);
-             this.y = this.origin.state.y -
-               this.origin.info.r * Math.cos(this.rot*Math.PI/180);
+           if(this.origin &&
+              game.models[this.origin]) {
+             var origin_model = game.models[this.origin];
+             this.x = origin_model.state.x +
+               origin_model.info.r * Math.sin(this.rot*Math.PI/180);
+             this.y = origin_model.state.y -
+               origin_model.info.r * Math.cos(this.rot*Math.PI/180);
            }
            template_base.refresh.apply(this, Array.prototype.slice.call(arguments));
          },

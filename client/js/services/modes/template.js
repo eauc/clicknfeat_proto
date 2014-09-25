@@ -40,7 +40,7 @@ angular.module('vassalApp.services')
             if(drag.event === 'Model') {
               var model = drag.target;
               var active = scope.game.templates.active;
-              active.origin = model;
+              active.origin = model.state.id;
               if(active.type === 'aoe') {
                 scope.game.newCommand(command('onActiveTemplate', 'refresh'));
               }
@@ -79,16 +79,20 @@ angular.module('vassalApp.services')
               }
               else {
                 if(active.origin &&
-                   active.origin.state.id === model.state.id) return;
-                var x1 = active.origin ? active.origin.state.x : active.x;
-                var y1 = active.origin ? active.origin.state.y : active.y;
+                   active.origin === model.state.id) return;
+                var origin_model;
+                if(active.origin && scope.game.models[active.origin]) {
+                  origin_model = scope.game.models[active.origin];
+                }
+                var x1 = origin_model ? origin_model.state.x : active.x;
+                var y1 = origin_model ? origin_model.state.y : active.y;
                 var x2 = model.state.x;
                 var y2 = model.state.y;
                 var angle = Math.atan2(x2-x1, y1-y2)*180/Math.PI;
-                x = active.origin === null ? active.x : active.origin.state.x +
-                  active.origin.info.r * Math.sin(angle*Math.PI/180);
-                y = active.origin === null ? active.y : active.origin.state.y -
-                  active.origin.info.r * Math.cos(angle*Math.PI/180);
+                x = !origin_model ? active.x : origin_model.state.x +
+                  origin_model.info.r * Math.sin(angle*Math.PI/180);
+                y = !origin_model ? active.y : origin_model.state.y -
+                  origin_model.info.r * Math.cos(angle*Math.PI/180);
                 scope.game.newCommand(command('onActiveTemplate', 'set',
                                               x, y, angle));
               }
@@ -129,7 +133,7 @@ angular.module('vassalApp.services')
                                                 model.state.x, model.state.y, active.rot));
                 }
                 if(active.type === 'spray') {
-                  active.origin = model;
+                  active.origin = model.state.id;
                   scope.game.newCommand(command('onActiveTemplate', 'refresh'));
                 }
                 break;
@@ -417,22 +421,21 @@ angular.module('vassalApp.services')
                 }
                 // spray
                 if(!active.origin) {
-                  active.origin = model;
+                  active.origin = model.state.id;
                   scope.game.newCommand(command('onActiveTemplate', 'refresh'));
                   return;
                 }
                 var x;
                 var y;
-                if(active.origin.state.id === model.state.id) return;
-                var x1 = active.origin ? active.origin.state.x : active.x;
-                var y1 = active.origin ? active.origin.state.y : active.y;
+                if(active.origin === model.state.id) return;
+                var origin_model = scope.game.models[active.origin];
+                var x1 = origin_model.state.x;
+                var y1 = origin_model.state.y;
                 var x2 = model.state.x;
                 var y2 = model.state.y;
                 var angle = Math.atan2(x2-x1, y1-y2)*180/Math.PI;
-                x = active.origin === null ? active.x : active.origin.state.x +
-                  active.origin.info.r * Math.sin(angle*Math.PI/180);
-                y = active.origin === null ? active.y : active.origin.state.y -
-                  active.origin.info.r * Math.cos(angle*Math.PI/180);
+                x = origin_model.state.x + origin_model.info.r * Math.sin(angle*Math.PI/180);
+                y = origin_model.state.y - origin_model.info.r * Math.cos(angle*Math.PI/180);
                 scope.game.newCommand(command('onActiveTemplate', 'set',
                                               x, y, angle));
                 return;

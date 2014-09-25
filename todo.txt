@@ -1,4 +1,3 @@
-- when model delete -> clean all target/origin ruler templates charge
 - do not sync commands args
 - view control en layer
 - view location indicator

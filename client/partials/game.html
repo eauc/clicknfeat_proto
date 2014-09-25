@@ -1131,12 +1131,13 @@
                   ng-mousedown="onTemplateMouseDown($event, wa)"
                   />
             <circle ng-show="
-                    game.templates.active !== null &&
-                    game.templates.active.origin !== null
+                    game.templates.active &&
+                    game.templates.active.origin &&
+                    game.models[game.templates.active.origin]
                     "
-                    cx="{{game.templates.active.origin.state.x}}"
-                    cy="{{game.templates.active.origin.state.y}}"
-                    r="{{game.templates.active.origin.info.r}}"
+                    cx="{{game.models[game.templates.active.origin].state.x}}"
+                    cy="{{game.models[game.templates.active.origin].state.y}}"
+                    r="{{game.models[game.templates.active.origin].info.r}}"
                     style="
                     fill:none;
                     stroke:#FF0;
