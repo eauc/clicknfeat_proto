@@ -2322,9 +2322,502 @@
       }      
 	},
     "solos": {
-	}
-	"beasts": {
-            
+	  "aalexia_mistress_of_the_witchfire": {
+        "name": "Alexia, Mistress of the Witchfire",
+        "fk_name": "Alexia, Mistress of the Witchfire",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Alexia2.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 10
+        }
+      },
+	  "alten_ashley_monster_hunter": {
+        "name": "Alten Ashley, Monster Hunter",
+        "fk_name": "Alten Ashley, Monster Hunter",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+	  "anastasia_di_bray": {
+        "name": "Anastasia di Bray",
+        "fk_name": "Anastasia di Bray",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Anastasia.png",
+		  "alternate":"data/mercenaires/solos/Anastasia_Invisible.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+	  "bloody_bradigan": {
+        "name": "Bloody Bradigan",
+        "fk_name": "Bloody Bradigan",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Bradigan.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+	  "bosun_grogspar": {
+        "name": "Bosun Grogspar",
+        "fk_name": "Bosun Grogspar",
+        "type": "warrior",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Grogspar.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 8
+        }
+      },
+	  "dirtymeg": {
+        "name": "Dirty Meg",
+        "fk_name": "Dirty Meg",
+        "type": "warrior",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/DirtyMeg.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+	  "doc": {
+        "name": "Doc Killingsworth",
+        "fk_name": "Doc Killingsworth",
+        "type": "warrior",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Doc.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "eiryss2": {
+        "name": "Eiryss, Angel of Retribution",
+        "fk_name": "Eiryss, Angel of Retribution",
+        "type": "warrior",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Eiryss2.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },  
+      "eiryss1": {
+        "name": "Eiryss, Mage Hunter of Ios",
+        "fk_name": "Eiryss, Mage Hunter of Ios",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Eiryss1.png",
+		  "alternate":"data/mercenaires/solos/Eiryss1_Invisible.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },  
+      "hawk": {
+        "name": "First Mate Hawk",
+        "fk_name": "First Mate Hawk",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Hawk.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },   
+      "gastonecrosse": {
+        "name": "Gastone Crosse",
+        "fk_name": "Gastone Crosse",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },   
+      "goblintinker": {
+        "name": "Goblin Tinker",
+        "fk_name": "Goblin Tinker",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/GoblinTinker.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },  
+      "gorman": {
+        "name": "Gorman di Wulfe, Rogue Alchemist",
+        "fk_name": "Gorman di Wulfe, Rogue Alchemist",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Gorman.png",
+		  "alternate": "data/mercenaires/solos/Gorman_invisible.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },   
+      "harlanversh": {
+        "name": "Harlan Versh",
+        "fk_name": "Harlan Versh",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Harlan.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },    
+      "rockbottom": {
+        "name": "Lord Rockbottom",
+        "fk_name": "Lord Rockbottom",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Rockbottom.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },  
+      "madelyncorbeau": {
+        "name": "Madelyn Corbeau, Ordic Courtesan",
+        "fk_name": "Madelyn Corbeau, Ordic Courtesan",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Madelyn.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },  
+      "dougalmacnaile": {
+        "name": "Master Gunner Dougal MacNaile",
+        "fk_name": "Master Gunner Dougal MacNaile",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/MacNaile.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },  
+      "ogrunbokur": {
+        "name": "Ogrun Bokur",
+        "fk_name": "Ogrun Bokur",
+        "type": "warrior",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Bokur.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 8
+        }
+      },    
+      "reinholdt": {
+        "name": "Reinholdt, Gobber Speculator",
+        "fk_name": "Reinholdt, Gobber Speculator",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Reinholdt.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 1
+        }
+      },  
+      "rhupertcarvolo": {
+        "name": "Rhupert Carvolo, Piper of Ord",
+        "fk_name": "Rhupert Carvolo, Piper of Ord",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Rupert.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },   
+      "rutgershaw": {
+        "name": "Rutger Shaw",
+        "fk_name": "Rutger Shaw",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Rutger_Shaw.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },  
+      "stannisbrocker": {
+        "name": "Stannis Brocker",
+        "fk_name": "Stannis Brocker",
+        "type": "warrior",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Stannis.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 10
+        }
+      },  
+      "taryndiarovissi": {
+        "name": "Taryn di la Rovissi, Llaeles Gun Mage",
+        "fk_name": "Taryn di la Rovissi",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Taryn.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },  
+      "thorsteinhammer": {
+        "name": "Thor Steinhammer",
+        "fk_name": "Thor Steinhammer",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Thor.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },  
+      "sylyswyshnalyrr": {
+        "name": "Sylys Wyshnalyrr, the Seeker",
+        "fk_name": "Sylys Wyshnalyrr, the Seeker",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/SylysWyshnaylyrr.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },  
+	"ragman": {
+        "name": "Ragman",
+        "fk_name": "Ragman",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Ragman.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },  
+      "kellbailoch": {
+        "name": "Kell Bailoch",
+        "fk_name": "Kell Bailoch",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Kell.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },  
+      "orinmidwinter": {
+        "name": "Orin Midwinter, Rogue Inquisitor",
+        "fk_name": "Orin Midwinter, Rogue Inquisitor",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Orin.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },  
+      "saxonorrik": {
+        "name": "Saxon Orrik",
+        "fk_name": "Saxon Orrik",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/mercenaires/solos/Saxon.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
 	}
   }
 }
