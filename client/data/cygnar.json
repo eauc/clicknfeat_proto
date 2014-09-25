@@ -1670,7 +1670,7 @@
         "name": "Journeyman Warcaster",
         "fk_name": "Journeyman Warcaster",
         "type": "wardude",
-        "focus": 4,
+        "focus": 3,
         "base": "small",
         "width": 60,
         "height": 60,

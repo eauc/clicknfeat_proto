@@ -1621,7 +1621,7 @@
         },
         "damage": {
           "type": "warrior",
-          "n": 5
+          "n": 10
         }
       },
       "drakhun_dismount": {
