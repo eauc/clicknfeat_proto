@@ -722,6 +722,29 @@
           "5": [ "b", "b", "b", "b", null, null ],
           "6": [ "b", "b", "b", "b", "b", "b" ]
         }
+      },
+      "zuriel": {
+        "name": "Zuriel",
+        "fk_name": "Zuriel",
+        "type": "beast",
+        "fury": 4,
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "beast",
+          "1": [ "b", "b", "b", null, null ],
+          "2": [ "b", "b", "b", "b", "b" ],
+          "3": [ "b", "b", "b", "b", null ],
+          "4": [ "b", "b", "b", "b", "b" ],
+          "5": [ "b", "b", "b", null, null ],
+          "6": [ "b", "b", "b", "b", "b" ]
+        }
       }
     },
     "units": {
@@ -1213,7 +1236,7 @@
           }
         }
       },
-      "rangers": {
+      "stRangers": {
         "name": "Strider Rangers",
         "entries": {
           "unit": {
@@ -1265,6 +1288,31 @@
                 "x": 0,
                 "y": 0,
                 "link": "data/legion/units/Ranger_Musician.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      },
+      "stBlightBlades": {
+        "name": "Strider BlightBlades",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "",
+              "ranges": [ 1, 6 ],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
               },
               "damage": {
                 "type": "warrior",
