@@ -242,10 +242,12 @@ angular.module('vassalApp.services')
             if(!scope.game.id) return;
             if(scope.game.templates.active.type === 'wall') return;
             if(scope.game.ruler.state.active) {
-              var x = scope.game.ruler.model_end ? 
-                  scope.game.ruler.model_end.state.x : scope.game.ruler.state.x2;
-              var y = scope.game.ruler.model_end ? 
-                  scope.game.ruler.model_end.state.y : scope.game.ruler.state.y2;
+              var target_model;
+              if(scope.game.ruler.state.target) {
+                target_model = scope.game.models[scope.game.ruler.state.target];
+              }
+              var x = target_model ? target_model.state.x : scope.game.ruler.state.x2;
+              var y = target_model ? target_model.state.y : scope.game.ruler.state.y2;
               var rot = Math.atan2(scope.game.ruler.state.x2-scope.game.ruler.state.x1,
                                    -(scope.game.ruler.state.y2-scope.game.ruler.state.y1)) *
                   180 / Math.PI;

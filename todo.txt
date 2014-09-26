@@ -21,8 +21,6 @@
 
 - text no highlight
 =======================================================================================
-- import jack marshall * *
-- bug aoe ruler avec ruler target
 - escape create template
 - alternate models
 - sortie du mode de charge laisse le couloir ?
