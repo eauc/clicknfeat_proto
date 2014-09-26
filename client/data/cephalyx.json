@@ -203,59 +203,6 @@
       }
     },
     "solos": {
-      "Bloat Thrall": {
-        "name": "Bloat Thrall",
-        "fk_name": "Bloat Thrall",
-        "type": "solo",
-        "base": "medium",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0.2,
-          "y": -0.5,
-          "link": "data/cryx/solos/BloatThrall.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 8
-        }
-      },
-      "Pistol Wraith": {
-        "name": "Pistol Wraith",
-        "fk_name": "Pistol Wraith",
-        "type": "solo",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0.2,
-          "y": -0.5,
-          "link": "data/cryx/solos/PistolWraith.png",
-	  "incorporeal": "data/cryx/solos/PistolWraith_Incorporeal.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
-        }
-      },
-      "Machine Wraith": {
-        "name": "Machine Wraith",
-        "fk_name": "Machine Wraith",
-        "type": "solo",
-        "base": "medium",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0.2,
-          "y": -0.5,
-          "link": "data/cryx/solos/MachineWraith.png",
-	  "incorporeal": "data/cryx/solos/MachineWraith_Incorporeal.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 1
-        }
-      },
       "Cephalyx Agitator": {
         "name": "Cephalyx Agitator",
         "fk_name": "",

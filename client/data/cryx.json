@@ -423,8 +423,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Deathripper.png"
         },
         "damage": {
@@ -445,8 +445,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Defiler.png"
         },
         "damage": {
@@ -467,8 +467,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Helldiver.png"
         },
         "damage": {
@@ -489,8 +489,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Nightwretch.png"
         },
         "damage": {
@@ -511,8 +511,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Ripjaw.png"
         },
         "damage": {
@@ -533,8 +533,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Scavanger.png"
         },
         "damage": {
@@ -555,8 +555,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Stalker.png"
         },
         "damage": {
@@ -577,8 +577,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Cankerworm.png"
         },
         "damage": {
@@ -599,8 +599,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Corruptor.png"
         },
         "damage": {
@@ -621,8 +621,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Desecrator.png"
         },
         "damage": {
@@ -643,8 +643,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Harrower.png"
         },
         "damage": {
@@ -665,8 +665,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Harrower.png"
         },
         "damage": {
@@ -687,8 +687,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Reaper.png"
         },
         "damage": {
@@ -709,8 +709,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Seether.png"
         },
         "damage": {
@@ -731,8 +731,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Slayer.png"
         },
         "damage": {
@@ -753,8 +753,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Deathjack.png"
         },
         "damage": {
@@ -775,8 +775,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Erebus.png"
         },
         "damage": {
@@ -797,8 +797,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Malice.png"
         },
         "damage": {
@@ -819,8 +819,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": -0,
           "link": "data/cryx/jacks/Nightmare.png"
         },
         "damage": {
@@ -876,8 +876,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/BaneKnight.png"
               },
               "damage": {
@@ -901,8 +901,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/BileThrall.png"
               },
               "damage": {
@@ -926,8 +926,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/BaneThrall.png"
               },
               "damage": {
@@ -945,8 +945,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/Bane_Thrall_Officer.png"
               },
               "damage": {
@@ -962,8 +962,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/Bane_Thrall_Standard_Bearer.png"
               },
               "damage": {
@@ -987,8 +987,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/BlackOgrun.png"
               },
               "damage": {
@@ -1012,8 +1012,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/Bloodgorgers.png"
               },
               "damage": {
@@ -1036,8 +1036,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/CephalyxSlaver.png"
               },
               "damage": {
@@ -1054,8 +1054,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/DrudgeMindSlave.png"
               },
               "damage": {
@@ -1079,8 +1079,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/CephalyxOverlord.png"
               },
               "damage": {
@@ -1104,8 +1104,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/MechThrall.png",
                 "leader": "data/cryx/units/MechThrall_Lt.png"
               },
@@ -1125,8 +1125,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/BruteThrall.png"
               },
               "damage": {
@@ -1149,8 +1149,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/Necrosurgeon.png"
               },
               "damage": {
@@ -1167,8 +1167,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/StitchThrall.png"
               },
               "damage": {
@@ -1192,8 +1192,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/RevenantCrew.png",
                 "leader": "data/cryx/units/RevenantQuartermaster.png"
               },
@@ -1213,8 +1213,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/RevenantRifleman.png"
               },
               "damage": {
@@ -1238,8 +1238,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/RevenantCannonGunner.png"
               },
               "damage": {
@@ -1255,8 +1255,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/RevenantCannon.png"
               },
               "damage": {
@@ -1280,8 +1280,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/Satyxis_WitchReaver.png",
                 "incorporeal": "data/cryx/units/Satyxis_WitchReaver_Incorporeal.png"
               },
@@ -1300,8 +1300,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/Satyxis_Hag.png",
                 "incorporeal": "data/cryx/units/Satyxis_Hag_Incorporeal.png"
               },
@@ -1326,8 +1326,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/SatyxisRaider.png"
               },
               "damage": {
@@ -1345,8 +1345,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/SeaWitch.png"
               },
               "damage": {
@@ -1370,8 +1370,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/Soulhunter.png"
               },
               "damage": {
@@ -1394,8 +1394,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/WithershadowCombine_Admonia.png"
               },
               "damage": {
@@ -1411,8 +1411,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/WithershadowCombine_Maelovus.png"
               },
               "damage": {
@@ -1428,8 +1428,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/WithershadowCombine_Tremulous.png"
               },
               "damage": {
@@ -1452,8 +1452,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/Blackbane.png",
                 "incorporeal": "data/cryx/units/Blackbane_Incorporeal.png"
               },
@@ -1471,8 +1471,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/cryx/units/GhostRaiders.png",
                 "incorporeal": "data/cryx/units/GhostRaiders_Incorporeal.png"
               },
@@ -1482,6 +1482,267 @@
               }
             }
           }
+        }
+      }
+    },
+    "solos": {
+      "aiakos": {
+        "name": "Aiakos, Scourge of mederius",
+        "fk_name": "Aiakos, Scourge of Meredius",
+        "type": "wardude",
+        "base": "small",
+        "focus": 4,
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "baltartarus": {
+        "name": "Bane Lord Tartarus",
+        "fk_name": "Bane Lord Tartarus",
+        "type": "solos",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/solos/Tartarus.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 8
+        }
+      },
+      "bloatthrall": {
+        "name": "Bloat Thrall",
+        "fk_name": "Bloat Thrall",
+        "type": "solos",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/solos/BloatThrall.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 8
+        }
+      },
+      "captainrengrave": {
+        "name": "Captain Rengrave",
+        "fk_name": "Captain Rengrave",
+        "type": "solos",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/solos/Rengrave.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "darragh": {
+        "name": "Darragh Wrathe",
+        "fk_name": "Darragh Wrathe",
+        "type": "solos",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/solos/Darragh.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 10
+        }
+      },
+      "darraghdismount": {
+        "name": "Darragh Wrathe (dismount)",
+        "fk_name": "Darragh Wrathe",
+        "type": "solos",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/solos/DarraghDismount.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "generalgerlak": {
+        "name": "General Gerlak Slaughterborn",
+        "fk_name": "General Gerlak Slaughterborn",
+        "type": "solos",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/solos/Slaughterborn.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 8
+        }
+      },
+      "ironlichoverseer": {
+        "name": "Iron Lich Overseer",
+        "fk_name": "Iron Lich Overseer",
+        "type": "solos",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/solos/Overseer.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 8
+        }
+      },
+      "machinewraith": {
+        "name": "Machine Wraith",
+        "fk_name": "Machine Wraith",
+        "type": "solos",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/solos/MachineWraith.png",
+          "incorporeal": "data/cryx/solos/MachineWraith_Incorporeal.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 1
+        }
+      },
+      "necrotech": {
+        "name": "Necrotech",
+        "fk_name": "Necrotech & 1 Scrap Thrall",
+        "type": "solos",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/solos/Necrotech.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "scrapthrall": {
+        "name": "Scrap Thrall",
+        "fk_name": ["Necrotech & 1 Scrap Thrall", "Scrap Thrall"],
+        "type": "solos",
+        "range": [1, 3],
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/solos/ScrapThrall.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 1
+        }
+      },
+      "pistolwraith": {
+        "name": "Pistol Wraith",
+        "fk_name": "Pistol Wraith",
+        "type": "solos",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/solos/PistolWraith.png",
+          "incorporeal": "data/cryx/solos/PistolWraith_Incorporeal.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "satyxisraidercaptain": {
+        "name": "Satyxis Raider Captain",
+        "fk_name": "Satyxis Raider Captain",
+        "type": "solos",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/solos/SatyxisCaptain.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "skarlockthrall": {
+        "name": "Skarlock Thrall",
+        "fk_name": "Skarlock Thrall",
+        "type": "solos",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/solos/Skarlock.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "warwitchsiren": {
+        "name": "Warwitch Siren",
+        "fk_name": "Warwitch Siren",
+        "type": "solos",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/solos/Siren.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
         }
       }
     }
