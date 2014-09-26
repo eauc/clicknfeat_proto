@@ -71,10 +71,10 @@ angular.module('vassalApp.controllers')
           line = line.replace(/^\s*/,'');
           if(line.length === 0) return;
           var reset_unit = true;
-          var match = line.match(/^\*+ /);
+          var match = line.match(/^(\* )+/);
           if(match) {
             reset_unit = false;
-            line = line.replace(/^\*+ /,'');
+            line = line.replace(/^(\* )+/,'');
           }
           var repeat = 1;
           var match = line.match(/^(\d+) /);
