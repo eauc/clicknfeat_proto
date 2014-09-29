@@ -39,6 +39,16 @@
              ng-show="game.layers.view_controls"
              >
         </div>
+        <div style="
+             position:absolute;
+             z-index:2;
+             top:10;
+             right:15;
+             "
+             ng-include="'partials/viewLocation.html'"
+             ng-show="game.layers.view_controls"
+             >
+        </div>
         <div id="canvas-container"
              style="
              width:{{game.board.window.width+5}}px;

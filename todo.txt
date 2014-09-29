@@ -1,5 +1,3 @@
-- view control en layer
-- view location indicator
 - FK import unit pas d'espace entre models
 - factions : supprimer les unites en double cygnar/mercos
 

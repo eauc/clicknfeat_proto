@@ -409,6 +409,23 @@ angular.module('vassalApp.controllers')
           var new_board = $scope.boards.list[index];
           $scope.game.newCommand(command('setBoard', new_board));
         };
+
+        $scope.view_loc = {
+          top: 0,
+          left: 0,
+          width: $scope.game.board.window.width/8,
+          height: $scope.game.board.window.height/8
+        };
+        var cont = document.getElementById('canvas-container');
+        cont.onscroll = function() {
+          console.log("scroll");
+          $scope.view_loc.top = cont.scrollTop / cont.scrollHeight * $scope.game.board.window.height/8;
+          $scope.view_loc.left = cont.scrollLeft / cont.scrollWidth * $scope.game.board.window.width/8;
+          $scope.view_loc.height = ($scope.game.board.window.height/8) * ($scope.game.board.window.height/cont.scrollHeight);
+          $scope.view_loc.width = ($scope.game.board.window.width/8) * ($scope.game.board.window.width/cont.scrollWidth);
+          $scope.$apply();
+        };
+
       });
     }
   ]);

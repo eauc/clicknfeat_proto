@@ -1,0 +1,25 @@
+<div style="
+     position: relative;
+     width: {{game.board.window.width/8}}px;
+     height: {{game.board.window.height/8}}px;
+     border:1px solid black;
+     display:block;
+     "
+     >
+  <div style="
+       position: absolute;
+       top: {{view_loc.top}}px;
+       left: {{view_loc.left}}px;
+       width: {{view_loc.width}}px;
+       height: {{view_loc.height}}px;
+       border: 1px solid #0FF;
+       ">
+  </div>
+  <img ng-src="{{game.board.info.preview}}" 
+       style="
+       width: {{game.board.window.width/8}}px;
+       height: {{game.board.window.height/8}}px;
+       border:1px solid black;
+       "
+       />
+</div>
