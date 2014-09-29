@@ -1,6 +1,9 @@
 - view control en layer
 - view location indicator
 - FK import unit pas d'espace entre models
+- factions : supprimer les unites en double cygnar/mercos
+
+- netdecker corner
 
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
@@ -21,8 +24,8 @@
 
 - text no highlight
 =======================================================================================
-- escape create template
 - alternate models
+- escape create template ???
 - sortie du mode de charge laisse le couloir ?
 - feldun ne voit pas la couleur - chrome/windows ?
 - sensibilite click souris ?

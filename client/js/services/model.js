@@ -79,7 +79,7 @@ angular.module('vassalApp.services')
           if(this.state.show_charge) {
             var dx = this.state.x - this.state.charge_x;
             var dy = this.state.y - this.state.charge_y;
-            if(dx > 0 || dy > 0) {
+            if(Math.abs(dx) > 0 || Math.abs(dy) > 0) {
               this.state.charge_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
             }
           }
@@ -93,7 +93,7 @@ angular.module('vassalApp.services')
           if(this.state.show_charge) {
             var dx = this.state.x - this.state.charge_x;
             var dy = this.state.y - this.state.charge_y;
-            if(dx > 0 || dy > 0) {
+            if(Math.abs(dx) > 0 || Math.abs(dy) > 0) {
               this.state.charge_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
             }
           }
@@ -112,7 +112,7 @@ angular.module('vassalApp.services')
           if(this.state.show_charge) {
             var dx = this.state.x - this.state.charge_x;
             var dy = this.state.y - this.state.charge_y;
-            if(dx > 0 || dy > 0) {
+            if(Math.abs(dx) > 0 || Math.abs(dy) > 0) {
               this.state.charge_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
             }
           }
@@ -126,7 +126,7 @@ angular.module('vassalApp.services')
           if(this.state.show_charge) {
             var dx = this.state.x - this.state.charge_x;
             var dy = this.state.y - this.state.charge_y;
-            if(dx > 0 || dy > 0) {
+            if(Math.abs(dx) > 0 || Math.abs(dy) > 0) {
               this.state.charge_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
             }
           }
