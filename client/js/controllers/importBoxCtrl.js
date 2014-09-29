@@ -87,7 +87,7 @@ angular.module('vassalApp.controllers')
             repeat = (match[1] >> 0);
           }                
           var size = 1;
-          match = line.match(/(?:[\w]+) and (\d+) (?:[\w]+)/i);
+          match = line.match(/(?:[\w]+) (?:and|&) (\d+) (?:[\w]+)/i);
           if(match) {
             size = match[1] ? (match[1] >> 0) + 1 : 2;
           }                

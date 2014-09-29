@@ -1796,7 +1796,7 @@
           "wa": {
             "rifleman": {
               "name": "Sea Dog Crew Rifleman",
-              "fk_name": "Sea Dog Crew Rifleman",
+              "fk_name": ["Sea Dog Crew Rifleman","Sea Dog Crew Riflemen"],
               "ranges": [1, 2, 3],
               "type": "warrior",
               "base": "small",

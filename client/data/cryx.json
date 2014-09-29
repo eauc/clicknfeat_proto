@@ -1,6 +1,6 @@
 {
   "name": "Cryx",
-  "color": "#5963a2",
+  "color": "#3a4c3f",
   "icon": "data/icons/cryx_50.png",
   "models": {
     "casters": {
@@ -299,6 +299,24 @@
           "n": 16
         }
       },
+      "Sturgis2": {
+        "name": "Sturgis2 (Sturgis the Corrupted)",
+        "fk_name": "Sturgis The Corrupted",
+        "type": "wardude",
+        "focus": 6,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 18
+        }
+      },
       "Terminus1": {
         "name": "Terminus1 (Lich Lord Terminus)",
         "fk_name": "Lich Lord Terminus",
@@ -434,7 +452,7 @@
           "3": [ null,  null,  "b",  "b",  "c", "c"  ],
           "4": [ null,  null,  "b",  "b",  "a", "m"  ],
           "5": [ null,  null,  null,  "b",  "a", "m"  ],
-          "6": [ null, null,  null,  null,  "m", "m" ]
+          "6": [ null, null,  null,  "b",  "m", "m" ]
         }
       },
       "Defiler": {
@@ -456,7 +474,7 @@
           "3": [ null,  null,  "b",  "b",  "c", "c"  ],
           "4": [ null,  null,  "b",  "b",  "a", "m"  ],
           "5": [ null,  null,  null,  "b",  "a", "m"  ],
-          "6": [ null, null,  null,  null,  "m", "m" ]
+          "6": [ null, null,  null,  "b",  "m", "m" ]
         }
       },
       "Helldiver": {
@@ -500,7 +518,7 @@
           "3": [ null,  null,  "b",  "b",  "c", "c"  ],
           "4": [ null,  null,  "b",  "b",  "a", "m"  ],
           "5": [ null,  null,  null,  "b",  "a", "m"  ],
-          "6": [ null, null,  null,  null,  "m", "m" ]
+          "6": [ null, null,  null,  "b",  "m", "m" ]
         }
       },
       "Ripjaw": {
@@ -522,12 +540,12 @@
           "3": [ null,  null,  "b",  "b",  "c", "c"  ],
           "4": [ null,  null,  "b",  "b",  "a", "m"  ],
           "5": [ null,  null,  null,  "b",  "a", "m"  ],
-          "6": [ null, null,  null,  null,  "m", "m" ]
+          "6": [ null, null,  null,  "b",  "m", "m" ]
         }
       },
-      "Scavanger": {
-        "name": "Scavanger",
-        "fk_name": "Scavanger",
+      "Scavenger": {
+        "name": "Scavenger",
+        "fk_name": "Scavenger",
         "type": "jack",
         "base": "medium",
         "width": 60,
@@ -544,7 +562,7 @@
           "3": [ null,  null,  null,  "b",  "c", "h"  ],
           "4": [ null,  null,  null,  "b",  "c", "m"  ],
           "5": [ null,  null,  "b",  "b",  "c", "m"  ],
-          "6": [ null, null,  null,  null,  "m", null ]
+          "6": [ null, null,  null,  "b",  "m", null ]
         }
       },
       "Stalker": {
@@ -655,6 +673,28 @@
           "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
           "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
           "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "Inflictor": {
+        "name": "Inflictor",
+        "fk_name": "Inflictor",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
         }
       },
       "Leviathan": {
@@ -888,6 +928,31 @@
           }
         }
       },
+      "Bane Riders": {
+        "name": "Bane Riders",
+        "entries": {
+          "grunt": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Bane Riders",
+              "ranges": [1, 3, 5],
+              "type": "warrior",
+              "base": "large",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
+        }
+      },
       "Bile Thralls": {
         "name": "Bile Thralls",
         "entries": {
@@ -1030,7 +1095,10 @@
           "grunt": {
             "leader": {
               "name": "Cephalyx Mind Slaver ",
-              "fk_name": "Cephalyx Mind Slaver & Drudges",
+              "fk_name": [
+                "Cephalyx Mind Slaver & 5 Drudges",
+                "Cephalyx Mind Slaver & 9 Drudges"
+              ],
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -1047,7 +1115,10 @@
             },
             "grunt": {
               "name": "Drudges",
-              "fk_name": "Cephalyx Mind Slaver & Drudges",
+              "fk_name": [
+                "Cephalyx Mind Slaver & 5 Drudges",
+                "Cephalyx Mind Slaver & 9 Drudges"
+              ],
               "ranges": [1, 5, 9],
               "type": "warrior",
               "base": "small",
@@ -1205,8 +1276,8 @@
           },
           "wa": {
             "Rifleman": {
-              "name": "Revenant Crew Crew Rifleman",
-              "fk_name": "Revenant Crew Crew Rifleman",
+              "name": "Rifleman",
+              "fk_name": ["Revenant Crew Crew Rifleman", "Revenant Crew Crew Riflemen"],
               "ranges": [1, 2, 3],
               "type": "warrior",
               "base": "small",
@@ -1743,6 +1814,26 @@
         "damage": {
           "type": "warrior",
           "n": 5
+        }
+      }
+    },
+    "battle_engines": {
+      "wraithengine": {
+        "name": "Wraith Engine",
+        "fk_name": "Wraith Engine",
+        "type": "be",
+        "base": "huge",
+        "width": 90,
+        "height": 90,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/cryx/bes/WraithEngine.png",
+          "incorporeal": "data/cryx/bes/WraithEngine_Incorporeal.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 20
         }
       }
     }
