@@ -26,6 +26,7 @@
              left:0;
              "
              ng-include="'partials/viewControls.html'"
+             ng-show="game.layers.view_controls"
              >
         </div>
         <div style="
@@ -35,6 +36,7 @@
              left:5;
              "
              ng-include="'partials/viewScale.html'"
+             ng-show="game.layers.view_controls"
              >
         </div>
         <div id="canvas-container"

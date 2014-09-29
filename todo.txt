@@ -4,6 +4,7 @@
 - factions : supprimer les unites en double cygnar/mercos
 
 - netdecker corner
+- load game instantly + old commands progressive
 
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh

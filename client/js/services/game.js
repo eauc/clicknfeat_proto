@@ -254,7 +254,8 @@ angular.module('vassalApp.services')
             deployment: false,
             scenario: true,
             models: true,
-            templates: true
+            templates: true,
+            view_controls: true
           },
           board: {
             info: null,
