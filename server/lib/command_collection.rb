@@ -34,12 +34,20 @@ class CommandCollection
     end
     first = first || -1
     # puts first.inspect
-    @commands.each_with_index do |command, index|
-      if index > first
-        # puts command.inspect
-        data = command.to_json
-        out << "retry:100\ndata:#{data}\n\n"
-      end
+    data = {
+      refresh: false,
+      cmd: nil
+    }
+    log = @commands[first+1..-1]
+    return if not log or log.length === 0
+    index = 0
+    while index < log.length
+      # puts command.inspect
+      slice = log[index..index+19]
+      index += 20
+      data[:slice] = slice
+      data[:more] =  !(index >= log.length)
+      out << "retry:100\ndata:#{data.to_json}\n\n"
     end
   end
 

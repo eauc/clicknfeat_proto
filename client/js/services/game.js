@@ -457,10 +457,24 @@ angular.module('vassalApp.services')
             // console.log(e);
             var data = JSON.parse(e.data);
             // console.log(data);
-            var cmd = command(data);
-            // console.log(cmd);
-            if(cmd) instance.updateCommand(cmd);
-            $rootScope.$apply();
+            if(_.isArray(data.slice)) {
+              var new_cmd;
+              _.each(data.slice, function(cmd) {
+                new_cmd = command(cmd);
+                // console.log(cmd);
+                instance.updateCommand(new_cmd);
+              });
+              if(!data.more) {
+                console.log('apply cmds');
+                $rootScope.$apply();
+              }
+            }
+            else {
+              var new_cmd = command(data);
+              // console.log(cmd);
+              instance.updateCommand(new_cmd);
+              $rootScope.$apply();
+            }
           };
           game_source.addEventListener('undo', function(e) {
             // console.log('cmd undo event');
