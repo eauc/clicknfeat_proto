@@ -43,8 +43,8 @@ class CommandCollection
     index = 0
     while index < log.length
       # puts command.inspect
-      slice = log[index..index+19]
-      index += 20
+      slice = log[index..index+99]
+      index += 100
       data[:slice] = slice
       data[:more] =  !(index >= log.length)
       out << "retry:100\ndata:#{data.to_json}\n\n"
