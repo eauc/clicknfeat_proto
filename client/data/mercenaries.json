@@ -2459,41 +2459,6 @@
           "n": 5
         }
       },
-      "eiryss2": {
-        "name": "Eiryss, Angel of Retribution",
-        "fk_name": "Eiryss, Angel of Retribution",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/mercenaries/solos/Eiryss2.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
-        }
-      },  
-      "eiryss1": {
-        "name": "Eiryss, Mage Hunter of Ios",
-        "fk_name": "Eiryss, Mage Hunter of Ios",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/mercenaries/solos/Eiryss1.png",
-	  "alternate":"data/mercenaries/solos/Eiryss1_Invisible.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
-        }
-      },  
       "hawk": {
         "name": "First Mate Hawk",
         "fk_name": "First Mate Hawk",
@@ -2745,23 +2710,6 @@
           "x": 0,
           "y": 0,
           "link": "data/mercenaries/solos/Thor.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
-        }
-      },  
-      "sylyswyshnalyrr": {
-        "name": "Sylys Wyshnalyrr, the Seeker",
-        "fk_name": "Sylys Wyshnalyrr, the Seeker",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/mercenaries/solos/SylysWyshnaylyrr.png"
         },
         "damage": {
           "type": "warrior",
