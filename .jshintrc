@@ -1,0 +1,14 @@
+{
+  "multistr": true,
+  "newcap": false,
+  "globals": {
+    "_": false,
+    "$": false,
+    "angular": false,
+    "console": false,
+    "document": false
+  },
+  "-W097": true, // "use strict function form"
+  "-W040": true, // "possible strict violation"
+  "-W069": true  // "is better written in dot notation"
+}
