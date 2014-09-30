@@ -60,47 +60,47 @@
       },
       "Cassius": {
         "name": "Cassius1 (Cassius the Oathkeeper)",
-	"entries": {
-	  "caster": {
+        "entries": {
+          "caster": {
             "Cassius": {
               "name": "Cassius the Oathkeeper",
-	      "fk_name": "Cassius the Oathkeeper",
-	      "type": "wardude",
-	      "fury": 6,
-	      "base": "small",
-	      "width": 60,
-	      "height": 60,
-	      "img": {
-	        "x": 0,
-	        "y": 0,
-	        "link": "data/orboros/locks/Cassius1.png"
-	      },
-	      "damage": {
-	        "type": "warrior",
-	        "n": 16
-	      }
+              "fk_name": "Cassius the Oathkeeper",
+              "type": "wardude",
+              "fury": 6,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/orboros/locks/Cassius1.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 16
+              }
             }
-	  },
-	  "solo": {
+          },
+          "solo": {
             "WurmWood": {
-	      "name": "Wurmwood, Tree of Fate",
-	      "fk_name": "Cassius the Oathkeeper",
-	      "type": "solo",
-	      "base": "large",
-	      "width": 60,
-	      "height": 60,
-	      "img": {
-	        "x": 0,
-	        "y": 0,
-	        "link": "data/orboros/locks/Cassius1_Wurmwood.png"
-	      },
-	      "damage": {
-	        "type": "warrior",
-	        "n": 1
-	      }
-	    }
+              "name": "Wurmwood, Tree of Fate",
+              "fk_name": "Cassius the Oathkeeper",
+              "type": "solo",
+              "base": "large",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/orboros/locks/Cassius1_Wurmwood.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
           }
-	}
+        }
       },
       "Grayle1": {
         "name": "Grayle1 (Grayle the Farstrider)",
@@ -122,53 +122,53 @@
       },
       "Kaya2": {
         "name": "Kaya2 (Kaya the Moonhunter & Laris)",
-	"entries" : {
+        "entries" : {
           "caster": {
-	    "Kaya2" : {
-	      "name": "Kaya the Moonhunter",
-	      "fk_name": "Kaya the Moonhunter & Laris",
-	      "type": "wardude",
-	      "fury": 6,
-	      "base": "small",
-	      "width": 60,
-	      "height": 60,
-	      "img": {
-	        "x": 0,
-	        "y": 0,
-	        "link": "data/orboros/locks/Kaya2.png"
-	      },
-	      "damage": {
-	        "type": "warrior",
-	        "n": 16
-	      }
+            "Kaya2" : {
+              "name": "Kaya the Moonhunter",
+              "fk_name": "Kaya the Moonhunter & Laris",
+              "type": "wardude",
+              "fury": 6,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/orboros/locks/Kaya2.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 16
+              }
             }
-	  },
-	  "solo": {
+          },
+          "solo": {
             "Laris": {
-	      "name": "Laris",
-	      "fk_name": "Kaya the Moonhunter & Laris",
-	      "type": "beast",
-	      "base": "medium",
-	      "fury": 3,
-	      "width": 60,
-	      "height": 60,
-	      "img": {
-	        "x": 0,
-	        "y": 0,
-	        "link": "data/orboros/locks/Kaya2_Laris.png"
-	      },
-	      "damage": {
-	        "type": "beast",
-	        "1": [ "b", "b", null, null, null ],
-	        "2": [ "b", "b",  "b",  "b", null ],
-	        "3": [ "b", "b",  "b",  "b", null ],
-	        "4": [ "b", "b", null, null, null ],
-	        "5": [ "b", "b",  "b",  "b",  "b" ],
-	        "6": [ "b", "b",  "b", null, null ]
-	      }
+              "name": "Laris",
+              "fk_name": "Kaya the Moonhunter & Laris",
+              "type": "beast",
+              "base": "medium",
+              "fury": 3,
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/orboros/locks/Kaya2_Laris.png"
+              },
+              "damage": {
+                "type": "beast",
+                "1": [ "b", "b", null, null, null ],
+                "2": [ "b", "b",  "b",  "b", null ],
+                "3": [ "b", "b",  "b",  "b", null ],
+                "4": [ "b", "b", null, null, null ],
+                "5": [ "b", "b",  "b",  "b",  "b" ],
+                "6": [ "b", "b",  "b", null, null ]
+              }
             }
-	  }
-	}
+          }
+        }
       },
       "Kaya1": {
         "name": "Kaya1 (Kaya the Wildborne)",
@@ -290,7 +290,7 @@
           "x": 0,
           "y": 0,
           "link": "data/orboros/locks/Kromac.png",
-	  "incorporeal": "data/orboros/locks/Kromac_Beast.png"
+          "incorporeal": "data/orboros/locks/Kromac_Beast.png"
         },
         "damage": {
           "type": "warrior",
@@ -872,42 +872,42 @@
               }
             }
           },
-	  "ua": {
-	    "Chieftain": {
-	      "name": "Chieftain",
-	      "fk_name": "Reeves of Orboros Chieftain & Standard",
-	      "type": "warrior",
-	      "base": "small",
-	      "width": 60,
-	      "height": 60,
-	      "img": {
-		"x": 0,
-		"y": 0,
-		"link": "data/orboros/units/Reeves_Officer.png"
-	      },
-	      "damage": {
-		"type": "warrior",
-		"n": 5
-	      }
-	    },
-	    "Standard": {
-	      "name": "Standard",
-	      "fk_name": "Reeves of Orboros Chieftain & Standard",
-	      "type": "warrior",
-	      "base": "small",
-	      "width": 60,
-	      "height": 60,
-	      "img": {
-		"x": 0,
-		"y": 0,
-		"link": "data/orboros/units/Reeves_Standard.png"
-	      },
-	      "damage": {
-		"type": "warrior",
-		"n": 1
-	      }
-	    }
-	  }
+          "ua": {
+            "Chieftain": {
+              "name": "Chieftain",
+              "fk_name": "Reeves of Orboros Chieftain & Standard",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/orboros/units/Reeves_Officer.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "Standard": {
+              "name": "Standard",
+              "fk_name": "Reeves of Orboros Chieftain & Standard",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/orboros/units/Reeves_Standard.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
         }
       },
       "Sentry Stone & Manikins": {
@@ -917,7 +917,7 @@
             "grunt": {
               "name": "Manikin",
               "fk_name": "Sentry Stone & Manikins",
-	      "ranges": [ 1, 4],
+              "ranges": [ 1, 4],
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -959,7 +959,8 @@
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Shifting Stones",
-	      "ranges": [1, 3],
+              "fk_size": 3,
+              "ranges": [1, 3],
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -976,24 +977,24 @@
             }
           },
           "ua": {
-	    "Stone keeper": {
-	      "name": "Stone keeper",
-	      "fk_name": "Stone keeper",
-	      "type": "warrior",
-	      "base": "small",
-	      "width": 60,
-	      "height": 60,
-	      "img": {
-		"x": 0,
-		"y": 0,
-		"link": "data/orboros/units/StoneKeeper.png"
-	      },
-	      "damage": {
-		"type": "warrior",
-		"n": 5
-	      }
-	    }
-	  }
+            "Stone keeper": {
+              "name": "Stone keeper",
+              "fk_name": "Stone keeper",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/orboros/units/StoneKeeper.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
         }
       },
       "Tharn Blood Pack": {
@@ -1027,7 +1028,7 @@
             "grunt": {
               "name": "Tharn Bloodtrackers",
               "fk_name": "Tharn Bloodtrackers",
-	      "ranges": [ 1, 6, 10],
+              "ranges": [ 1, 6, 10],
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -1044,24 +1045,24 @@
             }
           },
           "ua": {
-	    "Nuala the Huntress": {
-	      "name": "Nuala the Huntress",
-	      "fk_name": "Nuala the Huntress",
-	      "type": "warrior",
-	      "base": "small",
-	      "width": 60,
-	      "height": 60,
-	      "img": {
-		"x": 0,
-		"y": 0,
-		"link": "data/orboros/units/Nuala.png"
-	      },
-	      "damage": {
-		"type": "warrior",
-		"n": 5
-	      }
-	    }
-	  }
+            "Nuala the Huntress": {
+              "name": "Nuala the Huntress",
+              "fk_name": "Nuala the Huntress",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/orboros/units/Nuala.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
         }
       },
       "Tharn Bloodweavers": {
@@ -1096,7 +1097,7 @@
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Tharn Ravagers",
-	      "ranges": [ 1, 4, 6],
+              "ranges": [ 1, 4, 6],
               "type": "warrior",
               "base": "medium",
               "width": 60,
@@ -1113,41 +1114,41 @@
             }
           },
           "ua": {
-	    "Tharn Ravager Chieftain": {
-	      "name": "Chieftain",
-	      "fk_name": "Tharn Ravager Chieftain",
-	      "type": "warrior",
-	      "base": "medium",
-	      "width": 60,
-	      "height": 60,
-	      "img": {
-		"x": 0,
-		"y": 0,
-		"link": "data/orboros/units/Ravager_Chieftain.png"
-	      },
-	      "damage": {
-		"type": "warrior",
-		"n": 8
-	      }
-	    },
-	    "Tharn Ravager Shaman": {
-	      "name": "Shaman",
-	      "fk_name": "Tharn Ravager Shaman",
-	      "type": "warrior",
-	      "base": "medium",
-	      "width": 60,
-	      "height": 60,
-	      "img": {
-		"x": 0,
-		"y": 0,
-		"link": "data/orboros/units/Ravager_Shaman.png"
-	      },
-	      "damage": {
-		"type": "warrior",
-		"n": 8
-	      }
-	    }
-	  }
+            "Tharn Ravager Chieftain": {
+              "name": "Chieftain",
+              "fk_name": "Tharn Ravager Chieftain",
+              "type": "warrior",
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/orboros/units/Ravager_Chieftain.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 8
+              }
+            },
+            "Tharn Ravager Shaman": {
+              "name": "Shaman",
+              "fk_name": "Tharn Ravager Shaman",
+              "type": "warrior",
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/orboros/units/Ravager_Shaman.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 8
+              }
+            }
+          }
         }
       },
       "Tharn Wolfriders": {
@@ -1182,7 +1183,7 @@
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Warpborn Skinwalkers",
-	      "ranges": [ 1, 3, 5],
+              "ranges": [ 1, 3, 5],
               "type": "warrior",
               "base": "medium",
               "width": 60,
@@ -1199,24 +1200,24 @@
             }
           },
           "ua": {
-	    "Warpborn Alpha": {
-	      "name": "Warpborn Alpha",
-	      "fk_name": "Warpborn Alpha",
-	      "type": "warrior",
-	      "base": "medium",
-	      "width": 60,
-	      "height": 60,
-	      "img": {
-		"x": 0,
-		"y": 0,
-		"link": "data/orboros/units/SkinWalker_Alpha.png"
-	      },
-	      "damage": {
-		"type": "warrior",
-		"n": 8
-	      }
-	    }
-	  }
+            "Warpborn Alpha": {
+              "name": "Warpborn Alpha",
+              "fk_name": "Warpborn Alpha",
+              "type": "warrior",
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/orboros/units/SkinWalker_Alpha.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 8
+              }
+            }
+          }
         }
       },
       "Wolves of Orboros": {
@@ -1226,7 +1227,7 @@
             "grunt": {
               "name": "Leader and Grunts",
               "fk_name": "Wolves of Orboros",
-	      "ranges": [ 1, 6, 10],
+              "ranges": [ 1, 6, 10],
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -1243,41 +1244,41 @@
             }
           },
           "ua": {
-	    "Officer": {
-	      "name": "Officer",
-	      "fk_name": "Wolf of Orboros Officer & Standard",
-	      "type": "warrior",
-	      "base": "small",
-	      "width": 60,
-	      "height": 60,
-	      "img": {
-		"x": 0,
-		"y": 0,
-		"link": "data/orboros/units/Wolves_Officer.png"
-	      },
-	      "damage": {
-		"type": "warrior",
-		"n": 5
-	      }
-	    },
-	    "Wolf of Orboros Standard": {
-	      "name": "Standard",
-	      "fk_name": "Wolf of Orboros Officer & Standard",
-	      "type": "warrior",
-	      "base": "small",
-	      "width": 60,
-	      "height": 60,
-	      "img": {
-		"x": 0,
-		"y": 0,
-		"link": "data/orboros/units/Wolves_Standard.png"
-	      },
-	      "damage": {
-		"type": "warrior",
-		"n": 1
-	      }
-	    }
-	  }
+            "Officer": {
+              "name": "Officer",
+              "fk_name": "Wolf of Orboros Officer & Standard",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/orboros/units/Wolves_Officer.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "Wolf of Orboros Standard": {
+              "name": "Standard",
+              "fk_name": "Wolf of Orboros Officer & Standard",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/orboros/units/Wolves_Standard.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
         }
       }
     },
@@ -1370,7 +1371,7 @@
         "name": "Una the Falconer",
         "fk_name": "Una the Falconer",
         "type": "wardude",
-	"fury": 4,
+        "fury": 4,
         "base": "small",
         "width": 60,
         "height": 60,
