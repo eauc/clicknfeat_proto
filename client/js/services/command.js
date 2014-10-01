@@ -62,11 +62,6 @@ angular.module('vassalApp.services')
           msg_type: null,
           msg_text: null,
           execute: function(game) {
-            if(this.msg_type === 'dice') {
-              this.msg_total = _.reduce(this.msg_text, function(t, d) {
-                return t+d;
-              }, 0);
-            }
           },
           redo: function(game) {
           },

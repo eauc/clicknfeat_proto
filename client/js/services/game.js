@@ -236,7 +236,11 @@ angular.module('vassalApp.services')
             _.times(nb_dice, function() {
               dice.push(instance.rollDie(sides));
             });
-            this.newCommand(command('sendMsg', 'dice', dice));
+            var total = _.reduce(dice, function(t, d) {
+              return t+d;
+            }, 0);
+            var msg_text = 'd'+(sides||6)+JSON.stringify(dice)+' = '+total;
+            this.newCommand(command('sendMsg', 'dice', msg_text));
           },
           rollDeviation: function(dist_max) {
             var direction = instance.rollDie();

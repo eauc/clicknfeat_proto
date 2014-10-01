@@ -47,13 +47,9 @@
           ng-style="{
           color: cmd.user === user.name ? '#33F' : '#F3F'
           }"
-          >{{cmd.user}}</span>
-    <span style="color:#0ff;">[{{cmd.msg_type}}]</span>
+          >[{{cmd.user}}]</span>
+    <span style="color:#0ff;">({{cmd.msg_type}})</span>
     {{cmd.msg_text}}
-    <span style="color:#00f;"
-          ng-if="cmd.msg_type === 'dice'">
-      = {{cmd.msg_total}}
-    </span>
   </div>
   <div ng-repeat="cmd in showMsgCommands(game.commands).reverse()"
        ng-style="{
@@ -68,8 +64,5 @@
           >[{{cmd.user}}]</span>
     <span style="color:#0AA;">({{cmd.msg_type}})</span>
     {{cmd.msg_text}}
-    <span ng-if="cmd.msg_type === 'dice'">
-      = {{cmd.msg_total}}
-    </span>
   </div>
 </div>

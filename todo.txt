@@ -1,8 +1,9 @@
 - FK import unit pas d'espace entre models
-- factions : supprimer les unites en double cygnar/mercos
+- factions : supprimer les unites en double cygnar|scyrah|.../mercos
+- refactor chats.
 
 - netdecker corner
-- load game instantly + old commands progressive
+- reflechir pour chaque mode les transitions autorisees vers d'autre modes.
 
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
@@ -16,8 +17,8 @@
 
 - mode ranged attack : change to ruler mode, set selected model as origin for ruler/aoe/spray, click on model set target, if ruler too short move AoE to EnfOfRuler.
 - auto deviate model (max distance?, origin?)
-- auto-slam model
-- place model to ruler end
+- auto-slam/throw model
+- place model to ruler end/within another model
 - split factions files in subfiles
 - burrowers burrow
 
@@ -33,4 +34,3 @@
 Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui reviennent très souvent dans les règles spéciales, genre les lignes de 3" et de 5".
 - limiter distance drag model comme ruler
 =======================================================================================
-reflechir pour chaque mode les transitions autorisees vers d'autre modes.
