@@ -14,8 +14,9 @@ angular.module('vassalApp.controllers')
         var reader = new $window.FileReader();
         reader.onload = function(e) {
           $scope.read_result.push('loaded file');
+          var data;
           try {
-            var data = JSON.parse(e.target.result);
+            data = JSON.parse(e.target.result);
           }
           catch(err) {
             $scope.read_result.push('invalid file format');
@@ -77,7 +78,7 @@ angular.module('vassalApp.controllers')
             line = line.replace(/^(\* )+/,'');
           }
           var repeat = 1;
-          var match = line.match(/^(\d+) /);
+          match = line.match(/^(\d+) /);
           if(match) {
             repeat = match[1] >> 0;
             line = line.replace(/^\d+ /,'');

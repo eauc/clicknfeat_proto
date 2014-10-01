@@ -112,9 +112,9 @@ angular.module('vassalApp.controllers')
       $scope.menu_view = $stateParams.visibility === 'public' ? 'games' : 'main';
 
       factions.then(function() {
-        return $http.get('/api/games/'
-                         +($stateParams.visibility === 'public' ? 'public/' : '')
-                         +$stateParams.id)
+        return $http.get('/api/games/'+
+                         ($stateParams.visibility === 'public' ? 'public/' : '')+
+                         $stateParams.id)
           .then(function(response) {
             $scope.game = game(response.data);
             console.log($scope.game);
@@ -140,7 +140,7 @@ angular.module('vassalApp.controllers')
             }, function(response) {
               console.log('update game player2 error', response);
               return $q.reject();
-            });;
+            });
         }
         defer.resolve();
         return promise;
@@ -194,7 +194,7 @@ angular.module('vassalApp.controllers')
               if($scope.force.ctrl !== 'lock') $scope.force.ctrl = false;
               if($scope.force.shift !== 'lock') $scope.force.shift = false;
               if($scope.force.alt !== 'lock') $scope.force.alt = false;
-            })
+            });
         }
         $scope.onKeyDown = function(event) {
           // console.log(event);
@@ -245,10 +245,10 @@ angular.module('vassalApp.controllers')
           // console.log('mmd');
           // console.log(event);
           var elem_rect = canvas.getBoundingClientRect();
-          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor
-              *480/$scope.game.board.window.width;
-          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
-              *480/$scope.game.board.window.height;
+          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
+            480/$scope.game.board.window.width;
+          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*
+            480/$scope.game.board.window.height;
           if($scope.game.board.zoom.flipped) {
             user_x = 480 - user_x;
             user_y = 480 - user_y;
@@ -265,10 +265,10 @@ angular.module('vassalApp.controllers')
           // console.log('tmd');
           // console.log(event);
           var elem_rect = canvas.getBoundingClientRect();
-          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor
-              *480/$scope.game.board.window.width;
-          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
-              *480/$scope.game.board.window.height;
+          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
+            480/$scope.game.board.window.width;
+          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*
+            480/$scope.game.board.window.height;
           if($scope.game.board.zoom.flipped) {
             user_x = 480 - user_x;
             user_y = 480 - user_y;
@@ -294,10 +294,10 @@ angular.module('vassalApp.controllers')
           // console.log('md');
           // console.log(event);
           var elem_rect = canvas.getBoundingClientRect();
-          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor
-              *480/$scope.game.board.window.width;
-          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
-              *480/$scope.game.board.window.height;
+          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
+            480/$scope.game.board.window.width;
+          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*
+            480/$scope.game.board.window.height;
           if($scope.game.board.zoom.flipped) {
             user_x = 480 - user_x;
             user_y = 480 - user_y;
@@ -311,10 +311,10 @@ angular.module('vassalApp.controllers')
           // console.log('mm');
           // console.log(event);
           var elem_rect = canvas.getBoundingClientRect();
-          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor
-              *480/$scope.game.board.window.width;
-          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
-              *480/$scope.game.board.window.height;
+          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
+            480/$scope.game.board.window.width;
+          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*
+            480/$scope.game.board.window.height;
           if($scope.game.board.zoom.flipped) {
             user_x = 480 - user_x;
             user_y = 480 - user_y;
@@ -347,10 +347,10 @@ angular.module('vassalApp.controllers')
           // console.log('mu');
           // console.log(event);
           var elem_rect = canvas.getBoundingClientRect();
-          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor
-              *480/$scope.game.board.window.width;
-          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor
-              *480/$scope.game.board.window.height;
+          var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
+            480/$scope.game.board.window.width;
+          var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*
+            480/$scope.game.board.window.height;
           if($scope.game.board.zoom.flipped) {
             user_x = 480 - user_x;
             user_y = 480 - user_y;

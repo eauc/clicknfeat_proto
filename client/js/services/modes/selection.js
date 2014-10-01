@@ -65,6 +65,6 @@ angular.module('vassalApp.services')
           },
         });
         return selection_drag_mode;
-      }
+      };
     }
   ]);

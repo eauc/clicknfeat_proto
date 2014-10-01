@@ -58,6 +58,6 @@ angular.module('vassalApp.services')
           },
         };
         return common_mode;
-      }
+      };
     }
   ]);

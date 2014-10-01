@@ -71,8 +71,8 @@ angular.module('vassalApp.services')
           user.chat.push(data);
           if(data.from !== user.id) {
             user.last_chat = data;
-            if(last_chat_timeout) clearTimeout(last_chat_timeout);
-            last_chat_timeout = setTimeout(function() {
+            if(last_chat_timeout) window.clearTimeout(last_chat_timeout);
+            last_chat_timeout = window.setTimeout(function() {
               user.last_chat = null;
               last_chat_timeout = null;
               $rootScope.$apply();

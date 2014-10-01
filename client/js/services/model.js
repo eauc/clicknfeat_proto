@@ -241,20 +241,20 @@ angular.module('vassalApp.services')
         rotateChargeLeft: function(game, small, target) {
           var dr = small ? 1 : 5;
           this.state.charge_rot -= dr;
-          this.state.x = this.state.charge_x
-            + Math.sin(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
-          this.state.y = this.state.charge_y
-            - Math.cos(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
+          this.state.x = this.state.charge_x +
+            Math.sin(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
+          this.state.y = this.state.charge_y -
+            Math.cos(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
           this.refresh(game);
           this.alignWithChargeTarget(game);
         },
         rotateChargeRight: function(game, small, target) {
           var dr = small ? 1 : 5;
           this.state.charge_rot += dr;
-          this.state.x = this.state.charge_x
-            + Math.sin(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
-          this.state.y = this.state.charge_y
-            - Math.cos(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
+          this.state.x = this.state.charge_x +
+            Math.sin(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
+          this.state.y = this.state.charge_y -
+            Math.cos(this.state.charge_rot*Math.PI/180) * this.state.charge_length;
           this.refresh(game);
           this.alignWithChargeTarget(game);
         },
@@ -268,7 +268,9 @@ angular.module('vassalApp.services')
           var dx = target.state.x - this.state.x;
           var dy = target.state.y - this.state.y;
           var dist = Math.sqrt(dx*dx+dy*dy) - target.info.r - this.info.r;
-          var melee_range = this.state.show_strike ? 40 : (this.state.show_reach ? 20 : (this.state.show_melee ? 5 : 0));
+          var melee_range = this.state.show_strike ? 40 :
+            (this.state.show_reach ? 20 :
+             (this.state.show_melee ? 5 : 0));
           return dist <= melee_range;
         },
         endCharge: function(game) {
@@ -297,6 +299,7 @@ angular.module('vassalApp.services')
           case 'jack':
           case 'colossal':
             {
+              var new_val;
               if(col === 'field') {
                 this.state.damage.field = (this.state.damage.field === line) ?
                   0 : line;
@@ -310,7 +313,7 @@ angular.module('vassalApp.services')
                 var damage_in_col = _.reduce(this.state.damage[col], function(sum, n) {
                   return n + sum;
                 }, 0);
-                var new_val = damage_in_col === box_in_col ? 0 : 1;
+                new_val = damage_in_col === box_in_col ? 0 : 1;
                 _.each(this.state.damage[col], function(val, i) {
                   if(instance.info.damage[col][i]) {
                     var old_val = instance.state.damage[col][i];
@@ -325,7 +328,7 @@ angular.module('vassalApp.services')
                   var old_val = this.state.damage[col][line];
                   this.state.damage[col][line] = 
                     this.state.damage[col][line] === 1 ? 0 : 1;
-                  var new_val = this.state.damage[col][line];
+                  new_val = this.state.damage[col][line];
                   this.state.damage.total += (new_val - old_val);
                 }
               }

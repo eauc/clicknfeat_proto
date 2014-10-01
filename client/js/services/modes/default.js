@@ -111,7 +111,7 @@ angular.module('vassalApp.services')
           },
         });
         return default_mode;
-      }
+      };
     }
   ])
   .factory('model_selected_mode', [
@@ -482,6 +482,6 @@ angular.module('vassalApp.services')
           },
         });
         return model_selected_mode;
-      }
+      };
     }
   ]);

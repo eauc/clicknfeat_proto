@@ -23,7 +23,7 @@ angular.module('vassalApp.services')
           },
         });
         return template_drag_mode;
-      }
+      };
     }
   ])
   .factory('template_origin_mode', [
@@ -52,7 +52,7 @@ angular.module('vassalApp.services')
           },
         });
         return template_origin_mode;
-      }
+      };
     }
   ])
   .factory('template_target_mode', [
@@ -101,7 +101,7 @@ angular.module('vassalApp.services')
           },
         });
         return template_target_mode;
-      }
+      };
     }
   ])
   .factory('template_create_mode', [
@@ -143,7 +143,7 @@ angular.module('vassalApp.services')
           },
         });
         return template_create_mode;
-      }
+      };
     }
   ])
   .factory('template_locked_mode', [
@@ -204,7 +204,7 @@ angular.module('vassalApp.services')
           },
         });
         return template_mode;
-      }
+      };
     }
   ])
   .factory('template_mode', [
@@ -452,6 +452,6 @@ angular.module('vassalApp.services')
           },
         });
         return template_mode;
-      }
+      };
     }
   ]);

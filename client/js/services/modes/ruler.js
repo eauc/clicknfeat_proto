@@ -104,7 +104,7 @@ angular.module('vassalApp.services')
           },
         });
         return ruler_mode;
-      }
+      };
     }
   ])
   .factory('ruler_drag_mode', [
@@ -148,7 +148,7 @@ angular.module('vassalApp.services')
           },
         });
         return ruler_drag_mode;
-      }
+      };
     }
   ])
   .factory('ruler_origin_mode', [
@@ -173,7 +173,7 @@ angular.module('vassalApp.services')
           },
         });
         return ruler_origin_mode;
-      }
+      };
     }
   ])
   .factory('ruler_target_mode', [
@@ -231,6 +231,6 @@ angular.module('vassalApp.services')
           },
         });
         return ruler_target_mode;
-      }
+      };
     }
   ]);

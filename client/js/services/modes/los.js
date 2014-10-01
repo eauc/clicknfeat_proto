@@ -46,6 +46,6 @@ angular.module('vassalApp.services')
           },
         });
         return los_drag_mode;
-      }
+      };
     }
   ]);

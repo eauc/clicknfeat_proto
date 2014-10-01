@@ -32,7 +32,7 @@ angular.module('vassalApp.services')
           new_model_id: 0,
           models: {},
           createModel: function(options) {
-            var new_models = []
+            var new_models = [];
             _.each(options, function(option) {
               var state = _.omit(option, 'info');
               var new_model = model(instance.new_model_id++,
@@ -201,8 +201,9 @@ angular.module('vassalApp.services')
               return;
             }
             var find_cmd = _.findWhere(this.new_commands, { stamp: new_cmd.stamp });
+            var index;
             if(find_cmd) {
-              var index = _.indexOf(this.new_commands, find_cmd);
+              index = _.indexOf(this.new_commands, find_cmd);
               if(!find_cmd.do_not_log) {
                 this.commands.push(find_cmd);
               }
@@ -283,14 +284,14 @@ angular.module('vassalApp.services')
             refreshView: function() {
               var zoom = this.zoom;
               var window = this.window;
-              setTimeout(function() {
+              window.setTimeout(function() {
                 var cont = document.getElementById('canvas-container');
                 cont.scrollLeft = (zoom.cx * zoom.factor - window.width/2);
                 cont.scrollTop = (zoom.cy * zoom.factor - window.height/2);
               }, 0);
             },
             reset: function() {
-              this.zoom.factor = 1.;
+              this.zoom.factor = 1;
             },
             zoomIn: function() {
               this.refreshZoom();
@@ -461,8 +462,8 @@ angular.module('vassalApp.services')
             // console.log(e);
             var data = JSON.parse(e.data);
             // console.log(data);
+            var new_cmd;
             if(_.isArray(data.slice)) {
-              var new_cmd;
               _.each(data.slice, function(cmd) {
                 new_cmd = command(cmd);
                 // console.log(cmd);
@@ -474,7 +475,7 @@ angular.module('vassalApp.services')
               }
             }
             else {
-              var new_cmd = command(data);
+              new_cmd = command(data);
               // console.log(cmd);
               instance.updateCommand(new_cmd);
               $rootScope.$apply();
@@ -504,8 +505,8 @@ angular.module('vassalApp.services')
           game_source.onerror = function(e) {
             if(e.target.readyState === e.target.CLOSED) {
               console.log('cmd source error', e);
-              alert('The connection with the server is lost\n'+
-                    'Save your game, then try to reload the page.\n');
+              window.alert('The connection with the server is lost\n'+
+                           'Save your game, then try to reload the page.\n');
               return;
             }
             game_source.close();

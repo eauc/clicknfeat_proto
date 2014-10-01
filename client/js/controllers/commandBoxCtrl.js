@@ -10,7 +10,7 @@ angular.module('vassalApp.controllers')
 
       $scope.$watch('game.replay_commands.length', function() {
         var div = document.getElementById('replay-commands');
-        setTimeout(function() {
+        window.setTimeout(function() {
           div.scrollTop = div.scrollHeight;
         }, 10);
       });

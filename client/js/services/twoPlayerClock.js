@@ -19,8 +19,8 @@ angular.module('vassalApp.services')
             player2: clock()
           },
           isValid: function() {
-            return this.clocks.player1.isValid()
-              &&   this.clocks.player2.isValid();
+            return this.clocks.player1.isValid() &&
+              this.clocks.player2.isValid();
           },
           start: function() {
             if('stopped' === this.state &&
