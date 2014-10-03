@@ -738,12 +738,12 @@
         },
         "damage": {
           "type": "beast",
-          "1": [ "b", "b", "b", null, null ],
-          "2": [ "b", "b", "b", "b", "b" ],
-          "3": [ "b", "b", "b", "b", null ],
-          "4": [ "b", "b", "b", "b", "b" ],
-          "5": [ "b", "b", "b", null, null ],
-          "6": [ "b", "b", "b", "b", "b" ]
+          "1": [ "b", "b", "b", null, null, null, null ],
+          "2": [ "b", "b", "b", "b", "b", null, null ],
+          "3": [ "b", "b", "b", "b", null, null, null ],
+          "4": [ "b", "b", "b", "b", "b", "b", null ],
+          "5": [ "b", "b", "b", "b", null, null, null ],
+          "6": [ "b", "b", "b", "b", "b", "b", null ]
         }
       }
     },
@@ -862,6 +862,31 @@
               "damage": {
                 "type": "warrior",
                 "n": 1
+              }
+            }
+          }
+        }
+      },
+      "BlightWasp": {
+        "name": "Blight Wasps",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "",
+              "ranges": [ 1, 4 ],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
               }
             }
           }

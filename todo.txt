@@ -1,36 +1,34 @@
 - FK import unit pas d'espace entre models
+- alternate models
 - factions : supprimer les unites en double cygnar|scyrah|.../mercos
+
 - refactor chats.
+- ameliorer feedback load game
+- reflechir pour chaque mode les transitions autorisees vers d'autre modes.
 
 - netdecker corner
-- reflechir pour chaque mode les transitions autorisees vers d'autre modes.
+- auto deviate model (max distance?, origin?)
+- auto-slam/throw model
 
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
-
 - memoriser distance charge max pour unites
-
 - suggestion labels precedents
 - multi-labels
 
 - highlight models sous AoE/spray/charge
 
 - mode ranged attack : change to ruler mode, set selected model as origin for ruler/aoe/spray, click on model set target, if ruler too short move AoE to EnfOfRuler.
-- auto deviate model (max distance?, origin?)
-- auto-slam/throw model
 - place model to ruler end/within another model
 - split factions files in subfiles
 - burrowers burrow
 
 - text no highlight
 =======================================================================================
-- alternate models
-- escape create template ???
+- escape create template -> pb de disabled du boutton ???
 - sortie du mode de charge laisse le couloir ?
 - feldun ne voit pas la couleur - chrome/windows ?
 - sensibilite click souris ?
 =======================================================================================
-- des gabarits de déplacements (j'ai parcouru le sujet il me semble pas qu'il y en ai).
-Sans parler de reach et ce genre de truc déjà géré, plutôt des mesures qui reviennent très souvent dans les règles spéciales, genre les lignes de 3" et de 5".
 - limiter distance drag model comme ruler
 =======================================================================================
