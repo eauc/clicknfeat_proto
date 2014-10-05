@@ -1201,7 +1201,7 @@
           "ua": {
             "chieftain": {
               "name": "Chieftain",
-              "fk_name": "Warspear Chieftain",
+              "fk_name": ["Warspear Chieftan", "Warspear Chieftain"],
               "type": "warrior",
               "base": "medium",
               "width": 60,
