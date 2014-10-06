@@ -36,8 +36,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/solos/Pig_Keg_Carrier.png"
               },
               "damage": {
@@ -152,8 +152,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/solos/Muggs.png"
               },
               "damage": {
@@ -169,8 +169,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/solos/Krump.png"
               },
               "damage": {
@@ -318,18 +318,18 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Blitzer.png"
         },
         "damage": {
           "type": "beast",
-          "1": [  "b",  "b",  "b", null, null, null ],
-          "2": [  "b",  "b",  "b",  "b",  "b",  "b" ],
+          "1": [  "b",  "b",  "b",  "b", null, null ],
+          "2": [  "b",  "b",  "b",  "b",  "b", null ],
           "3": [  "b",  "b",  "b",  "b", null, null ],
           "4": [  "b",  "b",  "b",  "b",  "b",  "b" ],
-          "5": [  "b",  "b",  "b", null, null, null ],
-          "6": [  "b",  "b",  "b",  "b",  "b",  "b" ]
+          "5": [  "b",  "b",  "b",  "b", null, null ],
+          "6": [  "b",  "b",  "b",  "b",  "b", null ]
         }
       },
       "dire_troll_bomber": {
@@ -341,18 +341,18 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Bomber.png"
         },
         "damage": {
           "type": "beast",
-          "1": [  "b",  "b",  "b", null, null, null ],
-          "2": [  "b",  "b",  "b",  "b",  "b",  "b" ],
+          "1": [  "b",  "b",  "b",  "b", null, null ],
+          "2": [  "b",  "b",  "b",  "b",  "b", null ],
           "3": [  "b",  "b",  "b",  "b", null, null ],
           "4": [  "b",  "b",  "b",  "b",  "b",  "b" ],
-          "5": [  "b",  "b",  "b", null, null, null ],
-          "6": [  "b",  "b",  "b",  "b",  "b",  "b" ]
+          "5": [  "b",  "b",  "b",  "b", null, null ],
+          "6": [  "b",  "b",  "b",  "b",  "b", null ]
         }
       },
       "dire_troll_mauler": {
@@ -364,18 +364,41 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Mauler.png"
         },
         "damage": {
           "type": "beast",
-          "1": [  "b",  "b",  "b", null, null, null ],
-          "2": [  "b",  "b",  "b",  "b",  "b",  "b" ],
+          "1": [  "b",  "b",  "b",  "b", null, null ],
+          "2": [  "b",  "b",  "b",  "b",  "b", null ],
           "3": [  "b",  "b",  "b",  "b", null, null ],
           "4": [  "b",  "b",  "b",  "b",  "b",  "b" ],
-          "5": [  "b",  "b",  "b", null, null, null ],
-          "6": [  "b",  "b",  "b",  "b",  "b",  "b" ]
+          "5": [  "b",  "b",  "b",  "b", null, null ],
+          "6": [  "b",  "b",  "b",  "b",  "b", null ]
+        }
+      },
+      "dozer&smigg": {
+        "name": "Dozer & Smigg",
+        "fk_name": "Dozer & Smigg",
+        "type": "beast",
+        "fury": 4,      
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "beast",
+          "1": [  "b",  "b",  "b",  "b", null, null ],
+          "2": [  "b",  "b",  "b",  "b",  "b", null ],
+          "3": [  "b",  "b",  "b",  "b", null, null ],
+          "4": [  "b",  "b",  "b",  "b",  "b",  "b" ],
+          "5": [  "b",  "b",  "b",  "b", null, null ],
+          "6": [  "b",  "b",  "b",  "b",  "b", null ]
         }
       },
       "earthborn_diretroll": {
@@ -387,8 +410,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Earthborn.png"
         },
         "damage": {
@@ -410,8 +433,8 @@
         "width": 116.667,
         "height": 116.667,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Mountain_King.png"
         },
         "damage": {
@@ -433,8 +456,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Mulg.png"
         },
         "damage": {
@@ -456,8 +479,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Night_Troll.png"
         },
         "damage": {
@@ -479,8 +502,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Pyre.png"
         },
         "damage": {
@@ -502,8 +525,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Rok.png"
         },
         "damage": {
@@ -525,8 +548,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Slag.png"
         },
         "damage": {
@@ -548,8 +571,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Stormtroll.png"
         },
         "damage": {
@@ -571,8 +594,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Swamp_Troll.png"
         },
         "damage": {
@@ -594,8 +617,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Axer.png"
         },
         "damage": {
@@ -617,8 +640,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Bouncer.png"
         },
         "damage": {
@@ -640,8 +663,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Impaler.png"
         },
         "damage": {
@@ -663,8 +686,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/beasts/Winter.png"
         },
         "damage": {
@@ -692,8 +715,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Kriel_warrior.png"
               },
               "damage": {
@@ -712,8 +735,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Caber_Thrower.png"
               },
               "damage": {
@@ -731,8 +754,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Kriel_Piper.png"
               },
               "damage": {
@@ -748,8 +771,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Kriel_Standard_Bearer.png"
               },
               "damage": {
@@ -776,8 +799,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Stone_Scribe.png"
               },
               "damage": {
@@ -796,8 +819,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Krielstone_Bearer.png"
               },
               "damage": {
@@ -815,8 +838,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Krielstone_Stone_Scribe_Elder.png"
               },
               "damage": {
@@ -840,9 +863,76 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Pyg_Burrowers.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        } 
+      },
+      "highwaymen": {
+        "name": "Highwaymen",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Highwaymen",
+              "ranges": [1, 6, 10],
+              "type": "warrior",
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        } 
+      },
+      "fireeaters": {
+        "name": "Fire Eaters",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Grunts",
+              "fk_name": "Fire Eaters",
+              "ranges": [1, 2],
+              "type": "warrior",
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "leader": {
+              "name": "Leader",
+              "fk_name": "Fire Eaters",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
               },
               "damage": {
                 "type": "warrior",
@@ -865,8 +955,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Long_Rider.png"
               },
               "damage": {
@@ -890,8 +980,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Pyg_Bushwacker.png"
               },
               "damage": {
@@ -915,8 +1005,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Scattergunner.png"
               },
               "damage": {
@@ -934,8 +1024,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Scattergunner_Officer.png"
               },
               "damage": {
@@ -951,8 +1041,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Scattergunner_Standard.png"
               },
               "damage": {
@@ -975,8 +1065,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Wrathar.png"
               },
               "damage": {
@@ -992,8 +1082,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Tor.png"
               },
               "damage": {
@@ -1009,8 +1099,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Rhudd.png"
               },
               "damage": {
@@ -1033,8 +1123,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Thumpercrew_thumper.png"
               },
               "damage": {
@@ -1051,8 +1141,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Thumpercrew_Grunt.png"
               },
               "damage": {
@@ -1076,8 +1166,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Champion.png"
               },
               "damage": {
@@ -1095,8 +1185,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Skaldi_Bonehammer.png"
               },
               "damage": {
@@ -1120,8 +1210,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Fennblade.png"
               },
               "damage": {
@@ -1139,8 +1229,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Fennblade_Officer.png"
               },
               "damage": {
@@ -1156,8 +1246,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Fennblade_Drummer.png"
               },
               "damage": {
@@ -1181,8 +1271,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Runeshaper.png"
               },
               "damage": {
@@ -1206,8 +1296,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Scout.png"
               },
               "damage": {
@@ -1231,8 +1321,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Slugger.png"
               },
               "damage": {
@@ -1256,8 +1346,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/trollbloods/units/Warder.png"
               },
               "damage": {
@@ -1278,8 +1368,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/solos/Fellcaller.png"
         },
         "damage": {
@@ -1295,8 +1385,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/solos/Fennblade_Kithkar.png"
         },
         "damage": {
@@ -1313,8 +1403,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": null
         },
         "damage": {
@@ -1330,8 +1420,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/solos/Horthol.png"
         },
         "damage": {
@@ -1347,8 +1437,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/solos/Horthol_Dismount.png"
         },
         "damage": {
@@ -1364,9 +1454,26 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/solos/Janissa_Stonetide.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 8
+        }
+      },
+      "lanissa_luke": {
+        "name": "Lanissa Lucky Luke",
+        "fk_name": "",
+        "type": "solo",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
         },
         "damage": {
           "type": "warrior",
@@ -1381,8 +1488,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/solos/Stone_Scribe_Chronicler.png"
         },
         "damage": {
@@ -1400,8 +1507,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/solos/Whelp.png"
         },
         "damage": {
@@ -1417,8 +1524,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/solos/Skinner.png"
         },
         "damage": {
@@ -1434,8 +1541,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/solos/Champion_Hero.png"
         },
         "damage": {
@@ -1451,8 +1558,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/solos/Trollkin_Sorcerer.png"
         },
         "damage": {
@@ -1468,8 +1575,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/trollbloods/solos/Trollkin_Runebearer.png"
         },
         "damage": {

@@ -40,7 +40,7 @@
           "n": 18
         }
       },
-      "Haribo": {
+      "Bradigus": {
         "name": "Dragibus1 (Bradigus Thorle the Runecarver)",
         "fk_name": "",
         "type": "wardude",
@@ -414,6 +414,29 @@
           "6": [ "b", "b", "b", null, null, null ]
         }
       },
+      "Grumpy Satyr": {
+        "name": "DSK",
+        "fk_name": "",
+        "type": "beast",
+        "fury": 4,
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "beast",
+          "1": [ "b", "b", "b",  "b", null, null ],
+          "2": [ "b", "b", "b",  "b",  "b", null ],
+          "3": [ "b", "b", "b",  "b", null, null ],
+          "4": [ "b", "b", "b",  "b",  "b",  "b" ],
+          "5": [ "b", "b", "b",  "b", null, null ],
+          "6": [ "b", "b", "b",  "b",  "b", null ]
+        }
+      },
       "Gorax": {
         "name": "Gorax",
         "fk_name": "Gorax",
@@ -762,6 +785,64 @@
       }
     },
     "units": {
+      "Death wolves": {
+        "name": "Death Wolves",
+        "entries": {
+          "unit": {
+            "Doomy1": {
+              "name": "Puppy1",
+              "fk_name": "Death Wolves",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "Doomy2": {
+              "name": "Puppy2",
+              "fk_name": "",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "Doomy3": {
+              "name": "Puppy3",
+              "fk_name": "Death Wolves",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
+        }
+      },
       "Stoneward and Woldstalkers": {
         "name": "Stoneward and Woldstalkers",
         "entries": {

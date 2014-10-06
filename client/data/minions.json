@@ -883,6 +883,23 @@
           "n": 5
         }
       },
+      "Efaarit": {
+        "name": "Efaarit l'Effarant",
+        "fk_name": "Efaarit",
+        "type": "solo",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
       "Feralgeist": {
         "name": "Feralgeist",
         "fk_name": "Feralgeist",
@@ -962,6 +979,23 @@
           "x": 0,
           "y": 0,
           "link": "data/minions/solos/Lanyssa.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "Maximus": {
+        "name": "Maximus Baconius",
+        "fk_name": "Maximus",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
         },
         "damage": {
           "type": "warrior",
@@ -1051,6 +1085,42 @@
         "damage": {
           "type": "warrior",
           "n": 8
+        }
+      }
+    },
+    "bes": {
+      "meat tresher": {
+        "name": "Meat Tresher",
+        "fk_name": "Meat Tresher",
+        "type": "be",
+        "base": "huge",
+        "width": 90,
+        "height": 90,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 22
+        }
+      },
+      "sacral vault": {
+        "name": "Sacral Vault",
+        "fk_name": "Sacral Vault",
+        "type": "be",
+        "base": "huge",
+        "width": 90,
+        "height": 90,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 20
         }
       }
     }

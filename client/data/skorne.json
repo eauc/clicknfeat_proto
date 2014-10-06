@@ -245,6 +245,24 @@
           "n": 19
         }
       },        
+      "Xerxis2": {
+        "name": "Xerxis2 (Xerxis Fist of Halaak)",
+        "fk_name": "Xerxis Fist of Halaak",
+        "type": "wardude",
+        "fury": 5,
+        "base": "huge",
+        "width": 90,
+        "height": 90,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 20
+        }
+      },        
       "Zaal1": {
         "name": "Zaal1 (Supreme Aptimus Zaal & Kovaas)",
         "entries": {
@@ -336,6 +354,52 @@
           "4": [  "b",  "b",  "b",  "b",  "b", "b" ],
           "5": [  "b",  "b",  "b", null, null, null ],
           "6": [  "b",  "b",  "b",  "b",  null, null ]
+        }
+      },
+      "Aradus Sentinel": {
+        "name": "Aradus Sentinel",
+        "fk_name": "Aradus Sentinel",
+        "type": "beast",
+        "fury": 4,
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "beast",
+          "1": [  "b",  "b",  "b",  "b", null, null ],
+          "2": [  "b",  "b",  "b",  "b",  "b", null ],
+          "3": [  "b",  "b",  "b",  "b",  "b", null ],
+          "4": [  "b",  "b",  "b",  "b",  "b",  "b" ],
+          "5": [  "b",  "b",  "b",  "b", null, null ],
+          "6": [  "b",  "b",  "b",  "b",  "b", null ]
+        }
+      },
+      "Aradus Soldier": {
+        "name": "Aradus Soldier",
+        "fk_name": "Aradus Soldier",
+        "type": "beast",
+        "fury": 4,
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "beast",
+          "1": [  "b",  "b",  "b",  "b", null, null ],
+          "2": [  "b",  "b",  "b",  "b",  "b", null ],
+          "3": [  "b",  "b",  "b",  "b",  "b", null ],
+          "4": [  "b",  "b",  "b",  "b",  "b",  "b" ],
+          "5": [  "b",  "b",  "b",  "b", null, null ],
+          "6": [  "b",  "b",  "b",  "b",  "b", null ]
         }
       },
       "Basilisk Drake": {
@@ -708,6 +772,31 @@
       }
     },
     "units":{
+      "Critters": {
+        "name": "Critters",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "",
+              "ranges": [1, 4],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 10
+              }
+            }
+          }
+        }
+      },
       "Paingiver Bloodrunners": {
         "name": "Paingiver Bloodrunners",
         "entries": {
@@ -721,8 +810,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Bloodrunner.png"
               },
               "damage": {
@@ -746,8 +835,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Arcuarii.png"
               },
               "damage": {
@@ -771,8 +860,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Cetrati.png"
               },
               "damage": {
@@ -790,8 +879,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Vorkesh.png"
               },
               "damage": {
@@ -815,8 +904,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Incindiarii.png"
               },
               "damage": {
@@ -840,8 +929,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Immortals.png"
               },
               "damage": {
@@ -865,8 +954,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Beast_Handler.png"
               },
               "damage": {
@@ -890,8 +979,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Ferox.png"
               },
               "damage": {
@@ -915,9 +1004,34 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Karax.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      },
+      "Praetorian Keltarii": {
+        "name": "Praetorian Keltarii",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Praetorian Keltarii",
+              "ranges": [1, 6, 10],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
               },
               "damage": {
                 "type": "warrior",
@@ -940,8 +1054,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Swordsmen.png"
               },
               "damage": {
@@ -959,8 +1073,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Swordsmen_Officer.png"
               },
               "damage": {
@@ -976,8 +1090,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Swordsmen_Standard.png"
               },
               "damage": {
@@ -1001,8 +1115,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Nihilator.png"
               },
               "damage": {
@@ -1025,8 +1139,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Tyrant.png"
               },
               "damage": {
@@ -1042,8 +1156,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Standard_Bearer.png"
               },
               "damage": {
@@ -1066,8 +1180,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/FlayerCrew.png"
               },
               "damage": {
@@ -1083,8 +1197,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/FlayerCannon.png"
               },
               "damage": {
@@ -1107,8 +1221,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Venator_CatapultCrew1.png"
               },
               "damage": {
@@ -1124,8 +1238,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Venator_CatapultCrew2.png"
               },
               "damage": {
@@ -1141,8 +1255,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Venator_Catapult.png"
               },
               "damage": {
@@ -1166,8 +1280,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/Venator.png"
               },
               "damage": {
@@ -1185,8 +1299,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/VenatorOfficer.png"
               },
               "damage": {
@@ -1202,8 +1316,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/VenatorStandard.png"
               },
               "damage": {
@@ -1227,8 +1341,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/skorne/units/VenatorSlingers.png"
               },
               "damage": {
@@ -1249,8 +1363,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/skorne/solos/Agonizer.png"
         },
         "damage": {
@@ -1266,8 +1380,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/skorne/solos/Ancestral_Guardian.png"
         },
         "damage": {
@@ -1283,8 +1397,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/skorne/solos/Master_Tormentor.png"
         },
         "damage": {
@@ -1300,8 +1414,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/skorne/solos/Soulward.png"
         },
         "damage": {
@@ -1317,8 +1431,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/skorne/solos/Task_Master.png"
         },
         "damage": {
@@ -1334,8 +1448,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/skorne/solos/VoidSpirit.png",
           "incorporeal": "data/skorne/solos/VoidSpirit_Incorporeal.png"
         },
@@ -1352,8 +1466,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/skorne/solos/Willbreaker.png"
         },
         "damage": {
@@ -1369,8 +1483,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/skorne/solos/Marketh.png"
         },
         "damage": {
@@ -1386,8 +1500,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/skorne/solos/Hakaar.png"
         },
         "damage": {
@@ -1403,8 +1517,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/skorne/solos/Tyrant_Rhadheim.png"
         },
         "damage": {
@@ -1420,9 +1534,27 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/skorne/solos/Tyrant_Rhadheim_Dismount.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "Zaadesh": {
+        "name": "Tyrant Zaadesh",
+        "fk_name": "Tyrant Zaadesh",
+        "type": "wardude",
+        "fury": 4,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
         },
         "damage": {
           "type": "warrior",
