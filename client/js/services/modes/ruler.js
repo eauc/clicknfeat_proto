@@ -81,6 +81,7 @@ angular.module('vassalApp.services')
                 var dy = end_y - start_y;
                 var length = Math.sqrt(dx*dx + dy*dy);
                 var display_length = length;
+                scope.game.ruler.state.target_in_range = true;
                 if(scope.game.ruler.state.range > 0) {
                   scope.game.ruler.state.target_in_range =
                     display_length <= (scope.game.ruler.state.range*10);

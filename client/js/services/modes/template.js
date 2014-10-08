@@ -243,7 +243,8 @@ angular.module('vassalApp.services')
             if(scope.game.templates.active.type === 'wall') return;
             if(scope.game.ruler.state.active) {
               var target_model;
-              if(scope.game.ruler.state.target) {
+              if(scope.game.ruler.state.target &&
+                 scope.game.ruler.state.target_in_range) {
                 target_model = scope.game.models[scope.game.ruler.state.target];
               }
               var x = target_model ? target_model.state.x : scope.game.ruler.state.x2;
