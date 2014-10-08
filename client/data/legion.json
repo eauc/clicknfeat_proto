@@ -1245,7 +1245,7 @@
               "name": "Vessel",
               "fk_name": "Spawning Vessel",
               "type": "warrior",
-              "base": "large",
+              "base": "medium",
               "width": 60,
               "height": 60,
               "img": {
