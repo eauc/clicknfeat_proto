@@ -12,6 +12,13 @@ angular.module('vassalApp.controllers')
              $http) {
       console.log('init startCtrl');
 
+      var audio = document.getElementById('you-got-mail');
+      $scope.$on('user_chat', function(event, msg) {
+        console.log('user_chat', event, msg);
+        audio.currentTime = 0;
+        audio.play();
+      });
+
       $scope.doCreateGame = function() {
         $http.post('/api/games', { player1: $scope.user })
           .then(function(response) {

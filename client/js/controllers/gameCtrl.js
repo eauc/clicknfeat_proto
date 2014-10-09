@@ -24,9 +24,13 @@ angular.module('vassalApp.controllers')
              modes) {
       console.log('init gameCtrl');
 
+      var audio = document.getElementById('you-got-mail');
+
       $scope.new_game_chat = false;
       $scope.$on('game_chat', function(event, msg) {
         console.log('game_chat', event, msg);
+        audio.currentTime = 0;
+        audio.play();
         if($scope.menu_view !== 'main') $scope.new_game_chat = true;
       });
 
@@ -35,6 +39,8 @@ angular.module('vassalApp.controllers')
       $scope.$on('user_chat', function(event, msg) {
         console.log('user_chat', event, msg);
         $scope.user_chat = msg;
+        audio.currentTime = 0;
+        audio.play();
         if($scope.menu_view !== 'games') $scope.new_user_chat = true;
         if(last_chat_timeout) window.clearTimeout(last_chat_timeout);
         last_chat_timeout = window.setTimeout(function() {
