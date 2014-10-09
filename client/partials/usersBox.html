@@ -1,5 +1,7 @@
 <div ng-controller="usersBoxCtrl">
   <strong>Users online :</strong>
+  <button ng-click="selectAll()">Select All</button>
+  <button ng-click="clearSelection()">Clear Selection</button>
   <ul style="padding-left: 2em;">
     <li ng-repeat="u in users.list"
         ng-click="toggleSelection(u.id)"

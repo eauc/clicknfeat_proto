@@ -15,6 +15,19 @@ angular.module('vassalApp.controllers')
         if(!$scope.selection[id]) delete $scope.selection[id];
         $scope.selection_length = _.keys($scope.selection).length;
       };
+      $scope.selectAll = function() {
+        _.each($scope.users.list, function(user) {
+          if(user.id === $scope.user.id) return;
+          $scope.selection[user.id] = true;
+        });
+        $scope.selection_length = _.keys($scope.selection).length;
+      };
+      $scope.clearSelection = function() {
+        _.each($scope.selection, function(bool, id) {
+          delete $scope.selection[id];
+        });
+        $scope.selection_length = 0;
+      };
       $scope.doSelectionFromMsg = function(chat) {
         var ids = [chat.from].concat(chat.to);
         ids = _.without(ids, $scope.user.id);
