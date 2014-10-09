@@ -738,12 +738,12 @@
         },
         "damage": {
           "type": "beast",
-          "1": [ "b", "b", "b", null, null, null, null ],
-          "2": [ "b", "b", "b", "b", "b", null, null ],
+          "1": [ "b", "b", "b", "b", null, null, null ],
+          "2": [ "b", "b", "b", "b",  "b",  "b", null ],
           "3": [ "b", "b", "b", "b", null, null, null ],
-          "4": [ "b", "b", "b", "b", "b", "b", null ],
+          "4": [ "b", "b", "b", "b",  "b", null, null ],
           "5": [ "b", "b", "b", "b", null, null, null ],
-          "6": [ "b", "b", "b", "b", "b", "b", null ]
+          "6": [ "b", "b", "b", "b",  "b", null, null ]
         }
       }
     },

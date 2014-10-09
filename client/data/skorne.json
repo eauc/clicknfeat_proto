@@ -260,7 +260,7 @@
         },
         "damage": {
           "type": "warrior",
-          "n": 20
+          "n": 19
         }
       },        
       "Zaal1": {
@@ -371,11 +371,11 @@
         },
         "damage": {
           "type": "beast",
-          "1": [  "b",  "b",  "b",  "b", null, null ],
-          "2": [  "b",  "b",  "b",  "b",  "b", null ],
-          "3": [  "b",  "b",  "b",  "b",  "b", null ],
-          "4": [  "b",  "b",  "b",  "b",  "b",  "b" ],
-          "5": [  "b",  "b",  "b",  "b", null, null ],
+          "1": [  "b",  "b",  "b", null, null, null ],
+          "2": [  "b",  "b",  "b",  "b", null, null ],
+          "3": [  "b",  "b",  "b",  "b",  "b",  "b" ],
+          "4": [  "b",  "b",  "b",  "b",  "b",  "b", "b", "b" ],
+          "5": [  "b",  "b",  "b", null, null, null ],
           "6": [  "b",  "b",  "b",  "b",  "b", null ]
         }
       },
@@ -394,11 +394,11 @@
         },
         "damage": {
           "type": "beast",
-          "1": [  "b",  "b",  "b",  "b", null, null ],
-          "2": [  "b",  "b",  "b",  "b",  "b", null ],
-          "3": [  "b",  "b",  "b",  "b",  "b", null ],
-          "4": [  "b",  "b",  "b",  "b",  "b",  "b" ],
-          "5": [  "b",  "b",  "b",  "b", null, null ],
+          "1": [  "b",  "b",  "b", null, null, null ],
+          "2": [  "b",  "b",  "b",  "b", null, null ],
+          "3": [  "b",  "b",  "b",  "b",  "b",  "b" ],
+          "4": [  "b",  "b",  "b",  "b",  "b",  "b", "b", "b" ],
+          "5": [  "b",  "b",  "b", null, null, null ],
           "6": [  "b",  "b",  "b",  "b",  "b", null ]
         }
       },
@@ -609,6 +609,31 @@
           "6": [  "b",  "b",  "b",  "b",  "b", null ]
         }
       },
+      "Scarabs Pack": {
+        "name": "Scarabs Pack",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "",
+              "ranges": [1, 4],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 10
+              }
+            }
+          }
+        }
+      },
       "Tiberion": {
         "name": "Tiberion",
         "fk_name": "Tiberion",
@@ -772,31 +797,6 @@
       }
     },
     "units":{
-      "Critters": {
-        "name": "Critters",
-        "entries": {
-          "unit": {
-            "grunt": {
-              "name": "Leader and Grunts",
-              "fk_name": "",
-              "ranges": [1, 4],
-              "type": "warrior",
-              "base": "small",
-              "width": 60,
-              "height": 60,
-              "img": {
-                "x": 0,
-                "y": 0,
-                "link": ""
-              },
-              "damage": {
-                "type": "warrior",
-                "n": 10
-              }
-            }
-          }
-        }
-      },
       "Paingiver Bloodrunners": {
         "name": "Paingiver Bloodrunners",
         "entries": {

@@ -876,12 +876,12 @@
         } 
       },
       "highwaymen": {
-        "name": "Highwaymen",
+        "name": "Trollkin Highwaymen",
         "entries": {
           "unit": {
             "grunt": {
               "name": "Leader and Grunts",
-              "fk_name": "Highwaymen",
+              "fk_name": "Trollkin Highwaymen",
               "ranges": [1, 6, 10],
               "type": "warrior",
               "base": "medium",
@@ -900,13 +900,13 @@
           }
         } 
       },
-      "fireeaters": {
-        "name": "Fire Eaters",
+      "northkinfireeaters": {
+        "name": "Northkin Fire Eaters",
         "entries": {
           "unit": {
             "grunt": {
-              "name": "Grunts",
-              "fk_name": "Fire Eaters",
+              "name": "Leader & Grunt",
+              "fk_name": "Northkin Fire Eaters",
               "ranges": [1, 2],
               "type": "warrior",
               "base": "medium",
@@ -922,9 +922,9 @@
                 "n": 5
               }
             },
-            "leader": {
-              "name": "Leader",
-              "fk_name": "Fire Eaters",
+            "buddy": {
+              "name": "Buddy",
+              "fk_name": "Northkin Fire Eaters",
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -936,7 +936,7 @@
               },
               "damage": {
                 "type": "warrior",
-                "n": 1
+                "n": 5
               }
             }
           }
@@ -1360,6 +1360,23 @@
       }
     },
     "solos": {
+      "braylen": {
+        "name": "Braylen Wanderheart, trollkin outlaw",
+        "fk_name": "Braylen Wanderheart, trollkin outlaw",
+        "type": "solo",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 8
+        }
+      },
       "fell_caller_hero": {
         "name": "Fell Caller Hero",
         "fk_name": "Fell Caller Hero",
@@ -1457,23 +1474,6 @@
           "x": 0,
           "y": 0,
           "link": "data/trollbloods/solos/Janissa_Stonetide.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 8
-        }
-      },
-      "lanissa_luke": {
-        "name": "Lanissa Lucky Luke",
-        "fk_name": "",
-        "type": "solo",
-        "base": "medium",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": ""
         },
         "damage": {
           "type": "warrior",
