@@ -1424,6 +1424,9 @@
                   ng-click="menu_view = 'games'">Online</button>
           <button ng-click="doGoHome()">Home</button>
           <div ng-show="menu_view === 'main'">
+            <div style="border:1px solid black;max-height:125px;overflow-y:scroll;"
+                 ng-include="'partials/chatBox.html'">
+            </div>
             <div style="border:1px solid black;max-height:200px;overflow-y:scroll;"
                  ng-include="'partials/clockBox.html'">
             </div>
@@ -1431,7 +1434,7 @@
                  ng-include="'partials/toolsBox.html'">
             </div>
             <div style="border:1px solid black;max-height:125px;overflow-y:scroll;"
-                 ng-include="'partials/chatBox.html'">
+                 ng-include="'partials/diceBox.html'">
             </div>
             <div style="border:1px solid black;overflow-y:scroll;"
                  ng-show="game.selection.length === 1"

@@ -101,6 +101,22 @@ angular.module('vassalApp.services')
           replay_commands: [],
           new_commands: [],
           commands: [],
+          chat_commands: [],
+          newChat: function(chat_msg) {
+            var new_cmd = command('sendMsg', 'chat', chat_msg);
+            new_cmd.do_not_log = true;
+            new_cmd.user = user.name;
+            new_cmd.execute(this);
+
+            this.new_commands.push(new_cmd);
+            $http.post('/api/games/public/'+instance.public_id+'/chat', new_cmd)
+              .then(function(response) {
+                // console.log('send cmd success');
+              }, function(response) {
+                console.log('send chat cmd error');
+                console.log(response);
+              });
+          },
           newCommand: function(new_cmd) {
             new_cmd.user = user.name;
             new_cmd.execute(this);
@@ -209,6 +225,11 @@ angular.module('vassalApp.services')
               }
               this.new_commands.splice(index, 1);
               console.log('cmd udpate : validate new command');
+              if(new_cmd.type === 'sendMsg' &&
+                 new_cmd.msg_type === 'chat') {
+                instance.chat_commands.push(new_cmd);
+                return;
+              }
               return;
             }
             find_cmd = _.findWhere(this.replay_commands, { stamp: new_cmd.stamp });
@@ -221,6 +242,11 @@ angular.module('vassalApp.services')
               return;
             }
             console.log('cmd udpate : execute new command');
+            if(new_cmd.type === 'sendMsg' &&
+               new_cmd.msg_type === 'chat') {
+              instance.chat_commands.push(new_cmd);
+              return;
+            }
             new_cmd.redo(this);
             if(!new_cmd.do_not_log) {
               this.commands.push(new_cmd);

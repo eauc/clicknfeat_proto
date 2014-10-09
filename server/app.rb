@@ -127,6 +127,16 @@ class VassalApp < Sinatra::Base
     status 200
   end
 
+  post "/api/games/public/:game_id/chat" do
+    game_id = params[:game_id].to_i
+    return status 404 unless @games.public_exist? game_id
+    game = @games.public(game_id)
+
+    data = JSON.parse request.body.read
+    game.addCommand data
+    status 200
+  end
+
   get "/api/users" do
     content_type 'text/json'
     @users.list.to_json
