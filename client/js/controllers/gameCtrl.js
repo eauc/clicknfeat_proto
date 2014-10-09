@@ -24,6 +24,31 @@ angular.module('vassalApp.controllers')
              modes) {
       console.log('init gameCtrl');
 
+      $scope.new_game_chat = false;
+      $scope.$on('game_chat', function(event, msg) {
+        console.log('game_chat', event, msg);
+        if($scope.menu_view !== 'main') $scope.new_game_chat = true;
+      });
+
+      $scope.new_user_chat = false;
+      var last_chat_timeout;
+      $scope.$on('user_chat', function(event, msg) {
+        console.log('user_chat', event, msg);
+        $scope.user_chat = msg;
+        if($scope.menu_view !== 'games') $scope.new_user_chat = true;
+        if(last_chat_timeout) window.clearTimeout(last_chat_timeout);
+        last_chat_timeout = window.setTimeout(function() {
+          $scope.user_chat = null;
+          last_chat_timeout = null;
+          $scope.$apply();
+        }, 2000);
+      });
+      $scope.setMenuView = function(view) {
+        $scope.menu_view = view;
+        if('games' === view) $scope.new_user_chat = false;
+        if('main' === view) $scope.new_game_chat = false;
+      };
+
       $scope.modes = modes;
 
       $scope.auras = {
@@ -109,7 +134,7 @@ angular.module('vassalApp.controllers')
       if($stateParams.visibility !== 'private' &&
          $stateParams.visibility !== 'public') $state.go('start');
 
-      $scope.menu_view = $stateParams.visibility === 'public' ? 'games' : 'main';
+      $scope.menu_view = 'main';
 
       factions.then(function() {
         return $http.get('/api/games/'+

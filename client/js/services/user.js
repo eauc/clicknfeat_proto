@@ -56,7 +56,6 @@ angular.module('vassalApp.services')
       };
 
       var user_source;
-      var last_chat_timeout;
       function openSource() {
         if(user_source) user_source.close();
         var url = '/api/users/'+user.id+'/subscribe';
@@ -70,13 +69,7 @@ angular.module('vassalApp.services')
           var data = JSON.parse(e.data);
           user.chat.push(data);
           if(data.from !== user.id) {
-            user.last_chat = data;
-            if(last_chat_timeout) window.clearTimeout(last_chat_timeout);
-            last_chat_timeout = window.setTimeout(function() {
-              user.last_chat = null;
-              last_chat_timeout = null;
-              $rootScope.$apply();
-            }, 2000);
+            $rootScope.$broadcast('user_chat', data);
           }
           $rootScope.$apply();
         });

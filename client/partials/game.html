@@ -1398,30 +1398,30 @@
           <strong>Player1 :</strong> {{game.player1.name}}
           <strong>Player2 :</strong> {{game.player2.name}}<br />
           <button ng-style="{
-                  'background-color': menu_view === 'main' ? '#6F6' : 'none'
+                  'background-color': menu_view === 'main' ? '#6F6' : (new_game_chat ? '#F6F' : 'none')
                   }"
-                  ng-click="menu_view = 'main'">Main</button>
+                  ng-click="setMenuView('main')">Main</button>
           <button ng-style="{
                   'background-color': menu_view === 'units' ? '#6F6' : 'none'
                   }"
-                  ng-click="menu_view = 'units'">Units</button>
+                  ng-click="setMenuView('units')">Units</button>
           <button ng-show="game.id"
                   ng-style="{
                   'background-color': menu_view === 'models' ? '#6F6' : 'none'
                   }"
-                  ng-click="menu_view = 'models'">Manage Models</button>
+                  ng-click="setMenuView('models')">Manage Models</button>
           <button ng-style="{
                   'background-color': menu_view === 'setup' ? '#6F6' : 'none'
                   }"
-                  ng-click="menu_view = 'setup'">Setup</button>
+                  ng-click="setMenuView('setup')">Setup</button>
           <button ng-style="{
                   'background-color': menu_view === 'layers' ? '#6F6' : 'none'
                   }"
-                  ng-click="menu_view = 'layers'">Layers</button>
+                  ng-click="setMenuView('layers')">Layers</button>
           <button ng-style="{
-                  'background-color': menu_view === 'games' ? '#6F6' : 'none'
+                  'background-color': menu_view === 'games' ? '#6F6' : (new_user_chat ? '#F6F' : 'none')
                   }"
-                  ng-click="menu_view = 'games'">Online</button>
+                  ng-click="setMenuView('games')">Online</button>
           <button ng-click="doGoHome()">Home</button>
           <div ng-show="menu_view === 'main'">
             <div style="border:1px solid black;max-height:125px;overflow-y:scroll;"
@@ -1510,9 +1510,9 @@
        background-color: #CCF;
        padding: 2px 3em;
        "
-       ng-show="user.last_chat"
+       ng-show="user_chat"
        >
-      {{users.list[user.last_chat.from].name}} &#8594;
-      {{user.last_chat.text}}
+      {{users.list[user_chat.from].name}} &#8594;
+      {{user_chat.text}}
   </div>
 </div>

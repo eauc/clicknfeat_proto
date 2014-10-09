@@ -245,6 +245,7 @@ angular.module('vassalApp.services')
             if(new_cmd.type === 'sendMsg' &&
                new_cmd.msg_type === 'chat') {
               instance.chat_commands.push(new_cmd);
+              $rootScope.$broadcast('game_chat', new_cmd);
               return;
             }
             new_cmd.redo(this);
