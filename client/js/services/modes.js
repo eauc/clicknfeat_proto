@@ -18,6 +18,8 @@ angular.module('vassalApp.services')
     'template_origin_mode',
     'template_target_mode',
     'los_mode',
+    'los_origin_mode',
+    'los_target_mode',
     'los_drag_mode',
     'ruler_mode',
     'ruler_drag_mode',
@@ -39,6 +41,8 @@ angular.module('vassalApp.services')
              template_origin_mode,
              template_target_mode,
              los_mode,
+             los_origin_mode,
+             los_target_mode,
              los_drag_mode,
              ruler_mode,
              ruler_drag_mode,
@@ -64,6 +68,8 @@ angular.module('vassalApp.services')
       modes['template_origin'] = template_origin_mode(modes, common);
       modes['template_target'] = template_target_mode(modes, common);
       modes['los'] = los_mode(modes, common);
+      modes['los_origin'] = los_origin_mode(modes, common);
+      modes['los_target'] = los_target_mode(modes, common);
       modes['los_drag'] = los_drag_mode(modes, common);
       modes['ruler'] = ruler_mode(modes, common);
       modes['ruler_drag'] = ruler_drag_mode(modes, common);

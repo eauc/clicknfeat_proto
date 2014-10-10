@@ -1,12 +1,39 @@
 <div>
   <strong>Line of Sight</strong>
-  <!-- <ul style="
-  margin:0px;
-  padding:0px;
-  list-style-type:none;
-  "
-  >
-  <li>Trace Line of Sight (Drag on board)</li>
-  <li><button ng-click="sendKey('Shift L', $event)">Exit</button> (Shift + 'L')</li>
-  </ul> -->
+  <table style="border-collapse:collapse;">
+    <tr>
+      <td ng-click="command_sub='set'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-style="{
+                'background-color': command_sub==='set' ? '#0F0' : none
+                }"
+                >Set<br />&#8594;</button>
+      </td>
+      <td ng-show="command_sub==='set'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('O')"
+                ng-click="sendKey('O', $event)">Set Origin</button>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td ng-show="command_sub==='set'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('T')"
+                ng-click="sendKey('T', $event)">Set Target</button>
+      </td>
+    </tr>
+  </table>
 </div>

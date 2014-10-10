@@ -15,6 +15,12 @@ angular.module('vassalApp.services')
               scope.game.newCommand(command('onLos', 'setActive', false));
             }
           },
+          'O': function(scope) {
+            modes.goTo('los_origin', scope);
+          },
+          'T': function(scope) {
+            modes.goTo('los_target', scope);
+          },
           'Shift L': function(scope) {
             modes.goTo('default', scope);
           },
@@ -40,6 +46,46 @@ angular.module('vassalApp.services')
           },
         });
         return los_mode;
+      };
+    }
+  ])
+  .factory('los_origin_mode', [
+    'command',
+    function(command) {
+      return function(modes, common) {
+        var los_origin_mode = _.deepCopy(common);
+        _.deepExtend(los_origin_mode, {
+          name: 'LoS Origin',
+          group: 'LoS',
+          template: 'los_origin.html',
+          'Click': function(scope, event, drag) {
+            if(drag.event === 'Model') {
+              scope.game.newCommand(command('onLos', 'setOrigin', drag.target));
+              modes.goTo('los', scope);
+            }
+          },
+        });
+        return los_origin_mode;
+      };
+    }
+  ])
+  .factory('los_target_mode', [
+    'command',
+    function(command) {
+      return function(modes, common) {
+        var los_target_mode = _.deepCopy(common);
+        _.deepExtend(los_target_mode, {
+          name: 'LoS Target',
+          group: 'LoS',
+          template: 'los_target.html',
+          'Click': function(scope, event, drag) {
+            if(drag.event === 'Model') {
+              scope.game.newCommand(command('onLos', 'setTarget', drag.target));
+              modes.goTo('los', scope);
+            }
+          },
+        });
+        return los_target_mode;
       };
     }
   ])
