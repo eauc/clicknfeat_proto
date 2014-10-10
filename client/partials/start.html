@@ -70,7 +70,13 @@
         <button type="submit">{{ user.id ? 'Change' : 'Create' }}</button>
       </fieldset>
     </form>
-    <div ng-include="'/partials/usersBox.html'">
+    <div ng-include="'/partials/usersBox.html'"
+         style="
+         height:300px;
+         width:400px;
+         border:1px solid black;
+         overflow-y: scroll;
+         ">
     </div>
   </div>
   <div style="
