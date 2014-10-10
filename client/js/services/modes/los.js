@@ -11,8 +11,7 @@ angular.module('vassalApp.services')
           group: 'LoS',
           template: 'los.html',
           leave: function(scope, next) {
-            if(next.group !== 'LoS' &&
-               scope.game.los.state.active) {
+            if(next.group !== 'LoS') {
               scope.game.newCommand(command('onLos', 'setActive', false));
             }
           },

@@ -417,18 +417,9 @@ angular.module('vassalApp.services')
             },
             setActive: function(active) {
               this.state.active = active;
+              this.state.model_active = active;
             },
             startDraging: function(x, y) {
-              delete this.state.origin;
-              delete this.state.target;
-              delete this.state.ot1_x1;
-              delete this.state.ot1_y1;
-              delete this.state.ot1_x2;
-              delete this.state.ot1_y2;
-              delete this.state.ot2_x1;
-              delete this.state.ot2_y1;
-              delete this.state.ot2_x2;
-              delete this.state.ot2_y2;
               this.setStart(x, y);
               this.state.active = true;
             },
@@ -448,14 +439,6 @@ angular.module('vassalApp.services')
             setOrigin: function(model) {
               this.state.origin = model.state.id;
               delete this.state.target;
-              delete this.state.ot1_x1;
-              delete this.state.ot1_y1;
-              delete this.state.ot1_x2;
-              delete this.state.ot1_y2;
-              delete this.state.ot2_x1;
-              delete this.state.ot2_y1;
-              delete this.state.ot2_x2;
-              delete this.state.ot2_y2;
             },
             setTarget: function(model) {
               this.state.target = model.state.id;
@@ -697,9 +680,9 @@ angular.module('vassalApp.services')
                     x4: l2_x2, y4: l2_y2
                   });
                 });
-                console.log(instance.los.state.darkness);
-                console.log(instance.los.state.shadows);
-                this.state.active = true;
+                // console.log(instance.los.state.darkness);
+                // console.log(instance.los.state.shadows);
+                this.state.model_active = true;
               }
             }
           },

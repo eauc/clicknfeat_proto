@@ -532,11 +532,15 @@
                     filter: url(#aura-filter);
                     "
                     />
-            <g style="
+            <g ng-show="
+               game.los.state.model_active &&
+               game.los.state.origin &&
+               game.los.state.target
+               "
+               style="
                clip-path: url(#los-clip);
                ">
-              <polygon ng-show="game.los.state.active"
-                       points="
+              <polygon points="
                        {{game.los.state.ot1_x1}},{{game.los.state.ot1_y1}}
                        {{game.los.state.ot1_x2}},{{game.los.state.ot1_y2}}
                        {{game.los.state.ot2_x2}},{{game.los.state.ot2_y2}}
@@ -549,8 +553,7 @@
                        stroke:#3F3;
                        stroke-width:0.5px
                        " />
-              <polygon ng-show="game.los.state.active"
-                       ng-repeat="sh in game.los.state.shadows"
+              <polygon ng-repeat="sh in game.los.state.shadows"
                        points="
                        {{sh.x1}},{{sh.y1}}
                        {{sh.x2}},{{sh.y2}}
@@ -564,8 +567,7 @@
                        stroke:#666;
                        stroke-width:0.5px
                        " />
-              <polygon ng-show="game.los.state.active"
-                       ng-repeat="sh in game.los.state.darkness"
+              <polygon ng-repeat="sh in game.los.state.darkness"
                        points="
                        {{sh.x1}},{{sh.y1}}
                        {{sh.x2}},{{sh.y2}}
