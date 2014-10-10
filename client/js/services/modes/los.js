@@ -33,6 +33,10 @@ angular.module('vassalApp.services')
             {
             case 'Model': 
               {
+                if(event.ctrlKey && event.shiftKey) {
+                  scope.game.newCommand(command('onLos', 'toggleInterveningModel', drag.target));
+                  return;
+                }
                 if(event.ctrlKey) {
                   scope.game.newCommand(command('onLos', 'setOrigin', drag.target));
                   return;

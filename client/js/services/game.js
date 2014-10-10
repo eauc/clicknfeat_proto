@@ -442,249 +442,279 @@ angular.module('vassalApp.services')
             },
             setTarget: function(model) {
               this.state.target = model.state.id;
-              if(this.state.origin) {
-                var x1 = instance.models[this.state.origin].state.x;
-                var y1 = instance.models[this.state.origin].state.y;
-                var r1 = instance.models[this.state.origin].info.r;
-                var x2 = instance.models[this.state.target].state.x;
-                var y2 = instance.models[this.state.target].state.y;
-                var r2 = instance.models[this.state.target].info.r;
-                var dx = x2 - x1;
-                var dy = y2 - y1;
-                var rad = Math.atan2(dx, -dy);
-                var dist = Math.sqrt(dx*dx + dy*dy);
-                var dr = Math.abs(r1 - r2);
-                var drad = Math.asin(dr/dist) * (r1 >= r2 ? 1 : -1);
-                this.state.ot1_x1 = x1 + Math.sin(rad+Math.PI/2-drad) * r1;
-                this.state.ot1_y1 = y1 - Math.cos(rad+Math.PI/2-drad) * r1;
-                this.state.ot1_x2 = x2 + Math.sin(rad+Math.PI/2-drad) * r2;
-                this.state.ot1_y2 = y2 - Math.cos(rad+Math.PI/2-drad) * r2;
-                this.state.ot2_x1 = x1 + Math.sin(rad-Math.PI/2+drad) * r1;
-                this.state.ot2_y1 = y1 - Math.cos(rad-Math.PI/2+drad) * r1;
-                this.state.ot2_x2 = x2 + Math.sin(rad-Math.PI/2+drad) * r2;
-                this.state.ot2_y2 = y2 - Math.cos(rad-Math.PI/2+drad) * r2;
-                var dx1 = this.state.ot1_x2 - this.state.ot1_x1;
-                var dy1 = this.state.ot1_y2 - this.state.ot1_y1;
-                var d1 = Math.sqrt(dx1*dx1 + dy1*dy1);
-                var u1_x = dx1 / d1;
-                var u1_y = dy1 / d1;
-                // console.log(d1);
-                var dx2 = this.state.ot2_x2 - this.state.ot2_x1;
-                var dy2 = this.state.ot2_y2 - this.state.ot2_y1;
-                var d2 = Math.sqrt(dx2*dx2 + dy2*dy2);
-                var u2_x = dx2 / d2;
-                var u2_y = dy2 / d2;
-                // console.log(d2);
-                var intervs = _.filter(instance.models, function(model) {
-                  if(instance.los.state.target === model.state.id ||
-                     instance.los.state.origin === model.state.id ||
-                     r2 > model.info.r) return false;
-                  var m_dx = model.state.x - instance.los.state.ot1_x1;
-                  var m_dy = model.state.y - instance.los.state.ot1_y1;
-                  var vect_prod = u1_y * m_dx - u1_x * m_dy;
-                  var scal_prod = u1_x * m_dx + u1_y * m_dy;
-                  // console.log(model.info.name, model.info.r, vect_prod, scal_prod);
-                  var m_l1 = (vect_prod + model.info.r >= 0 &&
-                              scal_prod + model.info.r >= 0 &&
-                              scal_prod - model.info.r <= d1);
+              if(!this.state.origin) return;
+              var x1 = instance.models[this.state.origin].state.x;
+              var y1 = instance.models[this.state.origin].state.y;
+              var r1 = instance.models[this.state.origin].info.r;
+              var x2 = instance.models[this.state.target].state.x;
+              var y2 = instance.models[this.state.target].state.y;
+              var r2 = instance.models[this.state.target].info.r;
+              var dx = x2 - x1;
+              var dy = y2 - y1;
+              var rad = Math.atan2(dx, -dy);
+              var dist = Math.sqrt(dx*dx + dy*dy);
+              var dr = Math.abs(r1 - r2);
+              var drad = Math.asin(dr/dist) * (r1 >= r2 ? 1 : -1);
+              this.state.ot1_x1 = x1 + Math.sin(rad+Math.PI/2-drad) * r1;
+              this.state.ot1_y1 = y1 - Math.cos(rad+Math.PI/2-drad) * r1;
+              this.state.ot1_x2 = x2 + Math.sin(rad+Math.PI/2-drad) * r2;
+              this.state.ot1_y2 = y2 - Math.cos(rad+Math.PI/2-drad) * r2;
+              this.state.ot2_x1 = x1 + Math.sin(rad-Math.PI/2+drad) * r1;
+              this.state.ot2_y1 = y1 - Math.cos(rad-Math.PI/2+drad) * r1;
+              this.state.ot2_x2 = x2 + Math.sin(rad-Math.PI/2+drad) * r2;
+              this.state.ot2_y2 = y2 - Math.cos(rad-Math.PI/2+drad) * r2;
+              var dx1 = this.state.ot1_x2 - this.state.ot1_x1;
+              var dy1 = this.state.ot1_y2 - this.state.ot1_y1;
+              var d1 = Math.sqrt(dx1*dx1 + dy1*dy1);
+              var u1_x = dx1 / d1;
+              var u1_y = dy1 / d1;
+              // console.log(d1);
+              var dx2 = this.state.ot2_x2 - this.state.ot2_x1;
+              var dy2 = this.state.ot2_y2 - this.state.ot2_y1;
+              var d2 = Math.sqrt(dx2*dx2 + dy2*dy2);
+              var u2_x = dx2 / d2;
+              var u2_y = dy2 / d2;
+              // console.log(d2);
+              this.state.intervs = _.filter(instance.models, function(model) {
+                if(instance.los.state.target === model.state.id ||
+                   instance.los.state.origin === model.state.id ||
+                   r2 > model.info.r) return false;
+                var m_dx = model.state.x - instance.los.state.ot1_x1;
+                var m_dy = model.state.y - instance.los.state.ot1_y1;
+                var vect_prod = u1_y * m_dx - u1_x * m_dy;
+                var scal_prod = u1_x * m_dx + u1_y * m_dy;
+                // console.log(model.info.name, model.info.r, vect_prod, scal_prod);
+                var m_l1 = (vect_prod + model.info.r >= 0 &&
+                            scal_prod + model.info.r >= 0 &&
+                            scal_prod - model.info.r <= d1);
 
-                  m_dx = model.state.x - instance.los.state.ot2_x1;
-                  m_dy = model.state.y - instance.los.state.ot2_y1;
-                  vect_prod = u2_y * m_dx - u2_x * m_dy;
-                  scal_prod = u2_x * m_dx + u2_y * m_dy;
-                  // console.log(model.info.name, model.info.r, vect_prod, scal_prod);
-                  var m_l2 = (vect_prod - model.info.r <= 0 &&
-                              scal_prod + model.info.r >= 0 &&
-                              scal_prod - model.info.r <= d2);
-                  return m_l1 && m_l2;
+                m_dx = model.state.x - instance.los.state.ot2_x1;
+                m_dy = model.state.y - instance.los.state.ot2_y1;
+                vect_prod = u2_y * m_dx - u2_x * m_dy;
+                scal_prod = u2_x * m_dx + u2_y * m_dy;
+                // console.log(model.info.name, model.info.r, vect_prod, scal_prod);
+                var m_l2 = (vect_prod - model.info.r <= 0 &&
+                            scal_prod + model.info.r >= 0 &&
+                            scal_prod - model.info.r <= d2);
+                return m_l1 && m_l2;
+              }).map(function(model) { return model.state.id; });
+              // console.log(this.state.intervs);
+              this.computeLos();
+            },
+            toggleInterveningModel: function(model) {
+              if(_.find(this.state.intervs, function(i) { return i === model.state.id; })) {
+                this.state.intervs = _.without(this.state.intervs, model.state.id);
+              }
+              else {
+                this.state.intervs.push(model.state.id);
+              }
+              this.computeLos();
+            },
+            computeLos: function() {
+              var x1 = instance.models[this.state.origin].state.x;
+              var y1 = instance.models[this.state.origin].state.y;
+              var r1 = instance.models[this.state.origin].info.r;
+              var x2 = instance.models[this.state.target].state.x;
+              var y2 = instance.models[this.state.target].state.y;
+              var r2 = instance.models[this.state.target].info.r;
+              var dx = x2 - x1;
+              var dy = y2 - y1;
+              var rad = Math.atan2(dx, -dy);
+              var dist = Math.sqrt(dx*dx + dy*dy);
+              var dr = Math.abs(r1 - r2);
+              var drad = Math.asin(dr/dist) * (r1 >= r2 ? 1 : -1);
+
+              instance.los.state.darkness = instance.los.state.darkness || [];
+              instance.los.state.darkness.length = 0;
+              instance.los.state.shadows = instance.los.state.shadows || [];
+              instance.los.state.shadows.length = 0;
+              _.each(this.state.intervs, function(id) {
+                var model = instance.models[id];
+                if(!model) return;
+                console.log(model.info.name);
+
+                x2 = model.state.x;
+                y2 = model.state.y;
+                r2 = model.info.r;
+                dx = x2 - x1;
+                dy = y2 - y1;
+                rad = Math.atan2(dx, -dy);
+                dist = Math.sqrt(dx*dx + dy*dy);
+                dr = Math.abs(r1 - r2);
+                drad = Math.asin(dr/dist) * (r1 >= r2 ? 1 : -1);
+
+                var l1_x1, l1_x2;
+                var l1_y1, l1_y2;
+                var l1_dx, l1_dy, l1_d;
+                var l1_ux, l1_uy;
+                l1_x1 = x1 + Math.sin(rad+Math.PI/2-drad) * r1;
+                l1_y1 = y1 - Math.cos(rad+Math.PI/2-drad) * r1;
+                l1_x2 = x2 + Math.sin(rad+Math.PI/2-drad) * r2;
+                l1_y2 = y2 - Math.cos(rad+Math.PI/2-drad) * r2;
+                l1_dx = l1_x2 - l1_x1;
+                l1_dy = l1_y2 - l1_y1;
+                l1_d = Math.sqrt(l1_dx*l1_dx + l1_dy*l1_dy);
+                l1_ux = l1_dx / l1_d;
+                l1_uy = l1_dy / l1_d;
+
+                var l2_x1, l2_y1;
+                var l2_x2, l2_y2;
+                var l2_dx, l2_dy, l2_d;
+                var l2_ux, l2_uy;
+                l2_x1 = x1 + Math.sin(rad-Math.PI/2+drad) * r1;
+                l2_y1 = y1 - Math.cos(rad-Math.PI/2+drad) * r1;
+                l2_x2 = x2 + Math.sin(rad-Math.PI/2+drad) * r2;
+                l2_y2 = y2 - Math.cos(rad-Math.PI/2+drad) * r2;
+                l2_dx = l2_x2 - l2_x1;
+                l2_dy = l2_y2 - l2_y1;
+                l2_d = Math.sqrt(l2_dx*l2_dx + l2_dy*l2_dy);
+                l2_ux = l2_dx / l2_d;
+                l2_uy = l2_dy / l2_d;
+
+                var l1_x3, l1_y3;
+                var l2_x3, l2_y3;
+                var vector_product = l2_ux * l1_uy - l2_uy * l1_ux;
+                var l12_dx, l12_dy, l12_d;
+                var l12_ux, l12_uy;
+                var alpha, beta;
+                var a, b;
+                if(vector_product < 0) {
+                  l12_dx = l2_x2 - l1_x2;
+                  l12_dy = l2_y2 - l1_y2;
+                  l12_d = Math.sqrt(l12_dx*l12_dx + l12_dy*l12_dy);
+                  l12_ux = l12_dx / l12_d;
+                  l12_uy = l12_dy / l12_d;
+                  alpha = Math.acos(l12_ux * l1_ux + l12_uy * l1_uy);
+                  beta = Math.acos(-l12_ux * l2_ux - l12_uy * l2_uy);
+                  a = l12_d * Math.sin(alpha) / Math.sin(alpha+beta);
+                  b = l12_d * Math.sin(beta) / Math.sin(alpha+beta);
+                  a = Math.min(800, a);
+                  b = Math.min(800, b);
+                  l1_x3 = l1_x2 + l1_ux * b;
+                  l1_y3 = l1_y2 + l1_uy * b;
+                  l2_x3 = l2_x2 + l2_ux * a;
+                  l2_y3 = l2_y2 + l2_uy * a;
+                }
+                else {
+                  l1_x3 = l1_x2 + l1_ux * 800;
+                  l1_y3 = l1_y2 + l1_uy * 800;
+                  l2_x3 = l2_x2 + l2_ux * 800;
+                  l2_y3 = l2_y2 + l2_uy * 800;
+                }
+                instance.los.state.darkness.push({
+                  x1: l1_x2, y1: l1_y2,
+                  x2: l1_x3, y2: l1_y3,
+                  x3: l2_x3, y3: l2_y3,
+                  x4: l2_x2, y4: l2_y2
                 });
-                // console.log(intervs);
-                instance.los.state.darkness = instance.los.state.darkness || [];
-                instance.los.state.darkness.length = 0;
-                instance.los.state.shadows = instance.los.state.shadows || [];
-                instance.los.state.shadows.length = 0;
-                _.each(intervs, function(model) {
-                  console.log(model.info.name);
 
-                  x2 = model.state.x;
-                  y2 = model.state.y;
-                  r2 = model.info.r;
-                  dx = x2 - x1;
-                  dy = y2 - y1;
-                  rad = Math.atan2(dx, -dy);
-                  dist = Math.sqrt(dx*dx + dy*dy);
-                  dr = Math.abs(r1 - r2);
-                  drad = Math.asin(dr/dist) * (r1 >= r2 ? 1 : -1);
+                var rad_inf = rad-Math.PI/2+drad;
+                var rad_sup = rad+Math.PI/2-drad;
+                var rad_inc = (rad_sup - rad_inf) / 180;
+                var ray_orig, ray_interv;
+                var ray_rad, ray_drad;
+                var ray_dx, ray_dy, ray_d;
 
-                  var l1_x1, l1_x2;
-                  var l1_y1, l1_y2;
-                  var l1_dx, l1_dy, l1_d;
-                  var l1_ux, l1_uy;
-                  l1_x1 = x1 + Math.sin(rad+Math.PI/2-drad) * r1;
-                  l1_y1 = y1 - Math.cos(rad+Math.PI/2-drad) * r1;
-                  l1_x2 = x2 + Math.sin(rad+Math.PI/2-drad) * r2;
-                  l1_y2 = y2 - Math.cos(rad+Math.PI/2-drad) * r2;
+                for(ray_orig = rad_sup ; ray_orig > rad_inf ; ray_orig -= rad_inc) {
+                  l1_x1 = x1 + Math.sin(ray_orig) * r1;
+                  l1_y1 = y1 - Math.cos(ray_orig) * r1;
+                  ray_dx = model.state.x - l1_x1;
+                  ray_dy = model.state.y - l1_y1;
+                  ray_d = Math.sqrt(ray_dx*ray_dx + ray_dy*ray_dy);
+                  ray_rad = Math.atan2(ray_dx, -ray_dy);
+                  ray_drad = Math.acos(r2 / ray_d);
+                  l1_x2 = x2 + Math.sin(ray_rad+Math.PI-ray_drad) * r2;
+                  l1_y2 = y2 - Math.cos(ray_rad+Math.PI-ray_drad) * r2;
+
                   l1_dx = l1_x2 - l1_x1;
                   l1_dy = l1_y2 - l1_y1;
                   l1_d = Math.sqrt(l1_dx*l1_dx + l1_dy*l1_dy);
                   l1_ux = l1_dx / l1_d;
                   l1_uy = l1_dy / l1_d;
 
-                  var l2_x1, l2_y1;
-                  var l2_x2, l2_y2;
-                  var l2_dx, l2_dy, l2_d;
-                  var l2_ux, l2_uy;
-                  l2_x1 = x1 + Math.sin(rad-Math.PI/2+drad) * r1;
-                  l2_y1 = y1 - Math.cos(rad-Math.PI/2+drad) * r1;
-                  l2_x2 = x2 + Math.sin(rad-Math.PI/2+drad) * r2;
-                  l2_y2 = y2 - Math.cos(rad-Math.PI/2+drad) * r2;
+                  ray_interv = false;
+                  _.each(instance.los.state.intervs, function(id) {
+                    var other = instance.models[id];
+                    if(!other) return;
+                    if(model.state.id === other.state.id) return;
+                    var m_dx = other.state.x - l1_x1;
+                    var m_dy = other.state.y - l1_y1;
+                    var vect_prod = l1_uy * m_dx - l1_ux * m_dy;
+                    var scal_prod = l1_ux * m_dx + l1_uy * m_dy;
+                    ray_interv = ray_interv || 
+                      (Math.abs(vect_prod) < other.info.r &&
+                       scal_prod + other.info.r >= 0 &&
+                       scal_prod - other.info.r <= l1_d);
+                  });
+                  if(!ray_interv) break;
+                }
+                for(ray_orig = rad_inf ; ray_orig < rad_sup ; ray_orig += rad_inc) {
+                  l2_x1 = x1 + Math.sin(ray_orig) * r1;
+                  l2_y1 = y1 - Math.cos(ray_orig) * r1;
+                  ray_dx = model.state.x - l2_x1;
+                  ray_dy = model.state.y - l2_y1;
+                  ray_d = Math.sqrt(ray_dx*ray_dx + ray_dy*ray_dy);
+                  ray_rad = Math.atan2(ray_dx, -ray_dy);
+                  ray_drad = Math.acos(r2 / ray_d);
+                  l2_x2 = x2 + Math.sin(ray_rad-Math.PI+ray_drad) * r2;
+                  l2_y2 = y2 - Math.cos(ray_rad-Math.PI+ray_drad) * r2;
+
                   l2_dx = l2_x2 - l2_x1;
                   l2_dy = l2_y2 - l2_y1;
                   l2_d = Math.sqrt(l2_dx*l2_dx + l2_dy*l2_dy);
                   l2_ux = l2_dx / l2_d;
                   l2_uy = l2_dy / l2_d;
 
-                  var l1_x3, l1_y3;
-                  var l2_x3, l2_y3;
-                  var vector_product = l2_ux * l1_uy - l2_uy * l1_ux;
-                  var l12_dx, l12_dy, l12_d;
-                  var l12_ux, l12_uy;
-                  var alpha, beta;
-                  var a, b;
-                  if(vector_product < 0) {
-                    l12_dx = l2_x2 - l1_x2;
-                    l12_dy = l2_y2 - l1_y2;
-                    l12_d = Math.sqrt(l12_dx*l12_dx + l12_dy*l12_dy);
-                    l12_ux = l12_dx / l12_d;
-                    l12_uy = l12_dy / l12_d;
-                    alpha = Math.acos(l12_ux * l1_ux + l12_uy * l1_uy);
-                    beta = Math.acos(-l12_ux * l2_ux - l12_uy * l2_uy);
-                    a = l12_d * Math.sin(alpha) / Math.sin(alpha+beta);
-                    b = l12_d * Math.sin(beta) / Math.sin(alpha+beta);
-                    a = Math.min(800, a);
-                    b = Math.min(800, b);
-                    l1_x3 = l1_x2 + l1_ux * b;
-                    l1_y3 = l1_y2 + l1_uy * b;
-                    l2_x3 = l2_x2 + l2_ux * a;
-                    l2_y3 = l2_y2 + l2_uy * a;
-                  }
-                  else {
-                    l1_x3 = l1_x2 + l1_ux * 800;
-                    l1_y3 = l1_y2 + l1_uy * 800;
-                    l2_x3 = l2_x2 + l2_ux * 800;
-                    l2_y3 = l2_y2 + l2_uy * 800;
-                  }
-                  instance.los.state.darkness.push({
-                    x1: l1_x2, y1: l1_y2,
-                    x2: l1_x3, y2: l1_y3,
-                    x3: l2_x3, y3: l2_y3,
-                    x4: l2_x2, y4: l2_y2
+                  ray_interv = false;
+                  _.each(instance.los.state.intervs, function(id) {
+                    var other = instance.models[id];
+                    if(!other) return;
+                    if(model.state.id === other.state.id) return;
+                    var m_dx = other.state.x - l2_x1;
+                    var m_dy = other.state.y - l2_y1;
+                    var vect_prod = l2_uy * m_dx - l2_ux * m_dy;
+                    var scal_prod = l2_ux * m_dx + l2_uy * m_dy;
+                    ray_interv = ray_interv || 
+                      (Math.abs(vect_prod) < other.info.r &&
+                       scal_prod + other.info.r >= 0 &&
+                       scal_prod - other.info.r <= l2_d);
                   });
-
-                  var rad_inf = rad-Math.PI/2+drad;
-                  var rad_sup = rad+Math.PI/2-drad;
-                  var rad_inc = (rad_sup - rad_inf) / 180;
-                  var ray_orig, ray_interv;
-                  var ray_rad, ray_drad;
-                  var ray_dx, ray_dy, ray_d;
-
-                  for(ray_orig = rad_sup ; ray_orig > rad_inf ; ray_orig -= rad_inc) {
-                    l1_x1 = x1 + Math.sin(ray_orig) * r1;
-                    l1_y1 = y1 - Math.cos(ray_orig) * r1;
-                    ray_dx = model.state.x - l1_x1;
-                    ray_dy = model.state.y - l1_y1;
-                    ray_d = Math.sqrt(ray_dx*ray_dx + ray_dy*ray_dy);
-                    ray_rad = Math.atan2(ray_dx, -ray_dy);
-                    ray_drad = Math.acos(r2 / ray_d);
-                    l1_x2 = x2 + Math.sin(ray_rad+Math.PI-ray_drad) * r2;
-                    l1_y2 = y2 - Math.cos(ray_rad+Math.PI-ray_drad) * r2;
-
-                    l1_dx = l1_x2 - l1_x1;
-                    l1_dy = l1_y2 - l1_y1;
-                    l1_d = Math.sqrt(l1_dx*l1_dx + l1_dy*l1_dy);
-                    l1_ux = l1_dx / l1_d;
-                    l1_uy = l1_dy / l1_d;
-
-                    ray_interv = false;
-                    _.each(intervs, function(other) {
-                      if(model.state.id === other.state.id) return;
-                      var m_dx = other.state.x - l1_x1;
-                      var m_dy = other.state.y - l1_y1;
-                      var vect_prod = l1_uy * m_dx - l1_ux * m_dy;
-                      var scal_prod = l1_ux * m_dx + l1_uy * m_dy;
-                      ray_interv = ray_interv || 
-                        (Math.abs(vect_prod) < other.info.r &&
-                         scal_prod + other.info.r >= 0 &&
-                         scal_prod - other.info.r <= l1_d);
-                    });
-                    if(!ray_interv) break;
-                  }
-                  for(ray_orig = rad_inf ; ray_orig < rad_sup ; ray_orig += rad_inc) {
-                    l2_x1 = x1 + Math.sin(ray_orig) * r1;
-                    l2_y1 = y1 - Math.cos(ray_orig) * r1;
-                    ray_dx = model.state.x - l2_x1;
-                    ray_dy = model.state.y - l2_y1;
-                    ray_d = Math.sqrt(ray_dx*ray_dx + ray_dy*ray_dy);
-                    ray_rad = Math.atan2(ray_dx, -ray_dy);
-                    ray_drad = Math.acos(r2 / ray_d);
-                    l2_x2 = x2 + Math.sin(ray_rad-Math.PI+ray_drad) * r2;
-                    l2_y2 = y2 - Math.cos(ray_rad-Math.PI+ray_drad) * r2;
-
-                    l2_dx = l2_x2 - l2_x1;
-                    l2_dy = l2_y2 - l2_y1;
-                    l2_d = Math.sqrt(l2_dx*l2_dx + l2_dy*l2_dy);
-                    l2_ux = l2_dx / l2_d;
-                    l2_uy = l2_dy / l2_d;
-
-                    ray_interv = false;
-                    _.each(intervs, function(other) {
-                      if(model.state.id === other.state.id) return;
-                      var m_dx = other.state.x - l2_x1;
-                      var m_dy = other.state.y - l2_y1;
-                      var vect_prod = l2_uy * m_dx - l2_ux * m_dy;
-                      var scal_prod = l2_ux * m_dx + l2_uy * m_dy;
-                      ray_interv = ray_interv || 
-                        (Math.abs(vect_prod) < other.info.r &&
-                         scal_prod + other.info.r >= 0 &&
-                         scal_prod - other.info.r <= l2_d);
-                    });
-                    if(!ray_interv) break;
-                  }
-                  vector_product = l2_ux * l1_uy - l2_uy * l1_ux;
-                  if(vector_product < 0) {
-                    l12_dx = l2_x2 - l1_x2;
-                    l12_dy = l2_y2 - l1_y2;
-                    l12_d = Math.sqrt(l12_dx*l12_dx + l12_dy*l12_dy);
-                    l12_ux = l12_dx / l12_d;
-                    l12_uy = l12_dy / l12_d;
-                    alpha = Math.acos(l12_ux * l1_ux + l12_uy * l1_uy);
-                    beta = Math.acos(-l12_ux * l2_ux - l12_uy * l2_uy);
-                    a = l12_d * Math.sin(alpha) / Math.sin(alpha+beta);
-                    b = l12_d * Math.sin(beta) / Math.sin(alpha+beta);
-                    a = Math.min(800, a);
-                    b = Math.min(800, b);
-                    l1_x3 = l1_x2 + l1_ux * b;
-                    l1_y3 = l1_y2 + l1_uy * b;
-                    l2_x3 = l2_x2 + l2_ux * a;
-                    l2_y3 = l2_y2 + l2_uy * a;
-                  }
-                  else {
-                    l1_x3 = l1_x2 + l1_ux * 800;
-                    l1_y3 = l1_y2 + l1_uy * 800;
-                    l2_x3 = l2_x2 + l2_ux * 800;
-                    l2_y3 = l2_y2 + l2_uy * 800;
-                  }
-                  instance.los.state.shadows.push({
-                    x1: l1_x2, y1: l1_y2,
-                    x2: l1_x3, y2: l1_y3,
-                    x3: l2_x3, y3: l2_y3,
-                    x4: l2_x2, y4: l2_y2
-                  });
+                  if(!ray_interv) break;
+                }
+                vector_product = l2_ux * l1_uy - l2_uy * l1_ux;
+                if(vector_product < 0) {
+                  l12_dx = l2_x2 - l1_x2;
+                  l12_dy = l2_y2 - l1_y2;
+                  l12_d = Math.sqrt(l12_dx*l12_dx + l12_dy*l12_dy);
+                  l12_ux = l12_dx / l12_d;
+                  l12_uy = l12_dy / l12_d;
+                  alpha = Math.acos(l12_ux * l1_ux + l12_uy * l1_uy);
+                  beta = Math.acos(-l12_ux * l2_ux - l12_uy * l2_uy);
+                  a = l12_d * Math.sin(alpha) / Math.sin(alpha+beta);
+                  b = l12_d * Math.sin(beta) / Math.sin(alpha+beta);
+                  a = Math.min(800, a);
+                  b = Math.min(800, b);
+                  l1_x3 = l1_x2 + l1_ux * b;
+                  l1_y3 = l1_y2 + l1_uy * b;
+                  l2_x3 = l2_x2 + l2_ux * a;
+                  l2_y3 = l2_y2 + l2_uy * a;
+                }
+                else {
+                  l1_x3 = l1_x2 + l1_ux * 800;
+                  l1_y3 = l1_y2 + l1_uy * 800;
+                  l2_x3 = l2_x2 + l2_ux * 800;
+                  l2_y3 = l2_y2 + l2_uy * 800;
+                }
+                instance.los.state.shadows.push({
+                  x1: l1_x2, y1: l1_y2,
+                  x2: l1_x3, y2: l1_y3,
+                  x3: l2_x3, y3: l2_y3,
+                  x4: l2_x2, y4: l2_y2
                 });
-                // console.log(instance.los.state.darkness);
-                // console.log(instance.los.state.shadows);
-                this.state.model_active = true;
-              }
+              });
+              // console.log(instance.los.state.darkness);
+              // console.log(instance.los.state.shadows);
+              this.state.model_active = true;
             }
           },
           save_url: null,
