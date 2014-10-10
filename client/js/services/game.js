@@ -310,11 +310,11 @@ angular.module('vassalApp.services')
             },
             refreshView: function() {
               var zoom = this.zoom;
-              var window = this.window;
+              var win = this.window;
               window.setTimeout(function() {
                 var cont = document.getElementById('canvas-container');
-                cont.scrollLeft = (zoom.cx * zoom.factor - window.width/2);
-                cont.scrollTop = (zoom.cy * zoom.factor - window.height/2);
+                cont.scrollLeft = (zoom.cx * zoom.factor - win.width/2);
+                cont.scrollTop = (zoom.cy * zoom.factor - win.height/2);
               }, 0);
             },
             reset: function() {
