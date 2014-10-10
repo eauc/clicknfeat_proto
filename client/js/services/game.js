@@ -477,7 +477,8 @@ angular.module('vassalApp.services')
                 // console.log(d2);
                 var intervs = _.filter(instance.models, function(model) {
                   if(instance.los.state.target === model.state.id ||
-                     instance.los.state.origin === model.state.id) return false;
+                     instance.los.state.origin === model.state.id ||
+                     r2 > model.info.r) return false;
                   var m_dx = model.state.x - instance.los.state.ot1_x1;
                   var m_dy = model.state.y - instance.los.state.ot1_y1;
                   var vect_prod = u1_y * m_dx - u1_x * m_dy;
