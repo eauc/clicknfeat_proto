@@ -480,6 +480,7 @@ angular.module('vassalApp.services')
           },
           redo: function(game) {
             _.each(this.after, function(state) {
+              if(!game.models[state.id]) return;
               game.models[state.id].state = _.deepCopy(state);
             });
             game.update_selection = _.map(this.after, function(st) { return st.id; });
@@ -487,6 +488,7 @@ angular.module('vassalApp.services')
           undo: function(game) {
             // console.log(this.before);
             _.each(this.before, function(state) {
+              if(!game.models[state.id]) return;
               game.models[state.id].state = _.deepCopy(state);
             });
             game.update_selection = _.map(this.before, function(st) { return st.id; });
@@ -529,6 +531,7 @@ angular.module('vassalApp.services')
           },
           redo: function(game) {
             _.each(this.after, function(state) {
+              if(!game.models[state.id]) return;
               game.models[state.id].state = _.deepCopy(state);
             });
             game.update_selection = _.map(this.after, function(st) { return st.id; });
@@ -536,6 +539,7 @@ angular.module('vassalApp.services')
           undo: function(game) {
             // console.log(this.before);
             _.each(this.before, function(state) {
+              if(!game.models[state.id]) return;
               game.models[state.id].state = _.deepCopy(state);
             });
             game.update_selection = _.map(this.before, function(st) { return st.id; });
