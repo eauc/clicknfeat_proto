@@ -23,6 +23,22 @@ angular.module('vassalApp.services')
             scope.game.los.startDraging(drag.start_x, drag.start_y);
             modes.goTo('los_drag', scope);
           },
+          'Click': function(scope, event, drag) {
+            switch(drag.event)
+            {
+            case 'Model': 
+              {
+                if(event.ctrlKey) {
+                  scope.game.newCommand(command('onLos', 'setOrigin', drag.target));
+                  return;
+                }
+                if(event.shiftKey) {
+                  scope.game.newCommand(command('onLos', 'setTarget', drag.target));
+                  return;
+                }
+              }
+            }
+          },
         });
         return los_mode;
       };

@@ -123,6 +123,14 @@
                        "
                        />
             </marker>
+            <clipPath id="los-clip">
+              <polygon points="
+                       {{game.los.state.ot1_x1}},{{game.los.state.ot1_y1}}
+                       {{game.los.state.ot1_x2}},{{game.los.state.ot1_y2}}
+                       {{game.los.state.ot2_x2}},{{game.los.state.ot2_y2}}
+                       {{game.los.state.ot2_x1}},{{game.los.state.ot2_y1}}
+                       " />
+            </clipPath>
           </defs>
           <image id="canvas"
                  x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
@@ -524,6 +532,54 @@
                     filter: url(#aura-filter);
                     "
                     />
+            <g style="
+               clip-path: url(#los-clip);
+               ">
+              <polygon ng-show="game.los.state.active"
+                       points="
+                       {{game.los.state.ot1_x1}},{{game.los.state.ot1_y1}}
+                       {{game.los.state.ot1_x2}},{{game.los.state.ot1_y2}}
+                       {{game.los.state.ot2_x2}},{{game.los.state.ot2_y2}}
+                       {{game.los.state.ot2_x1}},{{game.los.state.ot2_y1}}
+                       "
+                       style="
+                       pointer-events: none;
+                       fill:#9F9;
+                       fill-opacity: 0.5;
+                       stroke:#3F3;
+                       stroke-width:0.5px
+                       " />
+              <polygon ng-show="game.los.state.active"
+                       ng-repeat="sh in game.los.state.shadows"
+                       points="
+                       {{sh.x1}},{{sh.y1}}
+                       {{sh.x2}},{{sh.y2}}
+                       {{sh.x3}},{{sh.y3}}
+                       {{sh.x4}},{{sh.y4}}
+                       "
+                       style="
+                       pointer-events: none;
+                       fill:#999;
+                       fill-opacity: 0.5;
+                       stroke:#666;
+                       stroke-width:0.5px
+                       " />
+              <polygon ng-show="game.los.state.active"
+                       ng-repeat="sh in game.los.state.darkness"
+                       points="
+                       {{sh.x1}},{{sh.y1}}
+                       {{sh.x2}},{{sh.y2}}
+                       {{sh.x3}},{{sh.y3}}
+                       {{sh.x4}},{{sh.y4}}
+                       "
+                       style="
+                       pointer-events: none;
+                       fill:#030;
+                       fill-opacity: 0.5;
+                       stroke:#020;
+                       stroke-width:0.5px
+                       " />
+            </g>
             <g ng-repeat="model in modelShow('charge')">
               <rect x="{{model.state.x-model.info.r}}"
                     y="{{model.state.y-700}}"

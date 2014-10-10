@@ -2,7 +2,6 @@
 - alternate models
 - factions : supprimer les unites en double cygnar|scyrah|.../mercos
 
-- refactor chats.
 - ameliorer feedback load game
 - reflechir pour chaque mode les transitions autorisees vers d'autre modes.
 
@@ -30,6 +29,7 @@
 - feldun ne voit pas la couleur - chrome/windows ?
 - sensibilite click souris ?
 - boutton supprimer model
+- boutton send online chat
 =======================================================================================
 - limiter distance drag model comme ruler
 =======================================================================================
