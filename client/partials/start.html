@@ -1,9 +1,10 @@
 <div>
   <div style="
-       margin-top: 50px;
+       display:inline-box;
+       float: left;
        ">
     <div>
-      User Id : {{user.id}}
+      <strong>User Id : {{user.id}}</strong>
     </div>
     <form name="user-create"
           ng-submit="doCreateUser()">
@@ -70,17 +71,21 @@
         <button type="submit">{{ user.id ? 'Change' : 'Create' }}</button>
       </fieldset>
     </form>
-    <div ng-include="'/partials/usersBox.html'"
-         style="
-         height:300px;
-         width:400px;
-         border:1px solid black;
-         overflow-y: scroll;
-         ">
-    </div>
+  </div>
+  <div ng-include="'/partials/usersBox.html'"
+       style="
+       display:inline-box;
+       float: left;
+       margin-top: 1em;
+       height:300px;
+       width:600px;
+       border:1px solid black;
+       overflow-y: scroll;
+       ">
   </div>
   <div style="
        margin-top: 50px;
+       clear: both;
        "
        ng-show="user.id">
     <button ng-click="doCreateGame()">Create Game</button><br />
