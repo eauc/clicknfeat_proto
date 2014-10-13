@@ -15,7 +15,7 @@
   </div>
   <table>
     <tr ng-repeat="model in game.drop_bin">
-      <td ng-click="doToggleRestoreSelection(model.state.id)"
+      <td ng-click="doToggleRestoreSelection(model.state.id, $event)"
           ng_style="{
           'background-color': restore_selection[model.state.id] ? '#999' : 'white'
           }"

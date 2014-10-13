@@ -28,9 +28,7 @@
 - sortie du mode de charge laisse le couloir ?
 - feldun ne voit pas la couleur - chrome/windows ?
 - sensibilite click souris ?
-- boutton supprimer model
 - boutton send online chat
-- drop bin -> click on model unselect others, ctrl+click select multiple ?
 =======================================================================================
 - limiter distance drag model comme ruler
 =======================================================================================

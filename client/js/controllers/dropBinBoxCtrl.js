@@ -12,7 +12,13 @@ angular.module('vassalApp.controllers')
       $scope.isRestoreSelectionEmpty = function() {
         return _.keys($scope.restore_selection).length === 0;
       };
-      $scope.doToggleRestoreSelection = function(id) {
+      $scope.doToggleRestoreSelection = function(id, $event) {
+        var set = !$event.ctrlKey;
+        if(set) {
+          $scope.restore_selection = {};
+          $scope.restore_selection[id] = true;
+          return;
+        }
         if($scope.restore_selection[id]) {
           delete $scope.restore_selection[id];
         }
