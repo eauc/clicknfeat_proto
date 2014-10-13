@@ -35,13 +35,15 @@ angular.module('vassalApp.services')
             dy = this.state.y - this.state.place_y;
             this.state.place_length = Math.sqrt(dx*dx+dy*dy);
             if(this.state.place_max &&
-               this.state.place_max > 0 &&
-               this.state.place_length > this.state.place_max*10) {
-              dx = dx * this.state.place_max*10 / this.state.place_length;
-              dy = dy * this.state.place_max*10 / this.state.place_length;
-              this.state.x = this.state.place_x + dx;
-              this.state.y = this.state.place_y + dy;
-              this.state.place_length = this.state.place_max*10;
+               this.state.place_max > 0) {
+              var place_max = this.state.place_max*10 + (this.state.place_within ? 2*this.info.r : 0);
+              if(this.state.place_length > place_max) {
+                dx = dx * place_max / this.state.place_length;
+                dy = dy * place_max / this.state.place_length;
+                this.state.x = this.state.place_x + dx;
+                this.state.y = this.state.place_y + dy;
+                this.state.place_length = place_max;
+              }
             }
           }
           this.state.x = Math.max(this.info.r, this.state.x);

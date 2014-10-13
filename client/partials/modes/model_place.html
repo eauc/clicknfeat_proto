@@ -16,6 +16,15 @@
       </td>
     </tr>
     <tr>
+      <td colspan="2">
+        <input id="model-place-within"
+               type="checkbox"
+               ng-model="game.models[game.selection[0]].state.place_within"
+               />
+        <label for="model-place-within">within</label>
+      </td>
+    </tr>
+    <tr>
       <td ng-click="command_sub='melee'">
         <button style="
                 width: 50px;
