@@ -217,7 +217,22 @@ angular.module('vassalApp.services')
           }
         },
         setLabel: function(game, label) {
-          this.state.label = label;
+          label = label.trim();
+          if(label.length <= 0) return;
+          if(0 <= _.indexOf(this.state.label, label)) return;
+          this.state.label.push(label);
+        },
+        clearLabel: function(game, index) {
+          if(index >= this.state.label.length) return;
+          this.state.label.splice(index, 1);
+        },
+        clearAllLabel: function(game) {
+          this.state.label.length = 0;
+        },
+        displayLabel: function() {
+          return _.reduce(this.state.label, function(memo, lbl) {
+            return memo + ' ' + lbl;
+          }, '');
         },
         setUnit: function(game, unit) {
           this.state.unit = unit;
@@ -562,7 +577,7 @@ angular.module('vassalApp.services')
             rot: 0,
             counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
             souls: 0,
-            label: '',
+            label: [],
             unit: null,
             show_image: true,
             show_counter: args[1].type === 'wardude' ||
@@ -575,7 +590,7 @@ angular.module('vassalApp.services')
             rot: 0,
             counter: args[1].type === 'wardude' ? (args[1].focus ? args[1].focus : args[1].fury) : 0,
             souls: 0,
-            label: '',
+            label: [],
             unit: null,
             show_image: true,
             show_counter:  args[1].type === 'wardude' ||

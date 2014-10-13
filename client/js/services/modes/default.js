@@ -91,7 +91,6 @@ angular.module('vassalApp.services')
                 scope.model_view.label = null;
                 scope.model_view.unit = null;
                 if(scope.game.selection.length === 1) {
-                  scope.model_view.label = scope.game.models[scope.game.selection[0]].state.label;
                   scope.model_view.unit = scope.game.models[scope.game.selection[0]].state.unit;
                   if(scope.game.models[scope.game.selection[0]].state.show_charge) {
                     modes.goTo('model_charge', scope);
@@ -209,7 +208,7 @@ angular.module('vassalApp.services')
           },
           'Ctrl L': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'setLabel', null));
+            scope.game.newCommand(command('onSelection', 'clearAllLabel'));
           },
           'M': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_melee;

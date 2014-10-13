@@ -25,7 +25,14 @@ angular.module('vassalApp.controllers')
       console.log('init modelViewBoxCtrl');
 
       $scope.doSetLabel = function() {
-        $scope.game.newCommand(command('onSelection', 'setLabel', $scope.model_view.label));
+        $scope.game.newCommand(command('onSelection', 'setLabel', $scope.model_view.new_label));
+        $scope.model_view.new_label = null;
+      };
+      $scope.doClearLabel = function(index) {
+        $scope.game.newCommand(command('onSelection', 'clearLabel', index));
+      };
+      $scope.doClearAllLabel = function() {
+        $scope.game.newCommand(command('onSelection', 'clearAllLabel'));
       };
       $scope.doModelDamage = function(model, col, line) {
         if(!$scope.game.id) return;
