@@ -130,6 +130,7 @@ angular.module('vassalApp.services')
           enter: function(scope) {
             if(scope.game.selection.length <= 0) {
               modes.goTo('default', scope);
+              return;
             }
           },
           'Escape': function(scope) {

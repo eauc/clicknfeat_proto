@@ -6,8 +6,6 @@
 - reflechir pour chaque mode les transitions autorisees vers d'autre modes.
 
 - netdecker corner
-- auto deviate model (max distance?, origin?)
-- auto-slam/throw model
 
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
@@ -16,8 +14,6 @@
 - multi-labels
 
 - highlight models sous AoE/spray/charge
-
-- mode ranged attack : change to ruler mode, set selected model as origin for ruler/aoe/spray, click on model set target, if ruler too short move AoE to EnfOfRuler.
 - place model to ruler end/within another model
 - split factions files in subfiles
 - burrowers burrow

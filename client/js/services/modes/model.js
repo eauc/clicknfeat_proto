@@ -17,6 +17,10 @@ angular.module('vassalApp.services')
               scope.game.newCommand(command('onSelection', 'endPlace'));
             }
           },
+          'D': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 'deviate'));
+          },
           'I': function(scope) {
             scope.game.newCommand(command('onSelection', 'toggle', 'image'));
           },

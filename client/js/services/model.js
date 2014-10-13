@@ -397,6 +397,19 @@ angular.module('vassalApp.services')
         displayPlaceLength: function() {
           return Math.round(this.state.place_length*10)/100;
         },
+        deviate: function(game) {
+          var deviation = game.rollDeviation(this.state.place_length/20);
+          var angle = 60 * (deviation.direction-1) + this.state.place_rot;
+          var dx = + deviation.distance * Math.sin(angle*Math.PI/180);
+          var dy = - deviation.distance * Math.cos(angle*Math.PI/180);
+          this.state.x += dx;
+          this.state.y += dy;
+          dx = this.state.x - this.state.place_x;
+          dy = this.state.y - this.state.place_y;
+          this.state.place_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
+          this.state.place_max = 0;
+          this.refresh(game);
+        },
         endPlace: function(game) {
           this.state.place_length = 0;
           this.state.show_place = false;
