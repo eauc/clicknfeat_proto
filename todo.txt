@@ -28,7 +28,6 @@
 - sortie du mode de charge laisse le couloir ?
 - feldun ne voit pas la couleur - chrome/windows ?
 - sensibilite click souris ?
-- boutton send online chat
 =======================================================================================
 - limiter distance drag model comme ruler
 =======================================================================================

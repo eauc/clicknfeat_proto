@@ -37,7 +37,7 @@
     <form ng-submit="doSendChatMsg()">
       <input type="text"
              style="
-             width:100%;
+             width:80%;
              max-width:400px;
              "
              ng_disabled="selection_length === 0"
@@ -46,6 +46,7 @@
              ng-keydown="stopKeyPropagation($event)"
              ng-keypress="stopKeyPropagation($event)"
              />
+      <button type="submit">Send</button>
     </form>
     <div ng-repeat="c in user.chat.slice().reverse()"
          ng-style="{
