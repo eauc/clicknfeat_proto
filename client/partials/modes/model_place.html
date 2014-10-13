@@ -87,6 +87,37 @@
           4" Strike
         </button>
       </td>
+      <td ng-show="command_sub==='set'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('O')"
+                ng-click="sendKey('O', $event)">Set Origin</button>
+      </td>
+    </tr>
+    <tr>
+      <td ng-click="command_sub='set'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-style="{
+                'background-color': command_sub==='set' ? '#0F0' : none
+                }"
+                >Set<br />&#8594;</button>
+      </td>
+      <td ng-show="command_sub==='set'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('T')"
+                ng-click="sendKey('T', $event)">Set Target</button>
+      </td>
     </tr>
   </table>
 </div>

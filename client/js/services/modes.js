@@ -9,6 +9,8 @@ angular.module('vassalApp.services')
     'selection_drag_mode',
     'model_charge_mode',
     'model_place_mode',
+    'model_place_origin_mode',
+    'model_place_target_mode',
     'model_create_mode',
     'model_drag_mode',
     'model_target_mode',
@@ -33,6 +35,8 @@ angular.module('vassalApp.services')
              selection_drag_mode,
              model_charge_mode,
              model_place_mode,
+             model_place_origin_mode,
+             model_place_target_mode,
              model_create_mode,
              model_drag_mode,
              model_target_mode,
@@ -59,6 +63,8 @@ angular.module('vassalApp.services')
       modes['selection_drag'] = selection_drag_mode(modes, common);
       modes['model_charge'] = model_charge_mode(modes, common);
       modes['model_place'] = model_place_mode(modes, common);
+      modes['model_place_origin'] = model_place_origin_mode(modes, common);
+      modes['model_place_target'] = model_place_target_mode(modes, common);
       modes['model_create'] = model_create_mode(modes, common);
       modes['model_drag'] = model_drag_mode(modes, common);
       modes['model_target'] = model_target_mode(modes, common);

@@ -8,14 +8,14 @@ angular.module('vassalApp.services')
         var model_place_mode = _.deepCopy(common);
         _.deepExtend(model_place_mode, {
           name: 'Model Place',
+          group: 'Model Place',
           template: 'model_place.html',
           enter: function(scope) {
           },
-          leave: function(scope) {
-            scope.game.newCommand(command('onSelection', 'endPlace'));
-          },
-          'P': function(scope) {
-            modes.goTo('default', scope);
+          leave: function(scope, next) {
+            if(next.group !== 'Model Place') {
+              scope.game.newCommand(command('onSelection', 'endPlace'));
+            }
           },
           'I': function(scope) {
             scope.game.newCommand(command('onSelection', 'toggle', 'image'));
@@ -23,6 +23,12 @@ angular.module('vassalApp.services')
           'M': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_melee;
             scope.game.newCommand(command('onSelection', 'toggle', 'melee', new_val));
+          },
+          'O': function(scope) {
+            modes.goTo('model_place_origin', scope);
+          },
+          'P': function(scope) {
+            modes.goTo('default', scope);
           },
           'R': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_reach;
@@ -34,6 +40,9 @@ angular.module('vassalApp.services')
           'S': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_strike;
             scope.game.newCommand(command('onSelection', 'toggle' ,'strike', new_val));
+          },
+          'T': function(scope) {
+            modes.goTo('model_place_target', scope);
           },
           'Left': function(scope) {
             if(!scope.game.id) return;
@@ -104,6 +113,68 @@ angular.module('vassalApp.services')
           },
         });
         return model_place_mode;
+      };
+    }
+  ])
+  .factory('model_place_origin_mode', [
+    'command',
+    function(command) {
+      return function(modes, common) {
+        var model_place_origin_mode = _.deepCopy(common);
+        _.deepExtend(model_place_origin_mode, {
+          name: 'Model Place Origin',
+          group: 'Model Place',
+          template: 'model_place_origin.html',
+          enter: function(scope) {
+          },
+          leave: function(scope, next) {
+            if(next.group !== 'Model Place') {
+              scope.game.newCommand(command('onSelection', 'endPlace'));
+            }
+          },
+          'P': function(scope) {
+            modes.goTo('model_place', scope);
+          },
+          'Click': function(scope, event, drag, user_x, user_y) {
+            if(drag.event === 'Model' &&
+               drag.target.state.id !== scope.game.selection[0]) {
+              scope.game.newCommand(command('onSelection', 'setPlaceOrigin', drag.target));
+              modes.goTo('model_place', scope);
+            }
+          },
+        });
+        return model_place_origin_mode;
+      };
+    }
+  ])
+  .factory('model_place_target_mode', [
+    'command',
+    function(command) {
+      return function(modes, common) {
+        var model_place_target_mode = _.deepCopy(common);
+        _.deepExtend(model_place_target_mode, {
+          name: 'Model Place Target',
+          group: 'Model Place',
+          template: 'model_place_target.html',
+          enter: function(scope) {
+          },
+          leave: function(scope, next) {
+            if(next.group !== 'Model Place') {
+              scope.game.newCommand(command('onSelection', 'endPlace'));
+            }
+          },
+          'P': function(scope) {
+            modes.goTo('model_place', scope);
+          },
+          'Click': function(scope, event, drag, user_x, user_y) {
+            if(drag.event === 'Model' &&
+               drag.target.state.id !== scope.game.selection[0]) {
+              scope.game.newCommand(command('onSelection', 'setPlaceTarget', drag.target));
+              modes.goTo('model_place', scope);
+            }
+          },
+        });
+        return model_place_target_mode;
       };
     }
   ])
