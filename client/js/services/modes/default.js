@@ -97,6 +97,10 @@ angular.module('vassalApp.services')
                     modes.goTo('model_charge', scope);
                     break;
                   }
+                  if(scope.game.models[scope.game.selection[0]].state.show_place) {
+                    modes.goTo('model_place', scope);
+                    break;
+                  }
                 }
                 modes.goTo('default', scope);
                 break;
@@ -213,6 +217,11 @@ angular.module('vassalApp.services')
           'N': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_counter;
             scope.game.newCommand(command('onSelection', 'toggle', 'counter', new_val));
+          },
+          'P': function(scope) {
+            if(!scope.game.id || 1 !== scope.game.selection.length) return;
+            scope.game.newCommand(command('onSelection', 'startPlace'));
+            modes.goTo('model_place', scope);
           },
           'R': function(scope) {
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_reach;

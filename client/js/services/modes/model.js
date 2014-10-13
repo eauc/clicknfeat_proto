@@ -1,6 +1,112 @@
 'use strict';
 
 angular.module('vassalApp.services')
+  .factory('model_place_mode', [
+    'command',
+    function(command) {
+      return function(modes, common) {
+        var model_place_mode = _.deepCopy(common);
+        _.deepExtend(model_place_mode, {
+          name: 'Model Place',
+          template: 'model_place.html',
+          enter: function(scope) {
+          },
+          leave: function(scope) {
+            scope.game.newCommand(command('onSelection', 'endPlace'));
+          },
+          'P': function(scope) {
+            modes.goTo('default', scope);
+          },
+          'I': function(scope) {
+            scope.game.newCommand(command('onSelection', 'toggle', 'image'));
+          },
+          'M': function(scope) {
+            var new_val = !scope.game.models[scope.game.selection[0]].state.show_melee;
+            scope.game.newCommand(command('onSelection', 'toggle', 'melee', new_val));
+          },
+          'R': function(scope) {
+            var new_val = !scope.game.models[scope.game.selection[0]].state.show_reach;
+            scope.game.newCommand(command('onSelection', 'toggle' ,'reach', new_val));
+          },
+          'Alt R': function(scope) {
+            scope.game.newCommand(command('onSelection', 'resetShow'));
+          },
+          'S': function(scope) {
+            var new_val = !scope.game.models[scope.game.selection[0]].state.show_strike;
+            scope.game.newCommand(command('onSelection', 'toggle' ,'strike', new_val));
+          },
+          'Left': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 'rotatePlaceLeft', false));
+          },
+          'Shift Left': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 'rotatePlaceLeft', true));
+          },
+          'Ctrl Left': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 
+                                          scope.game.board.zoom.flipped ? 'moveRight' : 'moveLeft',
+                                          true));
+          },
+          'Down': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 'movePlaceBack', false));
+          },
+          'Shift Down': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 'movePlaceBack', true));
+          },
+          'Ctrl Down': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 
+                                          scope.game.board.zoom.flipped ? 'moveUp' : 'moveDown',
+                                          true));
+          },
+          'Right': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 'rotatePlaceRight', false));
+          },
+          'Shift Right': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 'rotatePlaceRight', true));
+          },
+          'Ctrl Right': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 
+                                          scope.game.board.zoom.flipped ? 'moveLeft' : 'moveRight',
+                                          true));
+          },
+          'Up': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 'movePlaceFront', false));
+          },
+          'Shift Up': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 'movePlaceFront', true));
+          },
+          'Ctrl Up': function(scope) {
+            if(!scope.game.id) return;
+            scope.game.newCommand(command('onSelection', 
+                                          scope.game.board.zoom.flipped ? 'moveDown' : 'moveUp',
+                                          true));
+          },
+          'Click': function(scope, event, drag, user_x, user_y) {
+            if(drag.event === 'Model' &&
+               drag.target.state.id !== scope.game.selection[0]) {
+              if(event.ctrlKey) {
+                scope.game.newCommand(command('onSelection', 'setPlaceOrigin', drag.target));
+              }
+              if(event.shiftKey) {
+                scope.game.newCommand(command('onSelection', 'setPlaceTarget', drag.target));
+              }
+            }
+          },
+        });
+        return model_place_mode;
+      };
+    }
+  ])
   .factory('model_charge_mode', [
     'command',
     function(command) {

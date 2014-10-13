@@ -616,6 +616,40 @@
                     "
                     />
             </g>
+            <g ng-repeat="model in modelShow('place')">
+              <rect x="{{model.state.x-model.info.r}}"
+                    y="{{model.state.y-700}}"
+                    width="{{model.info.r*2}}" height="{{700}}"
+                    transform="rotate(
+                    {{model.state.place_rot}},
+                    {{model.state.x}},
+                    {{model.state.y}}
+                    )"
+                    style="
+                    fill: #CCC;
+                    fill-opacity: 0.3;
+                    stroke: #666;
+                    stroke-width: 0.5px;
+                    pointer-events: none;
+                    "
+                    />
+              <rect x="{{(model.state.x+model.state.place_x)/2-model.info.r}}"
+                    y="{{(model.state.y+model.state.place_y)/2-model.state.place_length/2}}"
+                    width="{{model.info.r*2}}" height="{{model.state.place_length}}"
+                    transform="rotate(
+                    {{model.state.place_rot}},
+                    {{(model.state.x+model.state.place_x)/2}},
+                    {{(model.state.y+model.state.place_y)/2}}
+                    )"
+                    style="
+                    fill: #999;
+                    fill-opacity: 0.5;
+                    stroke: #333;
+                    stroke-width: 0.5px;
+                    pointer-events: none;
+                    "
+                    />
+            </g>
             <svg ng-repeat="model in game.models"
                  x="{{model.state.x - model.info.width/2}}" y="{{model.state.y - model.info.height/2}}">
               <g transform="rotate({{model.state.rot}}, {{model.info.width/2}}, {{model.info.height/2}})">
@@ -1036,6 +1070,45 @@
                     )"
                     >
                 {{model.displayChargeLength()}}"
+              </text>
+            </g>
+            <g ng-repeat="model in modelShow('place')">
+              <line x1="{{model.state.place_x}}" y1="{{model.state.place_y}}"
+                    x2="{{model.state.x}}" y2="{{model.state.y}}"
+                    style="
+                    stroke: #0F0;
+                    stroke-width: 0.5px;
+                    pointer-events: none;
+                    "
+                    />
+              <rect x="{{model.state.place_x-1}}"
+                    y="{{model.state.place_y-8}}"
+                    width="30" height="10"
+                    style="
+                    fill:#FFC;
+                    stroke:#000;
+                    stroke-width:0.5px;
+                    pointer-events: none;
+                    "
+                    transform="rotate(
+                    {{game.board.zoom.flipped ? 180 : 0}},
+                    {{model.state.place_x}},
+                    {{model.state.place_y}}
+                    )"
+                    />
+              <text x="{{model.state.place_x}}"
+                    y="{{model.state.place_y}}"
+                    style="
+                    font-size:8px;
+                    pointer-events: none;
+                    "
+                    transform="rotate(
+                    {{game.board.zoom.flipped ? 180 : 0}},
+                    {{model.state.place_x}},
+                    {{model.state.place_y}}
+                    )"
+                    >
+                {{model.displayPlaceLength()}}"
               </text>
             </g>
             <line ng-if="

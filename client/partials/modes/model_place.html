@@ -1,0 +1,92 @@
+<div>
+  <strong>Model Place<br /></strong>
+  <table style="border-collapse:collapse;">
+    <tr>
+      <td colspan="2">
+        Max Dist. :
+        <input style="
+               width:100%;
+               height:35px;
+               "
+               type="number"
+               ng-model="game.models[game.selection[0]].state.place_max"
+               ng-keydown="stopKeyPropagation($event)"
+               ng-keypress="stopKeyPropagation($event)"
+               />
+      </td>
+    </tr>
+    <tr>
+      <td ng-click="command_sub='melee'">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-style="{
+                'background-color': command_sub==='melee' ? '#0F0' : none
+                }"
+                >Melee<br />&#8594;</button>
+      </td>
+      <td ng-show="command_sub==='melee'">
+        <button title="('M')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('M', $event)"
+                >
+          0.5" Melee
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td ng-click="command_sub=''">
+        <button style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                title="('I')"
+                ng-click="sendKey('I', $event)">Show Image</button>
+      </td>
+      <td ng-show="command_sub==='melee'">
+        <button title="('R')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('R', $event)"
+                >
+          2" Reach
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td ng-click="command_sub=''">
+        <button title="(Alt+'R')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('Alt R', $event)">
+          Reset Show
+        </button>
+      </td>
+      <td ng-show="command_sub==='melee'">
+        <button title="('S')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('S', $event)"
+                >
+          4" Strike
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>

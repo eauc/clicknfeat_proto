@@ -15,9 +15,10 @@ angular.module('vassalApp.services')
           delete this.state.show_control;
         },
         refresh: function(game) {
+          var dx, dy;
           if(this.state.show_charge) {
-            var dx = this.state.x - this.state.charge_x;
-            var dy = this.state.y - this.state.charge_y;
+            dx = this.state.x - this.state.charge_x;
+            dy = this.state.y - this.state.charge_y;
             this.state.charge_length = Math.sqrt(dx*dx+dy*dy);
             if(this.state.charge_max &&
                this.state.charge_max > 0 &&
@@ -27,6 +28,20 @@ angular.module('vassalApp.services')
               this.state.x = this.state.charge_x + dx;
               this.state.y = this.state.charge_y + dy;
               this.state.charge_length = this.state.charge_max*10;
+            }
+          }
+          if(this.state.show_place) {
+            dx = this.state.x - this.state.place_x;
+            dy = this.state.y - this.state.place_y;
+            this.state.place_length = Math.sqrt(dx*dx+dy*dy);
+            if(this.state.place_max &&
+               this.state.place_max > 0 &&
+               this.state.place_length > this.state.place_max*10) {
+              dx = dx * this.state.place_max*10 / this.state.place_length;
+              dy = dy * this.state.place_max*10 / this.state.place_length;
+              this.state.x = this.state.place_x + dx;
+              this.state.y = this.state.place_y + dy;
+              this.state.place_length = this.state.place_max*10;
             }
           }
           this.state.x = Math.max(this.info.r, this.state.x);
@@ -73,28 +88,44 @@ angular.module('vassalApp.services')
           this.state.rot = this.state.rot - dr;
         },
         moveLeft: function(game, small) {
+          var dx, dy;
           if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.x -= dl;
           if(this.state.show_charge) {
-            var dx = this.state.x - this.state.charge_x;
-            var dy = this.state.y - this.state.charge_y;
+            dx = this.state.x - this.state.charge_x;
+            dy = this.state.y - this.state.charge_y;
             if(Math.abs(dx) > 0 || Math.abs(dy) > 0) {
               this.state.charge_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
+            }
+          }
+          if(this.state.show_place) {
+            dx = this.state.x - this.state.place_x;
+            dy = this.state.y - this.state.place_y;
+            if(Math.abs(dx) > 0 || Math.abs(dy) > 0) {
+              this.state.place_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
             }
           }
           this.refresh(game);
           this.alignWithChargeTarget(game);
         },
         moveUp: function(game, small) {
+          var dx, dy;
           if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.y -= dl;
           if(this.state.show_charge) {
-            var dx = this.state.x - this.state.charge_x;
-            var dy = this.state.y - this.state.charge_y;
+            dx = this.state.x - this.state.charge_x;
+            dy = this.state.y - this.state.charge_y;
             if(Math.abs(dx) > 0 || Math.abs(dy) > 0) {
               this.state.charge_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
+            }
+          }
+          if(this.state.show_place) {
+            dx = this.state.x - this.state.place_x;
+            dy = this.state.y - this.state.place_y;
+            if(Math.abs(dx) > 0 || Math.abs(dy) > 0) {
+              this.state.place_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
             }
           }
           this.refresh(game);
@@ -106,28 +137,44 @@ angular.module('vassalApp.services')
           this.state.rot = this.state.rot + dr;
         },
         moveRight: function(game, small) {
+          var dx, dy;
           if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.x += dl;
           if(this.state.show_charge) {
-            var dx = this.state.x - this.state.charge_x;
-            var dy = this.state.y - this.state.charge_y;
+            dx = this.state.x - this.state.charge_x;
+            dy = this.state.y - this.state.charge_y;
             if(Math.abs(dx) > 0 || Math.abs(dy) > 0) {
               this.state.charge_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
+            }
+          }
+          if(this.state.show_place) {
+            dx = this.state.x - this.state.place_x;
+            dy = this.state.y - this.state.place_y;
+            if(Math.abs(dx) > 0 || Math.abs(dy) > 0) {
+              this.state.place_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
             }
           }
           this.refresh(game);
           this.alignWithChargeTarget(game);
         },
         moveDown: function(game, small) {
+          var dx, dy;
           if(this.info.immovable) return;
           var dl = small ? 1 : 10;
           this.state.y += dl;
           if(this.state.show_charge) {
-            var dx = this.state.x - this.state.charge_x;
-            var dy = this.state.y - this.state.charge_y;
+            dx = this.state.x - this.state.charge_x;
+            dy = this.state.y - this.state.charge_y;
             if(Math.abs(dx) > 0 || Math.abs(dy) > 0) {
               this.state.charge_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
+            }
+          }
+          if(this.state.show_place) {
+            dx = this.state.x - this.state.place_x;
+            dy = this.state.y - this.state.place_y;
+            if(Math.abs(dx) > 0 || Math.abs(dy) > 0) {
+              this.state.place_rot = Math.atan2(dx, -dy) * 180 / Math.PI;
             }
           }
           this.refresh(game);
@@ -276,6 +323,83 @@ angular.module('vassalApp.services')
         endCharge: function(game) {
           this.state.charge_length = 0;
           this.state.show_charge = false;
+        },
+        startPlace: function(game, target) {
+          if(this.info.immovable) return;
+          this.state.place_x = this.state.x;
+          this.state.place_y = this.state.y;
+          this.state.place_length = 0;
+          this.state.place_rot = this.state.rot;
+          this.state.show_place = true;
+        },
+        setPlaceOrigin: function(game, origin) {
+          if(this.info.immovable) return;
+          var dx = this.state.place_x - origin.state.x;
+          var dy = this.state.place_y - origin.state.y;
+          var rot = Math.atan2(dx, -dy);
+          this.state.place_rot = rot * 180 / Math.PI;
+          this.state.x = this.state.place_x + this.state.place_length * Math.sin(rot);
+          this.state.y = this.state.place_y - this.state.place_length * Math.cos(rot);
+          this.refresh(game);
+        },
+        setPlaceTarget: function(game, target) {
+          if(this.info.immovable) return;
+          var dx = target.state.x - this.state.place_x;
+          var dy = target.state.y - this.state.place_y;
+          var rot = Math.atan2(dx, -dy);
+          this.state.place_rot = rot * 180 / Math.PI;
+          this.state.x = this.state.place_x + this.state.place_length * Math.sin(rot);
+          this.state.y = this.state.place_y - this.state.place_length * Math.cos(rot);
+          this.refresh(game);
+        },
+        movePlaceFront: function(game, small) {
+          if(this.info.immovable) return;
+          var dl = small ? 5 : 10;
+          var dx =  dl * Math.sin(this.state.place_rot * Math.PI / 180);
+          var dy = -dl * Math.cos(this.state.place_rot * Math.PI / 180);
+          this.state.x += dx;
+          this.state.y += dy;
+          this.refresh(game);
+        },
+        movePlaceBack: function(game, small, target) {
+          if(this.info.immovable) return;
+          var dl = small ? 5 : 10;
+          if(this.state.place_length - dl < 0) {
+            this.state.x = this.state.place_x;
+            this.state.y = this.state.place_y;
+          }
+          else {
+            var dx = -dl * Math.sin(this.state.place_rot * Math.PI / 180);
+            var dy = dl * Math.cos(this.state.place_rot * Math.PI / 180);
+            this.state.x += dx;
+            this.state.y += dy;
+          }
+          this.refresh(game);
+        },
+        rotatePlaceLeft: function(game, small, target) {
+          var dr = small ? 1 : 5;
+          this.state.place_rot -= dr;
+          this.state.x = this.state.place_x +
+            Math.sin(this.state.place_rot*Math.PI/180) * this.state.place_length;
+          this.state.y = this.state.place_y -
+            Math.cos(this.state.place_rot*Math.PI/180) * this.state.place_length;
+          this.refresh(game);
+        },
+        rotatePlaceRight: function(game, small, target) {
+          var dr = small ? 1 : 5;
+          this.state.place_rot += dr;
+          this.state.x = this.state.place_x +
+            Math.sin(this.state.place_rot*Math.PI/180) * this.state.place_length;
+          this.state.y = this.state.place_y -
+            Math.cos(this.state.place_rot*Math.PI/180) * this.state.place_length;
+          this.refresh(game);
+        },
+        displayPlaceLength: function() {
+          return Math.round(this.state.place_length*10)/100;
+        },
+        endPlace: function(game) {
+          this.state.place_length = 0;
+          this.state.show_place = false;
         },
         startDraging: function(game) {
           this.state_before_drag = _.extend({}, this.state);
