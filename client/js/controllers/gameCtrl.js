@@ -29,7 +29,7 @@ angular.module('vassalApp.controllers')
       $scope.doGoHome = function() {
         var confirm = true;
         if($scope.game.id) {
-          confirm = window.confirm("You're leaving a game.\r\nYou might want to save first.\r\n");
+          confirm = window.confirm("You're leaving the game.\r\nIf you want to save the game before, click Cancel.\r\n");
         }
         if(confirm) {
           $state.go('start');
