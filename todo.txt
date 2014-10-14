@@ -23,6 +23,7 @@
 - sortie du mode de charge laisse le couloir ?
 - feldun ne voit pas la couleur - chrome/windows ?
 - sensibilite click souris ?
+- stopper la clock a la save...
 =======================================================================================
 - limiter distance drag model comme ruler
 =======================================================================================

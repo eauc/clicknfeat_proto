@@ -227,7 +227,7 @@ angular.module('vassalApp.services')
           this.state.label.splice(index, 1);
         },
         clearAllLabel: function(game) {
-          this.state.label.length = 0;
+          this.state.label = [];
         },
         displayLabel: function() {
           return _.reduce(this.state.label, function(memo, lbl) {
