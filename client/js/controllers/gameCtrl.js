@@ -26,6 +26,16 @@ angular.module('vassalApp.controllers')
 
       var audio = document.getElementById('you-got-mail');
 
+      $scope.doGoHome = function() {
+        var confirm = true;
+        if($scope.game.id) {
+          confirm = window.confirm("You're leaving a game.\r\nYou might want to save first.\r\n");
+        }
+        if(confirm) {
+          $state.go('start');
+        }
+      };
+
       $scope.new_game_chat = false;
       $scope.$on('game_chat', function(event, msg) {
         console.log('game_chat', event, msg);

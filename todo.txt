@@ -11,7 +11,6 @@
 - commands replay : prevent undo drop on eventSource refresh
 - memoriser distance charge max pour unites
 - suggestion labels precedents
-- multi-labels
 
 - highlight models sous AoE/spray/charge
 - place model to ruler end/within another model
