@@ -2766,23 +2766,6 @@
           "type": "warrior",
           "n": 5
         }
-      },  
-      "saxonorrik": {
-        "name": "Saxon Orrik",
-        "fk_name": "Saxon Orrik",
-        "type": "warrior",
-        "base": "small",
-        "width": 60,
-        "height": 60,
-        "img": {
-          "x": 0,
-          "y": 0,
-          "link": "data/mercenaries/solos/Saxon.png"
-        },
-        "damage": {
-          "type": "warrior",
-          "n": 5
-        }
       }
     }
   }
