@@ -821,11 +821,11 @@
                  {{model.info.width/2}},
                  {{model.info.height/2}})"
                  >
-                <rect x="{{model.info.width/2-model.state.label.length*3.5/2-2}}"
+                <rect x="{{model.info.width/2-model.displayLabel().length*3.5/2}}"
                       y="{{
                   model.info.height/2+(((model.state.rot%360) > 90 && (model.state.rot%360) < 270) ? (game.board.zoom.flipped ? -model.info.r-7 : model.info.r) : (game.board.zoom.flipped ? model.info.r : -model.info.r-7))
                   }}"
-                  width="{{model.state.label.length*3.5+4}}" height="6"
+                  width="{{model.displayLabel().length*3.5}}" height="6"
                   style="
                   fill:#333;
                   fill-opacity:0.4;
