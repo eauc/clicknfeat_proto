@@ -191,6 +191,15 @@ angular.module('vassalApp.services')
             delete this.state['show_'+type];
           }
         },
+        toggleColor: function(game, col) {
+          var new_val = (col === this.state.show_color) ? null : col;
+          if(new_val) {
+            this.state.show_color = new_val;
+          }
+          else {
+            delete this.state.show_color;
+          }
+        },
         toggleAoe: function(game, size) {
           switch(size) {
           case 3:

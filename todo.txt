@@ -18,14 +18,15 @@
 - burrowers burrow
 
 - text no highlight
+- models in scenario zones
 =======================================================================================
 - escape create template -> pb de disabled du boutton ???
 - sortie du mode de charge laisse le couloir ?
 - feldun ne voit pas la couleur - chrome/windows ?
 - sensibilite click souris ?
 - stopper la clock a la save...
-- enlever couleur -> pas ctrl+0 mais toggle la meme
 - count+ mauvaise colonne WTF ?
+- model toggle X with multiple selection
 =======================================================================================
 - limiter distance drag model comme ruler
 =======================================================================================

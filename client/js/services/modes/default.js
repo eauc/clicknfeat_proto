@@ -273,10 +273,6 @@ angular.module('vassalApp.services')
             var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 20 ? 0 : 20;
             scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
           },
-          'Ctrl 0': function(scope) {
-            if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'toggle', 'color', false));
-          },
           'Alt 1': function(scope) {
             var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 1 ? 0 : 1;
             scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
@@ -287,7 +283,7 @@ angular.module('vassalApp.services')
           },
           'Ctrl 1': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'toggle', 'color', '#0FF'));
+            scope.game.newCommand(command('onSelection', 'toggleColor', '#0FF'));
           },
           'Alt 2': function(scope) {
             var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 2 ? 0 : 2;
@@ -299,7 +295,7 @@ angular.module('vassalApp.services')
           },
           'Ctrl 2': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'toggle', 'color', '#F0F'));
+            scope.game.newCommand(command('onSelection', 'toggleColor', '#F0F'));
           },
           '3': function(scope) {
             scope.game.newCommand(command('onSelection', 'toggleAoe', 3));
@@ -314,7 +310,7 @@ angular.module('vassalApp.services')
           },
           'Ctrl 3': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'toggle', 'color', '#FF0'));
+            scope.game.newCommand(command('onSelection', 'toggleColor', '#FF0'));
           },
           '4': function(scope) {
             scope.game.newCommand(command('onSelection', 'toggleAoe', 4));
@@ -329,7 +325,7 @@ angular.module('vassalApp.services')
           },
           'Ctrl 4': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'toggle', 'color', '#00F'));
+            scope.game.newCommand(command('onSelection', 'toggleColor', '#00F'));
           },
           '5': function(scope) {
             scope.game.newCommand(command('onSelection', 'toggleAoe', 5));
@@ -344,7 +340,7 @@ angular.module('vassalApp.services')
           },
           'Ctrl 5': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'toggle', 'color', '#0F0'));
+            scope.game.newCommand(command('onSelection', 'toggleColor', '#0F0'));
           },
           'Alt 6': function(scope) {
             var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 6 ? 0 : 6;
@@ -356,7 +352,7 @@ angular.module('vassalApp.services')
           },
           'Ctrl 6': function(scope) {
             if(!scope.game.id) return;
-            scope.game.newCommand(command('onSelection', 'toggle', 'color', '#F00'));
+            scope.game.newCommand(command('onSelection', 'toggleColor', '#F00'));
           },
           'Alt 7': function(scope) {
             var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 7 ? 0 : 7;
