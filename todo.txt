@@ -25,7 +25,6 @@
 - sensibilite click souris ?
 - stopper la clock a la save...
 - enlever couleur -> pas ctrl+0 mais toggle la meme
-- label par dessus models !
 - count+ mauvaise colonne WTF ?
 =======================================================================================
 - limiter distance drag model comme ruler

@@ -417,6 +417,10 @@ angular.module('vassalApp.controllers')
           return $scope.game ? 
             _.filter($scope.game.models, function(model) { return model.state['show_'+type]; }) : [];
         };
+        $scope.modelShowLabel = function() {
+          return $scope.game ? 
+            _.filter($scope.game.models, function(model) { return model.state.label.length > 0; }) : [];
+        };
         $scope.showCenteredAoE = function() {
           return $scope.game ? 
             _.filter($scope.game.models, function(model) { return model.state.show_aoe > 0; }) : [];

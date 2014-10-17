@@ -815,38 +815,6 @@
                            style="pointer-events:none;"
                            />
               </g>
-              <g ng-if="model.state.label.length != 0"
-                 transform="rotate(
-                 {{game.board.zoom.flipped ? 180 : 0}},
-                 {{model.info.width/2}},
-                 {{model.info.height/2}})"
-                 >
-                <rect x="{{model.info.width/2-model.displayLabel().length*3.5/2}}"
-                      y="{{
-                  model.info.height/2+(((model.state.rot%360) > 90 && (model.state.rot%360) < 270) ? (game.board.zoom.flipped ? -model.info.r-7 : model.info.r) : (game.board.zoom.flipped ? model.info.r : -model.info.r-7))
-                  }}"
-                  width="{{model.displayLabel().length*3.5}}" height="6"
-                  style="
-                  fill:#333;
-                  fill-opacity:0.4;
-                  pointer-events: none;
-                  "
-                  />
-                  <text x="{{model.info.width/2}}"
-                        y="{{
-                    model.info.height/2+(((model.state.rot%360) > 90 && (model.state.rot%360) < 270) ? (game.board.zoom.flipped ? -model.info.r-2 : model.info.r+6) : (game.board.zoom.flipped ? model.info.r+6 : -model.info.r-2))
-                    }}"
-                    style="
-                    fill:white;
-                    text-anchor:middle;
-                    font-size:6px;
-                    font-family:monospace;
-                    pointer-events: none;
-                    -webkit-user-select: none;
-                    -moz-user-select:none;
-                    "
-                    >{{model.displayLabel()}}</text>
-              </g>
               <g ng-if="
                  model.state.unit &&
                  (model.state.show_unit ||
@@ -920,6 +888,38 @@
                     'stroke': model.chargeTargetInRange(game) ? '#0FF' : '#F00'
                     }"
                     />
+            <g ng-repeat="model in modelShowLabel()"
+               transform="rotate(
+               {{game.board.zoom.flipped ? 180 : 0}},
+               {{model.state.x}},
+               {{model.state.y}})"
+               >
+              <rect x="{{model.state.x-model.displayLabel().length*3.5/2}}"
+                    y="{{
+                model.state.y+(((model.state.rot%360) > 90 && (model.state.rot%360) < 270) ? (game.board.zoom.flipped ? -model.info.r-7 : model.info.r) : (game.board.zoom.flipped ? model.info.r : -model.info.r-7))
+                }}"
+                width="{{model.displayLabel().length*3.5}}" height="6"
+                style="
+                fill:#333;
+                fill-opacity:0.4;
+                pointer-events: none;
+                "
+                />
+                <text x="{{model.state.x}}"
+                      y="{{
+                  model.state.y+(((model.state.rot%360) > 90 && (model.state.rot%360) < 270) ? (game.board.zoom.flipped ? -model.info.r-2 : model.info.r+6) : (game.board.zoom.flipped ? model.info.r+6 : -model.info.r-2))
+                  }}"
+                  style="
+                  fill:white;
+                  text-anchor:middle;
+                  font-size:6px;
+                  font-family:monospace;
+                  pointer-events: none;
+                  -webkit-user-select: none;
+                  -moz-user-select:none;
+                  "
+                  >{{model.displayLabel()}}</text>
+            </g>
             <path ng-repeat="model in modelShow('melee')"
                   d="
                   M{{model.state.x-5-model.info.r}},{{model.state.y}}
