@@ -12,8 +12,7 @@
         'background-color': u.id === user.id ? '#0F0' : (selection[u.id] ? '#99F' : 'white')
         }"
         >
-      {{u.id}}
-      - {{u.name}}[{{u.lang}} {{u.speak.join(',')}}]
+      {{u.name}}[{{u.lang}} {{u.speak.join(',')}}]
       - {{u.factions.join(',')}}[{{u.points}}]
       - {{u.positions.join(',')}}
     </li>

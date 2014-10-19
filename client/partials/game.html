@@ -1589,7 +1589,7 @@
       </td>
       <td valign="top">
         <div style="vertical-align:top;">
-          <strong>Game Id :</strong> {{game.id ? game.id : game.public_id}}
+          <span ng-show="game.id"><strong>Game Id :</strong> {{game.id}}</span>
           <strong>Player1 :</strong> {{game.player1.name}}
           <strong>Player2 :</strong> {{game.player2.name}}<br />
           <button ng-style="{
