@@ -29,6 +29,12 @@ angular.module('vassalApp.services')
         var dy = circle.y - model.state.y;
         return Math.sqrt(dx*dx + dy*dy) <= (model.info.r + circle.r);
       }
+      function modelWithinFlag(model, flag) {
+        var f_r = $rootScope.factions.list.scenario.models.flags[flag.type].r;
+        var dx = flag.x - model.state.x;
+        var dy = flag.y - model.state.y;
+        return Math.sqrt(dx*dx + dy*dy) <= (model.info.r + 40 + f_r);
+      }
       function modelInRectangle(model, rect) {
         var dx, dy;
         if(model.state.x >= rect.x - rect.width/2 &&
@@ -76,11 +82,14 @@ angular.module('vassalApp.services')
               var contesting = _.reduce(instance.scenario.circle, function(mem, c) {
                 return mem || modelInCircle(model, c);
               }, false);
+              contesting = contesting || _.reduce(instance.scenario.flags, function(mem, f) {
+                return mem || modelWithinFlag(model, f);
+              }, contesting);
               contesting = contesting || _.reduce(instance.scenario.rect, function(mem, r) {
                 return mem || modelInRectangle(model, r);
               }, contesting);
               return contesting;
-            }).map(function(model) { return model.state.id });
+            }).map(function(model) { return model.state.id; });
           },
           new_model_id: 0,
           models: {},
