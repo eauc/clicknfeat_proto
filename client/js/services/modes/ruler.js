@@ -42,12 +42,7 @@ angular.module('vassalApp.services')
               }
             case 'Model': 
               {
-                if(!event.ctrlKey) {
-                  modes['default']['Click'].apply(modes['default'],
-                                                  Array.prototype.slice.call(arguments));
-                  modes.goTo('default', scope);
-                  return;
-                }
+                if(!event.ctrlKey) return;
                 var model = drag.target;
                 if(!scope.game.ruler.state.origin) {
                   scope.game.ruler.state.origin = model.state.id;
@@ -94,11 +89,6 @@ angular.module('vassalApp.services')
                 scope.game.ruler.refresh();
                 scope.game.ruler.state.active = true;
                 scope.game.ruler.sendStateCmd();
-                return;
-              }
-            case 'Board': 
-              {
-                modes.goTo('default', scope);
                 return;
               }
             }
