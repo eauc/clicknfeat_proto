@@ -596,6 +596,18 @@
                     filter: url(#aura-filter);
                     "
                     />
+            <g ng-if="menu_view === 'setup'">
+            <!-- <g> -->
+              <circle ng-repeat="id in game.contestingModels()"
+                      cx="{{game.models[id].state.x}}"
+                      cy="{{game.models[id].state.y}}"
+                      r="{{game.models[id].info.r+4}}"
+                      style="
+                      fill:#FFF;
+                      filter: url(#aura-filter);
+                      "
+                      />
+            </g>
             <g ng-show="
                game.los.state.model_active &&
                game.los.state.origin &&

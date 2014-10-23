@@ -24,11 +24,64 @@ angular.module('vassalApp.services')
       var model_base = model({});
       var game_source = null;
 
+      function modelInCircle(model, circle) {
+        var dx = circle.x - model.state.x;
+        var dy = circle.y - model.state.y;
+        return Math.sqrt(dx*dx + dy*dy) <= (model.info.r + circle.r);
+      }
+      function modelInRectangle(model, rect) {
+        var dx, dy;
+        if(model.state.x >= rect.x - rect.width/2 &&
+           model.state.x <= rect.x + rect.width/2 &&
+           model.state.y >= rect.y - rect.height/2 &&
+           model.state.y <= rect.y + rect.height/2) return true;
+        if(model.state.x + model.info.r >= rect.x - rect.width/2 &&
+           model.state.x < rect.x - rect.width/2) {
+          dx = rect.x - rect.width/2 - model.state.x;
+          dy = Math.sqrt(model.info.r*model.info.r - dx*dx);
+          return model.state.y + dy >= rect.y - rect.height/2 &&
+            model.state.y - dy <= rect.y + rect.height/2;
+        }
+        if(model.state.x - model.info.r <= rect.x + rect.width/2 &&
+           model.state.x > rect.x + rect.width/2) {
+          dx = rect.x + rect.width/2 - model.state.x;
+          dy = Math.sqrt(model.info.r*model.info.r - dx*dx);
+          return model.state.y + dy >= rect.y - rect.height/2 &&
+            model.state.y - dy <= rect.y + rect.height/2;
+        }
+        if(model.state.y + model.info.r >= rect.y - rect.height/2 &&
+           model.state.y < rect.y - rect.height/2) {
+          dy = rect.y - rect.height/2 - model.state.y;
+          dx = Math.sqrt(model.info.r*model.info.r - dy*dy);
+          return model.state.x + dx >= rect.x - rect.width/2 &&
+            model.state.x - dx <= rect.x + rect.width/2;
+        }
+        if(model.state.y - model.info.r <= rect.y + rect.height/2 &&
+           model.state.y > rect.y + rect.height/2) {
+          dy = rect.y + rect.height/2 - model.state.y;
+          dx = Math.sqrt(model.info.r*model.info.r - dy*dy);
+          return model.state.x + dx >= rect.x - rect.width/2 &&
+            model.state.x - dx <= rect.x + rect.width/2;
+        }
+        return false;
+      }
+
       var factory = function(data) {
         
         var instance = {
           clock: null,
           scenario: null,
+          contestingModels: function() {
+            return _.filter(instance.models, function(model) {
+              var contesting = _.reduce(instance.scenario.circle, function(mem, c) {
+                return mem || modelInCircle(model, c);
+              }, false);
+              contesting = contesting || _.reduce(instance.scenario.rect, function(mem, r) {
+                return mem || modelInRectangle(model, r);
+              }, contesting);
+              return contesting;
+            }).map(function(model) { return model.state.id });
+          },
           new_model_id: 0,
           models: {},
           createModel: function(options) {
