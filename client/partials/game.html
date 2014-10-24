@@ -648,6 +648,20 @@
                       "
                       />
             </g>
+            <g ng-if="
+               menu_view === 'main' &&
+               game.templates.active
+               ">
+              <circle ng-repeat="id in game.templates.active.overlappingModels(game)"
+                      cx="{{game.models[id].state.x}}"
+                      cy="{{game.models[id].state.y}}"
+                      r="{{game.models[id].info.r+4}}"
+                      style="
+                      fill:#FFF;
+                      filter: url(#aura-filter);
+                      "
+                      />
+            </g>
             <g ng-show="
                game.los.state.model_active &&
                game.los.state.origin &&

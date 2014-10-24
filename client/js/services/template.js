@@ -80,6 +80,9 @@ angular.module('vassalApp.services')
       this.x = this.startDraging.ref.x + dx;
       this.y = this.startDraging.ref.y + dy;
       this.refresh(game);
+    },
+    overlappingModels: function(game) {
+      return [];
     }
   })
   .factory('template_aoe', [
@@ -118,6 +121,14 @@ angular.module('vassalApp.services')
            this.max_deviation = 6;
            template_base.rotateRight.apply(this, Array.prototype.slice.call(arguments));
          },
+         overlappingModels: function(game) {
+           var instance = this;
+           return _.filter(game.models, function(model) {
+             var dx = instance.x - model.state.x;
+             var dy = instance.y - model.state.y;
+             return Math.sqrt(dx*dx + dy*dy) <= (instance.size*5) + model.info.r;
+           }).map(function(model) { return model.state.id; });
+         }
        }, template_base);
       var factory = function(data) {
         _.extend(data, aoe_base);
