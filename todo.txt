@@ -1,8 +1,10 @@
+- model toggle X with multiple selection
+- highlight models sous AoE/spray/charge
+
 - FK import unit pas d'espace entre models
 - alternate models
 - factions : supprimer les unites en double cygnar|scyrah|.../mercos
 
-- ameliorer feedback load game
 - reflechir pour chaque mode les transitions autorisees vers d'autre modes.
 
 - netdecker corner
@@ -12,7 +14,6 @@
 - memoriser distance charge max pour unites
 - suggestion labels precedents
 
-- highlight models sous AoE/spray/charge
 - place model to ruler end/within another model
 - split factions files in subfiles
 - burrowers burrow
@@ -25,7 +26,6 @@
 - count+ mauvaise colonne WTF ?
 - sensibilite click souris ?
 - stopper la clock a la save...
-- model toggle X with multiple selection
 =======================================================================================
 - limiter distance drag model comme ruler
 =======================================================================================

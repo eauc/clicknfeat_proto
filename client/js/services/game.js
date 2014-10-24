@@ -75,6 +75,7 @@ angular.module('vassalApp.services')
       var factory = function(data) {
         
         var instance = {
+          loading: true,
           clock: null,
           scenario: null,
           contestingModels: function() {
@@ -841,6 +842,7 @@ angular.module('vassalApp.services')
               });
               if(!data.more) {
                 console.log('apply cmds');
+                instance.loading = false;
                 $rootScope.$apply();
               }
             }
@@ -848,6 +850,7 @@ angular.module('vassalApp.services')
               new_cmd = command(data);
               // console.log(cmd);
               instance.updateCommand(new_cmd);
+              instance.loading = false;
               $rootScope.$apply();
             }
           };

@@ -20,6 +20,7 @@ angular.module('vassalApp.controllers')
       });
 
       $scope.doCreateGame = function() {
+        $scope.creating = true;
         $http.post('/api/games', { player1: $scope.user })
           .then(function(response) {
             // console.log('create game success');
@@ -30,6 +31,9 @@ angular.module('vassalApp.controllers')
           }, function(response) {
             console.log('create game error');
             console.log(response);
+          })
+          .finally(function() {
+            $scope.creating = false;
           });
       };
 
@@ -40,12 +44,13 @@ angular.module('vassalApp.controllers')
       $scope.read_result = '';
       $scope.readBackup = function(file) {
         $scope.read_result = null;
+        $scope.creating = true;
         var reader = new $window.FileReader();
         reader.onload = function(e) {
           var data;
           try {
             data = JSON.parse(e.target.result);
-            $scope.read_result = 'loaded file';
+            $scope.read_result = 'file valid, uploading to server...';
             // success_cbk_(data);
             // console.log(data);
             var game_data = _.pick(data,
@@ -68,19 +73,25 @@ angular.module('vassalApp.controllers')
               }, function(response) {
                 console.log('upload game error');
                 console.log(response);
+              })
+              .finally(function() {
+                $scope.creating = false;
               });
           }
           catch (event) {
             $scope.read_result = 'invalid file';
+            $scope.creating = false;
           }
           $scope.$apply();
         };
         reader.onerror = function(e) {
           $scope.read_result = 'error reading file';
+          $scope.creating = false;
           $scope.$apply();
         };
         reader.onabort = function(e) {
           $scope.read_result = 'abort reading file';
+          $scope.creating = false;
           $scope.$apply();
         };
         reader.readAsText(file);

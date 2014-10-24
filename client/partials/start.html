@@ -88,22 +88,27 @@
        clear: both;
        "
        ng-show="user.id">
-    <button ng-click="doCreateGame()">Create Game</button><br />
+    <button ng-disabled="creating"
+            ng-click="doCreateGame()">
+      Create Game
+    </button><br />
     <form ng-submit="doSearchGame()">
-      <input ng-model="search_id" placeholder="Game Id..." />
-      <button ng-click="doSearchGame()">Log into game</button>
+      <input ng-disabled="creating"
+             ng-model="search_id"
+             placeholder="Game Id..." />
+      <button ng-disabled="creating"
+              ng-click="doSearchGame()">
+        Log into game
+      </button>
     </form>
     <div>
       <span>Open game file :</span>
-      <input id="import-file"
+      <input ng-disabled="creating"
+             id="import-file"
              type="file"
              onchange="angular.element(this).scope().readBackup(this.files[0])" />
       ---
-      <span ng-class="{
-            'text-success': backup.read_result === 'loaded file',
-            'text-danger': backup.read_result !== 'loaded file'
-            }">{{read_result}}</strong>
-      </span>
+      <span>{{read_result}}</span>
     </div>
   </div>
   <div ng-include="'/partials/gamesBox.html'">

@@ -29,15 +29,22 @@ class CommandCollection
 
   def addConnection out, last
     connections << out
+    data = {
+      refresh: false,
+      cmd: nil
+    }
+    # game just created
+    if 0 === @commands.length
+      data[:slice] = []
+      data[:more] =  false
+      out << "retry:100\ndata:#{data.to_json}\n\n"
+      return
+    end
     first = @commands.index do |c|
       c['stamp'] == last
     end
     first = first || -1
     # puts first.inspect
-    data = {
-      refresh: false,
-      cmd: nil
-    }
     log = @commands[first+1..-1]
     return if not log or log.length === 0
     index = 0

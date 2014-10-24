@@ -19,6 +19,25 @@
              width:{{game.board.window.width+5}}px;
              height:{{game.board.window.height+5}}px;
              ">
+        <div ng-show="game.loading"
+             style="
+             position:absolute;
+             z-index:2;
+             top:0px;
+             left:0px;
+             width:{{game.board.window.width+5}}px;
+             background-color:rgba(30,100,192,0.5);
+             text-align:center;
+             pointer-events:none;
+             ">
+          <span style="
+                vertical-align:middle;
+                font-weight:bold;
+                color:#FFF;
+               ">
+            Loading...
+          </span>
+        </div>
         <div ng-show="mode_display"
              style="
              position:absolute;
@@ -32,7 +51,7 @@
              pointer-events:none;
              ">
           <span style="
-               vertical-align:middle;
+                vertical-align:middle;
                 font-weight:bold;
                 font-size:150%;
                 color:#FFF;
