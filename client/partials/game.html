@@ -19,6 +19,27 @@
              width:{{game.board.window.width+5}}px;
              height:{{game.board.window.height+5}}px;
              ">
+        <div ng-show="mode_display"
+             style="
+             position:absolute;
+             z-index:2;
+             top:{{game.board.window.height/2-25-10}}px;
+             left:{{game.board.window.width/2-100+5}}px;
+             width:200px;
+             padding:30px 15px;
+             background-color:rgba(192,30,30,0.5);
+             text-align:center;
+             pointer-events:none;
+             ">
+          <span style="
+               vertical-align:middle;
+                font-weight:bold;
+                font-size:150%;
+                color:#FFF;
+               ">
+            {{modes.current.name}}
+          </span>
+        </div>
         <div style="
              position:absolute;
              z-index:2;

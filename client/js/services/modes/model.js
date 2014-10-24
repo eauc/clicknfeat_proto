@@ -109,11 +109,14 @@ angular.module('vassalApp.services')
                drag.target.state.id !== scope.game.selection[0]) {
               if(event.ctrlKey) {
                 scope.game.newCommand(command('onSelection', 'setPlaceOrigin', drag.target));
+                return true;
               }
               if(event.shiftKey) {
                 scope.game.newCommand(command('onSelection', 'setPlaceTarget', drag.target));
+                return true;
               }
             }
+            return false;
           },
         });
         return model_place_mode;
@@ -144,7 +147,9 @@ angular.module('vassalApp.services')
                drag.target.state.id !== scope.game.selection[0]) {
               scope.game.newCommand(command('onSelection', 'setPlaceOrigin', drag.target));
               modes.goTo('model_place', scope);
+              return true;
             }
+            return false;
           },
         });
         return model_place_origin_mode;
@@ -175,7 +180,9 @@ angular.module('vassalApp.services')
                drag.target.state.id !== scope.game.selection[0]) {
               scope.game.newCommand(command('onSelection', 'setPlaceTarget', drag.target));
               modes.goTo('model_place', scope);
+              return true;
             }
+            return false;
           },
         });
         return model_place_target_mode;
@@ -364,7 +371,9 @@ angular.module('vassalApp.services')
                drag.event === 'Model' &&
                drag.target.state.id !== scope.game.selection[0]) {
               scope.game.newCommand(command('onSelection', 'setChargeTarget', drag.target));
+              return true;
             }
+            return false;
           },
         });
         return model_charge_mode;
@@ -446,7 +455,9 @@ angular.module('vassalApp.services')
               scope.game.newCommand(command('onSelection', 'alignWith',
                                             drag.target.state.x, drag.target.state.y));
               modes.goTo('default', scope);
+              return true;
             }
+            return false;
           },
         });
         return model_target_mode;

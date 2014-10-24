@@ -235,6 +235,8 @@ angular.module('vassalApp.controllers')
               if($scope.force.ctrl !== 'lock') $scope.force.ctrl = false;
               if($scope.force.shift !== 'lock') $scope.force.shift = false;
               if($scope.force.alt !== 'lock') $scope.force.alt = false;
+            }, function() {
+              triggerModeDisplay();
             });
         }
         $scope.onKeyDown = function(event) {
@@ -370,14 +372,16 @@ angular.module('vassalApp.controllers')
               // console.log('starting -> draging');
               $scope.drag.state = 'draging';
               // console.log('DragStart', $scope.drag);
-              $scope.modes.send('DragStart', $scope, event, $scope.drag, dx, dy);
+              $scope.modes.send('DragStart', $scope, event, $scope.drag, dx, dy)
+                .catch(function() { triggerModeDisplay(); });
             }
             else if($scope.drag.state === 'draging') {
               // console.log('draging');
               // console.log('Drag', $scope.drag);
               $scope.modes.send('Drag', $scope, event, $scope.drag,
                                 user_x, user_y,
-                                dx, dy);
+                                dx, dy)
+                .catch(function() { triggerModeDisplay(); });
             }
             return;
           }
@@ -404,12 +408,14 @@ angular.module('vassalApp.controllers')
             var dy = user_y - $scope.drag.start_y;
             // console.log('DragEnd', $scope.drag);
             $scope.modes.send('DragEnd', $scope, event, $scope.drag,
-                              user_x, user_y, dx, dy);
+                              user_x, user_y, dx, dy)
+                .catch(function() { triggerModeDisplay(); });
           }
           else {
             // console.log('Click', $scope.drag);
             $scope.modes.send('Click', $scope, event, $scope.drag,
-                              user_x, user_y);
+                              user_x, user_y)
+                .catch(function() { if($scope.drag.event !== 'Board') triggerModeDisplay(); });
           }
         };
 
@@ -471,6 +477,18 @@ angular.module('vassalApp.controllers')
           $scope.$apply();
         };
 
+        var mode_display_timeout;
+        $scope.mode_display = false;
+        function triggerModeDisplay() {
+          $scope.mode_display = true;
+          if(mode_display_timeout) window.clearTimeout(mode_display_timeout);
+          mode_display_timeout = window.setTimeout(function() {
+            $scope.mode_display = false;
+            mode_display_timeout = null;
+            $scope.$apply();
+          }, 750);
+        }
+        // $scope.$on('mode change', triggerModeDisplay);
       });
     }
   ]);

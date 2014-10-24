@@ -3,6 +3,7 @@
 angular.module('vassalApp.services')
   .factory('modes', [
     '$q',
+    '$rootScope',
     'common_mode',
     'default_mode',
     'model_selected_mode',
@@ -29,6 +30,7 @@ angular.module('vassalApp.services')
     'ruler_origin_mode',
     'ruler_target_mode',
     function($q,
+             $rootScope,
              common_mode,
              default_mode,
              model_selected_mode,
@@ -97,14 +99,20 @@ angular.module('vassalApp.services')
         }
         modes.current = modes[next];
         modes.current.enter(scope, previous);
+        $rootScope.$broadcast('mode change');
       };
       modes.send = function(event) {
         var defer = $q.defer();
         if(_.has(modes.current, event)) {
           console.log(modes.current.name+' <- '+event);
-          modes.current[event].apply(modes.current,
-                                     Array.prototype.slice.call(arguments, 1));
-          defer.resolve();
+          var accepted = modes.current[event].apply(modes.current,
+                                                    Array.prototype.slice.call(arguments, 1));
+          if(accepted === false) {
+            defer.reject();
+          }
+          else {
+            defer.resolve();
+          }
         }
         else {
           console.log(modes.current.name+' xx '+event);

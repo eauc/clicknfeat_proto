@@ -35,19 +35,20 @@ angular.module('vassalApp.services')
               {
                 if(event.ctrlKey) {
                   scope.game.newCommand(command('onLos', 'setOrigin', drag.target));
-                  return;
+                  return true;
                 }
                 if(event.shiftKey) {
                   scope.game.newCommand(command('onLos', 'setTarget', drag.target));
-                  return;
+                  return true;
                 }
                 if(scope.game.los.state.origin &&
                    scope.game.los.state.target) {
                   scope.game.newCommand(command('onLos', 'toggleInterveningModel', drag.target));
-                  return;
+                  return true;
                 }
               }
             }
+            return false;
           },
         });
         return los_mode;
@@ -67,7 +68,9 @@ angular.module('vassalApp.services')
             if(drag.event === 'Model') {
               scope.game.newCommand(command('onLos', 'setOrigin', drag.target));
               modes.goTo('los', scope);
+              return true;
             }
+            return false;
           },
         });
         return los_origin_mode;
@@ -87,7 +90,9 @@ angular.module('vassalApp.services')
             if(drag.event === 'Model') {
               scope.game.newCommand(command('onLos', 'setTarget', drag.target));
               modes.goTo('los', scope);
+              return true;
             }
+            return false;
           },
         });
         return los_target_mode;

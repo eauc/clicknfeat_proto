@@ -37,18 +37,19 @@ angular.module('vassalApp.services')
           template: 'template_origin.html',
           'Click': function(scope, event, drag) {
             if(!scope.game.id) return;
-            if(drag.event === 'Model') {
-              var model = drag.target;
-              var active = scope.game.templates.active;
-              active.origin = model.state.id;
-              if(active.type === 'aoe') {
-                scope.game.newCommand(command('onActiveTemplate', 'refresh'));
-              }
-              else {
-                scope.game.newCommand(command('onActiveTemplate', 'refresh'));
-              }
-              modes.goTo('template', scope);
+            if(drag.event !== 'Model') return false;
+
+            var model = drag.target;
+            var active = scope.game.templates.active;
+            active.origin = model.state.id;
+            if(active.type === 'aoe') {
+              scope.game.newCommand(command('onActiveTemplate', 'refresh'));
             }
+            else {
+              scope.game.newCommand(command('onActiveTemplate', 'refresh'));
+            }
+            modes.goTo('template', scope);
+            return true;
           },
         });
         return template_origin_mode;
@@ -66,38 +67,39 @@ angular.module('vassalApp.services')
           template: 'template_target.html',
           'Click': function(scope, event, drag) {
             if(!scope.game.id) return;
-            if(drag.event === 'Model') {
-              var model = drag.target;
-              var active = scope.game.templates.active;
-              var x;
-              var y;
-              if(active.type === 'aoe') {
-                x = model.state.x;
-                y = model.state.y;
-                scope.game.newCommand(command('onActiveTemplate', 'set',
-                                              x, y, scope.game.templates.active.rot));
-              }
-              else {
-                if(active.origin &&
-                   active.origin === model.state.id) return;
-                var origin_model;
-                if(active.origin && scope.game.models[active.origin]) {
-                  origin_model = scope.game.models[active.origin];
-                }
-                var x1 = origin_model ? origin_model.state.x : active.x;
-                var y1 = origin_model ? origin_model.state.y : active.y;
-                var x2 = model.state.x;
-                var y2 = model.state.y;
-                var angle = Math.atan2(x2-x1, y1-y2)*180/Math.PI;
-                x = !origin_model ? active.x : origin_model.state.x +
-                  origin_model.info.r * Math.sin(angle*Math.PI/180);
-                y = !origin_model ? active.y : origin_model.state.y -
-                  origin_model.info.r * Math.cos(angle*Math.PI/180);
-                scope.game.newCommand(command('onActiveTemplate', 'set',
-                                              x, y, angle));
-              }
-              modes.goTo('template', scope);
+            if(drag.event !== 'Model') return false;
+
+            var model = drag.target;
+            var active = scope.game.templates.active;
+            var x;
+            var y;
+            if(active.type === 'aoe') {
+              x = model.state.x;
+              y = model.state.y;
+              scope.game.newCommand(command('onActiveTemplate', 'set',
+                                            x, y, scope.game.templates.active.rot));
             }
+            else {
+              if(active.origin &&
+                 active.origin === model.state.id) return;
+              var origin_model;
+              if(active.origin && scope.game.models[active.origin]) {
+                origin_model = scope.game.models[active.origin];
+              }
+              var x1 = origin_model ? origin_model.state.x : active.x;
+              var y1 = origin_model ? origin_model.state.y : active.y;
+              var x2 = model.state.x;
+              var y2 = model.state.y;
+              var angle = Math.atan2(x2-x1, y1-y2)*180/Math.PI;
+              x = !origin_model ? active.x : origin_model.state.x +
+                origin_model.info.r * Math.sin(angle*Math.PI/180);
+              y = !origin_model ? active.y : origin_model.state.y -
+                origin_model.info.r * Math.cos(angle*Math.PI/180);
+              scope.game.newCommand(command('onActiveTemplate', 'set',
+                                            x, y, angle));
+            }
+            modes.goTo('template', scope);
+            return true;
           },
         });
         return template_target_mode;
@@ -140,6 +142,7 @@ angular.module('vassalApp.services')
               }
             }
             modes.goTo('template', scope);
+            return true;
           },
         });
         return template_create_mode;
@@ -184,7 +187,7 @@ angular.module('vassalApp.services')
                   scope.game.templates.active = drag.target;
                   modes.goTo('template', scope);
                 }
-                return;
+                return true;
               }
             case 'Model':
               {
@@ -192,15 +195,16 @@ angular.module('vassalApp.services')
                 modes['default']['Click'].apply(modes['default'],
                                             Array.prototype.slice.call(arguments));
                 modes.goTo('default', scope);
-                return;
+                return true;
               }
             case 'Board': 
               {
                 scope.game.templates.active = null;
                 modes.goTo('default', scope);
-                return;
+                return true;
               }
             }
+            return false;
           },
         });
         return template_mode;
@@ -385,7 +389,9 @@ angular.module('vassalApp.services')
               drag.target.startDraging();
 
               modes.goTo('template_drag', scope);
+              return true;
             }
+            return false;
           },
           'Click': function(scope, event, drag) {
             if(!scope.game.id) return;
@@ -401,55 +407,56 @@ angular.module('vassalApp.services')
                   scope.game.templates.active = drag.target;
                   modes.goTo('template', scope);
                 }
-                return;
+                return true;
               }
             case 'Model': 
               {
-                if(!event.ctrlKey) {
-                  scope.game.templates.active = null;
-                  modes['default']['Click'].apply(modes['default'],
-                                                  Array.prototype.slice.call(arguments));
-                  modes.goTo('default', scope);
-                  return;
-                }
-                if(scope.game.templates.active.type === 'wall') return;
-                var model = drag.target;
-                var active = scope.game.templates.active;
-                if(active.type === 'aoe') {
-                  x = model.state.x;
-                  y = model.state.y;
-                  scope.game.newCommand(command('onActiveTemplate', 'set',
-                                                x, y, scope.game.templates.active.rot));
-                  return;
-                }
-                // spray
-                if(!active.origin) {
-                  active.origin = model.state.id;
-                  scope.game.newCommand(command('onActiveTemplate', 'refresh'));
-                  return;
-                }
                 var x;
                 var y;
-                if(active.origin === model.state.id) return;
-                var origin_model = scope.game.models[active.origin];
-                var x1 = origin_model.state.x;
-                var y1 = origin_model.state.y;
-                var x2 = model.state.x;
-                var y2 = model.state.y;
-                var angle = Math.atan2(x2-x1, y1-y2)*180/Math.PI;
-                x = origin_model.state.x + origin_model.info.r * Math.sin(angle*Math.PI/180);
-                y = origin_model.state.y - origin_model.info.r * Math.cos(angle*Math.PI/180);
-                scope.game.newCommand(command('onActiveTemplate', 'set',
-                                              x, y, angle));
-                return;
+                var model = drag.target;
+                var active = scope.game.templates.active;
+                if(event.ctrlKey) {
+                  if(scope.game.templates.active.type === 'wall') return true;
+                  active.origin = model.state.id;
+                  scope.game.newCommand(command('onActiveTemplate', 'refresh'));
+                  return true;
+                }
+                if(event.shiftKey) {
+                  if(active.origin === model.state.id) return true;
+                  if(active.type === 'aoe') {
+                    x = model.state.x;
+                    y = model.state.y;
+                    scope.game.newCommand(command('onActiveTemplate', 'set',
+                                                  x, y, scope.game.templates.active.rot));
+                    return true;
+                  }
+                  // spray
+                  var origin_model = scope.game.models[active.origin];
+                  var x1 = origin_model.state.x;
+                  var y1 = origin_model.state.y;
+                  var x2 = model.state.x;
+                  var y2 = model.state.y;
+                  var angle = Math.atan2(x2-x1, y1-y2)*180/Math.PI;
+                  x = origin_model.state.x + origin_model.info.r * Math.sin(angle*Math.PI/180);
+                  y = origin_model.state.y - origin_model.info.r * Math.cos(angle*Math.PI/180);
+                  scope.game.newCommand(command('onActiveTemplate', 'set',
+                                                x, y, angle));
+                  return true;
+                }
+                scope.game.templates.active = null;
+                var accepted = modes['default']['Click'].apply(modes['default'],
+                                                               Array.prototype.slice.call(arguments));
+                modes.goTo('default', scope);
+                return accepted;
               }
             case 'Board': 
               {
                 scope.game.templates.active = null;
                 modes.goTo('default', scope);
-                return;
+                return true;
               }
             }
+            return false;
           },
         });
         return template_mode;
