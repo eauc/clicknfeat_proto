@@ -192,9 +192,8 @@ angular.module('vassalApp.services')
           }
         },
         toggleColor: function(game, col) {
-          var new_val = (col === this.state.show_color) ? null : col;
-          if(new_val) {
-            this.state.show_color = new_val;
+          if(col) {
+            this.state.show_color = col;
           }
           else {
             delete this.state.show_color;
