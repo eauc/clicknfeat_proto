@@ -34,6 +34,13 @@ module.exports = function(grunt) {
         options: {
           spawn: true
         }
+      },
+      uglify: {
+        files: js_src,
+        tasks: [ 'uglify:app_src' ],
+        options: {
+          spawn: true
+        }
       }
     }
   });

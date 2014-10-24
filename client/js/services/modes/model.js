@@ -360,7 +360,8 @@ angular.module('vassalApp.services')
                                           true));
           },
           'Click': function(scope, event, drag, user_x, user_y) {
-            if(drag.event === 'Model' &&
+            if(event.shiftKey &&
+               drag.event === 'Model' &&
                drag.target.state.id !== scope.game.selection[0]) {
               scope.game.newCommand(command('onSelection', 'setChargeTarget', drag.target));
             }
