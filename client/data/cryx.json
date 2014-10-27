@@ -553,7 +553,7 @@
         "img": {
           "x": 0,
           "y": -0,
-          "link": "data/cryx/jacks/Scavanger.png"
+          "link": "data/cryx/jacks/Scavenger.png"
         },
         "damage": {
           "type": "jack",
@@ -707,7 +707,7 @@
         "img": {
           "x": 0,
           "y": -0,
-          "link": "data/cryx/jacks/Harrower.png"
+          "link": "data/cryx/jacks/Leviathan.png"
         },
         "damage": {
           "type": "jack",
