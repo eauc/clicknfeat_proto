@@ -1,11 +1,11 @@
-- highlight models sous AoE/spray/charge
+- highlight models sous spray
+- stopper la clock a la save...
 
 - FK import unit pas d'espace entre models
 - alternate models
 - factions : supprimer les unites en double cygnar|scyrah|.../mercos
 
 - reflechir pour chaque mode les transitions autorisees vers d'autre modes.
-
 - netdecker corner
 
 - commands replay : button to clean replay list ?
@@ -18,13 +18,13 @@
 - burrowers burrow
 
 - text no highlight
+- sons debiles lancers de des
 =======================================================================================
 - escape create template -> pb de disabled du boutton ???
 - sortie du mode de charge laisse le couloir ?
 - feldun ne voit pas la couleur - chrome/windows ?
 - count+ mauvaise colonne WTF ?
 - sensibilite click souris ?
-- stopper la clock a la save...
 =======================================================================================
 - limiter distance drag model comme ruler
 =======================================================================================

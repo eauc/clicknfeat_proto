@@ -1658,6 +1658,13 @@
           <span ng-show="game.id"><strong>Game Id :</strong> {{game.id}}</span>
           <strong>Player1 :</strong> {{game.player1.name}}
           <strong>Player2 :</strong> {{game.player2.name}}<br />
+          <form ng-submit="doInvitePlayer()">
+            Invite a player :
+            <select ng-model="player_invite"
+                    ng-options="p as p.name for (id, p) in users.list">
+            </select>
+            <button type="submit">Invite</button>
+          </form>
           <button ng-style="{
                   'background-color': menu_view === 'main' ? '#6F6' : (new_game_chat ? '#F6F' : 'none')
                   }"
