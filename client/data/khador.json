@@ -1005,7 +1005,7 @@
           "unit": {
             "grunt": {
               "name": "Leader and Grunts",
-              "fk_name": "",
+              "fk_name": "Iron Fang Pikemen",
               "ranges": [1, 6, 10],
               "type": "warrior",
               "base": "small",
