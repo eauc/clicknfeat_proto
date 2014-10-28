@@ -9,11 +9,7 @@
             'background-color': modes.current.group === 'Ruler' ? '#6F6' : 'none'
             }"
             title="(Shift + 'R')"
-            ng-click="doToggleRulerMode()"
-            ng-disabled="
-            modes.current.group !== 'Default' &&
-            modes.current.group !== 'Ruler'
-            "
+            ng-click="doToggleMode('ruler')"
             >
       Use Ruler
     </button>
@@ -38,11 +34,7 @@
             'background-color': (modes.current.group === 'LoS') ? '#6F6' : 'none'
             }"
             title="(Shift + 'L')"
-            ng-click="doToggleLosMode()"
-            ng-disabled="
-            modes.current.group !== 'Default' &&
-            modes.current.group !== 'LoS'
-            "
+            ng-click="doToggleMode('los')"
             >
       Use LOS
     </button>
@@ -53,7 +45,6 @@
             align:center;
             "
             ng-click="doCreateTemplate('aoe',3)"
-            ng-disabled="modes.current.group !== 'Default'"
             >New AoE</button>
     <button ng-if="game.id"
             style="
@@ -62,7 +53,6 @@
             align:center;
             "
             ng-click="doCreateTemplate('spray',6)"
-            ng-disabled="modes.current.group !== 'Default'"
             >New Spray</button>
     <button ng-if="game.id"
             style="
@@ -71,7 +61,6 @@
             align:center;
             "
             ng-click="doCreateTemplate('wall')"
-            ng-disabled="modes.current.group !== 'Default'"
             >New Wall</button>
   </div>
 </div>

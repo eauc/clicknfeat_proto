@@ -6,11 +6,13 @@ angular.module('vassalApp.controllers')
     function($scope) {
       console.log('init toolsBoxCtrl');
 
-      $scope.doToggleLosMode = function() {
-        $scope.modes.send('Shift L', $scope);
-      };
-      $scope.doToggleRulerMode = function() {
-        $scope.modes.send('Shift R', $scope);
+      $scope.doToggleMode = function(new_mode) {
+        if($scope.modes.current.group === $scope.modes[new_mode].group) {
+          $scope.modes.goTo('default', $scope);
+        }
+        else {
+          $scope.modes.goTo(new_mode, $scope);
+        }
       };
 
       $scope.doCreateTemplate = function(type, size) {

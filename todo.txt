@@ -5,9 +5,6 @@
 - alternate models
 - factions : supprimer les unites en double cygnar|scyrah|.../mercos
 
-- reflechir pour chaque mode les transitions autorisees vers d'autre modes.
-- netdecker corner
-
 - commands replay : button to clean replay list ?
 - commands replay : prevent undo drop on eventSource refresh
 - memoriser distance charge max pour unites
