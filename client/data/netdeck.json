@@ -1,4 +1,7 @@
 {
+  "Circle of Pagani": {
+    "Kromac1": "/data/netdeck/orboros/Pagani_Kromac.txt"
+  },
   "Dibbouk Pack": {
     "Asphyxious2 - Soulless, Brainless, Friendless": "/data/netdeck/cryx/Dibbouk_Asphy2.txt"
   },
@@ -10,10 +13,9 @@
     "Vayl1 - Disciple of JVM": "/data/netdeck/legion/JVM_Vayl1.txt",
     "Vayl2 (Tiers4) - Machinations of JVM": "/data/netdeck/legion/JVM_Vayl2.txt"
   },
-  "Q2 Challenge": {
-    "Hoarluk1 - Rune of War is so overrated": "/data/netdeck/trollbloods/Q2_Hoarluk1.txt"
-  },
   "Retribution of Pagani": {
-    "Issyria - Sibyl of Pagani": "/data/netdeck/scyrah/Pagani_Issyria.txt"
+    "Issyria - Sibyl of Pagani": "/data/netdeck/scyrah/Pagani_Issyria.txt",
+    "Ravyn": "/data/netdeck/scyrah/Pagani_Ravyn.txt",
+    "Vyros2 - Murder of Griffons": "/data/netdeck/scyrah/Pagani_Vyros2.txt"
   }
 }
