@@ -1,0 +1,45 @@
+<div ng-controller="netdeckBoxCtrl">
+  <div>
+    <strong>Netdecker's Corner :</strong>
+  </div>
+  <div>
+    Faction :
+    <select name="netdeck_faction"
+            ng-model="netdeck_faction"
+            ng-options="f as id for (id, f) in netdeck.list"
+            ng-change="
+            list=null;
+            "
+            >
+    </select>
+  </div>
+  <div>
+    List :
+    <select name="netdeck_list"
+            ng-model="netdeck_list"
+            ng-options="l as id for (id, l) in netdeck_faction"
+            >
+    </select>
+  </div>
+  <div>
+    <input type="checkbox"
+           id="netdeck_brainless"
+           ng-model="netdeck_brainless">
+    <label for="netdeck_brainless">
+      I hereby certify I am brainless
+    </label>
+  </div>
+  <div>
+    <button ng-disabled="
+            !netdeck_brainless ||
+            !netdeck_faction ||
+            !netdeck_list
+            "
+            ng-click="doImportNetdeckList()">
+      Import
+    </button>
+  </div>
+  <div ng-repeat="line in fk_read_result">
+    {{line}}
+  </div>
+</div>

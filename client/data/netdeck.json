@@ -1,0 +1,19 @@
+{
+  "Dibbouk Pack": {
+    "Asphyxious2 - Soulless, Brainless, Friendless": "/data/netdeck/cryx/Dibbouk_Asphy2.txt"
+  },
+  "Legendary Tales": {
+    "Pleure pas, Spiff joue Zerkova": "/data/netdeck/khador/Spiff_Zerkova.txt"
+  },
+  "Legion of JVM": {
+    "Saeryn - JVM is soooo 2011": "/data/netdeck/legion/JVM_Saeryn.txt",
+    "Vayl1 - Disciple of JVM": "/data/netdeck/legion/JVM_Vayl1.txt",
+    "Vayl2 (Tiers4) - Machinations of JVM": "/data/netdeck/legion/JVM_Vayl2.txt"
+  },
+  "Q2 Challenge": {
+    "Hoarluk1 - Rune of War is so overrated": "/data/netdeck/trollbloods/Q2_Hoarluk1.txt"
+  },
+  "Retribution of Pagani": {
+    "Issyria - Sibyl of Pagani": "/data/netdeck/scyrah/Pagani_Issyria.txt"
+  }
+}

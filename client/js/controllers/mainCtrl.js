@@ -7,6 +7,7 @@ angular.module('vassalApp.controllers')
     '$state',
     '$http',
     'factions',
+    'netdeck',
     'scenarios',
     'boards',
     'games',
@@ -17,6 +18,7 @@ angular.module('vassalApp.controllers')
              $state,
              $http,
              factions,
+             netdeck,
              scenarios,
              boards,
              games,
@@ -43,6 +45,7 @@ angular.module('vassalApp.controllers')
       $scope.user = user;
       $scope.users = users;
       $scope.games = games;
+      $scope.netdeck = netdeck;
 
       $scope.doGoHome = function() {
         $state.go('start');
