@@ -1366,6 +1366,7 @@
     "solos": {
       "Blackclad Wayfarer": {
         "name": "Blackclad Wayfarer",
+        "fk_name": "Blackclad Wayfarer",
         "type": "solo",
         "base": "small",
         "width": 60,
@@ -1374,6 +1375,23 @@
           "x": 0,
           "y": 0,
           "link": "data/orboros/solos/Blackclad.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "Druid Wilder": {
+        "name": "Druid Wilder",
+        "fk_name": "Druid Wilder",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/orboros/solos/Wilder.png"
         },
         "damage": {
           "type": "warrior",
