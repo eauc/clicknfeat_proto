@@ -1658,7 +1658,8 @@
           <span ng-show="game.id"><strong>Game Id :</strong> {{game.id}}</span>
           <strong>Player1 :</strong> {{game.player1.name}}
           <strong>Player2 :</strong> {{game.player2.name}}<br />
-          <form ng-submit="doInvitePlayer()">
+          <form ng-show="game.id"
+                ng-submit="doInvitePlayer()">
             Invite a player :
             <select ng-model="player_invite"
                     ng-options="p as p.name for (id, p) in users.list">
