@@ -579,6 +579,34 @@
                     }"
                     ng-mousedown="onTemplateMouseDown($event, aoe)"
                     />
+            <g ng-repeat="aoe in templateShowLocked('aoe')"
+               transform="rotate(
+               {{game.board.zoom.flipped ? 180 : 0}},
+               {{aoe.x}},
+               {{aoe.y}})"
+               >
+              <rect x="{{aoe.x-aoe.displayLabel().length*3.5/2}}"
+                    y="{{aoe.y+aoe.size*5}}"
+                    width="{{aoe.displayLabel().length*3.5}}" height="6"
+                    style="
+                    fill:#333;
+                    fill-opacity:0.4;
+                    pointer-events: none;
+                    "
+                    />
+              <text x="{{aoe.x}}"
+                    y="{{aoe.y+aoe.size*5+5}}"
+                    style="
+                    fill:white;
+                    text-anchor:middle;
+                    font-size:6px;
+                    font-family:monospace;
+                    pointer-events: none;
+                    -webkit-user-select: none;
+                    -moz-user-select:none;
+                    "
+                    >{{aoe.displayLabel()}}</text>
+            </g>
             <polygon ng-repeat="sp in templateShowLocked('spray')"
                      points="
                      8.75,0
@@ -623,6 +651,26 @@
                   }"
                   ng-mousedown="onTemplateMouseDown($event, wa)"
                   />
+            <text ng-repeat="wa in templateShowLocked('wall')"
+                  x="{{wa.x}}"
+                  y="{{wa.y+2}}"
+                  style="
+                  fill:black;
+                  text-anchor:middle;
+                  font-size:6px;
+                  font-family:monospace;
+                  pointer-events: none;
+                  -webkit-user-select: none;
+                  -moz-user-select:none;
+                  "
+                  transform="
+                  rotate(
+                  {{wa.rot-90}},
+                  {{wa.x}},
+                  {{wa.y}}
+                  )
+                  "
+                  >{{wa.displayLabel()}}</text>
           </svg>
           <svg id="model-canvas"
                x="0" y="0" width="{{game.board.width}}" height="{{game.board.height}}"
@@ -1350,6 +1398,34 @@
                     ng-click="onTemplateClick($event, aoe)"
                     ng-mousedown="onTemplateMouseDown($event, aoe)"
                     />
+            <g ng-repeat="aoe in templateShowUnlocked('aoe')"
+               transform="rotate(
+               {{game.board.zoom.flipped ? 180 : 0}},
+               {{aoe.x}},
+               {{aoe.y}})"
+               >
+              <rect x="{{aoe.x-aoe.displayLabel().length*3.5/2}}"
+                    y="{{aoe.y+aoe.size*5}}"
+                    width="{{aoe.displayLabel().length*3.5}}" height="6"
+                    style="
+                    fill:#333;
+                    fill-opacity:0.4;
+                    pointer-events: none;
+                    "
+                    />
+              <text x="{{aoe.x}}"
+                    y="{{aoe.y+aoe.size*5+5}}"
+                    style="
+                    fill:white;
+                    text-anchor:middle;
+                    font-size:6px;
+                    font-family:monospace;
+                    pointer-events: none;
+                    -webkit-user-select: none;
+                    -moz-user-select:none;
+                    "
+                    >{{aoe.displayLabel()}}</text>
+            </g>
             <line ng-show="game.templates.active.type == 'aoe' && !game.templates.active.locked"
                   x1="{{game.templates.active.x}}" y1="{{game.templates.active.y}}"
                   x2="{{game.templates.active.x}}" y2="{{game.templates.active.y-game.templates.active.size*5}}"
@@ -1412,6 +1488,26 @@
                   ng-click="onTemplateClick($event, wa)"
                   ng-mousedown="onTemplateMouseDown($event, wa)"
                   />
+            <text ng-repeat="wa in templateShowUnlocked('wall')"
+                  x="{{wa.x}}"
+                  y="{{wa.y+2}}"
+                  style="
+                  fill:black;
+                  text-anchor:middle;
+                  font-size:6px;
+                  font-family:monospace;
+                  pointer-events: none;
+                  -webkit-user-select: none;
+                  -moz-user-select:none;
+                  "
+                  transform="
+                  rotate(
+                  {{wa.rot-90}},
+                  {{wa.x}},
+                  {{wa.y}}
+                  )
+                  "
+                  >{{wa.displayLabel()}}</text>
             <circle ng-show="
                     game.templates.active &&
                     game.templates.active.origin &&
@@ -1715,7 +1811,14 @@
                  ng-include="'partials/diceBox.html'">
             </div>
             <div style="border:1px solid black;overflow-y:scroll;"
-                 ng-show="game.selection.length === 1"
+                 ng-show="game.templates.active"
+                 ng-include="'partials/templateViewBox.html'">
+            </div>
+            <div style="border:1px solid black;overflow-y:scroll;"
+                 ng-show="
+                 !game.templates.active &&
+                 game.selection.length === 1
+                 "
                  ng-include="'partials/modelViewBox.html'">
             </div>
             <div ng-if="game.id"

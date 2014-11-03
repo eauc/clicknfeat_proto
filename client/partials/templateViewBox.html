@@ -1,0 +1,22 @@
+<div ng-controller="templateViewBoxCtrl"
+     >
+  <div>
+    <strong>Template :</strong> {{game.templates.active.type}}
+  </div>
+  <div>
+    <strong>Label :</strong>
+    <form ng-show="game.id"
+          style="display:inline;margin:0px;padding:0px;"
+          ng-submit="doSetLabel()">
+      <input type="text"
+             style="width:10em;"
+             ng-model="template_view.new_label"
+             ng-keydown="stopKeyPropagation($event)"
+             ng-keypress="stopKeyPropagation($event)"
+             />
+    </form>
+    <button ng-click="doClearAllLabel()">Clear All</button>
+    <button ng-repeat="lbl in game.templates.active.label"
+            ng-click="doClearLabel($index)">{{lbl}} <strong>x</strong></button>
+  </div>
+</div>
