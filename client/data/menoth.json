@@ -2,6 +2,11 @@
   "name" : "Menoth",
   "color" : "#ecc76d",
   "icon": "data/icons/menoth_50.png",
+  "wreck": {
+    "medium": "data/menoth/jacks/LightWreck.png",
+    "large": "data/menoth/jacks/HeavyWreck.png",
+    "huge": "data/menoth/jacks/ColossalWreck.png"
+  },
   "models": {
     "casters": {
       "amon1": {

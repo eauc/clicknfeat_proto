@@ -242,6 +242,21 @@ angular.module('vassalApp.services')
             return memo + ' ' + lbl;
           }, '');
         },
+        displayImage: function() {
+          if(this.state.show_incorporeal &&
+             this.info.img.incorporeal) {
+            return this.info.img.incorporeal;
+          }
+          if(this.state.show_leader &&
+             this.info.img.leader) {
+            return this.info.img.leader;
+          }
+          if(this.state.show_wreck &&
+             this.info.img.wreck) {
+            return this.info.img.wreck;
+          }
+          return this.info.img.link;
+        },
         setUnit: function(game, unit) {
           this.state.unit = unit;
         },

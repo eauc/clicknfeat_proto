@@ -2,6 +2,11 @@
   "name": "Khador",
   "color": "#a94a4a",
   "icon": "data/icons/khador_50.png",
+  "wreck": {
+    "medium": "data/khador/jacks/LightWreck.png",
+    "large": "data/khador/jacks/HeavyWreck.png",
+    "huge": "data/khador/jacks/ColossalWreck.png"
+  },
   "models": {
     "casters": {
       "butcher1": {

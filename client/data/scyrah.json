@@ -2,6 +2,11 @@
   "name": "Retribution of Scyrah",
   "color": "#85d1bd",
   "icon": "data/icons/scyrah_50.png",
+  "wreck": {
+    "medium": "data/scyrah/jacks/LightWreck.png",
+    "large": "data/scyrah/jacks/HeavyWreck.png",
+    "huge": "data/scyrah/jacks/ColossalWreck.png"
+  },
   "models": {
     "casters": {
       "garryth1": {

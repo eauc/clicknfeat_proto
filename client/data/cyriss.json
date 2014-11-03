@@ -2,6 +2,11 @@
   "name": "Convergence of Cyriss",
   "color": "#00b8c2",
   "icon": "",
+  "wreck": {
+    "medium": "data/cyriss/jacks/LightWreck.png",
+    "large": "data/cyriss/jacks/HeavyWreck.png",
+    "huge": "data/cyriss/jacks/ColossalWreck.png"
+  },
   "models": {
     "casters": {
       "Aurora1": {

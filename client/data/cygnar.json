@@ -2,6 +2,11 @@
   "name": "Cygnar",
   "color": "#5963a2",
   "icon": "data/icons/cygnar_50.png",
+  "wreck": {
+    "medium": "data/cygnar/jacks/LightWreck.png",
+    "large": "data/cygnar/jacks/HeavyWreck.png",
+    "huge": "data/cygnar/jacks/ColossalWreck.png"
+  },
   "models": {
     "casters": {
       "brisbane1": {

@@ -2,6 +2,11 @@
   "name": "Cryx",
   "color": "#3a4c3f",
   "icon": "data/icons/cryx_50.png",
+  "wreck": {
+    "medium": "data/cryx/jacks/LightWreck.png",
+    "large": "data/cryx/jacks/HeavyWreck.png",
+    "huge": "data/cryx/jacks/ColossalWreck.png"
+  },
   "models": {
     "casters": {
       "Asphyxious1": {

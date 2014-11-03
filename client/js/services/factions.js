@@ -25,6 +25,9 @@ angular.module('vassalApp.services')
                                                   }, 0);
                           }, 0);
         }
+        if(model.type === 'jack') {
+          model.img.wreck = faction.wreck ? faction.wreck[model.base] : null;
+        }
         switch(model.damage.type) {
         case 'jack':
         case 'beast':

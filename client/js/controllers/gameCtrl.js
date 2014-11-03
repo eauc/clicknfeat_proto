@@ -130,6 +130,10 @@ angular.module('vassalApp.controllers')
           icon: '/data/icons/BoltYellow.png',
           name: 'Fleeing'
         },
+        'W': {
+          desc: 'Wreck',
+          name: 'Wreck'
+        },
       };
       $scope.model_selected_aura = '0';
       $scope.model_selected_aoe = '3';

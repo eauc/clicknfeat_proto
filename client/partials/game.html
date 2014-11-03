@@ -847,10 +847,13 @@
                 <image ng-show="model.state.show_image"
                        x="{{model.info.img.x}}" y="{{model.info.img.y}}"
                        width="{{model.info.width}}" height="{{model.info.height}}"
-                       xlink:href="{{(model.state.show_incorporeal && model.info.img.incorporeal) ? model.info.img.incorporeal : ((model.state.show_leader && model.info.img.leader) ? model.info.img.leader : model.info.img.link)}}"
+                       xlink:href="{{model.displayImage()}}"
                        style="pointer-events: none"
                        />
-                <line ng-show="model.info.damage.total > 1"
+                <line ng-show="
+                  !model.state.show_wreck &&
+                  model.info.damage.total > 1
+                  "
                   x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2+model.info.r+1}}"
                   x2="{{model.info.width/2+model.info.r}}" y2="{{model.info.height/2+model.info.r+1}}"
                   style="
@@ -859,7 +862,10 @@
                   pointer-events: none;
                   "
                   />
-                  <line ng-show="model.info.damage.total > 1"
+                  <line ng-show="
+                    !model.state.show_wreck &&
+                    model.info.damage.total > 1
+                    "
                     x1="{{model.info.width/2-model.info.r}}" y1="{{model.info.height/2+model.info.r+1}}"
                     x2="{{model.info.width/2-model.info.r+model.info.r*2*model.state.damage.total/model.info.damage.total}}"
                     y2="{{model.info.height/2+model.info.r+1}}"
@@ -869,7 +875,10 @@
                     pointer-events: none;
                     "
                     />
-                    <g ng-if="model.info.damage.field">
+                    <g ng-if="
+                       !model.state.show_wreck &&
+                       model.info.damage.field
+                       ">
                       <line x1="{{model.info.width/2-model.info.r}}"
                             y1="{{model.info.height/2+model.info.r+1}}"
                             x2="{{model.info.width/2+model.info.r}}"

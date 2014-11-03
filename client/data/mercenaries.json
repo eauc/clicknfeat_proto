@@ -2,6 +2,11 @@
   "name": "Mercenaries",
   "color": "#959571",
   "icon": "data/icons/mercenaire_50.png",
+  "wreck": {
+    "medium": "data/mercenaries/jacks/LightWreck.png",
+    "large": "data/mercenaries/jacks/HeavyWreck.png",
+    "huge": "data/mercenaries/jacks/ColossalWreck.png"
+  },
   "models": {
     "casters": {
       "ashlynn1": {

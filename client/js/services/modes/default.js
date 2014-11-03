@@ -265,6 +265,11 @@ angular.module('vassalApp.services')
             }).map(function(model) { return model.state.id; });
             scope.game.newCommand(command('setSelection', selection));
           },
+          'Alt W': function(scope) {
+            if(!scope.game.id) return;
+            var new_val = !scope.game.models[scope.game.selection[0]].state.show_wreck;
+            scope.game.newCommand(command('onSelection', 'toggle', 'wreck', new_val));
+          },
           'Alt 0': function(scope) {
             var new_val = scope.game.models[scope.game.selection[0]].state.show_area === 10 ? 0 : 10;
             scope.game.newCommand(command('onSelection', 'toggle', 'area', new_val));
