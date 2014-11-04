@@ -604,6 +604,14 @@ angular.module('vassalApp.services')
             var d = Math.sqrt(dx*dx + dy*dy);
             return d-0.2 < other.info.r + model.info.r;
           }).map(function(m) { return m.state.id; });
+        },
+        placeB2B: function(game, other) {
+          var dx = this.state.x - other.state.x;
+          var dy = this.state.y - other.state.y;
+          var dl = Math.sqrt(dx*dx + dy*dy);
+          var new_dl = this.info.r + other.info.r;
+          this.state.x = other.state.x + dx * new_dl / dl;
+          this.state.y = other.state.y + dy * new_dl / dl;
         }
       };
       var factory = function() {
