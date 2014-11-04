@@ -1,7 +1,5 @@
-- B2B/overlap model highlight
 - B2B command
 - tokens models ?
-- select models in Area
 - highlight models sous spray
 - stopper la clock a la save...
 

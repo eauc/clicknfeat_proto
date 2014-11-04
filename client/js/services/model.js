@@ -584,6 +584,26 @@ angular.module('vassalApp.services')
           if(this.state.show_stationary) effects.push('S');
           // console.log(effects);
           return effects;
+        },
+        b2bModels: function(game) {
+          var model = this;
+          return _.filter(game.models, function(other) {
+            if(other.state.id === model.state.id) return false;
+            var dx = other.state.x - model.state.x;
+            var dy = other.state.y - model.state.y;
+            var d = Math.sqrt(dx*dx + dy*dy);
+            return Math.abs(other.info.r + model.info.r - d) <= 0.2;
+          }).map(function(m) { return m.state.id; });
+        },
+        overlappingModels: function(game) {
+          var model = this;
+          return _.filter(game.models, function(other) {
+            if(other.state.id === model.state.id) return false;
+            var dx = other.state.x - model.state.x;
+            var dy = other.state.y - model.state.y;
+            var d = Math.sqrt(dx*dx + dy*dy);
+            return d-0.2 < other.info.r + model.info.r;
+          }).map(function(m) { return m.state.id; });
         }
       };
       var factory = function() {
