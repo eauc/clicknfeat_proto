@@ -143,6 +143,18 @@
           AoE 5"
         </button>
       </td>
+      <td ng-show="
+          command_sub==='area' &&
+          game.selection.length === 1
+          ">
+        <button title="(Ctrl+'E')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('Ctrl E', $event)">Enn. in Ctrl</button>
+      </td>
       <td ng-show="command_sub==='aura'">
         <button style="
                 width: 50px;
@@ -177,6 +189,18 @@
                 title="('C')"
                 ng-click="sendKey('C', $event)"
                 >Charge</button>
+      </td>
+      <td ng-show="
+          command_sub==='area' &&
+          game.selection.length === 1
+          ">
+        <button title="(Ctrl+'F')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('Ctrl F', $event)">Frie. in Ctrl</button>
       </td>
       <td ng-show="command_sub==='aura'">
         <button style="
@@ -227,6 +251,18 @@
                 'background-color': command_sub==='count' ? '#0F0' : none
                 }"
                 >Counts<br />&#8594;</button>
+      </td>
+      <td ng-show="
+          command_sub==='area' &&
+          game.selection.length === 1
+          ">
+        <button title="(Shift+'E')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('Shift E', $event)">Enn. in Area</button>
       </td>
       <td ng-show="command_sub==='aura'">
         <button style="
@@ -286,6 +322,18 @@
                 'background-color': command_sub==='edit' ? '#0F0' : none
                 }"
                 >Edit<br />&#8594;</button>
+      </td>
+      <td ng-show="
+          command_sub==='area' &&
+          game.selection.length === 1
+          ">
+        <button title="(Shift+'F')"
+                style="
+                width: 50px;
+                height: 50px;
+                align:center;
+                "
+                ng-click="sendKey('Shift F', $event)">Frie. in Area</button>
       </td>
       <td ng-show="command_sub==='aura'">
         <button style="

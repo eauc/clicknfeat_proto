@@ -183,6 +183,78 @@ angular.module('vassalApp.services')
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_disrupt;
             scope.game.newCommand(command('onSelection', 'toggle', 'disrupt', new_val));
           },
+          'Ctrl E': function(scope) {
+            if(scope.game.selection.length !== 1) return;
+            var model = scope.game.models[scope.game.selection[0]];
+            var range;
+            if(model.state.show_control &&
+               model.info.type === 'wardude') {
+              range = 20 * (model.info.fury || model.info.focus);
+            }
+            if(!range) return;
+            var selection = _.filter(scope.game.models, function(other) {
+              if(other.state.user === model.state.user) return false;
+              var dx = other.state.x - model.state.x;
+              var dy = other.state.y - model.state.y;
+              var d = Math.sqrt(dx*dx + dy*dy);
+              return d <= range + model.info.r + other.info.r;
+            }).map(function(m) { return m.state.id; });
+            scope.game.newCommand(command('setSelection', selection));
+          },
+          'Shift E': function(scope) {
+            if(scope.game.selection.length !== 1) return;
+            var model = scope.game.models[scope.game.selection[0]];
+            var range;
+            if(model.state.show_area) {
+              range = 10 * model.state.show_area;
+            }
+            if(!range) return;
+            var selection = _.filter(scope.game.models, function(other) {
+              if(other.state.user === model.state.user) return false;
+              var dx = other.state.x - model.state.x;
+              var dy = other.state.y - model.state.y;
+              var d = Math.sqrt(dx*dx + dy*dy);
+              return d <= range + model.info.r + other.info.r;
+            }).map(function(m) { return m.state.id; });
+            scope.game.newCommand(command('setSelection', selection));
+          },
+          'Ctrl F': function(scope) {
+            if(scope.game.selection.length !== 1) return;
+            var model = scope.game.models[scope.game.selection[0]];
+            var range;
+            if(model.state.show_control &&
+               model.info.type === 'wardude') {
+              range = 20 * (model.info.fury || model.info.focus);
+            }
+            if(!range) return;
+            var selection = _.filter(scope.game.models, function(other) {
+              if(other.state.id === model.state.id) return true;
+              if(other.state.user !== model.state.user) return false;
+              var dx = other.state.x - model.state.x;
+              var dy = other.state.y - model.state.y;
+              var d = Math.sqrt(dx*dx + dy*dy);
+              return d <= range + model.info.r + other.info.r;
+            }).map(function(m) { return m.state.id; });
+            scope.game.newCommand(command('setSelection', selection));
+          },
+          'Shift F': function(scope) {
+            if(scope.game.selection.length !== 1) return;
+            var model = scope.game.models[scope.game.selection[0]];
+            var range;
+            if(model.state.show_area) {
+              range = 10 * model.state.show_area;
+            }
+            if(!range) return;
+            var selection = _.filter(scope.game.models, function(other) {
+              if(other.state.id === model.state.id) return true;
+              if(other.state.user !== model.state.user) return false;
+              var dx = other.state.x - model.state.x;
+              var dy = other.state.y - model.state.y;
+              var d = Math.sqrt(dx*dx + dy*dy);
+              return d <= range + model.info.r + other.info.r;
+            }).map(function(m) { return m.state.id; });
+            scope.game.newCommand(command('setSelection', selection));
+          },
           'Alt F': function(scope) {
             if(!scope.game.id) return;
             var new_val = !scope.game.models[scope.game.selection[0]].state.show_fire;
