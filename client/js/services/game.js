@@ -789,7 +789,10 @@ angular.module('vassalApp.services')
             if (old_url !== null) {
               $window.URL.revokeObjectURL(old_url);
             }
-            var string = JSON.stringify(this);
+            var copy = _.deepCopy(this);
+            copy.clock = twoPlayerClock(JSON.parse(JSON.stringify(copy.clock)));
+            copy.clock.stop();
+            var string = JSON.stringify(copy);
             var blob = new $window.Blob([string], {type: 'text/plain'});
             var url = $window.URL.createObjectURL(blob);
             var today = Date.now();
