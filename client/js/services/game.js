@@ -79,6 +79,7 @@ angular.module('vassalApp.services')
           clock: null,
           scenario: null,
           contestingModels: function() {
+            if(!instance.scenario) return [];
             return _.filter(instance.models, function(model) {
               var contesting = _.reduce(instance.scenario.circle, function(mem, c) {
                 return mem || modelInCircle(model, c);
