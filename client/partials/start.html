@@ -68,6 +68,13 @@
             <option value="WTF?">WTF?</option>
           </select>
         </div>
+        <div>
+          <input id="user-wall"
+                 type="checkbox"
+                 ng-model="user.wall" />
+          <label for="user-wall"
+                 style="vertical-align:top;">I am behind a fracking firewall.</label>
+        </div>
         <button type="submit">{{ user.id ? 'Change' : 'Create' }}</button>
       </fieldset>
     </form>

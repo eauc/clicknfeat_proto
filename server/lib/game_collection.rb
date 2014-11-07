@@ -60,21 +60,28 @@ class GameCollection
   end
     
   def connections
-    @connections.reject!(&:closed?)
+    @connections.reject! do |conn|
+      (not conn[:out].respond_to?('closed?')) or conn[:out].closed?
+    end
     @connections
   end
 
-  def addConnection out
-    connections << out
-    
-    data = self.list.to_json
-    out << "retry:100\ndata:#{data}\n\n"
+  def addConnection out, close
+    connections << { out: out, close: close }
+
+    if not close
+      data = self.list.to_json
+      out << "retry:100\ndata:#{data}\n\n"
+    end
   end
 
   def signalConnections
     data = self.list.to_json
-    connections.each do |out|
-      out << "retry:100\ndata:#{data}\n\n"
+    connections.each do |conn|
+      conn[:out] << "retry:100\ndata:#{data}\n\n"
+      if conn[:close] and conn[:out].respond_to? 'close'
+        conn[:out].close
+      end
     end
   end
 

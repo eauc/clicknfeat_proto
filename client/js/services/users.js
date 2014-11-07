@@ -4,15 +4,21 @@ angular.module('vassalApp.services')
   .factory('users', [
     '$http',
     '$rootScope',
+    'user',
     function($http,
-             $rootScope) {
+             $rootScope,
+             user) {
       var url = '/api/users/subscribe';
       var users = { list: [] };
 
       function openSource() {
 
-        console.log('open users source', url);
-        users.source = new EventSource(url);
+        var source_url = url;
+        if(user.wall) {
+          source_url += '?close=true'
+        }
+        console.log('open users source', source_url);
+        users.source = new EventSource(source_url);
         users.source.onmessage = function(e) {
           // console.log('cmd event');
           // console.log(e);
@@ -29,6 +35,8 @@ angular.module('vassalApp.services')
             $rootScope.$apply();
             return;
           }
+          users.source.close();
+          openSource();
         };
 
       }

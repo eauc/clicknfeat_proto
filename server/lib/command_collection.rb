@@ -15,20 +15,24 @@ class CommandCollection
     cmd = @commands.pop
     
     data = cmd.to_json
-    connections.each do |out|
-      out << "retry:100\nevent:undo\ndata:#{data}\n\n"
-      # out.close
+    connections.each do |conn|
+      conn[:out] << "retry:100\nevent:undo\ndata:#{data}\n\n"
+      if conn[:close] and conn[:out].respond_to? 'close'
+        conn[:out].close
+      end
     end
     cmd
   end
     
   def connections
-    @connections.reject!(&:closed?)
+    @connections.reject! do |conn|
+      (not conn[:out].respond_to? 'closed?') or conn[:out].closed?
+    end
     @connections
   end
 
-  def addConnection out, last
-    connections << out
+  def addConnection out, close, last
+    connections << { out: out, close: close }
     data = {
       refresh: false,
       cmd: nil
@@ -56,32 +60,28 @@ class CommandCollection
       data[:more] =  !(index >= log.length)
       out << "retry:100\ndata:#{data.to_json}\n\n"
     end
-  end
-
-  def removeConnection out
-    connections.delete(out)
-  end
-
-  def closeAllConnections
-    connections.each do |out|
+    if close and out.respond_to? 'close'
       out.close
     end
-    @connections = []
   end
 
   def signalConnections data
     data = data.to_json
-    connections.each do |out|
-      out << "retry:100\ndata:#{data}\n\n"
-      # out.close
+    connections.each do |conn|
+      conn[:out] << "retry:100\ndata:#{data}\n\n"
+      if conn[:close] and conn[:out].respond_to? 'close'
+        conn[:out].close
+      end
     end
   end
 
   def signalGameUpdate data
     data = data.to_json false
-    connections.each do |out|
-      out << "retry:100\nevent:game\ndata:#{data}\n\n"
-      # out.close
+    connections.each do |conn|
+      conn[:out] << "retry:100\nevent:game\ndata:#{data}\n\n"
+      if conn[:close] and conn[:out].respond_to? 'close'
+        conn[:out].close
+      end
     end
   end
 

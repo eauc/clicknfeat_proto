@@ -822,8 +822,18 @@ angular.module('vassalApp.services')
               (!instance.id ? 'public/' : '')+
               (!instance.id ? instance.public_id : instance.id)+
               '/commands/subscribe';
+          if(user.wall ||
+             instance.commands.length > 0) {
+            url += '?';
+          }
+          if(user.wall) {
+            url += 'close=true';
+            if(instance.commands.length > 0) {
+              url += '&';
+            }
+          }
           if(instance.commands.length > 0) {
-              url += '?last=' + _.last(instance.commands).stamp;
+              url += 'last=' + _.last(instance.commands).stamp;
           }
           console.log('open cmd source', url);
           if(game_source) game_source.close();

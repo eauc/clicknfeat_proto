@@ -4,15 +4,21 @@ angular.module('vassalApp.services')
   .factory('games', [
     '$http',
     '$rootScope',
+    'user',
     function($http,
-             $rootScope) {
+             $rootScope,
+             user) {
       var url = '/api/games/subscribe';
       var games = { list: [] };
 
       function openSource() {
 
-        console.log('open games source', url);
-        games.source = new EventSource(url);
+        var source_url = url;
+        if(user.wall) {
+          source_url += '?close=true'
+        }
+        console.log('open games source', source_url);
+        games.source = new EventSource(source_url);
         games.source.onmessage = function(e) {
           // console.log('cmd event');
           // console.log(e);
@@ -29,6 +35,8 @@ angular.module('vassalApp.services')
             $rootScope.$apply();
             return;
           }
+          games.source.close();
+          openSource();
         };
 
       }

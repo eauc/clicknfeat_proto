@@ -28,7 +28,7 @@ class VassalApp < Sinatra::Base
   get "/api/games/subscribe", :provides => 'text/event-stream' do
     stream(:keep_open) do |out| 
       out << "retry:100\n\n"
-      @games.addConnection out
+      @games.addConnection out, (params[:close] === 'true')
     end
   end
 
@@ -80,7 +80,7 @@ class VassalApp < Sinatra::Base
     stream(:keep_open) do |out| 
       # out.callback { @models.removeConnection out }
       out << "retry:100\n\n"
-      game.commands.addConnection out, last
+      game.commands.addConnection out, (params[:close] === 'true'), last
     end
   end
 
@@ -99,7 +99,7 @@ class VassalApp < Sinatra::Base
     stream(:keep_open) do |out| 
       # out.callback { @models.removeConnection out }
       out << "retry:100\n\n"
-      game.commands.addConnection out, last
+      game.commands.addConnection out, (params[:close] === 'true'), last
     end
   end
 
@@ -145,7 +145,7 @@ class VassalApp < Sinatra::Base
   get "/api/users/subscribe", :provides => 'text/event-stream' do
     stream(:keep_open) do |out| 
       out << "retry:100\n\n"
-      @users.addConnection out
+      @users.addConnection out, (params[:close] === 'true')
     end
   end
 
@@ -184,7 +184,7 @@ class VassalApp < Sinatra::Base
 
     stream(:keep_open) do |out|
       out << "retry:100\n\n"
-      @users.addUserConnection user_id, out
+      @users.addUserConnection user_id, out, (params[:close] === 'true')
     end
   end
 

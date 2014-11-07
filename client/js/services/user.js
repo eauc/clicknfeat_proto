@@ -59,6 +59,9 @@ angular.module('vassalApp.services')
       function openSource() {
         if(user_source) user_source.close();
         var url = '/api/users/'+user.id+'/subscribe';
+        if(user.wall) {
+          url += '?close=true'
+        }
         console.log('open user source', url);
         user_source = new EventSource(url);
         user_source.onmessage = function(e) {
@@ -80,6 +83,8 @@ angular.module('vassalApp.services')
             $rootScope.$apply();
             return;
           }
+          user_source.close();
+          openSource();
         };
       }
 
