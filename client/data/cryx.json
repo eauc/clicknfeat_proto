@@ -980,6 +980,25 @@
                 "n": 1
               }
             }
+          },
+          "ua": {
+            "Skarlock Commander": {
+              "name": "Skarlock Commander",
+              "fk_name": "",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
           }
         }
       },
@@ -1188,6 +1207,25 @@
               "damage": {
                 "type": "warrior",
                 "n": 1
+              }
+            }
+          },
+          "ua": {
+            "Skarlock Commander": {
+              "name": "Skarlock Commander",
+              "fk_name": "",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
               }
             }
           },

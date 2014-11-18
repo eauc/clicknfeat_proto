@@ -1,22 +1,22 @@
 - tokens models ?
-- highlight models sous spray
-- stopper la clock a la save...
 
-- FK import unit pas d'espace entre models
+- improve undo handling on subscribe
+- text no highlight
+- sons debiles lancers de des
 - alternate models
-- factions : supprimer les unites en double cygnar|scyrah|.../mercos
 
-- commands replay : button to clean replay list ?
-- commands replay : prevent undo drop on eventSource refresh
 - memoriser distance charge max pour unites
 - suggestion labels precedents
 
+- FK import unit pas d'espace entre models
+- factions : supprimer les unites en double cygnar|scyrah|.../mercos
+- highlight models sous spray
+
 - place model to ruler end/within another model
 - split factions files in subfiles
-- burrowers burrow
 
-- text no highlight
-- sons debiles lancers de des
+- commands replay : button to clean replay list ?
+- commands replay : prevent undo drop on eventSource refresh
 =======================================================================================
 - escape create template -> pb de disabled du boutton ???
 - sortie du mode de charge laisse le couloir ?
