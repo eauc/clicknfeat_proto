@@ -101,9 +101,12 @@ angular.module('vassalApp.services')
         modes.current.enter(scope, previous);
         $rootScope.$broadcast('mode change');
       };
+      modes.respondTo = function(event) {
+        return _.has(modes.current, event);
+      };
       modes.send = function(event) {
         var defer = $q.defer();
-        if(_.has(modes.current, event)) {
+        if(modes.respondTo(event)) {
           console.log(modes.current.name+' <- '+event);
           var accepted = modes.current[event].apply(modes.current,
                                                     Array.prototype.slice.call(arguments, 1));

@@ -355,8 +355,11 @@ angular.module('vassalApp.controllers')
           $scope.drag.event = 'Board';
         };
         $scope.doSelectMove = function(event) {
-          // console.log('mm');
-          // console.log(event);
+          // console.log('mm', event);
+          if($scope.drag.state !== 'draging' &&
+             $scope.drag.state !== 'starting' &&
+             !$scope.modes.respondTo('MouseMove')) return;
+
           var elem_rect = canvas.getBoundingClientRect();
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
             480/$scope.game.board.window.width;
