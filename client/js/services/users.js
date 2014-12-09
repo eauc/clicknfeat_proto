@@ -15,7 +15,7 @@ angular.module('vassalApp.services')
 
         var source_url = url;
         if(user.wall) {
-          source_url += '?close=true'
+          source_url += '?close=true';
         }
         console.log('open users source', source_url);
         users.source = new EventSource(source_url);

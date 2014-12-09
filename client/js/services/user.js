@@ -60,7 +60,7 @@ angular.module('vassalApp.services')
         if(user_source) user_source.close();
         var url = '/api/users/'+user.id+'/subscribe';
         if(user.wall) {
-          url += '?close=true'
+          url += '?close=true';
         }
         console.log('open user source', url);
         user_source = new EventSource(url);

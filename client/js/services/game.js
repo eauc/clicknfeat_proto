@@ -679,6 +679,32 @@ angular.module('vassalApp.services')
                 var ray_rad, ray_drad;
                 var ray_dx, ray_dy, ray_d;
 
+                function modelIsInterveningWithL1(id) {
+                  var other = instance.models[id];
+                  if(!other) return;
+                  if(model.state.id === other.state.id) return;
+                  var m_dx = other.state.x - l1_x1;
+                  var m_dy = other.state.y - l1_y1;
+                  var vect_prod = l1_uy * m_dx - l1_ux * m_dy;
+                  var scal_prod = l1_ux * m_dx + l1_uy * m_dy;
+                  ray_interv = ray_interv || 
+                    (Math.abs(vect_prod) < other.info.r &&
+                     scal_prod + other.info.r >= 0 &&
+                     scal_prod - other.info.r <= l1_d);
+                }
+                function modelIsInterveningWithL2(id) {
+                  var other = instance.models[id];
+                  if(!other) return;
+                  if(model.state.id === other.state.id) return;
+                  var m_dx = other.state.x - l2_x1;
+                  var m_dy = other.state.y - l2_y1;
+                  var vect_prod = l2_uy * m_dx - l2_ux * m_dy;
+                  var scal_prod = l2_ux * m_dx + l2_uy * m_dy;
+                  ray_interv = ray_interv || 
+                    (Math.abs(vect_prod) < other.info.r &&
+                     scal_prod + other.info.r >= 0 &&
+                     scal_prod - other.info.r <= l2_d);
+                }
                 for(ray_orig = rad_sup ; ray_orig > rad_inf ; ray_orig -= rad_inc) {
                   l1_x1 = x1 + Math.sin(ray_orig) * r1;
                   l1_y1 = y1 - Math.cos(ray_orig) * r1;
@@ -697,19 +723,7 @@ angular.module('vassalApp.services')
                   l1_uy = l1_dy / l1_d;
 
                   ray_interv = false;
-                  _.each(instance.los.state.intervs, function(id) {
-                    var other = instance.models[id];
-                    if(!other) return;
-                    if(model.state.id === other.state.id) return;
-                    var m_dx = other.state.x - l1_x1;
-                    var m_dy = other.state.y - l1_y1;
-                    var vect_prod = l1_uy * m_dx - l1_ux * m_dy;
-                    var scal_prod = l1_ux * m_dx + l1_uy * m_dy;
-                    ray_interv = ray_interv || 
-                      (Math.abs(vect_prod) < other.info.r &&
-                       scal_prod + other.info.r >= 0 &&
-                       scal_prod - other.info.r <= l1_d);
-                  });
+                  _.each(instance.los.state.intervs, modelIsInterveningWithL1);
                   if(!ray_interv) break;
                 }
                 for(ray_orig = rad_inf ; ray_orig < rad_sup ; ray_orig += rad_inc) {
@@ -730,19 +744,7 @@ angular.module('vassalApp.services')
                   l2_uy = l2_dy / l2_d;
 
                   ray_interv = false;
-                  _.each(instance.los.state.intervs, function(id) {
-                    var other = instance.models[id];
-                    if(!other) return;
-                    if(model.state.id === other.state.id) return;
-                    var m_dx = other.state.x - l2_x1;
-                    var m_dy = other.state.y - l2_y1;
-                    var vect_prod = l2_uy * m_dx - l2_ux * m_dy;
-                    var scal_prod = l2_ux * m_dx + l2_uy * m_dy;
-                    ray_interv = ray_interv || 
-                      (Math.abs(vect_prod) < other.info.r &&
-                       scal_prod + other.info.r >= 0 &&
-                       scal_prod - other.info.r <= l2_d);
-                  });
+                  _.each(instance.los.state.intervs, modelIsInterveningWithL2);
                   if(!ray_interv) break;
                 }
                 vector_product = l2_ux * l1_uy - l2_uy * l1_ux;
