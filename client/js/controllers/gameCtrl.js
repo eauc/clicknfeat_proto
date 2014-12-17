@@ -390,10 +390,12 @@ angular.module('vassalApp.controllers')
                                 dx, dy)
                 .catch(function() { triggerModeDisplay(); });
             }
+            $scope.$digest();
             return;
           }
           // console.log('MouseMove', $scope.drag);
           $scope.modes.send('MouseMove', $scope, event, user_x, user_y);
+          $scope.$digest();
         };
         $scope.doSelectStop = function(event) {
           // console.log('mu');
