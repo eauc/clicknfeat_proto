@@ -859,7 +859,7 @@ angular.module('vassalApp.services')
               if(!data.more) {
                 console.log('apply cmds');
                 instance.loading = false;
-                $rootScope.$apply();
+                $rootScope.$digest();
               }
             }
             else {
@@ -867,7 +867,7 @@ angular.module('vassalApp.services')
               // console.log(cmd);
               instance.updateCommand(new_cmd);
               instance.loading = false;
-              $rootScope.$apply();
+              $rootScope.$digest();
             }
           };
           game_source.addEventListener('undo', function(e) {
@@ -882,14 +882,14 @@ angular.module('vassalApp.services')
               cmd.undo(instance);
               instance.replay_commands.push(cmd);
             }
-            $rootScope.$apply();
+            $rootScope.$digest();
           });
           game_source.addEventListener('game', function(e) {
             console.log('cmd game event',e);
             var data = JSON.parse(e.data);
             instance.player1 = data.player1;
             instance.player2 = data.player2;
-            $rootScope.$apply();
+            $rootScope.$digest();
           });
           game_source.onerror = function(e) {
             if(e.target.readyState === e.target.CLOSED) {

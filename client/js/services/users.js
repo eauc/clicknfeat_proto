@@ -25,14 +25,14 @@ angular.module('vassalApp.services')
           var data = JSON.parse(e.data);
           // console.log(data);
           users.list = data;
-          $rootScope.$apply();
+          $rootScope.$digest();
         };
         users.source.onerror = function(e) {
           if(e.target.readyState === e.target.CLOSED) {
             console.log('users source error', e);
             users.list = [];
             window.setTimeout(openSource, 5000);
-            $rootScope.$apply();
+            $rootScope.$digest();
             return;
           }
           users.source.close();

@@ -56,7 +56,7 @@ angular.module('vassalApp.controllers')
         last_chat_timeout = window.setTimeout(function() {
           $scope.user_chat = null;
           last_chat_timeout = null;
-          $scope.$apply();
+          $scope.$digest();
         }, 2000);
       });
       $scope.setMenuView = function(view) {
@@ -196,7 +196,7 @@ angular.module('vassalApp.controllers')
         window.onresize = function() {
           $scope.game.board.window.width = window.innerHeight-5;
           $scope.game.board.window.height = window.innerHeight-5;
-          $scope.$apply();
+          $scope.$digest();
         };
         console.log($scope.game.board);
         var canvas = document.getElementById('canvas');
@@ -483,7 +483,7 @@ angular.module('vassalApp.controllers')
           $scope.view_loc.left = cont.scrollLeft / cont.scrollWidth * $scope.game.board.window.width/8;
           $scope.view_loc.height = ($scope.game.board.window.height/8) * ($scope.game.board.window.height/cont.scrollHeight);
           $scope.view_loc.width = ($scope.game.board.window.width/8) * ($scope.game.board.window.width/cont.scrollWidth);
-          $scope.$apply();
+          $scope.$digest();
         };
 
         var mode_display_timeout;
@@ -494,7 +494,7 @@ angular.module('vassalApp.controllers')
           mode_display_timeout = window.setTimeout(function() {
             $scope.mode_display = false;
             mode_display_timeout = null;
-            $scope.$apply();
+            $scope.$digest();
           }, 750);
         }
         // $scope.$on('mode change', triggerModeDisplay);

@@ -169,15 +169,15 @@ angular.module('vassalApp.controllers')
           }
           $scope.modes['model_create'].info = data;
           $scope.modes.goTo('model_create', $scope);
-          $scope.$apply();
+          $scope.$digest();
         };
         reader.onerror = function(e) {
           $scope.read_result = ['error reading file'];
-          $scope.$apply();
+          $scope.$digest();
         };
         reader.onabort = function(e) {
           $scope.read_result = ['abort reading file'];
-          $scope.$apply();
+          $scope.$digest();
         };
         reader.readAsText(file);
       };
@@ -207,15 +207,15 @@ angular.module('vassalApp.controllers')
           $scope.fk_read_result.push('loaded file');
           var data = e.target.result;
           importFKList($scope, data);
-          $scope.$apply();
+          $scope.$digest();
         };
         reader.onerror = function(e) {
           $scope.fk_read_result = ['error reading file'];
-          $scope.$apply();
+          $scope.$digest();
         };
         reader.onabort = function(e) {
           $scope.fk_read_result = ['abort reading file'];
-          $scope.$apply();
+          $scope.$digest();
         };
         reader.readAsText(file);
       };

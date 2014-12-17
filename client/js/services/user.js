@@ -74,13 +74,13 @@ angular.module('vassalApp.services')
           if(data.from !== user.id) {
             $rootScope.$broadcast('user_chat', data);
           }
-          $rootScope.$apply();
+          $rootScope.$digest();
         });
         user_source.onerror = function(e) {
           if(e.target.readyState === e.target.CLOSED) {
             console.log('user source error', e);
             user.id = null;
-            $rootScope.$apply();
+            $rootScope.$digest();
             return;
           }
           user_source.close();

@@ -82,17 +82,17 @@ angular.module('vassalApp.controllers')
             $scope.read_result = 'invalid file';
             $scope.creating = false;
           }
-          $scope.$apply();
+          $scope.$digest();
         };
         reader.onerror = function(e) {
           $scope.read_result = 'error reading file';
           $scope.creating = false;
-          $scope.$apply();
+          $scope.$digest();
         };
         reader.onabort = function(e) {
           $scope.read_result = 'abort reading file';
           $scope.creating = false;
-          $scope.$apply();
+          $scope.$digest();
         };
         reader.readAsText(file);
       };

@@ -25,14 +25,14 @@ angular.module('vassalApp.services')
           var data = JSON.parse(e.data);
           // console.log(data);
           games.list = data;
-          $rootScope.$apply();
+          $rootScope.$digest();
         };
         games.source.onerror = function(e) {
           if(e.target.readyState === e.target.CLOSED) {
             console.log('games source error', e);
             games.list = [];
             window.setTimeout(openSource, 5000);
-            $rootScope.$apply();
+            $rootScope.$digest();
             return;
           }
           games.source.close();
