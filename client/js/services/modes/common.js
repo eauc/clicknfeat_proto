@@ -12,7 +12,7 @@ angular.module('vassalApp.services')
           'Escape': function(scope) {
             scope.modes.goTo('default', scope);
           },
-          'Ctrl F': function(scope) {
+          'Ctrl Shift F': function(scope) {
             scope.game.board.zoom.flipped = !scope.game.board.zoom.flipped;
           },
           'Ctrl Z': function(scope) {
