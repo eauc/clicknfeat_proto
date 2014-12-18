@@ -1,0 +1,42 @@
+<svg style="
+     border:1px solid black;
+     display: inline-block;
+     margin:0;
+     padding:0;
+     position:absolute;
+     top:0;
+     left:0;
+     "
+     ng-style="{
+     '-moz-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+     '-webkit-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+     'transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : ''
+     }"
+     ng-attr-width="{{game.board.window.width*game.board.zoom.factor}}px"
+     ng-attr-height="{{game.board.window.height*game.board.zoom.factor}}px"
+     viewBox="0 0 480 480"
+     preserveAspectRatio="xMinYMin meet"
+     ng-mousedown="doSelectStart($event)"
+     game-move
+     ng-mouseup="doSelectStop($event)"
+     >
+  <image id="canvas"
+         x="0"
+         y="0"
+         ng-attr-width="{{::game.board.width}}"
+         ng-attr-height="{{::game.board.height}}"
+         xlink:href="{{game.board.info.preview}}"
+         ng-style="{
+         'display': game.layers.board ? 'inline' : 'none'
+         }"
+         />
+  <image x="0"
+         y="0"
+         ng-attr-width="{{::game.board.width}}"
+         ng-attr-height="{{::game.board.height}}"
+         xlink:href="{{game.board.info.img}}"
+         ng-style="{
+         'display': game.layers.board ? 'inline' : 'none'
+         }"
+         />
+</svg>

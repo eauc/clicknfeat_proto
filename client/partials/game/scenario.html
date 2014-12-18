@@ -1,0 +1,107 @@
+<svg id="scenario-canvas"
+     style="
+     border:1px solid black;
+     display: inline-block;
+     margin:0;
+     padding:0;
+     position:absolute;
+     top:0;
+     left:0;
+     pointer-events:none;
+     "
+     ng-style="{
+     '-moz-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+     '-webkit-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+     'transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : ''
+     }"
+     ng-attr-width="{{game.board.window.width*game.board.zoom.factor}}px"
+     ng-attr-height="{{game.board.window.height*game.board.zoom.factor}}px"
+     viewBox="0 0 480 480"
+     preserveAspectRatio="xMinYMin meet"
+     >
+  <rect ng-if="
+        menu_view === 'setup' &&
+        game.scenario.killbox
+        "
+        ng-attr-x="{{game.scenario.killbox}}"
+        ng-attr-y="{{game.scenario.killbox}}"
+        ng-attr-width="{{480-2*game.scenario.killbox}}"
+        ng-attr-height="{{480-2*game.scenario.killbox}}"
+        style="
+        fill:none;
+        stroke:#990;
+        stroke-width:0.5px;
+        "
+        />
+  <rect ng-repeat="r in game.scenario.rect"
+        ng-attr-x="{{r.x-r.width/2}}"
+        ng-attr-y="{{r.y-r.height/2}}"
+        ng-attr-width="{{r.width}}"
+        ng-attr-height="{{r.height}}"
+        style="
+        fill:#CC0;
+        fill-opacity:0.3;
+        stroke:#990;
+        stroke-width:0.5px;
+        "
+        />
+  <circle ng-repeat="c in game.scenario.circle"
+          ng-attr-cx="{{c.x}}"
+          ng-attr-cy="{{c.y}}"
+          ng-attr-r="{{c.r}}"
+          style="
+          fill:#CC0;
+          fill-opacity:0.3;
+          stroke:#990;
+          stroke-width:0.5px;
+          "
+          />
+  <circle ng-repeat="o in game.scenario.objectives"
+          ng-attr-cx="{{o.x}}"
+          ng-attr-cy="{{o.y}}"
+          ng-attr-r="{{factions.list.scenario.models.objectives[o.type].r}}"
+          style="
+          fill:#CC0;
+          fill-opacity:0.8;
+          stroke:#C90;
+          stroke-width:0.5px;
+          "
+          />
+  <circle ng-if="
+          menu_view === 'setup'
+          "
+          ng-repeat="o in game.scenario.objectives"
+          ng-attr-cx="{{o.x}}"
+          ng-attr-cy="{{o.y}}"
+          ng-attr-r="{{40+factions.list.scenario.models.objectives[o.type].r}}"
+          style="
+          fill:none;
+          stroke:#C90;
+          stroke-width:0.5px;
+          "
+          />
+  <circle ng-repeat="f in game.scenario.flags"
+          ng-attr-cx="{{f.x}}"
+          ng-attr-cy="{{f.y}}"
+          ng-attr-r="{{factions.list.scenario.models.flags[f.type].r}}"
+          style="
+          fill:#CC0;
+          fill-opacity:0.8;
+          stroke:#C90;
+          stroke-width:0.5px;
+          "
+          />
+  <circle ng-if="
+          menu_view === 'setup'
+          "
+          ng-repeat="f in game.scenario.flags"
+          ng-attr-cx="{{f.x}}"
+          ng-attr-cy="{{f.y}}"
+          ng-attr-r="{{40+factions.list.scenario.models.flags[f.type].r}}"
+          style="
+          fill:none;
+          stroke:#C90;
+          stroke-width:0.5px;
+          "
+          />
+</svg>

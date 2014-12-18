@@ -289,8 +289,7 @@ angular.module('vassalApp.controllers')
         };
 
         $scope.onModelMouseDown = function(event, model) {
-          // console.log('mmd');
-          // console.log(event);
+          // console.log('mmd', event);
           var elem_rect = canvas.getBoundingClientRect();
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
             480/$scope.game.board.window.width;
@@ -309,8 +308,7 @@ angular.module('vassalApp.controllers')
           event.stopPropagation();
         };
         $scope.onTemplateMouseDown = function(event, temp) {
-          // console.log('tmd');
-          // console.log(event);
+          // console.log('tmd', event);
           var elem_rect = canvas.getBoundingClientRect();
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
             480/$scope.game.board.window.width;
@@ -329,17 +327,14 @@ angular.module('vassalApp.controllers')
           event.stopPropagation();
         };
         $scope.onModelClick = function(event, model) {
-          // console.log('mc');
-          // console.log(event);
+          // console.log('mmu', event);
         };
         $scope.onTemplateClick = function(event, temp) {
-          // console.log('tc');
-          // console.log(event);
+          // console.log('tmu', event);
         };
 
         $scope.doSelectStart = function(event) {
-          // console.log('md');
-          // console.log(event);
+          // console.log('sstart', event);
           var elem_rect = canvas.getBoundingClientRect();
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
             480/$scope.game.board.window.width;
@@ -355,11 +350,11 @@ angular.module('vassalApp.controllers')
           $scope.drag.event = 'Board';
         };
         $scope.doSelectMove = function(event) {
-          // console.log('mm', event);
           if($scope.drag.state !== 'draging' &&
              $scope.drag.state !== 'starting' &&
              !$scope.modes.respondTo('MouseMove')) return;
 
+          // console.log('smove', event);
           var elem_rect = canvas.getBoundingClientRect();
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
             480/$scope.game.board.window.width;
@@ -398,8 +393,7 @@ angular.module('vassalApp.controllers')
           $scope.$digest();
         };
         $scope.doSelectStop = function(event) {
-          // console.log('mu');
-          // console.log(event);
+          // console.log('sstop', event);
           var elem_rect = canvas.getBoundingClientRect();
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
             480/$scope.game.board.window.width;
@@ -478,7 +472,7 @@ angular.module('vassalApp.controllers')
         };
         var cont = document.getElementById('canvas-container');
         cont.onscroll = function() {
-          console.log("scroll");
+          // console.log("scroll");
           $scope.view_loc.top = cont.scrollTop / cont.scrollHeight * $scope.game.board.window.height/8;
           $scope.view_loc.left = cont.scrollLeft / cont.scrollWidth * $scope.game.board.window.width/8;
           $scope.view_loc.height = ($scope.game.board.window.height/8) * ($scope.game.board.window.height/cont.scrollHeight);

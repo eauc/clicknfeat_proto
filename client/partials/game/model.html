@@ -1,0 +1,843 @@
+<svg id="model-canvas"
+     style="
+     border:1px solid black;
+     display: inline-block;
+     margin:0;
+     padding:0;
+     position:absolute;
+     top:0;
+     left:0;
+     pointer-events:none;
+     "
+     ng-style="{
+     '-moz-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+     '-webkit-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+     'transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : ''
+     }"
+     ng-attr-width="{{game.board.window.width*game.board.zoom.factor}}px"
+     ng-attr-height="{{game.board.window.height*game.board.zoom.factor}}px"
+     viewBox="0 0 480 480"
+     preserveAspectRatio="xMinYMin meet"
+     >
+  <defs>
+    <filter id="aura-filter"
+            x="-50%" y="-50%"
+            width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic"
+                      stdDeviation="2"/>
+    </filter>
+    <clipPath id="los-clip">
+      <polygon ng-attr-points="
+               {{game.los.state.ot1_x1+','+game.los.state.ot1_y1+' '+
+               game.los.state.ot1_x2+','+game.los.state.ot1_y2+' '+
+               game.los.state.ot2_x2+','+game.los.state.ot2_y2+' '+
+               game.los.state.ot2_x1+','+game.los.state.ot2_y1}}
+               " />
+    </clipPath>
+  </defs>
+  <circle ng-repeat="model in modelShow('control') track by model.state.id"
+          ng-attr-cx="{{model.state.x}}"
+          ng-attr-cy="{{model.state.y}}"
+          ng-attr-r="{{model.info.r+(model.info.focus || model.info.fury)*20}}"
+          style="
+          fill: #0FF;
+          fill-opacity: 0.15;
+          stroke: #099;
+          stroke-width: 1px;
+          "
+          />
+  <circle ng-repeat="model in showCenteredAoE() track by model.state.id"
+          ng-attr-cx="{{model.state.x}}"
+          ng-attr-cy="{{model.state.y}}"
+          ng-attr-r="{{model.state.show_aoe}}"
+          style="
+          fill:#F90;
+          fill-opacity:0.2;
+          stroke:#C60;
+          stroke-width:0.5px;
+          "
+          />
+  <circle ng-repeat="model in showArea() track by model.state.id"
+          ng-attr-cx="{{model.state.x}}"
+          ng-attr-cy="{{model.state.y}}"
+          ng-attr-r="{{model.info.r+model.state.show_area*10}}"
+          style="
+          fill:#9F9;
+          fill-opacity:0.15;
+          stroke:#6F6;
+          stroke-width:0.5px;
+          "
+          />
+  <circle ng-repeat="model in modelShow('color') track by model.state.id"
+          ng-attr-cx="{{model.state.x}}"
+          ng-attr-cy="{{model.state.y}}"
+          ng-attr-r="{{model.info.r+2}}"
+          style="
+          filter: url(#aura-filter);
+          "
+          ng-style="{
+          'fill': model.state.show_color
+          }"
+          />
+  <g ng-if="menu_view === 'setup'">
+    <circle ng-repeat="id in game.contestingModels()"
+            ng-attr-cx="{{game.models[id].state.x}}"
+            ng-attr-cy="{{game.models[id].state.y}}"
+            ng-attr-r="{{game.models[id].info.r+4}}"
+            style="
+            fill:#FFF;
+            filter: url(#aura-filter);
+            "
+            />
+  </g>
+  <g ng-if="
+     menu_view === 'main' &&
+     game.templates.active
+     ">
+    <circle ng-repeat="id in game.templates.active.overlappingModels(game)"
+            ng-attr-cx="{{game.models[id].state.x}}"
+            ng-attr-cy="{{game.models[id].state.y}}"
+            ng-attr-r="{{game.models[id].info.r+4}}"
+            style="
+            fill:#FFF;
+            filter: url(#aura-filter);
+            "
+            />
+  </g>
+  <g ng-if="
+     menu_view === 'main' &&
+     !game.templates.active &&
+     game.selection.length === 1
+     ">
+    <circle ng-repeat="id in game.models[game.selection[0]].overlappingModels(game)"
+            ng-attr-cx="{{game.models[id].state.x}}"
+            ng-attr-cy="{{game.models[id].state.y}}"
+            ng-attr-r="{{game.models[id].info.r+4}}"
+            style="
+            fill:#F60;
+            filter: url(#aura-filter);
+            "
+            />
+    <circle ng-repeat="id in game.models[game.selection[0]].b2bModels(game)"
+            ng-attr-cx="{{game.models[id].state.x}}"
+            ng-attr-cy="{{game.models[id].state.y}}"
+            ng-attr-r="{{game.models[id].info.r+4}}"
+            style="
+            fill:#FF0;
+            filter: url(#aura-filter);
+            "
+            />
+  </g>
+  <g ng-if="
+     game.los.state.model_active &&
+     game.los.state.origin &&
+     game.los.state.target
+     "
+     style="
+     clip-path: url(#los-clip);
+     ">
+    <polygon ng-attr-points="
+             {{game.los.state.ot1_x1+','+game.los.state.ot1_y1+' '+
+             game.los.state.ot1_x2+','+game.los.state.ot1_y2+' '+
+             game.los.state.ot2_x2+','+game.los.state.ot2_y2+' '+
+             game.los.state.ot2_x1+','+game.los.state.ot2_y1}}
+             "
+             style="
+             fill:#9F9;
+             fill-opacity: 0.5;
+             stroke:#3F3;
+             stroke-width:0.5px
+             " />
+    <polygon ng-repeat="sh in game.los.state.shadows"
+             ng-attr-points="
+             {{sh.x1+','+sh.y1+' '+
+             sh.x2+','+sh.y2+' '+
+             sh.x3+','+sh.y3+' '+
+             sh.x4+','+sh.y4}}
+             "
+             style="
+             fill:#999;
+             fill-opacity: 0.5;
+             stroke:#666;
+             stroke-width:0.5px
+             " />
+    <polygon ng-repeat="sh in game.los.state.darkness"
+             ng-attr-points="
+             {{sh.x1+','+sh.y1+' '+
+             sh.x2+','+sh.y2+' '+
+             sh.x3+','+sh.y3+' '+
+             sh.x4+','+sh.y4}}
+             "
+             style="
+             fill:#030;
+             fill-opacity: 0.5;
+             stroke:#020;
+             stroke-width:0.5px
+             " />
+  </g>
+  <g ng-repeat="model in modelShow('charge') track by model.state.id">
+    <rect ng-attr-x="{{model.state.x-model.info.r}}"
+          ng-attr-y="{{model.state.y-700}}"
+          ng-attr-width="{{model.info.r*2}}"
+          ng-attr-height="{{700}}"
+          ng-attr-transform="rotate(
+          {{model.state.charge_rot+','+
+          model.state.x+','+
+          model.state.y}}
+          )"
+          style="
+          fill: #CCC;
+          fill-opacity: 0.3;
+          stroke: #666;
+          stroke-width: 0.5px;
+          "
+          />
+    <rect ng-attr-x="{{(model.state.x+model.state.charge_x)/2-model.info.r}}"
+          ng-attr-y="{{(model.state.y+model.state.charge_y)/2-model.state.charge_length/2}}"
+          ng-attr-width="{{model.info.r*2}}"
+          ng-attr-height="{{model.state.charge_length}}"
+          ng-attr-transform="rotate(
+          {{model.state.charge_rot+','+
+          ((model.state.x+model.state.charge_x)/2)+','+
+          ((model.state.y+model.state.charge_y)/2)}}
+          )"
+          style="
+          fill: #999;
+          fill-opacity: 0.5;
+          stroke: #333;
+          stroke-width: 0.5px;
+          "
+          />
+  </g>
+  <g ng-repeat="model in modelShow('place') track by model.state.id">
+    <rect ng-attr-x="{{model.state.x-model.info.r}}"
+          ng-attr-y="{{model.state.y-700}}"
+          ng-attr-width="{{model.info.r*2}}"
+          ng-attr-height="{{700}}"
+          ng-attr-transform="rotate(
+          {{model.state.place_rot+','+
+          model.state.x+','+
+          model.state.y}}
+          )"
+          style="
+          fill: #CCC;
+          fill-opacity: 0.3;
+          stroke: #666;
+          stroke-width: 0.5px;
+          "
+          />
+    <rect ng-attr-x="{{(model.state.x+model.state.place_x)/2-model.info.r}}"
+          ng-attr-y="{{(model.state.y+model.state.place_y)/2-model.state.place_length/2}}"
+          ng-attr-width="{{model.info.r*2}}"
+          ng-attr-height="{{model.state.place_length}}"
+          ng-attr-transform="rotate(
+          {{model.state.place_rot+','+
+          ((model.state.x+model.state.place_x)/2)+','+
+          ((model.state.y+model.state.place_y)/2)}}
+          )"
+          style="
+          fill: #999;
+          fill-opacity: 0.5;
+          stroke: #333;
+          stroke-width: 0.5px;
+          "
+          />
+  </g>
+  <svg ng-repeat="model in game.models track by model.state.id"
+       ng-attr-x="{{model.state.x - model.info.width/2}}"
+       ng-attr-y="{{model.state.y - model.info.height/2}}">
+    <g ng-attr-transform="
+       rotate(
+       {{model.state.rot+','+
+       (model.info.width/2)+','+
+       (model.info.height/2)}}
+       )">
+      <circle ng-attr-cx="{{model.info.width/2}}"
+              ng-attr-cy="{{model.info.height/2}}"
+              ng-attr-r="{{model.info.r}}"
+              ng-style="{
+              'fill': model.info.color
+              }"
+              style="
+              fill-opacity:1.0;
+              stroke:black;
+              stroke-width:0.5px;
+              pointer-events:visible;
+              "
+              ng-mousedown="onModelMouseDown($event, model)"
+              ng-mouseup="doSelectStop($event, model)"
+              /> 
+      <line ng-attr-x1="{{model.info.width/2-model.info.r}}"
+            ng-attr-y1="{{model.info.height/2}}"
+            ng-attr-x2="{{model.info.width/2+model.info.r}}"
+            ng-attr-y2="{{model.info.height/2}}"
+            style="
+            stroke:black;
+            stroke-width:0.5px;
+            "
+            />
+      <line ng-attr-x1="{{model.info.width/2}}"
+            ng-attr-y1="{{model.info.height/2}}"
+            ng-attr-x2="{{model.info.width/2}}"
+            ng-attr-y2="{{model.info.height/2-model.info.r}}"
+            style="
+            stroke:black;
+            stroke-width:0.5px;
+            "
+            />
+      <image ng-show="model.state.show_image"
+             ng-attr-x="{{model.info.img.x}}"
+             ng-attr-y="{{model.info.img.y}}"
+             ng-attr-width="{{model.info.width}}"
+             ng-attr-height="{{model.info.height}}"
+             xlink:href="{{model.displayImage()}}"
+             />
+      <line ng-if="
+            !model.state.show_wreck &&
+            model.info.damage.total > 1
+            "
+            ng-attr-x1="{{model.info.width/2-model.info.r}}"
+            ng-attr-y1="{{model.info.height/2+model.info.r+1}}"
+            ng-attr-x2="{{model.info.width/2+model.info.r}}"
+            ng-attr-y2="{{model.info.height/2+model.info.r+1}}"
+            style="
+            stroke:#0F0;
+            stroke-width:1px;
+            "
+            />
+      <line ng-if="
+            !model.state.show_wreck &&
+            model.info.damage.total > 1
+            "
+            ng-attr-x1="{{model.info.width/2-model.info.r}}"
+            ng-attr-y1="{{model.info.height/2+model.info.r+1}}"
+            ng-attr-x2="{{
+            model.info.width/2-model.info.r+
+            model.info.r*2*model.state.damage.total/model.info.damage.total
+            }}"
+            ng-attr-y2="{{model.info.height/2+model.info.r+1}}"
+            style="
+            stroke:#F00;
+            stroke-width:1px;
+            "
+            />
+      <g ng-if="
+         !model.state.show_wreck &&
+         model.info.damage.field
+         ">
+        <line ng-attr-x1="{{model.info.width/2-model.info.r}}"
+              ng-attr-y1="{{model.info.height/2+model.info.r+1}}"
+              ng-attr-x2="{{model.info.width/2+model.info.r}}"
+              ng-attr-y2="{{model.info.height/2+model.info.r+1}}"
+              style="
+              stroke:#0FF;
+              stroke-width:1px;
+              "
+              />
+        <line ng-attr-x1="{{model.info.width/2-model.info.r}}"
+              ng-attr-y1="{{model.info.height/2+model.info.r+1}}"
+              ng-attr-x2="{{
+              model.info.width/2-model.info.r+
+              model.info.r*2*model.state.damage.field/model.info.damage.field
+              }}"
+              ng-attr-y2="{{model.info.height/2+model.info.r+1}}"
+              style="
+              stroke:#066;
+              stroke-width:1px;
+              "
+              />
+      </g>
+      <image ng-repeat="e in model.effects()"
+             ng-attr-x="{{model.info.width/2+$index*8-8*model.effects().length/2}}"
+             ng-attr-y="{{model.info.height/2+model.info.r}}"
+             width="10"
+             height="10"
+             xlink:href="{{effects[e].icon}}"
+             />
+      <image ng-if="model.state.show_fleeing"
+             ng-attr-x="{{model.info.width/2-5+model.info.r*0.8}}"
+             ng-attr-y="{{model.info.height/2-5-model.info.r*0.8-1}}"
+             width="10"
+             height="10"
+             xlink:href="data/icons/BoltYellow.png"
+             />
+      <image ng-if="model.state.show_leader"
+             ng-attr-x="{{model.info.width/2-5+model.info.r*0.7}}"
+             ng-attr-y="{{model.info.height/2-5+model.info.r*0.7-1}}"
+             width="10"
+             height="10"
+             xlink:href="data/icons/Leader.png"
+             />
+    </g>
+    <g ng-if="
+       model.state.unit &&
+       (model.state.show_unit ||
+       menu_view === 'units' ||
+       menu_view === 'models')
+       "
+       ng-attr-transform="rotate(
+       {{(game.board.zoom.flipped ? 180 : 0)+','+
+       (model.info.width/2)+','+
+       (model.info.height/2)}}
+       )"
+       >
+      <rect ng-attr-x="{{model.info.width/2-model.info.r-9}}"
+            ng-attr-y="{{model.info.height/2-model.info.r-4}}"
+            width="12"
+            height="6"
+            style="
+            fill:#333;
+            fill-opacity:0.4;
+            "
+            />
+      <text ng-attr-x="{{model.info.width/2-model.info.r+2}}"
+            ng-attr-y="{{model.info.height/2-model.info.r+1}}"
+            style="
+            fill:#0FF;
+            text-anchor:end;
+            font-size:6px;
+            font-family:monospace;
+            font-weight: bold;
+            -webkit-user-select: none;
+            -moz-user-select:none;
+            "
+            >
+        U{{model.state.unit}}
+      </text>
+    </g>
+  </svg>
+  <circle ng-repeat="id in game.update_selection"
+          ng-attr-cx="{{game.models[id].state.x}}"
+          ng-attr-cy="{{game.models[id].state.y}}"
+          ng-attr-r="{{game.models[id].info.r}}"
+          style="
+          fill:none;
+          stroke: #FFF;
+          stroke-width:0.75px;
+          "
+          />
+  <circle ng-repeat="id in game.selection"
+          ng-attr-cx="{{game.models[id].state.x}}"
+          ng-attr-cy="{{game.models[id].state.y}}"
+          ng-attr-r="{{game.models[id].info.r}}"
+          style="
+          fill:none;
+          stroke-width:1px;
+          "
+          ng-style="{
+          'stroke': game.templates.active ? 
+                    none : (modes.current.name === 'Model Target' ?
+                            '#00F' : '#0F0')
+          }"
+          />
+  <circle ng-repeat="model in modelShow('charge') track by model.state.id"
+          ng-attr-cx="{{game.models[model.state.charge_target].state.x}}"
+          ng-attr-cy="{{game.models[model.state.charge_target].state.y}}"
+          ng-attr-r="{{game.models[model.state.charge_target].info.r}}"
+          style="
+          fill:none;
+          stroke-width:1px;
+          "
+          ng-style="{
+          'stroke': model.chargeTargetInRange(game) ? '#0FF' : '#F00'
+          }"
+          />
+  <g ng-repeat="model in modelShowLabel() track by model.state.id"
+     ng-attr-transform="rotate(
+     {{(game.board.zoom.flipped ? 180 : 0)+','+
+     model.state.x+','+
+     model.state.y}})"
+     >
+    <rect ng-attr-x="{{model.state.x-model.displayLabel().length*3.5/2}}"
+          ng-attr-y="{{
+          model.state.y+
+          ( ((model.state.rot%360) > 90 && (model.state.rot%360) < 270) ?
+            (game.board.zoom.flipped ? -model.info.r-7 : model.info.r) :
+            (game.board.zoom.flipped ? model.info.r : -model.info.r-7)
+          )
+          }}"
+          ng-attr-width="{{model.displayLabel().length*3.5}}"
+          height="6"
+          style="
+          fill:#333;
+          fill-opacity:0.4;
+          "
+          />
+      <text ng-attr-x="{{model.state.x}}"
+            ng-attr-y="{{
+            model.state.y+
+            ( ((model.state.rot%360) > 90 && (model.state.rot%360) < 270) ?
+              (game.board.zoom.flipped ? -model.info.r-2 : model.info.r+6) :
+              (game.board.zoom.flipped ? model.info.r+6 : -model.info.r-2)
+            )
+            }}"
+            style="
+            fill:white;
+            text-anchor:middle;
+            font-size:6px;
+            font-family:monospace;
+            -webkit-user-select: none;
+            -moz-user-select:none;
+            "
+            >
+        {{model.displayLabel()}}
+      </text>
+  </g>
+  <path ng-repeat="model in modelShow('melee') track by model.state.id"
+        ng-attr-d="
+        {{'M'+(model.state.x-5-model.info.r)+','+(model.state.y)+' '+
+        'L'+(model.state.x+5+model.info.r)+','+(model.state.y)+' '+
+        'A'+(5+model.info.r)+','+(5+model.info.r)+' 0 0,0 '+
+        (model.state.x-5-model.info.r)+','+(model.state.y)+' '+
+        'M'+(model.state.x)+','+(model.state.y)+' '+
+        'L'+(model.state.x)+','+(model.state.y-model.info.r-5)}}
+        "
+        style="
+        stroke:#000;
+        stroke-width:0.5px;
+        fill: #000;
+        fill-opacity: 0.3;
+        "
+        ng-attr-transform="
+        rotate(
+        {{model.state.rot+','+
+        model.state.x+','+
+        model.state.y}}
+        )
+        "
+        />
+  <path ng-repeat="model in modelShow('reach') track by model.state.id"
+        ng-attr-d="
+        {{'M'+(model.state.x-20-model.info.r)+','+(model.state.y)+' '+
+        'L'+(model.state.x+20+model.info.r)+','+(model.state.y)+' '+
+        'A'+(20+model.info.r)+','+(20+model.info.r)+' 0 0,0 '+
+        (model.state.x-20-model.info.r)+','+(model.state.y)+' '+
+        'M'+(model.state.x)+','+(model.state.y)+' '+
+        'L'+(model.state.x)+','+(model.state.y-model.info.r-20)}}
+        "
+        style="
+        stroke:#000;
+        stroke-width:0.5px;
+        fill: #000;
+        fill-opacity: 0.3;
+        "
+        ng-attr-transform="
+        rotate(
+        {{model.state.rot+','+
+        model.state.x+','+
+        model.state.y}}
+        )
+        "
+        />
+  <path ng-repeat="model in modelShow('strike') track by model.state.id"
+        ng-attr-d="
+        {{'M'+(model.state.x-40-model.info.r)+','+(model.state.y)+' '+
+        'L'+(model.state.x+40+model.info.r)+','+(model.state.y)+' '+
+        'A'+(40+model.info.r)+','+(40+model.info.r)+' 0 0,0 '+
+        (model.state.x-40-model.info.r)+','+(model.state.y)+' '+
+        'M'+(model.state.x)+','+(model.state.y)+' '+
+        'L'+(model.state.x)+','+(model.state.y-model.info.r-40)}}
+        "
+        style="
+        stroke:#000;
+        stroke-width:0.5px;
+        fill: #000;
+        fill-opacity: 0.3;
+        "
+        ng-attr-transform="
+        rotate(
+        {{model.state.rot+','+
+        model.state.x+','+
+        model.state.y}}
+        )
+        "
+        />
+  <g ng-repeat="model in modelShow('counter')"
+     ng-attr-transform="rotate(
+     {{(game.board.zoom.flipped ? 180 : 0)+','+
+     model.state.x+','+
+     model.state.y}}
+     )"
+     >
+    <rect ng-attr-x="{{model.state.x-4}}"
+          ng-attr-y="{{model.state.y-4}}"
+          width="8"
+          height="9"
+          style="
+          fill:#333;
+          fill-opacity:0.7;
+          "
+          />
+    <text ng-attr-x="{{model.state.x}}"
+          y="{{model.state.y+4}}"
+          style="
+          fill:white;
+          text-anchor:middle;
+          font-size:9px;
+          font-weight:bold;
+          font-family:Verdana, sans-serif;
+          -webkit-user-select: none;
+          -moz-user-select:none;
+          "
+          >
+      {{model.state.counter}}
+    </text>
+  </g>
+  <g ng-repeat="model in modelShow('souls') track by model.state.id"
+     ng-attr-transform="rotate(
+     {{model.state.rot+','+
+     model.state.x+','+
+     model.state.y}}
+     )"
+     >
+    <rect ng-attr-x="{{model.state.x+model.info.r-1}}"
+          ng-attr-y="{{model.state.y-model.info.r-6}}"
+          width="10"
+          height="10"
+          style="
+          fill:#333;
+          fill-opacity:0.7;
+          "
+          />
+    <image ng-attr-x="{{model.state.x+model.info.r-6}}"
+           ng-attr-y="{{model.state.y-model.info.r-10}}"
+           width="20"
+           height="20"
+           xlink:href="/data/icons/Soul.png"
+           />
+    <text ng-attr-x="{{model.state.x+model.info.r+4}}"
+          ng-attr-y="{{model.state.y-model.info.r+1}}"
+          style="
+          fill:white;
+          text-anchor:middle;
+          font-size:8px;
+          font-weight:bold;
+          font-family:Verdana, sans-serif;
+          -webkit-user-select: none;
+          -moz-user-select:none;
+          "
+          >
+      {{model.state.souls}}
+    </text>
+  </g>
+  <g ng-repeat="model in modelShow('charge') track by model.state.id">
+    <line ng-attr-x1="{{model.state.charge_x}}"
+          ng-attr-y1="{{model.state.charge_y}}"
+          ng-attr-x2="{{model.state.x}}"
+          ng-attr-y2="{{model.state.y}}"
+          style="
+          stroke: #0F0;
+          stroke-width: 0.5px;
+          "
+          />
+    <rect ng-attr-x="{{model.state.charge_x-1}}"
+          ng-attr-y="{{model.state.charge_y-8}}"
+          width="30"
+          height="10"
+          style="
+          fill:#FFC;
+          stroke:#000;
+          stroke-width:0.5px;
+          "
+          ng-attr-transform="rotate(
+          {{(game.board.zoom.flipped ? 180 : 0)+','+
+          model.state.charge_x+','+
+          model.state.charge_y}}
+          )"
+          />
+    <text ng-attr-x="{{model.state.charge_x}}"
+          ng-attr-y="{{model.state.charge_y}}"
+          style="
+          font-size:8px;
+          "
+          ng-attr-transform="rotate(
+          {{(game.board.zoom.flipped ? 180 : 0)+','+
+          model.state.charge_x+','+
+          model.state.charge_y}}
+          )"
+          >
+      {{model.displayChargeLength()}}"
+    </text>
+  </g>
+  <g ng-repeat="model in modelShow('place') track by model.state.id">
+    <line ng-attr-x1="{{model.state.place_x}}"
+          ng-attr-y1="{{model.state.place_y}}"
+          ng-attr-x2="{{model.state.x}}"
+          ng-attr-y2="{{model.state.y}}"
+          style="
+          stroke: #0F0;
+          stroke-width: 0.5px;
+          "
+          />
+    <rect ng-attr-x="{{model.state.place_x-1}}"
+          ng-attr-y="{{model.state.place_y-8}}"
+          width="30"
+          height="10"
+          style="
+          fill:#FFC;
+          stroke:#000;
+          stroke-width:0.5px;
+          "
+          ng-attr-transform="
+          rotate(
+          {{(game.board.zoom.flipped ? 180 : 0)+','+
+          model.state.place_x+','+
+          model.state.place_y}}
+          )"
+          />
+    <text ng-attr-x="{{model.state.place_x}}"
+          ng-attr-y="{{model.state.place_y}}"
+          style="
+          font-size:8px;
+          "
+          ng-attr-transform="rotate(
+          {{(game.board.zoom.flipped ? 180 : 0)+','+
+          model.state.place_x+','+
+          model.state.place_y}}
+          )"
+          >
+      {{model.displayPlaceLength()}}"
+    </text>
+  </g>
+  <line ng-if="
+        game.update_selection.length === 1 &&
+        game.models[game.update_selection[0]].info.type !== 'objective' &&
+        game.models[game.update_selection[0]].info.type !== 'flag'
+        "
+        x1="{{game.models[game.update_selection[0]].state.x}}"
+        y1="{{game.models[game.update_selection[0]].state.y}}"
+        x2="{{game.models[game.update_selection[0]].state.x}}"
+        y2="{{game.models[game.update_selection[0]].state.y-700}}"
+        transform="
+        rotate({{game.models[game.update_selection[0]].state.rot}},
+        {{game.models[game.update_selection[0]].state.x}},
+        {{game.models[game.update_selection[0]].state.y}})
+        "
+        style="
+        stroke: white;
+        stroke-width: 0.5px;
+        pointer-events: none;
+        "
+        />
+  <line ng-if="
+        game.update_selection.length === 1 &&
+        game.models[game.update_selection[0]].info.type !== 'objective' &&
+        game.models[game.update_selection[0]].info.type !== 'flag'
+        "
+        x1="{{game.models[game.update_selection[0]].state.x-700}}"
+        y1="{{game.models[game.update_selection[0]].state.y}}"
+        x2="{{game.models[game.update_selection[0]].state.x+700}}"
+        y2="{{game.models[game.update_selection[0]].state.y}}"
+        transform="
+        rotate({{game.models[game.update_selection[0]].state.rot}},
+        {{game.models[game.update_selection[0]].state.x}},
+        {{game.models[game.update_selection[0]].state.y}})
+        "
+        style="
+        stroke: white;
+        stroke-width: 0.5px;
+        pointer-events: none;
+        "
+        />
+  <line ng-if="
+        game.selection.length === 1 &&
+        game.models[game.selection[0]].info.type !== 'objective' &&
+        game.models[game.selection[0]].info.type !== 'flag'
+        "
+        x1="{{game.models[game.selection[0]].state.x}}"
+        y1="{{game.models[game.selection[0]].state.y}}"
+        x2="{{game.models[game.selection[0]].state.x}}"
+        y2="{{game.models[game.selection[0]].state.y-700}}"
+        transform="
+        rotate({{game.models[game.selection[0]].state.rot}},
+        {{game.models[game.selection[0]].state.x}},
+        {{game.models[game.selection[0]].state.y}})
+        "
+        style="
+        stroke: #0F0;
+        stroke-width: 0.5px;
+        pointer-events: none;
+        "
+        />
+  <line ng-if="
+        game.selection.length === 1 &&
+        game.models[game.selection[0]].info.type !== 'objective' &&
+        game.models[game.selection[0]].info.type !== 'flag'
+        "
+        x1="{{game.models[game.selection[0]].state.x-700}}"
+        y1="{{game.models[game.selection[0]].state.y}}"
+        x2="{{game.models[game.selection[0]].state.x+700}}"
+        y2="{{game.models[game.selection[0]].state.y}}"
+        transform="
+        rotate({{game.models[game.selection[0]].state.rot}},
+        {{game.models[game.selection[0]].state.x}},
+        {{game.models[game.selection[0]].state.y}})
+        "
+        style="
+        stroke: #0F0;
+        stroke-width: 0.5px;
+        pointer-events: none;
+        "
+        />
+  <g ng-if="modes.current.name === 'Model Drag'">
+    <line ng-attr-x1="{{modes.current.start_x}}"
+          ng-attr-y1="{{modes.current.start_y}}"
+          ng-attr-x2="{{modes.current.end_x}}"
+          ng-attr-y2="{{modes.current.end_y}}"
+          style="
+          stroke:#0FF;
+          stroke-width:1px;
+          marker-start:url(#ruler-start);
+          marker-end:url(#ruler-end);
+          "
+          />
+    <rect ng-attr-x="{{(modes.current.end_x-modes.current.start_x)/2+modes.current.start_x-2.5}}"
+          ng-attr-y="{{(modes.current.end_y-modes.current.start_y)/2+modes.current.start_y-4}}"
+          width="30"
+          height="10"
+          style="
+          fill:#FFC;
+          stroke:#000;
+          stroke-width:0.5px;
+          "
+          ng-attr-transform="rotate(
+          {{(game.board.zoom.flipped ? 180 : 0)+','+
+          ((modes.current.end_x-modes.current.start_x)/2+modes.current.start_x)+','+
+          ((modes.current.end_y-modes.current.start_y)/2+modes.current.start_y+4)}}
+          )"
+          />
+    <text ng-attr-x="{{(modes.current.end_x-modes.current.start_x)/2+modes.current.start_x}}"
+          ng-attr-y="{{(modes.current.end_y-modes.current.start_y)/2+modes.current.start_y+4}}"
+          style="
+          font-size:8px;
+          "
+          ng-attr-transform="rotate(
+          {{(game.board.zoom.flipped ? 180 : 0)+','+
+          ((modes.current.end_x-modes.current.start_x)/2+modes.current.start_x)+','+
+          ((modes.current.end_y-modes.current.start_y)/2+modes.current.start_y+4)}}
+          )"
+          >
+      {{modes.current.length}}"
+    </text>
+  </g>
+  <svg ng-if="modes.current.name === 'Model Create'"
+       ng-repeat="(i,model) in modes.current.info"
+       ng-attr-x="{{modes.current.x + model.offset_x - model.info.width/2}}"
+       ng-attr-y="{{modes.current.y + model.offset_y - model.info.height/2}}"
+       >
+    <image ng-attr-x="{{model.info.img.x}}"
+           ng-attr-y="{{model.info.img.y}}"
+           ng-attr-width="{{model.info.width}}"
+           ng-attr-height="{{model.info.height}}"
+           />
+    <circle ng-attr-cx="{{model.info.width/2}}"
+            ng-attr-cy="{{model.info.height/2}}"
+            ng-attr-r="{{model.info.r}}"
+            style="
+            fill:#F00;
+            fill-opacity:0.5;
+            stroke-width:1px;
+            "
+            />
+  </svg>
+</svg>

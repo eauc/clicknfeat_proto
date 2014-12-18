@@ -1,0 +1,257 @@
+<svg id="template-canvas"
+     style="
+     border:1px solid black;
+     display: inline-block;
+     margin:0;
+     padding:0;
+     position:absolute;
+     top:0;
+     left:0;
+     pointer-events:none;
+     "
+     ng-style="{
+     '-moz-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+     '-webkit-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+     'transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : ''
+     }"
+     ng-attr-width="{{game.board.window.width*game.board.zoom.factor}}px"
+     ng-attr-height="{{game.board.window.height*game.board.zoom.factor}}px"
+     viewBox="0 0 480 480"
+     preserveAspectRatio="xMinYMin meet"
+     >
+  <defs>
+    <marker id="aoe-direction-end"
+            markerWidth="6"
+            markerHeight="8"
+            refx="6"
+            refy="4"
+            orient="auto">
+      <polygon points="0,8 6,4 0,0"
+               style="
+               fill:#0F0;
+               "
+               />
+    </marker>
+  </defs>
+  <circle ng-repeat="aoe in templateShowUnlocked('aoe')"
+          ng-attr-cx="{{aoe.x}}"
+          ng-attr-cy="{{aoe.y}}"
+          ng-attr-r="{{aoe.size*5}}"
+          style="
+          fill:#F90;
+          fill-opacity:0.5;
+          stroke-width:0.5px;
+          pointer-events:visible;
+          "
+          ng-style="{
+          'stroke': aoe === game.templates.active ?
+                    (modes.current.name === 'Template Origin' ?
+                     '#FF0' : (modes.current.name === 'Template Target' ?
+                               '#0FF' : '#0F0')
+                    ) : '#C60'
+          }"
+          ng-mousedown="onTemplateMouseDown($event, aoe)"
+          ng-mouseup="doSelectStop($event)"
+          />
+  <g ng-repeat="aoe in templateShowUnlocked('aoe')"
+     ng-attr-transform="rotate(
+     {{(game.board.zoom.flipped ? 180 : 0)+','+
+     aoe.x+','+
+     aoe.y}})"
+     >
+    <rect ng-attr-x="{{aoe.x-aoe.displayLabel().length*3.5/2}}"
+          ng-attr-y="{{aoe.y+aoe.size*5}}"
+          ng-attr-width="{{aoe.displayLabel().length*3.5}}"
+          height="6"
+          style="
+          fill:#333;
+          fill-opacity:0.4;
+          "
+          />
+    <text ng-attr-x="{{aoe.x}}"
+          ng-attr-y="{{aoe.y+aoe.size*5+5}}"
+          style="
+          fill:white;
+          text-anchor:middle;
+          font-size:6px;
+          font-family:monospace;
+          -webkit-user-select: none;
+          -moz-user-select:none;
+          "
+          >
+      {{aoe.displayLabel()}}
+    </text>
+  </g>
+  <line ng-show="
+        game.templates.active.type == 'aoe' &&
+        !game.templates.active.locked
+        "
+        ng-attr-x1="{{game.templates.active.x}}"
+        ng-attr-y1="{{game.templates.active.y}}"
+        ng-attr-x2="{{game.templates.active.x}}"
+        ng-attr-y2="{{game.templates.active.y-game.templates.active.size*5}}"
+        style="
+        stroke-width:0.75px;
+        marker-end:url(#aoe-direction-end);
+        "
+        ng-style="{
+        'stroke': mode_template_origin ? '#FF0' : (mode_template_target ? '#0FF' : '#0F0')
+        }"
+        ng-attr-transform="
+        rotate({{game.templates.active.rot+','+
+        game.templates.active.x+','+
+        game.templates.active.y}})
+        "
+        />
+  <polygon ng-repeat="sp in templateShowUnlocked('spray')"
+           ng-attr-points="
+           8.75,0
+           {{
+           (10-8.125*sp.size/10) + ','  + (98.34*sp.size/10) +
+           ' 10,' + (100*sp.size/10) +
+           ' ' + (10+8.125*sp.size/10) + ',' + (98.34*sp.size/10)
+           }}
+           11.25,0
+           "
+           style="
+           fill:#F90;
+           fill-opacity:0.5;
+           stroke-width:0.5px;
+           pointer-events:visible;
+           "
+           ng-attr-transform="
+           translate({{(sp.x-10)+','+sp.y}})
+           rotate({{sp.rot-180}}, 10, 0)
+           "
+           ng-style="{
+           'stroke': sp === game.templates.active ?
+                     (modes.current.name === 'Template Origin' ?
+                      '#FF0' : (modes.current.name === 'Template Target' ?
+                                '#0FF' : '#0F0')
+                     ) : '#C60',
+           }"
+           ng-mousedown="onTemplateMouseDown($event, sp)"
+           ng-mouseup="doSelectStop($event)"
+           />
+  <rect ng-repeat="wa in templateShowUnlocked('wall')"
+        ng-attr-x="{{wa.x-3.75}}"
+        ng-attr-y="{{wa.y-20}}"
+        width="7.5"
+        height="40"
+        style="
+        fill:#CCC;
+        fill-opacity:0.6;
+        stroke-width:0.5px;
+        pointer-events:visible;
+        "
+        transform="
+        rotate(
+        {{wa.rot+','+
+        wa.x+','+
+        wa.y}}
+        )
+        "
+        ng-style="{
+        'stroke': wa === game.templates.active ? '#0F0' : '#666',
+        }"
+        ng-mousedown="onTemplateMouseDown($event, wa)"
+        ng-mouseup="doSelectStop($event)"
+        />
+  <text ng-repeat="wa in templateShowUnlocked('wall')"
+        x="{{wa.x}}"
+        y="{{wa.y+2}}"
+        style="
+        fill:black;
+        text-anchor:middle;
+        font-size:6px;
+        font-family:monospace;
+        -webkit-user-select: none;
+        -moz-user-select:none;
+        "
+        transform="
+        rotate(
+        {{(wa.rot-90)+','+
+        wa.x+','+
+        wa.y}}
+        )
+        "
+        >
+    {{wa.displayLabel()}}
+  </text>
+  <circle ng-show="
+          game.templates.active &&
+          game.templates.active.origin &&
+          game.models[game.templates.active.origin]
+          "
+          ng-attr-cx="{{game.models[game.templates.active.origin].state.x}}"
+          ng-attr-cy="{{game.models[game.templates.active.origin].state.y}}"
+          ng-attr-r="{{game.models[game.templates.active.origin].info.r}}"
+          style="
+          fill:none;
+          stroke:#FF0;
+          stroke-width:1px;
+          "
+          />
+  <circle ng-show="
+          modes.current.name === 'Template Create' &&
+          modes.current.type === 'aoe'
+          "
+          ng-attr-cx="{{modes.current.x}}"
+          ng-attr-cy="{{modes.current.y}}"
+          ng-attr-r="{{modes.current.size*5}}"
+          style="
+          fill:#F90;
+          fill-opacity:0.5;
+          stroke-width:0.5px;
+          stroke: #C60;
+          "
+          />
+  <polygon ng-show="
+           modes.current.name === 'Template Create' &&
+           modes.current.type === 'spray'
+           "
+           ng-attr-points="
+           8.75,0
+           {{
+           (10-8.125*modes.current.size/10) +
+           ','  + (98.34*modes.current.size/10) +
+           ' 10,' + (100*modes.current.size/10) +
+           ' ' + (10+8.125*modes.current.size/10) +
+           ',' + (98.34*modes.current.size/10)
+           }}
+           11.25,0
+           "
+           style="
+           fill:#F90;
+           fill-opacity:0.5;
+           stroke:#C60,
+           stroke-width:0.5px;
+           "
+           ng-attr-transform="
+           translate({{(modes.current.x-10)+','+modes.current.y}})
+           rotate({{modes.current.rot-180}}, 10, 0)
+           "
+           />
+  <rect ng-show="
+        modes.current.name === 'Template Create' &&
+        modes.current.type === 'wall'
+        "
+        ng-attr-x="{{modes.current.x-3.75}}"
+        ng-attr-y="{{modes.current.y-20}}"
+        width="7.5"
+        height="40"
+        style="
+        fill:#CCC;
+        fill-opacity:1.0;
+        stroke: #666;
+        stroke-width:0.5px;
+        "
+        transform="
+        rotate(
+        {{modes.current.rot+','+
+        modes.current.x+','+
+        modes.current.y}}
+        )
+        "
+        />
+</svg>

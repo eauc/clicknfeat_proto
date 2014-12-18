@@ -1,0 +1,152 @@
+<svg id="tool-canvas"
+     style="
+     border:1px solid black;
+     display: inline-block;
+     margin:0;
+     padding:0;
+     position:absolute;
+     top:0;
+     left:0;
+     pointer-events:none;
+     "
+     ng-style="{
+     '-moz-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+     '-webkit-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+     'transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : ''
+     }"
+     ng-attr-width="{{game.board.window.width*game.board.zoom.factor}}px"
+     ng-attr-height="{{game.board.window.height*game.board.zoom.factor}}px"
+     viewBox="0 0 480 480"
+     preserveAspectRatio="xMinYMin meet"
+     >
+  <defs>
+    <marker id="ruler-start"
+            markerWidth="6" markerHeight="8"
+            refx="0" refy="4"
+            orient="auto">
+      <polygon points="6,8 0,4 6,0"
+               style="
+               fill:#0CC;
+               "
+               />
+      <line x1="0" y1="1" x2="0" y2="7"
+            style="
+            stroke:#0CC;
+            stroke-width:2px;
+            "
+            />
+    </marker>
+    <marker id="ruler-end"
+            markerWidth="6" markerHeight="8"
+            refx="6" refy="4"
+            orient="auto">
+      <polygon points="0,8 6,4 0,0"
+               style="
+               fill:#0CC;
+               "
+               />
+      <line x1="6" y1="1" x2="6" y2="7"
+            style="
+            stroke:#0CC;
+            stroke-width:2px;
+            "
+            />
+    </marker>
+  </defs>
+  <rect ng-if="modes.current.name === 'Selection Drag'"
+        ng-attr-x="{{modes.current.x}}"
+        ng-attr-y="{{modes.current.y}}"
+        ng-attr-width="{{modes.current.width}}"
+        ng-attr-height="{{modes.current.height}}"
+        style="
+        fill: none;
+        stroke:#00F;
+        stroke-width:0.5px;
+        " />
+  <circle ng-if="
+          (modes.current.group === 'Ruler' ||
+          game.ruler.state.active) &&
+          game.ruler.state.origin !== null
+          "
+          ng-attr-cx="{{game.models[game.ruler.state.origin].state.x}}"
+          ng-attr-cy="{{game.models[game.ruler.state.origin].state.y}}"
+          ng-attr-r="{{game.models[game.ruler.state.origin].info.r}}"
+          style="
+          fill:none;
+          stroke:#F90;
+          stroke-width:1px;
+          "
+          />
+  <circle ng-if="
+          (modes.current.group === 'Ruler' ||
+          game.ruler.state.active) &&
+          game.ruler.state.target !== null
+          "
+          ng-attr-cx="{{game.models[game.ruler.state.target].state.x}}"
+          ng-attr-cy="{{game.models[game.ruler.state.target].state.y}}"
+          ng-attr-r="{{game.models[game.ruler.state.target].info.r}}"
+          style="
+          fill:none;
+          stroke-width:1px;
+          "
+          ng-style="{
+          'stroke': game.ruler.state.target_in_range ? '#F0C' : '#F00'
+          }"
+          />
+  <g ng-if="game.ruler.state.active"
+     >
+    <line ng-attr-x1="{{game.ruler.state.x1}}"
+          ng-attr-y1="{{game.ruler.state.y1}}"
+          ng-attr-x2="{{game.ruler.state.x2}}"
+          ng-attr-y2="{{game.ruler.state.y2}}"
+          style="
+          stroke-width:1px;
+          marker-start:url(#ruler-start);
+          marker-end:url(#ruler-end);
+          "
+          ng-style="{
+          'stroke': (modes.current.name === 'Ruler Target') ?
+                    '#F09' : (modes.current.name === 'Ruler Origin' ?
+                              '#F90' : '#0FF')
+          }"
+          />
+    <rect ng-attr-x="{{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1-2.5}}"
+          ng-attr-y="{{(game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1-4}}"
+          width="30"
+          height="10"
+          style="
+          fill:#FFC;
+          stroke:#000;
+          stroke-width:0.5px;
+          "
+          ng-attr-transform="rotate(
+          {{(game.board.zoom.flipped ? 180 : 0)+','+
+          ((game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1)+','+
+          ((game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1+4)}}
+          )"
+          />
+    <text ng-attr-x="{{(game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1}}"
+          ng-attr-y="{{(game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1+4}}"
+          style="
+          font-size:8px;
+          "
+          ng-attr-transform="rotate(
+          {{(game.board.zoom.flipped ? 180 : 0)+','+
+          ((game.ruler.state.x2-game.ruler.state.x1)/2+game.ruler.state.x1)+','+
+          ((game.ruler.state.y2-game.ruler.state.y1)/2+game.ruler.state.y1+4)}}
+          )"
+          >
+      {{game.ruler.state.length}}"
+    </text>
+  </g>
+  <line ng-if="game.los.state.active"
+        ng-attr-x1="{{game.los.state.x1}}"
+        ng-attr-y1="{{game.los.state.y1}}"
+        ng-attr-x2="{{game.los.state.x2}}"
+        ng-attr-y2="{{game.los.state.y2}}"
+        style="
+        stroke: #0F0;
+        stroke-width:0.5px;
+        "
+        />
+</svg>

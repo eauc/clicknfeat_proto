@@ -1,0 +1,56 @@
+<svg id="terrain-canvas"
+     style="
+     border:1px solid black;
+     display: inline-block;
+     margin:0;
+     padding:0;
+     position:absolute;
+     top:0;
+     left:0;
+     pointer-events:none;
+     "
+     ng-style="{
+     '-moz-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+     '-webkit-transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : '',
+     'transform': game.board.zoom.flipped ? 'scaleX(-1) scaleY(-1)' : ''
+     }"
+     ng-attr-width="{{game.board.window.width*game.board.zoom.factor}}px"
+     ng-attr-height="{{game.board.window.height*game.board.zoom.factor}}px"
+     viewBox="0 0 480 480"
+     preserveAspectRatio="xMinYMin meet"
+     >
+  <rect ng-repeat="r in game.board.info.terrain.rect"
+        ng-attr-x="{{r.x-r.width/2}}"
+        ng-attr-y="{{r.y-r.height/2}}"
+        ng-attr-width="{{r.width}}"
+        ng-attr-height="{{r.height}}"
+        ng-attr-transform="rotate({{r.rotate+','+r.x+','+r.y}})"
+        style="
+        fill-opacity:0.2;
+        "
+        ng-style="{
+        fill: r.type === 'obstruction' ?
+        '#00F' : (r.type === 'linear' ?
+                  '#F00' : (r.type === 'forest' ?
+                            '#0F0' : (r.type === 'elevation' ? '#0FF' : '#CCC')
+                           )
+                 )
+        }"
+        />
+  <circle ng-repeat="c in game.board.info.terrain.circle"
+          ng-attr-cx="{{c.x}}"
+          ng-attr-cy="{{c.y}}"
+          ng-attr-r="{{c.r}}"
+          style="
+          fill-opacity:0.2;
+          "
+          ng-style="{
+          fill: c.type === 'obstruction' ?
+          '#00F' : (c.type === 'linear' ?
+                    '#F00' : (c.type === 'forest' ?
+                              '#0F0' : (c.type === 'elevation' ? '#0FF' : '#CCC')
+                             )
+                   )
+          }"
+          />
+</svg>
