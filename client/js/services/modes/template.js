@@ -173,6 +173,9 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('deleteActiveTemplate'));
             modes.goTo('default', scope);
           },
+          'Ctrl D': function(scope) {
+            this['Delete'](scope);
+          },
           // ------------------------------------------------------------------
           'Click': function(scope, event, drag, dx, dy) {
             switch(drag.event)

@@ -477,6 +477,9 @@ angular.module('vassalApp.services')
             scope.game.newCommand(command('dropSelection'));
             modes.goTo('default', scope);
           },
+          'Ctrl D': function(scope) {
+            this['Delete'](scope);
+          },
           'Add': function(scope) {
             if(!scope.game.id) return;
             scope.game.newCommand(command('onSelection', 'incrementCounter'));
