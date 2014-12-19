@@ -33,10 +33,10 @@
                />
     </marker>
   </defs>
-  <circle ng-repeat="aoe in templateShowUnlocked('aoe')"
-          ng-attr-cx="{{aoe.x}}"
-          ng-attr-cy="{{aoe.y}}"
-          ng-attr-r="{{aoe.size*5}}"
+  <circle ng-repeat="tp in templateShowUnlocked('aoe')"
+          ng-attr-cx="{{tp.x}}"
+          ng-attr-cy="{{tp.y}}"
+          ng-attr-r="{{tp.size*5}}"
           style="
           fill:#F90;
           fill-opacity:0.5;
@@ -44,14 +44,13 @@
           pointer-events:visible;
           "
           ng-style="{
-          'stroke': aoe === game.templates.active ?
+          'stroke': tp === game.templates.active ?
                     (modes.current.name === 'Template Origin' ?
                      '#FF0' : (modes.current.name === 'Template Target' ?
                                '#0FF' : '#0F0')
                     ) : '#C60'
           }"
-          ng-mousedown="onTemplateMouseDown($event, aoe)"
-          ng-mouseup="doSelectStop($event)"
+          template-move
           />
   <g ng-repeat="aoe in templateShowUnlocked('aoe')"
      ng-attr-transform="rotate(
@@ -103,13 +102,13 @@
         game.templates.active.y}})
         "
         />
-  <polygon ng-repeat="sp in templateShowUnlocked('spray')"
+  <polygon ng-repeat="tp in templateShowUnlocked('spray')"
            ng-attr-points="
            8.75,0
            {{
-           (10-8.125*sp.size/10) + ','  + (98.34*sp.size/10) +
-           ' 10,' + (100*sp.size/10) +
-           ' ' + (10+8.125*sp.size/10) + ',' + (98.34*sp.size/10)
+           (10-8.125*tp.size/10) + ','  + (98.34*tp.size/10) +
+           ' 10,' + (100*tp.size/10) +
+           ' ' + (10+8.125*tp.size/10) + ',' + (98.34*tp.size/10)
            }}
            11.25,0
            "
@@ -120,22 +119,21 @@
            pointer-events:visible;
            "
            ng-attr-transform="
-           translate({{(sp.x-10)+','+sp.y}})
-           rotate({{sp.rot-180}}, 10, 0)
+           translate({{(tp.x-10)+','+tp.y}})
+           rotate({{tp.rot-180}}, 10, 0)
            "
            ng-style="{
-           'stroke': sp === game.templates.active ?
+           'stroke': tp === game.templates.active ?
                      (modes.current.name === 'Template Origin' ?
                       '#FF0' : (modes.current.name === 'Template Target' ?
                                 '#0FF' : '#0F0')
                      ) : '#C60',
            }"
-           ng-mousedown="onTemplateMouseDown($event, sp)"
-           ng-mouseup="doSelectStop($event)"
+           template-move
            />
-  <rect ng-repeat="wa in templateShowUnlocked('wall')"
-        ng-attr-x="{{wa.x-3.75}}"
-        ng-attr-y="{{wa.y-20}}"
+  <rect ng-repeat="tp in templateShowUnlocked('wall')"
+        ng-attr-x="{{tp.x-3.75}}"
+        ng-attr-y="{{tp.y-20}}"
         width="7.5"
         height="40"
         style="
@@ -146,16 +144,15 @@
         "
         transform="
         rotate(
-        {{wa.rot+','+
-        wa.x+','+
-        wa.y}}
+        {{tp.rot+','+
+        tp.x+','+
+        tp.y}}
         )
         "
         ng-style="{
-        'stroke': wa === game.templates.active ? '#0F0' : '#666',
+        'stroke': tp === game.templates.active ? '#0F0' : '#666',
         }"
-        ng-mousedown="onTemplateMouseDown($event, wa)"
-        ng-mouseup="doSelectStop($event)"
+        template-move
         />
   <text ng-repeat="wa in templateShowUnlocked('wall')"
         x="{{wa.x}}"

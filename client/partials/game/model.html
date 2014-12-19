@@ -264,8 +264,7 @@
               stroke-width:0.5px;
               pointer-events:visible;
               "
-              ng-mousedown="onModelMouseDown($event, model)"
-              ng-mouseup="doSelectStop($event, model)"
+              model-move
               /> 
       <line ng-attr-x1="{{::model.info.width/2-model.info.r}}"
             ng-attr-y1="{{::model.info.height/2}}"

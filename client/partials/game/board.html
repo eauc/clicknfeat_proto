@@ -16,9 +16,7 @@
      ng-attr-height="{{game.board.window.height*game.board.zoom.factor}}px"
      viewBox="0 0 480 480"
      preserveAspectRatio="xMinYMin meet"
-     ng-mousedown="doSelectStart($event)"
-     game-move
-     ng-mouseup="doSelectStop($event)"
+     board-move
      >
   <image id="canvas"
          x="0"
