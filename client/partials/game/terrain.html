@@ -20,11 +20,11 @@
      preserveAspectRatio="xMinYMin meet"
      >
   <rect ng-repeat="r in game.board.info.terrain.rect"
-        ng-attr-x="{{r.x-r.width/2}}"
-        ng-attr-y="{{r.y-r.height/2}}"
-        ng-attr-width="{{r.width}}"
-        ng-attr-height="{{r.height}}"
-        ng-attr-transform="rotate({{r.rotate+','+r.x+','+r.y}})"
+        ng-attr-x="{{::r.x-r.width/2}}"
+        ng-attr-y="{{::r.y-r.height/2}}"
+        ng-attr-width="{{::r.width}}"
+        ng-attr-height="{{::r.height}}"
+        ng-attr-transform="rotate({{::r.rotate+','+r.x+','+r.y}})"
         style="
         fill-opacity:0.2;
         "
@@ -38,9 +38,9 @@
         }"
         />
   <circle ng-repeat="c in game.board.info.terrain.circle"
-          ng-attr-cx="{{c.x}}"
-          ng-attr-cy="{{c.y}}"
-          ng-attr-r="{{c.r}}"
+          ng-attr-cx="{{::c.x}}"
+          ng-attr-cy="{{::c.y}}"
+          ng-attr-r="{{::c.r}}"
           style="
           fill-opacity:0.2;
           "

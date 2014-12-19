@@ -38,7 +38,7 @@
   <circle ng-repeat="model in modelShow('control') track by model.state.id"
           ng-attr-cx="{{model.state.x}}"
           ng-attr-cy="{{model.state.y}}"
-          ng-attr-r="{{model.info.r+(model.info.focus || model.info.fury)*20}}"
+          ng-attr-r="{{::model.info.r+(model.info.focus || model.info.fury)*20}}"
           style="
           fill: #0FF;
           fill-opacity: 0.15;
@@ -71,7 +71,7 @@
   <circle ng-repeat="model in modelShow('color') track by model.state.id"
           ng-attr-cx="{{model.state.x}}"
           ng-attr-cy="{{model.state.y}}"
-          ng-attr-r="{{model.info.r+2}}"
+          ng-attr-r="{{::model.info.r+2}}"
           style="
           filter: url(#aura-filter);
           "
@@ -83,7 +83,7 @@
     <circle ng-repeat="id in game.contestingModels()"
             ng-attr-cx="{{game.models[id].state.x}}"
             ng-attr-cy="{{game.models[id].state.y}}"
-            ng-attr-r="{{game.models[id].info.r+4}}"
+            ng-attr-r="{{::game.models[id].info.r+4}}"
             style="
             fill:#FFF;
             filter: url(#aura-filter);
@@ -95,9 +95,9 @@
      game.templates.active
      ">
     <circle ng-repeat="id in game.templates.active.overlappingModels(game)"
-            ng-attr-cx="{{game.models[id].state.x}}"
-            ng-attr-cy="{{game.models[id].state.y}}"
-            ng-attr-r="{{game.models[id].info.r+4}}"
+            ng-attr-cx="{{::game.models[id].state.x}}"
+            ng-attr-cy="{{::game.models[id].state.y}}"
+            ng-attr-r="{{::game.models[id].info.r+4}}"
             style="
             fill:#FFF;
             filter: url(#aura-filter);
@@ -110,18 +110,18 @@
      game.selection.length === 1
      ">
     <circle ng-repeat="id in game.models[game.selection[0]].overlappingModels(game)"
-            ng-attr-cx="{{game.models[id].state.x}}"
-            ng-attr-cy="{{game.models[id].state.y}}"
-            ng-attr-r="{{game.models[id].info.r+4}}"
+            ng-attr-cx="{{::game.models[id].state.x}}"
+            ng-attr-cy="{{::game.models[id].state.y}}"
+            ng-attr-r="{{::game.models[id].info.r+4}}"
             style="
             fill:#F60;
             filter: url(#aura-filter);
             "
             />
     <circle ng-repeat="id in game.models[game.selection[0]].b2bModels(game)"
-            ng-attr-cx="{{game.models[id].state.x}}"
-            ng-attr-cy="{{game.models[id].state.y}}"
-            ng-attr-r="{{game.models[id].info.r+4}}"
+            ng-attr-cx="{{::game.models[id].state.x}}"
+            ng-attr-cy="{{::game.models[id].state.y}}"
+            ng-attr-r="{{::game.models[id].info.r+4}}"
             style="
             fill:#FF0;
             filter: url(#aura-filter);
@@ -178,8 +178,8 @@
   <g ng-repeat="model in modelShow('charge') track by model.state.id">
     <rect ng-attr-x="{{model.state.x-model.info.r}}"
           ng-attr-y="{{model.state.y-700}}"
-          ng-attr-width="{{model.info.r*2}}"
-          ng-attr-height="{{700}}"
+          ng-attr-width="{{::model.info.r*2}}"
+          height="700"
           ng-attr-transform="rotate(
           {{model.state.charge_rot+','+
           model.state.x+','+
@@ -194,7 +194,7 @@
           />
     <rect ng-attr-x="{{(model.state.x+model.state.charge_x)/2-model.info.r}}"
           ng-attr-y="{{(model.state.y+model.state.charge_y)/2-model.state.charge_length/2}}"
-          ng-attr-width="{{model.info.r*2}}"
+          ng-attr-width="{{::model.info.r*2}}"
           ng-attr-height="{{model.state.charge_length}}"
           ng-attr-transform="rotate(
           {{model.state.charge_rot+','+
@@ -212,8 +212,8 @@
   <g ng-repeat="model in modelShow('place') track by model.state.id">
     <rect ng-attr-x="{{model.state.x-model.info.r}}"
           ng-attr-y="{{model.state.y-700}}"
-          ng-attr-width="{{model.info.r*2}}"
-          ng-attr-height="{{700}}"
+          ng-attr-width="{{::model.info.r*2}}"
+          height="700"
           ng-attr-transform="rotate(
           {{model.state.place_rot+','+
           model.state.x+','+
@@ -228,7 +228,7 @@
           />
     <rect ng-attr-x="{{(model.state.x+model.state.place_x)/2-model.info.r}}"
           ng-attr-y="{{(model.state.y+model.state.place_y)/2-model.state.place_length/2}}"
-          ng-attr-width="{{model.info.r*2}}"
+          ng-attr-width="{{::model.info.r*2}}"
           ng-attr-height="{{model.state.place_length}}"
           ng-attr-transform="rotate(
           {{model.state.place_rot+','+
@@ -252,9 +252,9 @@
        (model.info.width/2)+','+
        (model.info.height/2)}}
        )">
-      <circle ng-attr-cx="{{model.info.width/2}}"
-              ng-attr-cy="{{model.info.height/2}}"
-              ng-attr-r="{{model.info.r}}"
+      <circle ng-attr-cx="{{::model.info.width/2}}"
+              ng-attr-cy="{{::model.info.height/2}}"
+              ng-attr-r="{{::model.info.r}}"
               ng-style="{
               'fill': model.info.color
               }"
@@ -267,39 +267,39 @@
               ng-mousedown="onModelMouseDown($event, model)"
               ng-mouseup="doSelectStop($event, model)"
               /> 
-      <line ng-attr-x1="{{model.info.width/2-model.info.r}}"
-            ng-attr-y1="{{model.info.height/2}}"
-            ng-attr-x2="{{model.info.width/2+model.info.r}}"
-            ng-attr-y2="{{model.info.height/2}}"
+      <line ng-attr-x1="{{::model.info.width/2-model.info.r}}"
+            ng-attr-y1="{{::model.info.height/2}}"
+            ng-attr-x2="{{::model.info.width/2+model.info.r}}"
+            ng-attr-y2="{{::model.info.height/2}}"
             style="
             stroke:black;
             stroke-width:0.5px;
             "
             />
-      <line ng-attr-x1="{{model.info.width/2}}"
-            ng-attr-y1="{{model.info.height/2}}"
-            ng-attr-x2="{{model.info.width/2}}"
-            ng-attr-y2="{{model.info.height/2-model.info.r}}"
+      <line ng-attr-x1="{{::model.info.width/2}}"
+            ng-attr-y1="{{::model.info.height/2}}"
+            ng-attr-x2="{{::model.info.width/2}}"
+            ng-attr-y2="{{::model.info.height/2-model.info.r}}"
             style="
             stroke:black;
             stroke-width:0.5px;
             "
             />
-      <image ng-show="model.state.show_image"
-             ng-attr-x="{{model.info.img.x}}"
-             ng-attr-y="{{model.info.img.y}}"
-             ng-attr-width="{{model.info.width}}"
-             ng-attr-height="{{model.info.height}}"
+      <image ng-if="model.state.show_image"
+             ng-attr-x="{{::model.info.img.x}}"
+             ng-attr-y="{{::model.info.img.y}}"
+             ng-attr-width="{{::model.info.width}}"
+             ng-attr-height="{{::model.info.height}}"
              xlink:href="{{model.displayImage()}}"
              />
       <line ng-if="
             !model.state.show_wreck &&
             model.info.damage.total > 1
             "
-            ng-attr-x1="{{model.info.width/2-model.info.r}}"
-            ng-attr-y1="{{model.info.height/2+model.info.r+1}}"
-            ng-attr-x2="{{model.info.width/2+model.info.r}}"
-            ng-attr-y2="{{model.info.height/2+model.info.r+1}}"
+            ng-attr-x1="{{::model.info.width/2-model.info.r}}"
+            ng-attr-y1="{{::model.info.height/2+model.info.r+1}}"
+            ng-attr-x2="{{::model.info.width/2+model.info.r}}"
+            ng-attr-y2="{{::model.info.height/2+model.info.r+1}}"
             style="
             stroke:#0F0;
             stroke-width:1px;
@@ -309,13 +309,13 @@
             !model.state.show_wreck &&
             model.info.damage.total > 1
             "
-            ng-attr-x1="{{model.info.width/2-model.info.r}}"
-            ng-attr-y1="{{model.info.height/2+model.info.r+1}}"
+            ng-attr-x1="{{::model.info.width/2-model.info.r}}"
+            ng-attr-y1="{{::model.info.height/2+model.info.r+1}}"
             ng-attr-x2="{{
             model.info.width/2-model.info.r+
             model.info.r*2*model.state.damage.total/model.info.damage.total
             }}"
-            ng-attr-y2="{{model.info.height/2+model.info.r+1}}"
+            ng-attr-y2="{{::model.info.height/2+model.info.r+1}}"
             style="
             stroke:#F00;
             stroke-width:1px;
@@ -325,22 +325,22 @@
          !model.state.show_wreck &&
          model.info.damage.field
          ">
-        <line ng-attr-x1="{{model.info.width/2-model.info.r}}"
-              ng-attr-y1="{{model.info.height/2+model.info.r+1}}"
-              ng-attr-x2="{{model.info.width/2+model.info.r}}"
-              ng-attr-y2="{{model.info.height/2+model.info.r+1}}"
+        <line ng-attr-x1="{{::model.info.width/2-model.info.r}}"
+              ng-attr-y1="{{::model.info.height/2+model.info.r+1}}"
+              ng-attr-x2="{{::model.info.width/2+model.info.r}}"
+              ng-attr-y2="{{::model.info.height/2+model.info.r+1}}"
               style="
               stroke:#0FF;
               stroke-width:1px;
               "
               />
-        <line ng-attr-x1="{{model.info.width/2-model.info.r}}"
-              ng-attr-y1="{{model.info.height/2+model.info.r+1}}"
+        <line ng-attr-x1="{{::model.info.width/2-model.info.r}}"
+              ng-attr-y1="{{::model.info.height/2+model.info.r+1}}"
               ng-attr-x2="{{
               model.info.width/2-model.info.r+
               model.info.r*2*model.state.damage.field/model.info.damage.field
               }}"
-              ng-attr-y2="{{model.info.height/2+model.info.r+1}}"
+              ng-attr-y2="{{::model.info.height/2+model.info.r+1}}"
               style="
               stroke:#066;
               stroke-width:1px;
@@ -349,21 +349,21 @@
       </g>
       <image ng-repeat="e in model.effects()"
              ng-attr-x="{{model.info.width/2+$index*8-8*model.effects().length/2}}"
-             ng-attr-y="{{model.info.height/2+model.info.r}}"
+             ng-attr-y="{{::model.info.height/2+model.info.r}}"
              width="10"
              height="10"
-             xlink:href="{{effects[e].icon}}"
+             xlink:href="{{::effects[e].icon}}"
              />
       <image ng-if="model.state.show_fleeing"
-             ng-attr-x="{{model.info.width/2-5+model.info.r*0.8}}"
-             ng-attr-y="{{model.info.height/2-5-model.info.r*0.8-1}}"
+             ng-attr-x="{{::model.info.width/2-5+model.info.r*0.8}}"
+             ng-attr-y="{{::model.info.height/2-5-model.info.r*0.8-1}}"
              width="10"
              height="10"
              xlink:href="data/icons/BoltYellow.png"
              />
       <image ng-if="model.state.show_leader"
-             ng-attr-x="{{model.info.width/2-5+model.info.r*0.7}}"
-             ng-attr-y="{{model.info.height/2-5+model.info.r*0.7-1}}"
+             ng-attr-x="{{::model.info.width/2-5+model.info.r*0.7}}"
+             ng-attr-y="{{::model.info.height/2-5+model.info.r*0.7-1}}"
              width="10"
              height="10"
              xlink:href="data/icons/Leader.png"
@@ -381,8 +381,8 @@
        (model.info.height/2)}}
        )"
        >
-      <rect ng-attr-x="{{model.info.width/2-model.info.r-9}}"
-            ng-attr-y="{{model.info.height/2-model.info.r-4}}"
+      <rect ng-attr-x="{{::model.info.width/2-model.info.r-9}}"
+            ng-attr-y="{{::model.info.height/2-model.info.r-4}}"
             width="12"
             height="6"
             style="
@@ -390,8 +390,8 @@
             fill-opacity:0.4;
             "
             />
-      <text ng-attr-x="{{model.info.width/2-model.info.r+2}}"
-            ng-attr-y="{{model.info.height/2-model.info.r+1}}"
+      <text ng-attr-x="{{::model.info.width/2-model.info.r+2}}"
+            ng-attr-y="{{::model.info.height/2-model.info.r+1}}"
             style="
             fill:#0FF;
             text-anchor:end;
@@ -409,7 +409,7 @@
   <circle ng-repeat="id in game.update_selection"
           ng-attr-cx="{{game.models[id].state.x}}"
           ng-attr-cy="{{game.models[id].state.y}}"
-          ng-attr-r="{{game.models[id].info.r}}"
+          ng-attr-r="{{::game.models[id].info.r}}"
           style="
           fill:none;
           stroke: #FFF;
@@ -419,7 +419,7 @@
   <circle ng-repeat="id in game.selection"
           ng-attr-cx="{{game.models[id].state.x}}"
           ng-attr-cy="{{game.models[id].state.y}}"
-          ng-attr-r="{{game.models[id].info.r}}"
+          ng-attr-r="{{::game.models[id].info.r}}"
           style="
           fill:none;
           stroke-width:1px;
@@ -780,8 +780,8 @@
         "
         />
   <g ng-if="modes.current.name === 'Model Drag'">
-    <line ng-attr-x1="{{modes.current.start_x}}"
-          ng-attr-y1="{{modes.current.start_y}}"
+    <line ng-attr-x1="{{::modes.current.start_x}}"
+          ng-attr-y1="{{::modes.current.start_y}}"
           ng-attr-x2="{{modes.current.end_x}}"
           ng-attr-y2="{{modes.current.end_y}}"
           style="
@@ -825,14 +825,9 @@
        ng-attr-x="{{modes.current.x + model.offset_x - model.info.width/2}}"
        ng-attr-y="{{modes.current.y + model.offset_y - model.info.height/2}}"
        >
-    <image ng-attr-x="{{model.info.img.x}}"
-           ng-attr-y="{{model.info.img.y}}"
-           ng-attr-width="{{model.info.width}}"
-           ng-attr-height="{{model.info.height}}"
-           />
-    <circle ng-attr-cx="{{model.info.width/2}}"
-            ng-attr-cy="{{model.info.height/2}}"
-            ng-attr-r="{{model.info.r}}"
+    <circle ng-attr-cx="{{::model.info.width/2}}"
+            ng-attr-cy="{{::model.info.height/2}}"
+            ng-attr-r="{{::model.info.r}}"
             style="
             fill:#F00;
             fill-opacity:0.5;

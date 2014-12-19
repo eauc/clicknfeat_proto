@@ -23,10 +23,10 @@
         menu_view === 'setup' &&
         game.scenario.killbox
         "
-        ng-attr-x="{{game.scenario.killbox}}"
-        ng-attr-y="{{game.scenario.killbox}}"
-        ng-attr-width="{{480-2*game.scenario.killbox}}"
-        ng-attr-height="{{480-2*game.scenario.killbox}}"
+        ng-attr-x="{{::game.scenario.killbox}}"
+        ng-attr-y="{{::game.scenario.killbox}}"
+        ng-attr-width="{{::480-2*game.scenario.killbox}}"
+        ng-attr-height="{{::480-2*game.scenario.killbox}}"
         style="
         fill:none;
         stroke:#990;
@@ -34,10 +34,10 @@
         "
         />
   <rect ng-repeat="r in game.scenario.rect"
-        ng-attr-x="{{r.x-r.width/2}}"
-        ng-attr-y="{{r.y-r.height/2}}"
-        ng-attr-width="{{r.width}}"
-        ng-attr-height="{{r.height}}"
+        ng-attr-x="{{::r.x-r.width/2}}"
+        ng-attr-y="{{::r.y-r.height/2}}"
+        ng-attr-width="{{::r.width}}"
+        ng-attr-height="{{::r.height}}"
         style="
         fill:#CC0;
         fill-opacity:0.3;
@@ -46,9 +46,9 @@
         "
         />
   <circle ng-repeat="c in game.scenario.circle"
-          ng-attr-cx="{{c.x}}"
-          ng-attr-cy="{{c.y}}"
-          ng-attr-r="{{c.r}}"
+          ng-attr-cx="{{::c.x}}"
+          ng-attr-cy="{{::c.y}}"
+          ng-attr-r="{{::c.r}}"
           style="
           fill:#CC0;
           fill-opacity:0.3;
@@ -57,9 +57,9 @@
           "
           />
   <circle ng-repeat="o in game.scenario.objectives"
-          ng-attr-cx="{{o.x}}"
-          ng-attr-cy="{{o.y}}"
-          ng-attr-r="{{factions.list.scenario.models.objectives[o.type].r}}"
+          ng-attr-cx="{{::o.x}}"
+          ng-attr-cy="{{::o.y}}"
+          ng-attr-r="{{::factions.list.scenario.models.objectives[o.type].r}}"
           style="
           fill:#CC0;
           fill-opacity:0.8;
@@ -71,9 +71,9 @@
           menu_view === 'setup'
           "
           ng-repeat="o in game.scenario.objectives"
-          ng-attr-cx="{{o.x}}"
-          ng-attr-cy="{{o.y}}"
-          ng-attr-r="{{40+factions.list.scenario.models.objectives[o.type].r}}"
+          ng-attr-cx="{{::o.x}}"
+          ng-attr-cy="{{::o.y}}"
+          ng-attr-r="{{::40+factions.list.scenario.models.objectives[o.type].r}}"
           style="
           fill:none;
           stroke:#C90;
@@ -81,9 +81,9 @@
           "
           />
   <circle ng-repeat="f in game.scenario.flags"
-          ng-attr-cx="{{f.x}}"
-          ng-attr-cy="{{f.y}}"
-          ng-attr-r="{{factions.list.scenario.models.flags[f.type].r}}"
+          ng-attr-cx="{{::f.x}}"
+          ng-attr-cy="{{::f.y}}"
+          ng-attr-r="{{::factions.list.scenario.models.flags[f.type].r}}"
           style="
           fill:#CC0;
           fill-opacity:0.8;
@@ -95,9 +95,9 @@
           menu_view === 'setup'
           "
           ng-repeat="f in game.scenario.flags"
-          ng-attr-cx="{{f.x}}"
-          ng-attr-cy="{{f.y}}"
-          ng-attr-r="{{40+factions.list.scenario.models.flags[f.type].r}}"
+          ng-attr-cx="{{::f.x}}"
+          ng-attr-cy="{{::f.y}}"
+          ng-attr-r="{{::40+factions.list.scenario.models.flags[f.type].r}}"
           style="
           fill:none;
           stroke:#C90;
