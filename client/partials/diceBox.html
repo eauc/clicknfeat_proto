@@ -31,15 +31,15 @@
             "
             ng-click="game.rollDice(1, 3)">1d3</button>
   </div>
-  <div ng-repeat="cmd in showDiceCommands(game.new_commands).reverse()">
+  <div ng-repeat="cmd in showDiceCommands(game.new_commands).reverse() track by cmd.stamp">
     <span style="color:#00f;"
           ng-style="{
           color: cmd.user === user.name ? '#33F' : '#F3F'
           }"
-          >[{{cmd.user}}]</span>
-    {{cmd.msg_text}}
+          >[{{::cmd.user}}]</span>
+    {{::cmd.msg_text}}
   </div>
-  <div ng-repeat="cmd in showDiceCommands(game.commands).reverse()"
+  <div ng-repeat="cmd in showDiceCommands(game.commands).reverse() track by cmd.stamp"
        ng-style="{
        'background-color': $index === 0 ? '#0F0' : 'none'
        }"
@@ -49,7 +49,7 @@
           ng-style="{
           color: cmd.user === user.name ? '#33F' : '#F3F',
           }"
-          >[{{cmd.user}}]</span>
-    {{cmd.msg_text}}
+          >[{{::cmd.user}}]</span>
+    {{::cmd.msg_text}}
   </div>
 </div>

@@ -3,9 +3,10 @@
     <strong>Import models from FK army list :</strong>
   </div>
   <div>
-    From file : <input id="import-fk-file"
-                       type="file"
-                       />
+    From file :
+    <input id="import-fk-file"
+           type="file"
+           />
     <div>or from string :</div>
     <div>
       <textarea ng-model="fk_read_string"
@@ -23,7 +24,7 @@
     </div>
     <div>
       <div ng-repeat="line in fk_read_result">
-        {{line}}
+        {{::line}}
       </div>
     </div>
   </div>

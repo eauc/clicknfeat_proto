@@ -17,6 +17,6 @@
     </form>
     <button ng-click="doClearAllLabel()">Clear All</button>
     <button ng-repeat="lbl in game.templates.active.label"
-            ng-click="doClearLabel($index)">{{lbl}} <strong>x</strong></button>
+            ng-click="doClearLabel($index)">{{::lbl}} <strong>x</strong></button>
   </div>
 </div>

@@ -14,7 +14,7 @@
     </button>
   </div>
   <table>
-    <tr ng-repeat="model in game.drop_bin">
+    <tr ng-repeat="model in game.drop_bin track by model.state.id">
       <td ng-click="doToggleRestoreSelection(model.state.id, $event)"
           ng_style="{
           'background-color': restore_selection[model.state.id] ? '#999' : 'white'
@@ -22,9 +22,9 @@
           >
         <span ng-style="{
               color: model.state.user === user.name ? '#33F' : '#F3F'
-              }">[{{model.state.user}}]</span>
-        {{model.info.unit}} {{ model.info.name }}
-        - {{ model.state.id }}
+              }">[{{::model.state.user}}]</span>
+        {{::model.info.unit}} {{::model.info.name}}
+        - {{::model.state.id}}
       </td>
     </tr>
   </table>

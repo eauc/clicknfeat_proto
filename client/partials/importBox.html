@@ -3,13 +3,14 @@
     <strong>Import models from file :</strong>
   </div>
   <div>
-    From file : <input id="import-model-file"
-                       type="file"
-                       />
+    From file :
+    <input id="import-model-file"
+           type="file"
+           />
   </div>
   <div>
     <div ng-repeat="line in read_result">
-      {{line}}
+      {{::line}}
     </div>
   </div>
 </div>

@@ -28,7 +28,7 @@
     </form>
     <button ng-click="doClearAllLabel()">Clear All</button>
     <button ng-repeat="lbl in game.models[game.selection[0]].state.label"
-            ng-click="doClearLabel($index)">{{lbl}} <strong>x</strong></button>
+            ng-click="doClearLabel($index)">{{::lbl}} <strong>x</strong></button>
   </div>
   <div>
     <strong>Unit :</strong>
@@ -102,7 +102,7 @@
             style="width:20px;height:20px;"
             ng-click="doModelDamage(game.models[game.selection[0]],col)"
             >
-          {{col}}
+          {{::col}}
         </td>
       </tr>
       <tr ng-repeat="line in range(game.models[game.selection[0]].info.damage.depth)">
@@ -128,7 +128,7 @@
             style="width:20px;height:20px;"
             ng-click="doModelDamage(game.models[game.selection[0]],col)"
             >
-          {{col}}
+          {{::col}}
         </td>
       </tr>
       <tr ng-repeat="line in [0,1,2,3,4,5]">

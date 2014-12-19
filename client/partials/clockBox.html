@@ -10,10 +10,10 @@
           'background-color': game.clock.active_player === 'player1' ? '#6F6' : 'none'
           }"
           >
-        {{game.player1.name}}
+        {{::game.player1.name}}
       </td>
       <td>
-        <button ng-show="game.id"
+        <button ng-if="::game.id"
                 ng-click="doSwitchPlayer()">
           SwitchPlayer
         </button>
@@ -23,10 +23,13 @@
           'background-color': game.clock.active_player === 'player2' ? '#6F6' : 'none'
           }"
           >
-        {{game.player2.name}}
+        {{::game.player2.name}}
       </td>
     </tr>
-    <tr ng-show="game.id && game.clock.state==='stopped'">
+    <tr ng-if="
+        game.id &&
+        game.clock.state==='stopped'
+        ">
       <td style="width:80px;"
           >
         <input type="number"
@@ -79,7 +82,10 @@
                />
       </td>
     </tr>
-    <tr ng-show="!game.id || game.clock.state==='running'">
+    <tr ng-if="
+        !game.id ||
+        game.clock.state==='running'
+        ">
       <td style="width:80px;"
           >
         {{game.clock.clocks.player1.left.hour}}
@@ -95,11 +101,11 @@
         {{game.clock.clocks.player1.left.second}}
       </td>
       <td>
-        <button ng-show="game.id"
+        <button ng-if="game.id"
                 ng-click="doStop()">
           Stop
         </button>
-        <span ng-hide="game.id">
+        <span ng-if="!game.id">
           {{game.clock.state}}
         </span>
       </td>

@@ -150,8 +150,8 @@
       </td>
       <td valign="top">
         <div style="vertical-align:top;">
-          <span ng-show="game.id"><strong>Game Id :</strong> {{game.id}}</span>
-          <strong>Player1 :</strong> {{game.player1.name}}
+          <span ng-show="game.id"><strong>Game Id :</strong> {{::game.id}}</span>
+          <strong>Player1 :</strong> {{::game.player1.name}}
           <strong>Player2 :</strong> {{game.player2.name}}<br />
           <form ng-show="game.id"
                 ng-submit="doInvitePlayer()">
@@ -187,7 +187,7 @@
                   }"
                   ng-click="setMenuView('games')">Online</button>
           <button ng-click="doGoHome()">Home</button>
-          <div ng-show="menu_view === 'main'">
+          <div ng-if="menu_view === 'main'">
             <div style="border:1px solid black;max-height:125px;overflow-y:scroll;"
                  ng-include="'partials/chatBox.html'">
             </div>
@@ -201,11 +201,11 @@
                  ng-include="'partials/diceBox.html'">
             </div>
             <div style="border:1px solid black;overflow-y:scroll;"
-                 ng-show="game.templates.active"
+                 ng-if="game.templates.active"
                  ng-include="'partials/templateViewBox.html'">
             </div>
             <div style="border:1px solid black;overflow-y:scroll;"
-                 ng-show="
+                 ng-if="
                  !game.templates.active &&
                  game.selection.length === 1
                  "
@@ -229,7 +229,7 @@
                     margin-top:10px;
                     height:35px;
                     "
-                    ng-show="game.id"
+                    ng-if="game.id"
                     ng-click="doSetRandomSetup()">
               Random Setup
             </button>
@@ -263,9 +263,9 @@
                  ng-include="'partials/dropBinBox.html'">
             </div>
           </div>
-          <div ng-show="menu_view === 'games'">
-            <strong>User Id :</strong> {{user.id}}
-            <strong>User Name :</strong> {{user.name}}
+          <div ng-if="menu_view === 'games'">
+            <strong>User Id :</strong> {{::user.id}}
+            <strong>User Name :</strong> {{::user.name}}
             <div style="border:1px solid black;max-height:600px;overflow-y:scroll;"
                  ng-include="'partials/usersBox.html'">
             </div>
@@ -285,7 +285,7 @@
        background-color: #CCF;
        padding: 2px 3em;
        "
-       ng-show="user_chat"
+       ng-if="user_chat"
        >
       {{users.list[user_chat.from].name}} &#8594;
       {{user_chat.text}}

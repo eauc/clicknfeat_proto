@@ -11,15 +11,15 @@
     <button style="width:15%;"
             type="submit">Send</button>
   </form>
-  <div ng-repeat="cmd in showChatCommands(game.new_commands).reverse()">
+  <div ng-repeat="cmd in showChatCommands(game.new_commands).reverse() track by cmd.stamp">
     <span style="color:#00f;"
           ng-style="{
           color: cmd.user === user.name ? '#33F' : '#F3F'
           }"
-          >[{{cmd.user}}]</span>
-    {{cmd.msg_text}}
+          >[{{::cmd.user}}]</span>
+    {{::cmd.msg_text}}
   </div>
-  <div ng-repeat="cmd in game.chat_commands.slice().reverse()"
+  <div ng-repeat="cmd in game.chat_commands.slice().reverse() track by cmd.stamp"
        ng-style="{
        'background-color': $index === 0 ? '#0F0' : 'none'
        }"
@@ -29,7 +29,7 @@
           ng-style="{
           color: cmd.user === user.name ? '#33F' : '#F3F',
           }"
-          >[{{cmd.user}}]</span>
-    {{cmd.msg_text}}
+          >[{{::cmd.user}}]</span>
+    {{::cmd.msg_text}}
   </div>
 </div>

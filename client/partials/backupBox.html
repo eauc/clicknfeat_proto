@@ -2,7 +2,7 @@
   <div>
     <button ng-click="game.generateBackup()">Save Game</button>
   </div>
-  <div ng-show="game.save_url !== null">
+  <div ng-if="game.save_url !== null">
     Download the backup file :
     <a ng-href="{{game.save_url}}"
        download="{{game.save_name}}">
@@ -12,7 +12,7 @@
   <div ng-if="game.selection.length !== 0">
     <button ng-click="generateSelectionBackup()">Save Model Selection</button>
   </div>
-  <div ng-show="
+  <div ng-if="
        game.selection.length !== 0 &&
        selection_save_url !== null
        ">

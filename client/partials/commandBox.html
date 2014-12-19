@@ -30,8 +30,8 @@
          >
       <span ng-style="{
             color: cmd.user === user.name ? '#33A' : '#A3A'
-            }">[{{cmd.user}}]</span>
-      {{cmd.desc()}} - {{cmd.stamp}}
+            }">[{{::cmd.user}}]</span>
+      {{::cmd.desc()}} - {{::cmd.stamp}}
     </div>
   </div>
   <div ng-if="game.new_commands.length !== 0"
@@ -39,8 +39,8 @@
     <div ng-repeat="cmd in game.new_commands.slice().reverse() track by cmd.stamp">
       <span ng-style="{
             color: cmd.user === user.name ? '#33F' : '#F3F'
-            }">[{{cmd.user}}]</span>
-      {{cmd.desc()}} - {{cmd.stamp}}
+            }">[{{::cmd.user}}]</span>
+      {{::cmd.desc()}} - {{::cmd.stamp}}
     </div>
   </div>
   <div ng-if="game.commands.length !== 0"
@@ -53,8 +53,8 @@
          >
       <span ng-style="{
             color: cmd.user === user.name ? '#33F' : '#F3F'
-            }">[{{cmd.user}}]</span>
-      &#8594; {{cmd.desc()}} - {{cmd.stamp}}
+            }">[{{::cmd.user}}]</span>
+      &#8594; {{::cmd.desc()}} - {{::cmd.stamp}}
     </div>
   </div>
 </div>

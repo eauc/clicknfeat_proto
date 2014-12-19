@@ -95,7 +95,7 @@
       {{ modes.current.name === 'Model Create' ? 'Cancel' : 'Create' }}
     </button>
   </div>
-  <div ng-show="model.id.type">
+  <div ng-if="model.id.type">
     <div>
       <strong>Description</strong>
     </div>
@@ -121,15 +121,15 @@
       <strong>Class :</strong>
       {{model.id.type}} - {{model.id.base}}
     </div>
-    <div ng-show="model.id.focus">
+    <div ng-if="model.id.focus">
       <strong>Focus :</strong>
       {{model.id.focus}}
     </div>
-    <div ng-show="model.id.fury">
+    <div ng-if="model.id.fury">
       <strong>Fury :</strong>
       {{model.id.fury}}
     </div>
-    <div ng-show="model.id.damage.field">
+    <div ng-if="model.id.damage.field">
       <strong>Field :</strong>
       {{model.id.damage.field}}
     </div>
@@ -140,13 +140,13 @@
         +
         {{model.id.damage.field}}
       </span>          
-      <div ng-show="model.id.damage.type == 'warrior'">
+      <div ng-if="model.id.damage.type == 'warrior'">
         <div style="width:20px;height:20px;border:1px solid black;display:inline-block"
              ng-style="{ 'border-right': (i%5 == 0)?'5px solid black':'1px solid black' }"
              ng-repeat="i in range(model.id.damage.n).reverse()"></div>
       </div>
       
-      <table ng-show="
+      <table ng-if="
              model.id.damage.type === 'jack' ||
              model.id.damage.type === 'beast' ||
              model.id.damage.type === 'gargantuan'
@@ -156,7 +156,7 @@
           <td ng-repeat="col in ['1','2','3','4','5','6']"
               style="width:20px;height:20px;"
               >
-            {{col}}
+            {{::col}}
           </td>
         </tr>
         <tr ng-repeat="line in range(model.id.damage.depth)">
@@ -166,7 +166,7 @@
               { 'background-color': (model.id.damage[col][line])?'white':'black'}
               "
               >
-            {{(model.id.damage[col][line] === 'b')?' ':model.id.damage[col][line].toUpperCase()}}
+            {{::(model.id.damage[col][line] === 'b')?' ':model.id.damage[col][line].toUpperCase()}}
           </td>
         </tr>
       </table>
@@ -177,7 +177,7 @@
               style="width:20px;height:20px;"
               ng-click="doModelDamage(model,col)"
               >
-            {{col}}
+            {{::col}}
           </td>
         </tr>
         <tr ng-repeat="line in [0,1,2,3,4,5]">
@@ -190,8 +190,8 @@
               }"
               ng-click="doModelDamage(model, col, line)"
               >
-            {{ (model.id.damage[col][line] === 'b') ? ' ' : 
-            model.id.damage[col][line].toUpperCase() }}
+            {{::(model.id.damage[col][line] === 'b') ? ' ' : 
+            model.id.damage[col][line].toUpperCase()}}
           </td>
         </tr>
       </table>

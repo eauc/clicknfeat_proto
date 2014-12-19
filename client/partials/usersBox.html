@@ -3,7 +3,7 @@
   <button ng-click="selectAll()">Select All</button>
   <button ng-click="clearSelection()">Clear Selection</button>
   <ul style="padding-left: 2em;">
-    <li ng-repeat="u in users.list"
+    <li ng-repeat="u in users.list track by u.id"
         ng-click="toggleSelection(u.id)"
         style="
         max-width:400px;
@@ -12,9 +12,9 @@
         'background-color': u.id === user.id ? '#0F0' : (selection[u.id] ? '#99F' : 'white')
         }"
         >
-      {{u.name}}[{{u.lang}} {{u.speak.join(',')}}]
-      - {{u.factions.join(',')}}[{{u.points}}]
-      - {{u.positions.join(',')}}
+      {{::u.name}}[{{::u.lang}} {{::u.speak.join(',')}}]
+      - {{::u.factions.join(',')}}[{{::u.points}}]
+      - {{::u.positions.join(',')}}
     </li>
   </ul>
   <div ng-show="users.source.readyState === users.source.CLOSED"
@@ -31,7 +31,7 @@
     </div>
     <div ng-show="selection_length > 0"
       style="color:#33F">
-      To : <span ng-repeat="(i,n) in selection">{{users.list[i].name}} </span>
+      To : <span ng-repeat="(i,n) in selection">{{::users.list[i].name}} </span>
     </div>
     <form ng-submit="doSendChatMsg()">
       <input type="text"
@@ -53,18 +53,18 @@
          'background-color': $index === 0 ? '#0F0' : 'none'
          }"
          ng-click="doSelectionFromMsg(c)">
-      <span ng-switch="c.type">
+      <span ng-switch="::c.type">
         <span ng-switch-when="invite">
-          {{ c.from === user.id ? 'You have' : users.list[c.from].name+' has' }}
+          {{:: c.from === user.id ? 'You have' : users.list[c.from].name+' has' }}
           invited
-          {{ c.from === user.id ? users.list[c.to[0]].name : 'you'}}
+          {{:: c.from === user.id ? users.list[c.to[0]].name : 'you'}}
           to
-          <a ng-href="{{c.text}}">join this game</a>
+          <a ng-href="{{::c.text}}">join this game</a>
         </span>
         <span ng-switch-default>
-          {{users.list[c.from].name}} &#8594;
-          <span ng-repeat="i in c.to">{{users.list[i].name}} </span>:
-          {{c.text}}
+          {{::users.list[c.from].name}} &#8594;
+          <span ng-repeat="i in c.to">{{::users.list[i].name}} </span>:
+          {{::c.text}}
         </span>
     </div>
   </div>
