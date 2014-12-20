@@ -1115,11 +1115,11 @@
         "name": "Thumpercrew ",
         "entries": {
           "unit": {
-            "leader": {
+            "thumper": {
               "name": "Thumper",
               "fk_name": "Thumpercrew",
               "type": "warrior",
-              "base": "medium",
+              "base": "large",
               "width": 60,
               "height": 60,
               "img": {
@@ -1132,12 +1132,28 @@
                 "n": 1
               }
             },
-            "crew": {
-              "name": "Crew",
+            "crew1": {
+              "name": "Crew1",
               "fk_name": "Thumpercrew",
               "type": "warrior",
               "base": "medium",
-              "range":[1, 2],
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/trollbloods/units/Thumpercrew_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            },
+            "crew2": {
+              "name": "Crew2",
+              "fk_name": "Thumpercrew",
+              "type": "warrior",
+              "base": "medium",
               "width": 60,
               "height": 60,
               "img": {
