@@ -199,7 +199,12 @@ angular.module('vassalApp.controllers')
           $scope.$digest();
         };
         console.log($scope.game.board);
-        var canvas = document.getElementById('canvas');
+        var _canvas = document.getElementById('canvas');
+        function canvas() {
+          if(_canvas) return _canvas;
+          _canvas = document.getElementById('canvas');
+          return _canvas;
+        }
         // console.log(canvas_rect);
         $scope.show_ruler = $scope.game.ruler.state.active;
 
@@ -290,7 +295,7 @@ angular.module('vassalApp.controllers')
 
         $scope.onModelMouseDown = function(event, model) {
           // console.log('mmd', event);
-          var elem_rect = canvas.getBoundingClientRect();
+          var elem_rect = canvas().getBoundingClientRect();
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
             480/$scope.game.board.window.width;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*
@@ -309,7 +314,7 @@ angular.module('vassalApp.controllers')
         };
         $scope.onTemplateMouseDown = function(event, temp) {
           // console.log('tmd', event);
-          var elem_rect = canvas.getBoundingClientRect();
+          var elem_rect = canvas().getBoundingClientRect();
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
             480/$scope.game.board.window.width;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*
@@ -335,7 +340,7 @@ angular.module('vassalApp.controllers')
 
         $scope.doSelectStart = function(event) {
           // console.log('sstart', event);
-          var elem_rect = canvas.getBoundingClientRect();
+          var elem_rect = canvas().getBoundingClientRect();
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
             480/$scope.game.board.window.width;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*
@@ -355,7 +360,7 @@ angular.module('vassalApp.controllers')
              !$scope.modes.respondTo('MouseMove')) return;
 
           // console.log('smove', event);
-          var elem_rect = canvas.getBoundingClientRect();
+          var elem_rect = canvas().getBoundingClientRect();
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
             480/$scope.game.board.window.width;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*
@@ -394,7 +399,7 @@ angular.module('vassalApp.controllers')
         };
         $scope.doSelectStop = function(event) {
           // console.log('sstop', event);
-          var elem_rect = canvas.getBoundingClientRect();
+          var elem_rect = canvas().getBoundingClientRect();
           var user_x = (event.clientX-elem_rect.left)/$scope.game.board.zoom.factor*
             480/$scope.game.board.window.width;
           var user_y = (event.clientY-elem_rect.top)/$scope.game.board.zoom.factor*
