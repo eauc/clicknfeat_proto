@@ -10,9 +10,10 @@ angular.module('vassalApp.controllers')
       function updateScope() {
         $scope.new_scenario_cat = null;
         $scope.new_scenario = null;
+        var sce_name = $scope.game.scenario ? $scope.game.scenario.name : null;
         _.each($scope.scenarios.list, function(list, key) {
           var sce = _.find(list, function(sce) {
-            return sce.name === $scope.game.scenario.name;
+            return sce.name === sce_name;
           });
           if(sce) {
             $scope.new_scenario_cat = key;
@@ -27,8 +28,8 @@ angular.module('vassalApp.controllers')
         $scope.game.newCommand(command('setScenario', $scope.new_scenario));
       };
       $scope.doSetRandomScenario = function() {
-        var index = Math.floor(Math.random() * $scope.scenarios.list.length);
-        $scope.new_scenario = $scope.scenarios.list[index];
+        var index = Math.floor(Math.random() * $scope.scenarios.list[$scope.new_scenario_cat].length);
+        $scope.new_scenario = $scope.scenarios.list[$scope.new_scenario_cat][index];
         $scope.doSetScenario();
       };
       $scope.doGenerateObjectives = function() {

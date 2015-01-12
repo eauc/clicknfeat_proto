@@ -273,13 +273,13 @@
       "name": "SR14 Balance of Powers",
       "flags": [
         {
-          "cat": "sr14_objectives",
+          "cat": "flags",
           "type": "sr14flag",
           "x": 180,
           "y": 150
         },
         {
-          "cat": "sr14_objectives",
+          "cat": "flags",
           "type": "sr14flag",
           "x": 300,
           "y": 330
@@ -331,13 +331,13 @@
       "killbox": 140,
       "flags": [
         {
-          "cat": "sr14_objectives",
+          "cat": "flags",
           "type": "sr14flag",
           "x": 180,
           "y": 210
         },
         {
-          "cat": "sr14_objectives",
+          "cat": "flags",
           "type": "sr14flag",
           "x": 300,
           "y": 270
@@ -439,19 +439,19 @@
       "name": "SR14 Incursion",
       "flags": [
         {
-          "cat": "sr14_objectives",
+          "cat": "flags",
           "type": "sr14flag",
           "x": 90,
           "y": 240
         },
         {
-          "cat": "sr14_objectives",
+          "cat": "flags",
           "type": "sr14flag",
           "x": 240,
           "y": 240
         },
         {
-          "cat": "sr14_objectives",
+          "cat": "flags",
           "type": "sr14flag",
           "x": 390,
           "y": 240
@@ -477,7 +477,7 @@
       "name": "SR14 Into the Breach",
       "flags": [
         {
-          "cat": "sr14_objectives",
+          "cat": "flags",
           "type": "sr14flag",
           "x": 320,
           "y": 240
@@ -510,13 +510,13 @@
       "killbox": 140,
       "flags": [
         {
-          "cat": "sr14_objectives",
+          "cat": "flags",
           "type": "sr14flag",
           "x": 160,
           "y": 240
         },
         {
-          "cat": "sr14_objectives",
+          "cat": "flags",
           "type": "sr14flag",
           "x": 320,
           "y": 240

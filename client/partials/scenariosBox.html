@@ -14,7 +14,7 @@
           >
   </select>
   <span ng-if="!game.id">{{game.scenario.name}}</span>
-  <button ng-if="game.id"
+  <button ng-if="game.id && new_scenario_cat"
           ng-click="doSetRandomScenario()">
     Set Random
   </button>
