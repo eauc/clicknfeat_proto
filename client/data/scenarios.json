@@ -1,295 +1,541 @@
-[
-  {
-    "name": "SR14 Destruction",
-    "killbox": 140,
-    "objectives": [
-      {
-        "type": "sr14ca",
-        "x": 300,
-        "y": 210
-      },
-      {
-        "type": "sr14ca",
-        "x": 180,
-        "y": 270
-      }
-    ],
-    "rect": [
-      {
-        "x": 240,
-        "y": 240,
-        "width": 120,
-        "height": 60
-      }
-    ]
-  },
-  {
-    "name": "SR14 Supply and Demand",
-    "killbox": 140,
-    "objectives": [
-      {
-        "type": "sr14sc",
-        "x": 300,
-        "y": 180
-      },
-      {
-        "type": "sr14sc",
-        "x": 180,
-        "y": 300
-      }
-    ],
-    "circle": [
-      {
-        "x": 240,
-        "y": 240,
-        "r": 60
-      }
-    ]
-  },
-  {
-    "name": "SR14 Balance of Powers",
-    "flags": [
-      {
-        "type": "sr14flag",
-        "x": 180,
-        "y": 150
-      },
-      {
-        "type": "sr14flag",
-        "x": 300,
-        "y": 330
-      }
-    ],
-    "rect": [
-      {
-        "x": 240,
-        "y": 240,
-        "width": 120,
-        "height": 60
-      }
-    ]
-  },
-  {
-    "name": "SR14 Process of Elimination",
-    "killbox": 140,
-    "objectives": [
-      {
-        "type": "sr14ml",
-        "x": 170,
-        "y": 240
-      },
-      {
-        "type": "sr14ml",
-        "x": 310,
-        "y": 240
-      }
-    ],
-    "rect": [
-      {
-        "x": 170,
-        "y": 240,
-        "width": 60,
-        "height": 120
-      },
-      {
-        "x": 310,
-        "y": 240,
-        "width": 60,
-        "height": 120
-      }
-    ]
-  },
-  {
-    "name": "SR14 Close Quarters",
-    "killbox": 140,
-    "flags": [
-      {
-        "type": "sr14flag",
-        "x": 180,
-        "y": 210
-      },
-      {
-        "type": "sr14flag",
-        "x": 300,
-        "y": 270
-      }
-    ]
-  },
-  {
-    "name": "SR14 Two Fronts",
-    "objectives": [
-      {
-        "type": "sr14sc",
-        "x": 240,
-        "y": 180
-      },
-      {
-        "type": "sr14sc",
-        "x": 240,
-        "y": 300
-      }
-    ],
-    "rect": [
-      {
-        "x": 330,
-        "y": 220,
-        "width": 60,
-        "height": 120
-      },
-      {
-        "x": 150,
-        "y": 260,
-        "width": 60,
-        "height": 120
-      }
-    ]
-  },
-  {
-    "name": "SR14 Incoming",
-    "objectives": [
-      {
-        "type": "sr14ac",
-        "x": 240,
-        "y": 160
-      },
-      {
-        "type": "sr14ac",
-        "x": 240,
-        "y": 320
-      }
-    ],
-    "rect": [
-      {
-        "x": 140,
-        "y": 230,
-        "width": 120,
-        "height": 60
-      },
-      {
-        "x": 340,
-        "y": 250,
-        "width": 120,
-        "height": 60
-      }
-    ]
-  },
-  {
-    "name": "SR14 Rally Point",
-    "objectives": [
-      {
-        "type": "sr14ef",
-        "x": 240,
-        "y": 160
-      },
-      {
-        "type": "sr14ef",
-        "x": 240,
-        "y": 320
-      }
-    ],
-    "circle": [
-      {
-        "x": 140,
-        "y": 260,
-        "r": 60
-      },
-      {
-        "x": 340,
-        "y": 220,
-        "r": 60
-      }
-    ]
-  },
-  {
-    "name": "SR14 Incursion",
-    "flags": [
-      {
-        "type": "sr14flag",
-        "x": 90,
-        "y": 240
-      },
-      {
-        "type": "sr14flag",
-        "x": 240,
-        "y": 240
-      },
-      {
-        "type": "sr14flag",
-        "x": 390,
-        "y": 240
-      }
-    ]
-  },
-  {
-    "name": "SR14 Outflank",
-    "circle": [
-      {
-        "x": 140,
-        "y": 240,
-        "r": 60
-      },
-      {
-        "x": 340,
-        "y": 240,
-        "r": 60
-      }
-    ]
-  },
-  {
-    "name": "SR14 Into the Breach",
-    "flags": [
-      {
-        "type": "sr14flag",
-        "x": 320,
-        "y": 240
-      }
-    ],
-    "objectives": [
-      {
-        "type": "sr14ef",
-        "x": 240,
-        "y": 180
-      },
-      {
-        "type": "sr14ef",
-        "x": 240,
-        "y": 300
-      }
-    ],
-    "circle": [
-      {
-        "x": 160,
-        "y": 240,
-        "r": 60
-      }
-    ]
-  },
-  {
-    "name": "SR14 Fire Support",
-    "killbox": 140,
-    "flags": [
-      {
-        "type": "sr14flag",
-        "x": 160,
-        "y": 240
-      },
-      {
-        "type": "sr14flag",
-        "x": 320,
-        "y": 240
-      }
-    ],
-    "objectives": [
-      {
-        "type": "sr14ac",
-        "x": 160,
-        "y": 290
-      },
-      {
-        "type": "sr14ac",
-        "x": 320,
-        "y": 190
-      }
-    ]
-  }
-]
+{
+  "SR15": [
+    {
+      "name": "SR15 Destruction",
+      "killbox": 140,
+      "objectives": [
+        {
+          "cat": "sr15_objectives",
+          "type": "sr15gen",
+          "x": 300,
+          "y": 210
+        },
+        {
+          "cat": "sr15_objectives",
+          "type": "sr15gen",
+          "x": 180,
+          "y": 270
+        }
+      ],
+      "rect": [
+        {
+          "x": 240,
+          "y": 240,
+          "width": 120,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "name": "SR15 Two Fronts",
+      "killbox": 140,
+      "objectives": [
+        {
+          "cat": "sr15_objectives",
+          "type": "sr15gen",
+          "x": 170,
+          "y": 260
+        },
+        {
+          "cat": "sr15_objectives",
+          "type": "sr15gen",
+          "x": 310,
+          "y": 220
+        }
+      ],
+      "rect": [
+        {
+          "x": 170,
+          "y": 260,
+          "width": 60,
+          "height": 120
+        },
+        {
+          "x": 310,
+          "y": 220,
+          "width": 60,
+          "height": 120
+        }
+      ]
+    },
+    {
+      "name": "SR15 Close Quarters",
+      "killbox": 140,
+      "flags": [
+        {
+          "cat": "flags",
+          "type": "sr15flag",
+          "x": 180,
+          "y": 210
+        },
+        {
+          "cat": "flags",
+          "type": "sr15flag",
+          "x": 300,
+          "y": 270
+        }
+      ]
+    },
+    {
+      "name": "SR15 Fire Support",
+      "killbox": 140,
+      "flags": [
+        {
+          "cat": "flags",
+          "type": "sr15flag",
+          "x": 160,
+          "y": 240
+        },
+        {
+          "cat": "flags",
+          "type": "sr15flag",
+          "x": 320,
+          "y": 240
+        }
+      ],
+      "objectives": [
+        {
+          "cat": "sr15_objectives",
+          "type": "sr15gen",
+          "x": 160,
+          "y": 290
+        },
+        {
+          "cat": "sr15_objectives",
+          "type": "sr15gen",
+          "x": 320,
+          "y": 190
+        }
+      ]
+    },
+    {
+      "name": "SR15 Incoming",
+      "objectives": [
+        {
+          "cat": "sr15_objectives",
+          "type": "sr15gen",
+          "x": 240,
+          "y": 160
+        },
+        {
+          "cat": "sr15_objectives",
+          "type": "sr15gen",
+          "x": 240,
+          "y": 320
+        }
+      ],
+      "rect": [
+        {
+          "x": 140,
+          "y": 230,
+          "width": 120,
+          "height": 60
+        },
+        {
+          "x": 340,
+          "y": 250,
+          "width": 120,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "name": "SR15 Incursion",
+      "flags": [
+        {
+          "cat": "flags",
+          "type": "sr15flag",
+          "x": 120,
+          "y": 240
+        },
+        {
+          "cat": "flags",
+          "type": "sr15flag",
+          "x": 240,
+          "y": 240
+        },
+        {
+          "cat": "flags",
+          "type": "sr15flag",
+          "x": 360,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "name": "SR15 Outflank",
+      "circle": [
+        {
+          "x": 140,
+          "y": 240,
+          "r": 60
+        },
+        {
+          "x": 340,
+          "y": 240,
+          "r": 60
+        }
+      ]
+    },
+    {
+      "name": "SR15 Recon",
+      "rect": [
+        {
+          "x": 240,
+          "y": 240,
+          "width": 60,
+          "height": 120
+        }
+      ],
+      "flags": [
+        {
+          "cat": "flags",
+          "type": "sr15flag",
+          "x": 120,
+          "y": 240
+        },
+        {
+          "cat": "flags",
+          "type": "sr15flag",
+          "x": 360,
+          "y": 240
+        }
+      ],
+      "objectives": [
+        {
+          "cat": "sr15_objectives",
+          "type": "sr15gen",
+          "x": 240,
+          "y": 180
+        },
+        {
+          "cat": "sr15_objectives",
+          "type": "sr15gen",
+          "x": 240,
+          "y": 300
+        }
+      ]
+    }
+  ],
+  "SR14": [
+    {
+      "name": "SR14 Destruction",
+      "killbox": 140,
+      "objectives": [
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14ca",
+          "x": 300,
+          "y": 210
+        },
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14ca",
+          "x": 180,
+          "y": 270
+        }
+      ],
+      "rect": [
+        {
+          "x": 240,
+          "y": 240,
+          "width": 120,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "name": "SR14 Supply and Demand",
+      "killbox": 140,
+      "objectives": [
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14sc",
+          "x": 300,
+          "y": 180
+        },
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14sc",
+          "x": 180,
+          "y": 300
+        }
+      ],
+      "circle": [
+        {
+          "x": 240,
+          "y": 240,
+          "r": 60
+        }
+      ]
+    },
+    {
+      "name": "SR14 Balance of Powers",
+      "flags": [
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14flag",
+          "x": 180,
+          "y": 150
+        },
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14flag",
+          "x": 300,
+          "y": 330
+        }
+      ],
+      "rect": [
+        {
+          "x": 240,
+          "y": 240,
+          "width": 120,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "name": "SR14 Process of Elimination",
+      "killbox": 140,
+      "objectives": [
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14ml",
+          "x": 170,
+          "y": 240
+        },
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14ml",
+          "x": 310,
+          "y": 240
+        }
+      ],
+      "rect": [
+        {
+          "x": 170,
+          "y": 240,
+          "width": 60,
+          "height": 120
+        },
+        {
+          "x": 310,
+          "y": 240,
+          "width": 60,
+          "height": 120
+        }
+      ]
+    },
+    {
+      "name": "SR14 Close Quarters",
+      "killbox": 140,
+      "flags": [
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14flag",
+          "x": 180,
+          "y": 210
+        },
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14flag",
+          "x": 300,
+          "y": 270
+        }
+      ]
+    },
+    {
+      "name": "SR14 Two Fronts",
+      "objectives": [
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14sc",
+          "x": 240,
+          "y": 180
+        },
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14sc",
+          "x": 240,
+          "y": 300
+        }
+      ],
+      "rect": [
+        {
+          "x": 330,
+          "y": 220,
+          "width": 60,
+          "height": 120
+        },
+        {
+          "x": 150,
+          "y": 260,
+          "width": 60,
+          "height": 120
+        }
+      ]
+    },
+    {
+      "name": "SR14 Incoming",
+      "objectives": [
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14ac",
+          "x": 240,
+          "y": 160
+        },
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14ac",
+          "x": 240,
+          "y": 320
+        }
+      ],
+      "rect": [
+        {
+          "x": 140,
+          "y": 230,
+          "width": 120,
+          "height": 60
+        },
+        {
+          "x": 340,
+          "y": 250,
+          "width": 120,
+          "height": 60
+        }
+      ]
+    },
+    {
+      "name": "SR14 Rally Point",
+      "objectives": [
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14ef",
+          "x": 240,
+          "y": 160
+        },
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14ef",
+          "x": 240,
+          "y": 320
+        }
+      ],
+      "circle": [
+        {
+          "x": 140,
+          "y": 260,
+          "r": 60
+        },
+        {
+          "x": 340,
+          "y": 220,
+          "r": 60
+        }
+      ]
+    },
+    {
+      "name": "SR14 Incursion",
+      "flags": [
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14flag",
+          "x": 90,
+          "y": 240
+        },
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14flag",
+          "x": 240,
+          "y": 240
+        },
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14flag",
+          "x": 390,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "name": "SR14 Outflank",
+      "circle": [
+        {
+          "x": 140,
+          "y": 240,
+          "r": 60
+        },
+        {
+          "x": 340,
+          "y": 240,
+          "r": 60
+        }
+      ]
+    },
+    {
+      "name": "SR14 Into the Breach",
+      "flags": [
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14flag",
+          "x": 320,
+          "y": 240
+        }
+      ],
+      "objectives": [
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14ef",
+          "x": 240,
+          "y": 180
+        },
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14ef",
+          "x": 240,
+          "y": 300
+        }
+      ],
+      "circle": [
+        {
+          "x": 160,
+          "y": 240,
+          "r": 60
+        }
+      ]
+    },
+    {
+      "name": "SR14 Fire Support",
+      "killbox": 140,
+      "flags": [
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14flag",
+          "x": 160,
+          "y": 240
+        },
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14flag",
+          "x": 320,
+          "y": 240
+        }
+      ],
+      "objectives": [
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14ac",
+          "x": 160,
+          "y": 290
+        },
+        {
+          "cat": "sr14_objectives",
+          "type": "sr14ac",
+          "x": 320,
+          "y": 190
+        }
+      ]
+    }
+  ]
+}

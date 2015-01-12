@@ -8,9 +8,17 @@ angular.module('vassalApp.controllers')
              command) {
       console.log('init scenariosBoxCtrl');
       function updateScope() {
-        $scope.new_scenario = $scope.game.scenario ? _.find($scope.scenarios.list, function(sce) {
-          return sce.name === $scope.game.scenario.name;
-        }) : null;
+        $scope.new_scenario_cat = null;
+        $scope.new_scenario = null;
+        _.each($scope.scenarios.list, function(list, key) {
+          var sce = _.find(list, function(sce) {
+            return sce.name === $scope.game.scenario.name;
+          });
+          if(sce) {
+            $scope.new_scenario_cat = key;
+            $scope.new_scenario = sce;
+          }
+        });
       }
       $scope.$watch('game.scenario', updateScope);
       updateScope();
@@ -37,14 +45,14 @@ angular.module('vassalApp.controllers')
         var info = [];
         _.each($scope.game.scenario.objectives, function(obj) {
           info.push({
-            info: $scope.factions.list.scenario.models.objectives[obj.type],
+            info: $scope.factions.list.scenario.models[obj.cat][obj.type],
             x: obj.x,
             y: obj.y
           });
         });
         _.each($scope.game.scenario.flags, function(flag) {
           info.push({
-            info: $scope.factions.list.scenario.models.flags[flag.type],
+            info: $scope.factions.list.scenario.models[flag.cat][flag.type],
             x: flag.x,
             y: flag.y
           });

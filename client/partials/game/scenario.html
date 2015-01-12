@@ -59,7 +59,7 @@
   <circle ng-repeat="o in game.scenario.objectives"
           ng-attr-cx="{{::o.x}}"
           ng-attr-cy="{{::o.y}}"
-          ng-attr-r="{{::factions.list.scenario.models.objectives[o.type].r}}"
+          ng-attr-r="{{::factions.list.scenario.models[o.cat][o.type].r}}"
           style="
           fill:#CC0;
           fill-opacity:0.8;
@@ -73,7 +73,7 @@
           ng-repeat="o in game.scenario.objectives"
           ng-attr-cx="{{::o.x}}"
           ng-attr-cy="{{::o.y}}"
-          ng-attr-r="{{::40+factions.list.scenario.models.objectives[o.type].r}}"
+          ng-attr-r="{{::40+factions.list.scenario.models[o.cat][o.type].r}}"
           style="
           fill:none;
           stroke:#C90;
@@ -83,7 +83,7 @@
   <circle ng-repeat="f in game.scenario.flags"
           ng-attr-cx="{{::f.x}}"
           ng-attr-cy="{{::f.y}}"
-          ng-attr-r="{{::factions.list.scenario.models.flags[f.type].r}}"
+          ng-attr-r="{{::factions.list.scenario.models[f.cat][f.type].r}}"
           style="
           fill:#CC0;
           fill-opacity:0.8;
@@ -97,7 +97,7 @@
           ng-repeat="f in game.scenario.flags"
           ng-attr-cx="{{::f.x}}"
           ng-attr-cy="{{::f.y}}"
-          ng-attr-r="{{::40+factions.list.scenario.models.flags[f.type].r}}"
+          ng-attr-r="{{::40+factions.list.scenario.models[f.cat][f.type].r}}"
           style="
           fill:none;
           stroke:#C90;

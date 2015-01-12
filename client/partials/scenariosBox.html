@@ -2,8 +2,14 @@
   <strong>Scenario :</strong><br />
   <select ng-show="game.id"
           name="scenario"
+          ng-model="new_scenario_cat"
+          ng-options="c as c for (c,cat) in scenarios.list"
+          >
+  </select><br />
+  <select ng-show="game.id"
+          name="scenario"
           ng-model="new_scenario"
-          ng-options="s as s.name for s in scenarios.list"
+          ng-options="s as s.name for s in scenarios.list[new_scenario_cat]"
           ng-change="doSetScenario()"
           >
   </select>
