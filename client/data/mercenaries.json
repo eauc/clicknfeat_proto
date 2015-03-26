@@ -1336,7 +1336,7 @@
               "name": "Greygore",
               "fk_name": "Greygore Boomhowler & Co.",              
               "type": "warrior",
-              "base": "small",
+              "base": "medium",
               "width": 60,
               "height": 60,
               "img": {
@@ -1354,7 +1354,7 @@
               "fk_name": "Greygore Boomhowler & Co.",
               "ranges": [1, 5, 9],
               "type": "warrior",
-              "base": "small",
+              "base": "medium",
               "width": 60,
               "height": 60,
               "img": {
