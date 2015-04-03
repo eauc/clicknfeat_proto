@@ -2348,7 +2348,7 @@
         "name": "Alexia, Mistress of the Witchfire",
         "fk_name": "Alexia, Mistress of the Witchfire",
         "type": "warrior",
-        "base": "small",
+        "base": "large",
         "width": 60,
         "height": 60,
         "img": {
