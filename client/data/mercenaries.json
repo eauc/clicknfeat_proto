@@ -2261,6 +2261,64 @@
           }
         }
       },
+      "The Devil's Shadow Mutineers": {
+        "name": "The Devil's Shadow Mutineers",
+        "entries": {
+          "unit": {
+            "Mar": {
+              "name": "Mar",
+              "fk_name": "The Devil's Shadow Mutineers",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "Morland": {
+              "name": "Morland",
+              "fk_name": "The Devil's Shadow Mutineers",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "Zira": {
+              "name": "Zira",
+              "fk_name": "The Devil's Shadow Mutineers",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
+        }                 
+      },
       "trencher_infantry": {
         "name": "Trencher Infantry",
         "entries": {
