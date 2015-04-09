@@ -84,13 +84,13 @@
           "cat": "flags",
           "type": "sr15flag",
           "x": 160,
-          "y": 240
+          "y": 250
         },
         {
           "cat": "flags",
           "type": "sr15flag",
           "x": 320,
-          "y": 240
+          "y": 230
         }
       ],
       "objectives": [
@@ -98,13 +98,13 @@
           "cat": "sr15_objectives",
           "type": "sr15gen",
           "x": 160,
-          "y": 290
+          "y": 300
         },
         {
           "cat": "sr15_objectives",
           "type": "sr15gen",
           "x": 320,
-          "y": 190
+          "y": 180
         }
       ]
     },
