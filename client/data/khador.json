@@ -1697,6 +1697,40 @@
           "n": 5
         }
       },
+      "valachev": {
+        "name": "Koldun Kapitan Valachev",
+        "fk_name": "Koldun Kapitan Valachev",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/khador/solos/Valachev.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "wardog": {
+        "name": "War Dog",
+        "fk_name": "War Dog",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": "data/khador/solos/Wardog.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
       "yuri": {
         "name": "Yuri the Axe",
         "fk_name": "Yuri the Axe",
