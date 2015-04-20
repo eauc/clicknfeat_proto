@@ -1342,11 +1342,10 @@
       "Revenant Cannon Crew": {
         "name": "Revenant Cannon Crew",
         "entries": {
-          "grunt": {
-            "grunt1": {
-              "name": "Revenant Cannon Gunners",
+          "unit": {
+            "crew1": {
+              "name": "Crew1",
               "fk_name": "Revenant Cannon Crew",
-              "ranges" : [1, 2],
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -1361,8 +1360,25 @@
                 "n": 1
               }
             },
-            "leader": {
-              "name": "Leader",
+            "crew2": {
+              "name": "Crew2",
+              "fk_name": "Revenant Cannon Crew",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": "data/cryx/units/RevenantCannonGunner.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            },
+            "Cannon": {
+              "name": "Cannon",
               "fk_name": "Revenant Cannon Crew",
               "type": "warrior",
               "base": "large",
