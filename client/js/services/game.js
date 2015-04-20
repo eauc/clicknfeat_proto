@@ -186,13 +186,15 @@ angular.module('vassalApp.services')
             new_cmd.execute(this);
             if(!instance.id) return;
             this.new_commands.push(new_cmd);
-            $http.post('/api/games/'+instance.id+'/commands', new_cmd)
-              .then(function(response) {
-                // console.log('send cmd success');
-              }, function(response) {
-                console.log('send cmd error');
-                console.log(response);
-              });
+            $window.requestAnimationFrame(function() {
+              $http.post('/api/games/'+instance.id+'/commands', new_cmd)
+                .then(function(response) {
+                  // console.log('send cmd success');
+                }, function(response) {
+                  console.log('send cmd error');
+                  console.log(response);
+                });
+            });
           },
           undoCommand: function(index) {
             if(index >= this.commands.length) return;
