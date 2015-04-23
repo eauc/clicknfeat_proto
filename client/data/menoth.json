@@ -1526,7 +1526,7 @@
       },
       "gravusDismount": {
         "name": "High Exemplar Gravus (Dismounted)",
-        "fk_name" : "High Exemplar Gravus (Dismounted)",
+        "fk_name" : "High Exemplar Gravus",
         "type": "solo",
         "base": "small",
         "width": 60,
