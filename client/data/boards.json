@@ -40,6 +40,11 @@
     "preview": "/data/board/orgoth_excavation_low.png"
   },
   {
+    "name": "Pingwoo Land",
+    "img": "/data/board/pingwoo_land.png",
+    "preview": "/data/board/pingwoo_land_low.png"
+  },
+  {
     "name": "Rail Blockade",
     "img": "/data/board/rail_blockade.png",
     "preview": "/data/board/rail_blockade_low.png"
