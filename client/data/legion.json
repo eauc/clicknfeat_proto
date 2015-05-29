@@ -1351,6 +1351,7 @@
     "solos": {
       "annyssa": {
         "name": "Annyssa Ryvaal",
+        "fk_name": "Annyssa Ryvaal, Talon of Everblight",
         "type": "solo",
         "base": "large",
         "width": 60,

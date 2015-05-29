@@ -1749,7 +1749,7 @@
       },          
       "laddermore_dismount": {
         "name": "Major Katherine Laddermore dismount",
-        "fk_name": "Major Katherine Laddermore dismount",
+        "fk_name": "Major Katherine Laddermore",
         "type": "solo",
         "base": "small",
         "width": 60,
