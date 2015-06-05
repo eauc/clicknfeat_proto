@@ -135,6 +135,67 @@
           "n": 15
         }
       },
+      "haley3": {
+        "name": "Haley3 (Major Prime Victoria Haley)",
+        "entries": {
+          "lock": {
+            "haley3": {
+              "name": "Haley Present",
+              "fk_name": "Major Prime Victoria Haley",
+              "type": "wardude",
+              "focus": 8,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 15
+              }
+            },
+            "haley3past": {
+              "name": "Haley Past",
+              "fk_name": "Major Prime Victoria Haley",
+              "type": "wardude",
+              "focus": 4,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "haley3future": {
+              "name": "Haley Future",
+              "fk_name": "Major Prime Victoria Haley",
+              "type": "wardude",
+              "focus": 4,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
+        }
+      },
       "sloan1": {
         "name": "Sloan1 (Captain Kara Sloan)",
         "fk_name": "Captain Kara Sloan",
@@ -325,6 +386,28 @@
       }   
     },
     "jacks": {
+      "ace": {
+        "name": "Ace",
+        "fk_name": "Ace",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null, null,  "b",  "l",  "l",  "m" ],
+          "3": [ null,  "b",  "b",  "b",  "m",  "m" ],
+          "4": [ null,  "b",  "b",  "b",  "c",  "c" ],
+          "5": [ null, null,  "b",  "r",  "r",  "c" ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
       "avenger": {
         "name": "Avenger",
         "fk_name": "Avenger",
@@ -798,6 +881,34 @@
           "x": 0,
           "y": 0,
           "link": "data/cygnar/jacks/Stormwall.png"
+        },
+        "damage": {
+          "type": "colossal",
+          "L1": [ null, null,  "b",  "b",  "l",  "l" ],
+          "L2": [ null, null,  "b",  "l",  "l",  "c" ],
+          "L3": [ null, null,  "b",  "l",  "c",  "m" ],
+          "L4": [ null,  "b",  "b",  "l",  "c",  "m" ],
+          "L5": [ null,  "b",  "s",  "s",  "c",  "m" ],
+          "L6": [  "b",  "b",  "s",  "c",  "c",  "m" ],
+          "R1": [  "b",  "b",  "s",  "c",  "c",  "m" ],
+          "R2": [ null,  "b",  "s",  "s",  "c",  "m" ],
+          "R3": [ null,  "b",  "b",  "r",  "c",  "m" ],
+          "R4": [ null, null,  "b",  "r",  "c",  "m" ],
+          "R5": [ null, null,  "b",  "r",  "r",  "c" ],
+          "R6": [ null, null,  "b",  "b",  "r",  "r" ]
+        }
+      },
+      "hurricane": {
+        "name": "Hurricane",
+        "fk_name": "Hurricane",
+        "type": "jack",
+        "base": "huge",
+        "width": 116.667,
+        "height": 116.667,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
         },
         "damage": {
           "type": "colossal",
@@ -1830,6 +1941,23 @@
         "damage": {
           "type": "warrior",
           "n": 5
+        }
+      },
+      "trenchbuster": {
+        "name": "Trench Buster",
+        "fk_name": "Trench Buster",
+        "type": "solo",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 8
         }
       },
       "halfjacks": {

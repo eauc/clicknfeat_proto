@@ -296,6 +296,24 @@
           "type": "warrior",
           "n": 17
         }
+      },
+      "Kromac2": {
+        "name": "Kromac2 (Kromac, Champion of the Wurm)",
+        "fk_name": "Kromac, Champion of the Wurm",
+        "type": "wardude",
+        "fury": 7,
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 19
+        }
       }
     },
     "beasts": {

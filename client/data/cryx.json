@@ -126,6 +126,24 @@
           "n": 16
         }
       },                
+      "Deneghra3": {
+        "name": "Deneghra3 (Deneghra, The Soul Weaver)",
+        "fk_name": "Deneghra, The Soul Weaver",
+        "type": "wardude",
+        "focus": 7,
+        "base": "huge",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 18
+        }
+      },        
       "Goreshade1": {
         "name": "Goreshade1 (Goreshade the Bastard & Deathwalker)",
         "entries": {
@@ -447,7 +465,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Deathripper.png"
         },
         "damage": {
@@ -469,7 +487,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Defiler.png"
         },
         "damage": {
@@ -491,7 +509,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Helldiver.png"
         },
         "damage": {
@@ -513,7 +531,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Nightwretch.png"
         },
         "damage": {
@@ -535,7 +553,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Ripjaw.png"
         },
         "damage": {
@@ -557,8 +575,30 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Scavenger.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  null,  "b",  "h", null ],
+          "2": [ null,  null,  "b",  "b",  "c", "h"  ],
+          "3": [ null,  null,  null,  "b",  "c", "h"  ],
+          "4": [ null,  null,  null,  "b",  "c", "m"  ],
+          "5": [ null,  null,  "b",  "b",  "c", "m"  ],
+          "6": [ null, null,  null,  "b",  "m", null ]
+        }
+      },
+      "Shrike": {
+        "name": "Shrike",
+        "fk_name": "Shrike",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
         },
         "damage": {
           "type": "jack",
@@ -579,7 +619,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Stalker.png"
         },
         "damage": {
@@ -592,6 +632,28 @@
           "6": [ null, null,  null,  "b",  "r", null ]
         }
       },
+      "Barathrum": {
+        "name": "Barathrum",
+        "fk_name": "Barathrum",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ "b",  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ "b",  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
       "Cankerworm": {
         "name": "Cankerworm",
         "fk_name": "Cankerworm",
@@ -601,7 +663,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Cankerworm.png"
         },
         "damage": {
@@ -623,7 +685,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Corruptor.png"
         },
         "damage": {
@@ -645,7 +707,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Desecrator.png"
         },
         "damage": {
@@ -667,7 +729,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Harrower.png"
         },
         "damage": {
@@ -711,7 +773,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Leviathan.png"
         },
         "damage": {
@@ -733,7 +795,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Reaper.png"
         },
         "damage": {
@@ -755,7 +817,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Seether.png"
         },
         "damage": {
@@ -777,7 +839,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Slayer.png"
         },
         "damage": {
@@ -799,7 +861,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Deathjack.png"
         },
         "damage": {
@@ -821,7 +883,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Erebus.png"
         },
         "damage": {
@@ -843,7 +905,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Malice.png"
         },
         "damage": {
@@ -865,7 +927,7 @@
         "height": 60,
         "img": {
           "x": 0,
-          "y": -0,
+          "y": 0,
           "link": "data/cryx/jacks/Nightmare.png"
         },
         "damage": {
@@ -889,6 +951,34 @@
           "x": 0,
           "y": 0,
           "link": "data/cryx/jacks/Kraken.png"
+        },
+        "damage": {
+          "type": "colossal",
+          "L1": [ null, null, "b", "b", "l", "l" ],
+          "L2": [ null, null, "b", "b", "l", "c" ],
+          "L3": [ null, null, "b", "l", "c", "m" ],
+          "L4": [ null,  "b", "b", "l", "c", "m" ],
+          "L5": [  "b",  "b", "s", "s", "c", "m" ],
+          "L6": [  "b",  "b", "s", "c", "c", "m" ],
+          "R1": [  "b",  "b", "s", "c", "c", "m" ],
+          "R2": [  "b",  "b", "s", "s", "c", "m" ],
+          "R3": [ null,  "b", "b", "r", "c", "m" ],
+          "R4": [ null, null, "b", "r", "c", "m" ],
+          "R5": [ null, null, "b", "b", "r", "c" ],
+          "R6": [ null, null, "b", "b", "r", "r" ]
+        }
+      },
+      "Sepulcher": {
+        "name": "Sepulcher",
+        "fk_name": "Sepulcher",
+        "type": "jack",
+        "base": "huge",
+        "width": 116.667,
+        "height": 116.667,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
         },
         "damage": {
           "type": "colossal",
@@ -1857,6 +1947,25 @@
         "damage": {
           "type": "warrior",
           "n": 5
+        }
+      },
+      "soultrapper": {
+        "name": "Soul Trapper",
+        "fk_name": "Soul Trapper",
+        "fk_repeat": 2,
+        "ranges": [ 1, 2 ],
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 1
         }
       },
       "warwitchsiren": {

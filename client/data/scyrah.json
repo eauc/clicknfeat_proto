@@ -135,6 +135,24 @@
           "n": 18
         }
       },
+      "thyron1": {
+        "name": "Thyron1 (Thyron, Sword of Truth)",
+        "fk_name": "Thyron, Sword of Truth",
+        "type": "wardude",
+        "focus": 6,
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 18
+        }
+      },
       "issyria1": {
         "name": "Issyria1 (Sibyl of Dawn)",
         "fk_name": "Issyria, Sibyl of Dawn",
@@ -235,6 +253,29 @@
           "x": 0,
           "y": 0,
           "link": "data/scyrah/jacks/Griffon.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  null,  "b",  "l", null ],
+          "2": [ null, null,  "b",   "l",  "l",  "m" ],
+          "3": [ null, null,  "b",   "g",  "m",  "m" ],
+          "4": [ null, null,  "b",   "g",  "c",  "c" ],
+          "5": [ null, null,  "b",   "r",  "r",  "c" ],
+          "6": [ null, null,  null,  "b",  "r", null ],
+          "field": 6
+        }
+      },
+      "moros": {
+        "name": "Moros",
+        "fk_name": "Moros",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
         },
         "damage": {
           "type": "jack",
@@ -402,6 +443,35 @@
           "5": [ null, null,  "b",   "r",  "r",  "c" ],
           "6": [ null, null,  null,  "b",  "r", null ],
           "field": 10
+        }
+      },
+      "helios": {
+        "name": "Helios",
+        "fk_name": "Helios",
+        "type": "jack",
+        "base": "huge",
+        "width": 116.667,
+        "height": 116.667,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "colossal",
+          "L1": [ null, null, null, "b", "l", "l" ],
+          "L2": [ null, null,  "b", "l", "l", "c" ],
+          "L3": [ null, null,  "b", "l", "c", "m" ],
+          "L4": [ null,  "b",  "g", "g", "c", "m" ],
+          "L5": [ null,  "b",  "g", "c", "c", "m" ],
+          "L6": [ null,  "b",  "g", "c", "c", "m" ],
+          "R1": [ null,  "b",  "g", "c", "c", "m" ],
+          "R2": [ null,  "b",  "g", "c", "c", "m" ],
+          "R3": [ null,  "b",  "g", "g", "c", "m" ],
+          "R4": [ null, null,  "b", "r", "c", "m" ],
+          "R5": [ null, null,  "b", "r", "r", "c" ],
+          "R6": [ null, null, null, "b", "r", "r" ],
+          "field": 12
         }
       },
       "hyperion": {
@@ -621,6 +691,31 @@
                 "x": 0,
                 "y": 0,
                 "link": "data/scyrah/units/Battlemage.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      },
+      "electromancer": {
+        "name": "House Vyre Electromancers",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "House Vyre Electromancers",
+              "ranges": [1, 3],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
               },
               "damage": {
                 "type": "warrior",
@@ -1179,11 +1274,27 @@
           "n": 5
         }
       },
+      "voidtracer": {
+        "name": "Soulless Voidtracer",
+        "fk_name": "Soulless Voidtracer",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 1
+        }
+      },
       "sylys": {
         "name": "Sylys Wyshnalyrr, the Seeker",
         "fk_name": "Sylys Wyshnalyrr, the Seeker",
         "type": "solo",
-        "focus": 4,
         "base": "small",
         "width": 60,
         "height": 60,

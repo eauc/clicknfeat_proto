@@ -166,6 +166,49 @@
           "n": 16
         }
       },
+      "saeryn2": {
+        "name": "Saeryn2 & Rhyas2 (Saeryn & Rhyas, Talons of Everblight)",
+        "entries": {
+          "lock": {
+            "saeryn2": {
+              "name": "Saeryn",
+              "fk_name": "Saeryn & Rhyas, Talons of Everblight",
+              "type": "wardude",
+              "fury": 7,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 8
+              }
+            },
+            "rhyas": {
+              "name": "Rhyas",
+              "fk_name": "Saeryn & Rhyas, Talons of Everblight",
+              "type": "wardude",
+              "fury": 5,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 8
+              }
+            }
+          }
+        }
+      },
       "thagrosh1": {
         "name": "Thagrosh1 (Thagrosh, Prophet of Everblight)",
         "fk_name": "Thagrosh, Prophet of Everblight",

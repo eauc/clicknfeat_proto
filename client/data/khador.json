@@ -340,7 +340,7 @@
           "n": 18
         }
       },
-      "zerkova": {
+      "zerkova1": {
         "name": "Zerkova1 (Koldun Kommander Aleksandra Zerkova)",
         "fk_name": "Koldun Kommander Aleksandra Zerkova",
         "type": "wardude",
@@ -357,7 +357,68 @@
           "type": "warrior",
           "n": 16
         }
-      }   
+      },   
+      "zerkova2": {
+        "name": "Zerkova2 (Obavnik Kommander Zerkova & Reaver Guard)",
+        "entries": {
+          "lock": {
+            "Makeda3": {
+              "name": "Zerkova2",
+              "fk_name": "Obavnik Kommander Zerkova & Reaver Guard",
+              "type": "wardude",
+              "fury": 7,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 16
+              }
+            }
+          },
+          "unit": {
+            "Reaver1": {
+              "name": "Reaver 1",
+              "fk_name": "Obavnik Kommander Zerkova & Reaver Guard",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "Exalted2": {
+              "name": "Reaver 2",
+              "fk_name": "Obavnik Kommander Zerkova & Reaver Guard",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
+        }
+      }
     },
     "jacks": {
       "beast": {
@@ -602,6 +663,28 @@
           "6": [ "b",  "b",  "b",  "b",  "r", null ]
         }
       },
+      "maddog": {
+        "name": "Mad Dog",
+        "fk_name": "Mad Dog",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null,  "b",  "b",  "b",  "l", null ],
+          "2": [  "b",  "b",  "b",  "l",  "l",  "m" ],
+          "3": [  "b",  "b",  "b",  "b",  "m",  "m" ],
+          "4": [  "b",  "b",  "b",  "b",  "c", null ],
+          "5": [  "b",  "b",  "b",  "r",  "r",  "c" ],
+          "6": [ null,  "b",  "b",  "b",  "r", null ]
+        }
+      },
       "marauder": {
         "name": "Marauder",
         "fk_name": "Marauder",
@@ -613,6 +696,50 @@
           "x": 0,
           "y": 0,
           "link": "data/khador/jacks/Marauder.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ "b",  "b",  "b",  "b",  "l", null ],
+          "2": [ "b",  "b",  "b",  "l",  "l",  "m" ],
+          "3": [ "b",  "b",  "b",  "b",  "m",  "m" ],
+          "4": [ "b",  "b",  "b",  "b",  "c",  "c" ],
+          "5": [ "b",  "b",  "b",  "r",  "r",  "c" ],
+          "6": [ "b",  "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "rager": {
+        "name": "Rager",
+        "fk_name": "Rager",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null,  "b",  "b",  "b",  "l", null ],
+          "2": [  "b",  "b",  "b",  "l",  "l",  "m" ],
+          "3": [  "b",  "b",  "b",  "b",  "m",  "m" ],
+          "4": [  "b",  "b",  "b",  "b",  "c", null ],
+          "5": [  "b",  "b",  "b",  "r",  "r",  "c" ],
+          "6": [ null,  "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "ruin": {
+        "name": "Ruin",
+        "fk_name": "Ruin",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
         },
         "damage": {
           "type": "jack",
@@ -679,6 +806,34 @@
           "x": 0,
           "y": 0,
           "link": "data/khador/jacks/Conquest.png"
+        },
+        "damage": {
+          "type": "colossal",
+          "L1": [ null, null,  "b",  "b",  "l",  "l" ],
+          "L2": [ null, null,  "b",  "l",  "l",  "c" ],
+          "L3": [ null,  "b",  "b",  "l",  "c",  "m" ],
+          "L4": [  "b",  "b",  "b",  "l",  "c",  "m" ],
+          "L5": [  "b",  "b",  "s",  "s",  "c",  "m" ],
+          "L6": [  "b",  "b",  "s",  "c",  "c",  "m" ],
+          "R1": [  "b",  "b",  "s",  "c",  "c",  "m" ],
+          "R2": [  "b",  "b",  "s",  "s",  "c",  "m" ],
+          "R3": [  "b",  "b",  "b",  "r",  "c",  "m" ],
+          "R4": [ null,  "b",  "b",  "r",  "c",  "m" ],
+          "R5": [ null, null,  "b",  "r",  "r",  "c" ],
+          "R6": [ null, null,  "b",  "b",  "r",  "r" ]
+        }
+      },
+      "viktor": {
+        "name": "Viktor",
+        "fk_name": "Viktor",
+        "type": "jack",
+        "base": "huge",
+        "width": 116.667,
+        "height": 116.667,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
         },
         "damage": {
           "type": "colossal",

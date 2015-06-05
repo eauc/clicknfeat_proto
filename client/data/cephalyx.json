@@ -4,6 +4,24 @@
   "icon": "",
   "models": {
     "casters": {
+      "Cyphon1": {
+        "name": "Cognifex Cyphon",
+        "fk_name": "Cognifex Cyphon",
+        "type": "wardude",
+        "fury": 7,
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 18
+        }
+      },
       "Thexus1": {
         "name": "Exulon Thexus",
         "fk_name": "",

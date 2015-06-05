@@ -2830,6 +2830,25 @@
           "n": 5
         }
       }
+    },
+    "battle_engines": {
+      "hammerfall": {
+        "name": "Hammerfall Siege Crawler",
+        "fk_name": "Hammerfall Siege Crawler",
+        "type": "be",
+        "base": "huge",
+        "width": 90,
+        "height": 90,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 22
+        }
+      }
     }
   }
 }

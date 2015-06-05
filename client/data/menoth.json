@@ -27,6 +27,24 @@
           "n": 17
         }
       },
+      "anson1": {
+        "name": "Anson1 (Anson Durst, Rock of the Faith)",
+        "fk_name": "Anson Durst, Rock of the Faith",
+        "type": "wardude",
+        "focus": 6,
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 19
+        }
+      },
       "feora1": {
         "name": "Feora1 (Feora, Priestess of the Flame)",
         "fk_name": "Feora, Priestess of the Flame",
@@ -289,8 +307,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/Dervish.png"
         },
         "damage": {
@@ -311,9 +329,31 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/Devout.png"
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "l", null ],
+          "2": [ null,  "b",  "b",  "l",  "l", "m"  ],
+          "3": [ null,  "b",  "b",  "b",  "m", "m"  ],
+          "4": [ null,  "b",  "b",  "b",  "c", "c"  ],
+          "5": [ null,  "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, null,  "b",  "b",  "r", null ]
+        }
+      },
+      "purifier": {
+        "name": "Purifier",
+        "fk_name": "Purifier",
+        "type": "jack",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
         },
         "damage": {
           "type": "jack",
@@ -333,8 +373,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/Redeemer.png"
         },
         "damage": {
@@ -355,8 +395,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/Repenter.png"
         },
         "damage": {
@@ -377,8 +417,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/Revenger.png"
         },
         "damage": {
@@ -399,8 +439,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/Vigilant.png"
         },
         "damage": {
@@ -421,8 +461,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/BlessingOfVengeance.png"
         },
         "damage": {
@@ -443,8 +483,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/Castigator.png"
         },
         "damage": {
@@ -465,8 +505,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/Crusader.png"
         },
         "damage": {
@@ -487,8 +527,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/Guardian.png"
         },
         "damage": {
@@ -501,6 +541,28 @@
           "6": [  "b", "b",  "b",  "b",  "r", null ]
         }
       },
+      "handofjudgement": {
+        "name": "Hand of Judgment",
+        "fk_name": "Hand of Judgement",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "l", null ],
+          "2": [  "b", "b",  "b",  "l",  "l", "m"  ],
+          "3": [  "b", "b",  "b",  "b",  "m", "m"  ],
+          "4": [  "b", "b",  "b",  "b",  "c", "c"  ],
+          "5": [  "b", "b",  "b",  "r",  "r", "c"  ],
+          "6": [ null, "b",  "b",  "b",  "r", null ]
+        }
+      },
       "reckoner": {
         "name": "Reckoner",
         "fk_name": "Reckoner",
@@ -509,8 +571,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/Reckoner.png"
         },
         "damage": {
@@ -531,8 +593,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/Templar.png"
         },
         "damage": {
@@ -553,8 +615,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/Vanquisher.png"
         },
         "damage": {
@@ -575,8 +637,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/Avatar.png"
         },
         "damage": {
@@ -597,8 +659,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/FireOfSalvation.png"
         },
         "damage": {
@@ -619,8 +681,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/Sanctifier.png"
         },
         "damage": {
@@ -641,8 +703,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/BloodOfMartyrs.png"
         },
         "damage": {
@@ -663,8 +725,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/jacks/ScourgeOfHeresy.png"
         },
         "damage": {
@@ -705,6 +767,34 @@
           "R6": [ null, null, "b", "b", "r", "r" ]
         }
       },
+      "revelator": {
+        "name": "Revelator",
+        "fk_name": "Revelator",
+        "type": "jack",
+        "base": "huge",
+        "width": 116.667,
+        "height": 116.667,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "colossal",
+          "L1": [ null, null, "b", "b", "l", "l" ],
+          "L2": [ null, null, "b", "b", "l", "c" ],
+          "L3": [ null,  "b", "b", "l", "c", "m" ],
+          "L4": [ null,  "b", "b", "l", "c", "m" ],
+          "L5": [  "b",  "b", "s", "s", "c", "m" ],
+          "L6": [  "b",  "b", "s", "c", "c", "m" ],
+          "R1": [  "b",  "b", "s", "c", "c", "m" ],
+          "R2": [  "b",  "b", "s", "s", "c", "m" ],
+          "R3": [ null,  "b", "b", "r", "c", "m" ],
+          "R4": [ null,  "b", "b", "r", "c", "m" ],
+          "R5": [ null, null, "b", "b", "r", "c" ],
+          "R6": [ null, null, "b", "b", "r", "r" ]
+        }
+      },
       "indictor": {
         "name": "Indictor",
         "fk_name": "Indictor",
@@ -713,8 +803,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.2,
+          "x": 0,
+          "y": 0,
           "link": ""
         },
         "damage": {
@@ -742,8 +832,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Choir_Grunt.png",
                 "leader": "data/menoth/units/Choir_Priest.png"
               },
@@ -768,8 +858,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Daughters_Grunt.png"
               },
               "damage": {
@@ -793,8 +883,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Delivers_Grunt.png"
               },
               "damage": {
@@ -817,8 +907,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/SunburstCrew1.png"
               },
               "damage": {
@@ -834,8 +924,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/SunburstCrew2.png"
               },
               "damage": {
@@ -851,8 +941,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Sunburst.png"
               },
               "damage": {
@@ -876,8 +966,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Bastions_Grunt.png"
               },
               "damage": {
@@ -901,8 +991,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Cinerator_Grunt.png"
               },
               "damage": {
@@ -926,8 +1016,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Vengers_Grunt.png"
               },
               "damage": {
@@ -951,8 +1041,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Errant_Grunt.png"
               },
               "damage": {
@@ -970,8 +1060,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Errant_Officer.png"
               },
               "damage": {
@@ -987,8 +1077,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Errant_StandardBearer.png"
               },
               "damage": {
@@ -1012,8 +1102,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Cleansers_Grunt.png"
               },
               "damage": {
@@ -1031,8 +1121,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Cleanser_Officer.png"
               },
               "damage": {
@@ -1056,8 +1146,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Knights_Grunt.png"
               },
               "damage": {
@@ -1081,8 +1171,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Zealots_Grunt.png"
               },
               "damage": {
@@ -1100,8 +1190,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Zealots_Monolith.png"
               },
               "damage": {
@@ -1125,8 +1215,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Idrians_Grunt.png"
               },
               "damage": {
@@ -1144,8 +1234,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Idrians_Chieftain.png"
               },
               "damage": {
@@ -1161,8 +1251,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Idrians_Guide.png"
               },
               "damage": {
@@ -1186,8 +1276,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/TempleFlameguard_Grunt.png"
               },
               "damage": {
@@ -1205,8 +1295,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/TempleFlameguard_Officer.png"
               },
               "damage": {
@@ -1222,8 +1312,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/TempleFlameguard_StandardBearer.png"
               },
               "damage": {
@@ -1246,8 +1336,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Visigoth_Rhoven.png"
               },
               "damage": {
@@ -1263,8 +1353,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Visigoth_Guis.png"
               },
               "damage": {
@@ -1280,8 +1370,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": "data/menoth/units/Visigoth_Cassian.png"
               },
               "damage": {
@@ -1305,8 +1395,8 @@
               "width": 60,
               "height": 60,
               "img": {
-                "x": 0.2,
-                "y": -0.5,
+                "x": 0,
+                "y": 0,
                 "link": ""
               },
               "damage": {
@@ -1327,8 +1417,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/units/AttendantPriest.png"
         },
         "damage": {
@@ -1344,8 +1434,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/Allegiant.png"
         },
         "damage": {
@@ -1361,8 +1451,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/Covenant.png"
         },
         "damage": {
@@ -1378,8 +1468,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/ErrantSeneschal.png"
         },
         "damage": {
@@ -1395,8 +1485,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/Hierophant.png"
         },
         "damage": {
@@ -1412,8 +1502,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/KnightSeneschal.png"
         },
         "damage": {
@@ -1429,8 +1519,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/Paladin.png"
         },
         "damage": {
@@ -1446,8 +1536,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/Reclaimer.png"
         },
         "damage": {
@@ -1463,8 +1553,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/Mechanik.png"
         },
         "damage": {
@@ -1480,8 +1570,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/Vassal.png"
         },
         "damage": {
@@ -1498,8 +1588,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/Wrack.png"
         },
         "damage": {
@@ -1515,8 +1605,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/Gravus.png"
         },
         "damage": {
@@ -1532,8 +1622,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/GravusDismount.png"
         },
         "damage": {
@@ -1549,8 +1639,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/Vilmon.png"
         },
         "damage": {
@@ -1566,8 +1656,8 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/Nicia.png"
         },
         "damage": {
@@ -1583,13 +1673,30 @@
         "width": 60,
         "height": 60,
         "img": {
-          "x": 0.2,
-          "y": -0.5,
+          "x": 0,
+          "y": 0,
           "link": "data/menoth/solos/BastionSeneschal.png"
         },
         "damage": {
           "type": "warrior",
           "n": 8
+        }
+      },
+      "pyrrhus": {
+        "name": "Pas Pyrrhus",
+        "fk_name": "Pyrrhus",
+        "type": "warrior",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
         }
       },
       "tristan": {
