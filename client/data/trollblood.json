@@ -59,7 +59,7 @@
         "img": {
           "x": 0,
           "y": 0,
-          "link": null
+          "link": "data/trollbloods/locks/Borka2.png"
         },
         "damage": {
           "type": "warrior",

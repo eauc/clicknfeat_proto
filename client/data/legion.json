@@ -412,7 +412,7 @@
         "img": {
           "x": 0,
           "y": 0,
-          "link": ""
+          "link": "data/legion/beasts/Bloodseer.png"
         },
         "damage": {
           "type": "beast",
@@ -591,12 +591,12 @@
         "type": "beast",
         "fury": 4,
         "base": "large",
-        "width": 60,
-        "height": 60,
+        "width": 216.666666667,
+        "height": 216.666666667,
         "img": {
           "x": 0,
           "y": 0,
-          "link": ""
+          "link": "data/legion/beasts/Neraph.png"
         },
         "damage": {
           "type": "beast",
@@ -734,7 +734,7 @@
         "img": {
           "x": 0,
           "y": 0,
-          "link": ""
+          "link": "data/legion/beasts/Zuriel.png"
         },
         "damage": {
           "type": "beast",

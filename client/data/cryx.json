@@ -948,7 +948,8 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": ""
+                "link": "data/cryx/units/BaneRider.png",
+                "leader": "data/cryx/units/BaneRiderLeader.png"
               },
               "damage": {
                 "type": "warrior",

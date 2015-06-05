@@ -141,12 +141,12 @@
         "type": "wardude",
         "focus": 7,
         "base": "huge",
-        "width": 60,
-        "height": 60,
+        "width": 70,
+        "height": 70,
         "img": {
           "x": 0,
           "y": 0,
-          "link": ""
+          "link": "data/menoth/casters/Reznik2.png"
         },
         "damage": {
           "type": "warrior",

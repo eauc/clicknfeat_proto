@@ -310,7 +310,7 @@
         "img": {
           "x": 0,
           "y": 0,
-          "link": ""
+          "link": "data/orboros/beasts/ArgusMoonhound.png"
         },
         "damage": {
           "type": "beast",

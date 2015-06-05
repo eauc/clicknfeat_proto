@@ -741,12 +741,12 @@
         "fk_name": "Ghordson Earthbreaker",
         "type": "jack",
         "base": "huge",
-        "width": 116.667,
-        "height": 116.667,
+        "width": 216.666666667,
+        "height": 216.666666667,
         "img": {
           "x": 0,
           "y": 0,
-          "link": null
+          "link": "data/mercenaries/jacks/Earthbreaker.png"
         },
         "damage": {
           "type": "colossal",

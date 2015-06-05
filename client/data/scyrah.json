@@ -146,7 +146,7 @@
         "img": {
           "x": 0,
           "y": 0,
-          "link": ""
+          "link": "data/scyrah/casters/Issyria1.png"
         },
         "damage": {
           "type": "warrior",
@@ -443,7 +443,7 @@
         "img": {
           "x": 0,
           "y": 0,
-          "link": ""
+          "link": "data/scyrah/jacks/Imperatus.png"
         },
         "damage": {
           "type": "jack",
