@@ -302,7 +302,7 @@
         "fk_name": "Kromac, Champion of the Wurm",
         "type": "wardude",
         "fury": 7,
-        "base": "medium",
+        "base": "large",
         "width": 60,
         "height": 60,
         "img": {
