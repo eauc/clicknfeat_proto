@@ -253,6 +253,50 @@
           "n": 16
         }
       },
+      "hoarluk3": {
+        "name": "Hoarluk3 (Hoarluk Doomshaper, Dire Prophet)",
+        "entries": {
+          "lock": {
+            "grim2": {
+              "name": "Hoarluk",
+              "fk_name": "Hoarluk Doomshaper, Dire Prophet",
+              "type": "wardude",
+              "fury": 7,
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 16
+              }
+            }
+          },
+          "unit": {
+            "scrollbearer": {
+              "name": "Scroll Bearer",
+              "fk_name": "Hoarluk Doomshaper, Dire Prophet",
+              "type": "warrior",
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+         }
+        }
+      },
       "skuld1": {
         "name": "Jarl Skuld, Devil Of Thornwood",
         "fk_name": "Jarl Skuld, Devil Of Thornwood",
@@ -424,6 +468,29 @@
           "6": [  "b",  "b",  "b",  "b",  "b",  "b" ,  "b" ]
         }
       },
+      "glacier_king": {
+        "name": "Glacier King",
+        "fk_name": "Glacier King",
+        "type": "beast",
+        "fury": 5,
+        "base": "huge",
+        "width": 116.667,
+        "height": 116.667,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "gargantuan",
+          "1": [  "b",  "b",  "b",  "b", null, null, null, null, null, null, null ],
+          "2": [  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null, null, null ],
+          "3": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null ],
+          "4": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b" ],
+          "5": [  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null, null, null ],
+          "6": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null ]
+        }
+      }, 
       "montain_king": {
         "name": "Mountain King",
         "fk_name": "Mountain King",
@@ -702,6 +769,31 @@
       }
     },
     "units": {
+      "dhunia_knot": {
+        "name": "Dhunia Knot",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader & Grunts",
+              "fk_name": "Dhunia Knot",
+              "ranges": [1, 3],
+              "type": "warrior",
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      },
       "kriel_warriors": {
         "name": "Kriel Warriors",
         "entries": {
@@ -983,6 +1075,42 @@
                 "x": 0,
                 "y": 0,
                 "link": "data/trollbloods/units/Pyg_Bushwacker.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          },
+          "ua": {
+            "officer": {
+              "name": "Officer",
+              "fk_name": "Pyg Bushwackers Officer & Mortar",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            },
+            "mortar": {
+              "name": "Mortar",
+              "fk_name": "Pyg Bushwackers Officer & Mortar",
+              "type": "warrior",
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
               },
               "damage": {
                 "type": "warrior",

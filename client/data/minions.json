@@ -209,6 +209,29 @@
           "6": [ "b", "b", "b", "b", "b", null, null, null ]
         }
       },
+      "Blindwalker": {
+        "name": "Blindwalker",
+        "fk_name": "Blindwalker",
+        "type": "beast",
+        "fury": 4,
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "beast",
+          "1": [ "b", "b", null, null, null, null, null, null ],
+          "2": [ "b", "b", "b", null, null, null, null, null ],
+          "3": [ "b", "b", "b", "b", "b", "b", null, null ],
+          "4": [ "b", "b", "b", "b", "b", "b", "b", "b" ],
+          "5": [ "b", "b", "b", null, null, null, null, null ],
+          "6": [ "b", "b", "b", "b", "b", null, null, null ]
+        }
+      },
       "BoneSwarm": {
         "name": "Bone Swarm",
         "fk_name": "Bone Swarm",
@@ -301,6 +324,29 @@
           "6": [ "b", "b", "b", "b", "b", null ]
         }
       },
+      "Battle Boar": {
+        "name": "Battle Boar",
+        "fk_name": "Battle Boar",
+        "type": "beast",
+        "fury": 3,
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "beast",
+          "1": [ "b", "b", null, null, null, null ],
+          "2": [ "b", "b", "b", "b", null, null ],
+          "3": [ "b", "b", "b", "b", null, null ],
+          "4": [ "b", "b", "b", "b", "b", "b" ],
+          "5": [ "b", "b", null, null, null, null ],
+          "6": [ "b", "b", "b", "b", null, null ]
+        }
+      },
       "Gun Boar": {
         "name": "Gun Boar",
         "fk_name": "Gun Boar",
@@ -313,6 +359,29 @@
           "x": 0,
           "y": 0,
           "link": "data/minions/beasts/GunBoar.png"
+        },
+        "damage": {
+          "type": "beast",
+          "1": [ "b", "b", null, null, null, null ],
+          "2": [ "b", "b", "b", "b", null, null ],
+          "3": [ "b", "b", "b", "b", null, null ],
+          "4": [ "b", "b", "b", "b", "b", "b" ],
+          "5": [ "b", "b", null, null, null, null ],
+          "6": [ "b", "b", "b", "b", null, null ]
+        }
+      },
+      "Splater Boar": {
+        "name": "Splater Boar",
+        "fk_name": "Splater Boar",
+        "type": "beast",
+        "fury": 3,
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
         },
         "damage": {
           "type": "beast",
@@ -525,6 +594,47 @@
               "damage": {
                 "type": "warrior",
                 "n": 1
+              }
+            }
+          }
+        }
+      },
+      "Linus&Ebrea": {
+        "name": "Linus Wesselbaum & Ebrea Lloryrr",
+        "entries": {
+          "unit": {
+            "linus": {
+              "name": "Linus Wesselbaum",
+              "fk_name": "Linus Wesselbaum & Ebrea Lloryrr",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "ebrea": {
+              "name": "Ebrea Lloryrr",
+              "fk_name": "Linus Wesselbaum & Ebrea Lloryrr",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
               }
             }
           }
@@ -915,6 +1025,22 @@
         "damage": {
           "type": "warrior",
           "n": 1
+        }
+      },
+      "Hutchuck": {
+        "name": "Hutchuck",
+        "type": "solo",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 8
         }
       },
       "Witch Doctor": {

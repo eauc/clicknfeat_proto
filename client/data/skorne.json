@@ -307,6 +307,24 @@
             }
           }
         }
+      },
+      "Zaal2": {
+        "name": "Zaal2 (Zaal, The Ancestral Advocate)",
+        "fk_name": "Zaal, The Ancestral Advocate",
+        "type": "wardude",
+        "fury": 7,
+        "base": "medium",
+        "width": 90,
+        "height": 90,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 17
+        }
       }
     },
     "beasts": {
@@ -772,6 +790,29 @@
           "6": [  "b",  "b",  "b",  "b",  "b", null ]
         }
       }, 
+      "Hydra": {
+        "name": "Desert Hydra",
+        "fk_name": "Desert Hydra",
+        "type": "beast",
+        "fury": 4,
+        "base": "huge",
+        "width": 116.667,
+        "height": 116.667,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "gargantuan",
+          "1": [  "b",  "b",  "b",  "b",  "b", null, null, null, null, null, null, null, null ],
+          "2": [  "b",  "b",  "b",  "b",  "b",  "b",  null, null, null, null, null, null, null ],
+          "3": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null,  null, null, null ],
+          "4": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null,  null ],
+          "5": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  null, null, null, null, null ],
+          "6": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  null,  null, null, null ]
+        }
+      },
       "Mammoth": {
         "name": "Mammoth",
         "fk_name": "Mammoth",
@@ -936,6 +977,83 @@
               "damage": {
                 "type": "warrior",
                 "n": 1
+              }
+            }
+          },
+          "ua": {
+            "advocate": {
+              "name": "Extoller Advocate",
+              "fk_name": "Extoller Advocate",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
+        }
+      },
+      "Legends of Halaak": {
+        "name": "Legends of Halaak",
+        "entries": {
+          "unit": {
+            "Bagesh": {
+              "name": "Bagesh",
+              "fk_name": "Legends of Halaak",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "Cidaar": {
+              "name": "Cidaar",
+              "fk_name": "Legends of Halaak",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "JDeth": {
+              "name": "J'Deth",
+              "fk_name": "Legends of Halaak",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
               }
             }
           }

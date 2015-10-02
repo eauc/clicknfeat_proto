@@ -375,6 +375,29 @@
           "6": [ "b", "b", "b", "b", null, null, null ]
         }
       },
+      "blightbringer": {
+        "name": "Blightbringer",
+        "fk_name": "Blightbringer",
+        "type": "beast",
+        "fury": 5,
+        "base": "huge",
+        "width": 216.667,
+        "height": 216.667,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "gargantuan",
+          "1": [ "b", "b", "b", "b", "b", "b", null, null, null, null, null, null ],
+          "2": [ "b", "b", "b", "b", "b", "b",  "b",  "b", null, null, null, null ],
+          "3": [ "b", "b", "b", "b", "b", "b",  "b",  "b",  "b",  "b", null, null ],
+          "4": [ "b", "b", "b", "b", "b", "b",  "b",  "b",  "b",  "b",  "b",  "b" ],
+          "5": [ "b", "b", "b", "b", "b", "b",  "b", null, null, null, null, null ],
+          "6": [ "b", "b", "b", "b", "b", "b",  "b",  "b",  "b", null, null, null ]
+        }
+      },
       "carnivean": {
         "name": "Carnivean",
         "fk_name": "Carnivean",
@@ -935,13 +958,13 @@
           }
         }
       },
-      "grotesques": {
-        "name": "Blighted Nyss Grotesques",
+      "grotesques raiders": {
+        "name": "Blighted Nyss Grotesques Raiders",
         "entries": {
           "unit": {
             "grunt": {
               "name": "Leader and Grunts",
-              "fk_name": "Blighted Nyss Grotesques",
+              "fk_name": "Blighted Nyss Grotesques Raiders",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
               "base": "small",
@@ -951,6 +974,31 @@
                 "x": 0,
                 "y": 0,
                 "link": "data/legion/units/Grotesque_Grunt.png"
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      },
+      "grotesques banshees": {
+        "name": "Blighted Nyss Grotesques Banshees",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Blighted Nyss Grotesques Banshees",
+              "ranges": [ 1, 6, 10 ],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
               },
               "damage": {
                 "type": "warrior",
@@ -1407,6 +1455,23 @@
         "damage": {
           "type": "warrior",
           "n": 8
+        }
+      },
+      "grotesque assassin": {
+        "name": "Blight Nyss Grotesque Assassin",
+        "fk_name": "Blight Nyss Grotesque Assassin",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
         }
       },
       "mistress": {
