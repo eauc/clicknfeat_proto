@@ -209,11 +209,11 @@
           "6": [ "b", "b", "b", "b", "b", null, null, null ]
         }
       },
-      "Blindwalker": {
-        "name": "Blindwalker",
-        "fk_name": "Blindwalker",
+      "Blind Walker": {
+        "name": "Blind Walker",
+        "fk_name": "Blind Walker",
         "type": "beast",
-        "fury": 4,
+        "fury": 3,
         "base": "large",
         "width": 60,
         "height": 60,
@@ -225,11 +225,11 @@
         "damage": {
           "type": "beast",
           "1": [ "b", "b", null, null, null, null, null, null ],
-          "2": [ "b", "b", "b", null, null, null, null, null ],
-          "3": [ "b", "b", "b", "b", "b", "b", null, null ],
-          "4": [ "b", "b", "b", "b", "b", "b", "b", "b" ],
-          "5": [ "b", "b", "b", null, null, null, null, null ],
-          "6": [ "b", "b", "b", "b", "b", null, null, null ]
+          "2": [ "b", "b",  "b", null, null, null, null, null ],
+          "3": [ "b", "b",  "b",  "b",  "b",  "b", null, null ],
+          "4": [ "b", "b",  "b",  "b",  "b",  "b",  "b",  "b" ],
+          "5": [ "b", "b",  "b", null, null, null, null, null ],
+          "6": [ "b", "b",  "b",  "b",  "b", null, null, null ]
         }
       },
       "BoneSwarm": {
@@ -340,11 +340,11 @@
         "damage": {
           "type": "beast",
           "1": [ "b", "b", null, null, null, null ],
-          "2": [ "b", "b", "b", "b", null, null ],
-          "3": [ "b", "b", "b", "b", null, null ],
-          "4": [ "b", "b", "b", "b", "b", "b" ],
+          "2": [ "b", "b",  "b",  "b", null, null ],
+          "3": [ "b", "b",  "b",  "b", null, null ],
+          "4": [ "b", "b",  "b",  "b",  "b",  "b" ],
           "5": [ "b", "b", null, null, null, null ],
-          "6": [ "b", "b", "b", "b", null, null ]
+          "6": [ "b", "b",  "b",  "b", null, null ]
         }
       },
       "Gun Boar": {
@@ -363,16 +363,16 @@
         "damage": {
           "type": "beast",
           "1": [ "b", "b", null, null, null, null ],
-          "2": [ "b", "b", "b", "b", null, null ],
-          "3": [ "b", "b", "b", "b", null, null ],
-          "4": [ "b", "b", "b", "b", "b", "b" ],
+          "2": [ "b", "b",  "b",  "b", null, null ],
+          "3": [ "b", "b",  "b",  "b", null, null ],
+          "4": [ "b", "b",  "b",  "b",  "b",  "b" ],
           "5": [ "b", "b", null, null, null, null ],
-          "6": [ "b", "b", "b", "b", null, null ]
+          "6": [ "b", "b",  "b",  "b", null, null ]
         }
       },
-      "Splater Boar": {
-        "name": "Splater Boar",
-        "fk_name": "Splater Boar",
+      "Splatter Boar": {
+        "name": "Splatter Boar",
+        "fk_name": "Splatter Boar",
         "type": "beast",
         "fury": 3,
         "base": "medium",
@@ -386,11 +386,11 @@
         "damage": {
           "type": "beast",
           "1": [ "b", "b", null, null, null, null ],
-          "2": [ "b", "b", "b", "b", null, null ],
-          "3": [ "b", "b", "b", "b", null, null ],
-          "4": [ "b", "b", "b", "b", "b", "b" ],
+          "2": [ "b", "b",  "b",  "b", null, null ],
+          "3": [ "b", "b",  "b",  "b", null, null ],
+          "4": [ "b", "b",  "b",  "b",  "b",  "b" ],
           "5": [ "b", "b", null, null, null, null ],
-          "6": [ "b", "b", "b", "b", null, null ]
+          "6": [ "b", "b",  "b",  "b", null, null ]
         }
       },
       "Razor Boar": {
@@ -532,6 +532,31 @@
           }
         }
       },
+      "Croak Raiders": {
+        "name": "Croak Raiders",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Croak Raiders",
+              "ranges": [ 1, 6, 10 ],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+      },
       "Gatormen Posse": {
         "name": "Gatormen Posse",
         "entries": {
@@ -599,13 +624,13 @@
           }
         }
       },
-      "Linus&Ebrea": {
-        "name": "Linus Wesselbaum & Ebrea Lloryrr",
+      "Lynus&Edrea": {
+        "name": "Lynus Wesselbaum & Edrea Lloryrr",
         "entries": {
           "unit": {
             "linus": {
-              "name": "Linus Wesselbaum",
-              "fk_name": "Linus Wesselbaum & Ebrea Lloryrr",
+              "name": "Lynus",
+              "fk_name": "Lynus Wesselbaum & Edrea Lloryrr",
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -621,8 +646,8 @@
               }
             },
             "ebrea": {
-              "name": "Ebrea Lloryrr",
-              "fk_name": "Linus Wesselbaum & Ebrea Lloryrr",
+              "name": "Edrea",
+              "fk_name": "Lynus Wesselbaum & Edrea Lloryrr",
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -728,6 +753,25 @@
               "damage": {
                 "type": "warrior",
                 "n": 1
+              }
+            }
+          },
+          "ua": {
+            "warlord": {
+              "name": "Warlord",
+              "fk_name": "Farrow Brigand Warlord",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
               }
             }
           }
@@ -1027,8 +1071,24 @@
           "n": 1
         }
       },
+      "Gremlin Swarm": {
+        "name": "Gremlin Swarm",
+        "type": "solo",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
       "Hutchuck": {
-        "name": "Hutchuck",
+        "name": "Hutchuck, Ogrun Bounty Hunter",
         "type": "solo",
         "base": "medium",
         "width": 60,

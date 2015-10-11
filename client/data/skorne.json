@@ -323,7 +323,7 @@
         },
         "damage": {
           "type": "warrior",
-          "n": 17
+          "n": 18
         }
       }
     },
@@ -805,12 +805,12 @@
         },
         "damage": {
           "type": "gargantuan",
-          "1": [  "b",  "b",  "b",  "b",  "b", null, null, null, null, null, null, null, null ],
-          "2": [  "b",  "b",  "b",  "b",  "b",  "b",  null, null, null, null, null, null, null ],
-          "3": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null,  null, null, null ],
-          "4": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null,  null ],
-          "5": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  null, null, null, null, null ],
-          "6": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  null,  null, null, null ]
+          "1": [  "b",  "b",  "b",  "b",  "b",  "b", null, null, null, null, null, null, null ],
+          "2": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null, null, null, null ],
+          "3": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null, null, null ],
+          "4": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null ],
+          "5": [  "b",  "b",  "b",  "b",  "b",  "b", null, null, null, null, null, null, null ],
+          "6": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null, null, null, null ]
         }
       },
       "Mammoth": {
@@ -1006,7 +1006,7 @@
         "entries": {
           "unit": {
             "Bagesh": {
-              "name": "Bagesh",
+              "name": "Valgesh",
               "fk_name": "Legends of Halaak",
               "type": "warrior",
               "base": "small",

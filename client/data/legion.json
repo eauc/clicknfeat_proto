@@ -390,12 +390,12 @@
         },
         "damage": {
           "type": "gargantuan",
-          "1": [ "b", "b", "b", "b", "b", "b", null, null, null, null, null, null ],
-          "2": [ "b", "b", "b", "b", "b", "b",  "b",  "b", null, null, null, null ],
-          "3": [ "b", "b", "b", "b", "b", "b",  "b",  "b",  "b",  "b", null, null ],
-          "4": [ "b", "b", "b", "b", "b", "b",  "b",  "b",  "b",  "b",  "b",  "b" ],
-          "5": [ "b", "b", "b", "b", "b", "b",  "b", null, null, null, null, null ],
-          "6": [ "b", "b", "b", "b", "b", "b",  "b",  "b",  "b", null, null, null ]
+          "1": [ "b", "b", "b", "b", "b", "b",  "b", null, null, null, null, null, null ],
+          "2": [ "b", "b", "b", "b", "b", "b",  "b",  "b", null, null, null, null, null ],
+          "3": [ "b", "b", "b", "b", "b", "b",  "b",  "b",  "b",  "b",  "b", null, null ],
+          "4": [ "b", "b", "b", "b", "b", "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b" ],
+          "5": [ "b", "b", "b", "b", "b", "b", null, null, null, null, null, null, null ],
+          "6": [ "b", "b", "b", "b", "b", "b",  "b", null, null, null, null, null, null ]
         }
       },
       "carnivean": {
@@ -959,12 +959,12 @@
         }
       },
       "grotesques raiders": {
-        "name": "Blighted Nyss Grotesques Raiders",
+        "name": "Grotesques Raiders",
         "entries": {
           "unit": {
             "grunt": {
               "name": "Leader and Grunts",
-              "fk_name": "Blighted Nyss Grotesques Raiders",
+              "fk_name": "Grotesques Raiders",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
               "base": "small",
@@ -984,12 +984,12 @@
         }
       },
       "grotesques banshees": {
-        "name": "Blighted Nyss Grotesques Banshees",
+        "name": "Grotesques Banshees",
         "entries": {
           "unit": {
             "grunt": {
               "name": "Leader and Grunts",
-              "fk_name": "Blighted Nyss Grotesques Banshees",
+              "fk_name": "Grotesques Banshees",
               "ranges": [ 1, 6, 10 ],
               "type": "warrior",
               "base": "small",
@@ -1458,8 +1458,8 @@
         }
       },
       "grotesque assassin": {
-        "name": "Blight Nyss Grotesque Assassin",
-        "fk_name": "Blight Nyss Grotesque Assassin",
+        "name": "Grotesque Assassin",
+        "fk_name": "Grotesque Assassin",
         "type": "solo",
         "base": "small",
         "width": 60,

@@ -487,8 +487,8 @@
           "2": [  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null, null, null ],
           "3": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null ],
           "4": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b" ],
-          "5": [  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null, null, null ],
-          "6": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null ]
+          "5": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null, null ],
+          "6": [  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b",  "b", null, null ]
         }
       }, 
       "montain_king": {
@@ -770,12 +770,12 @@
     },
     "units": {
       "dhunia_knot": {
-        "name": "Dhunia Knot",
+        "name": "Dhunian Knot",
         "entries": {
           "unit": {
             "grunt": {
               "name": "Leader & Grunts",
-              "fk_name": "Dhunia Knot",
+              "fk_name": "Dhunian Knot",
               "ranges": [1, 3],
               "type": "warrior",
               "base": "medium",
@@ -1085,7 +1085,7 @@
           "ua": {
             "officer": {
               "name": "Officer",
-              "fk_name": "Pyg Bushwackers Officer & Mortar",
+              "fk_name": "Pyg Bushwacker Officer & Mortar",
               "type": "warrior",
               "base": "small",
               "width": 60,
@@ -1097,14 +1097,14 @@
               },
               "damage": {
                 "type": "warrior",
-                "n": 1
+                "n": 5
               }
             },
             "mortar": {
-              "name": "Mortar",
-              "fk_name": "Pyg Bushwackers Officer & Mortar",
+              "name": "Mortar Pyg",
+              "fk_name": "Pyg Bushwacker Officer & Mortar",
               "type": "warrior",
-              "base": "medium",
+              "base": "small",
               "width": 60,
               "height": 60,
               "img": {

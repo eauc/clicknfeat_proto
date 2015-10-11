@@ -655,11 +655,11 @@
         "damage": {
           "type": "gargantuan",
           "1": [ "b", "b", "b", "b", "b", "b", null, null, null, null ],
-          "2": [ "b", "b", "b", "b", "b","b", "b", null, null, null ],
-          "3": [ "b", "b", "b", "b", "b", "b", "b", "b", null, null ],
-          "4": [ "b", "b", "b", "b", "b", "b", "b", "b", "b", "b" ],
-          "5": [ "b", "b", "b", "b", "b", "b", "b", null, null, null ],
-          "6": [ "b", "b", "b", "b", "b", "b", "b", "b", null, null ]
+          "2": [ "b", "b", "b", "b", "b", "b",  "b",  "b", null, null ],
+          "3": [ "b", "b", "b", "b", "b", "b", null, null, null, null ],
+          "4": [ "b", "b", "b", "b", "b", "b",  "b",  "b", null, null ],
+          "5": [ "b", "b", "b", "b", "b", "b",  "b",  "b", null, null ],
+          "6": [ "b", "b", "b", "b", "b", "b",  "b",  "b",  "b",  "b" ]
         }
       },
       "Warpwolf Stalker": {
@@ -1447,9 +1447,9 @@
           "n": 5
         }
       },
-      "Bloodweaver Nightwitch": {
-        "name": "Bloodweaver Nightwitch",
-        "fk_name": "Bloodweaver Nightwitch",
+      "Bloodweaver Night Witch": {
+        "name": "Bloodweaver Night Witch",
+        "fk_name": "Bloodweaver Night Witch",
         "type": "solo",
         "base": "small",
         "width": 60,
