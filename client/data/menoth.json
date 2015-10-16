@@ -1104,7 +1104,7 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": "data/menoth/units/Cleansers_Grunt.png"
+                "link": "data/menoth/units/Cleanser_Grunt.png"
               },
               "damage": {
                 "type": "warrior",
