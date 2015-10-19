@@ -273,7 +273,7 @@
         "fk_name": "Kommander Strakhov",
         "type": "wardude",
         "focus": 6,
-        "base": "medium",
+        "base": "small",
         "width": 60,
         "height": 60,
         "img": {
@@ -1871,7 +1871,7 @@
       },
       "wardog": {
         "name": "War Dog",
-        "fk_name": "War Dog",
+        "fk_name": "War dog",
         "type": "solo",
         "base": "small",
         "width": 60,
