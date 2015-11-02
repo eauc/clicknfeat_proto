@@ -1305,14 +1305,14 @@
               },
               "damage": {
                 "type": "warrior",
-                "n": 1
+                "n": 5
               }
             },
             "bull": {
               "name": "Bull",
               "fk_name": "Dannon Blythe & Bull",
               "type": "warrior",
-              "base": "small",
+              "base": "medium",
               "width": 60,
               "height": 60,
               "img": {
