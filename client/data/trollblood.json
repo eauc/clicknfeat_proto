@@ -1007,7 +1007,7 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": ""
+                "link": "data/trollbloods/units/Fire_eater_grunt.png"
               },
               "damage": {
                 "type": "warrior",
@@ -1024,7 +1024,7 @@
               "img": {
                 "x": 0,
                 "y": 0,
-                "link": ""
+                "link": "data/trollbloods/units/Fire_eater_buddy.png"
               },
               "damage": {
                 "type": "warrior",
