@@ -68,7 +68,7 @@
               }
             }
           },
-          "attachement": {
+          "unit": {
             "argus1": {     
               "name": "War Argus 1",
               "fk_name": "Kommander Zoktavir, The Butcher Unleashed",
@@ -176,10 +176,10 @@
         "damage": {
           "type": "jack",
           "1": [ "b",  "b",  "b",  "b",  "l", null ],
-          "2": [ "b",  "b",  "b",  "l",  "l",  "m" ],
+          "2": [ "b",  "b",  "b",  "b",  "l",  "l" ],
           "3": [ "b",  "b",  "b",  "b",  "m",  "m" ],
-          "4": [ "b",  "b",  "b",  "b",  "B",  "B" ],
-          "5": [ "b",  "b",  "b",  "r",  "r",  "B" ],
+          "4": [ "b",  "b",  "b",  "b",  "b",  "m" ],
+          "5": [ "b",  "b",  "b",  "b",  "r",  "r" ],
           "6": [ "b",  "b",  "b",  "b",  "r", null ]
         }
       },
@@ -232,6 +232,24 @@
           }
         }
       },
+      "oldwitch2": {
+        "name": "OldWitch2 (Zevanna Agha, the Fate Keeper)",
+        "fk_name": "Zevanna Agha, the Fate Keeper",
+        "type": "wardude",
+        "focus": 7,
+        "base": "huge",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 20
+        }
+      },
       "sorscha1": {
         "name": "Sorscha1 (Kommander Sorscha)",
         "fk_name": "Kommander Sorscha",
@@ -254,7 +272,7 @@
         "name": "Sorscha2 (Forward Kommander Sorscha)",
         "fk_name": "Forward Kommander Sorscha",
         "type": "wardude",
-        "focus": 7,
+        "focus": 6,
         "base": "small",
         "width": 60,
         "height": 60,
@@ -262,6 +280,24 @@
           "x": 0,
           "y": 0,
           "link": "data/khador/casters/Sorscha2.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 17
+        }
+      },
+      "sorscha3": {
+        "name": "Sorscha3 (Kommandant Sorscha Kratikoff)",
+        "fk_name": "Kommandant Sorscha Kratikoff",
+        "type": "wardude",
+        "focus": 6,
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
         },
         "damage": {
           "type": "warrior",
@@ -284,6 +320,67 @@
         "damage": {
           "type": "warrior",
           "n": 17
+        }
+      },
+      "strakhov2": {
+        "name": "Strakhov2 (Assault Kommander Strakhov & Kommandos)",
+        "entries": {
+          "caster": {
+            "strakhov2": {
+              "name": "Strakhov2 (Assault Kommander Strakhov)",
+              "fk_name": "Assault Kommander Strakhov & Kommandos",
+              "type": "wardude",
+              "focus": 6,
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 20
+              }
+            }
+          },
+          "unit": {
+            "kommando1": {     
+              "name": "Kommando 1",
+              "fk_name": "Assault Kommander Strakhov & Kommandos",
+              "type": "solo",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            },
+            "kommando2": {     
+              "name": "Kommando 2",
+              "fk_name": "Assault Kommander Strakhov & Kommandos",
+              "type": "solo",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": ""
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+              }
+            }
+          }
         }
       },
       "vlad1": {
@@ -361,9 +458,9 @@
       "zerkova2": {
         "name": "Zerkova2 (Obavnik Kommander Zerkova & Reaver Guard)",
         "entries": {
-          "lock": {
-            "Makeda3": {
-              "name": "Zerkova2",
+          "caster": {
+            "Zerkova2": {
+              "name": "Zerkova2 (Obavnik Kommander Zerkova & Reaver Guard)",
               "fk_name": "Obavnik Kommander Zerkova & Reaver Guard",
               "type": "wardude",
               "fury": 7,
@@ -399,7 +496,7 @@
                 "n": 5
               }
             },
-            "Exalted2": {
+            "Reaver2": {
               "name": "Reaver 2",
               "fk_name": "Obavnik Kommander Zerkova & Reaver Guard",
               "type": "warrior",
@@ -617,6 +714,28 @@
           "4": [  "b",  "b",  "b",  "b",  "c",  "c" ],
           "5": [  "b",  "b",  "b",  "r",  "r",  "c" ],
           "6": [ null,  "b",  "b",  "b",  "r", null ]
+        }
+      },
+      "grolar": {
+        "name": "Grolar",
+        "fk_name": "Grolar",
+        "type": "jack",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "jack",
+          "1": [ "b",  "b",  "b",  "b",  "l", null ],
+          "2": [ "b",  "b",  "b",  "l",  "l",  "m" ],
+          "3": [ "b",  "b",  "b",  "b",  "m",  "m" ],
+          "4": [ "b",  "b",  "b",  "b",  "c",  "c" ],
+          "5": [ "b",  "b",  "b",  "r",  "r",  "c" ],
+          "6": [ "b",  "b",  "b",  "b",  "r", null ]
         }
       },
       "juggernaut": {
@@ -905,7 +1024,7 @@
         "name": "Great Bears of Gallowswood",
         "entries": {
           "unit": {
-            "Ryan": {
+            "Kolsk": {
               "name": "Kolsk",
               "fk_name": "Great Bears of Gallowswood",
               "type": "warrior",
@@ -922,7 +1041,7 @@
                 "n": 5
               }
             },
-            "Lynch": {
+            "Volkov": {
               "name": "Volkov",
               "fk_name": "Great Bears of Gallowswood",
               "type": "warrior",
@@ -939,7 +1058,7 @@
                 "n": 5
               }
             },
-            "Watts": {
+            "Yarovich": {
               "name": "Yarovich",
               "fk_name": "Great Bears of Gallowswood",
               "type": "warrior",
@@ -1459,6 +1578,25 @@
                 "type": "warrior",
                 "n": 8
               }
+            },
+            "ua": {
+              "officer": {
+                "name": "Officer",
+                "fk_name": "Man-o-War Bombardier Officer",
+                "type": "warrior",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                  "x": 0,
+                  "y": 0,
+                  "link": ""
+                },
+                "damage": {
+                  "type": "warrior",
+                  "n": 8
+                }
+              }
             }
           }
         }
@@ -1484,6 +1622,25 @@
                 "type": "warrior",
                 "n": 8
               }
+            },
+            "ua": {
+              "dragos": {
+                "name": "Dragos",
+                "fk_name": "Sergeant Dragos Dragadovich",
+                "type": "warrior",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                  "x": 0,
+                  "y": 0,
+                  "link": ""
+                },
+                "damage": {
+                  "type": "warrior",
+                  "n": 8
+                }
+              }
             }
           }
         }
@@ -1508,6 +1665,25 @@
               "damage": {
                 "type": "warrior",
                 "n": 8
+              }
+            },
+            "ua": {
+              "officer": {
+                "name": "Officer",
+                "fk_name": "Man-o-War Shocktrooper Officer",
+                "type": "warrior",
+                "base": "medium",
+                "width": 60,
+                "height": 60,
+                "img": {
+                  "x": 0,
+                  "y": 0,
+                  "link": ""
+                },
+                "damage": {
+                  "type": "warrior",
+                  "n": 8
+                }
               }
             }
           }
@@ -1641,12 +1817,66 @@
                 "type": "warrior",
                 "n": 1
               }
+            },
+            "wa": {
+              "roketeer": {
+                "name": "Roketeer",
+                "fk_name": ["Winter Guard Infantry Rocketeer", "Winter Guard Infantry Rocketeers"],
+                "ranges": [1, 2, 3],
+                "type": "warrior",
+                "base": "small",
+                "width": 60,
+                "height": 60,
+                "img": {
+                  "x": 0,
+                  "y": 0,
+                  "link": "data/khador/units/WinterguardRocketeer.png"
+                },
+                "damage": {
+                  "type": "warrior",
+                  "n": 1
+                }
+              }
             }
           }
         }
       }      
     },
     "solos": {
+      "adjunct": {
+        "name": "Greylord Adjunct",
+        "fk_name": "Greylord Adjunct",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "forgeseer": {
+        "name": "Greylord Forge Seer",
+        "fk_name": "Greylord Forge Seer",
+        "type": "solo",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 8
+        }
+      },
       "fenris": {
         "name": "Fenris",
         "fk_name": "Fenris",
@@ -1692,6 +1922,23 @@
           "x": 0,
           "y": 0,
           "link": "data/khador/solos/IronFangKovnik.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "sofya1": {
+        "name": "Kapitan Sofya Skirova",
+        "fk_name": "Kapitan Sofya Skirova",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
         },
         "damage": {
           "type": "warrior",
@@ -1818,6 +2065,40 @@
           "n": 8
         }
       },
+      "strikeTanker": {
+        "name": "Man-o-war Strike Tanker",
+        "fk_name": "Man-o-war Strike Tanker",
+        "type": "solo",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 10
+        }
+      },
+      "suppressionTanker": {
+        "name": "Man-o-war Suppression Tanker",
+        "fk_name": "Man-o-war Suppression Tanker",
+        "type": "solo",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 10
+        }
+      },
       "manhunter": {
         "name": "Manhunter",
         "fk_name": "Manhunter",
@@ -1846,6 +2127,24 @@
           "x": 0,
           "y": 0,
           "link": "data/khador/solos/Marksman.png"
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "sorscha0": {
+        "name": "Kovnik Apprentice Kratikoff",
+        "fk_name": "Kovnik Apprentice Kratikoff",
+        "type": "wardude",
+        "focus": 4,
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
         },
         "damage": {
           "type": "warrior",
@@ -1886,6 +2185,23 @@
           "n": 5
         }
       },
+      "wgak": {
+        "name": "Winter Guard Artillery Kapitan",
+        "fk_name": "Winter Guard Artillery Kapitan",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
       "yuri": {
         "name": "Yuri the Axe",
         "fk_name": "Yuri the Axe",
@@ -1900,7 +2216,7 @@
         },
         "damage": {
           "type": "warrior",
-          "n": 5
+          "n": 8
         }
       }
     },
@@ -1919,7 +2235,41 @@
         },
         "damage": {
           "type": "warrior",
-          "n": 22
+          "n": 38
+        }
+      },
+      "assaultChariot": {
+        "name": "Man-o-War Assault Chariot",
+        "fk_name": "Man-o-War Assault Chariot",
+        "type": "be",
+        "base": "huge",
+        "width": 90,
+        "height": 90,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 28
+        }
+      },
+      "siegeChariot": {
+        "name": "Man-o-War Siege Chariot",
+        "fk_name": "Man-o-War Siege Chariot",
+        "type": "be",
+        "base": "huge",
+        "width": 90,
+        "height": 90,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 28
         }
       }
     }
