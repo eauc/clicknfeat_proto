@@ -1,0 +1,381 @@
+  "models": {
+    "Master Infernalists": {
+      "Agathon1": {
+        "name": "Agathon",
+        "fk_name": "Agathon, The Voice in the Dark",
+        "type": "wardude",
+        "focus": 9,
+        "base": "large",
+        "img": [],
+        "damage": {
+          "n": 17
+        }
+      },
+      "Omodamos1": {
+        "name": "Omodamos",
+        "fk_name": "Omodamos, The Black Gate",
+        "type": "wardude",
+        "focus": 6,
+        "base": "large",
+        "img": [],
+        "damage": {
+          "n": 19
+        }
+      },
+      "Zaateroth1": {
+        "name": "Zaateroth",
+        "fk_name": "Zaateroth, The Weaver of Shadows",
+        "type": "wardude",
+        "focus": 7,
+        "base": "large",
+        "img": [],
+        "damage": {
+          "n": 16
+        }
+      }
+    },
+    "Horrors": {
+      "desolator": {
+        "name": "Desolator",
+        "type": "jack",
+        "base": "large",
+        "damage": {
+          "type": "jack",
+          "1": [ "b", "b",  "b",  "b",  "b", "b" ],
+          "2": [ "b", "b",  "b",  "b",  "b",  "b" ],
+          "4": [ null, null,  "b",  "b",  "b",  "b" ],
+          "4": [ null, null,  "b",  "b",  "b",  "b" ],
+          "5": [ null, null,  null,  null,  "b",  "b" ],
+          "6": [ null, null,  null,  null,  "b",  "b" ],
+        }
+      },
+      "foreboder": {
+        "name": "Foreboder",
+        "type": "jack",
+        "base": "small",
+        "damage": {
+          "type": "jack",
+          "1": [ null, null,  "b",  "b",  "b", "b" ],
+          "2": [ null, null,  null,  "b",  "b",  "b" ],
+          "4": [ null, null,  null,  "b",  "b",  "b" ],
+          "4": [ null, null,  null,  null,  "b",  "b" ],
+          "5": [ null, null,  null,  null,  null,  "b" ],
+          "6": [ null, null,  null,  null,  null,  "b" ],
+        }
+      },
+      "lamenter": {
+        "name": "Lamenter",
+        "type": "jack",
+        "base": "medium",
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "b", "b" ],
+          "2": [ null, null,  "b",  "b",  "b",  "b" ],
+          "4": [ null, null,  null,  "b",  "b",  "b" ],
+          "4": [ null, null,  null,  null,  "b",  "b" ],
+          "5": [ null, null,  null,  null,  "b",  "b" ],
+          "6": [ null, null,  null,  null,  "b",  "b" ],
+        }
+      },
+      "shrieker": {
+        "name": "Shrieker",
+        "type": "jack",
+        "base": "medium",
+        "damage": {
+          "type": "jack",
+          "1": [ null, "b",  "b",  "b",  "b", "b" ],
+          "2": [ null, null,  "b",  "b",  "b",  "b" ],
+          "4": [ null, null,  null,  "b",  "b",  "b" ],
+          "4": [ null, null,  null,  null,  "b",  "b" ],
+          "5": [ null, null,  null,  null,  "b",  "b" ],
+          "6": [ null, null,  null,  null,  null,  "b" ],
+        }
+      },
+	  "soulstalker": {
+        "name": "Soul Stalker",
+        "type": "jack",
+        "base": "large",
+        "damage": {
+          "type": "jack",
+          "1": [ "b", "b",  "b",  "b",  "b", "b" ],
+          "2": [ null, "b",  "b",  "b",  "b",  "b" ],
+          "4": [ null, null,  "b",  "b",  "b",  "b" ],
+          "4": [ null, null,  null,  "b",  "b",  "b" ],
+          "5": [ null, null,  null,  null,  "b",  "b" ],
+          "6": [ null, null,  null,  null,  "b",  "b" ],
+		}
+      },
+      "tormentor": {
+        "name": "Tormentor",
+        "type": "jack",
+        "base": "large",
+        "damage": {
+          "type": "jack",
+          "1": [ "b", "b",  "b",  "b",  "b", "b" ],
+          "2": [ "b", "b",  "b",  "b",  "b",  "b" ],
+          "4": [ null, null,  "b",  "b",  "b",  "b" ],
+          "4": [ null, null,  "b",  "b",  "b",  "b" ],
+          "5": [ null, null,  null,  null,  "b",  "b" ],
+          "6": [ null, null,  null,  null,  "b",  "b" ],
+        }
+      },
+	  "units": {
+		"Cultists": {
+			"name": "Cultist Band",
+			"entries": {
+			"unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Cultist Band",
+              "ranges": [1, 4, 6],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+            "Orin": {
+              "name": "Orin Midwinter",
+              "fk_name": "Orin Midwinter",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 5
+				              }
+            }
+          }
+		  "WA": {
+              "name": "Dark Sentinel",
+              "fk_name": "Dark Sentinel",
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+		"Howlers": {
+        "name": "Howlers",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Howlers",
+              "ranges": [1, 3, 5],
+              "type": "warrior",
+              "base": "medium",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 8
+              }
+            }
+          }
+		"Griever Swarms": {
+        "name": "Griever Swarms",
+        "entries": {
+          "unit": {
+            "grunt": {
+              "name": "Leader and Grunts",
+              "fk_name": "Griever Swarms",
+              "ranges": [1, 6, 10],
+              "type": "warrior",
+              "base": "small",
+              "width": 60,
+              "height": 60,
+              "img": {
+                "x": 0,
+                "y": 0,
+                "link": null
+              },
+              "damage": {
+                "type": "warrior",
+                "n": 1
+              }
+            }
+          }
+        }
+	"solos": {
+      },
+      "Alain Runewood2": {
+        "name": "Alain Runewood, Lord of Ash",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "Eilish2": {
+        "name": "Eilish Garrity, The Dark Seeker",
+        "fk_name": "Eilish2",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "Regna Gravnoy": {
+        "name": "Great Princess Regna Gravnoy",
+        "fk_name": "Regna Gravnoy",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "Roget d'Vyaros": {
+        "name": "Lord Roget d'Vyaros",
+        "fk_name": "Roget d'Vyaros",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "Nicia2": {
+        "name": "Nicia, Hound of the Abyss",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+      "Umbral Guardian": {
+        "name": "Umbral Guardian",
+        "type": "solo",
+        "base": "medium",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": null
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 8
+        }
+      },
+      "Valin Hauke": {
+        "name": "Valin Hauke, The Fallen Knight",
+        "fk_name": "Valin Hauke",
+        "type": "solo",
+        "base": "large",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 10
+        }
+      },
+      "The Wretch": {
+        "name": "The Wretch",
+        "fk_name": "The Wretch",
+        "type": "solo",
+        "base": "small",
+        "width": 60,
+        "height": 60,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 5
+        }
+      },
+    "structure": {
+      "infernal gate": {
+        "name": "Infernal Gate",
+        "fk_name": "Infernal Gate",
+        "type": "be",
+        "base": "huge",
+        "width": 90,
+        "height": 90,
+        "img": {
+          "x": 0,
+          "y": 0,
+          "link": ""
+        },
+        "damage": {
+          "type": "warrior",
+          "n": 25
+        }
+      },
